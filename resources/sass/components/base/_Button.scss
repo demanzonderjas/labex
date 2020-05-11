@@ -1,0 +1,11 @@
+.Button {
+	position: relative;
+
+	button {
+		padding: 10px;
+		color: $highlight-text-color;
+		background-color: $primary;
+		display: inline-block;
+		font-size: 20px;
+	}
+}

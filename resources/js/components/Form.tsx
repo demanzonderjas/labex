@@ -1,9 +1,9 @@
 import { observer } from "mobx-react";
 import React from "react";
 import { useFormStore } from "../hooks/useFormStore";
-import { toJS } from "mobx";
 import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
 import { FormFieldWithLabel } from "./FormField";
+import { SubmitButton } from "./base/Button";
 
 export const Form: React.FC = observer(() => {
 	const { fields, submit } = useFormStore();
@@ -16,7 +16,7 @@ export const Form: React.FC = observer(() => {
 					.map(field => (
 						<FormFieldWithLabel key={field.id} field={field} />
 					))}
-				<button type="submit">Submit</button>
+				<SubmitButton label="submit" />
 			</form>
 		</div>
 	);
