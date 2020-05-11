@@ -16,6 +16,19 @@
         "lodash": "^4.17.13",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
-        "sass-loader": "^8.0.0"
+        "sass-loader": "^8.0.0",
+        "ts-loader": "^7.0.3",
+        "typescript": "^3.8.3",
+        "webpack-cli": "^3.3.11"
+    },
+    "dependencies": {
+        "@types/react": "^16.9.35",
+        "@types/react-dom": "^16.9.8",
+        "mobx": "^4.*",
+        "mobx-react": "6.*",
+        "mobx-react-lite": "^2.0.6",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-scripts": "^3.4.1"
     }
 }
