@@ -1,0 +1,18 @@
+.IconSelectField {
+	display: flex;
+	width: 100px;
+	justify-content: space-between;
+
+	.Option {
+		background-color: #f0f0f0;
+		padding: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+
+		&.selected {
+			background-color: green;
+		}
+	}
+}

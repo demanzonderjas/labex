@@ -3,10 +3,12 @@
 /public/storage
 /public/js
 /public/css
+/public/images
 /public/mix-manifest.json
 /storage/*.key
 /vendor
 .env
+/resources/js/env.ts
 .env.backup
 .phpunit.result.cache
 Homestead.json
