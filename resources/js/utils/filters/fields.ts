@@ -9,3 +9,7 @@ export function fieldMeetsDependencies(field: FormField, index: number, fields: 
 		return parentField.value == dependency.value;
 	});
 }
+
+export function fieldIsNotHidden(field: FormField) {
+	return !field.hidden;
+}

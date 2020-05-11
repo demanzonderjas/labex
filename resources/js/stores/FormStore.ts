@@ -11,7 +11,7 @@ export class FormStore {
 		this.handler = form.handler;
 	}
 
-	@action.bound setFieldValue(id, value) {
+	@action.bound setFieldValue(id: string, value: any) {
 		const fieldIdx = this.fields.findIndex(field => field.id == id);
 		const fields = [...this.fields];
 		fields[fieldIdx] = { ...fields[fieldIdx], value };
@@ -20,7 +20,7 @@ export class FormStore {
 
 	@action.bound submit(e: FormEvent) {
 		e.preventDefault();
-		console.log(this.generateKeyValuePairs());
+		this.handler(this.generateKeyValuePairs());
 	}
 
 	generateKeyValuePairs() {
@@ -28,5 +28,15 @@ export class FormStore {
 			base[field.id] = field.value;
 			return base;
 		}, {});
+	}
+
+	@action.bound addField(field: FormField) {
+		const fields = [...this.fields];
+		fields.push(field);
+		this.fields = fields;
+	}
+
+	@action.bound removeField(id: string) {
+		this.fields = this.fields.filter(field => field.id != id);
 	}
 }

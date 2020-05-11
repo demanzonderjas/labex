@@ -10,7 +10,8 @@ export const animalSpeciesField: FormField = {
 			{ label: "mouse", value: "mouse" },
 			{ label: "dog", value: "dog" },
 			{ label: "cat", value: "cat" }
-		]
+		],
+		allowOther: true
 	},
 	value: "mouse"
 };

@@ -9,6 +9,7 @@ interface Props extends FormFieldData {
 
 export const InputField: React.FC<Props> = observer(({ id, value, type }) => {
 	const { setFieldValue } = useFormStore();
+	console.log(id, value);
 	return (
 		<div className="InputField">
 			<input type={type} value={value} onChange={e => setFieldValue(id, e.target.value)} />

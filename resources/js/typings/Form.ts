@@ -20,6 +20,7 @@ export interface FormField extends FormFieldData {
 	Component: React.FC;
 	props: any;
 	dependencies?: FormFieldDependency[];
+	hidden?: boolean;
 }
 
 export type FormFieldDependency = {
