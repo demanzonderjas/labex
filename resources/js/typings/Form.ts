@@ -5,14 +5,22 @@ export type Form = {
 	handler: Function;
 };
 
-export type FormField = {
+export enum InputType {
+	Number = "number",
+	Text = "text"
+}
+
+export interface FormFieldData {
 	label: string;
 	id: string;
+	value: string;
+}
+
+export interface FormField extends FormFieldData {
 	Component: React.FC;
 	props: any;
-	value: string;
 	dependencies?: FormFieldDependency[];
-};
+}
 
 export type FormFieldDependency = {
 	id: string;
