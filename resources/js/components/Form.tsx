@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import React from "react";
 import { useFormStore } from "../hooks/useFormStore";
 import { toJS } from "mobx";
+import { fieldMeetsDependencies } from "../utils/filters/fields";
 
 export const Form: React.FC = observer(() => {
 	const { fields, submit } = useFormStore();
@@ -9,7 +10,7 @@ export const Form: React.FC = observer(() => {
 	return (
 		<div className="Form">
 			<form onSubmit={submit}>
-				{fields.map(field => (
+				{fields.filter(fieldMeetsDependencies).map(field => (
 					<field.Component
 						key={field.id}
 						{...field.props}

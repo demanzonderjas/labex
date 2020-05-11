@@ -11,4 +11,10 @@ export type FormField = {
 	Component: React.FC;
 	props: any;
 	value: string;
+	dependencies?: FormFieldDependency[];
+};
+
+export type FormFieldDependency = {
+	id: string;
+	value: any;
 };
