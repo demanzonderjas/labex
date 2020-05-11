@@ -20,6 +20,13 @@ export class FormStore {
 
 	@action.bound submit(e: FormEvent) {
 		e.preventDefault();
-		console.log(toJS(this.fields));
+		console.log(this.generateKeyValuePairs());
+	}
+
+	generateKeyValuePairs() {
+		return this.fields.reduce((base, field) => {
+			base[field.id] = field.value;
+			return base;
+		}, {});
 	}
 }
