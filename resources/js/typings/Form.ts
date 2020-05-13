@@ -19,6 +19,7 @@ export interface FormFieldData {
 export interface FormField extends FormFieldData {
 	Component: React.FC;
 	props: any;
+	required?: boolean;
 	dependencies?: FormFieldDependency[];
 	hidden?: boolean;
 }
@@ -26,4 +27,9 @@ export interface FormField extends FormFieldData {
 export type FormFieldDependency = {
 	id: string;
 	validate: Function;
+};
+
+export type TSelectOption = {
+	label: string;
+	value: string;
 };

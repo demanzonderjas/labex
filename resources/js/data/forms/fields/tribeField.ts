@@ -5,6 +5,7 @@ export const tribeField: FormField = {
 	label: "tribe",
 	id: "tribe",
 	Component: SelectField,
+	required: true,
 	props: {
 		startsEmpty: true,
 		options: [

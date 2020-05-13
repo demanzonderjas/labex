@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
-import { FormFieldData, FormField } from "../../typings/Form";
+import { FormFieldData, TSelectOption } from "../../typings/Form";
 import { generateOtherFieldId, changeFieldId } from "../../utils/formatting/fields";
 import { otherField } from "../../data/forms/fields/other";
 import { FormFieldWithLabel } from "../FormField";
 import { getFieldById } from "../../utils/getters/fields";
-
-type TOption = {
-	label: string;
-	value: string;
-};
+import { SelectOption } from "./SelectOption";
 
 interface Props extends FormFieldData {
-	options: TOption[];
+	options: TSelectOption[];
 	allowOther: boolean;
 	startsEmpty: boolean;
 }
@@ -41,16 +37,12 @@ export const SelectField: React.FC<Props> = observer(
 				<select value={value} onChange={e => setFieldValue(id, e.target.value)}>
 					{startsEmpty && <option value="" />}
 					{options.map(option => (
-						<Option key={option.label} {...option} />
+						<SelectOption key={option.label} {...option} />
 					))}
-					{allowOther && <Option label="other" value="other" />}
+					{allowOther && <SelectOption label="other" value="other" />}
 				</select>
 				{showOtherField && _otherField && <FormFieldWithLabel field={_otherField} />}
 			</div>
 		);
 	}
 );
-
-const Option: React.FC<TOption> = observer(({ label, value }) => {
-	return <option value={value}>{label}</option>;
-});

@@ -5,6 +5,7 @@ export const naiveField: FormField = {
 	label: "naive",
 	id: "naive",
 	Component: InputField,
+	required: true,
 	props: {
 		type: InputType.Text
 	},

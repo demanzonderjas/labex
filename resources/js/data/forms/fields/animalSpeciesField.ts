@@ -5,6 +5,7 @@ export const animalSpeciesField: FormField = {
 	label: "animal_species",
 	id: "animal_species",
 	Component: SelectField,
+	required: true,
 	props: {
 		options: [
 			{ label: "mouse", value: "mouse" },

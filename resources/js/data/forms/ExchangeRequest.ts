@@ -7,6 +7,9 @@ import { naiveField } from "./fields/naive";
 import { genderField } from "./fields/gender";
 import { weightTypeField } from "./fields/weightType";
 import { weightField } from "./fields/weight";
+import { originField } from "./fields/origin";
+import { spfField } from "./fields/spf";
+import { microbiomeField } from "./fields/microbiomeField";
 
 export const ExchangeRequest: Form = {
 	fields: [
@@ -15,6 +18,9 @@ export const ExchangeRequest: Form = {
 		ageField,
 		weightTypeField,
 		weightField,
+		originField,
+		spfField,
+		microbiomeField,
 		naiveField,
 		genderField
 	],
