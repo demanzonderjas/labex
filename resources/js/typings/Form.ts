@@ -25,5 +25,5 @@ export interface FormField extends FormFieldData {
 
 export type FormFieldDependency = {
 	id: string;
-	value: any;
+	validate: Function;
 };

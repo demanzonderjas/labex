@@ -6,7 +6,7 @@ export function fieldMeetsDependencies(field: FormField, index: number, fields: 
 	}
 	return field.dependencies.every(dependency => {
 		const parentField = fields.find(field => field.id == dependency.id);
-		return parentField.value == dependency.value;
+		return dependency.validate(parentField.value);
 	});
 }
 

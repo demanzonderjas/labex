@@ -6,7 +6,8 @@ import { LocalImage } from "../base/Image";
 import cx from "classnames";
 
 type TOption = {
-	icon: string;
+	icon?: string;
+	text?: string;
 	value: string;
 	handleSelect: Function;
 	isSelected: boolean;
@@ -32,13 +33,13 @@ export const IconSelectField: React.FC<Props> = observer(({ id, value, options }
 	);
 });
 
-const Option: React.FC<TOption> = observer(({ icon, value, handleSelect, isSelected }) => {
+const Option: React.FC<TOption> = observer(({ icon, text, value, handleSelect, isSelected }) => {
 	return (
 		<div
 			className={cx("Option", { selected: isSelected })}
 			onClick={() => handleSelect(isSelected ? "" : value)}
 		>
-			<LocalImage path={`icons/${icon}.svg`} />
+			{icon ? <LocalImage path={`icons/${icon}.svg`} /> : <span>{text}</span>}
 		</div>
 	);
 });

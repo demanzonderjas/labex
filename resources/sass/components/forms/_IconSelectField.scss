@@ -1,6 +1,6 @@
 .IconSelectField {
 	display: flex;
-	width: 100px;
+	width: 120px;
 	justify-content: space-between;
 
 	.Option {
@@ -10,6 +10,8 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+		width: 50px;
+		height: 50px;
 
 		&.selected {
 			background-color: green;

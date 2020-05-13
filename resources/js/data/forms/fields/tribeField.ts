@@ -13,11 +13,5 @@ export const tribeField: FormField = {
 			{ label: "mini_mouse", value: "mini_mouse" }
 		]
 	},
-	value: "",
-	dependencies: [
-		{
-			id: "animal_species",
-			value: "mouse"
-		}
-	]
+	value: ""
 };
