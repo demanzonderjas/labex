@@ -10,6 +10,7 @@ import { weightField } from "./fields/weight";
 import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
 import { microbiomeField } from "./fields/microbiomeField";
+import { organsField } from "./fields/organs";
 
 export const ExchangeRequest: Form = {
 	fields: [
@@ -21,6 +22,7 @@ export const ExchangeRequest: Form = {
 		originField,
 		spfField,
 		microbiomeField,
+		organsField,
 		naiveField,
 		genderField
 	],
