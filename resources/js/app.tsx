@@ -1,6 +1,6 @@
 import "mobx-react-lite/batchingForReactDom";
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import FormStoreProvider from "./contexts/FormContext";
 import { Form } from "./components/Form";
 import { FormStore } from "./stores/FormStore";
@@ -18,4 +18,4 @@ const App: React.FC = () => {
 	);
 };
 
-ReactDOM.render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById("app"));
