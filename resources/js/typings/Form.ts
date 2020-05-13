@@ -7,7 +7,8 @@ export type Form = {
 
 export enum InputType {
 	Number = "number",
-	Text = "text"
+	Text = "text",
+	Date = "date"
 }
 
 export interface FormFieldData {

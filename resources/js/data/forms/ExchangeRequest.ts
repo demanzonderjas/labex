@@ -11,6 +11,9 @@ import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
 import { microbiomeField } from "./fields/microbiomeField";
 import { organsField } from "./fields/organs";
+import { storageField } from "./fields/storage";
+import { dateAvailableField } from "./fields/dateAvailable";
+import { proceduresField } from "./fields/procedures";
 
 export const ExchangeRequest: Form = {
 	fields: [
@@ -23,7 +26,10 @@ export const ExchangeRequest: Form = {
 		spfField,
 		microbiomeField,
 		organsField,
+		storageField,
+		dateAvailableField,
 		naiveField,
+		proceduresField,
 		genderField
 	],
 	handler: sendExchangeRequest

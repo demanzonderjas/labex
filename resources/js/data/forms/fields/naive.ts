@@ -1,13 +1,11 @@
-import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { FormField } from "../../../typings/Form";
+import { BooleanField } from "../../../components/form/BooleanField";
 
 export const naiveField: FormField = {
 	label: "naive",
 	id: "naive",
-	Component: InputField,
+	Component: BooleanField,
 	required: true,
-	props: {
-		type: InputType.Text
-	},
+	props: {},
 	value: ""
 };
