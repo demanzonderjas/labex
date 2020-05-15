@@ -7,6 +7,8 @@ export const proceduresField: FormField = {
 	Component: BigTextField,
 	props: {},
 	value: "",
+	description:
+		"verwijzen naar betreffende CCD/werkprotocolnr en dan moet mate van ongerief ingevuld worden",
 	dependencies: [
 		{
 			id: "naive",

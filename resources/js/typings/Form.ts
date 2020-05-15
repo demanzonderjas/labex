@@ -1,6 +1,6 @@
 import React from "react";
 
-export type Form = {
+export type TForm = {
 	fields: FormField[];
 	handler: Function;
 };
@@ -23,14 +23,10 @@ export interface FormField extends FormFieldData {
 	required?: boolean;
 	dependencies?: FormFieldDependency[];
 	hidden?: boolean;
+	description?: string;
 }
 
 export type FormFieldDependency = {
 	id: string;
 	validate: Function;
-};
-
-export type TSelectOption = {
-	label: string;
-	value: string;
 };

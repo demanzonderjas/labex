@@ -8,10 +8,17 @@ export const organsField: FormField = {
 	props: {
 		startsEmpty: true,
 		options: [
-			{ label: "heart", value: "heart" },
-			{ label: "skin", value: "skin" },
-			{ label: "liver", value: "liver" },
-			{ label: "spleen", value: "spleen" }
+			"liver",
+			"kidneys",
+			"lung",
+			"heart",
+			"brains",
+			"blood",
+			"muscle_tissue",
+			"lynf_knots",
+			"bone",
+			"intestine",
+			"skin"
 		],
 		allowOther: true
 	},

@@ -1,10 +1,9 @@
 import { TForm } from "../../typings/Form";
 import { animalSpeciesField } from "./fields/animalSpecies";
-import { sendExchangeRequest } from "../../queries/sendExchangeRequest";
 import { tribeField } from "./fields/tribe";
 import { ageField } from "./fields/age";
 import { naiveField } from "./fields/naive";
-import { genderRequestField } from "./fields/gender";
+import { genderField } from "./fields/gender";
 import { weightTypeField } from "./fields/weightType";
 import { weightField } from "./fields/weight";
 import { originField } from "./fields/origin";
@@ -20,13 +19,13 @@ import { amountField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { protocolNumberKnownField } from "./fields/protocolNumberKnown";
 import { sampleNumberField } from "./fields/sampleNumber";
+import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
 
 export const ExchangeOffer: TForm = {
 	fields: [
 		animalSpeciesField,
 		tribeField,
-		genderRequestField,
-		isAgeRelevantField,
+		genderField,
 		ageField,
 		weightTypeField,
 		weightField,
@@ -45,5 +44,5 @@ export const ExchangeOffer: TForm = {
 		protocolNumberField,
 		sampleNumberField
 	],
-	handler: sendExchangeRequest
+	handler: sendExchangeOffer
 };

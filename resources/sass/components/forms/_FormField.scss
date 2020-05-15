@@ -1,8 +1,12 @@
 .FormFieldWithLabel {
-	margin: 10px 0;
+	margin: 20px 0;
 
 	label {
 		font-size: 20px;
 		text-transform: uppercase;
+
+		.required {
+			color: $danger-color;
+		}
 	}
 }

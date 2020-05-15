@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
-import { FormFieldData, TSelectOption } from "../../typings/Form";
+import { FormFieldData } from "../../typings/Form";
 import { generateOtherFieldId, changeFieldId } from "../../utils/formatting/fields";
 import { otherField } from "../../data/forms/fields/other";
 import { FormFieldWithLabel } from "../FormField";
@@ -9,7 +9,7 @@ import { getFieldById } from "../../utils/getters/fields";
 import { SelectOption } from "./SelectOption";
 
 interface Props extends FormFieldData {
-	options: TSelectOption[];
+	options: string[];
 	allowOther: boolean;
 	startsEmpty: boolean;
 }
@@ -37,9 +37,9 @@ export const SelectField: React.FC<Props> = observer(
 				<select value={value} onChange={e => setFieldValue(id, e.target.value)}>
 					{startsEmpty && <option value="" />}
 					{options.map(option => (
-						<SelectOption key={option.label} {...option} />
+						<SelectOption key={option} value={option} />
 					))}
-					{allowOther && <SelectOption label="other" value="other" />}
+					{allowOther && <SelectOption value="other" />}
 				</select>
 				{showOtherField && _otherField && <FormFieldWithLabel field={_otherField} />}
 			</div>

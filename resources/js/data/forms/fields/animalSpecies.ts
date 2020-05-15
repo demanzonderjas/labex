@@ -8,9 +8,22 @@ export const animalSpeciesField: FormField = {
 	required: true,
 	props: {
 		options: [
-			{ label: "mouse", value: "mouse" },
-			{ label: "dog", value: "dog" },
-			{ label: "cat", value: "cat" }
+			"mouse",
+			"rat",
+			"guinea_pig",
+			"hamster",
+			"rabbit",
+			"dog",
+			"cat",
+			"ferret",
+			"pig",
+			"sheep",
+			"goat",
+			"horse",
+			"bovine",
+			"chicken",
+			"zebra_finch",
+			"zebrafish"
 		],
 		allowOther: true
 	},

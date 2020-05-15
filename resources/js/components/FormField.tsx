@@ -9,8 +9,12 @@ export const FormFieldWithLabel: React.FC<Props> = ({ field }) => {
 	return (
 		<div className="FormFieldWithLabel">
 			<div className="label-wrapper">
-				<label>{field.label}</label>
+				<label>
+					{field.label}
+					{field.required && <span className="required">*</span>}
+				</label>
 			</div>
+			{field.description && <p>{field.description}</p>}
 			<div className="field-wrapper">
 				<field.Component
 					{...field.props}

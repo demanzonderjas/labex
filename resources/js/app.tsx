@@ -1,20 +1,14 @@
 import "mobx-react-lite/batchingForReactDom";
-import React, { useState } from "react";
+import React from "react";
 import { render } from "react-dom";
-import FormStoreProvider from "./contexts/FormContext";
-import { Form } from "./components/Form";
-import { FormStore } from "./stores/FormStore";
-import { ExchangeRequest } from "./data/forms/ExchangeRequest";
+import { ExchangeOffer } from "./data/forms/ExchangeOffer";
+import { FormWrapper } from "./components/FormWrapper";
 
 const App: React.FC = () => {
-	const [formStore] = useState(new FormStore(ExchangeRequest));
-
 	return (
-		<FormStoreProvider store={formStore}>
-			<div className="App">
-				<Form />
-			</div>
-		</FormStoreProvider>
+		<div className="App">
+			<FormWrapper form={ExchangeOffer} />
+		</div>
 	);
 };
 

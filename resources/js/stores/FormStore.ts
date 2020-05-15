@@ -1,12 +1,12 @@
 import { observable, toJS, action } from "mobx";
-import { FormField, Form } from "../typings/Form";
+import { FormField, TForm } from "../typings/Form";
 import { FormEvent } from "react";
 
 export class FormStore {
 	@observable fields: FormField[] = [];
 	@observable handler: Function = null;
 
-	constructor(form: Form) {
+	constructor(form: TForm) {
 		this.fields = form.fields;
 		this.handler = form.handler;
 	}
