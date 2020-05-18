@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { Link } from "react-router-dom";
 
 type Props = {
 	label: string;
@@ -9,5 +10,9 @@ type Props = {
 
 export const MenuItem: React.FC<Props> = observer(({ label, isActive }) => {
 	const { t } = useTranslationStore();
-	return <li>{t(label)}</li>;
+	return (
+		<Link to={label}>
+			<li>{t(label)}</li>
+		</Link>
+	);
 });

@@ -17,7 +17,7 @@
 		li {
 			color: white;
 			padding: 10px;
-			margin-right: 10px;
+			margin-right: 25px;
 
 			&:first-child {
 				padding-left: 0;
@@ -31,9 +31,16 @@
 		top: 50%;
 		transform: translateY(-50%);
 
+		li {
+			margin: 10px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
 		img {
 			width: 25px;
-			margin: 10px;
 		}
 	}
 }

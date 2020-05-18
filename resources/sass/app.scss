@@ -16,10 +16,12 @@ body {
 	font-family: $font-primary;
 }
 
-.App .pages {
-	padding: 20px 0;
-	display: flex;
-	justify-content: space-between;
-	max-width: 1200px;
+.App {
+	margin: 0 auto;
+}
+
+.page-wrapper {
+	padding: 50px 0;
+	max-width: $layout-wrapper-width;
 	margin: 0 auto;
 }
