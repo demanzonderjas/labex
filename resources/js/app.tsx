@@ -23,16 +23,19 @@ const App: React.FC = () => {
 					<Header />
 					<div className="page-wrapper">
 						<Switch>
-							<Route path="/dashboard">
+							<Route path="/" exact={true}>
 								<DashboardPage />
 							</Route>
-							<Route path="/offers">
+							<Route path="*/dashboard">
+								<DashboardPage />
+							</Route>
+							<Route path="*/offers">
 								<OfferFormPage />
 							</Route>
-							<Route path="/requests">
+							<Route path="*/requests">
 								<RequestFormPage />
 							</Route>
-							<Route path="/my-matches">
+							<Route path="*/my-matches">
 								<MyMatchesPage />
 							</Route>
 						</Switch>
