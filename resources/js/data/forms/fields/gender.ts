@@ -20,6 +20,6 @@ export const genderField: FormField = {
 export const genderRequestField: FormField = {
 	...genderField,
 	props: {
-		options: [...genderOptions, { text: "X", value: "irrelevant" }]
+		options: [...genderOptions, { label: "x", value: "irrelevant" }]
 	}
 };

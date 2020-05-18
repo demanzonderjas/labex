@@ -11,3 +11,14 @@ export const ageField: FormField = {
 	},
 	value: ""
 };
+
+export const ageRequestField: FormField = {
+	...ageField,
+	required: false,
+	dependencies: [
+		{
+			id: "is_age_relevant",
+			validate: value => value == "yes"
+		}
+	]
+};

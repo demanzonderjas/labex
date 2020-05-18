@@ -4,10 +4,11 @@ import { useFormStore } from "../../hooks/useFormStore";
 import { FormFieldData } from "../../typings/Form";
 import { LocalImage } from "../base/Image";
 import cx from "classnames";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 type TOption = {
 	icon?: string;
-	text?: string;
+	label?: string;
 	value: string;
 	handleSelect: Function;
 	isSelected: boolean;
@@ -33,13 +34,14 @@ export const IconSelectField: React.FC<Props> = observer(({ id, value, options }
 	);
 });
 
-const Option: React.FC<TOption> = observer(({ icon, text, value, handleSelect, isSelected }) => {
+const Option: React.FC<TOption> = observer(({ icon, label, value, handleSelect, isSelected }) => {
+	const { t } = useTranslationStore();
 	return (
 		<div
 			className={cx("Option", { selected: isSelected })}
 			onClick={() => handleSelect(isSelected ? "" : value)}
 		>
-			{icon ? <LocalImage path={`icons/${icon}.svg`} /> : <span>{text}</span>}
+			{icon ? <LocalImage path={`icons/${icon}.svg`} /> : <span>{t(label)}</span>}
 		</div>
 	);
 });

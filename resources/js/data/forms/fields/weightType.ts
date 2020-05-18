@@ -7,8 +7,8 @@ export const weightTypeField: FormField = {
 	Component: IconSelectField,
 	props: {
 		options: [
-			{ text: "Kg", value: "kg" },
-			{ text: "g", value: "g" }
+			{ label: "Kg", value: "kg" },
+			{ label: "g", value: "g" }
 		]
 	},
 	value: ""

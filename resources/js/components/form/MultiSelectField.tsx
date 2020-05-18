@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
 import { FormFieldData } from "../../typings/Form";
 import { SelectOption } from "./SelectOption";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 interface Props extends FormFieldData {
 	options: string[];
@@ -13,6 +14,7 @@ interface Props extends FormFieldData {
 export const MultiSelectField: React.FC<Props> = observer(
 	({ id, value, options, startsEmpty, allowOther }) => {
 		const { setFieldValue } = useFormStore();
+		const { t } = useTranslationStore();
 
 		const addSelection = (e: any) => {
 			const selectionExistsAlready = value.match(e.target.value);
@@ -49,7 +51,7 @@ export const MultiSelectField: React.FC<Props> = observer(
 								onClick={() => removeSelection(selection)}
 								className="selection"
 							>
-								{selection}
+								{t(selection)}
 							</div>
 						))}
 				</div>

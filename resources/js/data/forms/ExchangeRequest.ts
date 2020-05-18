@@ -2,7 +2,7 @@ import { TForm } from "../../typings/Form";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { sendExchangeRequest } from "../../queries/sendExchangeRequest";
 import { tribeField } from "./fields/tribe";
-import { ageField } from "./fields/age";
+import { ageField, ageRequestField } from "./fields/age";
 import { naiveField } from "./fields/naive";
 import { genderRequestField } from "./fields/gender";
 import { weightTypeField } from "./fields/weightType";
@@ -26,7 +26,7 @@ export const ExchangeRequest: TForm = {
 		tribeField,
 		genderRequestField,
 		isAgeRelevantField,
-		ageField,
+		ageRequestField,
 		weightTypeField,
 		weightField,
 		originField,

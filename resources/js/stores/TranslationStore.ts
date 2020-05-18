@@ -5,6 +5,6 @@ export class TranslationStore {
 	@observable __ = translations;
 
 	@action.bound t(label: string) {
-		return this.__[label];
+		return this.__[label] || label;
 	}
 }
