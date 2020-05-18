@@ -1,7 +1,13 @@
 .IconSelectField {
 	display: flex;
-	width: 180px;
 	justify-content: space-between;
+
+	&.options-2 {
+		width: 115px;
+	}
+	&.options-3 {
+		width: 180px;
+	}
 
 	.Option {
 		background-color: #f0f0f0;

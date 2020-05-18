@@ -15,6 +15,8 @@
 	}
 
 	.error {
-		color: $danger-color;
+		background-color: $danger-color;
+		padding: 10px;
+		margin: 5px 0;
 	}
 }

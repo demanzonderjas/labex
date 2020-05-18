@@ -4,6 +4,7 @@ import { useFormStore } from "../../hooks/useFormStore";
 import { FormFieldData } from "../../typings/Form";
 import { SelectOption } from "./SelectOption";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { LocalImage } from "../base/Image";
 
 interface Props extends FormFieldData {
 	options: string[];
@@ -34,14 +35,17 @@ export const MultiSelectField: React.FC<Props> = observer(
 		const lastSelected = selectionArray[selectionArray.length - 1];
 
 		return (
-			<div className="MultiSelectField">
-				<select value={lastSelected} onChange={e => addSelection(e)}>
-					{startsEmpty && <option value="" />}
-					{options.map(option => (
-						<SelectOption key={option} value={option} />
-					))}
-					{allowOther && <SelectOption value="other" />}
-				</select>
+			<div className="MultiSelectField SelectField">
+				<div className="select-wrapper">
+					<select value={lastSelected} onChange={e => addSelection(e)}>
+						{startsEmpty && <option value="" />}
+						{options.map(option => (
+							<SelectOption key={option} value={option} />
+						))}
+						{allowOther && <SelectOption value="other" />}
+					</select>
+					<LocalImage path="icons/arrow-down.svg" />
+				</div>
 				<div className="selections">
 					{selectionArray
 						.filter(selection => !!selection)

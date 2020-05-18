@@ -21,7 +21,7 @@ interface Props extends FormFieldData {
 export const IconSelectField: React.FC<Props> = observer(({ id, value, options }) => {
 	const { setFieldValue } = useFormStore();
 	return (
-		<div className="IconSelectField">
+		<div className={`IconSelectField options-${options.length}`}>
 			{options.map(option => (
 				<Option
 					key={option.value}
