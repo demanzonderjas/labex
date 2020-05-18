@@ -25,7 +25,7 @@ export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 					id={field.id}
 					label={field.label}
 					value={field.value}
-					required={field.required}
+					// required={field.required}
 				/>
 			</div>
 		</div>

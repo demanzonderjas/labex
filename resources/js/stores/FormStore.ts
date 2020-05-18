@@ -22,6 +22,9 @@ export class FormStore {
 
 	@action.bound validate() {
 		const errors = this.fields.reduce((base, field) => {
+			if (field.validate && !field.validate(field.value)) {
+				base[field.id] = "field_not_valid";
+			}
 			if (field.required && field.value == "") {
 				base[field.id] = "field_required";
 			}

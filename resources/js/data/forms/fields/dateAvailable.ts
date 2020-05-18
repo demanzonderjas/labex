@@ -1,5 +1,6 @@
 import { InputField } from "../../../components/form/InputField";
 import { FormField, InputType } from "../../../typings/Form";
+import { isDateInFuture } from "../../../utils/validation/date";
 
 export const dateAvailableField: FormField = {
 	label: "date_available",
@@ -10,6 +11,7 @@ export const dateAvailableField: FormField = {
 		type: InputType.Date
 	},
 	value: "",
+	validate: isDateInFuture,
 	dependencies: [
 		{
 			id: "origin",

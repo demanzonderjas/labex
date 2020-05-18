@@ -70,5 +70,6 @@
 	"preserved": "Preserved",
 	"Kg": "Kg",
 	"g": "g",
-	"field_required": "This field is required, please fill it in."
+	"field_required": "This field is required, please fill it in.",
+	"field_not_valid": "This field does not contain a valid value"
 }

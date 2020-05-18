@@ -25,6 +25,7 @@ export interface FormField extends FormFieldData {
 	dependencies?: FormFieldDependency[];
 	hidden?: boolean;
 	description?: string;
+	validate?: Function;
 }
 
 export type FormFieldDependency = {

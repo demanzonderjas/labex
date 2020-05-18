@@ -13,7 +13,6 @@ type Props = {
 export const Form: React.FC<Props> = observer(({ header }) => {
 	const { fields, submit, errors } = useFormStore();
 	const { t } = useTranslationStore();
-	console.log(errors);
 	return (
 		<div className="Form">
 			<h2>{t(header)}</h2>
