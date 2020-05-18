@@ -11,3 +11,10 @@ export const amountField: FormField = {
 	},
 	value: "1"
 };
+
+export const amountRequestedField: FormField = {
+	...amountField,
+	description: "Moeilijk te beantwoorden voor (stuk) weefsel. Niet eisen?",
+	required: false,
+	value: "0"
+};

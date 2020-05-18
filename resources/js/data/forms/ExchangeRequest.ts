@@ -13,15 +13,14 @@ import { microbiomeField } from "./fields/microbiome";
 import { organsField } from "./fields/organs";
 import { storageField } from "./fields/storage";
 import { dateAvailableField } from "./fields/dateAvailable";
-import { proceduresField } from "./fields/procedures";
 import { inconvenienceLevelField } from "./fields/inconvenienceLevel";
 import { killMethodField } from "./fields/killMethod";
-import { amountField } from "./fields/amount";
-import { protocolNumberField } from "./fields/protocolNumber";
-import { protocolNumberKnownField } from "./fields/protocolNumberKnown";
+import { amountRequestedField } from "./fields/amount";
 import { sampleNumberField } from "./fields/sampleNumber";
+import { isAgeRelevantField } from "./fields/isAgeRelevant";
 
-export const ExchangeOffer: TForm = {
+export const ExchangeRequest: TForm = {
+	header: "exchange_request",
 	fields: [
 		animalSpeciesField,
 		tribeField,
@@ -37,12 +36,9 @@ export const ExchangeOffer: TForm = {
 		storageField,
 		dateAvailableField,
 		naiveField,
-		proceduresField,
 		inconvenienceLevelField,
 		killMethodField,
-		amountField,
-		protocolNumberKnownField,
-		protocolNumberField,
+		amountRequestedField,
 		sampleNumberField
 	],
 	handler: sendExchangeRequest

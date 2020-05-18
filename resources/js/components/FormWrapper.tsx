@@ -11,7 +11,7 @@ export const FormWrapper: React.FC<Props> = ({ form }) => {
 
 	return (
 		<FormStoreProvider store={formStore}>
-			<Form />
+			<Form header={form.header} />
 		</FormStoreProvider>
 	);
 };

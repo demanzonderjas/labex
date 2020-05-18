@@ -9,7 +9,8 @@
 		"isolatedModules": true,
 		"esModuleInterop": true,
 		"noImplicitAny": false,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"resolveJsonModule": true
 	},
 	"include": ["resources/js"],
 	"compileOnSave": false

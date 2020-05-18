@@ -1,6 +1,7 @@
 import React from "react";
 
 export type TForm = {
+	header: string;
 	fields: FormField[];
 	handler: Function;
 };
