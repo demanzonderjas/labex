@@ -5,6 +5,7 @@ import { FormEvent } from "react";
 export class FormStore {
 	@observable fields: FormField[] = [];
 	@observable handler: Function = null;
+	@observable errors: any = {};
 
 	constructor(form: TForm) {
 		this.fields = form.fields;
@@ -16,11 +17,31 @@ export class FormStore {
 		const fields = [...this.fields];
 		fields[fieldIdx] = { ...fields[fieldIdx], value };
 		this.fields = fields;
+		this.setFieldError(id, null);
+	}
+
+	@action.bound validate() {
+		const errors = this.fields.reduce((base, field) => {
+			if (field.required && field.value == "") {
+				base[field.id] = "field_required";
+			}
+			return base;
+		}, {});
+		this.errors = errors;
+		return Object.keys(errors).length === 0;
+	}
+
+	@action setFieldError(id, label) {
+		const errors = { ...this.errors };
+		errors[id] = label;
+		this.errors = errors;
 	}
 
 	@action.bound submit(e: FormEvent) {
 		e.preventDefault();
-		this.handler(this.generateKeyValuePairs());
+		if (this.validate()) {
+			this.handler(this.generateKeyValuePairs());
+		}
 	}
 
 	generateKeyValuePairs() {

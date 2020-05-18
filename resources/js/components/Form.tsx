@@ -11,8 +11,9 @@ type Props = {
 };
 
 export const Form: React.FC<Props> = observer(({ header }) => {
-	const { fields, submit } = useFormStore();
+	const { fields, submit, errors } = useFormStore();
 	const { t } = useTranslationStore();
+	console.log(errors);
 	return (
 		<div className="Form">
 			<h2>{t(header)}</h2>
@@ -21,7 +22,7 @@ export const Form: React.FC<Props> = observer(({ header }) => {
 					.filter(fieldIsNotHidden)
 					.filter(fieldMeetsDependencies)
 					.map(field => (
-						<FormFieldWithLabel key={field.id} field={field} />
+						<FormFieldWithLabel key={field.id} field={field} error={errors[field.id]} />
 					))}
 				<SubmitButton label="submit" />
 			</form>

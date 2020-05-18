@@ -69,5 +69,6 @@
 	"liquid_nitrogen": "Liquid nitrogen",
 	"preserved": "Preserved",
 	"Kg": "Kg",
-	"g": "g"
+	"g": "g",
+	"field_required": "This field is required, please fill it in."
 }

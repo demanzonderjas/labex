@@ -16,7 +16,7 @@ interface Props extends FormFieldData {
 
 export const SelectField: React.FC<Props> = observer(
 	({ id, value, options, startsEmpty, allowOther }) => {
-		const { setFieldValue, addField, removeField, fields } = useFormStore();
+		const { setFieldValue, addField, removeField, fields, errors } = useFormStore();
 		const [showOtherField, setShowOtherField] = useState(false);
 		const otherFieldId = generateOtherFieldId(id);
 		const _otherField = getFieldById(otherFieldId, fields);
@@ -41,7 +41,9 @@ export const SelectField: React.FC<Props> = observer(
 					))}
 					{allowOther && <SelectOption value="other" />}
 				</select>
-				{showOtherField && _otherField && <FormFieldWithLabel field={_otherField} />}
+				{showOtherField && _otherField && (
+					<FormFieldWithLabel field={_otherField} error={errors[_otherField.id]} />
+				)}
 			</div>
 		);
 	}
