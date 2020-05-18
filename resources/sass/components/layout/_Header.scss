@@ -1,0 +1,15 @@
+.Header {
+	height: 200px;
+
+	.logo-wrapper {
+		max-width: $layout-wrapper-width;
+		margin: 0 auto;
+
+		img {
+			display: inline-block;
+			margin: 0 20px 0 0;
+			vertical-align: middle;
+			height: 130px;
+		}
+	}
+}

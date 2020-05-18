@@ -6,14 +6,18 @@ import { FormWrapper } from "./components/FormWrapper";
 import { ExchangeRequest } from "./data/forms/ExchangeRequest";
 import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
+import { Header } from "./components/layout/Header";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
 	return (
 		<TranslationStoreProvider store={translationStore}>
 			<div className="App">
-				<FormWrapper form={ExchangeOffer} />
-				<FormWrapper form={ExchangeRequest} />
+				<Header />
+				<div className="pages">
+					<FormWrapper form={ExchangeOffer} />
+					<FormWrapper form={ExchangeRequest} />
+				</div>
 			</div>
 		</TranslationStoreProvider>
 	);

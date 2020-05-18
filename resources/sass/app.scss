@@ -2,6 +2,8 @@
 @import "variables";
 @import "typography";
 @import "components/base/Button";
+@import "components/layout/Header";
+@import "components/layout/Menu";
 @import "components/forms/Form";
 @import "components/forms/FormField";
 @import "components/forms/IconSelectField";
@@ -11,10 +13,13 @@
 @import "components/forms/SelectField";
 
 body {
-	padding: 20px;
 	font-family: $font-primary;
 }
 
-.App {
+.App .pages {
+	padding: 20px 0;
 	display: flex;
+	justify-content: space-between;
+	max-width: 1200px;
+	margin: 0 auto;
 }

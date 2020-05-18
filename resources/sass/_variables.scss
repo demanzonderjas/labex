@@ -1,9 +1,10 @@
 $yellow: #ffcd00;
 $red: #c00936;
 $purple: #5a2282;
+$black: #000000;
 
 $primary: $yellow;
-$secondary: gray;
+$secondary: $black;
 
 $highlight-text-color: white;
 $correct-color: green;
@@ -11,3 +12,5 @@ $danger-color: $red;
 
 $font-header: "Open Sans", sans-serif;
 $font-primary: "Merriweather", serif;
+
+$layout-wrapper-width: 1200px;

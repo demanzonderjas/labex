@@ -1,8 +1,7 @@
 .Form {
-	width: 50%;
+	width: calc(50% - 20px);
 	display: inline-block;
 	background-color: #ccc;
-	margin: 20px;
 
 	h2 {
 		padding: 20px;

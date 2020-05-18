@@ -71,5 +71,9 @@
 	"Kg": "Kg",
 	"g": "g",
 	"field_required": "This field is required, please fill it in.",
-	"field_not_valid": "This field does not contain a valid value"
+	"field_not_valid": "This field does not contain a valid value",
+	"dashboard": "Dashboard",
+	"offers": "Offers",
+	"requests": "Requests",
+	"my_matches": "My Matches"
 }

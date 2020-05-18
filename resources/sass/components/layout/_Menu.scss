@@ -1,0 +1,39 @@
+.Menu {
+	padding: 20px;
+	background-color: $secondary;
+
+	.menu-wrapper {
+		max-width: $layout-wrapper-width;
+		margin: 0 auto;
+		position: relative;
+
+		li {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+
+	.menu-items {
+		li {
+			color: white;
+			padding: 10px;
+			margin-right: 10px;
+
+			&:first-child {
+				padding-left: 0;
+			}
+		}
+	}
+
+	.menu-icons {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+
+		img {
+			width: 25px;
+			margin: 10px;
+		}
+	}
+}
