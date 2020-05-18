@@ -1,11 +1,13 @@
 import { InputField } from "../../../components/form/InputField";
 import { FormField, InputType } from "../../../typings/Form";
+import { isBiggerThanZero } from "../../../utils/validation/numbers";
 
 export const amountField: FormField = {
 	label: "amount",
 	id: "amount",
 	Component: InputField,
 	required: true,
+	validate: isBiggerThanZero,
 	props: {
 		type: InputType.Number
 	},
