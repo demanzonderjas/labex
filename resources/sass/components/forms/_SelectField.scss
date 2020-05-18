@@ -2,10 +2,13 @@
 	.select-wrapper {
 		display: inline-block;
 		position: relative;
+		background-color: white;
 		select {
 			border-radius: 0;
 			appearance: none;
-			padding: 10px;
+			padding: 10px 50px 10px 10px;
+			background-color: transparent;
+			border: 0;
 		}
 
 		img {
