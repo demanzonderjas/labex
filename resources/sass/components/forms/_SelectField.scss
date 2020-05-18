@@ -1,2 +1,20 @@
 .SelectField {
+	.select-wrapper {
+		display: inline-block;
+		position: relative;
+		select {
+			border-radius: 0;
+			appearance: none;
+			padding: 10px;
+		}
+
+		img {
+			pointer-events: none;
+			width: 20px;
+			position: absolute;
+			top: 50%;
+			right: 15px;
+			transform: translateY(-50%);
+		}
+	}
 }

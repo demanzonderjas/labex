@@ -7,6 +7,7 @@ import { otherField } from "../../data/forms/fields/other";
 import { FormFieldWithLabel } from "../FormField";
 import { getFieldById } from "../../utils/getters/fields";
 import { SelectOption } from "./SelectOption";
+import { LocalImage } from "../base/Image";
 
 interface Props extends FormFieldData {
 	options: string[];
@@ -34,13 +35,16 @@ export const SelectField: React.FC<Props> = observer(
 
 		return (
 			<div className="SelectField">
-				<select value={value} onChange={e => setFieldValue(id, e.target.value)}>
-					{startsEmpty && <option value="" />}
-					{options.map(option => (
-						<SelectOption key={option} value={option} />
-					))}
-					{allowOther && <SelectOption value="other" />}
-				</select>
+				<div className="select-wrapper">
+					<select value={value} onChange={e => setFieldValue(id, e.target.value)}>
+						{startsEmpty && <option value="" />}
+						{options.map(option => (
+							<SelectOption key={option} value={option} />
+						))}
+						{allowOther && <SelectOption value="other" />}
+					</select>
+					<LocalImage path="icons/arrow-down.svg" />
+				</div>
 				{showOtherField && _otherField && (
 					<FormFieldWithLabel field={_otherField} error={errors[_otherField.id]} />
 				)}
