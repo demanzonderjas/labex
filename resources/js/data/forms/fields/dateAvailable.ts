@@ -19,3 +19,9 @@ export const dateAvailableField: FormField = {
 		}
 	]
 };
+
+export const dateRequestedField: FormField = {
+	...dateAvailableField,
+	label: "date_available",
+	id: "date_available"
+};

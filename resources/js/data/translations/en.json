@@ -7,6 +7,7 @@
 	"amount_request": "Requested amount",
 	"animal_species": "Animal species",
 	"date_available": "Date available",
+	"date_requested": "Date requested",
 	"gender": "Gender",
 	"incovenience_level": "Inconvenience Level",
 	"kill_method": "Kill method",

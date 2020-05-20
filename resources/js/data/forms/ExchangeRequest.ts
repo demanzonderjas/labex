@@ -12,7 +12,7 @@ import { spfField } from "./fields/spf";
 import { microbiomeField } from "./fields/microbiome";
 import { organsField } from "./fields/organs";
 import { storageField } from "./fields/storage";
-import { dateAvailableField } from "./fields/dateAvailable";
+import { dateRequestedField } from "./fields/dateAvailable";
 import { inconvenienceLevelField } from "./fields/inconvenienceLevel";
 import { killMethodField } from "./fields/killMethod";
 import { amountRequestedField } from "./fields/amount";
@@ -34,7 +34,7 @@ export const ExchangeRequest: TForm = {
 		microbiomeField,
 		organsField,
 		storageField,
-		dateAvailableField,
+		dateRequestedField,
 		naiveField,
 		inconvenienceLevelField,
 		killMethodField,
