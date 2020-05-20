@@ -15,6 +15,8 @@ class CreateExchangeOffersTable extends Migration
     {
         Schema::create('exchange_offers', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('sample_id')->unsigned();
             $table->foreign('sample_id')->references('id')->on('samples')->onDelete('cascade');
             $table->string('age');

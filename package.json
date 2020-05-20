@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.19.2",
         "cross-env": "^7.0",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
@@ -22,6 +22,7 @@
         "webpack-cli": "^3.3.11"
     },
     "dependencies": {
+        "@types/axios": "^0.14.0",
         "@types/react": "^16.9.35",
         "@types/react-dom": "^16.9.8",
         "@types/react-router-dom": "^5.1.5",

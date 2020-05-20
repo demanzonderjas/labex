@@ -18,17 +18,17 @@ class CreateSamplesTable extends Migration
             $table->string('animal_species');
             $table->string('tribe');
             $table->string('gender');
-            $table->string('weight_type');
-            $table->string('weight');
+            $table->string('weight_type')->nullable();
+            $table->string('weight')->nullable();
             $table->string('origin');
             $table->string('spf');
-            $table->text('microbiome');
-            $table->string('organs');
-            $table->string('storage');
+            $table->text('microbiome')->nullable();
+            $table->string('organs')->nullable();
+            $table->string('storage')->nullable();
             $table->string('naive');
-            $table->string('inconvenience_level');
-            $table->string('kill_method');
-            $table->string('sample_number');
+            $table->string('inconvenience_level')->nullable();
+            $table->string('kill_method')->nullable();
+            $table->string('sample_number')->nullable();
         });
     }
 

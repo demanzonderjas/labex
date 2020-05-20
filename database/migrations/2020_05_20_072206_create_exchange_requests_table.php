@@ -15,12 +15,14 @@ class CreateExchangeRequestsTable extends Migration
     {
         Schema::create('exchange_requests', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('sample_id')->unsigned();
             $table->foreign('sample_id')->references('id')->on('samples')->onDelete('cascade');
             $table->string('is_age_relevant');
-            $table->string('age');
-            $table->string('date_requested');
-            $table->string('amount');
+            $table->string('age')->nullable();
+            $table->string('date_requested')->nullable();
+            $table->string('amount')->nullable();
             $table->timestamps();
         });
     }

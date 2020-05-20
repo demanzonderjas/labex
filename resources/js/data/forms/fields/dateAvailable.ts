@@ -22,6 +22,6 @@ export const dateAvailableField: FormField = {
 
 export const dateRequestedField: FormField = {
 	...dateAvailableField,
-	label: "date_available",
-	id: "date_available"
+	label: "date_requested",
+	id: "date_requested"
 };
