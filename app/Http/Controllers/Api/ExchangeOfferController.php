@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\ExchangeRequest;
+use App\ExchangeOffer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeOfferStoreRequest;
 use App\Sample;
@@ -16,7 +16,7 @@ class ExchangeOfferController extends Controller
             $validated = $request->validated();
             $sample = new Sample($validated);
             $sample->save();
-            $exchangeOffer = new ExchangeRequest($validated);
+            $exchangeOffer = new ExchangeOffer($validated);
             $exchangeOffer->user_id = $request->user()->id;
             $exchangeOffer->sample_id = $sample->id;
             $exchangeOffer->save();

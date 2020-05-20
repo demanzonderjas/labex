@@ -13,7 +13,7 @@ class ExchangeOfferStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,8 @@ class ExchangeOfferStoreRequest extends FormRequest
         $sampleValidation = config('validation.samples');
         $exchangeRequestValidation = [
             'age' => 'required|string',
-            'procedures' => 'required|string',
+            'organs' => 'nullable|string',
+            'procedures' => 'nullable|string',
             'protocol_number_known' => 'required|string',
             'protocol_number' => 'nullable|string',
             'date_available' => 'nullable|string',

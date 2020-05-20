@@ -20,9 +20,9 @@ class CreateExchangeOffersTable extends Migration
             $table->bigInteger('sample_id')->unsigned();
             $table->foreign('sample_id')->references('id')->on('samples')->onDelete('cascade');
             $table->string('age');
-            $table->text('procedures');
+            $table->text('procedures')->nullable();
             $table->string('protocol_number_known');
-            $table->string('protocol_number');
+            $table->string('protocol_number')->nullable();
             $table->string('amount');
             $table->string('date_available');
             $table->timestamps();

@@ -10,7 +10,6 @@ return [
         'origin' => 'required|string',
         'spf' => 'required|string',
         'microbiome' => 'nullable|string',
-        'organs' => 'required|string',
         'storage' => 'nullable|string',
         'naive' => 'required|string',
         'inconvenience_level' => 'nullable|string',
