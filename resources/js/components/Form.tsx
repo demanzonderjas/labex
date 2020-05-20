@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import React from "react";
+import React, { useState } from "react";
 import { useFormStore } from "../hooks/useFormStore";
 import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
 import { FormFieldWithLabel } from "./FormField";
@@ -7,17 +7,19 @@ import { SubmitButton } from "./base/Button";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { Loader } from "./base/Loader";
 import { ErrorNotification } from "./base/ErrorNotification";
+import cx from "classnames";
 
 type Props = {
 	header: string;
 };
 
 export const Form: React.FC<Props> = observer(({ header }) => {
+	const [isCollapsed, setIsCollapsed] = useState(true);
 	const { fields, submit, errors, isLoading, serverError } = useFormStore();
 	const { t } = useTranslationStore();
 	return (
-		<div className="Form">
-			<h2>{t(header)}</h2>
+		<div className={cx("Form", { collapsed: isCollapsed })}>
+			<h2 onClick={() => setIsCollapsed(!isCollapsed)}>{t(header)}</h2>
 			<form onSubmit={submit}>
 				{fields
 					.filter(fieldIsNotHidden)

@@ -26,4 +26,10 @@ class ExchangeOfferController extends Controller
             return response()->json(["success" => false, "error" => $e]);
         }
     }
+
+    public function getAll()
+    {
+        $exchangeOffers = ExchangeOffer::all();
+        return response()->json(["success" => true, "exchange_offers" => $exchangeOffers->toArray()]);
+    }
 }

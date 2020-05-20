@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
     Route::post('exchange-requests/store', 'ExchangeRequestController@store');
     Route::post('exchange-offers/store', 'ExchangeOfferController@store');
+    Route::get('exchange-offers', 'ExchangeOfferController@getAll');
 });
