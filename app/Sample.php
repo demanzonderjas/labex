@@ -24,4 +24,9 @@ class Sample extends Model
     ];
 
     public $timestamps = false;
+
+    public function sampleable()
+    {
+        return $this->morphTo();
+    }
 }

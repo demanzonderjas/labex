@@ -12,6 +12,6 @@ class ExchangeRequest extends Model
 
     public function sample()
     {
-        return $this->belongsTo('App\Sample');
+        return $this->morphOne('App\Sample', 'sampleable');
     }
 }

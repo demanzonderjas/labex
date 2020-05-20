@@ -15,12 +15,13 @@ class ExchangeRequestController extends Controller
     {
         try {
             $validated = $request->validated();
-            $sample = new Sample($validated);
-            $sample->save();
             $exchangeRequest = new ExchangeRequest($validated);
             $exchangeRequest->user_id = $request->user()->id;
-            $exchangeRequest->sample_id = $sample->id;
             $exchangeRequest->save();
+            $sample = new Sample($validated);
+            $sample->sampleable_id = $exchangeRequest->id;
+            $sample->sampleable_type = ExchangeRequest::class;
+            $sample->save();
             return response()->json(["success" => true, "exchange_request" => $exchangeRequest->fresh()->toArray()]);
         } catch (Exception $e) {
             return response()->json(["success" => false, "error" => $e]);

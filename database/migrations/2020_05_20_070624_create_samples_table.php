@@ -15,6 +15,8 @@ class CreateSamplesTable extends Migration
     {
         Schema::create('samples', function (Blueprint $table) {
             $table->id();
+            $table->integer('sampleable_id')->unsigned();
+            $table->string('sampleable_type');
             $table->string('animal_species');
             $table->string('tribe');
             $table->string('gender');
