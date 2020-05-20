@@ -11,6 +11,7 @@ export const ageField: FormField = {
 	props: {
 		type: InputType.Number
 	},
+	default: "",
 	value: ""
 };
 

@@ -6,5 +6,6 @@ export const microbiomeField: FormField = {
 	id: "microbiome",
 	Component: BigTextField,
 	props: {},
+	default: "",
 	value: ""
 };

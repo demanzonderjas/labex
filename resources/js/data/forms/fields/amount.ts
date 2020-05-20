@@ -11,6 +11,7 @@ export const amountField: FormField = {
 	props: {
 		type: InputType.Number
 	},
+	default: "1",
 	value: "1"
 };
 

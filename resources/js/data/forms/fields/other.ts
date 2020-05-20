@@ -8,6 +8,7 @@ export const otherField: FormField = {
 	props: {
 		type: InputType.Text
 	},
+	default: "",
 	value: "",
 	hidden: true
 };

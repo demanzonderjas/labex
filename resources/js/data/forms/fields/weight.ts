@@ -10,6 +10,7 @@ export const weightField: FormField = {
 	props: {
 		type: InputType.Number
 	},
+	default: "",
 	value: "",
 	dependencies: [
 		{

@@ -27,5 +27,6 @@ export const animalSpeciesField: FormField = {
 		],
 		allowOther: true
 	},
+	default: "mouse",
 	value: "mouse"
 };

@@ -77,5 +77,6 @@
 	"offers": "Offers",
 	"requests": "Requests",
 	"my_matches": "My Matches",
-	"my-matches": "My Matches"
+	"my-matches": "My Matches",
+	"invalid_request": "Invalid request to the server"
 }

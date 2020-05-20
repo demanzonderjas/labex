@@ -6,10 +6,16 @@ export class FormStore {
 	@observable fields: FormField[] = [];
 	@observable handler: Function = null;
 	@observable errors: any = {};
+	@observable isLoading = false;
+	@observable serverError = null;
 
 	constructor(form: TForm) {
 		this.fields = form.fields;
 		this.handler = form.handler;
+	}
+
+	@action.bound setIsLoading(isLoading) {
+		this.isLoading = isLoading;
 	}
 
 	@action.bound setFieldValue(id: string, value: any) {
@@ -18,10 +24,10 @@ export class FormStore {
 		fields[fieldIdx] = { ...fields[fieldIdx], value };
 		this.fields = fields;
 		this.setFieldError(id, null);
+		this.serverError = null;
 	}
 
 	@action.bound validate() {
-		return true;
 		const errors = this.fields.reduce((base, field) => {
 			if (field.validate && !field.validate(field.value)) {
 				base[field.id] = "field_not_valid";
@@ -41,10 +47,17 @@ export class FormStore {
 		this.errors = errors;
 	}
 
-	@action.bound submit(e: FormEvent) {
+	@action.bound async submit(e: FormEvent) {
 		e.preventDefault();
 		if (this.validate()) {
-			this.handler(this.generateKeyValuePairs());
+			this.setIsLoading(true);
+			const response = await this.handler(this.generateKeyValuePairs());
+			if (!response.success) {
+				this.serverError = response.message;
+			}
+			setTimeout(() => {
+				this.setIsLoading(false);
+			}, 1000);
 		}
 	}
 

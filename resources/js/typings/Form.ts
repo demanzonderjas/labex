@@ -24,6 +24,7 @@ export interface FormField extends FormFieldData {
 	required?: boolean;
 	dependencies?: FormFieldDependency[];
 	hidden?: boolean;
+	default: string;
 	description?: string;
 	validate?: Function;
 }

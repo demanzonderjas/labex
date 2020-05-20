@@ -5,13 +5,15 @@ import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/field
 import { FormFieldWithLabel } from "./FormField";
 import { SubmitButton } from "./base/Button";
 import { useTranslationStore } from "../hooks/useTranslationStore";
+import { Loader } from "./base/Loader";
+import { ErrorNotification } from "./base/ErrorNotification";
 
 type Props = {
 	header: string;
 };
 
 export const Form: React.FC<Props> = observer(({ header }) => {
-	const { fields, submit, errors } = useFormStore();
+	const { fields, submit, errors, isLoading, serverError } = useFormStore();
 	const { t } = useTranslationStore();
 	return (
 		<div className="Form">
@@ -24,6 +26,8 @@ export const Form: React.FC<Props> = observer(({ header }) => {
 						<FormFieldWithLabel key={field.id} field={field} error={errors[field.id]} />
 					))}
 				<SubmitButton label="submit" />
+				<Loader isLoading={isLoading} />
+				<ErrorNotification error={serverError} />
 			</form>
 		</div>
 	);

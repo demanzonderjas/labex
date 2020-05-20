@@ -11,5 +11,6 @@ export const weightTypeField: FormField = {
 			{ label: "g", value: "g" }
 		]
 	},
+	default: "",
 	value: ""
 };

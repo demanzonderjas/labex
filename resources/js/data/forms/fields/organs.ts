@@ -22,5 +22,6 @@ export const organsField: FormField = {
 		],
 		allowOther: true
 	},
+	default: "",
 	value: ""
 };

@@ -10,6 +10,7 @@ export const storageField: FormField = {
 		startsEmpty: true,
 		options: ["fresh", "frozen", "liquid_nitrogen", "preserved"]
 	},
+	default: "",
 	value: "",
 	dependencies: [
 		{

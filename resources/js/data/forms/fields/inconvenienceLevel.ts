@@ -10,6 +10,7 @@ export const inconvenienceLevelField: FormField = {
 		startsEmpty: true,
 		options: ["light", "moderate", "grave"]
 	},
+	default: "",
 	value: "",
 	dependencies: [
 		{

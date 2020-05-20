@@ -8,6 +8,7 @@ export const protocolNumberField: FormField = {
 	props: {
 		type: InputType.Text
 	},
+	default: "",
 	value: "",
 	dependencies: [
 		{

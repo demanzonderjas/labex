@@ -10,6 +10,7 @@ export const dateAvailableField: FormField = {
 	props: {
 		type: InputType.Date
 	},
+	default: "",
 	value: "",
 	validate: isDateInFuture,
 	dependencies: [

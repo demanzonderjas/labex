@@ -9,5 +9,6 @@ export const protocolNumberKnownField: FormField = {
 	description:
 		"Keuze uit: werkprotocol nummers en geen werkprotocolnummer bekend. Wanneer het nummer niet bekend is dan moet de IvD beoordelen of het weefsel/proefdier aangeboden mag worden.",
 	props: {},
+	default: "",
 	value: ""
 };

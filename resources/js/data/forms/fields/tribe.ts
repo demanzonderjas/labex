@@ -9,5 +9,6 @@ export const tribeField: FormField = {
 	props: {
 		type: InputType.Text
 	},
+	default: "",
 	value: ""
 };

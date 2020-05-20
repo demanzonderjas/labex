@@ -9,5 +9,6 @@ export const sampleNumberField: FormField = {
 	props: {
 		type: InputType.Number
 	},
+	default: "",
 	value: ""
 };

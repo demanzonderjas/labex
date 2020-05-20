@@ -10,5 +10,6 @@ export const originField: FormField = {
 	props: {
 		options: ["animal", "fresh_tissue", "conserved_tissue"]
 	},
+	default: "animal",
 	value: "animal"
 };

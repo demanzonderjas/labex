@@ -9,5 +9,6 @@ export const spfField: FormField = {
 	props: {
 		type: InputType.Text
 	},
+	default: "",
 	value: ""
 };

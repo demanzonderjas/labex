@@ -7,5 +7,6 @@ export const naiveField: FormField = {
 	Component: BooleanField,
 	required: true,
 	props: {},
+	default: "",
 	value: ""
 };

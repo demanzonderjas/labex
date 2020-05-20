@@ -6,7 +6,6 @@ use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeRequestStoreRequest;
 use App\Sample;
-use App\User;
 use Exception;
 
 class ExchangeRequestController extends Controller
@@ -14,8 +13,8 @@ class ExchangeRequestController extends Controller
 
     public function store(ExchangeRequestStoreRequest $request)
     {
-        $validated = $request->validated();
         try {
+            $validated = $request->validated();
             $sample = new Sample($validated);
             $sample->save();
             $exchangeRequest = new ExchangeRequest($validated);

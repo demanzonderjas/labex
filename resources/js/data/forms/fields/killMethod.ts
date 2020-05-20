@@ -18,6 +18,7 @@ export const killMethodField: FormField = {
 		startsEmpty: true,
 		allowOther: true
 	},
+	default: "",
 	value: "",
 	dependencies: [
 		{

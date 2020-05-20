@@ -14,6 +14,7 @@ export const genderField: FormField = {
 	props: {
 		options: genderOptions
 	},
+	default: "",
 	value: ""
 };
 

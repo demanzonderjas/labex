@@ -7,5 +7,6 @@ export const isAgeRelevantField: FormField = {
 	Component: BooleanField,
 	required: true,
 	props: {},
+	default: "",
 	value: ""
 };
