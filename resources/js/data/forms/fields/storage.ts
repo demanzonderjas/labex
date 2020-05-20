@@ -19,3 +19,7 @@ export const storageField: FormField = {
 		}
 	]
 };
+
+export const storageRequestField: FormField = {
+	...storageField
+};

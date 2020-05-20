@@ -12,3 +12,8 @@ export const sampleNumberField: FormField = {
 	default: "",
 	value: ""
 };
+
+export const sampleNumberRequestField: FormField = {
+	...sampleNumberField,
+	required: false
+};

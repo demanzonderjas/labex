@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExchangeRequestStoreRequest extends FormRequest
+class ExchangeOfferStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ExchangeRequestStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,10 +25,12 @@ class ExchangeRequestStoreRequest extends FormRequest
     {
         $sampleValidation = config('validation.samples');
         $exchangeRequestValidation = [
-            'age' => 'nullable|string',
-            'amount' => 'nullable|string',
-            'is_age_relevant' => 'required|string',
-            'date_requested' => 'nullable|string',
+            'age' => 'required|string',
+            'procedures' => 'required|string',
+            'protocol_number_known' => 'required|string',
+            'protocol_number' => 'nullable|string',
+            'date_available' => 'nullable|string',
+            'amount' => 'required|string'
         ];
         return array_merge($sampleValidation, $exchangeRequestValidation);
     }

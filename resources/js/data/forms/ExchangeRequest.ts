@@ -10,13 +10,13 @@ import { weightField } from "./fields/weight";
 import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
 import { microbiomeField } from "./fields/microbiome";
-import { organsField } from "./fields/organs";
-import { storageField } from "./fields/storage";
+import { organsRequestField } from "./fields/organs";
+import { storageRequestField } from "./fields/storage";
 import { dateRequestedField } from "./fields/dateAvailable";
 import { inconvenienceLevelField } from "./fields/inconvenienceLevel";
 import { killMethodField } from "./fields/killMethod";
 import { amountRequestedField } from "./fields/amount";
-import { sampleNumberField } from "./fields/sampleNumber";
+import { sampleNumberRequestField } from "./fields/sampleNumber";
 import { isAgeRelevantField } from "./fields/isAgeRelevant";
 
 export const ExchangeRequest: TForm = {
@@ -32,14 +32,14 @@ export const ExchangeRequest: TForm = {
 		originField,
 		spfField,
 		microbiomeField,
-		organsField,
-		storageField,
+		organsRequestField,
+		storageRequestField,
 		dateRequestedField,
 		naiveField,
 		inconvenienceLevelField,
 		killMethodField,
 		amountRequestedField,
-		sampleNumberField
+		sampleNumberRequestField
 	],
 	handler: sendExchangeRequest
 };

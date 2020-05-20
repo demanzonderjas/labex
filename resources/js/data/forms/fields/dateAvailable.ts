@@ -12,13 +12,7 @@ export const dateAvailableField: FormField = {
 	},
 	default: "",
 	value: "",
-	validate: isDateInFuture,
-	dependencies: [
-		{
-			id: "origin",
-			validate: value => value == "fresh_tissue" || value == "animal"
-		}
-	]
+	validate: isDateInFuture
 };
 
 export const dateRequestedField: FormField = {

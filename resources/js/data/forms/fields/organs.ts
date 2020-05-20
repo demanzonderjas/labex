@@ -25,3 +25,8 @@ export const organsField: FormField = {
 	default: "",
 	value: ""
 };
+
+export const organsRequestField: FormField = {
+	...organsField,
+	required: true
+};

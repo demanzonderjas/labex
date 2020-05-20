@@ -52,13 +52,25 @@ export class FormStore {
 		if (this.validate()) {
 			this.setIsLoading(true);
 			const response = await this.handler(this.generateKeyValuePairs());
+			console.log("response :: ", response);
 			if (!response.success) {
 				this.serverError = response.message;
+			} else {
+				this.resetForm();
 			}
 			setTimeout(() => {
 				this.setIsLoading(false);
 			}, 1000);
 		}
+	}
+
+	@action.bound resetForm() {
+		this.fields = this.fields.map(field => {
+			console.log("resetting");
+			return { ...field, value: field.default };
+		});
+		this.serverError = null;
+		this.errors = {};
 	}
 
 	generateKeyValuePairs() {

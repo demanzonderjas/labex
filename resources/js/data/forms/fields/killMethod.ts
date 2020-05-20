@@ -5,7 +5,6 @@ export const killMethodField: FormField = {
 	label: "kill_method",
 	id: "kill_method",
 	Component: SelectField,
-	required: true,
 	props: {
 		options: [
 			"co2_o2",
