@@ -5,13 +5,15 @@ import { FormEvent } from "react";
 export class FormStore {
 	@observable fields: FormField[] = [];
 	@observable handler: Function = null;
+	@observable handleSuccess: Function = null;
 	@observable errors: any = {};
 	@observable isLoading = false;
 	@observable serverError = null;
 
-	constructor(form: TForm) {
+	constructor(form: TForm, handleSuccess: Function) {
 		this.fields = form.fields;
 		this.handler = form.handler;
+		this.handleSuccess = handleSuccess;
 	}
 
 	@action.bound setIsLoading(isLoading) {
@@ -57,6 +59,7 @@ export class FormStore {
 				this.serverError = response.message;
 			} else {
 				this.resetForm();
+				this.handleSuccess(response);
 			}
 			setTimeout(() => {
 				this.setIsLoading(false);

@@ -1,18 +1,18 @@
 import React from "react";
 import { LocalImage } from "../base/Image";
-import { TExchangeOfferCard } from "../../typings/Overview";
+import { TExchangeRequestCard } from "../../typings/Overview";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
-export const ExchangeOfferCard: React.FC<TExchangeOfferCard> = ({
+export const ExchangeRequestCard: React.FC<TExchangeRequestCard> = ({
 	animal_species,
 	amount,
-	date_available,
+	date_requested,
 	gender,
 	origin
 }) => {
 	const { t } = useTranslationStore();
 	return (
-		<div className="ExchangeOfferCard card">
+		<div className="ExchangeRequestCard card">
 			<div className="header">
 				<LocalImage path="icons/placeholder-icon.svg" />
 			</div>
@@ -22,7 +22,7 @@ export const ExchangeOfferCard: React.FC<TExchangeOfferCard> = ({
 						<strong>{t("animal_species")}</strong>: {t(animal_species)}
 					</li>
 					<li>
-						<strong>{t("date_available")}</strong>: {date_available}
+						<strong>{t("date_requested")}</strong>: {date_requested}
 					</li>
 					<li>
 						<strong>{t("amount")}</strong>: {amount}

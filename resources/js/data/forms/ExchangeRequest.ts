@@ -41,5 +41,6 @@ export const ExchangeRequest: TForm = {
 		amountRequestedField,
 		sampleNumberRequestField
 	],
-	handler: sendExchangeRequest
+	handler: sendExchangeRequest,
+	handleSuccess: null
 };

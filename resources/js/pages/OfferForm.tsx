@@ -9,7 +9,7 @@ export const OfferFormPage = () => {
 	const [sampleStore] = useState(new SampleStore());
 	return (
 		<SampleStoreProvider store={sampleStore}>
-			<FormWrapper form={ExchangeOffer} />
+			<FormWrapper form={ExchangeOffer} handleSuccess={sampleStore.addOffer} />
 			<ExchangeOfferOverview />
 		</SampleStoreProvider>
 	);

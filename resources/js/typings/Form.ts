@@ -4,6 +4,7 @@ export type TForm = {
 	header: string;
 	fields: FormField[];
 	handler: Function;
+	handleSuccess: Function;
 };
 
 export enum InputType {

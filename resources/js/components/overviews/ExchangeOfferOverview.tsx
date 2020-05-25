@@ -11,7 +11,7 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 	}, []);
 
 	return (
-		<div className="ExchangeOfferOverview">
+		<div className="ExchangeOfferOverview overview">
 			{offers.map(sample => (
 				<ExchangeOfferCard key={sample.id} {...sample} />
 			))}

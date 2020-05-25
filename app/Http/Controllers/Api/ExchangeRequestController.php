@@ -23,4 +23,10 @@ class ExchangeRequestController extends Controller
             return response()->json(["success" => false, "error" => $e]);
         }
     }
+
+    public function getAll()
+    {
+        $exchangeRequests = ExchangeRequest::all();
+        return response()->json(["success" => true, "exchange_requests" => $exchangeRequests->toArray()]);
+    }
 }
