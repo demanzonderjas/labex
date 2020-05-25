@@ -1,9 +1,9 @@
 import React from "react";
 import { LocalImage } from "../base/Image";
-import { TSampleCard } from "../../typings/Overview";
+import { TExchangeOfferCard } from "../../typings/Overview";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
-export const SampleCard: React.FC<TSampleCard> = ({
+export const ExchangeOfferCard: React.FC<TExchangeOfferCard> = ({
 	animal_species,
 	amount,
 	date_available,
@@ -12,7 +12,7 @@ export const SampleCard: React.FC<TSampleCard> = ({
 }) => {
 	const { t } = useTranslationStore();
 	return (
-		<div className="SampleCard">
+		<div className="ExchangeOfferCard">
 			<div className="header">
 				<LocalImage path="icons/placeholder-icon.svg" />
 			</div>

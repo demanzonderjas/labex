@@ -18,11 +18,7 @@ class ExchangeRequestController extends Controller
             $exchangeRequest = new ExchangeRequest($validated);
             $exchangeRequest->user_id = $request->user()->id;
             $exchangeRequest->save();
-            $sample = new Sample($validated);
-            $sample->sampleable_id = $exchangeRequest->id;
-            $sample->sampleable_type = ExchangeRequest::class;
-            $sample->save();
-            return response()->json(["success" => true, "exchange_request" => $exchangeRequest->fresh()->toArray()]);
+            return response()->json(["success" => true, "exchange_request" => $exchangeRequest->toArray()]);
         } catch (Exception $e) {
             return response()->json(["success" => false, "error" => $e]);
         }

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useSampleStore } from "../../hooks/useSampleStore";
-import { SampleCard } from "./SampleCard";
+import { ExchangeOfferCard } from "./ExchangeOfferCard";
 
 export const ExchangeOfferOverview: React.FC = observer(() => {
-	const { samples, getSampleOffers } = useSampleStore();
+	const { offers, getSampleOffers } = useSampleStore();
 
 	useEffect(() => {
 		getSampleOffers();
@@ -12,8 +12,8 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 
 	return (
 		<div className="ExchangeOfferOverview">
-			{samples.map(sample => (
-				<SampleCard key={sample.id} {...sample} />
+			{offers.map(sample => (
+				<ExchangeOfferCard key={sample.id} {...sample} />
 			))}
 		</div>
 	);

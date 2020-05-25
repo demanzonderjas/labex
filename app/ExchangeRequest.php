@@ -6,12 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExchangeRequest extends Model
 {
-    protected $fillable = ["is_age_relevant", "age", "date_requested", "amount"];
-
-    public $with = ["sample"];
-
-    public function sample()
-    {
-        return $this->morphOne('App\Sample', 'sampleable');
-    }
+    protected $fillable = [
+        "is_age_relevant",
+        "age",
+        "date_requested",
+        "amount",
+        "animal_species",
+        "tribe",
+        "gender",
+        "weight_type",
+        "weight",
+        "origin",
+        "spf",
+        "microbiome",
+        "organs",
+        "storage",
+        "naive",
+        "inconvenience_level",
+        "kill_method",
+        "sample_number"
+    ];
 }

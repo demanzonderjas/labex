@@ -17,11 +17,7 @@ class ExchangeOfferController extends Controller
             $exchangeOffer = new ExchangeOffer($validated);
             $exchangeOffer->user_id = $request->user()->id;
             $exchangeOffer->save();
-            $sample = new Sample($validated);
-            $sample->sampleable_id = $exchangeOffer->id;
-            $sample->sampleable_type = ExchangeOffer::class;
-            $sample->save();
-            return response()->json(["success" => true, "exchange_request" => $exchangeOffer->fresh()->toArray()]);
+            return response()->json(["success" => true, "exchange_request" => $exchangeOffer->toArray()]);
         } catch (Exception $e) {
             return response()->json(["success" => false, "error" => $e]);
         }

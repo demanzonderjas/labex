@@ -1,4 +1,4 @@
-export type TSampleCard = {
+export type TExchangeOfferCard = {
 	id: number;
 	animal_species: string;
 	date_available: string;
