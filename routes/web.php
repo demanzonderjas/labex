@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\VerifyAdmin;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::group(['middleware' => VerifyAdmin::class], function () {
+    Route::get('/admin/{page?}', function () {
+        return view('admin');
+    });
+});
 
 Route::fallback(function () {
     $user = User::first();

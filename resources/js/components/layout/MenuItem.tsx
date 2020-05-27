@@ -4,14 +4,15 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Link } from "react-router-dom";
 
 type Props = {
+	prefix: string;
 	label: string;
 	isActive: boolean;
 };
 
-export const MenuItem: React.FC<Props> = observer(({ label, isActive }) => {
+export const MenuItem: React.FC<Props> = observer(({ prefix, label, isActive }) => {
 	const { t } = useTranslationStore();
 	return (
-		<Link to={label}>
+		<Link to={`/${prefix}/${label}`}>
 			<li>{t(label)}</li>
 		</Link>
 	);

@@ -6,10 +6,9 @@ import { TranslationStore } from "./stores/TranslationStore";
 import { Header } from "./components/layout/Header";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { DashboardPage } from "./pages/Dashboard";
-import { OfferFormPage } from "./pages/OfferForm";
-import { RequestFormPage } from "./pages/RequestForm";
-import { MyMatchesPage } from "./pages/MyMatches";
+import { PossibleMatches } from "./pages/admin/PossibleMatches";
+import { AdminHeader } from "./components/admin/Header";
+import { AdminDashboardPage } from "./pages/admin/Dashboard";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -17,23 +16,17 @@ const App: React.FC = () => {
 		<TranslationStoreProvider store={translationStore}>
 			<Router>
 				<div className="App">
-					<Header />
+					<AdminHeader />
 					<div className="page-wrapper">
 						<Switch>
-							<Route path="/" exact={true}>
-								<DashboardPage />
+							<Route path="/admin" exact={true}>
+								<AdminDashboardPage />
 							</Route>
-							<Route path="/app/dashboard">
-								<DashboardPage />
+							<Route path="/admin/dashboard">
+								<AdminDashboardPage />
 							</Route>
-							<Route path="/app/offers">
-								<OfferFormPage />
-							</Route>
-							<Route path="/app/requests">
-								<RequestFormPage />
-							</Route>
-							<Route path="/app/my-matches">
-								<MyMatchesPage />
+							<Route path="/admin/possible-matches" exact={true}>
+								<PossibleMatches />
 							</Route>
 						</Switch>
 					</div>
