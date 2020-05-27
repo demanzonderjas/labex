@@ -26,4 +26,9 @@ class ExchangeRequest extends Model
         "kill_method",
         "sample_number"
     ];
+
+    public function isMatch(ExchangeOffer $offer)
+    {
+        return $offer->animal_species == $this->animal_species;
+    }
 }

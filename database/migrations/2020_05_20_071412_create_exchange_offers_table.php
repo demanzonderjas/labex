@@ -17,6 +17,7 @@ class CreateExchangeOffersTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('active')->default(true);
             $table->string('age');
             $table->string('animal_species');
             $table->string('tribe');
