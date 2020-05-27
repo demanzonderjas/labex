@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeRequestStoreRequest;
-use App\Sample;
 use Exception;
 
 class ExchangeRequestController extends Controller

@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
-import { Header } from "./components/layout/Header";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PossibleMatches } from "./pages/admin/PossibleMatches";
 import { AdminHeader } from "./components/admin/Header";
 import { AdminDashboardPage } from "./pages/admin/Dashboard";

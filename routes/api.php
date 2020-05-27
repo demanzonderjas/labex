@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\VerifyAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,8 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('exchange-offers/store', 'ExchangeOfferController@store');
     Route::get('exchange-offers', 'ExchangeOfferController@getAll');
     Route::get('exchange-requests', 'ExchangeRequestController@getAll');
+
+    Route::group(['middleware' => VerifyAdmin::class], function () {
+        Route::get('matches', 'MatchController@getAll');
+    });
 });

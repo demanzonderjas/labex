@@ -20,14 +20,20 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+function fakeAdminLogin()
+{
+    $user = User::first();
+    Auth::login($user);
+}
+
 Route::group(['middleware' => VerifyAdmin::class], function () {
     Route::get('/admin/{page?}', function () {
+        fakeAdminLogin();
         return view('admin');
     });
 });
 
 Route::fallback(function () {
-    $user = User::first();
-    Auth::login($user);
+    fakeAdminLogin();
     return view('welcome');
 });

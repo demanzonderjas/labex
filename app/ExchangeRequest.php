@@ -27,6 +27,13 @@ class ExchangeRequest extends Model
         "sample_number"
     ];
 
+    protected $with = ['user'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function isMatch(ExchangeOffer $offer)
     {
         return $offer->animal_species == $this->animal_species;

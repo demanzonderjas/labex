@@ -28,4 +28,11 @@ class ExchangeOffer extends Model
         "amount",
         "date_available"
     ];
+
+    protected $with = ['user'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
