@@ -15,3 +15,11 @@ export type TExchangeRequestCard = {
 	gender: string;
 	origin: string;
 };
+
+export type TMatch = {
+	id: number;
+	exchange_offer: TExchangeOfferCard;
+	exchange_request: TExchangeRequestCard;
+	awaiting_approval: boolean;
+	approved: boolean;
+};

@@ -1,0 +1,17 @@
+.Match {
+	display: flex;
+	align-items: center;
+
+	.ApproveButtons {
+		display: flex;
+		flex: 2 1 auto;
+
+		.Button {
+			margin-right: 20px;
+
+			button {
+				width: 200px;
+			}
+		}
+	}
+}

@@ -1,15 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { useMatchStore } from "../../hooks/useMatchStore";
+import { Match } from "./Match";
 
 export const ApproveMatchOverview = observer(() => {
 	const { possibleMatches } = useMatchStore();
 	return (
-		<div className="ApproveMatchOverview">
+		<div className="ApproveMatchOverview overview">
 			{possibleMatches.map(match => (
-				<div className="match" key={match.id}>
-					{match.created_at}
-				</div>
+				<Match key={match.id} match={match} />
 			))}
 		</div>
 	);
