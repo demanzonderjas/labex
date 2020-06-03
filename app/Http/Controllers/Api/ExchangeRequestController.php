@@ -6,6 +6,7 @@ use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeRequestStoreRequest;
 use Exception;
+use Illuminate\Support\Facades\Artisan;
 
 class ExchangeRequestController extends Controller
 {
@@ -17,6 +18,9 @@ class ExchangeRequestController extends Controller
             $exchangeRequest = new ExchangeRequest($validated);
             $exchangeRequest->user_id = $request->user()->id;
             $exchangeRequest->save();
+
+            Artisan::call("match:create");
+
             return response()->json(["success" => true, "exchange_request" => $exchangeRequest->toArray()]);
         } catch (Exception $e) {
             return response()->json(["success" => false, "error" => $e]);
