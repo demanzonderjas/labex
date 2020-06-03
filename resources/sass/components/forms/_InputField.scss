@@ -8,6 +8,10 @@
 	appearance: none;
 	transition: background-color 0.25s cubic-bezier(0, 0, 0.3, 1);
 
+	&[type="number"] {
+		max-width: 75px;
+	}
+
 	&:focus {
 		background-color: $blue;
 		color: white;

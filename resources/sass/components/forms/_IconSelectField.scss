@@ -20,7 +20,8 @@
 		height: 50px;
 
 		&.selected {
-			background-color: green;
+			background-color: $correct-color;
+			color: white;
 		}
 	}
 }

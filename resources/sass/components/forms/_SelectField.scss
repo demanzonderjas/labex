@@ -1,23 +1,58 @@
+$item-height: 42px;
 .SelectField {
-	.select-wrapper {
-		display: inline-block;
-		position: relative;
-		background-color: white;
-		select {
-			border-radius: 0;
-			appearance: none;
-			padding: 10px 50px 10px 10px;
-			background-color: transparent;
-			border: 0;
+	min-height: $item-height;
+	max-height: $item-height;
+	position: relative;
+	overflow: hidden;
+	transition: max-height 0.35s cubic-bezier(0, 0, 0.3, 1);
+
+	&.active {
+		max-height: 1000px;
+
+		.active-option img {
+			transform: translateY(-50%) rotate(180deg);
 		}
+	}
+
+	.active-option {
+		position: relative;
 
 		img {
 			pointer-events: none;
-			width: 20px;
+			width: 13px;
 			position: absolute;
 			top: 50%;
 			right: 15px;
 			transform: translateY(-50%);
+			transition: transform 0.25s cubic-bezier(0, 0, 0.3, 1);
 		}
+
+		.SelectOption {
+			color: $correct-color;
+		}
+	}
+
+	.SelectOption {
+		padding: 15px 30px 15px 15px;
+		height: $item-height;
+		background-color: $grey-light;
+		margin-bottom: 1px;
+
+		&:hover {
+			background-color: $blue;
+			color: white;
+			cursor: pointer;
+		}
+	}
+
+	.select-wrapper {
+		display: inline-block;
+		position: relative;
+	}
+
+	.dropdown {
+		position: relative;
+		max-height: 200px;
+		overflow-y: auto;
 	}
 }

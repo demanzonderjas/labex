@@ -9,7 +9,7 @@
 	"date_available": "Date available",
 	"date_requested": "Date requested",
 	"gender": "Gender",
-	"incovenience_level": "Inconvenience Level",
+	"inconvenience_level": "Inconvenience Level",
 	"kill_method": "Kill method",
 	"microbiome": "Microbiome information",
 	"naive": "Naive animal",
@@ -80,5 +80,7 @@
 	"my-matches": "My Matches",
 	"invalid_request": "Invalid request to the server",
 	"possible_matches": "Possible matches",
-	"possible-matches": "Possible matches"
+	"possible-matches": "Possible matches",
+	"yes": "Yes",
+	"no": "No"
 }

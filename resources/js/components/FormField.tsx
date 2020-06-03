@@ -21,7 +21,7 @@ export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 				</label>
 			</div>
 			{error && <p className="error">{t(error)}</p>}
-			{field.description && <p>{t(field.description)}</p>}
+			{field.description && <p className="description">{t(field.description)}</p>}
 			<div className="field-wrapper">
 				<field.Component
 					{...field.props}

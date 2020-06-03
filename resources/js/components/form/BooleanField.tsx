@@ -3,11 +3,13 @@ import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
 import cx from "classnames";
 import { FormFieldData } from "../../typings/Form";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 interface Props extends FormFieldData {}
 
 export const BooleanField: React.FC<Props> = observer(({ id, value }) => {
 	const { setFieldValue } = useFormStore();
+	const { t } = useTranslationStore();
 
 	return (
 		<div className="BooleanField">
@@ -15,13 +17,13 @@ export const BooleanField: React.FC<Props> = observer(({ id, value }) => {
 				className={cx("choice yes", { active: value == "yes" })}
 				onClick={() => setFieldValue(id, "yes")}
 			>
-				<span>yes</span>
+				<span>{t("yes")}</span>
 			</div>
 			<div
 				className={cx("choice no", { active: value == "no" })}
 				onClick={() => setFieldValue(id, "no")}
 			>
-				<span>no</span>
+				<span>{t("no")}</span>
 			</div>
 		</div>
 	);
