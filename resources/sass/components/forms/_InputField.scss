@@ -1,4 +1,19 @@
 .InputField input,
 .BigTextField textarea {
-	padding: 10px;
+	padding: 15px;
+	background-color: $grey-light;
+	color: $grey-medium;
+	border: 0;
+	outline: 0;
+	appearance: none;
+	transition: background-color 0.25s cubic-bezier(0, 0, 0.3, 1);
+
+	&:focus {
+		background-color: $blue;
+		color: white;
+	}
+
+	&:not(:focus).correct {
+		color: $correct-color;
+	}
 }

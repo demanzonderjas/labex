@@ -2,11 +2,16 @@
 	margin: 20px 0;
 
 	label {
-		padding: 5px;
+		padding: 5px 0;
 		display: inline-block;
-		background-color: $primary;
 		.required {
 			color: $danger-color;
+		}
+	}
+
+	&.correct {
+		label {
+			color: $correct-color;
 		}
 	}
 

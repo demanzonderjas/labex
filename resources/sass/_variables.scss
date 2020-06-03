@@ -1,16 +1,22 @@
 $yellow: #ffcd00;
 $red: #c00936;
 $purple: #5a2282;
+$blue: #001240;
 $black: #000000;
+$green: #24a793;
+
+$grey-light: #f0f0f0;
+$grey-medium: #3b3b3b;
 
 $primary: $yellow;
 $secondary: $black;
 
 $highlight-text-color: white;
-$correct-color: green;
+$correct-color: $green;
 $danger-color: $red;
 
 $font-header: "Open Sans", sans-serif;
 $font-primary: "Merriweather", serif;
+$form-font-size: 12px;
 
 $layout-wrapper-width: 1200px;

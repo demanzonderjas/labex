@@ -1,6 +1,7 @@
 import React from "react";
 import { FormField } from "../typings/Form";
 import { useTranslationStore } from "../hooks/useTranslationStore";
+import cx from "classnames";
 
 type Props = {
 	field: FormField;
@@ -9,8 +10,10 @@ type Props = {
 
 export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 	const { t } = useTranslationStore();
+	const isCorrect = field.validate ? field.validate(field.value) && field.value : !!field.value;
+
 	return (
-		<div className="FormFieldWithLabel">
+		<div className={cx("FormFieldWithLabel", { correct: isCorrect })}>
 			<div className="label-wrapper">
 				<label>
 					{t(field.label)}

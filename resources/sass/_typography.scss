@@ -34,7 +34,7 @@ p {
 select,
 input,
 textarea {
-	font-size: 18px;
+	font-size: $form-font-size;
 	font-family: $font-primary;
 }
 
@@ -44,6 +44,7 @@ button {
 }
 
 label {
-	font-size: 16px;
-	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: $font-header;
 }

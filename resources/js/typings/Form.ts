@@ -17,6 +17,7 @@ export interface FormFieldData {
 	label: string;
 	id: string;
 	value: string;
+	validate?: Function;
 }
 
 export interface FormField extends FormFieldData {
@@ -27,7 +28,6 @@ export interface FormField extends FormFieldData {
 	hidden?: boolean;
 	default: string;
 	description?: string;
-	validate?: Function;
 }
 
 export type FormFieldDependency = {
