@@ -20,17 +20,23 @@ export const Form: React.FC<Props> = observer(({ header }) => {
 	const { t } = useTranslationStore();
 	return (
 		<div className={cx("Form", { collapsed: isCollapsed })}>
-			<h2 onClick={() => setIsCollapsed(!isCollapsed)}>
+			<h1 onClick={() => setIsCollapsed(!isCollapsed)}>
 				{t(header)}
 				<LocalImage path="icons/arrow-down-white.svg" />
-			</h2>
+			</h1>
 			<form onSubmit={submit}>
-				{fields
-					.filter(fieldIsNotHidden)
-					.filter(fieldMeetsDependencies)
-					.map(field => (
-						<FormFieldWithLabel key={field.id} field={field} error={errors[field.id]} />
-					))}
+				<div className="fields">
+					{fields
+						.filter(fieldIsNotHidden)
+						.filter(fieldMeetsDependencies)
+						.map(field => (
+							<FormFieldWithLabel
+								key={field.id}
+								field={field}
+								error={errors[field.id]}
+							/>
+						))}
+				</div>
 				<SubmitButton label="submit" />
 				<Loader isLoading={isLoading} />
 				<ErrorNotification error={serverError} />

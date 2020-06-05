@@ -26,6 +26,7 @@ class CreateExchangeRequestsTable extends Migration
             $table->string('weight')->nullable();
             $table->string('origin');
             $table->string('spf');
+            $table->string('microbiome')->nullable();
             $table->string('organs')->nullable();
             $table->string('storage')->nullable();
             $table->string('naive');

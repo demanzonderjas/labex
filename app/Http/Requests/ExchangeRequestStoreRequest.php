@@ -28,7 +28,6 @@ class ExchangeRequestStoreRequest extends FormRequest
             'age' => 'nullable|string',
             'organs' => 'required|string',
             'amount' => 'nullable|string',
-            'is_age_relevant' => 'required|string',
             'date_requested' => 'nullable|string',
         ];
         return array_merge($sampleValidation, $exchangeRequestValidation);

@@ -3,10 +3,10 @@
 	justify-content: space-between;
 
 	&.options-2 {
-		width: 115px;
+		width: 155px;
 	}
 	&.options-3 {
-		width: 180px;
+		width: 240px;
 	}
 
 	.Option {
@@ -16,8 +16,8 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-		width: 50px;
-		height: 50px;
+		width: 70px;
+		height: 40px;
 
 		&.selected {
 			background-color: $correct-color;

@@ -18,6 +18,5 @@ export const amountField: FormField = {
 export const amountRequestedField: FormField = {
 	...amountField,
 	label: "amount_request",
-	description: "Moeilijk te beantwoorden voor (stuk) weefsel. Niet eisen?",
 	required: false
 };

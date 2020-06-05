@@ -1,5 +1,7 @@
 .FormFieldWithLabel {
 	margin: 20px 0;
+	display: inline-block;
+	width: calc(33.333% - 40px);
 
 	label {
 		padding: 5px 0;

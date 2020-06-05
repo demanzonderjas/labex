@@ -1,4 +1,4 @@
-$item-height: 42px;
+$item-height: 40px;
 .SelectField {
 	min-height: $item-height;
 	max-height: $item-height;
@@ -46,7 +46,6 @@ $item-height: 42px;
 	}
 
 	.select-wrapper {
-		display: inline-block;
 		position: relative;
 	}
 

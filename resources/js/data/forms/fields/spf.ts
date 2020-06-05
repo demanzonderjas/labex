@@ -1,14 +1,13 @@
-import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { SelectField } from "../../../components/form/SelectField";
+import { FormField } from "../../../typings/Form";
 
 export const spfField: FormField = {
 	label: "spf",
 	id: "spf",
-	Component: InputField,
-	required: true,
+	Component: SelectField,
 	props: {
-		type: InputType.Text
+		options: ["spf", "conventional"]
 	},
 	default: "",
-	value: ""
+	value: "spf"
 };

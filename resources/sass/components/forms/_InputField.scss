@@ -1,12 +1,17 @@
+.InputField input {
+	height: 40px;
+}
+
 .InputField input,
 .BigTextField textarea {
-	padding: 15px;
+	padding: 12px 15px;
 	background-color: $grey-light;
 	color: $grey-medium;
 	border: 0;
 	outline: 0;
 	appearance: none;
 	transition: background-color 0.25s cubic-bezier(0, 0, 0.3, 1);
+	width: 100%;
 
 	&[type="number"] {
 		max-width: 75px;

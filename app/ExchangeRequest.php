@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ExchangeRequest extends Model
 {
     protected $fillable = [
-        "is_age_relevant",
         "age",
         "date_requested",
         "amount",
@@ -16,6 +15,7 @@ class ExchangeRequest extends Model
         "sex",
         "weight_type",
         "weight",
+        "microbiome",
         "origin",
         "spf",
         "organs",

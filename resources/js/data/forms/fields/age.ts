@@ -9,7 +9,7 @@ export const ageField: FormField = {
 	required: true,
 	validate: isBiggerThanZero,
 	props: {
-		type: InputType.Number
+		type: InputType.Date
 	},
 	default: "",
 	value: ""
@@ -17,11 +17,5 @@ export const ageField: FormField = {
 
 export const ageRequestField: FormField = {
 	...ageField,
-	required: false,
-	dependencies: [
-		{
-			id: "is_age_relevant",
-			validate: value => value == "yes"
-		}
-	]
+	required: false
 };

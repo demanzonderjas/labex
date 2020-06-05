@@ -1,26 +1,23 @@
 .Form {
 	position: relative;
 	transition: max-height 0.3s cubic-bezier(0, 0, 0.3, 1);
-	max-height: 600px;
+	padding: 0 20px;
+	max-height: 800px;
 	overflow-y: auto;
 
 	h2 {
-		padding: 20px;
-		background-color: black;
-		color: white;
+		padding: 20px 0;
 		position: relative;
-
-		img {
-			position: absolute;
-			top: 55%;
-			right: 20px;
-			transform: translateY(-50%);
-			transition: transform 0.25s cubic-bezier(0, 0, 0.3, 1);
-		}
 	}
+
 	form {
-		padding: 20px;
-		position: relative;
+		padding: 20px 0;
+		.fields {
+			position: relative;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
 	}
 
 	&.collapsed {

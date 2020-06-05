@@ -17,10 +17,3 @@ export const sexField: FormField = {
 	default: "",
 	value: ""
 };
-
-export const sexRequestField: FormField = {
-	...sexField,
-	props: {
-		options: [...sexOptions, { label: "x", value: "irrelevant" }]
-	}
-};
