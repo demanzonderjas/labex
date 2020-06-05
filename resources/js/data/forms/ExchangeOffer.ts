@@ -1,6 +1,6 @@
 import { TForm } from "../../typings/Form";
 import { animalSpeciesField } from "./fields/animalSpecies";
-import { tribeField } from "./fields/tribe";
+import { strainField } from "./fields/strain";
 import { ageField } from "./fields/age";
 import { naiveField } from "./fields/naive";
 import { genderField } from "./fields/gender";
@@ -25,7 +25,7 @@ export const ExchangeOffer: TForm = {
 	header: "exchange_offer",
 	fields: [
 		animalSpeciesField,
-		tribeField,
+		strainField,
 		genderField,
 		ageField,
 		weightTypeField,

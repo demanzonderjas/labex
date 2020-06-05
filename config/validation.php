@@ -3,7 +3,7 @@
 return [
     "samples" => [
         'animal_species' => 'required|string',
-        'tribe' => 'required|string',
+        'strain' => 'required|string',
         'gender' => 'required|string',
         'weight_type' => 'nullable|string',
         'weight' => 'nullable|string',

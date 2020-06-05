@@ -9,7 +9,7 @@ class ExchangeOffer extends Model
     protected $fillable = [
         "age",
         "animal_species",
-        "tribe",
+        "strain",
         "gender",
         "weight_type",
         "weight",

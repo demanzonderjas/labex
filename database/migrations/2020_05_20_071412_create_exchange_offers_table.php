@@ -20,7 +20,7 @@ class CreateExchangeOffersTable extends Migration
             $table->boolean('active')->default(true);
             $table->string('age');
             $table->string('animal_species');
-            $table->string('tribe');
+            $table->string('strain');
             $table->string('gender');
             $table->string('weight_type')->nullable();
             $table->string('weight')->nullable();

@@ -21,7 +21,7 @@ class CreateExchangeRequestsTable extends Migration
             $table->string('is_age_relevant');
             $table->string('age')->nullable();
             $table->string('animal_species');
-            $table->string('tribe');
+            $table->string('strain');
             $table->string('gender');
             $table->string('weight_type')->nullable();
             $table->string('weight')->nullable();

@@ -1,9 +1,9 @@
 import { FormField, InputType } from "../../../typings/Form";
 import { InputField } from "../../../components/form/InputField";
 
-export const tribeField: FormField = {
-	label: "tribe",
-	id: "tribe",
+export const strainField: FormField = {
+	label: "strain",
+	id: "strain",
 	Component: InputField,
 	required: true,
 	props: {
