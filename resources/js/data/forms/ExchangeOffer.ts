@@ -3,7 +3,7 @@ import { animalSpeciesField } from "./fields/animalSpecies";
 import { strainField } from "./fields/strain";
 import { ageField } from "./fields/age";
 import { naiveField } from "./fields/naive";
-import { genderField } from "./fields/gender";
+import { sexField } from "./fields/sex";
 import { weightTypeField } from "./fields/weightType";
 import { weightField } from "./fields/weight";
 import { originField } from "./fields/origin";
@@ -26,7 +26,7 @@ export const ExchangeOffer: TForm = {
 	fields: [
 		animalSpeciesField,
 		strainField,
-		genderField,
+		sexField,
 		ageField,
 		weightTypeField,
 		weightField,

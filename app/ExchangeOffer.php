@@ -10,7 +10,7 @@ class ExchangeOffer extends Model
         "age",
         "animal_species",
         "strain",
-        "gender",
+        "sex",
         "weight_type",
         "weight",
         "origin",

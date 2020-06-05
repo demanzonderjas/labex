@@ -4,7 +4,7 @@ return [
     "samples" => [
         'animal_species' => 'required|string',
         'strain' => 'required|string',
-        'gender' => 'required|string',
+        'sex' => 'required|string',
         'weight_type' => 'nullable|string',
         'weight' => 'nullable|string',
         'origin' => 'required|string',

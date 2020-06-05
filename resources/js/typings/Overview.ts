@@ -3,7 +3,7 @@ export type TExchangeOfferCard = {
 	animal_species: string;
 	date_available: string;
 	amount: string;
-	gender: string;
+	sex: string;
 	origin: string;
 };
 
@@ -12,7 +12,7 @@ export type TExchangeRequestCard = {
 	animal_species: string;
 	date_requested: string;
 	amount: string;
-	gender: string;
+	sex: string;
 	origin: string;
 };
 

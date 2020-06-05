@@ -13,7 +13,7 @@ class ExchangeRequest extends Model
         "amount",
         "animal_species",
         "strain",
-        "gender",
+        "sex",
         "weight_type",
         "weight",
         "origin",

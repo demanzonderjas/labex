@@ -1,26 +1,26 @@
 import { FormField } from "../../../typings/Form";
 import { IconSelectField } from "../../../components/form/IconSelectField";
 
-const genderOptions = [
+const sexOptions = [
 	{ icon: "male", value: "male" },
 	{ icon: "female", value: "female" }
 ];
 
-export const genderField: FormField = {
-	label: "gender",
-	id: "gender",
+export const sexField: FormField = {
+	label: "sex",
+	id: "sex",
 	Component: IconSelectField,
 	required: true,
 	props: {
-		options: genderOptions
+		options: sexOptions
 	},
 	default: "",
 	value: ""
 };
 
-export const genderRequestField: FormField = {
-	...genderField,
+export const sexRequestField: FormField = {
+	...sexField,
 	props: {
-		options: [...genderOptions, { label: "x", value: "irrelevant" }]
+		options: [...sexOptions, { label: "x", value: "irrelevant" }]
 	}
 };

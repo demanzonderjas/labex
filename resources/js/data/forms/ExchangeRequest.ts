@@ -4,7 +4,7 @@ import { sendExchangeRequest } from "../../queries/sendExchangeRequest";
 import { strainField } from "./fields/strain";
 import { ageField, ageRequestField } from "./fields/age";
 import { naiveField } from "./fields/naive";
-import { genderRequestField } from "./fields/gender";
+import { sexRequestField } from "./fields/sex";
 import { weightTypeField } from "./fields/weightType";
 import { weightField } from "./fields/weight";
 import { originField } from "./fields/origin";
@@ -24,7 +24,7 @@ export const ExchangeRequest: TForm = {
 	fields: [
 		animalSpeciesField,
 		strainField,
-		genderRequestField,
+		sexRequestField,
 		isAgeRelevantField,
 		ageRequestField,
 		weightTypeField,

@@ -7,7 +7,7 @@ export const ExchangeOfferCard: React.FC<TExchangeOfferCard> = ({
 	animal_species,
 	amount,
 	date_available,
-	gender,
+	sex,
 	origin
 }) => {
 	const { t } = useTranslationStore();
@@ -28,7 +28,7 @@ export const ExchangeOfferCard: React.FC<TExchangeOfferCard> = ({
 						<strong>{t("amount")}</strong>: {amount}
 					</li>
 					<li>
-						<strong>{t("gender")}</strong>: {t(gender)}
+						<strong>{t("sex")}</strong>: {t(sex)}
 					</li>
 					<li>
 						<strong>{t("origin")}</strong>: {t(origin)}
