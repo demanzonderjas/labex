@@ -1,10 +1,10 @@
 .FormFieldWithLabel {
-	margin: 20px 0;
+	margin: 16px 0;
 	display: inline-block;
-	width: calc(33.333% - 40px);
+	width: calc(33.333% - 12px);
 
 	label {
-		padding: 5px 0;
+		padding: 12px 0;
 		display: inline-block;
 		.required {
 			color: $danger-color;
