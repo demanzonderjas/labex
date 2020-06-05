@@ -20,13 +20,13 @@ import { microbiomeField } from "./fields/microbiome";
 export const ExchangeRequest: TForm = {
 	header: "exchange_request",
 	fields: [
+		originField,
 		animalSpeciesField,
 		strainRequestField,
 		sexRequestField,
 		ageRequestField,
 		weightTypeField,
 		weightField,
-		originField,
 		spfField,
 		microbiomeField,
 		organsRequestField,
