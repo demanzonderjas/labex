@@ -29,5 +29,5 @@ export const organsField: FormField = {
 
 export const organsRequestField: FormField = {
 	...organsField,
-	required: true
+	required: false
 };

@@ -12,3 +12,8 @@ export const strainField: FormField = {
 	default: "",
 	value: ""
 };
+
+export const strainRequestField: FormField = {
+	...strainField,
+	required: false
+};

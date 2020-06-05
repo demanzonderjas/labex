@@ -17,3 +17,8 @@ export const sexField: FormField = {
 	default: "",
 	value: ""
 };
+
+export const sexRequestField: FormField = {
+	...sexField,
+	required: false
+};

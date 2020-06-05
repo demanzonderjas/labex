@@ -26,8 +26,11 @@ class ExchangeRequestStoreRequest extends FormRequest
         $sampleValidation = config('validation.samples');
         $exchangeRequestValidation = [
             'age' => 'nullable|string',
-            'organs' => 'required|string',
+            'sex' => 'nullable|string',
+            'organs' => 'nullable|string',
             'amount' => 'nullable|string',
+            'strain' => 'nullable|string',
+            'naive' => 'nullable|string',
             'date_requested' => 'nullable|string',
         ];
         return array_merge($sampleValidation, $exchangeRequestValidation);

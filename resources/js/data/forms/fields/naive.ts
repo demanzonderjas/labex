@@ -10,3 +10,8 @@ export const naiveField: FormField = {
 	default: "",
 	value: ""
 };
+
+export const naiveRequestField: FormField = {
+	...naiveField,
+	required: false
+};

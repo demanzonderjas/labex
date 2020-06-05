@@ -1,10 +1,10 @@
 import { TForm } from "../../typings/Form";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { sendExchangeRequest } from "../../queries/sendExchangeRequest";
-import { strainField } from "./fields/strain";
+import { strainRequestField } from "./fields/strain";
 import { ageRequestField } from "./fields/age";
-import { naiveField } from "./fields/naive";
-import { sexField } from "./fields/sex";
+import { naiveRequestField } from "./fields/naive";
+import { sexRequestField } from "./fields/sex";
 import { weightTypeField } from "./fields/weightType";
 import { weightField } from "./fields/weight";
 import { originField } from "./fields/origin";
@@ -21,8 +21,8 @@ export const ExchangeRequest: TForm = {
 	header: "exchange_request",
 	fields: [
 		animalSpeciesField,
-		strainField,
-		sexField,
+		strainRequestField,
+		sexRequestField,
 		ageRequestField,
 		weightTypeField,
 		weightField,
@@ -32,7 +32,7 @@ export const ExchangeRequest: TForm = {
 		organsRequestField,
 		storageRequestField,
 		dateRequestedField,
-		naiveField,
+		naiveRequestField,
 		inconvenienceLevelField,
 		killMethodField,
 		amountRequestedField
