@@ -18,13 +18,11 @@ class ExchangeRequest extends Model
         "weight",
         "origin",
         "spf",
-        "microbiome",
         "organs",
         "storage",
         "naive",
         "inconvenience_level",
         "kill_method",
-        "sample_number"
     ];
 
     protected $with = ['user'];

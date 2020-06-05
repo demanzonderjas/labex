@@ -38,8 +38,7 @@ export const ExchangeRequest: TForm = {
 		naiveField,
 		inconvenienceLevelField,
 		killMethodField,
-		amountRequestedField,
-		sampleNumberRequestField
+		amountRequestedField
 	],
 	handler: sendExchangeRequest,
 	handleSuccess: null

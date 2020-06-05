@@ -18,7 +18,6 @@ class CreateExchangeRequestsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->string('is_age_relevant');
             $table->string('age')->nullable();
             $table->string('animal_species');
             $table->string('strain');
@@ -27,13 +26,11 @@ class CreateExchangeRequestsTable extends Migration
             $table->string('weight')->nullable();
             $table->string('origin');
             $table->string('spf');
-            $table->text('microbiome')->nullable();
             $table->string('organs')->nullable();
             $table->string('storage')->nullable();
             $table->string('naive');
             $table->string('inconvenience_level')->nullable();
             $table->string('kill_method')->nullable();
-            $table->string('sample_number')->nullable();
             $table->string('date_requested')->nullable();
             $table->string('amount')->nullable();
             $table->timestamps();
