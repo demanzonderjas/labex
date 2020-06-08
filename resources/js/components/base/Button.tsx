@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import cx from "classnames";
 import { ClickHandler } from "../../typings/Utils";
+import { useSampleStore } from "../../hooks/useSampleStore";
+import { observer } from "mobx-react-lite";
 
 type Props = {
 	isSubmit?: boolean;
@@ -20,7 +22,13 @@ export const Button: React.FC<Props> = ({ isSubmit, label, handleClick, classes 
 };
 
 export const SubmitButton: React.FC<Props> = (props: Props) => {
-	return <Button {...props} classes={{ primary: true }} isSubmit={true} />;
+	return (
+		<Button
+			{...props}
+			classes={props.classes ? { ...props.classes, primary: true } : { primary: true }}
+			isSubmit={true}
+		/>
+	);
 };
 
 export const ConfirmButton: React.FC<Props> = (props: Props) => {
@@ -30,3 +38,19 @@ export const ConfirmButton: React.FC<Props> = (props: Props) => {
 export const DangerButton: React.FC<Props> = (props: Props) => {
 	return <Button {...props} classes={{ danger: true }} />;
 };
+
+export const MatchableButton: React.FC<Props> = observer(({ label }) => {
+	const { totalMatches } = useSampleStore();
+	const { t } = useTranslationStore();
+
+	if (totalMatches > 0) {
+		return null;
+	}
+
+	return (
+		<div className="MatchableButton">
+			<SubmitButton label={label} classes={{ inline: true }} />
+			<span className="no-matches">{t("no_matches_found")}</span>
+		</div>
+	);
+});

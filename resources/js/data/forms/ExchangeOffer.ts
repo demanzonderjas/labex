@@ -45,5 +45,6 @@ export const ExchangeOffer: TForm = {
 		protocolNumberField,
 		sampleNumberField
 	],
-	handler: sendExchangeOffer
+	handler: sendExchangeOffer,
+	matchable: true
 };

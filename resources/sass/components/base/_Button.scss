@@ -2,6 +2,10 @@
 	position: relative;
 	display: block;
 
+	&.inline {
+		display: inline-block;
+	}
+
 	button {
 		cursor: pointer;
 		padding: 12px 40px;

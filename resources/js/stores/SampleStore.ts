@@ -21,7 +21,8 @@ export class SampleStore {
 	}
 
 	@computed get totalMatches() {
-		return this.offers.length;
+		console.log(this.matches.length);
+		return this.matches.length;
 	}
 
 	@action.bound setFilters(filters) {

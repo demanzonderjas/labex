@@ -2,8 +2,9 @@ import React from "react";
 
 export type TForm = {
 	header: string;
-	submitLabel: string;
+	submitLabel?: string;
 	fields: FormField[];
+	matchable?: boolean;
 	handler: Function;
 	handleSuccess?: Function;
 	handleUpdate?: Function;

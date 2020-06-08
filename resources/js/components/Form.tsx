@@ -3,19 +3,21 @@ import React, { useState } from "react";
 import { useFormStore } from "../hooks/useFormStore";
 import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
 import { FormFieldWithLabel } from "./FormField";
-import { SubmitButton } from "./base/Button";
+import { SubmitButton, MatchableButton } from "./base/Button";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { Loader } from "./base/Loader";
 import { ErrorNotification } from "./base/ErrorNotification";
 import cx from "classnames";
 import { LocalImage } from "./base/Image";
+import { TotalMatchesFound } from "./form/TotalMatchesFound";
 
 type Props = {
 	header: string;
 	submitLabel?: string;
+	matchable: boolean;
 };
 
-export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit" }) => {
+export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit", matchable }) => {
 	const [isCollapsed, setIsCollapsed] = useState(false);
 	const { fields, submit, errors, isLoading, serverError } = useFormStore();
 	const { t } = useTranslationStore();
@@ -25,6 +27,7 @@ export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit" 
 				{t(header)}
 				<LocalImage path="icons/arrow-down-white.svg" />
 			</h1>
+			{matchable && <TotalMatchesFound />}
 			<form onSubmit={submit}>
 				<div className="fields">
 					{fields
@@ -38,7 +41,8 @@ export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit" 
 							/>
 						))}
 				</div>
-				<SubmitButton label={submitLabel} />
+				{matchable && <MatchableButton label={submitLabel} />}
+				{!matchable && <SubmitButton label={submitLabel} />}
 				<Loader isLoading={isLoading} />
 				<ErrorNotification error={serverError} />
 			</form>

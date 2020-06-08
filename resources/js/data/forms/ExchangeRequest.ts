@@ -38,5 +38,6 @@ export const ExchangeRequest: TForm = {
 		killMethodField,
 		amountRequestedField
 	],
-	handler: sendExchangeRequest
+	handler: sendExchangeRequest,
+	matchable: true
 };
