@@ -2,22 +2,29 @@ import { observable, action, computed } from "mobx";
 import { getExchangeOffers } from "../queries/getExchangeOffers";
 import { TExchangeOfferCard, TExchangeRequestCard, OverviewType } from "../typings/Overview";
 import { getExchangeRequests } from "../queries/getExchangeRequests";
+import { FormField } from "../typings/Form";
+import { getMatchingPercentage } from "../utils/matches/utils";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
 	@observable.shallow requests: TExchangeRequestCard[] = [];
 	@observable overviewType: OverviewType = OverviewType.Table;
+	@observable filters: FormField[] = [];
 
 	@computed get matches() {
 		return this.offers
 			.map(offer => {
-				return { ...offer, match_percentage: Math.random() * 100 };
+				return { ...offer, match_percentage: getMatchingPercentage(offer, this.filters) };
 			})
 			.sort((a, b) => b.match_percentage - a.match_percentage);
 	}
 
 	@computed get totalMatches() {
 		return this.offers.length;
+	}
+
+	@action.bound setFilters(filters) {
+		this.filters = filters;
 	}
 
 	@action.bound async getSampleOffers() {

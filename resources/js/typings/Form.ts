@@ -4,7 +4,8 @@ export type TForm = {
 	header: string;
 	fields: FormField[];
 	handler: Function;
-	handleSuccess: Function;
+	handleSuccess?: Function;
+	handleUpdate?: Function;
 };
 
 export enum InputType {

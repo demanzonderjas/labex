@@ -9,7 +9,11 @@ export const RequestFormPage = () => {
 	const [sampleStore] = useState(new SampleStore());
 	return (
 		<SampleStoreProvider store={sampleStore}>
-			<FormWrapper form={ExchangeOffer} handleSuccess={sampleStore.addOffer} />
+			<FormWrapper
+				form={ExchangeOffer}
+				handleSuccess={sampleStore.addOffer}
+				handleUpdate={fields => console.log(fields)}
+			/>
 			<ExchangeRequestOverview />
 		</SampleStoreProvider>
 	);

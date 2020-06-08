@@ -40,7 +40,20 @@ table {
 		text-align: right;
 	}
 
-	tr:nth-child(even) {
-		background-color: $grey-light;
+	tr {
+		cursor: pointer;
+		&:nth-child(even) {
+			background-color: $grey-light;
+		}
+		&:hover {
+			background-color: $correct-color;
+			td {
+				color: $highlight-text-color;
+
+				button {
+					background-color: $blue !important;
+				}
+			}
+		}
 	}
 }

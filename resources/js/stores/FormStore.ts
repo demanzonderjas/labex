@@ -6,14 +6,17 @@ export class FormStore {
 	@observable fields: FormField[] = [];
 	@observable handler: Function = null;
 	@observable handleSuccess: Function = null;
+	@observable handleUpdate: Function = null;
 	@observable errors: any = {};
 	@observable isLoading = false;
 	@observable serverError = null;
 
-	constructor(form: TForm, handleSuccess: Function) {
+	constructor(form: TForm, handleSuccess: Function, handleUpdate: Function) {
 		this.fields = form.fields;
 		this.handler = form.handler;
 		this.handleSuccess = handleSuccess;
+		this.handleUpdate = handleUpdate;
+		this.handleUpdate(this.fields);
 	}
 
 	@action.bound setIsLoading(isLoading) {
@@ -27,6 +30,7 @@ export class FormStore {
 		this.fields = fields;
 		this.setFieldError(id, null);
 		this.serverError = null;
+		this.handleUpdate(this.fields);
 	}
 
 	@action.bound validate() {
