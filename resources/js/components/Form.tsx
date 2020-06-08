@@ -19,17 +19,16 @@ type Props = {
 };
 
 export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit", matchable }) => {
-	const [isCollapsed, setIsCollapsed] = useState(false);
-	const { fields, submit, errors, isLoading, serverError } = useFormStore();
+	const { fields, submit, errors, isLoading, serverError, isCollapsed } = useFormStore();
 	const { t } = useTranslationStore();
 	return (
 		<div className={cx("Form", { collapsed: isCollapsed })}>
-			<h1 onClick={() => setIsCollapsed(!isCollapsed)}>
+			<h1>
 				{t(header)}
 				<LocalImage path="icons/arrow-down-white.svg" />
 			</h1>
 			{matchable && <TotalMatchesFound />}
-			{matchable && <ActiveFilters collapsed={isCollapsed} />}
+			{matchable && <ActiveFilters />}
 			<form onSubmit={submit}>
 				<div className="fields">
 					{fields

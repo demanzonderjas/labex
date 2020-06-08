@@ -38,4 +38,18 @@
 			padding-right: 50px;
 		}
 	}
+
+	&.open {
+		.FilterOverview {
+			background-color: $grey-medium;
+
+			svg path {
+				fill: white;
+			}
+
+			span {
+				color: white;
+			}
+		}
+	}
 }

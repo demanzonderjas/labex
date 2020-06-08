@@ -10,6 +10,7 @@ export class FormStore {
 	@observable errors: any = {};
 	@observable isLoading = false;
 	@observable serverError = null;
+	@observable isCollapsed = false;
 
 	constructor(form: TForm, handleSuccess: Function, handleUpdate: Function) {
 		this.fields = form.fields;
@@ -25,6 +26,10 @@ export class FormStore {
 
 	@action.bound setIsLoading(isLoading) {
 		this.isLoading = isLoading;
+	}
+
+	@action.bound setIsCollapsed(isCollapsed) {
+		this.isCollapsed = isCollapsed;
 	}
 
 	@action.bound setFieldValue(id: string, value: any) {

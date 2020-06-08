@@ -4,18 +4,15 @@ import { observer } from "mobx-react-lite";
 import { Filter } from "./Filter";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { FilterListIcon } from "../icons/FilterListIcon";
+import cx from "classnames";
 
-type Props = {
-	collapsed: boolean;
-};
-
-export const ActiveFilters: React.FC<Props> = observer(({ collapsed }) => {
-	const { filters } = useFormStore();
+export const ActiveFilters: React.FC = observer(() => {
+	const { filters, setIsCollapsed, isCollapsed } = useFormStore();
 	const { t } = useTranslationStore();
 
 	return (
-		<div className="ActiveFilters">
-			<div className="FilterOverview Filter">
+		<div className={cx("ActiveFilters", { open: !isCollapsed })}>
+			<div className="FilterOverview Filter" onClick={() => setIsCollapsed(!isCollapsed)}>
 				<span>{t("filter_options")}</span>
 				<FilterListIcon />
 			</div>
