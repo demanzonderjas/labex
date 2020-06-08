@@ -2,11 +2,37 @@
 	position: relative;
 
 	button {
-		padding: 10px;
-		color: $highlight-text-color;
+		cursor: pointer;
+		padding: 12px 40px;
 		background-color: $purple;
 		display: inline-block;
-		cursor: pointer;
+		appearance: none;
+		border: 0;
+		outline: none;
+
+		&:hover {
+			color: $highlight-text-color;
+		}
+	}
+
+	&.primary {
+		button {
+			background-color: $primary;
+
+			&:hover {
+				background-color: black;
+			}
+		}
+	}
+
+	&.secondary {
+		button {
+			background-color: $secondary;
+
+			&:hover {
+				background-color: $blue;
+			}
+		}
 	}
 
 	&.confirm {

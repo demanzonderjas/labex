@@ -21,7 +21,7 @@ export const Button: React.FC<Props> = ({ isSubmit, label, handleClick, classes 
 };
 
 export const SubmitButton: React.FC<Props> = (props: Props) => {
-	return <Button {...props} isSubmit={true} />;
+	return <Button {...props} classes={{ primary: true }} isSubmit={true} />;
 };
 
 export const ConfirmButton: React.FC<Props> = (props: Props) => {
