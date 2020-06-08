@@ -1,0 +1,36 @@
+table {
+	width: 100%;
+	margin: 40px 0;
+
+	th {
+		text-align: left;
+		background-color: $blue;
+		color: $highlight-text-color;
+	}
+
+	th {
+		padding: 20px 30px 20px 0;
+	}
+
+	td {
+		padding: 10px 30px 10px 0;
+	}
+
+	th:first-child,
+	td:first-child {
+		padding-left: calc((100vw - 1200px) / 2);
+	}
+
+	th:last-child,
+	td:last-child {
+		padding-right: calc((100vw - 1200px) / 2);
+	}
+
+	td:last-child {
+		text-align: right;
+	}
+
+	tr:nth-child(even) {
+		background-color: $grey-light;
+	}
+}

@@ -22,6 +22,8 @@
 
 @import "components/admin/ApproveMatch";
 
+@import "elements/table";
+
 body {
 	font-family: $font-primary;
 }
@@ -32,8 +34,6 @@ body {
 
 .page-wrapper {
 	padding: 50px 0;
-	max-width: $layout-wrapper-width;
-	margin: 0 auto;
 }
 
 .with-black-scrollbar::-webkit-scrollbar-track {

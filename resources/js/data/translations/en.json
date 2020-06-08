@@ -2,7 +2,7 @@
 	"exchange_request": "Exchange Request",
 	"exchange_offer": "Exchange Offer",
 	"age": "Age",
-	"amount": "Offered amount",
+	"amount": "Amount",
 	"amount_request": "Requested amount",
 	"animal_species": "Animal species",
 	"date_available": "Date available",
@@ -83,5 +83,8 @@
 	"possible_matches": "Possible matches",
 	"possible-matches": "Possible matches",
 	"yes": "Yes",
-	"no": "No"
+	"no": "No",
+	"match_percentage": "Match %",
+	"species": "Species",
+	"select_header": " "
 }

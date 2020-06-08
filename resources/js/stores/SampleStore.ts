@@ -1,11 +1,16 @@
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import { getExchangeOffers } from "../queries/getExchangeOffers";
-import { TExchangeOfferCard, TExchangeRequestCard } from "../typings/Overview";
+import { TExchangeOfferCard, TExchangeRequestCard, OverviewType } from "../typings/Overview";
 import { getExchangeRequests } from "../queries/getExchangeRequests";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
 	@observable.shallow requests: TExchangeRequestCard[] = [];
+	@observable overviewType: OverviewType = OverviewType.Table;
+
+	@computed get matches() {
+		return this.offers;
+	}
 
 	@action.bound async getSampleOffers() {
 		const response = await getExchangeOffers();

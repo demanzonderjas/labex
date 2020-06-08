@@ -1,8 +1,7 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import cx from "classnames";
-
-type ClickHandler = (...args: any[]) => void;
+import { ClickHandler } from "../../typings/Utils";
 
 type Props = {
 	isSubmit?: boolean;

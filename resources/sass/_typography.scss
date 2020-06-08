@@ -31,6 +31,15 @@ p {
 	line-height: 20px;
 }
 
+th,
+td {
+	font-family: $font-header;
+}
+
+th {
+	font-weight: bold;
+}
+
 input,
 textarea {
 	font-size: $form-font-size;

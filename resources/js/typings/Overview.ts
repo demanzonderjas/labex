@@ -1,3 +1,20 @@
+import React from "react";
+
+export enum OverviewType {
+	Cards,
+	Table
+}
+
+export type TableCell = {
+	id: string;
+	value: any;
+	Component: React.FC<TableCellProps>;
+};
+
+export type TableCellProps = {
+	value: any;
+};
+
 export type TExchangeOfferCard = {
 	id: number;
 	animal_species: string;
