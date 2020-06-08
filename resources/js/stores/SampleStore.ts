@@ -9,9 +9,11 @@ export class SampleStore {
 	@observable overviewType: OverviewType = OverviewType.Table;
 
 	@computed get matches() {
-		return this.offers.map(offer => {
-			return { ...offer, match_percentage: 100 };
-		});
+		return this.offers
+			.map(offer => {
+				return { ...offer, match_percentage: Math.random() * 100 };
+			})
+			.sort((a, b) => b.match_percentage - a.match_percentage);
 	}
 
 	@computed get totalMatches() {

@@ -10,7 +10,7 @@ export const PercentageCell: React.FC<Props> = ({ value }) => {
 	const classes = getMatchClasses(value);
 	return (
 		<td className={cx("TableCell", classes)}>
-			<span>{value}%</span>
+			<span>{value | 0}%</span>
 		</td>
 	);
 };
