@@ -66,7 +66,12 @@ span {
 	font-size: $form-font-size;
 }
 
-.FormFieldWithLabel .description {
-	font-size: 10px;
-	font-style: italic;
+.FormFieldWithLabel {
+	.description {
+		font-size: 10px;
+		font-style: italic;
+	}
+	.error {
+		font-size: 10px;
+	}
 }

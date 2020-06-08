@@ -6,8 +6,7 @@ export const protocolNumberKnownField: FormField = {
 	id: "protocol_number_known",
 	Component: BooleanField,
 	required: true,
-	description:
-		"Keuze uit: werkprotocol nummers en geen werkprotocolnummer bekend. Wanneer het nummer niet bekend is dan moet de IvD beoordelen of het weefsel/proefdier aangeboden mag worden.",
+	description: "",
 	props: {},
 	default: "",
 	value: ""

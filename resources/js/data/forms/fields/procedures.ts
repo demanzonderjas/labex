@@ -8,8 +8,7 @@ export const proceduresField: FormField = {
 	props: {},
 	default: "",
 	value: "",
-	description:
-		"verwijzen naar betreffende CCD/werkprotocolnr en dan moet mate van ongerief ingevuld worden",
+	description: "",
 	dependencies: [
 		{
 			id: "naive",

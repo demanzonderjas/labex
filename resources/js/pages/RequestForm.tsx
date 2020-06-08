@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { ExchangeRequest } from "../data/forms/ExchangeRequest";
 import { FormWrapper } from "../components/FormWrapper";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { ExchangeRequestOverview } from "../components/overviews/ExchangeRequestOverview";
+import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 
 export const RequestFormPage = () => {
 	const [sampleStore] = useState(new SampleStore());
 	return (
 		<SampleStoreProvider store={sampleStore}>
-			<FormWrapper form={ExchangeRequest} handleSuccess={sampleStore.addRequest} />
+			<FormWrapper form={ExchangeOffer} handleSuccess={sampleStore.addOffer} />
 			<ExchangeRequestOverview />
 		</SampleStoreProvider>
 	);
