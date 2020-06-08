@@ -1,0 +1,41 @@
+.ActiveFilters {
+	.Filter {
+		padding: 8px 20px;
+		border: 1px solid $grey-light-medium;
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+
+		&:not(:last-child) {
+			margin-right: 8px;
+		}
+
+		svg {
+			position: absolute;
+			top: 50%;
+			right: 20px;
+			transform: translateY(-20%);
+		}
+
+		&:hover,
+		&.open {
+			background-color: $grey-medium;
+
+			svg path {
+				fill: white;
+			}
+
+			span {
+				color: white;
+			}
+		}
+
+		span {
+			color: $grey-medium;
+		}
+
+		&.FilterOverview {
+			padding-right: 50px;
+		}
+	}
+}

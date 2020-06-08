@@ -1,4 +1,4 @@
-import { observable, toJS, action } from "mobx";
+import { observable, toJS, action, computed } from "mobx";
 import { FormField, TForm } from "../typings/Form";
 import { FormEvent } from "react";
 
@@ -17,6 +17,10 @@ export class FormStore {
 		this.handleSuccess = handleSuccess;
 		this.handleUpdate = handleUpdate;
 		this.handleUpdate(this.fields);
+	}
+
+	@computed get filters() {
+		return this.fields.filter(field => field.value != "");
 	}
 
 	@action.bound setIsLoading(isLoading) {

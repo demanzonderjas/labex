@@ -10,6 +10,7 @@ import { ErrorNotification } from "./base/ErrorNotification";
 import cx from "classnames";
 import { LocalImage } from "./base/Image";
 import { TotalMatchesFound } from "./form/TotalMatchesFound";
+import { ActiveFilters } from "./form/ActiveFilters";
 
 type Props = {
 	header: string;
@@ -28,6 +29,7 @@ export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit",
 				<LocalImage path="icons/arrow-down-white.svg" />
 			</h1>
 			{matchable && <TotalMatchesFound />}
+			{matchable && <ActiveFilters collapsed={isCollapsed} />}
 			<form onSubmit={submit}>
 				<div className="fields">
 					{fields
