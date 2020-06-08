@@ -1,0 +1,4 @@
+export const MATCHING_THRESHOLDS = {
+	HIGH: 80,
+	NEUTRAL: 50
+};

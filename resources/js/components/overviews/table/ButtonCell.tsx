@@ -3,15 +3,15 @@ import { Button } from "../../base/Button";
 import { ClickHandler } from "../../../typings/Utils";
 
 type Props = {
-	value: string;
+	label: string;
 	handleClick: ClickHandler;
 	classes: any;
 };
 
-export const ButtonCell: React.FC<Props> = ({ value, handleClick, classes }) => {
+export const ButtonCell: React.FC<Props> = ({ label, handleClick, classes }) => {
 	return (
 		<td>
-			<Button label={value} classes={classes} handleClick={handleClick} />
+			<Button label={label} classes={classes} handleClick={handleClick} />
 		</td>
 	);
 };

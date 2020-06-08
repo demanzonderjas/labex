@@ -9,7 +9,13 @@ export class SampleStore {
 	@observable overviewType: OverviewType = OverviewType.Table;
 
 	@computed get matches() {
-		return this.offers;
+		return this.offers.map(offer => {
+			return { ...offer, match_percentage: 100 };
+		});
+	}
+
+	@computed get totalMatches() {
+		return this.offers.length;
 	}
 
 	@action.bound async getSampleOffers() {
@@ -19,6 +25,8 @@ export class SampleStore {
 			this.setOffers(response.exchange_offers);
 		}
 	}
+
+	@action.bound selectMatch(idx) {}
 
 	@action.bound async getSampleRequests() {
 		const response = await getExchangeRequests();

@@ -3,6 +3,7 @@ import { TextCell } from "../../components/overviews/table/TextCell";
 import { TableCell } from "../../typings/Overview";
 import { DateCell } from "../../components/overviews/table/DateCell";
 import { ButtonCell } from "../../components/overviews/table/ButtonCell";
+import { MatchButtonCell } from "../../components/overviews/table/custom/MatchButtonCell";
 
 export const matchColumns: string[] = [
 	"match_percentage",
@@ -52,8 +53,8 @@ export const matchCells: TableCell[] = [
 		Component: DateCell
 	},
 	{
-		id: "select",
-		value: "select",
-		Component: ButtonCell
+		id: "match_percentage",
+		value: "",
+		Component: MatchButtonCell
 	}
 ];

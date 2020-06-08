@@ -29,8 +29,8 @@ export const ExchangeOfferTable: React.FC<Props> = ({ matches }) => {
 				<tbody>
 					{rows.map((cells, idx) => (
 						<tr key={idx}>
-							{cells.map(cell => (
-								<cell.Component key={cell.id} value={cell.value} />
+							{cells.map((cell, cellIdx) => (
+								<cell.Component key={cellIdx} rowIndex={idx} value={cell.value} />
 							))}
 						</tr>
 					))}

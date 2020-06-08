@@ -4,16 +4,21 @@ import { useSampleStore } from "../../hooks/useSampleStore";
 import { OverviewType } from "../../typings/Overview";
 import { ExchangeOfferCardContainer } from "./ExchangeOfferCardContainer";
 import { ExchangeOfferTable } from "./ExchangeOfferTable";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 export const ExchangeOfferOverview: React.FC = observer(() => {
-	const { overviewType, matches, getSampleOffers } = useSampleStore();
+	const { overviewType, matches, getSampleOffers, totalMatches } = useSampleStore();
+	const { t } = useTranslationStore();
 
 	useEffect(() => {
 		getSampleOffers();
 	}, []);
 
 	return (
-		<div className="ExchangeOfferOverview">
+		<div className="ExchangeOfferOverview overview">
+			<h1>
+				{t("browse_results")} ({totalMatches})
+			</h1>
 			{overviewType == OverviewType.Cards && <ExchangeOfferCardContainer matches={matches} />}
 			{overviewType == OverviewType.Table && <ExchangeOfferTable matches={matches} />}
 		</div>

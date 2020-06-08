@@ -13,9 +13,9 @@ type Props = {
 export const Button: React.FC<Props> = ({ isSubmit, label, handleClick, classes = {} }) => {
 	const { t } = useTranslationStore();
 	return (
-		<div className={cx("Button", classes)} onClick={handleClick}>
+		<span className={cx("Button", classes)} onClick={handleClick}>
 			<button type={isSubmit ? "submit" : "button"}>{t(label)}</button>
-		</div>
+		</span>
 	);
 };
 

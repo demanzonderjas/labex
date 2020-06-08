@@ -13,6 +13,7 @@ export type TableCell = {
 
 export type TableCellProps = {
 	value: any;
+	rowIndex: number;
 };
 
 export type TExchangeOfferCard = {

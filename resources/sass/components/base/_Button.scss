@@ -1,5 +1,6 @@
 .Button {
 	position: relative;
+	display: block;
 
 	button {
 		cursor: pointer;
@@ -35,14 +36,37 @@
 		}
 	}
 
-	&.confirm {
+	&.confirm,
+	&.correct {
 		button {
 			background-color: $correct-color;
+			color: $highlight-text-color;
+
+			&:hover {
+				background-color: $blue;
+			}
 		}
 	}
+
+	&.neutral {
+		button {
+			background-color: $warning-color;
+			color: $highlight-text-color;
+
+			&:hover {
+				background-color: $blue;
+			}
+		}
+	}
+
 	&.danger {
 		button {
 			background-color: $danger-color;
+			color: $highlight-text-color;
+
+			&:hover {
+				background-color: $blue;
+			}
 		}
 	}
 }
