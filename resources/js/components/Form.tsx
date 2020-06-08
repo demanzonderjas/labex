@@ -12,9 +12,10 @@ import { LocalImage } from "./base/Image";
 
 type Props = {
 	header: string;
+	submitLabel?: string;
 };
 
-export const Form: React.FC<Props> = observer(({ header }) => {
+export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit" }) => {
 	const [isCollapsed, setIsCollapsed] = useState(false);
 	const { fields, submit, errors, isLoading, serverError } = useFormStore();
 	const { t } = useTranslationStore();
@@ -37,7 +38,7 @@ export const Form: React.FC<Props> = observer(({ header }) => {
 							/>
 						))}
 				</div>
-				<SubmitButton label="submit" />
+				<SubmitButton label={submitLabel} />
 				<Loader isLoading={isLoading} />
 				<ErrorNotification error={serverError} />
 			</form>

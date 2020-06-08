@@ -16,6 +16,7 @@ export class SampleStore {
 			.map(offer => {
 				return { ...offer, match_percentage: getMatchingPercentage(offer, this.filters) };
 			})
+			.filter(offer => offer.match_percentage > 0)
 			.sort((a, b) => b.match_percentage - a.match_percentage);
 	}
 

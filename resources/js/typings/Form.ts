@@ -2,6 +2,7 @@ import React from "react";
 
 export type TForm = {
 	header: string;
+	submitLabel: string;
 	fields: FormField[];
 	handler: Function;
 	handleSuccess?: Function;
