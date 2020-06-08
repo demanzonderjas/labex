@@ -19,7 +19,7 @@ type Props = {
 };
 
 export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit", matchable }) => {
-	const { fields, submit, errors, isLoading, serverError, isCollapsed } = useFormStore();
+	const { activeFields, submit, errors, isLoading, serverError, isCollapsed } = useFormStore();
 	const { t } = useTranslationStore();
 	return (
 		<div className={cx("Form", { collapsed: isCollapsed })}>
@@ -31,7 +31,7 @@ export const Form: React.FC<Props> = observer(({ header, submitLabel = "submit",
 			{matchable && <ActiveFilters />}
 			<form onSubmit={submit}>
 				<div className="fields">
-					{fields
+					{activeFields
 						.filter(fieldIsNotHidden)
 						.filter(fieldMeetsDependencies)
 						.map(field => (

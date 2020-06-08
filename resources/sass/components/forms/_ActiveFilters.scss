@@ -5,6 +5,7 @@
 		display: inline-block;
 		cursor: pointer;
 		position: relative;
+		user-select: none;
 
 		&:not(:last-child) {
 			margin-right: 8px;

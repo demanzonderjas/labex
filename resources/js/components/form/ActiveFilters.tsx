@@ -17,7 +17,7 @@ export const ActiveFilters: React.FC = observer(() => {
 				<FilterListIcon />
 			</div>
 			{filters.map(filter => (
-				<Filter key={filter.id} value={filter.value} />
+				<Filter key={filter.id} id={filter.id} value={filter.value} />
 			))}
 		</div>
 	);

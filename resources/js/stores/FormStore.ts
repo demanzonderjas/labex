@@ -11,6 +11,7 @@ export class FormStore {
 	@observable isLoading = false;
 	@observable serverError = null;
 	@observable isCollapsed = false;
+	@observable activeFilter: string | null = null;
 
 	constructor(form: TForm, handleSuccess: Function, handleUpdate: Function) {
 		this.fields = form.fields;
@@ -20,8 +21,19 @@ export class FormStore {
 		this.handleUpdate(this.fields);
 	}
 
+	@computed get activeFields() {
+		if (!this.activeFilter) {
+			return this.fields;
+		}
+		return this.fields.filter(field => field.id == this.activeFilter);
+	}
+
 	@computed get filters() {
 		return this.fields.filter(field => field.value != "");
+	}
+
+	@action.bound setActiveFilter(id) {
+		this.activeFilter = id;
 	}
 
 	@action.bound setIsLoading(isLoading) {
@@ -30,6 +42,10 @@ export class FormStore {
 
 	@action.bound setIsCollapsed(isCollapsed) {
 		this.isCollapsed = isCollapsed;
+
+		if (isCollapsed) {
+			this.setActiveFilter(null);
+		}
 	}
 
 	@action.bound setFieldValue(id: string, value: any) {
@@ -67,7 +83,6 @@ export class FormStore {
 		if (this.validate()) {
 			this.setIsLoading(true);
 			const response = await this.handler(this.generateKeyValuePairs());
-			console.log("response :: ", response);
 			if (!response.success) {
 				this.serverError = response.message;
 			} else {
@@ -82,7 +97,6 @@ export class FormStore {
 
 	@action.bound resetForm() {
 		this.fields = this.fields.map(field => {
-			console.log("resetting");
 			return { ...field, value: field.default };
 		});
 		this.serverError = null;

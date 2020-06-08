@@ -21,7 +21,6 @@ export class SampleStore {
 	}
 
 	@computed get totalMatches() {
-		console.log(this.matches.length);
 		return this.matches.length;
 	}
 
@@ -31,7 +30,6 @@ export class SampleStore {
 
 	@action.bound async getSampleOffers() {
 		const response = await getExchangeOffers();
-		console.log(response);
 		if (response.success) {
 			this.setOffers(response.exchange_offers);
 		}
@@ -41,7 +39,6 @@ export class SampleStore {
 
 	@action.bound async getSampleRequests() {
 		const response = await getExchangeRequests();
-		console.log(response);
 		if (response.success) {
 			this.setRequests(response.exchange_requests);
 		}
