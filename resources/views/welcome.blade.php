@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="api-user-token" content={{ Auth::user()->token }}>
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/app.css?t={{ time() }}">
     <title>Exchange Platform Animals & Tissues</title>
 </head>
 
 <body>
     <div id="app"></div>
-    <script src="/js/app.js" type="text/javascript"></script>
+    <script src="/js/app.js?t={{ time() }}" type="text/javascript"></script>
 </body>
 
 </html>
