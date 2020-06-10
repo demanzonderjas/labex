@@ -39,6 +39,10 @@ export const DangerButton: React.FC<Props> = (props: Props) => {
 	return <Button {...props} classes={{ danger: true }} />;
 };
 
+export const SecondaryButton: React.FC<Props> = (props: Props) => {
+	return <Button {...props} classes={{ secondary: true }} />;
+};
+
 export const MatchableButton: React.FC<Props> = observer(({ label }) => {
 	const { totalMatches } = useSampleStore();
 	const { t } = useTranslationStore();

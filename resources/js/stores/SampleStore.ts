@@ -9,7 +9,7 @@ import { mapMatchesToOverviewData } from "../utils/formatting/matches";
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
 	@observable.shallow requests: TExchangeRequestCard[] = [];
-	@observable overviewType: OverviewType = OverviewType.Cards;
+	@observable overviewType: OverviewType = OverviewType.Table;
 	@observable filters: FormField[] = [];
 
 	@computed get matches() {

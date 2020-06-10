@@ -10,7 +10,7 @@ export const ExchangeOfferCardContainer: React.FC<Props> = ({ matches }) => {
 	return (
 		<div className="ExchangeOfferCardContainer card-container">
 			{matches.map((data, idx) => (
-				<ExchangeOfferCard key={idx} data={data} />
+				<ExchangeOfferCard key={idx} data={data} index={idx} />
 			))}
 		</div>
 	);

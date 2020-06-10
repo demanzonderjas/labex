@@ -1,20 +1,27 @@
 import React from "react";
-import { TExchangeOfferCard } from "../../typings/Overview";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
+import { SecondaryButton } from "../base/Button";
+import { useSampleStore } from "../../hooks/useSampleStore";
 
 type Props = {
-	data: any;
+	data?: any;
+	index?: number;
 };
 
-export const ExchangeOfferCard: React.FC<Props> = ({ data }) => {
+export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
+	const { selectMatch } = useSampleStore();
+
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	return (
 		<div className="ExchangeOfferCard Card">
 			<div className="match">
-				<label>{t("match_percentage")}</label>
-				<Percentage matchPercentage={matchPercentage.value} />
+				<div className="info-block">
+					<label>{t("match_percentage")}</label>
+					<Percentage matchPercentage={matchPercentage.value} />
+				</div>
+				<SecondaryButton label="select" handleClick={() => selectMatch(index)} />
 			</div>
 			<div className="details">
 				{data
@@ -22,7 +29,7 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data }) => {
 					.map(column => (
 						<div key={column.id} className="info-block">
 							<label>{t(column.id)}</label>
-							<label>{t(column.value)}</label>
+							<span>{t(column.value)}</span>
 						</div>
 					))}
 			</div>

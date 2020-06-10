@@ -32,7 +32,8 @@
 
 	&.secondary {
 		button {
-			background-color: $secondary;
+			background-color: $correct-color;
+			color: white;
 
 			&:hover {
 				background-color: $blue;
