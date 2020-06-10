@@ -61,4 +61,8 @@ export class SampleStore {
 		const { exchange_request } = data;
 		this.requests = [...this.requests, exchange_request];
 	}
+
+	@action.bound setOverviewType(overviewType: OverviewType) {
+		this.overviewType = overviewType;
+	}
 }

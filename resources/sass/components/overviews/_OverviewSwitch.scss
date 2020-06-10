@@ -1,0 +1,14 @@
+.OverviewSwitch {
+	max-width: $layout-wrapper-width;
+	text-align: right;
+	margin: -60px auto 0;
+
+	.image-wrapper {
+		display: inline-block;
+		cursor: pointer;
+
+		&:first-child {
+			margin-right: 16px;
+		}
+	}
+}

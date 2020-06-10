@@ -1,6 +1,6 @@
 .Form {
 	position: relative;
-	max-width: 1200px;
+	max-width: $layout-wrapper-width;
 	margin: 0 auto;
 
 	.TotalMatchesFound {
