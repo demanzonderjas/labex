@@ -4,5 +4,5 @@ import { getMatchClasses } from "../../utils/formatting/matches";
 
 export function Percentage({ matchPercentage }) {
 	const classes = getMatchClasses(matchPercentage);
-	return <span className={cx("Percentage", classes)}>{matchPercentage}%</span>;
+	return <span className={cx("Percentage", classes)}>{matchPercentage | 0}%</span>;
 }
