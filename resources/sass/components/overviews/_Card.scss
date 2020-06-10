@@ -1,11 +1,13 @@
-.card {
+.card-container {
+	max-width: $layout-wrapper-width;
+	margin: 50px auto;
+}
+
+.Card {
 	display: inline-block;
-	width: 280px;
-	border: 1px solid #ddd;
+	width: 50%;
 	min-height: 400px;
 	box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, 0.3);
-	background-color: #f0f0f0;
-	margin: 0 20px 20px 0;
 	transition: transform 0.25s cubic-bezier(0, 0, 0.3, 1);
 	cursor: pointer;
 
@@ -27,13 +29,6 @@
 		ul li {
 			padding: 10px;
 			font-size: 14px;
-		}
-	}
-
-	@media only screen and (min-width: 1200px) {
-		width: 285px;
-		&:nth-child(4) {
-			margin-right: 0;
 		}
 	}
 }

@@ -1,39 +1,30 @@
 import React from "react";
-import { LocalImage } from "../base/Image";
 import { TExchangeOfferCard } from "../../typings/Overview";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { Percentage } from "../base/Percentage";
 
-export const ExchangeOfferCard: React.FC<TExchangeOfferCard> = ({
-	animal_species,
-	amount,
-	date_available,
-	sex,
-	origin
-}) => {
+type Props = {
+	data: any;
+};
+
+export const ExchangeOfferCard: React.FC<Props> = ({ data }) => {
 	const { t } = useTranslationStore();
+	const matchPercentage = data.find(column => column.id == "match_percentage");
 	return (
-		<div className="ExchangeOfferCard card">
-			<div className="header">
-				<LocalImage path="icons/placeholder-icon.svg" />
+		<div className="ExchangeOfferCard Card">
+			<div className="match">
+				<label>{t("match_percentage")}</label>
+				<Percentage matchPercentage={matchPercentage.value} />
 			</div>
-			<div className="body">
-				<ul>
-					<li>
-						<strong>{t("animal_species")}</strong>: {t(animal_species)}
-					</li>
-					<li>
-						<strong>{t("date_available")}</strong>: {date_available}
-					</li>
-					<li>
-						<strong>{t("amount")}</strong>: {amount}
-					</li>
-					<li>
-						<strong>{t("sex")}</strong>: {t(sex)}
-					</li>
-					<li>
-						<strong>{t("origin")}</strong>: {t(origin)}
-					</li>
-				</ul>
+			<div className="details">
+				{data
+					.filter(column => column.id != "match_percentage")
+					.map(column => (
+						<div key={column.id} className="info-block">
+							<label>{t(column.id)}</label>
+							<label>{t(column.value)}</label>
+						</div>
+					))}
 			</div>
 		</div>
 	);

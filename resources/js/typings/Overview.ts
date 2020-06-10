@@ -20,6 +20,7 @@ export type TExchangeOfferCard = {
 	id: number;
 	animal_species: string;
 	date_available: string;
+	match_percentage: number;
 	amount: string;
 	sex: string;
 	origin: string;

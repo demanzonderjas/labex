@@ -8,9 +8,9 @@ type Props = {
 
 export const ExchangeOfferCardContainer: React.FC<Props> = ({ matches }) => {
 	return (
-		<div className="ExchangeOfferCardContainer">
-			{matches.map(sample => (
-				<ExchangeOfferCard key={sample.id} {...sample} />
+		<div className="ExchangeOfferCardContainer card-container">
+			{matches.map((data, idx) => (
+				<ExchangeOfferCard key={idx} data={data} />
 			))}
 		</div>
 	);

@@ -1,0 +1,11 @@
+.Percentage {
+	&.correct {
+		color: $correct-color;
+	}
+	&.neutral {
+		color: $warning-color;
+	}
+	&.danger {
+		color: $danger-color;
+	}
+}

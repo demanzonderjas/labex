@@ -4,11 +4,12 @@ import { TExchangeOfferCard, TExchangeRequestCard, OverviewType } from "../typin
 import { getExchangeRequests } from "../queries/getExchangeRequests";
 import { FormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
+import { mapMatchesToOverviewData } from "../utils/formatting/matches";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
 	@observable.shallow requests: TExchangeRequestCard[] = [];
-	@observable overviewType: OverviewType = OverviewType.Table;
+	@observable overviewType: OverviewType = OverviewType.Cards;
 	@observable filters: FormField[] = [];
 
 	@computed get matches() {
@@ -18,6 +19,10 @@ export class SampleStore {
 			})
 			.filter(offer => offer.match_percentage > 0)
 			.sort((a, b) => b.match_percentage - a.match_percentage);
+	}
+
+	@computed get matchOverviewData() {
+		return mapMatchesToOverviewData(this.matches);
 	}
 
 	@computed get totalMatches() {
