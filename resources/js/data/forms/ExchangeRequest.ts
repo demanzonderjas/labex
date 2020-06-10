@@ -18,7 +18,7 @@ import { amountRequestedField } from "./fields/amount";
 import { microbiomeField } from "./fields/microbiome";
 
 export const ExchangeRequest: TForm = {
-	header: "exchange_request",
+	header: "offers",
 	submitLabel: "submit_my_request",
 	fields: [
 		originField,

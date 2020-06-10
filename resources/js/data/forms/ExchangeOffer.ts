@@ -22,7 +22,7 @@ import { sampleNumberField } from "./fields/sampleNumber";
 import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
 
 export const ExchangeOffer: TForm = {
-	header: "exchange_offer",
+	header: "requests",
 	fields: [
 		animalSpeciesField,
 		strainField,
