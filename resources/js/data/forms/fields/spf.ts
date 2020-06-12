@@ -6,7 +6,7 @@ export const spfField: FormField = {
 	id: "spf",
 	Component: SelectField,
 	props: {
-		options: ["spf", "conventional"]
+		options: ["spf", "conventional", "unknown"]
 	},
 	default: "",
 	value: "spf"

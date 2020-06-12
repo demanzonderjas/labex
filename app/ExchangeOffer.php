@@ -7,26 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class ExchangeOffer extends Model
 {
     protected $fillable = [
-        "age",
+        "type",
         "animal_species",
         "strain",
-        "sex",
-        "weight_type",
-        "weight",
-        "origin",
-        "spf",
-        "microbiome",
         "organs",
+        "age",
+        "date_available",
+        "sex",
+        "origin",
+        "amount",
+        "spf",
         "storage",
         "naive",
         "inconvenience_level",
         "kill_method",
-        "sample_number",
-        "procedures",
-        "protocol_number_known",
         "protocol_number",
-        "amount",
-        "date_available"
     ];
 
     protected $with = ['user'];

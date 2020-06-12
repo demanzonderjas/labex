@@ -7,22 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class ExchangeRequest extends Model
 {
     protected $fillable = [
-        "age",
-        "date_requested",
-        "amount",
         "animal_species",
+        "date_requested",
         "strain",
+        "amount",
+        "age_type",
+        "age_min",
+        "age_max",
+        "type",
         "sex",
-        "weight_type",
-        "weight",
-        "microbiome",
         "origin",
         "spf",
         "organs",
         "storage",
-        "naive",
-        "inconvenience_level",
         "kill_method",
+        "extra_info"
     ];
 
     protected $with = ['user'];

@@ -20,28 +20,24 @@ import { protocolNumberField } from "./fields/protocolNumber";
 import { protocolNumberKnownField } from "./fields/protocolNumberKnown";
 import { sampleNumberField } from "./fields/sampleNumber";
 import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
+import { typeField } from "./fields/type";
 
 export const ExchangeOffer: TForm = {
 	header: "requests",
 	fields: [
+		typeField,
 		animalSpeciesField,
 		strainField,
 		sexField,
 		ageField,
-		weightTypeField,
-		weightField,
 		originField,
 		spfField,
-		microbiomeField,
 		organsField,
 		storageField,
 		dateAvailableField,
 		naiveField,
-		proceduresField,
-		inconvenienceLevelField,
 		killMethodField,
 		amountField,
-		protocolNumberKnownField,
 		protocolNumberField,
 		sampleNumberField
 	],

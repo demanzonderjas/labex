@@ -5,10 +5,9 @@ export const originField: FormField = {
 	label: "origin",
 	id: "origin",
 	Component: SelectField,
-	required: true,
 	props: {
-		options: ["animal", "fresh_tissue", "conserved_tissue"]
+		options: ["experiment", "breeding", "other"]
 	},
-	default: "animal",
-	value: "animal"
+	default: "experiment",
+	value: "experiment"
 };

@@ -16,25 +16,22 @@ import { inconvenienceLevelField } from "./fields/inconvenienceLevel";
 import { killMethodField } from "./fields/killMethod";
 import { amountRequestedField } from "./fields/amount";
 import { microbiomeField } from "./fields/microbiome";
+import { typeField } from "./fields/type";
 
 export const ExchangeRequest: TForm = {
 	header: "offers",
 	submitLabel: "submit_my_request",
 	fields: [
+		typeField,
 		originField,
 		animalSpeciesField,
 		strainRequestField,
 		sexRequestField,
 		ageRequestField,
-		weightTypeField,
-		weightField,
 		spfField,
-		microbiomeField,
 		organsRequestField,
 		storageRequestField,
 		dateRequestedField,
-		naiveRequestField,
-		inconvenienceLevelField,
 		killMethodField,
 		amountRequestedField
 	],
