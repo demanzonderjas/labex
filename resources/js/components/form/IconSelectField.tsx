@@ -6,16 +6,19 @@ import { LocalImage } from "../base/Image";
 import cx from "classnames";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
-type TOption = {
+interface TOption extends TOptionData {
+	handleSelect: Function;
+	isSelected: boolean;
+}
+
+type TOptionData = {
 	icon?: string;
 	label?: string;
 	value: string;
-	handleSelect: Function;
-	isSelected: boolean;
 };
 
 interface Props extends FormFieldData {
-	options: TOption[];
+	options: TOptionData[];
 }
 
 export const IconSelectField: React.FC<Props> = observer(({ id, value, options }) => {

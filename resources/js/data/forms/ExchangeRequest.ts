@@ -2,7 +2,7 @@ import { TForm } from "../../typings/Form";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { sendExchangeRequest } from "../../queries/sendExchangeRequest";
 import { strainRequestField } from "./fields/strain";
-import { ageRequestField } from "./fields/age";
+import { ageRequestField, ageMinField, ageMaxField, ageTypeField } from "./fields/age";
 import { sexRequestField } from "./fields/sex";
 import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
@@ -23,6 +23,9 @@ export const ExchangeRequest: TForm = {
 		strainRequestField,
 		sexRequestField,
 		ageRequestField,
+		ageTypeField,
+		ageMinField,
+		ageMaxField,
 		spfField,
 		organsRequestField,
 		originField,

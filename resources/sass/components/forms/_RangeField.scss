@@ -1,0 +1,59 @@
+.RangeField {
+	position: relative;
+	width: 100%;
+	height: 40px;
+	margin: 20px 0;
+
+	.bar {
+		width: 100%;
+		height: 4px;
+		background-color: $grey-light;
+		border-radius: 5px;
+		position: relative;
+
+		.bar-min,
+		.bar-max {
+			position: absolute;
+			top: 0;
+			height: 100%;
+		}
+
+		.bar-min {
+			left: 0;
+			width: 80px;
+			background-color: transparent;
+			height: 100%;
+		}
+
+		.bar-max {
+			right: 0;
+			width: 80px;
+			background: linear-gradient(45deg, $correct-color, $blue);
+		}
+
+		.indicator-wrapper {
+			position: absolute;
+			right: 0;
+			.indicator {
+				border-radius: 50%;
+				width: 20px;
+				height: 20px;
+				background-color: $blue;
+				position: absolute;
+				top: -70%;
+				z-index: 1;
+
+				&.active {
+					background-color: $correct-color;
+				}
+			}
+			.value {
+				top: 20px;
+				position: relative;
+				width: 20px;
+				display: block;
+				text-align: center;
+			}
+		}
+	}
+}

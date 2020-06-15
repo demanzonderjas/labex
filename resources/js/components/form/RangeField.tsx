@@ -1,0 +1,83 @@
+import { observer } from "mobx-react-lite";
+import React, { useRef } from "react";
+import { useEffect, useState } from "react";
+import cx from "classnames";
+
+export const RangeField = observer(() => {
+	const [minWidth, setMinWidth] = useState(0);
+	const [maxWidth, setMaxWidth] = useState(100);
+	const [isTracking, setIsTracking] = useState(null);
+	const rangeRef = useRef(null);
+
+	const updateMousePos = event => {
+		event.preventDefault();
+		if (isTracking == "min") {
+			updateMinWidth(event.x);
+		} else if (isTracking == "max") {
+			updateMaxWidth(event.x);
+		}
+	};
+
+	const updateMinWidth = xPos => {
+		const { left, width } = rangeRef.current.getBoundingClientRect();
+		const minPos = Math.max(left, xPos);
+		const posDiff = Math.abs(minPos - left);
+		const widthPercentage = Math.min((posDiff / width) * 100, maxWidth);
+		setMinWidth(widthPercentage);
+	};
+
+	const updateMaxWidth = xPos => {
+		const { right, width } = rangeRef.current.getBoundingClientRect();
+		const maxPos = Math.min(right, xPos);
+		const posDiff = right - maxPos;
+		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth);
+		setMaxWidth(widthPercentage);
+	};
+
+	const stopTracking = () => setIsTracking(null);
+
+	useEffect(() => {
+		if (isTracking) {
+			window.addEventListener("mouseup", stopTracking);
+			window.addEventListener("mousemove", updateMousePos);
+		} else {
+			return;
+		}
+
+		return () => {
+			window.removeEventListener("mouseup", stopTracking);
+			window.removeEventListener("mousemove", updateMousePos);
+			setIsTracking(null);
+		};
+	}, [isTracking]);
+
+	console.log(minWidth);
+
+	return (
+		<div className="RangeField" ref={rangeRef}>
+			<div className="bar">
+				<div className="bar-min" style={{ width: `${minWidth}%` }}>
+					<div className="indicator-wrapper">
+						<div
+							className={cx("indicator", { active: isTracking == "min" })}
+							onMouseDown={() => setIsTracking("min")}
+						/>
+						<span className="value">20</span>
+					</div>
+				</div>
+				<div
+					className="bar-max"
+					style={{ width: `${maxWidth - minWidth}%`, left: `${minWidth}%` }}
+				>
+					<div className="indicator-wrapper">
+						<div
+							className={cx("indicator", { active: isTracking == "max" })}
+							onMouseDown={() => setIsTracking("max")}
+						/>
+						<span className="value">100</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+});
