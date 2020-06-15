@@ -5,9 +5,11 @@ export const spfField: FormField = {
 	label: "spf",
 	id: "spf",
 	Component: SelectField,
+	required: false,
 	props: {
-		options: ["spf", "conventional", "unknown"]
+		options: ["spf", "conventional", "unknown"],
+		startsEmpty: true
 	},
 	default: "",
-	value: "spf"
+	value: ""
 };

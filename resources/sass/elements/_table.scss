@@ -50,6 +50,10 @@ table {
 			td {
 				color: $highlight-text-color;
 
+				.Percentage {
+					color: $highlight-text-color;
+				}
+
 				button {
 					background-color: $blue !important;
 				}

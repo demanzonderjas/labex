@@ -4,26 +4,22 @@ import { strainField } from "./fields/strain";
 import { ageField } from "./fields/age";
 import { naiveField } from "./fields/naive";
 import { sexField } from "./fields/sex";
-import { weightTypeField } from "./fields/weightType";
-import { weightField } from "./fields/weight";
 import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
-import { microbiomeField } from "./fields/microbiome";
 import { organsField } from "./fields/organs";
 import { storageField } from "./fields/storage";
 import { dateAvailableField } from "./fields/dateAvailable";
-import { proceduresField } from "./fields/procedures";
-import { inconvenienceLevelField } from "./fields/inconvenienceLevel";
 import { killMethodField } from "./fields/killMethod";
 import { amountField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
-import { protocolNumberKnownField } from "./fields/protocolNumberKnown";
 import { sampleNumberField } from "./fields/sampleNumber";
 import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
 import { typeField } from "./fields/type";
+import { dateConservedField } from "./fields/dateConserved";
 
 export const ExchangeOffer: TForm = {
 	header: "requests",
+	intro: "offers_intro",
 	fields: [
 		typeField,
 		animalSpeciesField,
@@ -35,6 +31,7 @@ export const ExchangeOffer: TForm = {
 		organsField,
 		storageField,
 		dateAvailableField,
+		dateConservedField,
 		naiveField,
 		killMethodField,
 		amountField,
@@ -43,4 +40,11 @@ export const ExchangeOffer: TForm = {
 	],
 	handler: sendExchangeOffer,
 	matchable: true
+};
+
+export const SubmitOfferForm = {
+	...ExchangeOffer,
+	header: "submit_offer",
+	intro: "submit_offer_intro",
+	matchable: false
 };

@@ -22,7 +22,7 @@ export const killMethodField: FormField = {
 	dependencies: [
 		{
 			id: "origin",
-			validate: value => value.match("tissue")
+			validate: value => value == "vital_tissue"
 		}
 	]
 };

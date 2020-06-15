@@ -29,14 +29,17 @@
 
 body {
 	font-family: $font-primary;
+	color: $grey-medium;
 }
 
 .App {
 	margin: 0 auto;
 }
 
-.page-wrapper {
-	padding: 50px 0;
+.layout-wrapper {
+	position: relative;
+	max-width: $layout-wrapper-width;
+	margin: 0 auto;
 }
 
 .with-black-scrollbar::-webkit-scrollbar-track {

@@ -5,7 +5,7 @@ import SampleStoreProvider from "../contexts/SampleContext";
 import { SampleStore } from "../stores/SampleStore";
 import { ExchangeRequest } from "../data/forms/ExchangeRequest";
 
-export const OfferFormPage = () => {
+export const OffersPage = () => {
 	const [sampleStore] = useState(new SampleStore());
 	return (
 		<SampleStoreProvider store={sampleStore}>

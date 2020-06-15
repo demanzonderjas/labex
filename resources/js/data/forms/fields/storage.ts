@@ -14,8 +14,8 @@ export const storageField: FormField = {
 	value: "",
 	dependencies: [
 		{
-			id: "origin",
-			validate: value => value.match("tissue")
+			id: "type",
+			validate: value => value == "conserved_tissue"
 		}
 	]
 };

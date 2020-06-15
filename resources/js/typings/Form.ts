@@ -2,6 +2,7 @@ import React from "react";
 
 export type TForm = {
 	header: string;
+	intro: string;
 	submitLabel?: string;
 	fields: FormField[];
 	matchable?: boolean;
@@ -28,6 +29,7 @@ export interface FormField extends FormFieldData {
 	props: any;
 	required?: boolean;
 	dependencies?: FormFieldDependency[];
+	isMatch?: Function;
 	hidden?: boolean;
 	default: string;
 	description?: string;

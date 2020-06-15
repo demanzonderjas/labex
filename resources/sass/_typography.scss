@@ -86,8 +86,10 @@ span {
 }
 
 .Form {
-	.no-matches {
-		font-size: 12px;
+	.header {
+		p {
+			font-size: $default-font-size;
+		}
 	}
 }
 
@@ -95,7 +97,7 @@ span {
 	span {
 		font-weight: bold;
 		font-family: $font-header;
-		font-size: 12px;
+		font-size: $default-font-size;
 	}
 }
 

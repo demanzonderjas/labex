@@ -15,7 +15,7 @@ return [
         "sample_number" => "nullable|string"
     ],
     "type" => [
-        "animal", "fresh_tissue", "conserved_tissue"
+        "animal", "vital_tissue", "conserved_tissue"
     ],
     "animal_species" => [
         "mouse",
@@ -38,9 +38,10 @@ return [
     "sex" => [
         "male",
         "female",
+        "irrelevant"
     ],
     "origin" => [
-        "experiment", "breeding", "other"
+        "experiment", "breeding", "other", "irrelevant"
     ],
     "storage" => [
         "fresh", "frozen", "liquid_nitrogen", "preserved"

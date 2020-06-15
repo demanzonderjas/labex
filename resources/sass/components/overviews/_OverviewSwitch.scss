@@ -8,7 +8,7 @@
 		cursor: pointer;
 
 		&:first-child {
-			margin-right: 16px;
+			margin-right: $default-half-margin;
 		}
 	}
 }

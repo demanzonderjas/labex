@@ -9,6 +9,7 @@
 	"date_requested": "Date requested",
 	"sex": "Sex",
 	"inconvenience_level": "Inconvenience Level",
+	"type": "Type",
 	"kill_method": "Kill method",
 	"microbiome": "Microbiome",
 	"naive": "Naive animal",
@@ -27,6 +28,7 @@
 	"weight_type": "Type of weight",
 	"submit": "Submit",
 	"submit_my_request": "Submit my request",
+	"submit_offer": "Submit offer",
 	"x": "X",
 	"mouse": "Mouse",
 	"rat": "Rat",
@@ -65,7 +67,7 @@
 	"intestine": "Intestine",
 	"skin": "Skin",
 	"animal": "Animal",
-	"fresh_tissue": "Fresh tissue",
+	"vital_tissue": "Vital tissue",
 	"conserved_tissue": "Conserved Tissue",
 	"fresh": "Fresh",
 	"frozen": "Frozen",
@@ -91,5 +93,10 @@
 	"browse_results": "Browse results",
 	"no_matches_found": "(0) matches were found",
 	"matches_were_found": "matches were found.",
-	"filter_options": "Filter options"
+	"filter_options": "Filter options",
+	"submit_offer_intro": "This page can be used to submit new material into the database. Please enter the appropriate data points to match your offer.",
+	"offers_intro": "This page can be used to browse through offers made by others. Each offer can be selected to view the detail page and ‘claim’ this offer.",
+	"choose_if_relevant": "Choose if relevant..",
+	"experiment": "Experiment",
+	"breeding": "Breeding"
 }

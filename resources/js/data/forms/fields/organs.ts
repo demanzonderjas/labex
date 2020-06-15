@@ -1,5 +1,4 @@
 import { FormField } from "../../../typings/Form";
-import { MultiSelectField } from "../../../components/form/MultiSelectField";
 import { SelectField } from "../../../components/form/SelectField";
 
 export const organsField: FormField = {
@@ -24,7 +23,13 @@ export const organsField: FormField = {
 		allowOther: true
 	},
 	default: "",
-	value: ""
+	value: "",
+	dependencies: [
+		{
+			id: "type",
+			validate: value => value == "vital_tissue" || value == "conserved_tissue"
+		}
+	]
 };
 
 export const organsRequestField: FormField = {

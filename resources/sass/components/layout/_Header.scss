@@ -1,15 +1,20 @@
 header {
 	height: 200px;
+	position: relative;
 
 	.LogoWrapper {
-		max-width: $layout-wrapper-width;
-		margin: 0 auto;
-
 		img {
 			display: inline-block;
 			margin: 0 20px 0 0;
 			vertical-align: middle;
 			height: 130px;
 		}
+	}
+
+	.SubmitOfferButton {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 }

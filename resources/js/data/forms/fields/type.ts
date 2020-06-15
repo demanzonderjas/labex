@@ -7,7 +7,7 @@ export const typeField: FormField = {
 	Component: SelectField,
 	required: true,
 	props: {
-		options: ["animal", "fresh_tissue", "conserved_tissue"]
+		options: ["animal", "vital_tissue", "conserved_tissue"]
 	},
 	default: "animal",
 	value: "animal"

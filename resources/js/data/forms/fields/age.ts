@@ -12,7 +12,13 @@ export const ageField: FormField = {
 		type: InputType.Date
 	},
 	default: "",
-	value: ""
+	value: "",
+	dependencies: [
+		{
+			id: "type",
+			validate: value => value == "animal" || value == "vital_tissue"
+		}
+	]
 };
 
 export const ageRequestField: FormField = {

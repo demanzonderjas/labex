@@ -38,8 +38,15 @@ export const SelectField: React.FC<Props> = observer(
 		return (
 			<div className={cx("SelectField", { active: isActive })}>
 				<div className="select-wrapper">
-					<div className="active-option" onClick={() => setIsActive(!isActive)}>
-						<SelectOption value={value} />
+					<div
+						className={cx("active-option", { "with-value": !!value })}
+						onClick={() => setIsActive(!isActive)}
+					>
+						{startsEmpty && value == "" ? (
+							<SelectOption value="choose_if_relevant" />
+						) : (
+							<SelectOption value={value} />
+						)}
 						<LocalImage path="icons/arrow-down.svg" />
 					</div>
 					<div className="dropdown with-black-scrollbar">
@@ -49,7 +56,7 @@ export const SelectField: React.FC<Props> = observer(
 									setFieldValue(id, "");
 									setIsActive(!isActive);
 								}}
-								value=""
+								value="choose_if_relevant"
 							/>
 						)}
 						{options

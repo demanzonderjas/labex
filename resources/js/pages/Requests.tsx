@@ -4,9 +4,8 @@ import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { ExchangeRequestOverview } from "../components/overviews/ExchangeRequestOverview";
 import { ExchangeOffer } from "../data/forms/ExchangeOffer";
-import { MatchableButton } from "../components/base/Button";
 
-export const RequestFormPage = () => {
+export const RequestsPage = () => {
 	const [sampleStore] = useState(new SampleStore());
 	return (
 		<SampleStoreProvider store={sampleStore}>

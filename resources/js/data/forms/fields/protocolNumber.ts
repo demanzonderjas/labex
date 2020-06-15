@@ -12,8 +12,8 @@ export const protocolNumberField: FormField = {
 	value: "",
 	dependencies: [
 		{
-			id: "protocol_number_known",
-			validate: value => value == "yes"
+			id: "naive",
+			validate: value => value == "no"
 		}
 	]
 };

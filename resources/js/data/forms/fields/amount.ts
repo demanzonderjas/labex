@@ -9,14 +9,22 @@ export const amountField: FormField = {
 	required: true,
 	validate: isBiggerThanZero,
 	props: {
-		type: InputType.Number
+		type: InputType.Number,
+		min: 0
 	},
 	default: "1",
-	value: "1"
+	value: "1",
+	dependencies: [
+		{
+			id: "type",
+			validate: value => value == "animal"
+		}
+	]
 };
 
 export const amountRequestedField: FormField = {
 	...amountField,
+	isMatch: (requestedValue, offeredValue) => parseInt(requestedValue) <= parseInt(offeredValue),
 	label: "amount_request",
 	required: false
 };

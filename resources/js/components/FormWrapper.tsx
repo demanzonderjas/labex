@@ -11,7 +11,12 @@ export const FormWrapper: React.FC<Props> = ({ form, handleSuccess, handleUpdate
 
 	return (
 		<FormStoreProvider store={formStore}>
-			<Form header={form.header} submitLabel={form.submitLabel} matchable={form.matchable} />
+			<Form
+				intro={form.intro}
+				header={form.header}
+				submitLabel={form.submitLabel}
+				matchable={form.matchable}
+			/>
 		</FormStoreProvider>
 	);
 };
