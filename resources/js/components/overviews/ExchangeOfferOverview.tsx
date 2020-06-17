@@ -7,6 +7,7 @@ import { ExchangeOfferTable } from "./ExchangeOfferTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { OverviewSwitch } from "./OverviewSwitch";
 import { SecondaryButton } from "../base/Button";
+import { LoadMore } from "./LoadMore";
 
 export const ExchangeOfferOverview: React.FC = observer(() => {
 	const {
@@ -36,11 +37,7 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 			{overviewType == OverviewType.Table && (
 				<ExchangeOfferTable matches={matchOverviewData} />
 			)}
-			{currentLimit < offers.length && (
-				<div className="button-wrapper">
-					<SecondaryButton label="load_more" handleClick={() => upgradeLimit()} />
-				</div>
-			)}
+			{currentLimit < offers.length && <LoadMore />}
 		</div>
 	);
 });
