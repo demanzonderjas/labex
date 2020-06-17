@@ -26,10 +26,10 @@ class CreateExchangeOffersTable extends Migration
             $table->string('amount');
             $table->string('age');
             $table->string('sex');
-            $table->string('origin');
+            $table->string('origin')->nullable();
             $table->string('naive');
             $table->string('protocol_number')->nullable();
-            $table->string('spf');
+            $table->string('spf')->nullable();
             $table->string('storage')->nullable();
             $table->string('kill_method')->nullable();
             $table->timestamps();

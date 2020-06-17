@@ -44,6 +44,7 @@ export const ExchangeOffer: TForm = {
 
 export const SubmitOfferForm = {
 	...ExchangeOffer,
+	handler: sendExchangeOffer,
 	header: "submit_offer",
 	intro: "submit_offer_intro",
 	matchable: false

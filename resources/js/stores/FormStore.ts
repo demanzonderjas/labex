@@ -60,7 +60,7 @@ export class FormStore {
 	}
 
 	@action.bound validate() {
-		const errors = this.fields.reduce((base, field) => {
+		const errors = this.fields.filter(fieldMeetsDependencies).reduce((base, field) => {
 			if (field.validate && !field.validate(field.value)) {
 				base[field.id] = "field_not_valid";
 			}
@@ -93,6 +93,8 @@ export class FormStore {
 			setTimeout(() => {
 				this.setIsLoading(false);
 			}, 1000);
+		} else {
+			console.log(this.errors, this.serverError);
 		}
 	}
 
