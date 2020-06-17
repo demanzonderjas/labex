@@ -1,6 +1,7 @@
 import { InputField } from "../../../components/form/InputField";
 import { FormField, InputType } from "../../../typings/Form";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
+import { getFieldById } from "../../../utils/getters/fields";
 
 export const amountField: FormField = {
 	label: "amount",
@@ -12,6 +13,7 @@ export const amountField: FormField = {
 		type: InputType.Number,
 		min: 0
 	},
+	customValue: fields => `${getFieldById("amount", fields).value} requested`,
 	default: "1",
 	value: "1",
 	dependencies: [

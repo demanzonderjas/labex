@@ -16,9 +16,16 @@ export const ActiveFilters: React.FC = observer(() => {
 				<span>{t("filter_options")}</span>
 				<FilterListIcon />
 			</div>
-			{filters.map(filter => (
-				<Filter key={filter.id} id={filter.id} value={filter.value} />
-			))}
+			{filters
+				.filter(filter => !filter.hidden)
+				.map(filter => (
+					<Filter
+						key={filter.id}
+						id={filter.id}
+						value={filter.value}
+						customValue={filter.customValue}
+					/>
+				))}
 		</div>
 	);
 });

@@ -21,6 +21,7 @@ type Props = {
 export const Form: React.FC<Props> = observer(
 	({ header, intro, submitLabel = "submit", matchable }) => {
 		const {
+			fields,
 			activeFields,
 			submit,
 			errors,
@@ -44,7 +45,9 @@ export const Form: React.FC<Props> = observer(
 						<div className="fields">
 							{activeFields
 								.filter(fieldIsNotHidden)
-								.filter(fieldMeetsDependencies)
+								.filter((field, index) =>
+									fieldMeetsDependencies(field, index, fields)
+								)
 								.map(field => (
 									<FormFieldWithLabel
 										key={field.id}

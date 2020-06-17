@@ -33,6 +33,7 @@ export interface FormField extends FormFieldData {
 	hidden?: boolean;
 	default: string;
 	description?: string;
+	customValue?: Function;
 }
 
 export type FormFieldDependency = {

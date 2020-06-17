@@ -7,12 +7,17 @@ import cx from "classnames";
 type Props = {
 	value: string;
 	id: string;
+	customValue?: Function;
 };
 
-export const Filter: React.FC<Props> = observer(({ value, id }) => {
+export const Filter: React.FC<Props> = observer(({ value, id, customValue }) => {
 	const { t } = useTranslationStore();
-	const { setActiveFilter, activeFilter, setIsCollapsed, isCollapsed } = useFormStore();
+	const { fields } = useFormStore();
+	const { setActiveFilter, activeFilter, setIsCollapsed } = useFormStore();
 	const isOpen = activeFilter == id;
+
+	const labelValue = customValue ? customValue(fields) : t(value);
+
 	return (
 		<div
 			className={cx("Filter", { open: isOpen })}
@@ -21,7 +26,7 @@ export const Filter: React.FC<Props> = observer(({ value, id }) => {
 				setActiveFilter(isOpen ? null : id);
 			}}
 		>
-			<span>{t(value)}</span>
+			<span>{labelValue}</span>
 		</div>
 	);
 });

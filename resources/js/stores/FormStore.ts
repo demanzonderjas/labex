@@ -1,6 +1,7 @@
 import { observable, toJS, action, computed } from "mobx";
 import { FormField, TForm } from "../typings/Form";
 import { FormEvent } from "react";
+import { fieldMeetsDependencies } from "../utils/filters/fields";
 
 export class FormStore {
 	@observable fields: FormField[] = [];
@@ -29,7 +30,7 @@ export class FormStore {
 	}
 
 	@computed get filters() {
-		return this.fields.filter(field => field.value != "");
+		return this.fields.filter(fieldMeetsDependencies).filter(field => field.value != "");
 	}
 
 	@action.bound setActiveFilter(id) {

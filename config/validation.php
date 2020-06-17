@@ -41,7 +41,7 @@ return [
         "irrelevant"
     ],
     "origin" => [
-        "experiment", "breeding", "other", "irrelevant"
+        "experiment", "breeding", "other"
     ],
     "storage" => [
         "fresh", "frozen", "liquid_nitrogen", "preserved"
