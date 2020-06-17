@@ -7,8 +7,8 @@ import { MatchButtonCell } from "../../components/overviews/table/custom/MatchBu
 
 export const matchColumns: string[] = [
 	"match_percentage",
+	"type",
 	"animal_species",
-	"origin",
 	"sex",
 	"age",
 	"amount",
@@ -23,12 +23,12 @@ export const matchCells: TableCell[] = [
 		Component: PercentageCell
 	},
 	{
-		id: "animal_species",
+		id: "type",
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "origin",
+		id: "animal_species",
 		value: "",
 		Component: TextCell
 	},
