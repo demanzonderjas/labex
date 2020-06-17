@@ -1,8 +1,8 @@
 .RangeField {
 	position: relative;
-	width: 100%;
+	width: calc(100% - 40px);
 	height: 40px;
-	margin: 20px 0;
+	margin: 20px;
 
 	.bar {
 		width: 100%;
@@ -53,6 +53,7 @@
 				width: 20px;
 				display: block;
 				text-align: center;
+				user-select: none;
 			}
 		}
 	}

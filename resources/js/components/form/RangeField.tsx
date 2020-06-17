@@ -2,11 +2,23 @@ import { observer } from "mobx-react-lite";
 import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import cx from "classnames";
+import { useFormStore } from "../../hooks/useFormStore";
+import { getFieldById } from "../../utils/getters/fields";
 
-export const RangeField = observer(() => {
+type Props = {
+	min: number;
+	max: number;
+	minId: string;
+	maxId: string;
+};
+
+export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId }) => {
+	const { setFieldValue, fields } = useFormStore();
 	const [minWidth, setMinWidth] = useState(0);
 	const [maxWidth, setMaxWidth] = useState(100);
 	const [isTracking, setIsTracking] = useState(null);
+	const minValue = getFieldById(minId, fields);
+	const maxValue = getFieldById(maxId, fields);
 	const rangeRef = useRef(null);
 
 	const updateMousePos = event => {
@@ -18,20 +30,32 @@ export const RangeField = observer(() => {
 		}
 	};
 
+	const updateMinValue = width => {
+		const value = ((width / 100) * max) | 0;
+		setFieldValue(minId, value);
+	};
+
 	const updateMinWidth = xPos => {
 		const { left, width } = rangeRef.current.getBoundingClientRect();
 		const minPos = Math.max(left, xPos);
 		const posDiff = Math.abs(minPos - left);
-		const widthPercentage = Math.min((posDiff / width) * 100, maxWidth);
+		const widthPercentage = Math.min((posDiff / width) * 100, maxWidth - 2.5);
 		setMinWidth(widthPercentage);
+		updateMinValue(widthPercentage);
+	};
+
+	const updateMaxValue = width => {
+		const value = (((width + minWidth) / 100) * max) | 0;
+		setFieldValue(maxId, value - parseInt(minValue.value));
 	};
 
 	const updateMaxWidth = xPos => {
 		const { right, width } = rangeRef.current.getBoundingClientRect();
 		const maxPos = Math.min(right, xPos);
 		const posDiff = right - maxPos;
-		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth);
+		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth + 2.5);
 		setMaxWidth(widthPercentage);
+		updateMaxValue(widthPercentage);
 	};
 
 	const stopTracking = () => setIsTracking(null);
@@ -51,8 +75,6 @@ export const RangeField = observer(() => {
 		};
 	}, [isTracking]);
 
-	console.log(minWidth);
-
 	return (
 		<div className="RangeField" ref={rangeRef}>
 			<div className="bar">
@@ -62,7 +84,7 @@ export const RangeField = observer(() => {
 							className={cx("indicator", { active: isTracking == "min" })}
 							onMouseDown={() => setIsTracking("min")}
 						/>
-						<span className="value">20</span>
+						<span className="value">{minValue.value}</span>
 					</div>
 				</div>
 				<div
@@ -74,7 +96,7 @@ export const RangeField = observer(() => {
 							className={cx("indicator", { active: isTracking == "max" })}
 							onMouseDown={() => setIsTracking("max")}
 						/>
-						<span className="value">100</span>
+						<span className="value">{maxValue.value}</span>
 					</div>
 				</div>
 			</div>

@@ -46,8 +46,8 @@ export const ageMinField: FormField = {
 	id: "age_min",
 	hidden: true,
 	Component: AgeRangeField,
-	default: "",
-	value: "",
+	default: "0",
+	value: "0",
 	props: {}
 };
 
@@ -56,7 +56,7 @@ export const ageMaxField: FormField = {
 	id: "age_max",
 	hidden: true,
 	Component: AgeRangeField,
-	default: "",
-	value: "",
+	default: "20",
+	value: "20",
 	props: {}
 };
