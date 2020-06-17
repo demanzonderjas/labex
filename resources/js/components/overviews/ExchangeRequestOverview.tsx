@@ -3,9 +3,23 @@ import { observer } from "mobx-react-lite";
 import { useSampleStore } from "../../hooks/useSampleStore";
 import { ExchangeRequestCard } from "./ExchangeRequestCard";
 import { LoadMore } from "./LoadMore";
+import { OverviewSwitch } from "./OverviewSwitch";
+import { OverviewType } from "../../typings/Overview";
+import { ExchangeRequestCardContainer } from "./ExchangeRequestCardContainer";
+import { ExchangeRequestTable } from "./ExchangeRequestTable";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { toJS } from "mobx";
 
 export const ExchangeRequestOverview: React.FC = observer(() => {
-	const { requests, getSampleRequests, currentLimit } = useSampleStore();
+	const {
+		requests,
+		getSampleRequests,
+		currentLimit,
+		overviewType,
+		matchOverviewData,
+		totalMatches
+	} = useSampleStore();
+	const { t } = useTranslationStore();
 
 	useEffect(() => {
 		getSampleRequests();
@@ -13,9 +27,16 @@ export const ExchangeRequestOverview: React.FC = observer(() => {
 
 	return (
 		<div className="ExchangeRequestOverview overview">
-			{requests.map(sample => (
-				<ExchangeRequestCard key={sample.id} {...sample} />
-			))}
+			<h1>
+				{t("browse_results")} ({totalMatches})
+			</h1>
+			<OverviewSwitch />
+			{overviewType == OverviewType.Cards && (
+				<ExchangeRequestCardContainer matches={matchOverviewData} />
+			)}
+			{overviewType == OverviewType.Table && (
+				<ExchangeRequestTable matches={matchOverviewData} />
+			)}
 			{currentLimit < requests.length && <LoadMore />}
 		</div>
 	);

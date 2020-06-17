@@ -15,7 +15,6 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 		matchOverviewData,
 		getSampleOffers,
 		totalMatches,
-		upgradeLimit,
 		currentLimit,
 		offers
 	} = useSampleStore();

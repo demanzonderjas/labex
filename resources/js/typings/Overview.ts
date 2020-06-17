@@ -16,7 +16,7 @@ export type TableCellProps = {
 	rowIndex: number;
 };
 
-export type TExchangeOfferCard = {
+export interface TExchangeOfferCard extends TSampleCard {
 	id: number;
 	animal_species: string;
 	date_available: string;
@@ -24,16 +24,29 @@ export type TExchangeOfferCard = {
 	amount: string;
 	sex: string;
 	origin: string;
-};
+	type: string;
+}
 
-export type TExchangeRequestCard = {
+export interface TExchangeRequestCard extends TSampleCard {
 	id: number;
 	animal_species: string;
 	date_requested: string;
 	amount: string;
 	sex: string;
 	origin: string;
-};
+	type: string;
+}
+
+export interface TSampleCard {
+	id: number;
+	animal_species: string;
+	date_available: string;
+	match_percentage: number;
+	amount: string;
+	sex: string;
+	origin: string;
+	type: string;
+}
 
 export type TMatch = {
 	id: number;
@@ -42,3 +55,8 @@ export type TMatch = {
 	awaiting_approval: boolean;
 	approved: boolean;
 };
+
+export enum MatchType {
+	Requests = "requests",
+	Offers = "offers"
+}

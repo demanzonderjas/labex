@@ -12,7 +12,7 @@ export const RequestsPage = () => {
 			<FormWrapper
 				form={ExchangeOffer}
 				handleSuccess={sampleStore.addOffer}
-				handleUpdate={fields => console.log(fields)}
+				handleUpdate={sampleStore.setFilters}
 			/>
 			<ExchangeRequestOverview />
 		</SampleStoreProvider>

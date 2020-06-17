@@ -1,6 +1,12 @@
 import { observable, action, computed } from "mobx";
 import { getExchangeOffers } from "../queries/getExchangeOffers";
-import { TExchangeOfferCard, TExchangeRequestCard, OverviewType } from "../typings/Overview";
+import {
+	TExchangeOfferCard,
+	TExchangeRequestCard,
+	OverviewType,
+	MatchType,
+	TSampleCard
+} from "../typings/Overview";
 import { getExchangeRequests } from "../queries/getExchangeRequests";
 import { FormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
@@ -8,16 +14,21 @@ import { mapMatchesToOverviewData } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 
 export class SampleStore {
-	@observable.shallow offers: TExchangeOfferCard[] = [];
-	@observable.shallow requests: TExchangeRequestCard[] = [];
+	@observable.shallow offers: TSampleCard[] = [];
+	@observable.shallow requests: TSampleCard[] = [];
 	@observable overviewType: OverviewType = OverviewType.Table;
 	@observable filters: FormField[] = [];
 	@observable currentLimit = PAGINATION_LIMIT;
+	@observable matchType: MatchType = MatchType.Offers;
+
+	@computed get samples() {
+		return this.matchType == MatchType.Offers ? this.offers : this.requests;
+	}
 
 	@computed get matches() {
-		return this.offers
-			.map(offer => {
-				return { ...offer, match_percentage: getMatchingPercentage(offer, this.filters) };
+		return this.samples
+			.map(sample => {
+				return { ...sample, match_percentage: getMatchingPercentage(sample, this.filters) };
 			})
 			.filter(offer => offer.match_percentage > 0)
 			.sort((a, b) => b.match_percentage - a.match_percentage);
@@ -43,7 +54,12 @@ export class SampleStore {
 		const response = await getExchangeOffers();
 		if (response.success) {
 			this.setOffers(response.exchange_offers);
+			this.setMatchType(MatchType.Offers);
 		}
+	}
+
+	@action.bound setMatchType(matchType: MatchType) {
+		this.matchType = matchType;
 	}
 
 	@action.bound selectMatch(idx) {}
@@ -52,6 +68,7 @@ export class SampleStore {
 		const response = await getExchangeRequests();
 		if (response.success) {
 			this.setRequests(response.exchange_requests);
+			this.setMatchType(MatchType.Requests);
 		}
 	}
 

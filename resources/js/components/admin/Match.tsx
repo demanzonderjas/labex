@@ -11,7 +11,7 @@ type Props = {
 export const Match: React.FC<Props> = ({ match }) => {
 	return (
 		<div className="Match" key={match.id}>
-			<ExchangeRequestCard {...match.exchange_request} />
+			<ExchangeRequestCard data={match.exchange_request} />
 			<ExchangeOfferCard data={match.exchange_offer} />
 			<ApproveButtons matchId={match.id} />
 		</div>

@@ -1,39 +1,37 @@
 import React from "react";
-import { LocalImage } from "../base/Image";
-import { TExchangeRequestCard } from "../../typings/Overview";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { Percentage } from "../base/Percentage";
+import { SecondaryButton } from "../base/Button";
+import { useSampleStore } from "../../hooks/useSampleStore";
 
-export const ExchangeRequestCard: React.FC<TExchangeRequestCard> = ({
-	animal_species,
-	amount,
-	date_requested,
-	sex,
-	origin
-}) => {
+type Props = {
+	data?: any;
+	index?: number;
+};
+
+export const ExchangeRequestCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
+	const { selectMatch } = useSampleStore();
+
+	const matchPercentage = data.find(column => column.id == "match_percentage");
 	return (
-		<div className="ExchangeRequestCard card">
-			<div className="header">
-				<LocalImage path="icons/placeholder-icon.svg" />
+		<div className="ExchangeRequestCard Card">
+			<div className="match">
+				<div className="info-block">
+					<label>{t("match_percentage")}</label>
+					<Percentage matchPercentage={matchPercentage.value} />
+				</div>
+				<SecondaryButton label="select" handleClick={() => selectMatch(index)} />
 			</div>
-			<div className="body">
-				<ul>
-					<li>
-						<strong>{t("animal_species")}</strong>: {t(animal_species)}
-					</li>
-					<li>
-						<strong>{t("date_requested")}</strong>: {date_requested}
-					</li>
-					<li>
-						<strong>{t("amount")}</strong>: {amount}
-					</li>
-					<li>
-						<strong>{t("sex")}</strong>: {t(sex)}
-					</li>
-					<li>
-						<strong>{t("origin")}</strong>: {t(origin)}
-					</li>
-				</ul>
+			<div className="details">
+				{data
+					.filter(column => column.id != "match_percentage")
+					.map(column => (
+						<div key={column.id} className="info-block">
+							<label>{t(column.id)}</label>
+							<span>{t(column.value)}</span>
+						</div>
+					))}
 			</div>
 		</div>
 	);
