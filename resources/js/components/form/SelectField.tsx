@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
 import { FormFieldData } from "../../typings/Form";
@@ -22,13 +22,24 @@ export const SelectField: React.FC<Props> = observer(
 		const { setFieldValue } = useFormStore();
 		const [showOtherField, setShowOtherField] = useState(false);
 		const [isActive, setIsActive] = useState(false);
+		const inputOtherRef = useRef(null);
+
+		useEffect(() => {
+			if (showOtherField) {
+				inputOtherRef.current.focus();
+				setFieldValue(id, "");
+			}
+		}, [showOtherField, isActive]);
 
 		return (
 			<div className={cx("SelectField", { active: isActive })}>
 				<div className="select-wrapper">
 					<div
 						className={cx("active-option", { "with-value": !!value })}
-						onClick={() => setIsActive(!isActive)}
+						onClick={() => {
+							setIsActive(!isActive);
+							setShowOtherField(false);
+						}}
 					>
 						{!showOtherField ? (
 							startsEmpty && value == "" ? (
@@ -37,9 +48,22 @@ export const SelectField: React.FC<Props> = observer(
 								<SelectOption value={value} />
 							)
 						) : (
-							<input type="text" className="SelectOption" />
+							<div className={cx("SelectOption other", { active: showOtherField })}>
+								<input
+									value={value}
+									onBlur={() => setShowOtherField(false)}
+									type="text"
+									className="SelectOption"
+									ref={inputOtherRef}
+									onChange={e => setFieldValue(id, e.target.value)}
+								/>
+							</div>
 						)}
-						<LocalImage path="icons/arrow-down.svg" />
+						{showOtherField ? (
+							<LocalImage path="icons/minus.svg" />
+						) : (
+							<LocalImage path="icons/arrow-down.svg" />
+						)}
 					</div>
 					<div className="dropdown with-black-scrollbar">
 						{startsEmpty && value != "" && (

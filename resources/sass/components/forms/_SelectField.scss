@@ -45,6 +45,35 @@ $item-height: 40px;
 		height: $item-height;
 		background-color: $grey-light;
 		margin-bottom: 1px;
+		position: relative;
+
+		.image-wrapper {
+			position: absolute;
+			top: 50%;
+			right: 20px;
+			transform: translateY(-50%);
+		}
+
+		&.other {
+			padding: 0;
+			position: relative;
+			input {
+				position: absolute;
+				top: 0;
+				left: 0;
+				border: 0;
+				border-radius: 0;
+				appearance: none;
+				width: 100%;
+				height: 100%;
+			}
+			&.active {
+				input {
+					background-color: $blue;
+					color: white;
+				}
+			}
+		}
 
 		&:hover {
 			background-color: $blue;
