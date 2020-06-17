@@ -41,7 +41,7 @@ return [
         "irrelevant"
     ],
     "origin" => [
-        "experiment", "breeding", "other"
+        "experiment", "breeding"
     ],
     "storage" => [
         "fresh", "frozen", "liquid_nitrogen", "preserved"
@@ -70,7 +70,6 @@ return [
         "bone",
         "intestine",
         "skin",
-        "other"
     ],
     "yes_no" => ["yes", "no"]
 ];

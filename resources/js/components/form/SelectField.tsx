@@ -9,6 +9,7 @@ import { getFieldById } from "../../utils/getters/fields";
 import { SelectOption } from "./SelectOption";
 import { LocalImage } from "../base/Image";
 import cx from "classnames";
+import { OtherOption } from "./custom-fields/OtherOption";
 
 interface Props extends FormFieldData {
 	options: string[];
@@ -18,22 +19,9 @@ interface Props extends FormFieldData {
 
 export const SelectField: React.FC<Props> = observer(
 	({ id, value, options, startsEmpty, allowOther }) => {
-		const { setFieldValue, addField, removeField, fields, errors } = useFormStore();
+		const { setFieldValue } = useFormStore();
 		const [showOtherField, setShowOtherField] = useState(false);
 		const [isActive, setIsActive] = useState(false);
-		const otherFieldId = generateOtherFieldId(id);
-		const _otherField = getFieldById(otherFieldId, fields);
-
-		useEffect(() => {
-			if (value == "other") {
-				const field = changeFieldId(otherField, otherFieldId);
-				addField(field);
-				setShowOtherField(true);
-			} else {
-				removeField(otherFieldId);
-				setShowOtherField(false);
-			}
-		}, [value]);
 
 		return (
 			<div className={cx("SelectField", { active: isActive })}>
@@ -42,10 +30,14 @@ export const SelectField: React.FC<Props> = observer(
 						className={cx("active-option", { "with-value": !!value })}
 						onClick={() => setIsActive(!isActive)}
 					>
-						{startsEmpty && value == "" ? (
-							<SelectOption value="choose_if_relevant" />
+						{!showOtherField ? (
+							startsEmpty && value == "" ? (
+								<SelectOption value="choose_if_relevant" />
+							) : (
+								<SelectOption value={value} />
+							)
 						) : (
-							<SelectOption value={value} />
+							<input type="text" className="SelectOption" />
 						)}
 						<LocalImage path="icons/arrow-down.svg" />
 					</div>
@@ -71,12 +63,16 @@ export const SelectField: React.FC<Props> = observer(
 									}}
 								/>
 							))}
-						{allowOther && <SelectOption value="other" />}
+						{allowOther && (
+							<OtherOption
+								handleActivate={() => {
+									setShowOtherField(true);
+									setIsActive(false);
+								}}
+							/>
+						)}
 					</div>
 				</div>
-				{showOtherField && _otherField && (
-					<FormFieldWithLabel field={_otherField} error={errors[_otherField.id]} />
-				)}
 			</div>
 		);
 	}

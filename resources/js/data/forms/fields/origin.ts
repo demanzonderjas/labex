@@ -6,8 +6,9 @@ export const originField: FormField = {
 	id: "origin",
 	Component: SelectField,
 	props: {
-		options: ["experiment", "breeding", "other"],
-		startsEmpty: true
+		options: ["experiment", "breeding"],
+		startsEmpty: true,
+		allowOther: true
 	},
 	default: "",
 	value: ""
