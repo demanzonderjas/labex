@@ -12,6 +12,7 @@ import { OffersPage } from "./pages/Offers";
 import { RequestsPage } from "./pages/Requests";
 import { SubmitOfferPage } from "./pages/SubmitOffer";
 import { Footer } from "./components/layout/Footer";
+import { SelectMatchPage } from "./pages/SelectMatch";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -28,8 +29,11 @@ const App: React.FC = () => {
 							<Route path="/app/dashboard">
 								<DashboardPage />
 							</Route>
-							<Route path="/app/offers">
+							<Route path="/app/offers" exact={true}>
 								<OffersPage />
+							</Route>
+							<Route path="/app/offers/select/:id">
+								<SelectMatchPage />
 							</Route>
 							<Route path="/app/requests">
 								<RequestsPage />

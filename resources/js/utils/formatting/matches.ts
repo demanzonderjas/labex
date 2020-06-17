@@ -16,3 +16,12 @@ export function mapMatchesToOverviewData(matches) {
 		});
 	});
 }
+
+export function createQueryStringFromFilters(filters) {
+	return filters.reduce((base, filter) => {
+		if (!base.length) {
+			return `?${filter.id}=${filter.value}`;
+		}
+		return `${base}&${filter.id}=${filter.value}`;
+	}, "");
+}

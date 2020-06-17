@@ -50,6 +50,15 @@ export class SampleStore {
 		this.filters = filters;
 	}
 
+	@action.bound loadFiltersFromKeyValuePairs(pairs) {
+		this.filters = this.filters.map(filter => {
+			if (!pairs[filter.id]) {
+				return filter;
+			}
+			return { ...filter, value: pairs[filter.id] };
+		});
+	}
+
 	@action.bound async getSampleOffers() {
 		const response = await getExchangeOffers();
 		if (response.success) {
