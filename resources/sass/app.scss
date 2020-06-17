@@ -9,6 +9,7 @@
 
 @import "components/layout/Header";
 @import "components/layout/Menu";
+@import "components/layout/Footer";
 
 @import "components/forms/Form";
 @import "components/forms/FormField";
@@ -35,6 +36,10 @@ body {
 
 .App {
 	margin: 0 auto;
+}
+
+.page-wrapper {
+	min-height: calc(100vh - #{$header-height} - #{$footer-height});
 }
 
 .layout-wrapper {

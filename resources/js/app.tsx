@@ -11,6 +11,7 @@ import { MyMatchesPage } from "./pages/MyMatches";
 import { OffersPage } from "./pages/Offers";
 import { RequestsPage } from "./pages/Requests";
 import { SubmitOfferPage } from "./pages/SubmitOffer";
+import { Footer } from "./components/layout/Footer";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -41,6 +42,7 @@ const App: React.FC = () => {
 							</Route>
 						</Switch>
 					</div>
+					<Footer />
 				</div>
 			</Router>
 		</TranslationStoreProvider>

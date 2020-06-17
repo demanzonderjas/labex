@@ -8,7 +8,8 @@ export const storageField: FormField = {
 	Component: SelectField,
 	props: {
 		startsEmpty: true,
-		options: ["fresh", "frozen", "liquid_nitrogen", "preserved"]
+		options: ["fresh", "frozen", "liquid_nitrogen", "preserved"],
+		allowOther: true
 	},
 	default: "",
 	value: "",

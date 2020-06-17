@@ -10,7 +10,6 @@ export const sexField: FormField = {
 	label: "sex",
 	id: "sex",
 	Component: IconSelectField,
-	required: true,
 	props: {
 		options: sexOptions
 	},
