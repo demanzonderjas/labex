@@ -31,6 +31,12 @@ $item-height: 40px;
 			.SelectOption {
 				color: $correct-color;
 			}
+
+			&:hover {
+				.SelectOption {
+					color: $highlight-text-color;
+				}
+			}
 		}
 	}
 
