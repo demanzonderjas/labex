@@ -6,9 +6,18 @@ import { ExchangeOfferCardContainer } from "./ExchangeOfferCardContainer";
 import { ExchangeOfferTable } from "./ExchangeOfferTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { OverviewSwitch } from "./OverviewSwitch";
+import { SecondaryButton } from "../base/Button";
 
 export const ExchangeOfferOverview: React.FC = observer(() => {
-	const { overviewType, matchOverviewData, getSampleOffers, totalMatches } = useSampleStore();
+	const {
+		overviewType,
+		matchOverviewData,
+		getSampleOffers,
+		totalMatches,
+		upgradeLimit,
+		currentLimit,
+		offers
+	} = useSampleStore();
 	const { t } = useTranslationStore();
 
 	useEffect(() => {
@@ -26,6 +35,11 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 			)}
 			{overviewType == OverviewType.Table && (
 				<ExchangeOfferTable matches={matchOverviewData} />
+			)}
+			{currentLimit < offers.length && (
+				<div className="button-wrapper">
+					<SecondaryButton label="load_more" handleClick={() => upgradeLimit()} />
+				</div>
 			)}
 		</div>
 	);

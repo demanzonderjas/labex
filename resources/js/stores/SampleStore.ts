@@ -5,12 +5,14 @@ import { getExchangeRequests } from "../queries/getExchangeRequests";
 import { FormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import { mapMatchesToOverviewData } from "../utils/formatting/matches";
+import { PAGINATION_LIMIT } from "../data/configs/overviews";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
 	@observable.shallow requests: TExchangeRequestCard[] = [];
 	@observable overviewType: OverviewType = OverviewType.Table;
 	@observable filters: FormField[] = [];
+	@observable currentLimit = PAGINATION_LIMIT;
 
 	@computed get matches() {
 		return this.offers
@@ -22,11 +24,15 @@ export class SampleStore {
 	}
 
 	@computed get matchOverviewData() {
-		return mapMatchesToOverviewData(this.matches);
+		return mapMatchesToOverviewData(this.matches).slice(0, this.currentLimit);
 	}
 
 	@computed get totalMatches() {
 		return this.matches.length;
+	}
+
+	@action.bound upgradeLimit() {
+		this.currentLimit += PAGINATION_LIMIT;
 	}
 
 	@action.bound setFilters(filters) {
