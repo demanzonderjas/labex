@@ -1,7 +1,7 @@
 {
 	"exchange_request": "Exchange Request",
 	"exchange_offer": "Exchange Offer",
-	"age": "Age",
+	"age": "Age (Birthdate)",
 	"amount": "Amount",
 	"amount_request": "Requested amount",
 	"animal_species": "Animal species",

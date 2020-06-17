@@ -2,6 +2,7 @@ import { InputField } from "../../../components/form/InputField";
 import { FormField, InputType } from "../../../typings/Form";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { AgeRangeField } from "../../../components/form/custom-fields/AgeRangeField";
+import { isAgeInRange } from "../../../utils/matches/age";
 
 export const ageField: FormField = {
 	label: "age",
@@ -26,9 +27,10 @@ export const ageRequestField: FormField = {
 	label: "age",
 	id: "age",
 	Component: AgeRangeField,
-	default: "",
-	value: "",
-	props: {}
+	default: "1",
+	value: "1",
+	props: {},
+	isMatch: isAgeInRange
 };
 
 export const ageTypeField: FormField = {
@@ -36,8 +38,8 @@ export const ageTypeField: FormField = {
 	id: "age_type",
 	hidden: true,
 	Component: AgeRangeField,
-	default: "",
-	value: "",
+	default: "years",
+	value: "years",
 	props: {}
 };
 
