@@ -6,7 +6,7 @@ export const LoadMore: React.FC = () => {
 	const { upgradeLimit } = useSampleStore();
 
 	return (
-		<div className="LoadMore button-wrapper">
+		<div className="LoadMore">
 			<SecondaryButton label="load_more" handleClick={() => upgradeLimit()} />
 		</div>
 	);
