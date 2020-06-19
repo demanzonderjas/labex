@@ -2,9 +2,10 @@ $chart-size: 300px;
 
 .Specifications {
 	.specs {
-		width: calc(#{$layout-wrapper-width} - #{$chart-size});
+		width: calc(#{$layout-wrapper-width} - #{$chart-size} - 100px);
 		display: inline-block;
 		vertical-align: top;
+		margin-right: 100px;
 	}
 
 	.percentage-wrapper {
@@ -12,6 +13,6 @@ $chart-size: 300px;
 	}
 
 	h1 {
-		margin: $default-margin 0;
+		margin: 50px 0;
 	}
 }

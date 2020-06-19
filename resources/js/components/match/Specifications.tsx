@@ -23,7 +23,7 @@ export const Specifications: React.FC<Props> = ({ fields, filters, matchPercenta
 		const isMatch = checkIfFieldMatches(field, filter, filters);
 		const match: TSpecMatch = {
 			status: isMatch ? SpecStatus.Match : SpecStatus.NoMatch,
-			filterValue: filter.value
+			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
 		};
 		return { ...field, match };
 	});
@@ -39,7 +39,7 @@ export const Specifications: React.FC<Props> = ({ fields, filters, matchPercenta
 					<Spec key={match.id} {...match} />
 				))}
 			</div>
-			<PieChart />
+			<PieChart percentages={[matchPercentage, 100 - matchPercentage]} />
 		</div>
 	);
 };
