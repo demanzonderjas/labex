@@ -106,7 +106,7 @@
 	"date_conserved": "Conserved on date",
 	"match": "Match",
 	"no_match": "No match",
-	"not_submitted": "Not submitted",
+	"not_submitted": "No filter given",
 	"selected_match": "You've selected a match",
 	"review_single_match": "This page shows how a single request or offer can be reviewed by users.",
 	"review_1": "See if the specifications match your preferences.",

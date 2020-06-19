@@ -1,11 +1,12 @@
 $chart-size: 300px;
+$chart-offset: 50px;
 
 .Specifications {
 	.specs {
-		width: calc(#{$layout-wrapper-width} - #{$chart-size} - 100px);
+		width: calc(#{$layout-wrapper-width} - #{$chart-size} - #{$chart-offset});
 		display: inline-block;
 		vertical-align: top;
-		margin-right: 100px;
+		margin-right: $chart-offset;
 	}
 
 	.percentage-wrapper {

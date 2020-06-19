@@ -16,7 +16,7 @@ export const SpecMatch: React.FC<Props> = ({ match }) => {
 				danger: match.status == SpecStatus.NoMatch
 			})}
 		>
-			{t(match.status)}
+			{match.status != SpecStatus.NotSubmitted && t(match.status)}
 			{match.status != SpecStatus.NotSubmitted && <span> ({t(match.filterValue)})</span>}
 		</span>
 	);
