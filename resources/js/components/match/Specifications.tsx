@@ -6,6 +6,7 @@ import { Spec } from "./Spec";
 import { PieChart } from "./PieChart";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
+import { fieldIsNotHidden, fieldMeetsDependencies } from "../../utils/filters/fields";
 
 type Props = {
 	fields: FormField[];
@@ -35,9 +36,12 @@ export const Specifications: React.FC<Props> = ({ fields, filters, matchPercenta
 				<Percentage matchPercentage={matchPercentage} />
 			</div>
 			<div className="specs">
-				{matches.map(match => (
-					<Spec key={match.id} {...match} />
-				))}
+				{matches
+					.filter(fieldIsNotHidden)
+					.filter(fieldMeetsDependencies)
+					.map(match => (
+						<Spec key={match.id} {...match} />
+					))}
 			</div>
 			<PieChart percentages={[matchPercentage, 100 - matchPercentage]} />
 		</div>

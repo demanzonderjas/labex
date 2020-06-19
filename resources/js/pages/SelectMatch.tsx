@@ -25,7 +25,7 @@ export const SelectMatchPage: React.FC = observer(() => {
 	const { t } = useTranslationStore();
 
 	useEffect(() => {
-		setFilters(ExchangeRequest.fields);
+		setFilters(ExchangeRequest.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
 			const response = await getExchangeOffer(id);

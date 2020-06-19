@@ -10,7 +10,11 @@ import {
 import { getExchangeRequests } from "../queries/getExchangeRequests";
 import { FormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
-import { mapMatchesToOverviewData, fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
+import {
+	mapMatchesToOverviewData,
+	fillFieldsWithKeyValuePairs,
+	createQueryStringFromFilters
+} from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 
 export class SampleStore {
@@ -46,8 +50,16 @@ export class SampleStore {
 		this.currentLimit += PAGINATION_LIMIT;
 	}
 
-	@action.bound setFilters(filters) {
+	@action.bound setFilters(filters, updateHistory = true) {
 		this.filters = filters;
+		if (updateHistory) {
+			const querystring = createQueryStringFromFilters(filters);
+			window.history.pushState(
+				"filter",
+				"Filter Test",
+				window.location.pathname + querystring
+			);
+		}
 	}
 
 	@action.bound loadFiltersFromKeyValuePairs(pairs) {

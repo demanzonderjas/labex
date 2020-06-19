@@ -2,6 +2,8 @@ import { observable, toJS, action, computed } from "mobx";
 import { FormField, TForm } from "../typings/Form";
 import { FormEvent } from "react";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
+import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
+import { parseQueryString } from "../utils/formatting/query";
 
 export class FormStore {
 	@observable fields: FormField[] = [];
@@ -19,6 +21,11 @@ export class FormStore {
 		this.handler = form.handler;
 		this.handleSuccess = handleSuccess;
 		this.handleUpdate = handleUpdate;
+
+		if (window.location.search) {
+			this.fields = fillFieldsWithKeyValuePairs(this.fields, parseQueryString());
+		}
+
 		this.handleUpdate(this.fields);
 	}
 
