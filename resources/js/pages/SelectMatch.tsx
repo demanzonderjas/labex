@@ -5,7 +5,7 @@ import { useQuery } from "../hooks/useQuery";
 import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 import { ExchangeRequest } from "../data/forms/ExchangeRequest";
 import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getExchangeOffer } from "../queries/getExchangeOffers";
 import { Specifications } from "../components/match/Specifications";
 import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
@@ -14,6 +14,7 @@ import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
+import { SecondaryButton, BlankButton } from "../components/base/Button";
 
 export const SelectMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
@@ -22,6 +23,7 @@ export const SelectMatchPage: React.FC = observer(() => {
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
+	const history = useHistory();
 	const { id } = useParams();
 	const { t } = useTranslationStore();
 
@@ -60,6 +62,15 @@ export const SelectMatchPage: React.FC = observer(() => {
 					filters={filters}
 					matchPercentage={matchPercentage}
 				/>
+				<div className="button-wrapper">
+					<BlankButton
+						label="return_to_overview"
+						handleClick={() => {
+							history.push(`/app/offers${window.location.search}`);
+						}}
+					/>
+					<SecondaryButton label="select_match" />
+				</div>
 			</div>
 		</SampleStoreProvider>
 	);

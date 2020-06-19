@@ -53,6 +53,18 @@
 		}
 	}
 
+	&.blank {
+		button {
+			background-color: white;
+			padding-left: 0;
+
+			&:hover {
+				background-color: white;
+				color: $grey-medium;
+			}
+		}
+	}
+
 	&.neutral {
 		button {
 			background-color: $warning-color;
@@ -74,4 +86,8 @@
 			}
 		}
 	}
+}
+.button-wrapper {
+	display: flex;
+	margin: 120px 0 90px;
 }

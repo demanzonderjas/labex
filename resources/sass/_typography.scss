@@ -112,3 +112,11 @@ span {
 		font-size: $default-font-size;
 	}
 }
+
+.Spec {
+	.column {
+		span {
+			line-height: 20px;
+		}
+	}
+}

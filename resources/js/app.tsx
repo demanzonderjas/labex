@@ -13,6 +13,7 @@ import { RequestsPage } from "./pages/Requests";
 import { SubmitOfferPage } from "./pages/SubmitOffer";
 import { Footer } from "./components/layout/Footer";
 import { SelectMatchPage } from "./pages/SelectMatch";
+import ScrollToTop from "./components/layout/ScrollToTop";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -20,6 +21,7 @@ const App: React.FC = () => {
 		<TranslationStoreProvider store={translationStore}>
 			<Router>
 				<div className="App">
+					<ScrollToTop />
 					<Header />
 					<div className="page-wrapper">
 						<Switch>
