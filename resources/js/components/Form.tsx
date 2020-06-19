@@ -54,8 +54,7 @@ export const Form: React.FC<Props> = observer(
 									/>
 								))}
 						</div>
-						{matchable && <MatchableButton label={submitLabel} />}
-						{!matchable && <SubmitButton label={submitLabel} />}
+						<SubmitButton label={submitLabel} />
 						<Loader isLoading={isLoading} />
 						<ErrorNotification error={serverError} />
 					</form>

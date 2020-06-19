@@ -50,6 +50,7 @@ export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId })
 	};
 
 	const updateMaxWidth = xPos => {
+		console.log(xPos);
 		const { right, width } = rangeRef.current.getBoundingClientRect();
 		const maxPos = Math.min(right, xPos);
 		const posDiff = right - maxPos;
@@ -58,7 +59,29 @@ export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId })
 		updateMaxValue(widthPercentage);
 	};
 
+	const loadMinWidthByValue = value => {
+		const { left, width } = rangeRef.current.getBoundingClientRect();
+		const xOffset = (value / max) * width;
+		const xPos = left + xOffset;
+		updateMinWidth(xPos);
+	};
+
+	const loadMaxWidthByValue = value => {
+		const { left, right, width } = rangeRef.current.getBoundingClientRect();
+		const xOffset = ((max - value) / max) * width;
+		const xPos = right - xOffset;
+		const maxPos = Math.min(right, xPos);
+		const posDiff = right - maxPos;
+		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth + 2.5);
+		setMaxWidth(widthPercentage);
+	};
+
 	const stopTracking = () => setIsTracking(null);
+
+	useEffect(() => {
+		loadMinWidthByValue(parseInt(minValue.value));
+		loadMaxWidthByValue(maxValue.value);
+	}, []);
 
 	useEffect(() => {
 		if (isTracking) {
