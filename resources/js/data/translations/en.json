@@ -103,5 +103,14 @@
 	"experiment": "Experiment",
 	"breeding": "Breeding",
 	"load_more": "Load more",
-	"date_conserved": "Conserved on date"
+	"date_conserved": "Conserved on date",
+	"match": "Match",
+	"no_match": "No match",
+	"not_submitted": "Not submitted",
+	"selected_match": "You've selected a match",
+	"review_single_match": "This page shows how a single request or offer can be reviewed by users.",
+	"review_1": "See if the specifications match your preferences.",
+	"review_2": "Select this match for exchange or return to the overview to view more options.",
+	"review_3": "Exchange your samples.",
+	"specifications": "Specifications"
 }

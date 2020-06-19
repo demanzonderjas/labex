@@ -1,0 +1,18 @@
+.Spec {
+	display: flex;
+	border-bottom: 1px solid $grey-light;
+
+	.column {
+		width: 30%;
+		padding: $default-half-margin 0;
+	}
+
+	.SpecMatch {
+		&.correct {
+			color: $correct-color;
+		}
+		&.danger {
+			color: $danger-color;
+		}
+	}
+}

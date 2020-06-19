@@ -85,11 +85,10 @@ span {
 	}
 }
 
-.Form {
-	.header {
-		p {
-			font-size: $default-font-size;
-		}
+.PageIntro {
+	p,
+	ol {
+		font-size: $default-font-size;
 	}
 }
 

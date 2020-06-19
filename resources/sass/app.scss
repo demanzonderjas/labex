@@ -10,6 +10,7 @@
 @import "components/layout/Header";
 @import "components/layout/Menu";
 @import "components/layout/Footer";
+@import "components/layout/PageIntro";
 
 @import "components/forms/Form";
 @import "components/forms/FormField";
@@ -25,9 +26,14 @@
 @import "components/overviews/Overview";
 @import "components/overviews/OverviewSwitch";
 
+@import "components/match/Spec";
+@import "components/match/Specifications";
+@import "components/match/PieChart";
+
 @import "components/admin/ApproveMatch";
 
 @import "elements/table";
+@import "elements/lists";
 
 body {
 	font-family: $font-primary;

@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('exchange-requests/store', 'ExchangeRequestController@store');
     Route::post('exchange-offers/store', 'ExchangeOfferController@store');
     Route::get('exchange-offers', 'ExchangeOfferController@getAll');
+    Route::get('exchange-offer/{id}', 'ExchangeOfferController@getById');
     Route::get('exchange-requests', 'ExchangeRequestController@getAll');
 
     Route::group(['middleware' => VerifyAdmin::class], function () {

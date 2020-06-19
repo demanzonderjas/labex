@@ -10,7 +10,7 @@ import {
 import { getExchangeRequests } from "../queries/getExchangeRequests";
 import { FormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
-import { mapMatchesToOverviewData } from "../utils/formatting/matches";
+import { mapMatchesToOverviewData, fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 
 export class SampleStore {
@@ -51,12 +51,7 @@ export class SampleStore {
 	}
 
 	@action.bound loadFiltersFromKeyValuePairs(pairs) {
-		this.filters = this.filters.map(filter => {
-			if (!pairs[filter.id]) {
-				return filter;
-			}
-			return { ...filter, value: pairs[filter.id] };
-		});
+		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs);
 	}
 
 	@action.bound async getSampleOffers() {

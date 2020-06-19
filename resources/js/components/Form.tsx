@@ -10,6 +10,7 @@ import { ErrorNotification } from "./base/ErrorNotification";
 import cx from "classnames";
 import { TotalMatchesFound } from "./form/TotalMatchesFound";
 import { ActiveFilters } from "./form/ActiveFilters";
+import { PageIntro } from "./layout/PageIntro";
 
 type Props = {
 	header: string;
@@ -32,13 +33,10 @@ export const Form: React.FC<Props> = observer(
 		const { t } = useTranslationStore();
 		return (
 			<div className={cx("Form", { collapsed: isCollapsed })}>
-				<div className="header">
-					<div className="layout-wrapper">
-						<h1>{t(header)}</h1>
-						{intro && <p>{t(intro)}</p>}
-						{matchable && <TotalMatchesFound />}
-					</div>
-				</div>
+				<PageIntro header={header}>
+					{intro && <p>{t(intro)}</p>}
+					{matchable && <TotalMatchesFound />}
+				</PageIntro>
 				<div className="layout-wrapper">
 					{matchable && <ActiveFilters />}
 					<form onSubmit={submit}>

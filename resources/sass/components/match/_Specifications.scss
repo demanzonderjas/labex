@@ -1,0 +1,17 @@
+$chart-size: 300px;
+
+.Specifications {
+	.specs {
+		width: calc(#{$layout-wrapper-width} - #{$chart-size});
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.percentage-wrapper {
+		margin: $default-margin 0;
+	}
+
+	h1 {
+		margin: $default-margin 0;
+	}
+}

@@ -11,6 +11,7 @@ export const ageField: FormField = {
 	Component: InputField,
 	required: true,
 	validate: isBiggerThanZero,
+	isMatch: isAgeInRange,
 	props: {
 		type: InputType.Date
 	},

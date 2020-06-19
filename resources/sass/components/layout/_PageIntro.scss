@@ -1,0 +1,19 @@
+.PageIntro {
+	padding: 70px 0 30px;
+	background-color: $grey-light;
+
+	h1 {
+		margin-bottom: $default-margin;
+		color: $grey-medium;
+	}
+
+	p {
+		color: $grey-medium;
+		margin: $default-margin 0;
+	}
+
+	ol {
+		list-style: decimal;
+		padding-left: $default-half-margin;
+	}
+}

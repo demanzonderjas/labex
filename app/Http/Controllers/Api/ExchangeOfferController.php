@@ -26,6 +26,12 @@ class ExchangeOfferController extends Controller
         }
     }
 
+    public function getById($id)
+    {
+        $offer = ExchangeOffer::findOrFail($id);
+        return response()->json(["success" => true, "exchange_offer" => $offer->toArray()]);
+    }
+
     public function getAll()
     {
         $exchangeOffers = ExchangeOffer::all();

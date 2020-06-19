@@ -25,3 +25,12 @@ export function createQueryStringFromFilters(filters) {
 		return `${base}&${filter.id}=${filter.value}`;
 	}, "");
 }
+
+export function fillFieldsWithKeyValuePairs(fields, pairs) {
+	return fields.map(field => {
+		if (!pairs[field.id]) {
+			return field;
+		}
+		return { ...field, value: pairs[field.id] };
+	});
+}
