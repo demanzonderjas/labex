@@ -25,7 +25,7 @@ class CreateExchangeOffersTable extends Migration
             $table->string('strain');
             $table->string('amount');
             $table->string('age');
-            $table->string('sex');
+            $table->string('sex')->nullable();
             $table->string('origin')->nullable();
             $table->string('naive');
             $table->string('protocol_number')->nullable();

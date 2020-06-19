@@ -33,13 +33,7 @@ export const ageRequestField: FormField = {
 	value: "1",
 	customValue: getAgeRangeValue,
 	props: {},
-	isMatch: isAgeInRange,
-	dependencies: [
-		{
-			id: "type",
-			validate: value => value == "animal" || value == "vital_tissue"
-		}
-	]
+	isMatch: isAgeInRange
 };
 
 export const ageTypeField: FormField = {
@@ -49,13 +43,7 @@ export const ageTypeField: FormField = {
 	Component: AgeRangeField,
 	default: "years",
 	value: "years",
-	props: {},
-	dependencies: [
-		{
-			id: "type",
-			validate: value => value == "animal" || value == "vital_tissue"
-		}
-	]
+	props: {}
 };
 
 export const ageMinField: FormField = {
@@ -65,13 +53,7 @@ export const ageMinField: FormField = {
 	Component: AgeRangeField,
 	default: "0",
 	value: "0",
-	props: {},
-	dependencies: [
-		{
-			id: "type",
-			validate: value => value == "animal" || value == "vital_tissue"
-		}
-	]
+	props: {}
 };
 
 export const ageMaxField: FormField = {
@@ -81,11 +63,5 @@ export const ageMaxField: FormField = {
 	Component: AgeRangeField,
 	default: "20",
 	value: "20",
-	props: {},
-	dependencies: [
-		{
-			id: "type",
-			validate: value => value == "animal" || value == "vital_tissue"
-		}
-	]
+	props: {}
 };
