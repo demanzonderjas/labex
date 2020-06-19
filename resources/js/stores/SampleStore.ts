@@ -17,6 +17,7 @@ import {
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 import { ExchangeOffer } from "../data/forms/ExchangeOffer";
+import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
 
 export class SampleStore {
 	@observable.shallow offers: TSampleCard[] = [];
@@ -65,7 +66,9 @@ export class SampleStore {
 	@action.bound setFilters(filters, updateHistory = true) {
 		this.filters = filters;
 		if (updateHistory) {
-			const querystring = createQueryStringFromFilters(filters);
+			const querystring = createQueryStringFromFilters(
+				filters.filter(fieldMeetsDependencies)
+			);
 			window.history.pushState(
 				"filter",
 				"Filter Test",

@@ -9,7 +9,6 @@ import { useParams, useHistory } from "react-router-dom";
 import { getExchangeOffer } from "../queries/getExchangeOffers";
 import { Specifications } from "../components/match/Specifications";
 import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
-import { PieChart } from "../components/match/PieChart";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";

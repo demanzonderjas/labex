@@ -2,6 +2,10 @@
 	display: flex;
 	border-bottom: 1px solid $grey-light;
 
+	&:last-child {
+		border-bottom: none;
+	}
+
 	.column {
 		width: 33.3333%;
 		padding: $default-half-margin 0;
