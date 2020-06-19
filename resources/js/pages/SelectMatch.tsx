@@ -13,6 +13,7 @@ import { PieChart } from "../components/match/PieChart";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
+import { fieldMeetsDependencies } from "../utils/filters/fields";
 
 export const SelectMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
@@ -36,7 +37,8 @@ export const SelectMatchPage: React.FC = observer(() => {
 			setOffer(filledFields);
 			const _matchPercentage = getMatchingPercentage(
 				response.exchange_offer,
-				sampleStore.filters
+				sampleStore.filters,
+				filledFields
 			);
 			setMatchPercentage(_matchPercentage);
 		})();

@@ -16,6 +16,7 @@ import { sampleNumberField } from "./fields/sampleNumber";
 import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
 import { typeField } from "./fields/type";
 import { dateConservedField } from "./fields/dateConserved";
+import { extraInfoField } from "./fields/extraInfo";
 
 export const ExchangeOffer: TForm = {
 	header: "requests",
@@ -36,7 +37,8 @@ export const ExchangeOffer: TForm = {
 		killMethodField,
 		amountField,
 		protocolNumberField,
-		sampleNumberField
+		sampleNumberField,
+		extraInfoField
 	],
 	handler: sendExchangeOffer,
 	matchable: true

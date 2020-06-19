@@ -1,6 +1,5 @@
 import React from "react";
 import { TSpecMatch, SpecStatus } from "../../typings/Sample";
-import cx from "classnames";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Icon } from "./Image";
 import cx from "classnames";

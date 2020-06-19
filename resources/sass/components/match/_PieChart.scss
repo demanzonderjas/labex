@@ -2,6 +2,12 @@
 	display: inline-block;
 	vertical-align: top;
 	width: $chart-size;
-	min-height: 300px;
-	margin-top: -100px;
+	position: relative;
+
+	canvas {
+		top: 30%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+	}
 }

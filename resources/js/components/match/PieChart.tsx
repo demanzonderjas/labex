@@ -10,7 +10,6 @@ type Props = {
 export const PieChart: React.FC<Props> = ({ percentages }) => {
 	const canvasRef = useRef(null);
 	const { t } = useTranslationStore();
-	console.log(percentages);
 
 	useEffect(() => {
 		const ctx = canvasRef.current.getContext("2d");

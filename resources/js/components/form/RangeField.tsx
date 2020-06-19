@@ -50,7 +50,6 @@ export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId })
 	};
 
 	const updateMaxWidth = xPos => {
-		console.log(xPos);
 		const { right, width } = rangeRef.current.getBoundingClientRect();
 		const maxPos = Math.min(right, xPos);
 		const posDiff = right - maxPos;

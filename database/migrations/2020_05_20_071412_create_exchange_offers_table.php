@@ -32,6 +32,7 @@ class CreateExchangeOffersTable extends Migration
             $table->string('spf')->nullable();
             $table->string('storage')->nullable();
             $table->string('kill_method')->nullable();
+            $table->string('extra_info')->nullable();
             $table->timestamps();
         });
     }

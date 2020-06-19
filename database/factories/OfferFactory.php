@@ -22,6 +22,7 @@ $factory->define(ExchangeOffer::class, function (Faker $faker) {
         "naive" => selectRandom(config("validation.yes_no")),
         "protocol_number" => rand(10000, 99999),
         "spf" => selectRandom(config("validation.spf")),
-        "kill_method" => selectRandom(config("validation.kill_method"))
+        "kill_method" => selectRandom(config("validation.kill_method")),
+        "extra_info" => $faker->text(140)
     ];
 });

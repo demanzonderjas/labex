@@ -30,7 +30,8 @@ class ExchangeOfferStoreRequest extends FormRequest
             'procedures' => 'nullable|string',
             'protocol_number' => 'nullable|string',
             'date_available' => 'nullable|string',
-            'amount' => 'required|string'
+            'amount' => 'required|string',
+            'extra_info' => 'nullable|string'
         ];
         return array_merge($sampleValidation, $exchangeRequestValidation);
     }

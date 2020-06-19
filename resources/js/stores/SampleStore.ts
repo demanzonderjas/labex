@@ -16,6 +16,7 @@ import {
 	createQueryStringFromFilters
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
+import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 
 export class SampleStore {
 	@observable.shallow offers: TSampleCard[] = [];
@@ -32,7 +33,18 @@ export class SampleStore {
 	@computed get matches() {
 		return this.samples
 			.map(sample => {
-				return { ...sample, match_percentage: getMatchingPercentage(sample, this.filters) };
+				const filledSampleFields = fillFieldsWithKeyValuePairs(
+					ExchangeOffer.fields,
+					sample
+				);
+				return {
+					...sample,
+					match_percentage: getMatchingPercentage(
+						sample,
+						this.filters,
+						filledSampleFields
+					)
+				};
 			})
 			.filter(offer => offer.match_percentage > 0)
 			.sort((a, b) => b.match_percentage - a.match_percentage);

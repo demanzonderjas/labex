@@ -22,6 +22,7 @@ class ExchangeOffer extends Model
         "inconvenience_level",
         "kill_method",
         "protocol_number",
+        "extra_info"
     ];
 
     protected $with = ['user'];

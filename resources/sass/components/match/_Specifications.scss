@@ -2,18 +2,22 @@ $chart-size: 300px;
 $chart-offset: 50px;
 
 .Specifications {
-	.specs {
-		width: calc(#{$layout-wrapper-width} - #{$chart-size} - #{$chart-offset});
-		display: inline-block;
-		vertical-align: top;
-		margin-right: $chart-offset;
-	}
-
 	.percentage-wrapper {
 		margin: $default-margin 0;
 	}
 
 	h1 {
 		margin: 50px 0;
+	}
+	.body {
+		display: flex;
+		align-items: stretch;
+
+		.specs {
+			width: calc(#{$layout-wrapper-width} - #{$chart-size} - #{$chart-offset});
+			display: inline-block;
+			vertical-align: top;
+			margin-right: $chart-offset;
+		}
 	}
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormField } from "../../typings/Form";
-import { checkIfFieldMatches, getMatchingPercentage } from "../../utils/matches/utils";
+import { checkIfFieldMatches } from "../../utils/matches/utils";
 import { SpecStatus, TSpecMatch } from "../../typings/Sample";
 import { Spec } from "./Spec";
 import { PieChart } from "./PieChart";
@@ -35,15 +35,17 @@ export const Specifications: React.FC<Props> = ({ fields, filters, matchPercenta
 			<div className="percentage-wrapper">
 				<Percentage matchPercentage={matchPercentage} />
 			</div>
-			<div className="specs">
-				{matches
-					.filter(fieldIsNotHidden)
-					.filter(fieldMeetsDependencies)
-					.map(match => (
-						<Spec key={match.id} {...match} />
-					))}
+			<div className="body">
+				<div className="specs">
+					{matches
+						.filter(fieldIsNotHidden)
+						.filter(fieldMeetsDependencies)
+						.map(match => (
+							<Spec key={match.id} {...match} />
+						))}
+				</div>
+				<PieChart percentages={[matchPercentage, 100 - matchPercentage]} />
 			</div>
-			<PieChart percentages={[matchPercentage, 100 - matchPercentage]} />
 		</div>
 	);
 };
