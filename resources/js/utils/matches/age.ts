@@ -44,8 +44,6 @@ export function getDayMultiplier(type) {
 }
 
 export function isAgeRangeMatching(_, targetValue, filters, fields) {
-	console.log("check it");
-
 	const ageTypeSpec = getFieldById("age_type", fields);
 	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec.value);
 	const ageMinSpec = getFieldById("age_min", fields);
