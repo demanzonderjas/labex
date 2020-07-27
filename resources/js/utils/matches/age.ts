@@ -7,17 +7,22 @@ import {
 } from "../../data/configs/datetime";
 
 export function isAgeInRange(_, targetValue, filters) {
-	const birthDate = new Date(targetValue);
 	const ageType = getFieldById("age_type", filters);
 	const ageMin = getFieldById("age_min", filters);
 	const ageMax = getFieldById("age_max", filters);
 	if (!ageType.value) {
 		return true;
 	}
-	const timeDiff = Date.now() - birthDate.getTime();
-	const timePeriods = getTimePeriodsFromTimestamp(timeDiff);
+	const timePeriods = getTimeDiffInPeriods(targetValue);
 	const givenFilter = timePeriods[ageType.value];
 	return givenFilter >= ageMin.value && givenFilter <= ageMax.value;
+}
+
+export function getTimeDiffInPeriods(date) {
+	const dateObj = new Date(date);
+	const timeDiff = Date.now() - dateObj.getTime();
+	const timePeriods = getTimePeriodsFromTimestamp(timeDiff);
+	return timePeriods;
 }
 
 export function getTimePeriodsFromTimestamp(timestamp) {

@@ -26,7 +26,7 @@ export const ageField: FormField = {
 };
 
 export const ageRequestField: FormField = {
-	label: "age",
+	label: "age_offer",
 	id: "age",
 	Component: AgeRangeField,
 	default: "1",
@@ -41,8 +41,8 @@ export const ageTypeField: FormField = {
 	id: "age_type",
 	hidden: true,
 	Component: AgeRangeField,
-	default: "years",
-	value: "years",
+	default: "weeks",
+	value: "weeks",
 	props: {}
 };
 

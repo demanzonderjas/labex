@@ -1,6 +1,5 @@
 import React from "react";
-import { TExchangeOfferCard } from "../../typings/Overview";
-import { matchColumns, matchCells } from "../../data/tables/matches";
+import { matchColumns } from "../../data/tables/matches";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 type Props = {

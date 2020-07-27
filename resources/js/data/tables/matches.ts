@@ -2,15 +2,14 @@ import { PercentageCell } from "../../components/overviews/table/PercentageCell"
 import { TextCell } from "../../components/overviews/table/TextCell";
 import { TableCell } from "../../typings/Overview";
 import { DateCell } from "../../components/overviews/table/DateCell";
-import { ButtonCell } from "../../components/overviews/table/ButtonCell";
 import { MatchButtonCell } from "../../components/overviews/table/custom/MatchButtonCell";
+import { AgeCell } from "../../components/overviews/table/AgeCell";
 
 export const matchColumns: string[] = [
 	"match_percentage",
 	"type",
 	"animal_species",
-	"sex",
-	"age",
+	"age_offer",
 	"amount",
 	"date_available",
 	"select_header"
@@ -33,14 +32,9 @@ export const matchCells: TableCell[] = [
 		Component: TextCell
 	},
 	{
-		id: "sex",
-		value: "",
-		Component: TextCell
-	},
-	{
 		id: "age",
 		value: "",
-		Component: DateCell
+		Component: AgeCell
 	},
 	{
 		id: "amount",
