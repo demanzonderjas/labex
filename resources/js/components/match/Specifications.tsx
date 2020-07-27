@@ -29,7 +29,7 @@ export const Specifications: React.FC<Props> = ({
 		if (!filter || !filter.value) {
 			return { ...field, match: { status: SpecStatus.NotSubmitted } };
 		}
-		const isMatch = checkIfFieldMatches(field, filter, filters);
+		const isMatch = checkIfFieldMatches(field, filter, filters, fields);
 		const match: TSpecMatch = {
 			status: isMatch ? SpecStatus.Match : SpecStatus.NoMatch,
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
@@ -57,7 +57,7 @@ export const Specifications: React.FC<Props> = ({
 						.filter(fieldIsNotHidden)
 						.filter(fieldMeetsDependencies)
 						.map(match => (
-							<Spec key={match.id} {...match} />
+							<Spec key={match.id} {...match} fields={fields} />
 						))}
 				</div>
 				<PieChart percentages={[matchPercentage, 100 - matchPercentage]} />

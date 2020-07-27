@@ -22,6 +22,11 @@ export const PieChart: React.FC<Props> = ({ percentages }) => {
 						backgroundColor: MATCH_CHART_COLORS
 					}
 				]
+			},
+			options: {
+				tooltips: {
+					enabled: false
+				}
 			}
 		});
 	}, [percentages]);

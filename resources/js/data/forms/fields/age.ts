@@ -2,7 +2,7 @@ import { InputField } from "../../../components/form/InputField";
 import { FormField, InputType } from "../../../typings/Form";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { AgeRangeField } from "../../../components/form/custom-fields/AgeRangeField";
-import { isAgeInRange } from "../../../utils/matches/age";
+import { isAgeInRange, isAgeRangeMatching } from "../../../utils/matches/age";
 import { getAgeRangeValue } from "../../../utils/getters/fields";
 
 export const ageField: FormField = {
@@ -34,6 +34,17 @@ export const ageRequestField: FormField = {
 	customValue: getAgeRangeValue,
 	props: {},
 	isMatch: isAgeInRange
+};
+
+export const ageRequestRangeField: FormField = {
+	label: "age_offer",
+	id: "age",
+	Component: AgeRangeField,
+	default: "1",
+	value: "1",
+	customValue: getAgeRangeValue,
+	props: {},
+	isMatch: isAgeRangeMatching
 };
 
 export const ageTypeField: FormField = {

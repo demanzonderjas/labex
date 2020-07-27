@@ -32,3 +32,41 @@ export function getTimePeriodsFromTimestamp(timestamp) {
 	const years = (days / YEAR_IN_DAYS) | 0;
 	return { weeks, months, years };
 }
+
+export function getDayMultiplier(type) {
+	if (type == "weeks") {
+		return WEEK_IN_DAYS;
+	} else if (type == "months") {
+		return MONTH_IN_DAYS;
+	} else if (type == "years") {
+		return YEAR_IN_DAYS;
+	}
+}
+
+export function isAgeRangeMatching(_, targetValue, filters, fields) {
+	const ageTypeSpec = getFieldById("age_type", fields);
+	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec.value);
+	const ageMinSpec = getFieldById("age_min", fields);
+	const ageMinSpecInDays = parseInt(ageMinSpec.value) * dayMultiplierSpec;
+	const ageMaxSpec = getFieldById("age_max", fields);
+	const ageMaxSpecInDays = parseInt(ageMaxSpec.value) * dayMultiplierSpec;
+
+	const ageTypeFilter = getFieldById("age_type", filters);
+	const dayMultiplierFilter = getDayMultiplier(ageTypeFilter.value);
+	const ageMinFilter = getFieldById("age_min", filters);
+	const ageMinFilterInDays = parseInt(ageMinFilter.value) * dayMultiplierFilter;
+	const ageMaxFilter = getFieldById("age_max", filters);
+	const ageMaxFilterInDays = parseInt(ageMaxFilter.value) * dayMultiplierFilter;
+
+	console.log(ageMinFilterInDays, ageMaxFilterInDays);
+	console.log(ageMinSpecInDays, ageMaxSpecInDays);
+
+	return (
+		(ageMinFilterInDays > ageMinSpecInDays && ageMinFilterInDays < ageMaxSpecInDays) ||
+		(ageMinFilterInDays < ageMinSpecInDays && ageMaxFilterInDays > ageMaxSpecInDays) ||
+		(ageMinSpecInDays > ageMinFilterInDays && ageMaxSpecInDays < ageMaxFilterInDays) ||
+		(ageMaxFilterInDays < ageMaxSpecInDays &&
+			ageMinFilterInDays < ageMaxSpecInDays &&
+			ageMaxFilterInDays > ageMinSpecInDays)
+	);
+}

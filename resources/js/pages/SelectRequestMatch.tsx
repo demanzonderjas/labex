@@ -3,7 +3,7 @@ import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { useQuery } from "../hooks/useQuery";
 import { ExchangeRequestsFilter } from "../data/forms/ExchangeOffer";
-import { ExchangeRequest } from "../data/forms/ExchangeRequest";
+import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
@@ -34,7 +34,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 		(async () => {
 			const response = await getExchangeRequest(id);
 			const filledFields = fillFieldsWithKeyValuePairs(
-				ExchangeRequest.fields,
+				ExchangeRequestSpecs.fields,
 				response.exchange_request
 			);
 			setRequest(filledFields);

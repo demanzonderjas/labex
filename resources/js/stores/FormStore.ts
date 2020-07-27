@@ -111,6 +111,7 @@ export class FormStore {
 		});
 		this.serverError = null;
 		this.errors = {};
+		this.handleUpdate(this.fields);
 	}
 
 	generateKeyValuePairs() {
