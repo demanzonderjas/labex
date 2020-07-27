@@ -11,6 +11,7 @@ import cx from "classnames";
 import { TotalMatchesFound } from "./form/TotalMatchesFound";
 import { ActiveFilters } from "./form/ActiveFilters";
 import { PageIntro } from "./layout/PageIntro";
+import { Icon } from "./base/Image";
 
 type Props = {
 	header: string;
@@ -40,6 +41,10 @@ export const Form: React.FC<Props> = observer(
 				</PageIntro>
 				<div className="layout-wrapper">
 					{matchable && <ActiveFilters />}
+					<div className="reset-button" onClick={resetForm}>
+						<span>{t("reset")}</span>
+						<Icon name="reload" />
+					</div>
 					<form onSubmit={submit}>
 						<div className="fields">
 							{activeFields
@@ -57,7 +62,6 @@ export const Form: React.FC<Props> = observer(
 						</div>
 						<div className="button-wrapper">
 							<SubmitButton label={submitLabel} />
-							<DangerButton label="reset" handleClick={resetForm} />
 						</div>
 						<Loader isLoading={isLoading} />
 						<ErrorNotification error={serverError} />

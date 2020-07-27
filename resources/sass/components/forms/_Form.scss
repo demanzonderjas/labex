@@ -29,6 +29,25 @@
 		font-family: $font-header;
 	}
 
+	.layout-wrapper {
+		position: relative;
+		.reset-button {
+			position: absolute;
+			top: 5px;
+			right: 0;
+			cursor: pointer;
+
+			span,
+			img {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			span {
+				margin-right: 10px;
+			}
+		}
+	}
+
 	form {
 		position: relative;
 		transition: max-height 0.3s cubic-bezier(0, 0, 0.3, 1);

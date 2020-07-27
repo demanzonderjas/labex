@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
-import { SecondaryButton } from "../base/Button";
+import { Button } from "../base/Button";
 import { useSampleStore } from "../../hooks/useSampleStore";
+import { getMatchClasses } from "../../utils/formatting/matches";
 
 type Props = {
 	data?: any;
@@ -14,6 +15,8 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 	const { selectMatch } = useSampleStore();
 
 	const matchPercentage = data.find(column => column.id == "match_percentage");
+	const classes = getMatchClasses(matchPercentage.value);
+
 	return (
 		<div className="ExchangeOfferCard Card">
 			<div className="match">
@@ -21,7 +24,7 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 					<label>{t("match_percentage")}</label>
 					<Percentage matchPercentage={matchPercentage.value} />
 				</div>
-				<SecondaryButton label="select" handleClick={() => selectMatch(index)} />
+				<Button classes={classes} label="select" handleClick={() => selectMatch(index)} />
 			</div>
 			<div className="details">
 				{data
