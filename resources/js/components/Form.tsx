@@ -16,12 +16,13 @@ import { Icon } from "./base/Image";
 type Props = {
 	header: string;
 	submitLabel?: string;
+	hideSubmit?: boolean;
 	matchable: boolean;
 	intro: string;
 };
 
 export const Form: React.FC<Props> = observer(
-	({ header, intro, submitLabel = "submit", matchable }) => {
+	({ header, intro, submitLabel = "submit", matchable, hideSubmit }) => {
 		const {
 			fields,
 			activeFields,
@@ -60,9 +61,11 @@ export const Form: React.FC<Props> = observer(
 									/>
 								))}
 						</div>
-						<div className="button-wrapper">
-							<SubmitButton label={submitLabel} />
-						</div>
+						{!hideSubmit && (
+							<div className="button-wrapper">
+								<SubmitButton label={submitLabel} />
+							</div>
+						)}
 						<Loader isLoading={isLoading} />
 						<ErrorNotification error={serverError} />
 					</form>

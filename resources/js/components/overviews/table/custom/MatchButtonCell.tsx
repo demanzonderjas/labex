@@ -8,7 +8,7 @@ import { ButtonCell } from "../ButtonCell";
 import { useHistory } from "react-router-dom";
 
 export const MatchButtonCell = ({ value, rowIndex, ...props }) => {
-	const { selectMatch, matches, filters } = useSampleStore();
+	const { matches, filters, matchType } = useSampleStore();
 	const history = useHistory();
 	const classes = getMatchClasses(value);
 	const queryString = createQueryStringFromFilters(filters);
@@ -19,7 +19,7 @@ export const MatchButtonCell = ({ value, rowIndex, ...props }) => {
 			label="select"
 			classes={classes}
 			handleClick={() => {
-				history.push(`/app/offers/select/${matches[rowIndex].id}${queryString}`);
+				history.push(`/app/${matchType}/select/${matches[rowIndex].id}${queryString}`);
 			}}
 		/>
 	);

@@ -7,14 +7,22 @@ import { PieChart } from "./PieChart";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { fieldIsNotHidden, fieldMeetsDependencies } from "../../utils/filters/fields";
+import { Icon } from "../base/Image";
+import { SecondaryButton } from "../base/Button";
 
 type Props = {
 	fields: FormField[];
 	filters: FormField[];
 	matchPercentage: number;
+	handleBack: Function;
 };
 
-export const Specifications: React.FC<Props> = ({ fields, filters, matchPercentage }) => {
+export const Specifications: React.FC<Props> = ({
+	fields,
+	filters,
+	matchPercentage,
+	handleBack
+}) => {
 	const { t } = useTranslationStore();
 	const matches = fields.map(field => {
 		const filter = filters.find(f => f.id == field.id);
@@ -31,12 +39,20 @@ export const Specifications: React.FC<Props> = ({ fields, filters, matchPercenta
 
 	return (
 		<div className="Specifications">
+			<div className="back-button">
+				<div className="inline" onClick={() => handleBack()}>
+					<Icon name="back" />
+				</div>
+			</div>
 			<h1>{t("specifications")}</h1>
 			<div className="percentage-wrapper">
 				<Percentage matchPercentage={matchPercentage} />
 			</div>
 			<div className="body">
 				<div className="specs">
+					<div className="button-wrapper">
+						<SecondaryButton label="select_match" />
+					</div>
 					{matches
 						.filter(fieldIsNotHidden)
 						.filter(fieldMeetsDependencies)

@@ -6,6 +6,7 @@ export type TForm = {
 	submitLabel?: string;
 	fields: FormField[];
 	matchable?: boolean;
+	hideSubmit?: boolean;
 	handler: Function;
 	handleSuccess?: Function;
 	handleUpdate?: Function;

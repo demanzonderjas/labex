@@ -1,16 +1,16 @@
 import { TForm } from "../../typings/Form";
 import { animalSpeciesField } from "./fields/animalSpecies";
-import { strainField } from "./fields/strain";
-import { ageField } from "./fields/age";
+import { strainField, strainRequestField } from "./fields/strain";
+import { ageField, ageRequestField, ageTypeField, ageMinField, ageMaxField } from "./fields/age";
 import { naiveField } from "./fields/naive";
-import { sexField } from "./fields/sex";
+import { sexField, sexRequestField } from "./fields/sex";
 import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
-import { organsField } from "./fields/organs";
-import { storageField } from "./fields/storage";
-import { dateAvailableField } from "./fields/dateAvailable";
+import { organsField, organsRequestField } from "./fields/organs";
+import { storageField, storageRequestField } from "./fields/storage";
+import { dateAvailableField, dateRequestedField } from "./fields/dateAvailable";
 import { killMethodField } from "./fields/killMethod";
-import { amountField } from "./fields/amount";
+import { amountField, amountRequestedField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { sampleNumberField } from "./fields/sampleNumber";
 import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
@@ -19,8 +19,8 @@ import { dateConservedField } from "./fields/dateConserved";
 import { extraInfoField } from "./fields/extraInfo";
 
 export const ExchangeOffer: TForm = {
-	header: "requests",
-	intro: "offers_intro",
+	header: "submit_offer",
+	intro: "submit_offer_intro",
 	fields: [
 		typeField,
 		animalSpeciesField,
@@ -41,13 +41,30 @@ export const ExchangeOffer: TForm = {
 		extraInfoField
 	],
 	handler: sendExchangeOffer,
-	matchable: true
+	matchable: false
 };
 
-export const SubmitOfferForm = {
-	...ExchangeOffer,
+export const ExchangeRequestsFilter: TForm = {
+	header: "requests",
+	intro: "requests_intro",
+	fields: [
+		typeField,
+		animalSpeciesField,
+		strainRequestField,
+		sexRequestField,
+		ageRequestField,
+		ageTypeField,
+		ageMinField,
+		ageMaxField,
+		spfField,
+		organsRequestField,
+		originField,
+		storageRequestField,
+		dateRequestedField,
+		killMethodField,
+		amountRequestedField
+	],
+	hideSubmit: true,
 	handler: sendExchangeOffer,
-	header: "submit_offer",
-	intro: "submit_offer_intro",
-	matchable: false
+	matchable: true
 };

@@ -12,7 +12,7 @@ import { LoadMore } from "./LoadMore";
 export const ExchangeOfferOverview: React.FC = observer(() => {
 	const {
 		overviewType,
-		matchOverviewData,
+		offerMatchOverviewData,
 		getSampleOffers,
 		totalMatches,
 		currentLimit,
@@ -31,10 +31,10 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 			</h1>
 			<OverviewSwitch />
 			{overviewType == OverviewType.Cards && (
-				<ExchangeOfferCardContainer matches={matchOverviewData} />
+				<ExchangeOfferCardContainer matches={offerMatchOverviewData} />
 			)}
 			{overviewType == OverviewType.Table && (
-				<ExchangeOfferTable matches={matchOverviewData} />
+				<ExchangeOfferTable matches={offerMatchOverviewData} />
 			)}
 			{currentLimit < offers.length && <LoadMore />}
 		</div>

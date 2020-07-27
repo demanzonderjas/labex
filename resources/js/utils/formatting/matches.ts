@@ -1,5 +1,5 @@
 import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
-import { matchCells } from "../../data/tables/matches";
+import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
 
 export function getMatchClasses(value) {
 	return {
@@ -9,9 +9,17 @@ export function getMatchClasses(value) {
 	};
 }
 
-export function mapMatchesToOverviewData(matches) {
+export function mapOfferMatchesToOverviewData(matches) {
 	return matches.map(match => {
-		return matchCells.map(cell => {
+		return offerMatchCells.map(cell => {
+			return { ...cell, value: match[cell.id] || cell.value };
+		});
+	});
+}
+
+export function mapRequestMatchesToOverviewData(matches) {
+	return matches.map(match => {
+		return requestMatchCells.map(cell => {
 			return { ...cell, value: match[cell.id] || cell.value };
 		});
 	});

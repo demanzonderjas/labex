@@ -8,3 +8,12 @@ export async function getExchangeRequests() {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function getExchangeRequest(id: string) {
+	try {
+		const response = await API.get(`exchange-request/${id}`);
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

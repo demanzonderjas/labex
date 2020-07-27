@@ -1,5 +1,4 @@
 import React from "react";
-import { ExchangeOfferCard } from "./ExchangeOfferCard";
 import { ExchangeRequestCard } from "./ExchangeRequestCard";
 import { TExchangeRequestCard } from "../../typings/Overview";
 

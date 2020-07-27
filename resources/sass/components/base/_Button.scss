@@ -20,6 +20,13 @@
 		}
 	}
 
+	&.small {
+		button {
+			padding: 7px 20px;
+			font-size: 12px;
+		}
+	}
+
 	&.primary {
 		button {
 			background-color: $primary;

@@ -2,22 +2,21 @@ import React, { useState, useEffect } from "react";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { useQuery } from "../hooks/useQuery";
-import { ExchangeOffer } from "../data/forms/ExchangeOffer";
+import { ExchangeRequestsFilter } from "../data/forms/ExchangeOffer";
 import { ExchangeRequest } from "../data/forms/ExchangeRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
-import { getExchangeOffer } from "../queries/getExchangeOffers";
 import { Specifications } from "../components/match/Specifications";
 import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
-import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
+import { getExchangeRequest } from "../queries/getExchangeRequests";
 
-export const SelectMatchPage: React.FC = observer(() => {
+export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
-	const [offer, setOffer] = useState([]);
+	const [request, setRequest] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
@@ -25,19 +24,22 @@ export const SelectMatchPage: React.FC = observer(() => {
 	const history = useHistory();
 	const { id } = useParams();
 	const { t } = useTranslationStore();
+	const goBack = () => {
+		history.push(`/app/requests${window.location.search}`);
+	};
 
 	useEffect(() => {
-		setFilters(ExchangeRequest.fields, false);
+		setFilters(ExchangeRequestsFilter.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
-			const response = await getExchangeOffer(id);
+			const response = await getExchangeRequest(id);
 			const filledFields = fillFieldsWithKeyValuePairs(
-				ExchangeOffer.fields,
-				response.exchange_offer
+				ExchangeRequest.fields,
+				response.exchange_request
 			);
-			setOffer(filledFields);
+			setRequest(filledFields);
 			const _matchPercentage = getMatchingPercentage(
-				response.exchange_offer,
+				response.exchange_request,
 				sampleStore.filters,
 				filledFields
 			);
@@ -57,17 +59,13 @@ export const SelectMatchPage: React.FC = observer(() => {
 			</PageIntro>
 			<div className="layout-wrapper">
 				<Specifications
-					fields={offer}
+					fields={request}
 					filters={filters}
 					matchPercentage={matchPercentage}
+					handleBack={goBack}
 				/>
 				<div className="button-wrapper">
-					<BlankButton
-						label="return_to_overview"
-						handleClick={() => {
-							history.push(`/app/offers${window.location.search}`);
-						}}
-					/>
+					<BlankButton label="return_to_overview" handleClick={goBack} />
 					<SecondaryButton label="select_match" />
 				</div>
 			</div>

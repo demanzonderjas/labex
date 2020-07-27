@@ -21,15 +21,14 @@ export const PieChart: React.FC<Props> = ({ percentages }) => {
 						data: percentages,
 						backgroundColor: MATCH_CHART_COLORS
 					}
-				],
-				labels: [t("match"), t("no_match")]
+				]
 			}
 		});
 	}, [percentages]);
 
 	return (
 		<div className="PieChart">
-			<canvas ref={canvasRef} width="300" height="300"></canvas>
+			<canvas ref={canvasRef} width="220" height="220"></canvas>
 		</div>
 	);
 };

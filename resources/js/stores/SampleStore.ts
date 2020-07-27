@@ -1,27 +1,28 @@
 import { observable, action, computed } from "mobx";
 import { getExchangeOffers } from "../queries/getExchangeOffers";
 import {
-	TExchangeOfferCard,
-	TExchangeRequestCard,
 	OverviewType,
 	MatchType,
-	TSampleCard
+	TSampleCard,
+	TExchangeOfferCard,
+	TExchangeRequestCard
 } from "../typings/Overview";
 import { getExchangeRequests } from "../queries/getExchangeRequests";
 import { FormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import {
-	mapMatchesToOverviewData,
 	fillFieldsWithKeyValuePairs,
-	createQueryStringFromFilters
+	createQueryStringFromFilters,
+	mapOfferMatchesToOverviewData,
+	mapRequestMatchesToOverviewData
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 import { ExchangeOffer } from "../data/forms/ExchangeOffer";
-import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
+import { fieldMeetsDependencies } from "../utils/filters/fields";
 
 export class SampleStore {
-	@observable.shallow offers: TSampleCard[] = [];
-	@observable.shallow requests: TSampleCard[] = [];
+	@observable.shallow offers: TExchangeOfferCard[] = [];
+	@observable.shallow requests: TExchangeRequestCard[] = [];
 	@observable overviewType: OverviewType = OverviewType.Table;
 	@observable filters: FormField[] = [];
 	@observable currentLimit = PAGINATION_LIMIT;
@@ -51,8 +52,12 @@ export class SampleStore {
 			.sort((a, b) => b.match_percentage - a.match_percentage);
 	}
 
-	@computed get matchOverviewData() {
-		return mapMatchesToOverviewData(this.matches).slice(0, this.currentLimit);
+	@computed get offerMatchOverviewData() {
+		return mapOfferMatchesToOverviewData(this.matches).slice(0, this.currentLimit);
+	}
+
+	@computed get requestMatchOverviewData() {
+		return mapRequestMatchesToOverviewData(this.matches).slice(0, this.currentLimit);
 	}
 
 	@computed get totalMatches() {

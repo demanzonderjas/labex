@@ -1,5 +1,5 @@
 import React from "react";
-import { matchColumns } from "../../data/tables/matches";
+import { offerMatchColumns } from "../../data/tables/matches";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 type Props = {
@@ -14,7 +14,7 @@ export const ExchangeOfferTable: React.FC<Props> = ({ matches }) => {
 			<table>
 				<thead>
 					<tr>
-						{matchColumns.map(column => (
+						{offerMatchColumns.map(column => (
 							<th key={column}>{t(column)}</th>
 						))}
 					</tr>

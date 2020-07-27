@@ -16,7 +16,7 @@ export const ExchangeRequestOverview: React.FC = observer(() => {
 		getSampleRequests,
 		currentLimit,
 		overviewType,
-		matchOverviewData,
+		requestMatchOverviewData,
 		totalMatches
 	} = useSampleStore();
 	const { t } = useTranslationStore();
@@ -32,10 +32,10 @@ export const ExchangeRequestOverview: React.FC = observer(() => {
 			</h1>
 			<OverviewSwitch />
 			{overviewType == OverviewType.Cards && (
-				<ExchangeRequestCardContainer matches={matchOverviewData} />
+				<ExchangeRequestCardContainer matches={requestMatchOverviewData} />
 			)}
 			{overviewType == OverviewType.Table && (
-				<ExchangeRequestTable matches={matchOverviewData} />
+				<ExchangeRequestTable matches={requestMatchOverviewData} />
 			)}
 			{currentLimit < requests.length && <LoadMore />}
 		</div>

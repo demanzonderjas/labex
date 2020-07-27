@@ -27,6 +27,12 @@ class ExchangeRequestController extends Controller
         }
     }
 
+    public function getById($id)
+    {
+        $exchangeRequest = ExchangeRequest::findOrFail($id);
+        return response()->json(["success" => true, "exchange_request" => $exchangeRequest->toArray()]);
+    }
+
     public function getAll()
     {
         $exchangeRequests = ExchangeRequest::all();

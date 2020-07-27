@@ -7,6 +7,7 @@ export enum OverviewType {
 
 export type TableCell = {
 	id: string;
+	label?: string;
 	value: any;
 	Component: React.FC<TableCellProps>;
 };
@@ -31,6 +32,9 @@ export interface TExchangeRequestCard extends TSampleCard {
 	id: number;
 	animal_species: string;
 	date_requested: string;
+	age_min: string;
+	age_max: string;
+	age_type: string;
 	amount: string;
 	sex: string;
 	origin: string;

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { FormWrapper } from "../components/FormWrapper";
-import { SubmitOfferForm } from "../data/forms/ExchangeOffer";
+import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 
 export const SubmitOfferPage = () => {
 	const [sampleStore] = useState(new SampleStore());
 	return (
 		<SampleStoreProvider store={sampleStore}>
 			<FormWrapper
-				form={SubmitOfferForm}
+				form={ExchangeOffer}
 				handleSuccess={sampleStore.addOffer}
 				handleUpdate={fields => console.log(fields)}
 			/>

@@ -12,8 +12,9 @@ import { OffersPage } from "./pages/Offers";
 import { RequestsPage } from "./pages/Requests";
 import { SubmitOfferPage } from "./pages/SubmitOffer";
 import { Footer } from "./components/layout/Footer";
-import { SelectMatchPage } from "./pages/SelectMatch";
+import { SelectOfferMatchPage } from "./pages/SelectOfferMatch";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import { SelectRequestMatchPage } from "./pages/SelectRequestMatch";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -35,10 +36,13 @@ const App: React.FC = () => {
 								<OffersPage />
 							</Route>
 							<Route path="/app/offers/select/:id">
-								<SelectMatchPage />
+								<SelectOfferMatchPage />
 							</Route>
-							<Route path="/app/requests">
+							<Route path="/app/requests" exact={true}>
 								<RequestsPage />
+							</Route>
+							<Route path="/app/requests/select/:id">
+								<SelectRequestMatchPage />
 							</Route>
 							<Route path="/app/my-matches">
 								<MyMatchesPage />
