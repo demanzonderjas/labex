@@ -3,7 +3,7 @@ import React from "react";
 import { useFormStore } from "../hooks/useFormStore";
 import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
 import { FormFieldWithLabel } from "./FormField";
-import { SubmitButton, MatchableButton } from "./base/Button";
+import { SubmitButton, MatchableButton, DangerButton } from "./base/Button";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { Loader } from "./base/Loader";
 import { ErrorNotification } from "./base/ErrorNotification";
@@ -28,7 +28,8 @@ export const Form: React.FC<Props> = observer(
 			errors,
 			isLoading,
 			serverError,
-			isCollapsed
+			isCollapsed,
+			resetForm
 		} = useFormStore();
 		const { t } = useTranslationStore();
 		return (
@@ -54,7 +55,10 @@ export const Form: React.FC<Props> = observer(
 									/>
 								))}
 						</div>
-						<SubmitButton label={submitLabel} />
+						<div className="button-wrapper">
+							<SubmitButton label={submitLabel} />
+							<DangerButton label="reset" handleClick={resetForm} />
+						</div>
 						<Loader isLoading={isLoading} />
 						<ErrorNotification error={serverError} />
 					</form>

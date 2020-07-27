@@ -10,6 +10,7 @@ import { SelectOption } from "./SelectOption";
 import { LocalImage } from "../base/Image";
 import cx from "classnames";
 import { OtherOption } from "./custom-fields/OtherOption";
+import { blockEnter } from "../../utils/dom/keyboard";
 
 interface Props extends FormFieldData {
 	options: string[];
@@ -53,6 +54,7 @@ export const SelectField: React.FC<Props> = observer(
 									value={value}
 									onBlur={() => setShowOtherField(false)}
 									type="text"
+									onKeyPress={blockEnter}
 									className="SelectOption"
 									ref={inputOtherRef}
 									onChange={e => setFieldValue(id, e.target.value)}
