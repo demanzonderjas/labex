@@ -39,7 +39,7 @@ export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId })
 		const { left, width } = rangeRef.current.getBoundingClientRect();
 		const minPos = Math.max(left, xPos);
 		const posDiff = Math.abs(minPos - left);
-		const widthPercentage = Math.min((posDiff / width) * 100, maxWidth - 2.5);
+		const widthPercentage = Math.min((posDiff / width) * 100, maxWidth);
 		setMinWidth(widthPercentage);
 		updateMinValue(widthPercentage);
 	};
@@ -53,7 +53,7 @@ export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId })
 		const { right, width } = rangeRef.current.getBoundingClientRect();
 		const maxPos = Math.min(right, xPos);
 		const posDiff = right - maxPos;
-		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth + 2.5);
+		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth);
 		setMaxWidth(widthPercentage);
 		updateMaxValue(widthPercentage);
 	};
@@ -71,7 +71,7 @@ export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId })
 		const xPos = right - xOffset;
 		const maxPos = Math.min(right, xPos);
 		const posDiff = right - maxPos;
-		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth + 2.5);
+		const widthPercentage = Math.max(100 - (posDiff / width) * 100, minWidth);
 		setMaxWidth(widthPercentage);
 	};
 
