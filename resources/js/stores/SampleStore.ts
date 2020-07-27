@@ -19,6 +19,7 @@ import {
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
+import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
@@ -35,10 +36,11 @@ export class SampleStore {
 	@computed get matches() {
 		return this.samples
 			.map(sample => {
-				const filledSampleFields = fillFieldsWithKeyValuePairs(
-					ExchangeOffer.fields,
-					sample
-				);
+				const targetFields =
+					this.matchType == MatchType.Offers
+						? ExchangeOffer.fields
+						: ExchangeRequestSpecs.fields;
+				const filledSampleFields = fillFieldsWithKeyValuePairs(targetFields, sample);
 				return {
 					...sample,
 					match_percentage: getMatchingPercentage(

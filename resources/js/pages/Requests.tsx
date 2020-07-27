@@ -3,13 +3,13 @@ import { FormWrapper } from "../components/FormWrapper";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { ExchangeRequestOverview } from "../components/overviews/ExchangeRequestOverview";
-import { ExchangeRequestsFilter } from "../data/forms/ExchangeOffer";
+import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
 
 export const RequestsPage = () => {
 	const [sampleStore] = useState(new SampleStore());
 	return (
 		<SampleStoreProvider store={sampleStore}>
-			<FormWrapper form={ExchangeRequestsFilter} handleUpdate={sampleStore.setFilters} />
+			<FormWrapper form={ExchangeRequestSpecs} handleUpdate={sampleStore.setFilters} />
 			<ExchangeRequestOverview />
 		</SampleStoreProvider>
 	);
