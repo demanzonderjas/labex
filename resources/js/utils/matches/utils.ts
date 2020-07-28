@@ -6,6 +6,7 @@ export function getMatchingPercentage(sample, filters, fields) {
 		(filter: FormField) =>
 			filter.value != "" && !filter.hidden && fieldMeetsDependencies(filter, 0, fields)
 	);
+	console.log(activeFilters);
 	const matchingFilters = activeFilters.filter(filter =>
 		checkIfFilterMatches(filter, sample, filters, fields)
 	);

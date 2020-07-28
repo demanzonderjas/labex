@@ -29,7 +29,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	};
 
 	useEffect(() => {
-		setFilters(ExchangeRequestsFilter.fields, false);
+		setFilters(ExchangeRequestSpecs.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
 			const response = await getExchangeRequest(id);
