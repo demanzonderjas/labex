@@ -24,7 +24,6 @@
 
 	&:not(:focus).correct {
 		color: $correct-color;
-		font-weight: bold;
 	}
 }
 
