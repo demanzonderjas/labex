@@ -7,6 +7,7 @@ import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
 
 export const RequestsPage = () => {
 	const [sampleStore] = useState(new SampleStore());
+
 	return (
 		<SampleStoreProvider store={sampleStore}>
 			<FormWrapper form={ExchangeRequestSpecs} handleUpdate={sampleStore.setFilters} />

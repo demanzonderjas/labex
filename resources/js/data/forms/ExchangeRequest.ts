@@ -44,11 +44,14 @@ export const ExchangeRequest: TForm = {
 	matchable: true
 };
 
-const specFields = [...ExchangeRequest.fields];
+const specFields = [...ExchangeRequest.fields].filter(f => f.id != "date_requested");
 const ageFieldIdx = specFields.findIndex(f => f.id == "age");
 specFields.splice(ageFieldIdx, 1, ageRequestRangeField);
 
-export const ExchangeRequestSpecs = {
+export const ExchangeRequestSpecs: TForm = {
 	...ExchangeRequest,
-	fields: specFields
+	header: "requests",
+	intro: "requests_intro",
+	fields: specFields,
+	hideSubmit: true
 };
