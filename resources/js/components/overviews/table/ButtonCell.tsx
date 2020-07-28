@@ -4,7 +4,7 @@ import { ClickHandler } from "../../../typings/Utils";
 
 type Props = {
 	label: string;
-	handleClick: ClickHandler;
+	handleClick?: ClickHandler;
 	classes: any;
 };
 
