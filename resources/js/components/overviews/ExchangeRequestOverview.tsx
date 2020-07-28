@@ -23,8 +23,6 @@ export const ExchangeRequestOverview: React.FC = observer(() => {
 		getSampleRequests();
 	}, []);
 
-	console.log(requestMatchOverviewData);
-
 	return (
 		<div className="ExchangeRequestOverview overview">
 			<h1>

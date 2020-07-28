@@ -24,8 +24,6 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 		getSampleOffers();
 	}, []);
 
-	console.log(offerMatchOverviewData);
-
 	return (
 		<div className="ExchangeOfferOverview overview">
 			<h1>
