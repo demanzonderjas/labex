@@ -30,6 +30,7 @@ $item-height: 42px;
 		&.with-value {
 			.SelectOption {
 				color: $correct-color;
+				font-weight: bold;
 			}
 
 			&:hover {

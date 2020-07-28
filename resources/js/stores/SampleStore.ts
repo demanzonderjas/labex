@@ -29,6 +29,14 @@ export class SampleStore {
 	@observable currentLimit = PAGINATION_LIMIT;
 	@observable matchType: MatchType = MatchType.Offers;
 
+	constructor() {
+		const pref = (localStorage.getItem("overview_preference") as unknown) as OverviewType;
+		if (!pref) {
+			return;
+		}
+		this.setOverviewType(pref);
+	}
+
 	@computed get samples() {
 		return this.matchType == MatchType.Offers ? this.offers : this.requests;
 	}
@@ -130,5 +138,6 @@ export class SampleStore {
 
 	@action.bound setOverviewType(overviewType: OverviewType) {
 		this.overviewType = overviewType;
+		localStorage.setItem("overview_preference", (overviewType as unknown) as string);
 	}
 }

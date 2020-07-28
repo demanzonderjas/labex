@@ -24,7 +24,7 @@ export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
 				{label == "age" || label == "age_offer" ? (
 					<DisplayedAge type={label} value={value} fields={fields} />
 				) : (
-					<span>{t(value)}</span>
+					<span>{value ? t(value) : "-"}</span>
 				)}
 			</div>
 			<div className="column">

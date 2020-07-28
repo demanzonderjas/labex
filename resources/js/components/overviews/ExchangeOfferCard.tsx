@@ -3,8 +3,9 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { Button } from "../base/Button";
 import { useSampleStore } from "../../hooks/useSampleStore";
-import { getMatchClasses } from "../../utils/formatting/matches";
+import { getMatchClasses, createQueryStringFromFilters } from "../../utils/formatting/matches";
 import { AgeInPeriod } from "../match/AgeInPeriod";
+import { useHistory } from "react-router-dom";
 
 type Props = {
 	data?: any;
@@ -13,23 +14,24 @@ type Props = {
 
 export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
-	const { selectMatch } = useSampleStore();
+	const { filters, matchType, matches } = useSampleStore();
+	const history = useHistory();
+	const queryString = createQueryStringFromFilters(filters);
+	const selectMatch = rowIndex => {
+		history.push(`/app/${matchType}/select/${matches[rowIndex].id}${queryString}`);
+	};
 
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	const classes = getMatchClasses(matchPercentage.value);
 
 	return (
-		<div className="ExchangeOfferCard Card">
+		<div className="ExchangeOfferCard Card" onClick={() => selectMatch(index)}>
 			<div className="match">
 				<div className="info-block">
 					<label>{t("match_percentage")}</label>
 					<Percentage matchPercentage={matchPercentage.value} />
 				</div>
-				<Button
-					classes={{ ...classes, small: true }}
-					label="select"
-					handleClick={() => selectMatch(index)}
-				/>
+				<Button classes={{ ...classes, small: true }} label="select" />
 			</div>
 			<div className="details">
 				{data
