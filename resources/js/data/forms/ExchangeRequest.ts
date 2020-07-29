@@ -56,7 +56,11 @@ export const ExchangeRequestSpecs: TForm = {
 	hideSubmit: true
 };
 
-export const ExchangeRequestDetails: TForm = {
+export const ExchangeRequestMatch: TForm = {
 	...ExchangeRequestSpecs,
-	matchable: false
+	header: "confirm_request",
+	intro: "confirm_request_description",
+	matchable: false,
+	submitLabel: "submit",
+	hideSubmit: false
 };

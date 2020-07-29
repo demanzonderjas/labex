@@ -19,15 +19,21 @@ export function Modal() {
 			)}
 			<div className="body">
 				{!modal.form && <p>{t(modal.description)}</p>}
-				{modal.form && <FormWrapper form={modal.form} />}
-				<div className="buttons layout-wrapper">
-					<BlankButton label="cancel" handleClick={cancel} classes={{ inline: true }} />
-					<Button
-						label="confirm"
-						handleClick={confirm}
-						classes={{ inline: true, primary: true }}
-					/>
-				</div>
+				{modal.form && <FormWrapper form={modal.form} handleSuccess={confirm} />}
+				{!modal.form && (
+					<div className="buttons layout-wrapper">
+						<BlankButton
+							label="cancel"
+							handleClick={cancel}
+							classes={{ inline: true }}
+						/>
+						<Button
+							label="confirm"
+							handleClick={confirm}
+							classes={{ inline: true, primary: true }}
+						/>
+					</div>
+				)}
 			</div>
 			<div className="close" onClick={cancel}>
 				<Icon name="cross" />

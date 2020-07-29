@@ -1,4 +1,4 @@
-import { observable, toJS, action, computed } from "mobx";
+import { observable, action, computed } from "mobx";
 import { FormField, TForm } from "../typings/Form";
 import { FormEvent } from "react";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
@@ -115,7 +115,10 @@ export class FormStore {
 		});
 		this.serverError = null;
 		this.errors = {};
-		this.handleUpdate(this.fields);
+
+		if (this.handleUpdate) {
+			this.handleUpdate(this.fields);
+		}
 	}
 
 	generateKeyValuePairs() {

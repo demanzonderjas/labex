@@ -73,6 +73,5 @@ export const ExchangeOfferMatch: TForm = {
 	...ExchangeOffer,
 	header: "confirm_offer",
 	intro: "confirm_offer_description",
-	hideSubmit: true,
 	matchable: false
 };
