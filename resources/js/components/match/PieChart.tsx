@@ -18,6 +18,7 @@ export const PieChart: React.FC<Props> = ({ percentages }) => {
 			data: {
 				datasets: [
 					{
+						borderWidth: 0,
 						data: percentages,
 						backgroundColor: MATCH_CHART_COLORS
 					}
