@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { useQuery } from "../hooks/useQuery";
-import { ExchangeRequestsFilter } from "../data/forms/ExchangeOffer";
 import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
@@ -13,11 +12,14 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { getExchangeRequest } from "../queries/getExchangeRequests";
+import { useModalStore } from "../hooks/useModalStore";
+import { confirmOfferMatchModal } from "../data/modals/confirm";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
 	const [request, setRequest] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
+	const { setModal } = useModalStore();
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
@@ -63,10 +65,14 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					filters={filters}
 					matchPercentage={matchPercentage}
 					handleBack={goBack}
+					handleSelect={() => setModal(confirmOfferMatchModal)}
 				/>
 				<div className="button-wrapper">
 					<BlankButton label="return_to_overview" handleClick={goBack} />
-					<SecondaryButton label="select_match" />
+					<SecondaryButton
+						label="select_match"
+						handleClick={() => setModal(confirmOfferMatchModal)}
+					/>
 				</div>
 			</div>
 		</SampleStoreProvider>

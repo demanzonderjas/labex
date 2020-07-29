@@ -15,13 +15,15 @@ type Props = {
 	filters: FormField[];
 	matchPercentage: number;
 	handleBack: Function;
+	handleSelect: Function;
 };
 
 export const Specifications: React.FC<Props> = ({
 	fields,
 	filters,
 	matchPercentage,
-	handleBack
+	handleBack,
+	handleSelect
 }) => {
 	const { t } = useTranslationStore();
 	const matches = fields.map(field => {
@@ -51,7 +53,7 @@ export const Specifications: React.FC<Props> = ({
 			<div className="body">
 				<div className="specs">
 					<div className="button-wrapper">
-						<SecondaryButton label="select_match" />
+						<SecondaryButton label="select_match" handleClick={handleSelect} />
 					</div>
 					{matches
 						.filter(fieldIsNotHidden)

@@ -140,4 +140,6 @@ export class SampleStore {
 		this.overviewType = overviewType;
 		localStorage.setItem("overview_preference", (overviewType as unknown) as string);
 	}
+
+	@action.bound confirmMatch();
 }

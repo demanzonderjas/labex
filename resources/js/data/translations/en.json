@@ -125,5 +125,8 @@
 	"years": "years",
 	"week": "week",
 	"month": "month",
-	"year": "year"
+	"year": "year",
+	"cancel": "Cancel",
+	"confirm_offer": "Please complete the details of your offer",
+	"confirm_offer_description": "Please provide any missing details about your offer below. By confirming the following match, you are activating the system to send an email to the connected match so you can share further details to exchange the selected samples. "
 }

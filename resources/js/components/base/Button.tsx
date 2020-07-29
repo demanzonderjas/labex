@@ -32,11 +32,21 @@ export const SubmitButton: React.FC<Props> = (props: Props) => {
 };
 
 export const BlankButton: React.FC<Props> = (props: Props) => {
-	return <Button {...props} classes={{ blank: true }} />;
+	return (
+		<Button
+			{...props}
+			classes={props.classes ? { ...props.classes, blank: true } : { blank: true }}
+		/>
+	);
 };
 
 export const ConfirmButton: React.FC<Props> = (props: Props) => {
-	return <Button {...props} classes={{ confirm: true }} />;
+	return (
+		<Button
+			{...props}
+			classes={props.classes ? { ...props.classes, confirm: true } : { confirm: true }}
+		/>
+	);
 };
 
 export const DangerButton: React.FC<Props> = (props: Props) => {

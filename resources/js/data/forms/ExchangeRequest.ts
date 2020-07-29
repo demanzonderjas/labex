@@ -55,3 +55,8 @@ export const ExchangeRequestSpecs: TForm = {
 	fields: specFields,
 	hideSubmit: true
 };
+
+export const ExchangeRequestDetails: TForm = {
+	...ExchangeRequestSpecs,
+	matchable: false
+};

@@ -16,7 +16,7 @@ export class FormStore {
 	@observable isCollapsed = false;
 	@observable activeFilter: string | null = null;
 
-	constructor(form: TForm, handleSuccess: Function, handleUpdate: Function) {
+	constructor(form: TForm, handleSuccess?: Function, handleUpdate?: Function) {
 		this.fields = form.fields;
 		this.handler = form.handler;
 		this.handleSuccess = handleSuccess;
@@ -25,8 +25,9 @@ export class FormStore {
 		if (window.location.search) {
 			this.fields = fillFieldsWithKeyValuePairs(this.fields, parseQueryString());
 		}
-
-		this.handleUpdate(this.fields);
+		if (this.handleUpdate) {
+			this.handleUpdate(this.fields);
+		}
 	}
 
 	@computed get activeFields() {
@@ -63,7 +64,10 @@ export class FormStore {
 		this.fields = fields;
 		this.setFieldError(id, null);
 		this.serverError = null;
-		this.handleUpdate(this.fields);
+
+		if (this.handleUpdate) {
+			this.handleUpdate(this.fields);
+		}
 	}
 
 	@action.bound validate() {
