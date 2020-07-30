@@ -5,8 +5,8 @@ export const animalSpeciesField: FormField = {
 	label: "animal_species",
 	id: "animal_species",
 	Component: SelectField,
-	required: true,
 	props: {
+		startsEmpty: true,
 		options: [
 			"mouse",
 			"rat",
@@ -27,6 +27,7 @@ export const animalSpeciesField: FormField = {
 		],
 		allowOther: true
 	},
-	default: "mouse",
-	value: "mouse"
+	isHardFilter: true,
+	default: "",
+	value: ""
 };

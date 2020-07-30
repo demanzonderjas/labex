@@ -13,6 +13,7 @@ export const sexField: FormField = {
 	props: {
 		options: sexOptions
 	},
+	isHardFilter: true,
 	default: "",
 	value: ""
 };

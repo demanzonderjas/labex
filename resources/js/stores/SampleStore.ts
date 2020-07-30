@@ -20,6 +20,7 @@ import { PAGINATION_LIMIT } from "../data/configs/overviews";
 import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
+import { matchMeetsHardFilters } from "../utils/filters/matches";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
@@ -43,6 +44,7 @@ export class SampleStore {
 
 	@computed get matches() {
 		return this.samples
+			.filter(sample => matchMeetsHardFilters(sample, this.filters))
 			.map(sample => {
 				const targetFields =
 					this.matchType == MatchType.Offers
@@ -141,5 +143,5 @@ export class SampleStore {
 		localStorage.setItem("overview_preference", (overviewType as unknown) as string);
 	}
 
-	@action.bound confirmMatch();
+	@action.bound confirmMatch() {}
 }

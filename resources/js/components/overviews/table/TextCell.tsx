@@ -7,5 +7,5 @@ type Props = {
 
 export const TextCell: React.FC<Props> = ({ value }) => {
 	const { t } = useTranslationStore();
-	return <td>{t(value)}</td>;
+	return <td>{value ? t(value) : "n/a"}</td>;
 };

@@ -5,10 +5,11 @@ export const typeField: FormField = {
 	label: "type",
 	id: "type",
 	Component: SelectField,
-	required: true,
+	isHardFilter: true,
 	props: {
+		startsEmpty: true,
 		options: ["animal", "vital_tissue", "conserved_tissue"]
 	},
-	default: "animal",
-	value: "animal"
+	default: "",
+	value: ""
 };

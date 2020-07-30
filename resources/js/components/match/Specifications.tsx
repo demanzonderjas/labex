@@ -53,7 +53,7 @@ export const Specifications: React.FC<Props> = ({
 			<div className="body">
 				<div className="specs">
 					<div className="button-wrapper">
-						<SecondaryButton label="select_match" handleClick={handleSelect} />
+						<SecondaryButton label="select_match" handleClick={() => handleSelect()} />
 					</div>
 					{matches
 						.filter(fieldIsNotHidden)

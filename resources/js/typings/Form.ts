@@ -31,6 +31,7 @@ export interface FormField extends FormFieldData {
 	required?: boolean;
 	dependencies?: FormFieldDependency[];
 	isMatch?: Function;
+	isHardFilter?: boolean;
 	hidden?: boolean;
 	default: string;
 	description?: string;

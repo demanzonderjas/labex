@@ -10,6 +10,7 @@ export const offerMatchColumns: string[] = [
 	"match_percentage",
 	"type",
 	"animal_species",
+	"sex",
 	"age_offer",
 	"amount",
 	"date_available",
@@ -20,6 +21,7 @@ export const requestMatchColumns: string[] = [
 	"match_percentage",
 	"type",
 	"animal_species",
+	"sex",
 	"age_offer",
 	"amount",
 	"date_requested",
@@ -39,6 +41,11 @@ export const offerMatchCells = [
 	},
 	{
 		id: "animal_species",
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: "sex",
 		value: "",
 		Component: TextCell
 	},
@@ -78,6 +85,11 @@ export const requestMatchCells = [
 	},
 	{
 		id: "animal_species",
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: "sex",
 		value: "",
 		Component: TextCell
 	},
