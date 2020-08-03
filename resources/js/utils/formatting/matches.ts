@@ -1,5 +1,7 @@
 import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
+import { SpecStatus, TSpecMatch } from "../../typings/Sample";
+import { checkIfFieldMatches } from "../matches/utils";
 
 export function getMatchClasses(value) {
 	return {
@@ -40,5 +42,20 @@ export function fillFieldsWithKeyValuePairs(fields, pairs) {
 			return field;
 		}
 		return { ...field, value: pairs[field.id] };
+	});
+}
+
+export function createMatchSpecs(fields, filters) {
+	return fields.map(field => {
+		const filter = filters.find(f => f.id == field.id);
+		if (!filter || !filter.value) {
+			return { ...field, match: { status: SpecStatus.NotSubmitted } };
+		}
+		const isMatch = checkIfFieldMatches(field, filter, filters, fields);
+		const match: TSpecMatch = {
+			status: isMatch ? SpecStatus.Match : SpecStatus.NoMatch,
+			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
+		};
+		return { ...field, match };
 	});
 }

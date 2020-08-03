@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('exchange-offers/store', 'ExchangeOfferController@store');
     Route::get('exchange-offers', 'ExchangeOfferController@getAll');
     Route::get('exchange-offer/{id}', 'ExchangeOfferController@getById');
+    Route::post('exchange-offer/match/{offerId}', 'ExchangeOfferController@match');
     Route::get('exchange-requests', 'ExchangeRequestController@getAll');
     Route::get('exchange-request/{id}', 'ExchangeRequestController@getById');
 

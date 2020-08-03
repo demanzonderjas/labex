@@ -52,6 +52,11 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 		})();
 	}, []);
 
+	const modalData = {
+		...confirmRequestMatchModal,
+		props: { fields: offer, filters, offerId: id }
+	};
+
 	return (
 		<SampleStoreProvider store={sampleStore}>
 			<PageIntro header="selected_match">
@@ -68,14 +73,11 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 					filters={filters}
 					matchPercentage={matchPercentage}
 					handleBack={goBack}
-					handleSelect={() => setModal(confirmRequestMatchModal)}
+					handleSelect={() => setModal(modalData)}
 				/>
 				<div className="button-wrapper">
 					<BlankButton label="return_to_overview" handleClick={goBack} />
-					<SecondaryButton
-						label="select_match"
-						handleClick={() => setModal(confirmRequestMatchModal)}
-					/>
+					<SecondaryButton label="select_match" handleClick={() => setModal(modalData)} />
 				</div>
 			</div>
 		</SampleStoreProvider>

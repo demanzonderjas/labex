@@ -1,4 +1,5 @@
 import React from "react";
+import { TSpecMatch } from "./Sample";
 
 export type TForm = {
 	header: string;
@@ -34,6 +35,7 @@ export interface FormField extends FormFieldData {
 	isHardFilter?: boolean;
 	hidden?: boolean;
 	default: string;
+	match?: TSpecMatch;
 	description?: string;
 	customValue?: Function;
 }

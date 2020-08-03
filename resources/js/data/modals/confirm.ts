@@ -1,6 +1,7 @@
 import { TModal } from "../../typings/Modal";
 import { ExchangeOfferMatch } from "../forms/ExchangeOffer";
 import { ExchangeRequestMatch } from "../forms/ExchangeRequest";
+import { DataList } from "../../components/match/DataList";
 
 export const confirmOfferMatchModal: TModal = {
 	form: ExchangeOfferMatch,
@@ -8,6 +9,9 @@ export const confirmOfferMatchModal: TModal = {
 };
 
 export const confirmRequestMatchModal: TModal = {
-	form: ExchangeRequestMatch,
+	header: "confirm_request",
+	description: "confirm_request_description",
+	Component: DataList,
+	props: {},
 	handleConfirm: null
 };

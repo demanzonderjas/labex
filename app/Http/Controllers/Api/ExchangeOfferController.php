@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\ExchangeOffer;
+use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeOfferStoreRequest;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 class ExchangeOfferController extends Controller
 {
@@ -36,5 +39,17 @@ class ExchangeOfferController extends Controller
     {
         $exchangeOffers = ExchangeOffer::all();
         return response()->json(["success" => true, "exchange_offers" => $exchangeOffers->toArray()]);
+    }
+
+    public function match(Request $request, $id)
+    {
+        $offer = ExchangeOffer::findOrFail($id);
+        $exchangeRequest = new ExchangeRequest($request->exchange_request);
+        $exchangeRequest->user_id = Auth::user()->id;
+        $exchangeRequest->save();
+
+        $match = MatchController::create($offer->id, $exchangeRequest->id);
+
+        return response()->json(["success" => true, "match" => $match->toArray()]);
     }
 }

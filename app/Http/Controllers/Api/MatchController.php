@@ -14,6 +14,16 @@ class MatchController extends Controller
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 
+    public static function create($offerId, $requestId)
+    {
+        $match = new Match();
+        $match->exchange_offer_id = $offerId;
+        $match->exchange_request_id = $requestId;
+        $match->save();
+
+        return $match;
+    }
+
     public function approve(int $matchId)
     {
         $match = Match::find($matchId);

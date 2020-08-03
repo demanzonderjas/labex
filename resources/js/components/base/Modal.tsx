@@ -11,7 +11,7 @@ export function Modal() {
 	const { modal, cancel, confirm } = useModalStore();
 
 	return (
-		<div className="modal">
+		<div className="modal layout-wrapper">
 			{!modal.form && (
 				<div className="header">
 					<h2>{t(modal.header)}</h2>
@@ -20,7 +20,8 @@ export function Modal() {
 			<div className="body">
 				{!modal.form && <p>{t(modal.description)}</p>}
 				{modal.form && <FormWrapper form={modal.form} handleSuccess={confirm} />}
-				{!modal.form && (
+				{modal.Component && <modal.Component {...modal.props} />}
+				{/* {!modal.form && (
 					<div className="buttons layout-wrapper">
 						<BlankButton
 							label="cancel"
@@ -33,7 +34,7 @@ export function Modal() {
 							classes={{ inline: true, primary: true }}
 						/>
 					</div>
-				)}
+				)} */}
 			</div>
 			<div className="close" onClick={cancel}>
 				<Icon name="cross" />

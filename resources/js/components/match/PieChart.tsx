@@ -27,7 +27,8 @@ export const PieChart: React.FC<Props> = ({ percentages }) => {
 			options: {
 				tooltips: {
 					enabled: false
-				}
+				},
+				events: []
 			}
 		});
 	}, [percentages]);

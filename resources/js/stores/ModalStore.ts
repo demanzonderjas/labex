@@ -6,7 +6,6 @@ export class ModalStore {
 	@observable modal: TModal = null;
 
 	@action.bound setModal(modal: TModal) {
-		console.log("modal!!", modal);
 		this.modal = modal;
 		this.isActive = !!modal;
 
@@ -18,7 +17,6 @@ export class ModalStore {
 	}
 
 	@action.bound confirm() {
-		console.log("confirm!");
 		this.setModal(null);
 	}
 

@@ -33,6 +33,12 @@
 			position: absolute;
 			top: 20px;
 			right: 20px;
+			cursor: pointer;
+			transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1);
+
+			&:hover {
+				transform: rotate(360deg);
+			}
 		}
 
 		.header {
@@ -41,11 +47,16 @@
 		}
 
 		.body {
+			padding: 30px;
 			.buttons {
 				margin: 30px auto;
 				display: flex;
 				justify-content: space-between;
 				padding: 0 30px;
+			}
+
+			.DataList {
+				margin: 30px 0;
 			}
 
 			.Form {

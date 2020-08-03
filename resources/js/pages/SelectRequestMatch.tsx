@@ -13,7 +13,7 @@ import { getMatchingPercentage } from "../utils/matches/utils";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { getExchangeRequest } from "../queries/getExchangeRequests";
 import { useModalStore } from "../hooks/useModalStore";
-import { confirmOfferMatchModal } from "../data/modals/confirm";
+import { confirmOfferMatchModal, confirmRequestMatchModal } from "../data/modals/confirm";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
@@ -65,14 +65,11 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					filters={filters}
 					matchPercentage={matchPercentage}
 					handleBack={goBack}
-					handleSelect={() => setModal(confirmOfferMatchModal)}
+					handleSelect={() => setModal(modalData)}
 				/>
 				<div className="button-wrapper">
 					<BlankButton label="return_to_overview" handleClick={goBack} />
-					<SecondaryButton
-						label="select_match"
-						handleClick={() => setModal(confirmOfferMatchModal)}
-					/>
+					<SecondaryButton label="select_match" handleClick={() => setModal(modalData)} />
 				</div>
 			</div>
 		</SampleStoreProvider>

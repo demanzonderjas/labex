@@ -1,4 +1,5 @@
 import { FormField } from "../../typings/Form";
+import { SpecStatus } from "../../typings/Sample";
 
 export function fieldMeetsDependencies(field: FormField, index: number, fields: FormField[]) {
 	if (!field.dependencies) {
@@ -12,4 +13,8 @@ export function fieldMeetsDependencies(field: FormField, index: number, fields: 
 
 export function fieldIsNotHidden(field: FormField) {
 	return !field.hidden;
+}
+
+export function fieldWasFilled(field: FormField) {
+	return field.match && field.match.status != SpecStatus.NotSubmitted;
 }
