@@ -26,5 +26,6 @@ export const dateRequestedField: FormField = {
 	required: false,
 	label: "date_requested",
 	id: "date_requested",
-	validate: undefined
+	validate: undefined,
+	dependencies: []
 };

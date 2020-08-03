@@ -5,6 +5,7 @@ import { DateCell } from "../../components/overviews/table/DateCell";
 import { MatchButtonCell } from "../../components/overviews/table/custom/MatchButtonCell";
 import { AgeCell } from "../../components/overviews/table/AgeCell";
 import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
+import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 
 export const offerMatchColumns: string[] = [
 	"match_percentage",
@@ -63,7 +64,7 @@ export const offerMatchCells = [
 	{
 		id: "date_available",
 		value: "",
-		Component: DateCell
+		Component: DateAvailableCell
 	},
 	{
 		id: "match_percentage",

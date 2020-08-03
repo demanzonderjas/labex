@@ -55,6 +55,11 @@ body {
 	min-height: calc(100vh - #{$header-height} - #{$footer-height});
 }
 
+.inline {
+	display: inline-block;
+	vertical-align: middle;
+}
+
 .layout-wrapper {
 	position: relative;
 	max-width: $layout-wrapper-width;
