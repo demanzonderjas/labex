@@ -17,17 +17,18 @@ import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
 import { typeField } from "./fields/type";
 import { dateConservedField } from "./fields/dateConserved";
 import { extraInfoField } from "./fields/extraInfo";
+import { withRequired } from "../../utils/formatting/fields";
 
 export const ExchangeOffer: TForm = {
 	header: "submit_offer",
 	intro: "submit_offer_intro",
 	fields: [
-		typeField,
-		animalSpeciesField,
+		withRequired(typeField),
+		withRequired(animalSpeciesField),
 		strainField,
 		sexField,
 		ageField,
-		originField,
+		withRequired(originField),
 		spfField,
 		organsField,
 		storageField,
@@ -73,5 +74,6 @@ export const ExchangeOfferMatch: TForm = {
 	...ExchangeOffer,
 	header: "confirm_offer",
 	intro: "confirm_offer_description",
+	submitLabel: "confirm",
 	matchable: false
 };

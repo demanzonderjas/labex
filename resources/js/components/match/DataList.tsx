@@ -31,7 +31,7 @@ export const DataList: React.FC<Props> = ({ fields, filters, offerId }) => {
 	const matches = createMatchSpecs(fields, filters);
 	const { t } = useTranslationStore();
 
-	const testconfirm = () => {
+	const confirmMatch = () => {
 		const requestData = filters.reduce(
 			(base, next) => {
 				base[next.id] = next.value;
@@ -71,7 +71,7 @@ export const DataList: React.FC<Props> = ({ fields, filters, offerId }) => {
 					<BlankButton label="cancel" handleClick={cancel} classes={{ inline: true }} />
 					<Button
 						label="confirm"
-						handleClick={testconfirm}
+						handleClick={confirmMatch}
 						classes={{ inline: true, primary: true }}
 					/>
 				</div>

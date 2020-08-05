@@ -1,6 +1,5 @@
 import { TModal } from "../../typings/Modal";
 import { ExchangeOfferMatch } from "../forms/ExchangeOffer";
-import { ExchangeRequestMatch } from "../forms/ExchangeRequest";
 import { DataList } from "../../components/match/DataList";
 
 export const confirmOfferMatchModal: TModal = {

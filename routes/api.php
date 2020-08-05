@@ -27,6 +27,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('exchange-offer/match/{offerId}', 'ExchangeOfferController@match');
     Route::get('exchange-requests', 'ExchangeRequestController@getAll');
     Route::get('exchange-request/{id}', 'ExchangeRequestController@getById');
+    Route::post('exchange-request/match/{requestId}', 'ExchangeRequestController@match');
 
     Route::group(['middleware' => VerifyAdmin::class], function () {
         Route::get('matches', 'MatchController@getAll');

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useModalStore } from "../../hooks/useModalStore";
-import { BlankButton, ConfirmButton, SubmitButton, Button } from "./Button";
-import { FormStore } from "../../stores/FormStore";
 import { FormWrapper } from "../FormWrapper";
-import { LocalImage, Icon } from "./Image";
+import { Icon } from "./Image";
+import cx from "classnames";
 
 export function Modal() {
 	const { t } = useTranslationStore();
@@ -17,7 +16,7 @@ export function Modal() {
 					<h2>{t(modal.header)}</h2>
 				</div>
 			)}
-			<div className="body">
+			<div className={cx("body", { "with-form": !!modal.form })}>
 				{!modal.form && <p>{t(modal.description)}</p>}
 				{modal.form && <FormWrapper form={modal.form} handleSuccess={confirm} />}
 				{modal.Component && <modal.Component {...modal.props} />}

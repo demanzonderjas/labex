@@ -48,6 +48,11 @@
 
 		.body {
 			padding: 30px;
+
+			&.with-form {
+				padding: 0;
+			}
+
 			.buttons {
 				margin: 30px auto;
 				display: flex;

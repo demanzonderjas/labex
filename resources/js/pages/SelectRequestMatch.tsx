@@ -13,13 +13,14 @@ import { getMatchingPercentage } from "../utils/matches/utils";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { getExchangeRequest } from "../queries/getExchangeRequests";
 import { useModalStore } from "../hooks/useModalStore";
-import { confirmOfferMatchModal, confirmRequestMatchModal } from "../data/modals/confirm";
+import { confirmOfferMatchModal } from "../data/modals/confirm";
+import { createRequestMatch } from "../queries/createRequestMatch";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
 	const [request, setRequest] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
-	const { setModal } = useModalStore();
+	const { setModal, confirm } = useModalStore();
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
@@ -28,6 +29,18 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	const { t } = useTranslationStore();
 	const goBack = () => {
 		history.push(`/app/requests${window.location.search}`);
+	};
+
+	const testconfirm = async offerData => {
+		console.log(offerData, id);
+		const response = await createRequestMatch(offerData, id);
+		console.log(response);
+		confirm();
+		return response;
+	};
+	const modalData = {
+		...confirmOfferMatchModal,
+		form: { ...confirmOfferMatchModal.form, handler: testconfirm }
 	};
 
 	useEffect(() => {

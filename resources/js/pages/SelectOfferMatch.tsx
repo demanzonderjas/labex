@@ -12,9 +12,7 @@ import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
-import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
-import { Icon } from "../components/base/Image";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 
