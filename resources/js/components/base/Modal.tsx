@@ -4,6 +4,7 @@ import { useModalStore } from "../../hooks/useModalStore";
 import { FormWrapper } from "../FormWrapper";
 import { Icon } from "./Image";
 import cx from "classnames";
+import { BlankButton } from "./Button";
 
 export function Modal() {
 	const { t } = useTranslationStore();
@@ -20,20 +21,15 @@ export function Modal() {
 				{!modal.form && <p>{t(modal.description)}</p>}
 				{modal.form && <FormWrapper form={modal.form} handleSuccess={confirm} />}
 				{modal.Component && <modal.Component {...modal.props} />}
-				{/* {!modal.form && (
+				{modal.form && (
 					<div className="buttons layout-wrapper">
 						<BlankButton
 							label="cancel"
 							handleClick={cancel}
 							classes={{ inline: true }}
 						/>
-						<Button
-							label="confirm"
-							handleClick={confirm}
-							classes={{ inline: true, primary: true }}
-						/>
 					</div>
-				)} */}
+				)}
 			</div>
 			<div className="close" onClick={cancel}>
 				<Icon name="cross" />
