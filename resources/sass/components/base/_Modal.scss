@@ -51,6 +51,10 @@
 
 			&.with-form {
 				padding: 0;
+
+				.buttons {
+					padding: 0 30px;
+				}
 			}
 
 			.buttons {
@@ -85,6 +89,11 @@
 					text-align: right;
 					margin: 0;
 					display: block;
+
+					.Button button[type="submit"] {
+						background-color: $correct-color;
+						color: white;
+					}
 				}
 			}
 		}

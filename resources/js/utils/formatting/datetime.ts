@@ -27,3 +27,9 @@ export function getDatePlusTwoWeeks(dateString: string) {
 	const futureDate = new Date(futureDateUnix);
 	return `${futureDate.getFullYear()}-${futureDate.getMonth() + 1}-${futureDate.getDate()}`;
 }
+
+export function prefixWithZeroBelow9(numberAsString: string) {
+	return parseInt(numberAsString) < 10 && !numberAsString.match("0")
+		? `0${numberAsString}`
+		: numberAsString;
+}

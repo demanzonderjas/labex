@@ -72,7 +72,7 @@ export const DataList: React.FC<Props> = ({ fields, filters, offerId }) => {
 					<Button
 						label="confirm"
 						handleClick={confirmMatch}
-						classes={{ inline: true, primary: true }}
+						classes={{ inline: true, secondary: true }}
 					/>
 				</div>
 			</div>
