@@ -85,8 +85,8 @@
 	"dashboard": "Dashboard",
 	"offers": "Offers",
 	"requests": "Requests",
-	"my_matches": "My Matches",
-	"my-matches": "My Matches",
+	"my_matches": "My matches",
+	"my-matches": "My matches",
 	"invalid_request": "Invalid request to the server",
 	"possible_matches": "Possible matches",
 	"possible-matches": "Possible matches",
@@ -131,5 +131,6 @@
 	"confirm_offer_description": "Please provide any missing details about your offer below. By confirming the following match, you are activating the system to send an email to the connected match so you can share further details to exchange the selected samples. ",
 	"confirm_request": "Please complete the details of your request",
 	"confirm_request_description": "Please provide any missing details about your request below. By confirming the following match, you are activating the system to send an email to the connected match so you can share further details to exchange the selected samples. ",
-	"extra_information_placeholder": "Please provide any required details about your request here."
+	"extra_information_placeholder": "Please provide any required details about your request here.",
+	"my_matches_intro": "This page is used to review your selected matches, both requests and offers. Your matches will need to be approved or declined by someone from the IVD first, before allowing the exchange."
 }
