@@ -20,6 +20,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
 	const [offer, setOffer] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
+	const [isMatch, setIsMatch] = useState(null);
 	const { setModal } = useModalStore();
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
@@ -41,6 +42,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 				response.exchange_offer
 			);
 			setOffer(filledFields);
+			setIsMatch(response.exchange_offer.is_match);
 			const _matchPercentage = getMatchingPercentage(
 				response.exchange_offer,
 				sampleStore.filters,
@@ -55,6 +57,10 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 		props: { fields: offer, filters, offerId: id }
 	};
 
+	if (isMatch === null) {
+		return null;
+	}
+
 	return (
 		<SampleStoreProvider store={sampleStore}>
 			<PageIntro header="selected_match">
@@ -67,16 +73,22 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 			</PageIntro>
 			<div className="layout-wrapper">
 				<Specifications
+					isMatch={isMatch}
 					fields={offer}
 					filters={filters}
 					matchPercentage={matchPercentage}
 					handleBack={goBack}
 					handleSelect={() => setModal(modalData)}
 				/>
-				<div className="button-wrapper">
-					<BlankButton label="return_to_overview" handleClick={goBack} />
-					<SecondaryButton label="select_match" handleClick={() => setModal(modalData)} />
-				</div>
+				{!isMatch && (
+					<div className="button-wrapper">
+						<BlankButton label="return_to_overview" handleClick={goBack} />
+						<SecondaryButton
+							label="select_match"
+							handleClick={() => setModal(modalData)}
+						/>
+					</div>
+				)}
 			</div>
 		</SampleStoreProvider>
 	);

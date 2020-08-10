@@ -27,8 +27,15 @@ class ExchangeOffer extends Model
 
     protected $with = ['user'];
 
+    public $appends = ['is_match'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getIsMatchAttribute()
+    {
+        return Match::where('exchange_offer_id', $this->id)->exists();
     }
 }

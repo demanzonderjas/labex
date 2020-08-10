@@ -2,14 +2,14 @@
 
 return [
     "samples" => [
-        "type" => "required|string",
-        "animal_species" => "required|string",
-        "strain" => "required|string",
+        "type" => "nullable|string",
+        "animal_species" => "nullable|string",
+        "strain" => "nullable|string",
         "sex" => "nullable|string",
         "origin" => "nullable|string",
         "spf" => "nullable|string",
         "storage" => "nullable|string",
-        "naive" => "required|string",
+        "naive" => "nullable|string",
         "kill_method" => "nullable|string",
         "sample_number" => "nullable|string"
     ],

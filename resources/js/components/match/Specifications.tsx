@@ -16,6 +16,7 @@ type Props = {
 	matchPercentage: number;
 	handleBack: Function;
 	handleSelect: Function;
+	isMatch?: boolean;
 };
 
 export const Specifications: React.FC<Props> = ({
@@ -23,12 +24,13 @@ export const Specifications: React.FC<Props> = ({
 	filters,
 	matchPercentage,
 	handleBack,
-	handleSelect
+	handleSelect,
+	isMatch: isAlreadyMatched
 }) => {
 	const { t } = useTranslationStore();
 	const matches = fields.map(field => {
 		const filter = filters.find(f => f.id == field.id);
-		if (!filter || !filter.value) {
+		if (!filter || !filter.value || isAlreadyMatched) {
 			return { ...field, match: { status: SpecStatus.NotSubmitted } };
 		}
 		const isMatch = checkIfFieldMatches(field, filter, filters, fields);
@@ -41,20 +43,27 @@ export const Specifications: React.FC<Props> = ({
 
 	return (
 		<div className="Specifications">
-			<div className="back-button">
-				<div className="inline" onClick={() => handleBack()}>
-					<Icon name="back" />
+			{!isAlreadyMatched && (
+				<div className="back-button">
+					<div className="inline" onClick={() => handleBack()}>
+						<Icon name="back" />
+					</div>
 				</div>
-			</div>
+			)}
 			<h1>{t("specifications")}</h1>
 			<div className="percentage-wrapper">
 				<Percentage matchPercentage={matchPercentage} />
 			</div>
 			<div className="body">
 				<div className="specs">
-					<div className="button-wrapper">
-						<SecondaryButton label="select_match" handleClick={() => handleSelect()} />
-					</div>
+					{!isAlreadyMatched && (
+						<div className="button-wrapper">
+							<SecondaryButton
+								label="select_match"
+								handleClick={() => handleSelect()}
+							/>
+						</div>
+					)}
 					{matches
 						.filter(fieldIsNotHidden)
 						.filter(fieldMeetsDependencies)

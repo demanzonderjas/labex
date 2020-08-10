@@ -18,7 +18,7 @@ class CreateExchangeRequestsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->string('animal_species')->nullable();
             $table->string('organs')->nullable();
             $table->string('strain')->nullable();

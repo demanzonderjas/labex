@@ -26,13 +26,15 @@ class ExchangeRequest extends Model
 
     protected $with = ['user'];
 
+    public $appends = ['is_match'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function isMatch(ExchangeOffer $offer)
+    public function getIsMatchAttribute()
     {
-        return $offer->animal_species == $this->animal_species;
+        return Match::where('exchange_offer_id', $this->id)->exists();
     }
 }

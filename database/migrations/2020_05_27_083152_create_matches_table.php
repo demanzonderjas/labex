@@ -15,9 +15,9 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('exchange_offer_id')->unsigned();
+            $table->bigInteger('exchange_offer_id')->unsigned()->unique();
             $table->foreign('exchange_offer_id')->references('id')->on('exchange_offers')->onDelete('cascade');
-            $table->bigInteger('exchange_request_id')->unsigned();
+            $table->bigInteger('exchange_request_id')->unsigned()->unique();
             $table->foreign('exchange_request_id')->references('id')->on('exchange_requests')->onDelete('cascade');
             $table->boolean('awaiting_approval')->default(true);
             $table->boolean('approved')->default(false);
