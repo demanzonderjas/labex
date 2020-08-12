@@ -32,9 +32,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	};
 
 	const testconfirm = async offerData => {
-		console.log(offerData, id);
 		const response = await createRequestMatch(offerData, id);
-		console.log(response);
 		confirm();
 		return response;
 	};

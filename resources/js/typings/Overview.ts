@@ -58,6 +58,7 @@ export type TMatch = {
 	exchange_request: TExchangeRequestCard;
 	awaiting_approval: boolean;
 	approved: boolean;
+	updated_at: string;
 };
 
 export enum MatchType {
