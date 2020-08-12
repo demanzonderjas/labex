@@ -24,7 +24,7 @@ export const MyMatchesPage = observer(() => {
 			<PageIntro header="my_matches">
 				<p className="layour-wrapper">{t("my_matches_intro")}</p>
 			</PageIntro>
-			<div className="matches">
+			<div className="matches layout-wrapper">
 				{matches.map(match => (
 					<Match key={match.id} match={match} />
 				))}

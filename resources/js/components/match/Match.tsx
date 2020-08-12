@@ -7,6 +7,7 @@ import { getMatchingPercentage } from "../../utils/matches/utils";
 import { fillFieldsWithKeyValuePairs, createMatchSpecs } from "../../utils/formatting/matches";
 import { ExchangeOffer } from "../../data/forms/ExchangeOffer";
 import { ExchangeRequestSpecs, ExchangeRequest } from "../../data/forms/ExchangeRequest";
+import { Percentage } from "../base/Percentage";
 
 type Props = {
 	match: TMatch;
@@ -32,6 +33,11 @@ export const Match: React.FC<Props> = ({ match }) => {
 			<h3>
 				{t(status)} ({dateString})
 			</h3>
+			<div className="percentage">
+				<span>{t("match")}</span>
+				<Percentage matchPercentage={percentage} />
+			</div>
+			<div className="cards"></div>
 		</div>
 	);
 };
