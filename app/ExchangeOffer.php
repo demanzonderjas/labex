@@ -42,6 +42,10 @@ class ExchangeOffer extends Model
 
     public function getIsMineAttribute()
     {
-        return $this->user->id == Auth::user()->id;
+        $user = Auth::user();
+        if (empty($user)) {
+            return false;
+        }
+        return $this->user->id == $user->id;
     }
 }

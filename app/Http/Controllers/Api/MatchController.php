@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Match;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MatchController extends Controller
@@ -15,11 +16,9 @@ class MatchController extends Controller
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 
-    public function user()
+    public function user(Request $request)
     {
-        $user = Auth::user();
-
-        $matches = Match::whereBelongsToUser($user)->get();
+        $matches = Match::whereBelongsToUser($request->user())->get();
 
         return response()->json(["matches" => $matches->toArray()]);
     }
