@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ExchangeOffer extends Model
 {
@@ -27,7 +28,7 @@ class ExchangeOffer extends Model
 
     protected $with = ['user'];
 
-    public $appends = ['is_match'];
+    public $appends = ['is_match', 'is_mine'];
 
     public function user()
     {
@@ -37,5 +38,10 @@ class ExchangeOffer extends Model
     public function getIsMatchAttribute()
     {
         return Match::where('exchange_offer_id', $this->id)->exists();
+    }
+
+    public function getIsMineAttribute()
+    {
+        return $this->user->id == Auth::user()->id;
     }
 }

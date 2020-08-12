@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Match;
+use Illuminate\Support\Facades\Auth;
 
 class MatchController extends Controller
 {
@@ -12,6 +13,15 @@ class MatchController extends Controller
     {
         $matches = Match::all();
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
+    }
+
+    public function user()
+    {
+        $user = Auth::user();
+
+        $matches = Match::whereBelongsToUser($user)->get();
+
+        return response()->json(["matches" => $matches->toArray()]);
     }
 
     public static function create($offerId, $requestId)
