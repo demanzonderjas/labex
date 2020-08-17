@@ -95,7 +95,8 @@
 	"match_percentage": "Match %",
 	"species": "Species",
 	"select_header": " ",
-	"browse_results": "Browse results",
+	"browse_requests": "Browse results",
+	"browse_offers": "Browse offers",
 	"no_matches_found": "(0) matches were found",
 	"matches_were_found": "matches were found.",
 	"filter_options": "Filter options",
@@ -135,5 +136,9 @@
 	"my_matches_intro": "This page is used to review your selected matches, both requests and offers. Your matches will need to be approved or declined by someone from the IVD first, before allowing the exchange.",
 	"awaiting_approval": "Match awaiting approval",
 	"approved": "Match approved",
-	"declined": "Match declined"
+	"declined": "Match declined",
+	"you": "You",
+	"universiteit-utrecht": "Universiteit Utrecht",
+	"offers_by_you": "Offered by you",
+	"requests_by_you": "Requested by you"
 }

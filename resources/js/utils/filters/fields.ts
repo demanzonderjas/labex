@@ -19,5 +19,5 @@ export function fieldIsNotHidden(field: FormField) {
 }
 
 export function fieldWasFilled(field: FormField) {
-	return field.match && field.match.status != SpecStatus.NotSubmitted;
+	return field.match && field.match.status != SpecStatus.NotSubmitted && field.value != "";
 }

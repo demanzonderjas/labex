@@ -1,4 +1,5 @@
 import React from "react";
+import { TUser } from "./User";
 
 export enum OverviewType {
 	Cards,
@@ -50,6 +51,7 @@ export interface TSampleCard {
 	sex: string;
 	origin: string;
 	type: string;
+	user?: TUser;
 }
 
 export type TMatch = {

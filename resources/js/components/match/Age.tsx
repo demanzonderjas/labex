@@ -14,7 +14,7 @@ export const DisplayedAge: React.FC<Props> = ({ type, value, fields }) => {
 
 	switch (type) {
 		case "age":
-			return <AgeInPeriod value={value} />;
+			return <AgeInPeriod value={value} fields={fields} />;
 		case "age_offer":
 			return <AgeRange fields={fields} />;
 		default:

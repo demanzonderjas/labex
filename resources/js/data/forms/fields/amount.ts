@@ -13,7 +13,12 @@ export const amountField: FormField = {
 		type: InputType.Number,
 		min: 0
 	},
-	isMatch: (requestedValue, offeredValue) => parseInt(requestedValue) <= parseInt(offeredValue),
+	isMatch: (requestedValue, offeredValue, filters, fields) => {
+		const isRequest = filters.some(f => f.label == "amount_request");
+		return isRequest
+			? parseInt(requestedValue) <= parseInt(offeredValue)
+			: parseInt(offeredValue) <= parseInt(requestedValue);
+	},
 	customValue: fields => `${getFieldById("amount", fields).value} requested`,
 	default: "1",
 	value: "1",
@@ -27,7 +32,6 @@ export const amountField: FormField = {
 
 export const amountRequestedField: FormField = {
 	...amountField,
-
 	label: "amount_request",
 	required: false
 };

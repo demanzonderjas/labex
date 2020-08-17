@@ -27,7 +27,7 @@ export const ExchangeOfferOverview: React.FC = observer(() => {
 	return (
 		<div className="ExchangeOfferOverview overview">
 			<h1>
-				{t("browse_results")} ({totalMatches})
+				{t("browse_offers")} ({totalMatches})
 			</h1>
 			<OverviewSwitch />
 			{overviewType == OverviewType.Cards && (

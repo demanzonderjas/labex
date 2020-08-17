@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { useSampleStore } from "../../hooks/useSampleStore";
 import { getTimeDiffInPeriods } from "../../utils/matches/age";
+import { useSampleStore } from "../../hooks/useSampleStore";
 
 export const AgeInPeriod = ({ value }) => {
 	const { t } = useTranslationStore();

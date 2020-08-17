@@ -3,6 +3,7 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 export const AgeRange = ({ fields }) => {
 	const { t } = useTranslationStore();
+	console.log(fields);
 	const ageType = fields.find(f => f.id == "age_type");
 	const ageMin = fields.find(f => f.id == "age_min");
 	const ageMax = fields.find(f => f.id == "age_max");

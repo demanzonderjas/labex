@@ -6,14 +6,15 @@ import {
 	YEAR_IN_DAYS
 } from "../../data/configs/datetime";
 
-export function isAgeInRange(_, targetValue, filters) {
-	const ageType = getFieldById("age_type", filters);
-	const ageMin = getFieldById("age_min", filters);
-	const ageMax = getFieldById("age_max", filters);
+export function isAgeInRange(fieldValue, targetValue, filters, fields) {
+	const ageType = getFieldById("age_type", filters) || getFieldById("age_type", fields);
+	const ageMin = getFieldById("age_min", filters) || getFieldById("age_min", fields);
+	const ageMax = getFieldById("age_max", filters) || getFieldById("age_max", fields);
+	const realTarget = getFieldById("age_type", filters) ? targetValue : fieldValue;
 	if (!ageType.value) {
 		return true;
 	}
-	const timePeriods = getTimeDiffInPeriods(targetValue);
+	const timePeriods = getTimeDiffInPeriods(realTarget);
 	const givenFilter = timePeriods[ageType.value];
 	return givenFilter >= ageMin.value && givenFilter <= ageMax.value;
 }
@@ -44,7 +45,6 @@ export function getDayMultiplier(type) {
 }
 
 export function isAgeRangeMatching(_, targetValue, filters, fields) {
-	console.log(filters, fields);
 	const ageTypeSpec = getFieldById("age_type", fields);
 	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec.value);
 	const ageMinSpec = getFieldById("age_min", fields);

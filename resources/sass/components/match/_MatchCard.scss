@@ -1,0 +1,71 @@
+.MatchCard {
+	text-align: left;
+	padding: 30px;
+	width: 50%;
+
+	&:nth-child(2) {
+		background-color: $grey-light;
+	}
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+
+		.user {
+			max-width: calc(100% - 200px);
+
+			img {
+				display: inline-block;
+				vertical-align: middle;
+				max-width: 36px;
+			}
+
+			.details {
+				margin-left: 16px;
+				.name {
+					font-weight: bold;
+				}
+
+				line-height: $default-half-margin;
+			}
+		}
+
+		.match-label {
+			padding: 8px 27px;
+
+			&.mine {
+				background-color: $grey-light;
+			}
+		}
+	}
+
+	.specs {
+		display: flex;
+		justify-content: start;
+		align-items: stretch;
+		flex-wrap: wrap;
+		margin-top: 64px;
+
+		.spec {
+			width: 33.333%;
+			margin-bottom: 32px;
+			padding-right: 8px;
+
+			label {
+				display: block;
+				line-height: 26px;
+				font-size: 12px;
+			}
+
+			.MatchValue {
+				&.correct {
+					color: $correct-color;
+				}
+				&.danger {
+					color: $danger-color;
+				}
+			}
+		}
+	}
+}

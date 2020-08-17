@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name =  "Daan";
         $user->email = "weustenraad@gmail.com";
+        $user->organisation = "universiteit-utrecht";
         $user->is_admin = true;
         $user->token = env('TEST_API_TOKEN');
         $user->save();
