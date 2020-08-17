@@ -6,7 +6,7 @@ import { convertDateToReadableString } from "../../utils/formatting/datetime";
 import { getMatchingPercentage } from "../../utils/matches/utils";
 import { fillFieldsWithKeyValuePairs, createMatchSpecs } from "../../utils/formatting/matches";
 import { ExchangeOffer } from "../../data/forms/ExchangeOffer";
-import { ExchangeRequestSpecs, ExchangeRequest } from "../../data/forms/ExchangeRequest";
+import { ExchangeRequestMatchCard } from "../../data/forms/ExchangeRequest";
 import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
 
@@ -22,13 +22,15 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 
 	const offerFields = fillFieldsWithKeyValuePairs(ExchangeOffer.fields, match.exchange_offer);
 	const requestFields = fillFieldsWithKeyValuePairs(
-		ExchangeRequest.fields,
+		ExchangeRequestMatchCard.fields,
 		match.exchange_request
 	);
 
 	const offerSpecs = createMatchSpecs(offerFields, requestFields);
 	const requestSpecs = createMatchSpecs(requestFields, offerFields);
+
 	const percentage = getMatchingPercentage(match.exchange_offer, requestFields, offerFields);
+	const otherMatchType = matchType == MatchType.Requests ? MatchType.Offers : MatchType.Requests;
 
 	return (
 		<div className="Match">
@@ -48,7 +50,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				/>
 				<MatchCard
 					mine={false}
-					matchType={matchType}
+					matchType={otherMatchType}
 					specs={offerSpecs}
 					user={match.exchange_offer.user}
 				/>

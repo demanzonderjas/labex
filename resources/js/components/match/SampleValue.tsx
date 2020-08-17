@@ -11,7 +11,6 @@ type Props = {
 
 export const SampleValue: React.FC<Props> = ({ value, label, fields }) => {
 	const { t } = useTranslationStore();
-	console.log(value, label);
 	return (
 		<>
 			{label == "age_offer" ? (

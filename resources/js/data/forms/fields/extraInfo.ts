@@ -5,6 +5,7 @@ export const extraInfoField: FormField = {
 	label: "extra_info",
 	id: "extra_info",
 	Component: BigTextField,
+	isMatch: () => true,
 	props: {},
 	default: "",
 	value: ""

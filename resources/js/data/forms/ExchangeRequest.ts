@@ -18,6 +18,7 @@ import { dateRequestedField } from "./fields/dateAvailable";
 import { killMethodField } from "./fields/killMethod";
 import { amountRequestedField } from "./fields/amount";
 import { typeField } from "./fields/type";
+import { extraInfoField } from "./fields/extraInfo";
 
 export const ExchangeRequest: TForm = {
 	header: "offers",
@@ -63,4 +64,9 @@ export const ExchangeRequestMatch: TForm = {
 	matchable: false,
 	submitLabel: "submit",
 	hideSubmit: false
+};
+
+export const ExchangeRequestMatchCard: TForm = {
+	...ExchangeRequest,
+	fields: [...ExchangeRequest.fields, extraInfoField]
 };

@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, toJS } from "mobx";
 import { FormField, TForm } from "../typings/Form";
 import { FormEvent } from "react";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
@@ -94,7 +94,9 @@ export class FormStore {
 		e.preventDefault();
 		if (this.validate()) {
 			this.setIsLoading(true);
-			const response = await this.handler(this.generateKeyValuePairs());
+			const data = this.generateKeyValuePairs();
+			console.log(data);
+			const response = await this.handler(data);
 			if (!response.success) {
 				this.serverError = response.message;
 			} else {
@@ -122,7 +124,9 @@ export class FormStore {
 	}
 
 	generateKeyValuePairs() {
-		return this.fields.reduce((base, field) => {
+		console.log(toJS(this.fields));
+		return this.fields.filter(fieldMeetsDependencies).reduce((base, field) => {
+			console.log(field.id, field.value);
 			base[field.id] = field.value;
 			return base;
 		}, {});

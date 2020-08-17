@@ -42,13 +42,13 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType }) => 
 			<div className="specs">
 				{specs
 					.filter(fieldIsNotHidden)
-					.filter(fieldWasFilled)
+					.filter(f => f.value != "")
 					.filter(fieldMeetsDependencies)
 					.map(spec => (
 						<div className="spec" key={spec.id}>
 							<label>{t(spec.label)}</label>
 							<MatchValue
-								isMatch={spec.match.status === SpecStatus.Match}
+								matchStatus={spec.match.status}
 								value={spec.value}
 								specs={specs}
 								label={spec.label}

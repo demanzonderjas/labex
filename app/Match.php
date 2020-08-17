@@ -32,6 +32,6 @@ class Match extends Model
             })
             ->orWhereHas("exchangeRequest.user", function (Builder $query) use ($user) {
                 $query->where('id', $user->id);
-            });
+            })->orderByDesc('updated_at');
     }
 }

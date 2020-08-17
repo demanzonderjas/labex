@@ -31,14 +31,15 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 		history.push(`/app/requests${window.location.search}`);
 	};
 
-	const testconfirm = async offerData => {
+	const confirmMatch = async offerData => {
 		const response = await createRequestMatch(offerData, id);
 		confirm();
+		history.push("/app/my-matches");
 		return response;
 	};
 	const modalData = {
 		...confirmOfferMatchModal,
-		form: { ...confirmOfferMatchModal.form, handler: testconfirm }
+		form: { ...confirmOfferMatchModal.form, handler: confirmMatch }
 	};
 
 	useEffect(() => {

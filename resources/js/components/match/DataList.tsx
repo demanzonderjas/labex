@@ -13,7 +13,7 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useModalStore } from "../../hooks/useModalStore";
 import { BlankButton, Button } from "../base/Button";
 import { createOfferMatch } from "../../queries/createOfferMatch";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 type Props = {
 	fields: FormField[];
@@ -29,9 +29,10 @@ export const DataList: React.FC<Props> = ({ fields, filters, offerId }) => {
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
 	const matches = createMatchSpecs(fields, filters);
+	const history = useHistory();
 	const { t } = useTranslationStore();
 
-	const confirmMatch = () => {
+	const confirmMatch = async () => {
 		const requestData = filters.reduce(
 			(base, next) => {
 				base[next.id] = next.value;
@@ -39,8 +40,9 @@ export const DataList: React.FC<Props> = ({ fields, filters, offerId }) => {
 			},
 			{ extra_info: extraInfo }
 		);
-		createOfferMatch(requestData, offerId);
+		await createOfferMatch(requestData, offerId);
 		confirm();
+		history.push("/app/my-matches");
 	};
 
 	useEffect(() => {
