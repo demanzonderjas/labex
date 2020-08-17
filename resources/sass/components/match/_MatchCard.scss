@@ -33,9 +33,22 @@
 
 		.match-label {
 			padding: 8px 27px;
+			color: white;
+			width: 155px;
+			text-align: center;
 
 			&.mine {
 				background-color: $grey-light;
+				color: $grey-medium;
+			}
+			&.awaiting_approval {
+				background-color: $blue;
+			}
+			&.approved {
+				background-color: $correct-color;
+			}
+			&.declined {
+				background-color: $danger-color;
 			}
 		}
 	}

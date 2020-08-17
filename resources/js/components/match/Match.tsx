@@ -53,6 +53,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 					matchType={otherMatchType}
 					specs={offerSpecs}
 					user={match.exchange_offer.user}
+					status={status}
 				/>
 			</div>
 		</div>

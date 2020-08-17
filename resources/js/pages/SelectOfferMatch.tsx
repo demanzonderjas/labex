@@ -63,14 +63,16 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 
 	return (
 		<SampleStoreProvider store={sampleStore}>
-			<PageIntro header="selected_match">
-				<p>{t("review_single_match")}</p>
-				<ol>
-					<li>{t("review_1")}</li>
-					<li>{t("review_2")}</li>
-					<li>{t("review_3")}</li>
-				</ol>
-			</PageIntro>
+			{!isMatch && (
+				<PageIntro header="selected_match">
+					<p>{t("review_single_match")}</p>
+					<ol>
+						<li>{t("review_1")}</li>
+						<li>{t("review_2")}</li>
+						<li>{t("review_3")}</li>
+					</ol>
+				</PageIntro>
+			)}
 			<div className="layout-wrapper">
 				<Specifications
 					isMatch={isMatch}

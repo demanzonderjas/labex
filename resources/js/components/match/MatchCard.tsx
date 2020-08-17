@@ -18,9 +18,10 @@ type Props = {
 	specs: FormField[];
 	user: TUser;
 	matchType: MatchType;
+	status?: string;
 };
 
-export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType }) => {
+export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, status }) => {
 	const { t } = useTranslationStore();
 	return (
 		<div className="MatchCard">
@@ -35,8 +36,9 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType }) => 
 						{t(user.organisation)}
 					</div>
 				</div>
-				<div className={cx("match-label", { mine })}>
+				<div className={cx("match-label", { mine, [status]: true })}>
 					{mine && <span>{t(`${matchType}_by_you`)}</span>}
+					{!mine && status && <span>{t(`${status}_label`)}</span>}
 				</div>
 			</div>
 			<div className="specs">

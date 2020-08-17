@@ -140,5 +140,8 @@
 	"you": "You",
 	"universiteit-utrecht": "Universiteit Utrecht",
 	"offers_by_you": "Offered by you",
-	"requests_by_you": "Requested by you"
+	"requests_by_you": "Requested by you",
+	"awaiting_approval_label": "Awaiting approval",
+	"approved_label": "Approved",
+	"declined_label": "Declined"
 }

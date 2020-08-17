@@ -20,6 +20,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
 	const [request, setRequest] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
+	const [isMatch, setIsMatch] = useState(null);
 	const { setModal, confirm } = useModalStore();
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
@@ -57,32 +58,45 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				sampleStore.filters,
 				filledFields
 			);
+			setIsMatch(response.exchange_request.is_match);
 			setMatchPercentage(_matchPercentage);
 		})();
 	}, []);
 
+	if (isMatch === null) {
+		return null;
+	}
+
 	return (
 		<SampleStoreProvider store={sampleStore}>
-			<PageIntro header="selected_match">
-				<p>{t("review_single_match")}</p>
-				<ol>
-					<li>{t("review_1")}</li>
-					<li>{t("review_2")}</li>
-					<li>{t("review_3")}</li>
-				</ol>
-			</PageIntro>
+			{!isMatch && (
+				<PageIntro header="selected_match">
+					<p>{t("review_single_match")}</p>
+					<ol>
+						<li>{t("review_1")}</li>
+						<li>{t("review_2")}</li>
+						<li>{t("review_3")}</li>
+					</ol>
+				</PageIntro>
+			)}
 			<div className="layout-wrapper">
 				<Specifications
+					isMatch={isMatch}
 					fields={request}
 					filters={filters}
 					matchPercentage={matchPercentage}
 					handleBack={goBack}
 					handleSelect={() => setModal(modalData)}
 				/>
-				<div className="button-wrapper">
-					<BlankButton label="return_to_overview" handleClick={goBack} />
-					<SecondaryButton label="select_match" handleClick={() => setModal(modalData)} />
-				</div>
+				{!isMatch && (
+					<div className="button-wrapper">
+						<BlankButton label="return_to_overview" handleClick={goBack} />
+						<SecondaryButton
+							label="select_match"
+							handleClick={() => setModal(modalData)}
+						/>
+					</div>
+				)}
 			</div>
 		</SampleStoreProvider>
 	);
