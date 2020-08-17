@@ -23,6 +23,8 @@
 
 			.details {
 				margin-left: 16px;
+				font-family: $font-header;
+
 				.name {
 					font-weight: bold;
 				}
@@ -72,11 +74,15 @@
 			}
 
 			.MatchValue {
+				font-family: $font-header;
 				&.correct {
 					color: $correct-color;
 				}
 				&.danger {
 					color: $danger-color;
+				}
+				&.neutral {
+					color: $grey-medium !important;
 				}
 			}
 		}

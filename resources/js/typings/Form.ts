@@ -38,6 +38,7 @@ export interface FormField extends FormFieldData {
 	match?: TSpecMatch;
 	description?: string;
 	customValue?: Function;
+	ignoreInMatch?: boolean;
 }
 
 export type FormFieldDependency = {

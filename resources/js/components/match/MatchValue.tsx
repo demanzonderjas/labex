@@ -9,14 +9,16 @@ type Props = {
 	label: string;
 	matchStatus: SpecStatus;
 	specs: FormField[];
+	neutral: boolean;
 };
 
-export const MatchValue: React.FC<Props> = ({ value, matchStatus, label, specs }) => {
+export const MatchValue: React.FC<Props> = ({ value, matchStatus, label, specs, neutral }) => {
 	return (
 		<span
 			className={cx("MatchValue", {
 				correct: matchStatus == SpecStatus.Match,
-				danger: matchStatus == SpecStatus.NoMatch
+				danger: matchStatus == SpecStatus.NoMatch,
+				neutral
 			})}
 		>
 			<SampleValue value={value} label={label} fields={specs} />

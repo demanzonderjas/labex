@@ -9,7 +9,8 @@ import { SpecStatus } from "../../typings/Sample";
 import {
 	fieldIsNotHidden,
 	fieldWasFilled,
-	fieldMeetsDependencies
+	fieldMeetsDependencies,
+	fieldShouldBeIgnoredInMatch
 } from "../../utils/filters/fields";
 import cx from "classnames";
 
@@ -54,6 +55,7 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 								value={spec.value}
 								specs={specs}
 								label={spec.label}
+								neutral={fieldShouldBeIgnoredInMatch(spec)}
 							/>
 						</div>
 					))}

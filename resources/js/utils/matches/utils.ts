@@ -1,10 +1,13 @@
 import { FormField } from "../../typings/Form";
-import { fieldMeetsDependencies } from "../filters/fields";
+import { fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../filters/fields";
 
 export function getMatchingPercentage(sample, filters, fields) {
 	const activeFilters = filters.filter(
 		(filter: FormField) =>
-			filter.value != "" && !filter.hidden && fieldMeetsDependencies(filter, 0, fields)
+			filter.value != "" &&
+			!filter.hidden &&
+			fieldMeetsDependencies(filter, 0, fields) &&
+			!fieldShouldBeIgnoredInMatch(filter)
 	);
 	const matchingFilters = activeFilters.filter(filter =>
 		checkIfFilterMatches(filter, sample, filters, fields)
@@ -19,6 +22,9 @@ export function checkIfFilterMatches(filter, field, filters, fields) {
 }
 
 export function checkIfFieldMatches(field, filter, filters, fields) {
+	if (field.value === "") {
+		return true;
+	}
 	return field.isMatch
 		? field.isMatch(filter.value, field.value, filters, fields)
 		: filter.value == field.value;

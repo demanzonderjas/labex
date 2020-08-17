@@ -21,3 +21,7 @@ export function fieldIsNotHidden(field: FormField) {
 export function fieldWasFilled(field: FormField) {
 	return field.match && field.match.status != SpecStatus.NotSubmitted && field.value != "";
 }
+
+export function fieldShouldBeIgnoredInMatch(field: FormField) {
+	return field.ignoreInMatch;
+}
