@@ -35,6 +35,11 @@ class ExchangeOffer extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function match()
+    {
+        return $this->hasOne(Match::class);
+    }
+
     public function getIsMatchAttribute()
     {
         return Match::where('exchange_offer_id', $this->id)->exists();

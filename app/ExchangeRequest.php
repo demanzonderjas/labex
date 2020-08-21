@@ -34,6 +34,11 @@ class ExchangeRequest extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function match()
+    {
+        return $this->hasOne(Match::class);
+    }
+
     public function getIsMatchAttribute()
     {
         return Match::where('exchange_request_id', $this->id)->exists();

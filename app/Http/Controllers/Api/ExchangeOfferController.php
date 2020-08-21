@@ -7,6 +7,7 @@ use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeOfferStoreRequest;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,6 @@ class ExchangeOfferController extends Controller
             $exchangeOffer = new ExchangeOffer($validated);
             $exchangeOffer->user_id = $request->user()->id;
             $exchangeOffer->save();
-
-            Artisan::call("match:create");
 
             return response()->json(["success" => true, "exchange_offer" => $exchangeOffer->toArray()]);
         } catch (Exception $e) {
@@ -37,7 +36,7 @@ class ExchangeOfferController extends Controller
 
     public function getAll()
     {
-        $exchangeOffers = ExchangeOffer::all();
+        $exchangeOffers = ExchangeOffer::doesntHave('match')->get();
         return response()->json(["success" => true, "exchange_offers" => $exchangeOffers->toArray()]);
     }
 

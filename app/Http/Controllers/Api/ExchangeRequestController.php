@@ -22,8 +22,6 @@ class ExchangeRequestController extends Controller
             $exchangeRequest->user_id = $request->user()->id;
             $exchangeRequest->save();
 
-            Artisan::call("match:create");
-
             return response()->json(["success" => true, "exchange_request" => $exchangeRequest->toArray()]);
         } catch (Exception $e) {
             return response()->json(["success" => false, "error" => $e]);
@@ -38,7 +36,7 @@ class ExchangeRequestController extends Controller
 
     public function getAll()
     {
-        $exchangeRequests = ExchangeRequest::all();
+        $exchangeRequests = ExchangeRequest::doesntHave('match')->get();
         return response()->json(["success" => true, "exchange_requests" => $exchangeRequests->toArray()]);
     }
 

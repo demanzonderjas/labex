@@ -1,6 +1,7 @@
 import { InputField } from "../../../components/form/InputField";
 import { FormField, InputType } from "../../../typings/Form";
-import { isDateInFuture } from "../../../utils/validation/date";
+import { isDateInFuture, isDateInRangeOfTwoWeeks } from "../../../utils/validation/date";
+import { getFieldById } from "../../../utils/getters/fields";
 
 export const dateAvailableField: FormField = {
 	label: "date_available",
@@ -26,6 +27,10 @@ export const dateRequestedField: FormField = {
 	required: false,
 	label: "date_requested",
 	id: "date_requested",
+	isMatch: (givenValue, targetValue, filters, fields) => {
+		const dateAvailable = getFieldById("date_available", fields);
+		return isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value);
+	},
 	validate: undefined,
 	dependencies: []
 };

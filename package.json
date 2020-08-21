@@ -29,6 +29,7 @@
         "@types/react-router-dom": "^5.1.5",
         "chart.js": "^2.9.3",
         "classnames": "^2.2.6",
+        "dayjs": "^1.8.34",
         "mobx": "^4.*",
         "mobx-react": "6.*",
         "mobx-react-lite": "^2.0.6",
