@@ -31,7 +31,7 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 					<LocalImage path={`logo/${user.organisation}_logo.png`} />
 					<div className="details inline">
 						<span className="name">
-							{user.name} {mine ? <>({t("you")})</> : ""}
+							{mine ? user.name : t("john_doe")} {mine ? <>({t("you")})</> : ""}
 						</span>
 						<br />
 						{t(user.organisation)}

@@ -144,5 +144,6 @@
 	"awaiting_approval_label": "Awaiting approval",
 	"approved_label": "Approved",
 	"declined_label": "Declined",
-	"always": "Always"
+	"always": "Always",
+	"john_doe": "John Doe"
 }
