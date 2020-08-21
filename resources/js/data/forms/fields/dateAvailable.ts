@@ -28,8 +28,12 @@ export const dateRequestedField: FormField = {
 	label: "date_requested",
 	id: "date_requested",
 	isMatch: (givenValue, targetValue, filters, fields) => {
+		const type = getFieldById("type", fields);
 		const dateAvailable = getFieldById("date_available", fields);
-		return isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value);
+		return (
+			isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) ||
+			(type && type.value == "conserved_tissue")
+		);
 	},
 	validate: undefined,
 	dependencies: []

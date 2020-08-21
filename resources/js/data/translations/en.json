@@ -143,5 +143,6 @@
 	"requests_by_you": "Requested by you",
 	"awaiting_approval_label": "Awaiting approval",
 	"approved_label": "Approved",
-	"declined_label": "Declined"
+	"declined_label": "Declined",
+	"always": "Always"
 }
