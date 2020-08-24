@@ -8,3 +8,12 @@ export async function getMyMatches() {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function getMyLatestMatch() {
+	try {
+		const response = await API.get("my-latest-match");
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

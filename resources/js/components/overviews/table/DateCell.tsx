@@ -9,9 +9,5 @@ type Props = {
 export const DateCell: React.FC<Props> = ({ value }) => {
 	//const dateString = convertDateToReadableString(value);
 
-	return (
-		<td className="DateCell">
-			<DisplayedDate value={value} />
-		</td>
-	);
+	return <td className="DateCell">{value ? <DisplayedDate value={value} /> : "n/a"}</td>;
 };

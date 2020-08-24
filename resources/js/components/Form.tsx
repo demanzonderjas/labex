@@ -42,10 +42,12 @@ export const Form: React.FC<Props> = observer(
 				</PageIntro>
 				<div className="layout-wrapper">
 					{matchable && <ActiveFilters />}
-					<div className="reset-button" onClick={resetForm}>
-						<span>{t("reset")}</span>
-						<Icon name="reload" />
-					</div>
+					{matchable && (
+						<div className="reset-button" onClick={resetForm}>
+							<span>{t("reset")}</span>
+							<Icon name="reload" />
+						</div>
+					)}
 					<form onSubmit={submit}>
 						<div className="fields">
 							{activeFields

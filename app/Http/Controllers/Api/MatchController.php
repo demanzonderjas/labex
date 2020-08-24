@@ -23,6 +23,13 @@ class MatchController extends Controller
         return response()->json(["matches" => $matches->toArray()]);
     }
 
+    public function myLatest(Request $request)
+    {
+        $match = Match::whereBelongsToUser($request->user())->latest()->first();
+
+        return response()->json(["match" => $match->toArray()]);
+    }
+
     public static function create($offerId, $requestId)
     {
         $match = new Match();

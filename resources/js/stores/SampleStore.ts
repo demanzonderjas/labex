@@ -21,6 +21,7 @@ import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
+import history from "../utils/history/history";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
@@ -131,11 +132,13 @@ export class SampleStore {
 	@action.bound addOffer(data) {
 		const { exchange_offer } = data;
 		this.offers = [...this.offers, exchange_offer];
+		location.href = "/app/dashboard";
 	}
 
 	@action.bound addRequest(data) {
 		const { exchange_request } = data;
 		this.requests = [...this.requests, exchange_request];
+		location.href = "/app/dashboard";
 	}
 
 	@action.bound setOverviewType(overviewType: OverviewType) {

@@ -9,13 +9,13 @@ export const Menu = observer(() => {
 		<div className="Menu">
 			<div className="menu-wrapper">
 				<MenuItems prefix="app" menuItems={menuItems} />
-				<ul className="menu-icons">
+				{/* <ul className="menu-icons">
 					{menuIcons.map(icon => (
 						<li key={icon}>
 							<LocalImage path={`icons/${icon}.svg`} />
 						</li>
 					))}
-				</ul>
+				</ul> */}
 			</div>
 		</div>
 	);

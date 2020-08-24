@@ -4,13 +4,17 @@ import { LocalImage } from "../base/Image";
 import { Menu } from "./Menu";
 import { LogoWrapper } from "./LogoWrapper";
 import { SubmitOfferButton } from "./SubmitOfferButton";
+import { SubmitRequestButton } from "./SubmitRequestButton";
 
 export const Header = observer(() => {
 	return (
 		<header>
 			<div className="layout-wrapper">
 				<LogoWrapper />
-				<SubmitOfferButton />
+				<div className="buttons">
+					<SubmitRequestButton />
+					<SubmitOfferButton />
+				</div>
 			</div>
 			<Menu />
 		</header>

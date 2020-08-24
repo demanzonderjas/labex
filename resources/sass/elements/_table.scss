@@ -2,6 +2,11 @@ table {
 	width: 100%;
 	margin: 40px 0;
 
+	td,
+	th {
+		width: calc(100% / 7);
+	}
+
 	th {
 		text-align: left;
 		background-color: $blue;
@@ -80,6 +85,10 @@ table {
 	}
 
 	&.highlightable {
+		td,
+		th {
+			width: auto;
+		}
 		tr {
 			cursor: pointer;
 			&:hover {

@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('exchange-request/match/{requestId}', 'ExchangeRequestController@match');
 
     Route::get('my-matches', 'MatchController@user');
+    Route::get('my-latest-match', 'MatchController@myLatest');
 
     Route::group(['middleware' => VerifyAdmin::class], function () {
         Route::get('matches', 'MatchController@getAll');

@@ -18,6 +18,8 @@ import { SelectRequestMatchPage } from "./pages/SelectRequestMatch";
 import ModalStoreProvider from "./contexts/ModalContext";
 import { ModalStore } from "./stores/ModalStore";
 import { ModalWrapper } from "./components/base/ModalWrapper";
+import { SubmitRequestPage } from "./pages/SubmitRequest";
+import history from "./utils/history/history";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -26,7 +28,8 @@ const App: React.FC = () => {
 	return (
 		<TranslationStoreProvider store={translationStore}>
 			<ModalStoreProvider store={modalStore}>
-				<Router>
+				{/*@ts-ignore */}
+				<Router history={history}>
 					<div className="App">
 						<ScrollToTop />
 						<Header />
@@ -55,6 +58,9 @@ const App: React.FC = () => {
 								</Route>
 								<Route path="/app/submit-offer">
 									<SubmitOfferPage />
+								</Route>
+								<Route path="/app/submit-request">
+									<SubmitRequestPage />
 								</Route>
 							</Switch>
 						</div>

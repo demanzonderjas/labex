@@ -70,3 +70,11 @@ export const ExchangeRequestMatchCard: TForm = {
 	...ExchangeRequest,
 	fields: [...ExchangeRequest.fields, extraInfoField]
 };
+
+export const SubmitExchangeRequest: TForm = {
+	...ExchangeRequest,
+	matchable: false,
+	header: "submit_request",
+	intro: "submit_request_description",
+	submitLabel: "submit"
+};
