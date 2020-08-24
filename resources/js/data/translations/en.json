@@ -145,5 +145,6 @@
 	"approved_label": "Approved",
 	"declined_label": "Declined",
 	"always": "Always",
-	"john_doe": "John Doe"
+	"john_doe": "John Doe",
+	"dashboard_intro": "Welcome to the Exchange Platform for animals & animal tissues. You can easily add your remaining animals & tissues to find a new home, or request certain animals and tissues yourself so others can match up."
 }

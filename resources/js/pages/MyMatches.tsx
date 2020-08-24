@@ -23,7 +23,7 @@ export const MyMatchesPage = observer(() => {
 	return (
 		<div className="MyMatchesPage">
 			<PageIntro header="my_matches">
-				<p className="layour-wrapper">{t("my_matches_intro")}</p>
+				<p className="layout-wrapper">{t("my_matches_intro")}</p>
 			</PageIntro>
 			<div className="matches layout-wrapper">
 				{matches.map(match => (

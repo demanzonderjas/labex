@@ -17,3 +17,12 @@ export async function getExchangeOffer(id: string) {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function getMyLatestExchangeOffers() {
+	try {
+		const response = await API.get(`exchange-offers/my-latest`);
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

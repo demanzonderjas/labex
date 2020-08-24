@@ -28,6 +28,15 @@ class ExchangeOfferController extends Controller
         }
     }
 
+    public function getMyLatest(Request $request)
+    {
+        $offers = ExchangeOffer::where(function ($query) use ($request) {
+            $query->where('user_id', $request->user()->id);
+        })->latest()->limit(config('samples.SHOW_TOTAL_LAST'))->get();
+
+        return response()->json(["success" => true, "exchange_offers" => $offers]);
+    }
+
     public function getById($id)
     {
         $offer = ExchangeOffer::findOrFail($id);

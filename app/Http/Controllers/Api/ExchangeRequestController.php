@@ -28,6 +28,15 @@ class ExchangeRequestController extends Controller
         }
     }
 
+    public function getMyLatest(Request $request)
+    {
+        $requests = ExchangeRequest::where(function ($query) use ($request) {
+            $query->where('user_id', $request->user()->id);
+        })->latest()->limit(config('samples.SHOW_TOTAL_LAST'))->get();
+
+        return response()->json(["success" => true, "exchange_requests" => $requests]);
+    }
+
     public function getById($id)
     {
         $exchangeRequest = ExchangeRequest::findOrFail($id);
