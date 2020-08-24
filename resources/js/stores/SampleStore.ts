@@ -21,7 +21,6 @@ import { ExchangeOffer } from "../data/forms/ExchangeOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
-import history from "../utils/history/history";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
