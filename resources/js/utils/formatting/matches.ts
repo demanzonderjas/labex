@@ -3,6 +3,7 @@ import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
 import { SpecStatus, TSpecMatch } from "../../typings/Sample";
 import { checkIfFieldMatches } from "../matches/utils";
 import { offerCells } from "../../data/tables/offers";
+import { requestCells } from "../../data/tables/requests";
 
 export function getMatchClasses(value) {
 	return {
@@ -15,6 +16,14 @@ export function getMatchClasses(value) {
 export function mapOffersToOverviewData(matches) {
 	return matches.map(match => {
 		return offerCells.map(cell => {
+			return { ...cell, value: match[cell.id] || cell.value };
+		});
+	});
+}
+
+export function mapRequestsToOverviewData(matches) {
+	return matches.map(match => {
+		return requestCells.map(cell => {
 			return { ...cell, value: match[cell.id] || cell.value };
 		});
 	});

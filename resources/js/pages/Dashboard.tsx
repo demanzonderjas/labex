@@ -8,11 +8,12 @@ import { PageIntro } from "../components/layout/PageIntro";
 import { ExchangeOffers } from "../components/dashboard/ExchangeOffers";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
+import { ExchangeRequests } from "../components/dashboard/ExchangeRequests";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
 	const [sampleStore] = useState<SampleStore>(new SampleStore());
-	const { offers } = sampleStore;
+	const { offers, requests } = sampleStore;
 
 	useEffect(() => {
 		(async () => {
@@ -34,6 +35,10 @@ export const DashboardPage = observer(() => {
 				<div className="offers">
 					<h2 className="layout-wrapper">{t("last_offers")}</h2>
 					<ExchangeOffers offers={offers} />
+				</div>
+				<div className="requests">
+					<h2 className="layout-wrapper">{t("last_requests")}</h2>
+					<ExchangeRequests requests={requests} />
 				</div>
 			</div>
 		</SampleStoreProvider>

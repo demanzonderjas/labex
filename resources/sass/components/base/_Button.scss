@@ -48,6 +48,17 @@
 		}
 	}
 
+	&.tertiary {
+		button {
+			background-color: $tertiary;
+			color: white;
+
+			&:hover {
+				background-color: black;
+			}
+		}
+	}
+
 	&.confirm,
 	&.correct {
 		button {

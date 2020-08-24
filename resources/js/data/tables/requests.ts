@@ -2,19 +2,21 @@ import { TextCell } from "../../components/overviews/table/TextCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
+import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
+import { DateCell } from "../../components/overviews/table/DateCell";
 
-export const offerColumns: string[] = [
+export const requestColumns: string[] = [
 	"type",
 	"animal_species",
 	"sex",
 	"age_offer",
 	"amount",
-	"date_available",
+	"date_requested",
 	"is_match",
 	"copy_header"
 ];
 
-export const offerCells = [
+export const requestCells = [
 	{
 		id: "type",
 		value: "",
@@ -32,9 +34,9 @@ export const offerCells = [
 	},
 	{
 		id: "age",
-		label: "age_offer",
+		label: "age_range",
 		value: "",
-		Component: TextCell
+		Component: AgeRangeCell
 	},
 	{
 		id: "amount",
@@ -42,9 +44,9 @@ export const offerCells = [
 		Component: TextCell
 	},
 	{
-		id: "date_available",
+		id: "date_requested",
 		value: "",
-		Component: DateAvailableCell
+		Component: DateCell
 	},
 	{
 		id: "is_match",
