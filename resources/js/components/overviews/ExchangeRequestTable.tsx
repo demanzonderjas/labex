@@ -20,7 +20,7 @@ export const ExchangeRequestTable: React.FC<Props> = ({ matches }) => {
 
 	return (
 		<div className="ExchangeRequestTable table">
-			<table>
+			<table className="highlightable">
 				<thead>
 					<tr>
 						{requestMatchColumns.map(column => (
@@ -32,7 +32,12 @@ export const ExchangeRequestTable: React.FC<Props> = ({ matches }) => {
 					{matches.map((cells, idx) => (
 						<tr key={idx} onClick={() => selectMatch(idx)}>
 							{cells.map((cell, cellIdx) => (
-								<cell.Component key={cellIdx} rowIndex={idx} value={cell.value} />
+								<cell.Component
+									key={cellIdx}
+									rowIndex={idx}
+									value={cell.value}
+									sample={matches[idx]}
+								/>
 							))}
 						</tr>
 					))}

@@ -2,6 +2,7 @@ import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
 import { SpecStatus, TSpecMatch } from "../../typings/Sample";
 import { checkIfFieldMatches } from "../matches/utils";
+import { offerCells } from "../../data/tables/offers";
 
 export function getMatchClasses(value) {
 	return {
@@ -9,6 +10,14 @@ export function getMatchClasses(value) {
 		neutral: value < MATCHING_THRESHOLDS.HIGH && value >= MATCHING_THRESHOLDS.NEUTRAL,
 		danger: value < MATCHING_THRESHOLDS.NEUTRAL
 	};
+}
+
+export function mapOffersToOverviewData(matches) {
+	return matches.map(match => {
+		return offerCells.map(cell => {
+			return { ...cell, value: match[cell.id] || cell.value };
+		});
+	});
 }
 
 export function mapOfferMatchesToOverviewData(matches) {

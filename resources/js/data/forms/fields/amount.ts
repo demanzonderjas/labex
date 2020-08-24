@@ -21,13 +21,7 @@ export const amountField: FormField = {
 	},
 	customValue: fields => `${getFieldById("amount", fields).value} requested`,
 	default: "1",
-	value: "1",
-	dependencies: [
-		{
-			id: "type",
-			validate: value => value == "animal"
-		}
-	]
+	value: "1"
 };
 
 export const amountRequestedField: FormField = {

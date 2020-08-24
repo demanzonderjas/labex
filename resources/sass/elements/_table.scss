@@ -15,6 +15,13 @@ table {
 	td {
 		padding: 10px 30px 10px 0;
 
+		&.BooleanCell {
+			img {
+				@extend .inline;
+				width: 20px;
+			}
+		}
+
 		.Button {
 			button {
 				padding: 7px 24px;
@@ -67,21 +74,26 @@ table {
 	}
 
 	tr {
-		cursor: pointer;
 		&:nth-child(even) {
 			background-color: $grey-light;
 		}
-		&:hover {
-			background-color: $correct-color;
-			td {
-				color: $highlight-text-color;
+	}
 
-				.Percentage {
+	&.highlightable {
+		tr {
+			cursor: pointer;
+			&:hover {
+				background-color: $correct-color;
+				td {
 					color: $highlight-text-color;
-				}
 
-				button {
-					background-color: $blue !important;
+					.Percentage {
+						color: $highlight-text-color;
+					}
+
+					button {
+						background-color: $blue !important;
+					}
 				}
 			}
 		}

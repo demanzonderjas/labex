@@ -146,5 +146,9 @@
 	"declined_label": "Declined",
 	"always": "Always",
 	"john_doe": "John Doe",
-	"dashboard_intro": "Welcome to the Exchange Platform for animals & animal tissues. You can easily add your remaining animals & tissues to find a new home, or request certain animals and tissues yourself so others can match up."
+	"dashboard_intro": "Welcome to the Exchange Platform for animals & animal tissues. You can easily add your remaining animals & tissues to find a new home, or request certain animals and tissues yourself so others can match up.",
+	"last_offers": "Last offers",
+	"copy_header": "Copy",
+	"delete_header": "Delete",
+	"is_match": "Match?"
 }

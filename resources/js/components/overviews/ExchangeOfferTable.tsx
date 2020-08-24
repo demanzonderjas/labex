@@ -20,7 +20,7 @@ export const ExchangeOfferTable: React.FC<Props> = ({ matches }) => {
 
 	return (
 		<div className="ExchangeOfferTable table">
-			<table>
+			<table className="highlightable">
 				<thead>
 					<tr>
 						{offerMatchColumns.map(column => (
@@ -32,7 +32,12 @@ export const ExchangeOfferTable: React.FC<Props> = ({ matches }) => {
 					{matches.map((cells, idx) => (
 						<tr key={idx} onClick={() => selectMatch(idx)}>
 							{cells.map((cell, cellIdx) => (
-								<cell.Component key={cellIdx} rowIndex={idx} value={cell.value} />
+								<cell.Component
+									key={cellIdx}
+									rowIndex={idx}
+									value={cell.value}
+									sample={matches[idx]}
+								/>
 							))}
 						</tr>
 					))}

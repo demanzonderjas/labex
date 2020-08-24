@@ -6,19 +6,19 @@ import {
 import { DisplayedDate } from "../../base/DisplayedDate";
 import { useSampleStore } from "../../../hooks/useSampleStore";
 import { useTranslationStore } from "../../../hooks/useTranslationStore";
+import { TSampleCard } from "../../../typings/Overview";
 
 type Props = {
 	value: string;
 	rowIndex: number;
+	sample: TSampleCard;
 };
 
-export const DateAvailableCell: React.FC<Props> = ({ value, rowIndex }) => {
+export const DateAvailableCell: React.FC<Props> = ({ value, sample }) => {
 	const datePlusTwoWeeks = getDatePlusTwoWeeks(value);
-	const { matches } = useSampleStore();
 	const { t } = useTranslationStore();
-	const match = matches[rowIndex];
 
-	if (match.type == "conserved_tissue") {
+	if (sample.type == "conserved_tissue") {
 		return <td className="DateCell">{t("always")}</td>;
 	}
 
