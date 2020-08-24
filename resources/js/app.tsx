@@ -19,7 +19,6 @@ import ModalStoreProvider from "./contexts/ModalContext";
 import { ModalStore } from "./stores/ModalStore";
 import { ModalWrapper } from "./components/base/ModalWrapper";
 import { SubmitRequestPage } from "./pages/SubmitRequest";
-import history from "./utils/history/history";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -28,8 +27,7 @@ const App: React.FC = () => {
 	return (
 		<TranslationStoreProvider store={translationStore}>
 			<ModalStoreProvider store={modalStore}>
-				{/*@ts-ignore */}
-				<Router history={history}>
+				<Router>
 					<div className="App">
 						<ScrollToTop />
 						<Header />
