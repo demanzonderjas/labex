@@ -7,6 +7,9 @@ type Props = {
 
 export const DisplayedDate: React.FC<Props> = ({ value }) => {
 	const [year, month, day] = value.split("-");
+	if (!year || !month || !day) {
+		return <span>-</span>;
+	}
 	return (
 		<div className="DisplayedDate inline">
 			<span>{prefixWithZeroBelow9(day)}</span>

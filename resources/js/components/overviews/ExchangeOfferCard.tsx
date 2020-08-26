@@ -3,9 +3,16 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { Button } from "../base/Button";
 import { useSampleStore } from "../../hooks/useSampleStore";
-import { getMatchClasses, createQueryStringFromFilters } from "../../utils/formatting/matches";
+import {
+	getMatchClasses,
+	createQueryStringFromFilters,
+	fillFieldsWithKeyValuePairs
+} from "../../utils/formatting/matches";
 import { AgeInPeriod } from "../match/AgeInPeriod";
 import { useHistory } from "react-router-dom";
+import { ExchangeOffer } from "../../data/forms/ExchangeOffer";
+import { TExchangeOfferCard } from "../../typings/Overview";
+import { SampleValue } from "../match/SampleValue";
 
 type Props = {
 	data?: any;
@@ -23,6 +30,8 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	const classes = getMatchClasses(matchPercentage.value);
+	const match = matches[index] as TExchangeOfferCard;
+	const fields = fillFieldsWithKeyValuePairs(ExchangeOffer.fields, match);
 
 	return (
 		<div className="ExchangeOfferCard Card" onClick={() => selectMatch(index)}>
@@ -39,11 +48,11 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 					.map(column => (
 						<div key={column.id} className="info-block">
 							<label>{t(column.label || column.id)}</label>
-							{column.id == "age" ? (
-								<AgeInPeriod value={column.value} />
-							) : (
-								<span>{t(column.value)}</span>
-							)}
+							<SampleValue
+								value={column.value}
+								label={column.label || column.id}
+								fields={fields}
+							/>
 						</div>
 					))}
 			</div>

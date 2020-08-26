@@ -2,6 +2,7 @@ import { TextCell } from "../../components/overviews/table/TextCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
+import { DateCell } from "../../components/overviews/table/DateCell";
 
 export const offerColumns: string[] = [
 	"type",
@@ -34,7 +35,7 @@ export const offerCells = [
 		id: "age",
 		label: "age_offer",
 		value: "",
-		Component: TextCell
+		Component: DateCell
 	},
 	{
 		id: "amount",

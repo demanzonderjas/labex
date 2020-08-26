@@ -12,10 +12,15 @@ type Props = {
 export const AgeRangeCell: React.FC<Props> = ({ value, rowIndex, sample }) => {
 	const { t } = useTranslationStore();
 	const { matches } = useSampleStore();
+	console.log(sample, matches[rowIndex]);
+	const match = matches[rowIndex] as TExchangeRequestCard;
+	const ageMin = sample.age_min || (match && match.age_min);
+	const ageMax = sample.age_max || (match && match.age_max);
+	const ageType = sample.age_type || (match && match.age_type);
 
 	return (
 		<td>
-			{sample.age_min} - {sample.age_max} {t(sample.age_type)}
+			{ageMin} - {ageMax} {t(ageType)}
 		</td>
 	);
 };
