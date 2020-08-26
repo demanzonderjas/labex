@@ -1,19 +1,19 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 type Props = {
 	prefix: string;
 	label: string;
-	isActive: boolean;
 };
 
-export const MenuItem: React.FC<Props> = observer(({ prefix, label, isActive }) => {
+export const MenuItem: React.FC<Props> = observer(({ prefix, label }) => {
 	const { t } = useTranslationStore();
+	console.log(`/${prefix}/${label}`);
 	return (
-		<Link to={`/${prefix}/${label}`}>
+		<NavLink exact to={`/${prefix}/${label}`} activeClassName="active">
 			<li>{t(label)}</li>
-		</Link>
+		</NavLink>
 	);
 });

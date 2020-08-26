@@ -25,7 +25,10 @@ class ExchangeRequestStoreRequest extends FormRequest
     {
         $sampleValidation = config('validation.samples');
         $exchangeRequestValidation = [
-            'age' => 'nullable|string',
+            'age' => 'nullable',
+            'age_min' => 'nullable',
+            'age_max' => 'nullable',
+            'age_type' => 'nullable|string',
             'sex' => 'nullable|string',
             'organs' => 'nullable|string',
             'amount' => 'nullable|string',
