@@ -39,10 +39,6 @@
 			width: 155px;
 			text-align: center;
 
-			&.mine {
-				background-color: $grey-light;
-				color: $grey-medium;
-			}
 			&.awaiting_approval {
 				background-color: $blue;
 			}
@@ -51,6 +47,10 @@
 			}
 			&.declined {
 				background-color: $danger-color;
+			}
+			&.mine {
+				background-color: $grey-light;
+				color: $grey-medium;
 			}
 		}
 	}

@@ -1,0 +1,16 @@
+.MyMatchesPage {
+	.type-switch {
+		display: flex;
+		margin: $default-margin auto;
+
+		h1 {
+			margin-right: $default-margin;
+			color: $grey-light-medium;
+			cursor: pointer;
+
+			&.active {
+				color: $grey-medium;
+			}
+		}
+	}
+}
