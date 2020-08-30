@@ -14,6 +14,7 @@ import { Match } from "../components/match/Match";
 import { Button } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { moreDashboardInfoModal } from "../data/modals/info";
+import { useHistory } from "react-router-dom";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
@@ -21,6 +22,7 @@ export const DashboardPage = observer(() => {
 	const [match, setMatch] = useState(null);
 	const { offers, requests } = sampleStore;
 	const { setModal } = useModalStore();
+	const history = useHistory();
 
 	useEffect(() => {
 		(async () => {
@@ -53,10 +55,24 @@ export const DashboardPage = observer(() => {
 				<div className="offers">
 					<h2 className="layout-wrapper">{t("last_offers")}</h2>
 					<ExchangeOffers offers={offers} />
+					<div className="layout-wrapper">
+						<Button
+							label="see_all_offers"
+							handleClick={() => history.push("/app/offers")}
+							classes={{ inline: true, primary: true }}
+						/>
+					</div>
 				</div>
 				<div className="requests">
 					<h2 className="layout-wrapper">{t("last_requests")}</h2>
 					<ExchangeRequests requests={requests} />
+					<div className="layout-wrapper">
+						<Button
+							label="see_all_requests"
+							handleClick={() => history.push("/app/requests")}
+							classes={{ inline: true, primary: true }}
+						/>
+					</div>
 				</div>
 				{match && (
 					<div className="latest-match layout-wrapper">
