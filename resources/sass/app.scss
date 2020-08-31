@@ -36,6 +36,7 @@
 @import "components/match/MatchCard";
 
 @import "components/admin/ApproveMatch";
+@import "components/admin/Sidebar";
 
 @import "pages/Dashboard";
 @import "pages/MyMatches";
@@ -60,6 +61,15 @@ body {
 
 .page-wrapper {
 	min-height: calc(100vh - #{$header-height} - #{$footer-height});
+}
+.Admin.App {
+	.page-wrapper {
+		display: inline-block;
+		vertical-align: top;
+		width: calc(100vw - #{$sidebar-width});
+		min-height: 100vh;
+		padding: 80px 80px 80px 30px;
+	}
 }
 
 .inline {

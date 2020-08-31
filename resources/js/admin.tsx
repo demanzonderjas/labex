@@ -6,16 +6,16 @@ import { TranslationStore } from "./stores/TranslationStore";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PossibleMatches } from "./pages/admin/PossibleMatches";
-import { AdminHeader } from "./components/admin/Header";
 import { AdminDashboardPage } from "./pages/admin/Dashboard";
+import { Sidebar } from "./components/admin/Sidebar";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
 	return (
 		<TranslationStoreProvider store={translationStore}>
 			<Router>
-				<div className="App">
-					<AdminHeader />
+				<div className="App Admin">
+					<Sidebar />
 					<div className="page-wrapper">
 						<Switch>
 							<Route path="/admin" exact={true}>

@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 function fakeAdminLogin()
 {
-    $user = User::first();
+    $user = User::where('is_admin', true)->first();
     Auth::login($user);
 }
 

@@ -12,6 +12,7 @@ export class MatchStore {
 
 	@action.bound async getMatches() {
 		const response = await getMatches();
+		console.log(response);
 		if (response.success) {
 			this.setMatches(response.matches);
 		}

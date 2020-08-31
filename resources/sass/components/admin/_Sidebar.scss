@@ -1,0 +1,33 @@
+.Sidebar {
+	width: $sidebar-width;
+	display: inline-block;
+	min-height: 100vh;
+	background-color: $secondary;
+
+	.logo-wrapper {
+		text-align: center;
+		padding: 20px 0;
+		img {
+			width: 50%;
+		}
+	}
+
+	.menu-wrapper {
+		a {
+			color: white;
+			padding: 40px 20px;
+			text-decoration: none;
+			display: flex;
+			height: 140px;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+			border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+			&.active {
+				font-weight: bold;
+			}
+		}
+	}
+}

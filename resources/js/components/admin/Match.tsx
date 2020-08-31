@@ -1,8 +1,10 @@
 import React from "react";
 import { ExchangeRequestCard } from "../overviews/ExchangeRequestCard";
 import { ExchangeOfferCard } from "../overviews/ExchangeOfferCard";
-import { TMatch } from "../../typings/Overview";
+import { TMatch, MatchType } from "../../typings/Overview";
 import { ApproveButtons } from "./ApproveButtons";
+import { MatchCard } from "../match/MatchCard";
+import { Match as MatchCards } from "../match/Match";
 
 type Props = {
 	match: TMatch;
@@ -11,8 +13,7 @@ type Props = {
 export const Match: React.FC<Props> = ({ match }) => {
 	return (
 		<div className="Match" key={match.id}>
-			<ExchangeRequestCard data={match.exchange_request} />
-			<ExchangeOfferCard data={match.exchange_offer} />
+			<MatchCards match={match} matchType={MatchType.Requests} />
 			<ApproveButtons matchId={match.id} />
 		</div>
 	);
