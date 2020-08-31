@@ -9,6 +9,7 @@
 
 	.percentage span {
 		font-weight: bold;
+		@extend .inline;
 	}
 
 	.cards {

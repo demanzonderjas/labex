@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(ExchangeOffer::class, function (Faker $faker) {
     return [
-        "user_id" => User::first()->id,
+        "user_id" => User::all()->random()->id,
         "type" => selectRandom(config("validation.type")),
         "animal_species" => selectRandom(config("validation.animal_species")),
         "organs" => selectRandom(config("validation.organs")),

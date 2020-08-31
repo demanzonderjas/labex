@@ -1,0 +1,17 @@
+.SelectMatchPage {
+	.UserProfile {
+		padding: 20px;
+		background-color: $grey-light;
+		margin: $default-margin 0;
+
+		img {
+			@extend .inline;
+			width: 120px;
+		}
+		.details {
+			@extend .inline;
+			margin-left: 100px;
+			line-height: 20px;
+		}
+	}
+}

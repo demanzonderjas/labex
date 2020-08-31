@@ -15,10 +15,13 @@ import { getMatchingPercentage } from "../utils/matches/utils";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
+import { UserProfile } from "../components/match/UserProfile";
+import { TUserProfile } from "../typings/User";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
 	const [offer, setOffer] = useState([]);
+	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [matchPercentage, setMatchPercentage] = useState(0);
 	const [isMatch, setIsMatch] = useState(null);
 	const { setModal } = useModalStore();
@@ -49,6 +52,10 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 				filledFields
 			);
 			setMatchPercentage(_matchPercentage);
+			setUserProfile({
+				user: response.exchange_offer.user,
+				mine: response.exchange_offer.is_mine
+			});
 		})();
 	}, []);
 
@@ -57,7 +64,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 		props: { fields: offer, filters, offerId: id }
 	};
 
-	if (isMatch === null) {
+	if (isMatch === null || !userProfile) {
 		return null;
 	}
 
@@ -73,7 +80,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 					</ol>
 				</PageIntro>
 			)}
-			<div className="layout-wrapper">
+			<div className="layout-wrapper SelectMatchPage">
 				<Specifications
 					isMatch={isMatch}
 					fields={offer}
@@ -82,6 +89,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 					handleBack={goBack}
 					handleSelect={() => setModal(modalData)}
 				/>
+				<UserProfile {...userProfile} />
 				{!isMatch && (
 					<div className="button-wrapper">
 						<BlankButton label="return_to_overview" handleClick={goBack} />

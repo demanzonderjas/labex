@@ -15,11 +15,14 @@ import { getExchangeRequest } from "../queries/getExchangeRequests";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmOfferMatchModal } from "../data/modals/confirm";
 import { createRequestMatch } from "../queries/createRequestMatch";
+import { TUserProfile } from "../typings/User";
+import { UserProfile } from "../components/match/UserProfile";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new SampleStore());
 	const [request, setRequest] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
+	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [isMatch, setIsMatch] = useState(null);
 	const { setModal, confirm } = useModalStore();
 
@@ -60,10 +63,14 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 			);
 			setIsMatch(response.exchange_request.is_match);
 			setMatchPercentage(_matchPercentage);
+			setUserProfile({
+				user: response.exchange_request.user,
+				mine: response.exchange_request.is_mine
+			});
 		})();
 	}, []);
 
-	if (isMatch === null) {
+	if (isMatch === null || !userProfile) {
 		return null;
 	}
 
@@ -79,7 +86,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					</ol>
 				</PageIntro>
 			)}
-			<div className="layout-wrapper">
+			<div className="layout-wrapper SelectMatchPage">
 				<Specifications
 					isMatch={isMatch}
 					fields={request}
@@ -88,6 +95,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					handleBack={goBack}
 					handleSelect={() => setModal(modalData)}
 				/>
+				<UserProfile {...userProfile} />
 				{!isMatch && (
 					<div className="button-wrapper">
 						<BlankButton label="return_to_overview" handleClick={goBack} />

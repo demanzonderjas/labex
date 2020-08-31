@@ -13,6 +13,7 @@ import {
 	fieldShouldBeIgnoredInMatch
 } from "../../utils/filters/fields";
 import cx from "classnames";
+import { UserProfile } from "./UserProfile";
 
 type Props = {
 	mine: boolean;
@@ -27,16 +28,7 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 	return (
 		<div className="MatchCard">
 			<div className="header">
-				<div className="user">
-					<LocalImage path={`logo/${user.organisation}_logo.png`} />
-					<div className="details inline">
-						<span className="name">
-							{mine ? user.name : t("john_doe")} {mine ? <>({t("you")})</> : ""}
-						</span>
-						<br />
-						{t(user.organisation)}
-					</div>
-				</div>
+				<UserProfile user={user} mine={mine} />
 				<div className={cx("match-label", { mine, [status]: true })}>
 					{mine && <span>{t(`${matchType}_by_you`)}</span>}
 					{!mine && status && <span>{t(`${status}_label`)}</span>}
