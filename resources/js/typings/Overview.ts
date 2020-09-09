@@ -47,6 +47,7 @@ export interface TSampleCard {
 	animal_species: string;
 	date_available: string;
 	match_percentage: number;
+	age?: string;
 	amount: string;
 	sex: string;
 	origin: string;

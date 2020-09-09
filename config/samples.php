@@ -1,5 +1,5 @@
 <?php
 
 return [
-    "SHOW_TOTAL_LAST" => 3
+    "SHOW_TOTAL_LAST" => 4
 ];

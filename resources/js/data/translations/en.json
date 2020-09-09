@@ -156,6 +156,9 @@
 	"more_info_dashboard_description": "More information about the project with links to relevant external documents",
 	"submit_request": "Submit my request",
 	"submit_request_description": "This page can be used to submit new requests into the database. Please enter the relevant criteria for your request and submit.",
-	"see_all_offers": "See all offers",
-	"see_all_requests": "See all requests"
+	"see_all_offers": "View all offers",
+	"see_all_requests": "View all requests",
+	"see_all_my_matches": "View all my matches",
+	"exchange_platform": "Exchange platform",
+	"for_animals_tissues": "For animals & animal tissues"
 }

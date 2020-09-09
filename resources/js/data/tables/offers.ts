@@ -46,15 +46,5 @@ export const offerCells = [
 		id: "date_available",
 		value: "",
 		Component: DateAvailableCell
-	},
-	{
-		id: "is_match",
-		value: "",
-		Component: BooleanCell
-	},
-	{
-		id: "copy",
-		value: "",
-		Component: CopyButtonCell
 	}
 ];

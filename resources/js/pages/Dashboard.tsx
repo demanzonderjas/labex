@@ -4,7 +4,7 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMyLatestExchangeOffers } from "../queries/getExchangeOffers";
 import { getMyLatestExchangeRequests } from "../queries/getExchangeRequests";
 import { MatchType } from "../typings/Overview";
-import { PageIntro } from "../components/layout/PageIntro";
+import { PageIntro, TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { ExchangeOffers } from "../components/dashboard/ExchangeOffers";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
@@ -33,7 +33,6 @@ export const DashboardPage = observer(() => {
 			]);
 			sampleStore.setOffers(offers.exchange_offers);
 			sampleStore.setRequests(requests.exchange_requests);
-			console.log(match);
 			if (match && match.match) {
 				setMatch(match.match);
 			}
@@ -43,17 +42,19 @@ export const DashboardPage = observer(() => {
 	return (
 		<SampleStoreProvider store={sampleStore}>
 			<div className="DashboardPage">
-				<PageIntro header="dashboard">
+				<TwoColumnPageIntro header="exchange_platform" subheader="for_animals_tissues">
 					<p className="layout-wrapper">{t("dashboard_intro")}</p>
 					<Button
 						label="more_info"
 						handleClick={() => setModal(moreDashboardInfoModal)}
 						classes={{ inline: true }}
 					/>
-				</PageIntro>
+				</TwoColumnPageIntro>
+				<div className="layout-wrapper dashboard">
+					<h1>{t("dashboard")}</h1>
+				</div>
 
 				<div className="offers">
-					<h2 className="layout-wrapper">{t("last_offers")}</h2>
 					<ExchangeOffers offers={offers} />
 					<div className="layout-wrapper">
 						<Button
@@ -64,7 +65,6 @@ export const DashboardPage = observer(() => {
 					</div>
 				</div>
 				<div className="requests">
-					<h2 className="layout-wrapper">{t("last_requests")}</h2>
 					<ExchangeRequests requests={requests} />
 					<div className="layout-wrapper">
 						<Button
@@ -77,6 +77,11 @@ export const DashboardPage = observer(() => {
 				{match && (
 					<div className="latest-match layout-wrapper">
 						<Match key={match.id} match={match} matchType={MatchType.Requests} />
+						<Button
+							label="see_all_my_matches"
+							handleClick={() => history.push("/app/my-matches")}
+							classes={{ inline: true, primary: true }}
+						/>
 					</div>
 				)}
 			</div>

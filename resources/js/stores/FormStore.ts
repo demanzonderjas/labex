@@ -95,7 +95,6 @@ export class FormStore {
 		if (this.validate()) {
 			this.setIsLoading(true);
 			const data = this.generateKeyValuePairs();
-			console.log(data);
 			const response = await this.handler(data);
 			if (!response.success) {
 				this.serverError = response.message;
@@ -124,9 +123,7 @@ export class FormStore {
 	}
 
 	generateKeyValuePairs() {
-		console.log(toJS(this.fields));
 		return this.fields.filter(fieldMeetsDependencies).reduce((base, field) => {
-			console.log(field.id, field.value);
 			base[field.id] = field.value;
 			return base;
 		}, {});

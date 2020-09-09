@@ -7,7 +7,8 @@ import {
 	ageMinField,
 	ageMaxField,
 	ageTypeField,
-	ageRequestRangeField
+	ageRequestRangeField,
+	ageRangeRequestField
 } from "./fields/age";
 import { sexRequestField } from "./fields/sex";
 import { originField } from "./fields/origin";
@@ -66,9 +67,13 @@ export const ExchangeRequestMatch: TForm = {
 	hideSubmit: false
 };
 
+const matchCardFields = [...ExchangeRequest.fields];
+const ageOfferFieldIdx = matchCardFields.findIndex(f => f.label == "age_offer");
+matchCardFields.splice(ageOfferFieldIdx, 1, ageRangeRequestField);
+
 export const ExchangeRequestMatchCard: TForm = {
 	...ExchangeRequest,
-	fields: [...ExchangeRequest.fields, extraInfoField]
+	fields: [...matchCardFields, extraInfoField]
 };
 
 export const SubmitExchangeRequest: TForm = {

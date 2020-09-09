@@ -50,6 +50,15 @@
 		width: 67%;
 		vertical-align: top;
 	}
+	&.DashboardCard {
+		width: calc(50% - 8px);
+		.details {
+			width: 100%;
+		}
+		.info-block {
+			width: 33.3333%;
+		}
+	}
 
 	.info-block {
 		display: inline-block;

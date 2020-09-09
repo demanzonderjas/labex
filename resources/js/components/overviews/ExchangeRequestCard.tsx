@@ -4,7 +4,7 @@ import { Percentage } from "../base/Percentage";
 import { SecondaryButton, Button } from "../base/Button";
 import { useSampleStore } from "../../hooks/useSampleStore";
 import { AgeInPeriod } from "../match/AgeInPeriod";
-import { TExchangeRequestCard } from "../../typings/Overview";
+import { TExchangeRequestCard, TSampleCard } from "../../typings/Overview";
 import {
 	getMatchClasses,
 	createQueryStringFromFilters,
@@ -13,6 +13,7 @@ import {
 import { useHistory } from "react-router-dom";
 import { SampleValue } from "../match/SampleValue";
 import { ExchangeRequest } from "../../data/forms/ExchangeRequest";
+import { createQueryStringFromSample } from "../../utils/formatting/samples";
 
 type Props = {
 	data?: any;
@@ -56,6 +57,39 @@ export const ExchangeRequestCard: React.FC<Props> = ({ data, index }) => {
 						</div>
 					))}
 			</div>
+		</div>
+	);
+};
+
+export const ExchangeRequestDashboardCard: React.FC<{ data: any; sample: TSampleCard }> = ({
+	data,
+	sample
+}) => {
+	const { t } = useTranslationStore();
+
+	const fields = fillFieldsWithKeyValuePairs(ExchangeRequest.fields, sample);
+	const history = useHistory();
+
+	const copy = () => {
+		const queryString = createQueryStringFromSample(sample);
+		history.push(`/app/submit-request${queryString}`);
+	};
+
+	return (
+		<div className="ExchangeRequestCard DashboardCard Card" onClick={copy}>
+			<div className="details">
+				{data.map(column => (
+					<div key={column.id} className="info-block">
+						<label>{t(column.label || column.id)}</label>
+						<SampleValue
+							value={column.value}
+							label={column.label || column.id}
+							fields={fields}
+						/>
+					</div>
+				))}
+			</div>
+			<Button classes={{ small: true, tertiary: true }} label="copy" />
 		</div>
 	);
 };

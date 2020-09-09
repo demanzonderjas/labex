@@ -36,6 +36,11 @@ export const ageRequestField: FormField = {
 	isMatch: isAgeInRange
 };
 
+export const ageRangeRequestField: FormField = {
+	...ageRequestField,
+	label: "age_range"
+};
+
 export const ageRequestRangeField: FormField = {
 	label: "age_offer",
 	id: "age",

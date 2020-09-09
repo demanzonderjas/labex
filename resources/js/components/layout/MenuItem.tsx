@@ -10,7 +10,6 @@ type Props = {
 
 export const MenuItem: React.FC<Props> = observer(({ prefix, label }) => {
 	const { t } = useTranslationStore();
-	console.log(`/${prefix}/${label}`);
 	return (
 		<NavLink exact to={`/${prefix}/${label}`} activeClassName="active">
 			<li>{t(label)}</li>

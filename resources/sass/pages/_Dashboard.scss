@@ -1,9 +1,20 @@
 .DashboardPage {
+	.dashboard {
+		h1 {
+			margin: $default-margin 0;
+		}
+	}
 	.offers,
 	.requests {
 		margin: 30px auto;
 		table {
 			margin: $default-half-margin 0;
+		}
+
+		.ExchangeOffers {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
 		}
 	}
 	.latest-match {

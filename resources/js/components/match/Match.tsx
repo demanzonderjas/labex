@@ -35,6 +35,8 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const offerSpecs = createMatchSpecs(offerFields, requestFields);
 	const requestSpecs = createMatchSpecs(requestFields, offerFields);
 
+	console.log("fields", requestFields);
+
 	const percentage = getMatchingPercentage(match.exchange_offer, requestFields, offerFields);
 	const linkFilters = createQueryStringFromFilters(requestFields);
 
