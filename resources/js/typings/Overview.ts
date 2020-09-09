@@ -68,3 +68,9 @@ export enum MatchType {
 	Requests = "requests",
 	Offers = "offers"
 }
+
+export enum TDashboardOverview {
+	Requests = "requests",
+	Offers = "offers",
+	Matches = "matches"
+}
