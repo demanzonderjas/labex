@@ -29,10 +29,12 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 		<div className="MatchCard">
 			<div className="header">
 				<UserProfile user={user} mine={mine} />
-				<div className={cx("match-label", { mine, [status]: true })}>
-					{mine && <span>{t(`${matchType}_by_you`)}</span>}
-					{!mine && status && <span>{t(`${status}_label`)}</span>}
-				</div>
+				{matchType != MatchType.Admin && (
+					<div className={cx("match-label", { mine, [status]: true })}>
+						{mine && <span>{t(`${matchType}_by_you`)}</span>}
+						{!mine && status && <span>{t(`${status}_label`)}</span>}
+					</div>
+				)}
 			</div>
 			<div className="specs">
 				{specs

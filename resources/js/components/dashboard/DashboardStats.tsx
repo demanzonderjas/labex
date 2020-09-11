@@ -30,7 +30,7 @@ export const DashboardStats: React.FC = React.memo(() => {
 					<span className="matches">
 						<span className="number">{stats.matches}</span>
 						<br />
-						{t("matches")}
+						{stats.matches === 1 ? t("match") : t("matches")}
 					</span>
 					<PieChart
 						percentages={[stats.requests, stats.offers]}

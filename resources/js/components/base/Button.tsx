@@ -50,7 +50,12 @@ export const ConfirmButton: React.FC<Props> = (props: Props) => {
 };
 
 export const DangerButton: React.FC<Props> = (props: Props) => {
-	return <Button {...props} classes={{ danger: true }} />;
+	return (
+		<Button
+			{...props}
+			classes={props.classes ? { ...props.classes, danger: true } : { danger: true }}
+		/>
+	);
 };
 
 export const SecondaryButton: React.FC<Props> = (props: Props) => {

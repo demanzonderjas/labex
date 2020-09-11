@@ -14,6 +14,7 @@ import { ExchangeRequestMatchCard } from "../../data/forms/ExchangeRequest";
 import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
 import { useHistory } from "react-router-dom";
+import cx from "classnames";
 
 type Props = {
 	match: TMatch;
@@ -38,10 +39,10 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const percentage = getMatchingPercentage(match.exchange_offer, requestFields, offerFields);
 	const linkFilters = createQueryStringFromFilters(requestFields);
 
-	const otherMatchType = matchType == MatchType.Requests ? MatchType.Offers : MatchType.Requests;
+	const otherMatchType = matchType != MatchType.Admin ? MatchType.Offers : MatchType.Requests;
 
 	return (
-		<div className="Match">
+		<div className="MatchCards">
 			<h3>
 				{t(status)} ({dateString})
 			</h3>
@@ -50,17 +51,22 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				<Percentage matchPercentage={percentage} />
 			</div>
 			<div
-				className="cards"
-				onClick={() =>
-					history.push(`/app/offers/select/${match.exchange_offer.id}${linkFilters}`)
+				className={cx("cards", { admin: matchType === MatchType.Admin })}
+				onClick={
+					matchType != MatchType.Admin
+						? () =>
+								history.push(
+									`/app/offers/select/${match.exchange_offer.id}${linkFilters}`
+								)
+						: undefined
 				}
 			>
 				<MatchCard
 					matchType={matchType}
-					mine={true}
-					specs={matchType == MatchType.Requests ? requestSpecs : offerSpecs}
+					mine={matchType != MatchType.Admin}
+					specs={matchType != MatchType.Offers ? requestSpecs : offerSpecs}
 					user={
-						matchType == MatchType.Requests
+						matchType != MatchType.Offers
 							? match.exchange_request.user
 							: match.exchange_offer.user
 					}
@@ -69,9 +75,9 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				<MatchCard
 					mine={false}
 					matchType={otherMatchType}
-					specs={matchType == MatchType.Requests ? offerSpecs : requestSpecs}
+					specs={matchType != MatchType.Offers ? offerSpecs : requestSpecs}
 					user={
-						matchType == MatchType.Requests
+						matchType == MatchType.Offers
 							? match.exchange_offer.user
 							: match.exchange_request.user
 					}

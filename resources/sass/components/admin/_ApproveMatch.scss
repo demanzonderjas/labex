@@ -1,17 +1,14 @@
-.AdminMatch {
-	display: flex;
-	align-items: center;
+.ApproveMatchOverview {
+	&.message {
+		padding: 20px 0;
+		font-size: 16px;
+	}
+}
 
-	.ApproveButtons {
-		display: flex;
-		flex: 2 1 auto;
-
-		.Button {
-			margin-right: 20px;
-
-			button {
-				width: 200px;
-			}
-		}
+.ApproveButtons {
+	margin: -30px 0 0;
+	text-align: center;
+	.Button {
+		margin-right: 20px;
 	}
 }

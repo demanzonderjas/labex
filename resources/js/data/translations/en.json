@@ -163,5 +163,7 @@
 	"for_animals_tissues": "For animals & animal tissues",
 	"matches": "Matches",
 	"requests_vs_offers": "Requests vs. offers",
-	"match_amount_lives_saved": "Match amount (lives saved)"
+	"match_amount_lives_saved": "Match amount (lives saved)",
+	"approve_match": "Do you approve of this match?",
+	"no_matches_to_judge": "No matches to judge"
 }

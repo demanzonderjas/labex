@@ -12,8 +12,8 @@ type Props = {
 
 export const Match: React.FC<Props> = ({ match }) => {
 	return (
-		<div className="Match" key={match.id}>
-			<MatchCards match={match} matchType={MatchType.Requests} />
+		<div className="AdminMatch" key={match.id}>
+			<MatchCards match={match} matchType={MatchType.Admin} />
 			<ApproveButtons matchId={match.id} />
 		</div>
 	);
