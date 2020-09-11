@@ -5,9 +5,11 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 type Props = {
 	percentages: number[];
+	colors: string[];
+	labels?: string[];
 };
 
-export const PieChart: React.FC<Props> = ({ percentages }) => {
+export const PieChart: React.FC<Props> = ({ percentages, colors, labels }) => {
 	const canvasRef = useRef(null);
 	const { t } = useTranslationStore();
 
@@ -20,14 +22,13 @@ export const PieChart: React.FC<Props> = ({ percentages }) => {
 					{
 						borderWidth: 0,
 						data: percentages,
-						backgroundColor: MATCH_CHART_COLORS
+						backgroundColor: colors
 					}
-				]
+				],
+				labels: labels ? labels.map(label => t(label)) : null
 			},
 			options: {
-				tooltips: {
-					enabled: false
-				},
+				cutoutPercentage: 75,
 				events: []
 			}
 		});

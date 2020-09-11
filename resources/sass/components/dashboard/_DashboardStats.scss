@@ -1,0 +1,60 @@
+.DashboardStats {
+	@extend .layout-wrapper;
+	padding-top: $default-margin;
+	border-top: 1px solid $grey-light;
+	margin-top: $default-margin !important;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+
+	.card {
+		padding: 20px;
+		position: relative;
+		padding: $default-margin;
+		box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, 0.05);
+		text-align: center;
+		width: 285px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.matches {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			font-family: $font-primary;
+			font-size: 16px;
+			line-height: 20px;
+			margin-top: 30px;
+			color: $correct-color;
+
+			.number {
+				font-weight: bold;
+				font-size: 20px;
+			}
+		}
+
+		h3 {
+			font-weight: bold;
+			text-align: center;
+		}
+
+		h4 {
+			font-weight: bold;
+			font-size: 26px;
+			font-family: $font-primary;
+			color: $correct-color;
+		}
+
+		.PieChart {
+			canvas {
+				top: auto;
+				left: auto;
+				transform: none;
+				position: relative;
+			}
+		}
+	}
+}

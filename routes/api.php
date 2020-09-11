@@ -35,6 +35,8 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('my-matches', 'MatchController@user');
     Route::get('my-latest-match', 'MatchController@myLatest');
 
+    Route::get('dashboard-stats', 'StatsController@getDashboardStats');
+
     Route::group(['middleware' => VerifyAdmin::class], function () {
         Route::get('matches', 'MatchController@getAll');
         Route::post('matches/approve/{matchId}', 'MatchController@approve');

@@ -9,6 +9,7 @@ import { Percentage } from "../base/Percentage";
 import { fieldIsNotHidden, fieldMeetsDependencies } from "../../utils/filters/fields";
 import { Icon } from "../base/Image";
 import { SecondaryButton } from "../base/Button";
+import { MATCH_CHART_COLORS } from "../../data/configs/colors";
 
 type Props = {
 	fields: FormField[];
@@ -71,7 +72,10 @@ export const Specifications: React.FC<Props> = ({
 							<Spec key={match.id} {...match} fields={fields} />
 						))}
 				</div>
-				<PieChart percentages={[matchPercentage, 100 - matchPercentage]} />
+				<PieChart
+					percentages={[matchPercentage, 100 - matchPercentage]}
+					colors={MATCH_CHART_COLORS}
+				/>
 			</div>
 		</div>
 	);

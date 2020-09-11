@@ -17,6 +17,7 @@ import { moreDashboardInfoModal } from "../data/modals/info";
 import { useHistory } from "react-router-dom";
 import { DashboardOverview } from "../components/dashboard/DashboardOverview";
 import cx from "classnames";
+import { DashboardStats } from "../components/dashboard/DashboardStats";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
@@ -131,6 +132,7 @@ export const DashboardPage = observer(() => {
 									</div>
 								)}
 							</DashboardOverview>
+							<DashboardStats />
 						</div>
 					</div>
 				</div>

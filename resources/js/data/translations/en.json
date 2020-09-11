@@ -161,5 +161,7 @@
 	"see_all_my_matches": "View all my matches",
 	"exchange_platform": "Exchange platform",
 	"for_animals_tissues": "For animals & animal tissues",
-	"matches": "Matches"
+	"matches": "Matches",
+	"requests_vs_offers": "Requests vs. offers",
+	"match_amount_lives_saved": "Match amount (lives saved)"
 }
