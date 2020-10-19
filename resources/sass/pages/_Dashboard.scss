@@ -13,33 +13,4 @@
 			flex-wrap: wrap;
 		}
 	}
-
-	.submenu-with-overviews {
-		display: flex;
-		align-items: flex-start;
-		.submenu {
-			width: 150px;
-
-			h3 {
-				margin-bottom: $default-margin;
-				cursor: pointer;
-
-				&.active {
-					font-weight: bold;
-				}
-			}
-		}
-
-		.overviews {
-			width: calc(100% - 150px);
-		}
-	}
-
-	.DashboardOverview {
-		display: none;
-
-		&.active {
-			display: block;
-		}
-	}
 }

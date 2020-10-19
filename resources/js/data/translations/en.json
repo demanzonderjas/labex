@@ -184,5 +184,8 @@
 	"match_amount_lives_saved": "Match amount (lives saved)",
 	"approve_match": "Do you approve of this match?",
 	"no_matches_to_judge": "No matches to judge",
-	"faq": "FAQ"
+	"faq": "FAQ",
+	"faq_header": "Questions? Look here.",
+	"faq_intro": "We continuously update this FAQ to provide in answers to all your questions regarding the functionalities of our animals and tissues exchange platform.",
+	"table_of_contents": "Table of contents"
 }

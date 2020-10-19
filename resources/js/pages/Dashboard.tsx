@@ -15,7 +15,7 @@ import { Button } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { moreDashboardInfoModal } from "../data/modals/info";
 import { useHistory } from "react-router-dom";
-import { DashboardOverview } from "../components/dashboard/DashboardOverview";
+import { Overview } from "../components/dashboard/DashboardOverview";
 import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 
@@ -86,7 +86,7 @@ export const DashboardPage = observer(() => {
 							</h3>
 						</div>
 						<div className="overviews">
-							<DashboardOverview
+							<Overview
 								isActive={activeOverview === TDashboardOverview.Requests}
 							>
 								<div className="requests">
@@ -99,8 +99,8 @@ export const DashboardPage = observer(() => {
 										/>
 									</div>
 								</div>
-							</DashboardOverview>
-							<DashboardOverview
+							</Overview>
+							<Overview
 								isActive={activeOverview === TDashboardOverview.Offers}
 							>
 								<div className="offers">
@@ -113,8 +113,8 @@ export const DashboardPage = observer(() => {
 										/>
 									</div>
 								</div>
-							</DashboardOverview>
-							<DashboardOverview
+							</Overview>
+							<Overview
 								isActive={activeOverview === TDashboardOverview.Matches}
 							>
 								{match && (
@@ -131,7 +131,7 @@ export const DashboardPage = observer(() => {
 										/>
 									</div>
 								)}
-							</DashboardOverview>
+							</Overview>
 							<DashboardStats />
 						</div>
 					</div>
