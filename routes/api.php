@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\VerifyAdmin;
+use App\Http\Middleware\VerifyApiUserToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
+
+    Route::post('signups/store', 'SignupController@store')->withoutMiddleware(VerifyApiUserToken::class);
+
     Route::post('exchange-offers/store', 'ExchangeOfferController@store');
     Route::get('exchange-offers', 'ExchangeOfferController@getAll');
     Route::get('exchange-offers/my-latest', 'ExchangeOfferController@getMyLatest');

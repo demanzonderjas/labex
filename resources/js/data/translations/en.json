@@ -8,6 +8,7 @@
 	"sign_up": "Sign up",
 	"name": "Name",
 	"email": "E-mail address",
+	"successful_signup": "Your sign up has been processed! You will be contacted about your request soon.",
 	"match_steps": "Share animals & tissues in just three steps",
 	"steps_intro": "Preventing waste of animals & material is very important. We are here to help.",
 	"filter_existing": "Filter existing material",

@@ -84,6 +84,12 @@
 				font-weight: bold;
 				text-decoration: none;
 			}
+			.success {
+				background-color: $correct-color;
+				color: white;
+				padding: $default-half-margin;
+				margin: $default-half-margin 0;
+			}
 		}
 	}
 }
