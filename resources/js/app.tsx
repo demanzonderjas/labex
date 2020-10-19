@@ -19,6 +19,7 @@ import ModalStoreProvider from "./contexts/ModalContext";
 import { ModalStore } from "./stores/ModalStore";
 import { ModalWrapper } from "./components/base/ModalWrapper";
 import { SubmitRequestPage } from "./pages/SubmitRequest";
+import { HomePage } from "./pages/HomePage";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -33,8 +34,8 @@ const App: React.FC = () => {
 						<Header />
 						<div className="page-wrapper">
 							<Switch>
-								<Route path="/" exact={true}>
-									<DashboardPage />
+								<Route path="/app" exact={true}>
+									<HomePage />
 								</Route>
 								<Route path="/app/dashboard">
 									<DashboardPage />

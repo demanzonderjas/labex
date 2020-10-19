@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->to('/app/dashboard');
+    return redirect()->to('/app');
 });
 
 function fakeAdminLogin()
