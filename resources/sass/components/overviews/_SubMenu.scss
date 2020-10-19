@@ -6,6 +6,10 @@
 	.submenu {
 		width: 150px;
 
+		h2 {
+			margin-bottom: $default-margin;
+		}
+
 		h3 {
 			margin-bottom: $default-margin;
 			cursor: pointer;
@@ -25,6 +29,15 @@
 			&.active {
 				display: block;
 			}
+		}
+	}
+
+	&.faq {
+		.submenu {
+			width: 320px;
+		}
+		.overviews {
+			width: calc(100% - 320px);
 		}
 	}
 }

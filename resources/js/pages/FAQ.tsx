@@ -26,7 +26,7 @@ export const FAQPage: React.FC = () => {
             <PageIntro header="faq_header" >
                 <p>{t("faq_intro")}</p>
             </PageIntro>
-            <div className="submenu-with-overviews">
+            <div className="submenu-with-overviews faq">
                 <div className="submenu">
                     <h2>{t("table_of_contents")}</h2>
                     {categories.map((category) => 
