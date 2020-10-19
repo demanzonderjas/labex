@@ -34,9 +34,6 @@ const App: React.FC = () => {
 						<Header />
 						<div className="page-wrapper">
 							<Switch>
-								<Route path="/app" exact={true}>
-									<HomePage />
-								</Route>
 								<Route path="/app/dashboard">
 									<DashboardPage />
 								</Route>

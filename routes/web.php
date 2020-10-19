@@ -20,6 +20,11 @@ Route::get('/', function () {
     return redirect()->to('/app');
 });
 
+Route::get('/app', function () {
+    fakeAdminLogin();
+    return view('index');
+});
+
 function fakeAdminLogin()
 {
     $user = User::where('is_admin', true)->first();
@@ -35,5 +40,5 @@ Route::group(['middleware' => VerifyAdmin::class], function () {
 
 Route::fallback(function () {
     fakeAdminLogin();
-    return view('welcome');
+    return view('dashboard');
 });
