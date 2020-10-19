@@ -1,0 +1,35 @@
+.HomePage {
+	display: flex;
+	.column {
+		position: relative;
+		width: 50%;
+		height: 100vh;
+
+		&.info {
+			background-color: $grey-light;
+		}
+
+		.layout-wrapper {
+			max-width: calc(#{$layout-wrapper-width} / 2);
+		}
+
+		.LoginForm {
+			box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.05);
+			padding: 50px;
+
+			h1 {
+				margin-bottom: $default-half-margin;
+				line-height: 48px;
+			}
+			.Button {
+				margin-top: $default-margin;
+				margin-bottom: $default-half-margin;
+			}
+			a {
+				color: $correct-color;
+				font-weight: bold;
+				text-decoration: none;
+			}
+		}
+	}
+}
