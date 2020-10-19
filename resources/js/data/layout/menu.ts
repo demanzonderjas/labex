@@ -1,4 +1,4 @@
-export const menuItems = ["dashboard", "offers", "requests", "my-matches"];
+export const menuItems = ["dashboard", "offers", "requests", "my-matches", "faq"];
 
 export const adminMenuItems = ["dashboard", "possible-matches"];
 

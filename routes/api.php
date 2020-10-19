@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('my-latest-match', 'MatchController@myLatest');
 
     Route::get('dashboard-stats', 'StatsController@getDashboardStats');
+    Route::get('faq', 'FaqController@getByCategory');
 
     Route::group(['middleware' => VerifyAdmin::class], function () {
         Route::get('matches', 'MatchController@getAll');

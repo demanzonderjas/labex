@@ -20,6 +20,7 @@ import { ModalStore } from "./stores/ModalStore";
 import { ModalWrapper } from "./components/base/ModalWrapper";
 import { SubmitRequestPage } from "./pages/SubmitRequest";
 import { HomePage } from "./pages/HomePage";
+import { FAQPage } from "./pages/FAQ";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -57,6 +58,9 @@ const App: React.FC = () => {
 								</Route>
 								<Route path="/app/submit-request">
 									<SubmitRequestPage />
+								</Route>
+								<Route path="/app/faq" exact={true}>
+									<FAQPage />
 								</Route>
 							</Switch>
 						</div>
