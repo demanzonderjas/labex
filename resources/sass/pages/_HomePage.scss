@@ -7,6 +7,60 @@
 
 		&.info {
 			background-color: $grey-light;
+
+			.info-steps {
+				margin-top: $header-height;
+
+				h3 {
+					font-weight: bold;
+					font-size: 18px;
+					margin-bottom: $default-margin;
+				}
+				.intro,
+				.step h4 {
+					font-size: 16px;
+					font-family: $font-header;
+				}
+				p {
+					font-family: $font-header;
+				}
+				.steps {
+					margin-top: 32px;
+					.step {
+						position: relative;
+						padding-left: 64px;
+						padding-bottom: 16px;
+						.number {
+							display: flex;
+							position: absolute;
+							top: 0;
+							left: 0;
+							transform: translateY(-25%);
+							justify-content: center;
+							align-items: center;
+							border-radius: 50%;
+							width: 30px;
+							height: 30px;
+							background-color: $primary;
+							font-weight: bold;
+						}
+						p {
+							margin-top: $default-half-margin;
+						}
+						&:not(:last-child) {
+							&:before {
+								content: "";
+								height: 100%;
+								width: 1px;
+								background-color: $primary;
+								position: absolute;
+								top: 0;
+								left: 15px;
+							}
+						}
+					}
+				}
+			}
 		}
 
 		.layout-wrapper {
