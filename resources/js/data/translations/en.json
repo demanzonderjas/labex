@@ -6,6 +6,8 @@
 	"dont_have_account": "Don't have an account?",
 	"already_have_account": "Already have an account?",
 	"sign_up": "Sign up",
+	"name": "Name",
+	"email": "E-mail address",
 	"match_steps": "Share animals & tissues in just three steps",
 	"steps_intro": "Preventing waste of animals & material is very important. We are here to help.",
 	"filter_existing": "Filter existing material",

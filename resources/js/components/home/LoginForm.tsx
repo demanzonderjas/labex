@@ -6,7 +6,7 @@ import { SignUpState } from "./SignupState";
 enum HomePageState { LOGIN, SIGN_UP };
 
 export const LoginForm: React.FC = () => {
-    const [page, setPage] = useState<HomePageState>(HomePageState.LOGIN);
+    const [page, setPage] = useState<HomePageState>(HomePageState.SIGN_UP);
 
     return (
         <div className="LoginForm layout-wrapper">

@@ -10,3 +10,12 @@ export const API: AxiosInstance = axios.create({
 		"X-API-USER-TOKEN": getMeta("api-user-token")
 	}
 });
+
+export const ExternalAPI: AxiosInstance = axios.create({
+	baseURL: `${env.baseUrl}/api/`,
+	timeout: 5000,
+	headers: {
+		"X-CSRF-TOKEN": getMeta("csrf-token"),
+	}
+});
+

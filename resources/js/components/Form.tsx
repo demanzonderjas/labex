@@ -19,10 +19,11 @@ type Props = {
 	hideSubmit?: boolean;
 	matchable: boolean;
 	intro: string;
+	fullWidthFields?: boolean;
 };
 
 export const Form: React.FC<Props> = observer(
-	({ header, intro, submitLabel = "submit", matchable, hideSubmit }) => {
+	({ header, intro, submitLabel = "submit", matchable, hideSubmit, fullWidthFields }) => {
 		const {
 			fields,
 			activeFields,
@@ -31,15 +32,15 @@ export const Form: React.FC<Props> = observer(
 			isLoading,
 			serverError,
 			isCollapsed,
-			resetForm
+			resetForm,
 		} = useFormStore();
 		const { t } = useTranslationStore();
 		return (
-			<div className={cx("Form", { collapsed: isCollapsed })}>
-				<PageIntro header={header}>
+			<div className={cx("Form", { collapsed: isCollapsed, "full-width-fields": !!fullWidthFields })}>
+				{header &&<PageIntro header={header}>
 					{intro && <p>{t(intro)}</p>}
 					{matchable && <TotalMatchesFound />}
-				</PageIntro>
+				</PageIntro>}
 				<div className="layout-wrapper">
 					{matchable && <ActiveFilters />}
 					{matchable && (

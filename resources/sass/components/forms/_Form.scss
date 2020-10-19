@@ -83,4 +83,10 @@
 			}
 		}
 	}
+
+	&.full-width-fields {
+		form .fields .FormFieldWithLabel {
+			width: 100%;
+		}
+	}
 }

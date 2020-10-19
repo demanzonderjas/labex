@@ -2,8 +2,8 @@ import React from "react";
 import { TSpecMatch } from "./Sample";
 
 export type TForm = {
-	header: string;
-	intro: string;
+	header?: string;
+	intro?: string;
 	submitLabel?: string;
 	fields: FormField[];
 	matchable?: boolean;
@@ -11,12 +11,14 @@ export type TForm = {
 	handler: Function;
 	handleSuccess?: Function;
 	handleUpdate?: Function;
+	fullWidthFields?: boolean;
 };
 
 export enum InputType {
 	Number = "number",
 	Text = "text",
-	Date = "date"
+	Date = "date",
+	Email = "email"
 }
 
 export interface FormFieldData {
