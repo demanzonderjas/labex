@@ -9,7 +9,7 @@ export const LoginForm: React.FC = () => {
     const [page, setPage] = useState<HomePageState>(HomePageState.LOGIN);
 
     return (
-        <div className="LoginForm layout-wrapper">
+        <div className="LoginForm">
            {page == HomePageState.LOGIN && <LoginState switchPage={() => setPage(HomePageState.SIGN_UP)} />} 
            {page == HomePageState.SIGN_UP && <SignUpState switchPage={() => setPage(HomePageState.LOGIN)} />} 
         </div>

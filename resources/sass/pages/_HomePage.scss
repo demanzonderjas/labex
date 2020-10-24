@@ -1,13 +1,36 @@
 .HomePage {
-	display: flex;
+	position: relative;
+	min-height: 100vh;
+	.bg {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: white;
+
+		.bg-color-2 {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 50%;
+			height: 100%;
+			background-color: $grey-light;
+		}
+	}
+
+	.layout-wrapper {
+		display: flex;
+	}
+
 	.column {
 		position: relative;
 		width: 50%;
 		height: 100vh;
+		padding: 50px 100px 0 0;
 
 		&.info {
-			background-color: $grey-light;
-
+			padding: 50px 0 0 100px;
 			.info-steps {
 				margin-top: $header-height;
 
@@ -61,10 +84,6 @@
 					}
 				}
 			}
-		}
-
-		.layout-wrapper {
-			max-width: calc(#{$layout-wrapper-width} / 2);
 		}
 
 		.LoginForm {

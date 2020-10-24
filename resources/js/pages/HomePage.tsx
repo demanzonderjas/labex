@@ -8,12 +8,16 @@ export const HomePage: React.FC = () => {
     
     return (
         <div className="HomePage">
-            <div className="column login">
-                <HomePageHeader />
-                <LoginForm />
+            <div className="bg">
+                <div className="bg-color-2" />
             </div>
-            <div className="column info">
-                <div className="info-steps layout-wrapper">
+            <div className="layout-wrapper">
+                <div className="column login">
+                    <HomePageHeader />
+                    <LoginForm />
+                </div>
+                <div className="column info">
+                <div className="info-steps">
                     <h3>{t("match_steps")}</h3>
                     <p className="intro">{t("steps_intro")}</p>
                     <div className="steps">
@@ -34,6 +38,7 @@ export const HomePage: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )
