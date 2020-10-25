@@ -8,6 +8,8 @@ class FaqItem extends Model
 {
     protected $appends = ['category'];
 
+    protected $fillable = ["title", "content", "show"];
+
     public function faqCategory() {
         return $this->belongsTo(FaqCategory::class);
     }

@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
-import { faqItemCells, faqItemColumns } from "../../data/tables/faq";
+import { faqItemColumns } from "../../data/tables/faq";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { getFaqItems } from "../../queries/admin/getFaqItems";
 import { mapFaqItemsToOverviewData } from "../../utils/formatting/faq";

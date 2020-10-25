@@ -36,6 +36,10 @@ Route::group(['middleware' => VerifyAdmin::class], function () {
         fakeAdminLogin();
         return view('admin');
     });
+     Route::get('/admin/{page?}/{action?}/{id?}', function () {
+        fakeAdminLogin();
+        return view('admin');
+    });
 });
 
 Route::fallback(function () {

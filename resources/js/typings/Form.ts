@@ -28,6 +28,12 @@ export interface FormFieldData {
 	validate?: Function;
 }
 
+export interface SelectFieldData extends FormFieldData {
+	options: string[];
+	allowOther: boolean;
+	startsEmpty: boolean;
+}
+
 export interface FormField extends FormFieldData {
 	Component: React.FC;
 	props: any;

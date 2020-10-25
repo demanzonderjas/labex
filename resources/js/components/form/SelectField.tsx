@@ -1,20 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
-import { FormFieldData } from "../../typings/Form";
+import { FormFieldData, SelectFieldData } from "../../typings/Form";
 import { SelectOption } from "./SelectOption";
 import { LocalImage } from "../base/Image";
 import cx from "classnames";
 import { OtherOption } from "./custom-fields/OtherOption";
 import { blockEnter } from "../../utils/dom/keyboard";
 
-interface Props extends FormFieldData {
-	options: string[];
-	allowOther: boolean;
-	startsEmpty: boolean;
-}
-
-export const SelectField: React.FC<Props> = observer(
+export const SelectField: React.FC<SelectFieldData> = observer(
 	({ id, value, options, startsEmpty, allowOther }) => {
 		const { setFieldValue } = useFormStore();
 		const [showOtherField, setShowOtherField] = useState(false);

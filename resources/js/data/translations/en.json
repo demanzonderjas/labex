@@ -188,5 +188,11 @@
 	"faq": "FAQ",
 	"faq_header": "Questions? Look here.",
 	"faq_intro": "We continuously update this FAQ to provide in answers to all your questions regarding the functionalities of our animals and tissues exchange platform.",
-	"table_of_contents": "Table of contents"
+	"table_of_contents": "Table of contents",
+	"edit": "Edit",
+	"category": "Category",
+	"content": "Content",
+	"show": "Show?",
+	"title": "Title",
+	"id": "ID"
 }
