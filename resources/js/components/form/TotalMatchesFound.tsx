@@ -11,8 +11,10 @@ export const TotalMatchesFound: React.FC = observer(() => {
 		return null;
 	}
 
+	const refElem = document.querySelector(".overview h1");
+
 	return (
-		<div className="TotalMatchesFound">
+		<div className="TotalMatchesFound" onClick={refElem ? () => refElem.scrollIntoView({ behavior: "smooth" }) : undefined}>
 			{totalMatches} {t("matches_were_found")}
 		</div>
 	);
