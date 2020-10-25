@@ -10,6 +10,7 @@ import { AdminDashboardPage } from "./pages/admin/Dashboard";
 import { Sidebar } from "./components/admin/Sidebar";
 import { AdminFAQPage } from "./pages/admin/FAQ";
 import { FAQEditPage } from "./pages/admin/FAQEdit";
+import { FAQCreatePage } from "./pages/admin/FAQCreate";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -31,6 +32,9 @@ const App: React.FC = () => {
 							</Route>
 							<Route path="/admin/faq" exact={true}>
 								<AdminFAQPage />
+							</Route>
+							<Route path="/admin/faq/create" exact={true}>
+								<FAQCreatePage />
 							</Route>
 							<Route path="/admin/faq/edit/:id" exact={true}>
 								<FAQEditPage />

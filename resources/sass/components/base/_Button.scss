@@ -108,4 +108,8 @@
 .button-wrapper {
 	display: flex;
 	margin: 70px auto 70px;
+
+	&.margin-20 {
+		margin: 20px auto 20px;
+	}
 }

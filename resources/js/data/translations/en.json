@@ -194,5 +194,6 @@
 	"content": "Content",
 	"show": "Show?",
 	"title": "Title",
-	"id": "ID"
+	"id": "ID",
+	"create_faq_item": "Create FAQ Item"
 }

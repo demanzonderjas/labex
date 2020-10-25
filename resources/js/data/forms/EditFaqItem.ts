@@ -1,3 +1,4 @@
+import { createFaqItem } from "../../queries/admin/createFaqItem";
 import { editFaqItem } from "../../queries/admin/editFaqItem";
 import { TForm } from "../../typings/Form";
 import { categoryField } from "./fields/faq/category";
@@ -15,5 +16,16 @@ export const EditFaqItemForm: TForm = {
         showField
     ],
     handler: editFaqItem,
+    fullWidthFields: true
+}
+
+export const CreateFaqItemForm: TForm = {
+    fields: [
+        titleField,
+        contentField,
+        categoryField,
+        showField
+    ],
+    handler: createFaqItem,
     fullWidthFields: true
 }

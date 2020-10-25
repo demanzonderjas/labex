@@ -1,5 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Button } from "../../components/base/Button";
 import { faqItemColumns } from "../../data/tables/faq";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { getFaqItems } from "../../queries/admin/getFaqItems";
@@ -7,7 +9,8 @@ import { mapFaqItemsToOverviewData } from "../../utils/formatting/faq";
 
 export const AdminFAQPage = observer(() => {
     const { t } = useTranslationStore();
-    const [faqItems, setFaqItems] = useState([]);
+	const [faqItems, setFaqItems] = useState([]);
+	const history = useHistory();
 
     useEffect(() => {
         (async () => {
@@ -21,6 +24,12 @@ export const AdminFAQPage = observer(() => {
 	return (
         <div className="AdminFAQPage">
             <h1>{t("faq")}</h1>
+			<div className="button-wrapper margin-20">
+				<Button
+					label="create_faq_item"
+					handleClick={() => history.push("/admin/faq/create")}
+				/>
+			</div>
             <table>
 				<thead>
 					<tr>

@@ -98,13 +98,14 @@ export class FormStore {
 			const response = await this.handler(data);
 			if (!response.success) {
 				this.serverError = response.message;
-			} else {
-				this.resetForm();
-				this.handleSuccess(response);
-			}
-			setTimeout(() => {
 				this.setIsLoading(false);
-			}, 1000);
+			} else {
+				setTimeout(() => {
+					this.setIsLoading(false);
+					this.resetForm();
+					this.handleSuccess(response);
+				}, 1000);
+			}
 		} else {
 			console.log(this.errors, this.serverError);
 		}
