@@ -44,6 +44,8 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::group(['middleware' => VerifyAdmin::class], function () {
         Route::get('matches', 'MatchController@getAll');
+        Route::get('faq-items', 'FaqController@getAllItems');
+        Route::post('faq-items/delete/{itemId}', 'FaqController@deleteItem');
         Route::post('matches/approve/{matchId}', 'MatchController@approve');
         Route::post('matches/reject/{matchId}', 'MatchController@reject');
     });

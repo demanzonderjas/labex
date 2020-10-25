@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PossibleMatches } from "./pages/admin/PossibleMatches";
 import { AdminDashboardPage } from "./pages/admin/Dashboard";
 import { Sidebar } from "./components/admin/Sidebar";
+import { AdminFAQPage } from "./pages/admin/FAQ";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -26,6 +27,9 @@ const App: React.FC = () => {
 							</Route>
 							<Route path="/admin/possible-matches" exact={true}>
 								<PossibleMatches />
+							</Route>
+							<Route path="/admin/faq" exact={true}>
+								<AdminFAQPage />
 							</Route>
 						</Switch>
 					</div>
