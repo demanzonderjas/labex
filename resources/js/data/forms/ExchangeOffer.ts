@@ -65,7 +65,6 @@ export const ExchangeRequestsFilter: TForm = {
 		killMethodField,
 		amountRequestedField
 	],
-	hideSubmit: true,
 	handler: sendExchangeOffer,
 	matchable: true
 };

@@ -55,7 +55,8 @@ export const ExchangeRequestSpecs: TForm = {
 	header: "requests",
 	intro: "requests_intro",
 	fields: specFields,
-	hideSubmit: true
+	submitLabel: "submit_my_offer",
+	hideSubmit: false 
 };
 
 export const ExchangeRequestMatch: TForm = {

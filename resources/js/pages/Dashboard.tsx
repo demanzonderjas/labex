@@ -52,7 +52,7 @@ export const DashboardPage = observer(() => {
 					<p className="layout-wrapper">{t("dashboard_intro")}</p>
 					<Button
 						label="more_info"
-						handleClick={() => setModal(moreDashboardInfoModal)}
+						handleClick={() => history.push("/app/faq")}
 						classes={{ inline: true }}
 					/>
 				</TwoColumnPageIntro>
