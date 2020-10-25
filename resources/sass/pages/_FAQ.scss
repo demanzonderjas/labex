@@ -3,8 +3,51 @@
 		padding: 50px 0;
 
 		.item {
-			padding: 20px 0;
+			padding: 0 0 0 40px;
 			border-bottom: 1px solid $grey-light-medium;
+			position: relative;
+			padding-bottom: 20px;
+			margin: 0 0 30px;
+
+			h3 {
+				font-weight: bold;
+				font-size: 16px;
+				line-height: 24px;
+				margin-bottom: 10px;
+				cursor: pointer;
+			}
+
+			> .icon-wrapper {
+				position: absolute;
+				top: 4px;
+				left: 0;
+				cursor: pointer;
+			}
+
+			.content {
+				overflow: hidden;
+				max-height: 0;
+				transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+
+				ul {
+					list-style-type: disc;
+					list-style-position: inside;
+				}
+
+				p,
+				ul,
+				ol {
+					font-size: 16px;
+					line-height: 25px;
+				}
+			}
+
+			&.open {
+				.content {
+					max-height: 900px;
+					transition: max-height 1s ease-in-out;
+				}
+			}
 		}
 	}
 }

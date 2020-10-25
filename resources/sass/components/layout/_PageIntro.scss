@@ -5,6 +5,10 @@
 	h1 {
 		margin-bottom: $default-margin;
 		color: $grey-medium;
+
+		&.bold {
+			font-weight: bold;
+		}
 	}
 
 	p {

@@ -80,6 +80,12 @@ table {
 
 					.Percentage {
 						color: $highlight-text-color;
+
+						&.correct {
+							.bar .completed {
+								background-color: $highlight-text-color;
+							}
+						}
 					}
 
 					button {

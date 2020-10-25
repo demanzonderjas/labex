@@ -4,6 +4,8 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getFAQ } from "../queries/getFaq";
 import cx from 'classnames';
 import { Overview } from "../components/dashboard/DashboardOverview";
+import { Icon } from "../components/base/Image";
+import { FAQItem } from "./FAQItem";
 
 export const FAQPage: React.FC = () => {
     const [categories, setCategories] = useState([]);
@@ -23,7 +25,7 @@ export const FAQPage: React.FC = () => {
 
     return (
         <div className="FAQPage">
-            <PageIntro header="faq_header" >
+            <PageIntro header="faq_header" paddingLeft={320} boldHeader={true} >
                 <p>{t("faq_intro")}</p>
             </PageIntro>
             <div className="submenu-with-overviews faq">
@@ -45,10 +47,7 @@ export const FAQPage: React.FC = () => {
                     {categories.map((category) =>
                         <Overview isActive={category.name == activeCategory} key={category.name}>
                             {category.faq_items.map((item) =>
-                                <div className="item" key={item.id}>
-                                    <h3>{item.title}</h3>
-                                    <div className="content" dangerouslySetInnerHTML={{ __html: item.content }} />
-                                </div>
+                                <FAQItem item={item} key={item.id} />
                             )}
                         </Overview>
                     )}

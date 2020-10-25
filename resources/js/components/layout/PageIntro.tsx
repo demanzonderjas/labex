@@ -1,16 +1,19 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import cx from 'classnames';
 
 type Props = {
 	header: string;
+	paddingLeft?: number;
+	boldHeader?: boolean;
 };
 
-export const PageIntro: React.FC<Props> = ({ header, children }) => {
+export const PageIntro: React.FC<Props> = ({ header, children, paddingLeft = 0, boldHeader = false }) => {
 	const { t } = useTranslationStore();
 	return (
 		<div className="PageIntro">
-			<div className="layout-wrapper">
-				<h1>{t(header)}</h1>
+			<div className="layout-wrapper" style={{ paddingLeft: `${paddingLeft}px` }}>
+				<h1 className={cx({ bold: boldHeader })}>{t(header)}</h1>
 				{children}
 			</div>
 		</div>
