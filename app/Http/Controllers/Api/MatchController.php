@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\ExchangeOffer;
+use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
+use App\Mail\MatchMadeEmail;
 use App\Match;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MatchController extends Controller
 {
@@ -36,6 +40,11 @@ class MatchController extends Controller
         $match->exchange_offer_id = $offerId;
         $match->exchange_request_id = $requestId;
         $match->save();
+
+        $offer = ExchangeOffer::find($offerId);
+        $request = ExchangeRequest::find($requestId);
+        Mail::to($offer->user)->send(new MatchMadeEmail($match));
+        Mail::to($request->user)->send(new MatchMadeEmail($match));
 
         return $match;
     }
