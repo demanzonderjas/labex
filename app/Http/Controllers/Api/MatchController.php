@@ -43,8 +43,8 @@ class MatchController extends Controller
 
         $offer = ExchangeOffer::find($offerId);
         $request = ExchangeRequest::find($requestId);
-        Mail::to($offer->user)->send(new MatchMadeEmail($match));
-        Mail::to($request->user)->send(new MatchMadeEmail($match));
+        Mail::to($offer->user)->queue(new MatchMadeEmail($match, $offer->user));
+        Mail::to($request->user)->queue(new MatchMadeEmail($match, $request->user));
 
         return $match;
     }

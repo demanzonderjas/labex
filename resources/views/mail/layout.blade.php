@@ -85,11 +85,13 @@
         line-height: inherit;
       }
       .btn-primary table td:hover {
-        background-color: #34495e !important;
+        background-color: #000000 !important;
+        color: #ffffff !important;
       }
       .btn-primary a:hover {
-        background-color: #34495e !important;
-        border-color: #34495e !important;
+        background-color: #000000 !important;
+        border-color: #000000 !important;
+        color: #ffffff !important;
       }
     }
     </style>
@@ -108,6 +110,7 @@
               <!-- START MAIN CONTENT AREA -->
               <tr>
                 <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;">
+                  <p>Hi @yield('name'),</p>
                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
@@ -119,7 +122,7 @@
                                 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                                   <tbody>
                                     <tr>
-                                      <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;"> <a href="@yield('cta-link')" target="_blank" style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">@yield('cta-text')</a> </td>
+                                      <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #ffcd00; border-radius: 5px; text-align: center;"> <a href="@yield('cta-link')" target="_blank" style="display: inline-block; color: #000000; background-color: #ffcd00; border: solid 1px #ffcd00; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #ffcd00;">@yield('cta-text')</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
