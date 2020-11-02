@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\ExchangeOffer;
 use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
+use App\Mail\Admin\AdminMatchMadeEmail;
+use App\Mail\MatchApprovedEmail;
+use App\Mail\MatchDeclinedEmail;
 use App\Mail\MatchMadeEmail;
 use App\Match;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -46,6 +50,11 @@ class MatchController extends Controller
         Mail::to($offer->user)->queue(new MatchMadeEmail($match, $offer->user));
         Mail::to($request->user)->queue(new MatchMadeEmail($match, $request->user));
 
+        $admins = User::whereIsAdmin()->get();
+        foreach ($admins as $admin) {
+            Mail::to($admin)->queue(new AdminMatchMadeEmail($match, $admin));
+        }
+
         return $match;
     }
 
@@ -58,6 +67,10 @@ class MatchController extends Controller
         $match->awaiting_approval = false;
         $match->approved = true;
         $match->save();
+
+        Mail::to($match->exchangeOffer->user)->queue(new MatchApprovedEmail($match, $match->exchangeOffer->user));
+        Mail::to($match->exchangeRequest->user)->queue(new MatchApprovedEmail($match, $match->exchangeRequest->user));
+
         return response()->json(["success" => true]);
     }
 
@@ -69,6 +82,10 @@ class MatchController extends Controller
         }
         $match->awaiting_approval = false;
         $match->save();
+
+        Mail::to($match->exchangeOffer->user)->queue(new MatchDeclinedEmail($match, $match->exchangeOffer->user));
+        Mail::to($match->exchangeRequest->user)->queue(new MatchDeclinedEmail($match, $match->exchangeRequest->user));
+
         return response()->json(["success" => true]);
     }
 }

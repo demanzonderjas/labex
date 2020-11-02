@@ -8,7 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MatchMadeEmail extends Mailable
+class MatchDeclinedEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,6 +33,6 @@ class MatchMadeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.match-made')->subject("ATEX - A new match has been made!");
+        return $this->view('mail.match-declined')->subject("ATEX - Your match has been declined");
     }
 }
