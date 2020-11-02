@@ -195,5 +195,9 @@
 	"show": "Show?",
 	"title": "Title",
 	"id": "ID",
-	"create_faq_item": "Create FAQ Item"
+	"create_faq_item": "Create FAQ Item",
+	"signups": "Signups",
+	"approve": "Approve",
+	"block": "Block",
+	"delete": "Delete"
 }

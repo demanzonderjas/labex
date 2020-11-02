@@ -46,15 +46,22 @@ table {
 		}
 	}
 
-	th:first-child,
-	td:first-child {
-		padding-left: calc((100vw - #{$layout-wrapper-width}) / 2);
+	&:not(.not-centered) {
+		th:first-child,
+		td:first-child {
+			padding-left: calc((100vw - #{$layout-wrapper-width}) / 2);
+		}
+	
+		th:last-child,
+		td:last-child {
+			padding-right: calc((100vw - #{$layout-wrapper-width} - 20px) / 2);
+		}
 	}
 
-	th:last-child,
-	td:last-child {
-		padding-right: calc((100vw - #{$layout-wrapper-width} - 20px) / 2);
-	}
+	th:first-child,
+		td:first-child {
+			padding-left: 10px;
+		}
 
 	td:last-child {
 		text-align: left;

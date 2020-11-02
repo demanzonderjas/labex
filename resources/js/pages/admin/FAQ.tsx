@@ -30,7 +30,7 @@ export const AdminFAQPage = observer(() => {
 					handleClick={() => history.push("/admin/faq/create")}
 				/>
 			</div>
-            <table>
+            <table className="not-centered">
 				<thead>
 					<tr>
 						{faqItemColumns.map(column => (

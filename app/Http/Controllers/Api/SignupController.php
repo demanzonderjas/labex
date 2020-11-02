@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 
 class SignupController extends Controller
 {
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $signup = new Signup($request->all());
         $signup->save();
 
         return response()->json(["success" => true]);
+    }
+
+    public function getAll()
+    {
+        $signups = Signup::all();
+        return response()->json(["success" => true, "signups" => $signups->toArray()]);
     }
 }

@@ -11,6 +11,7 @@ import { Sidebar } from "./components/admin/Sidebar";
 import { AdminFAQPage } from "./pages/admin/FAQ";
 import { FAQEditPage } from "./pages/admin/FAQEdit";
 import { FAQCreatePage } from "./pages/admin/FAQCreate";
+import { SignupsPage } from "./pages/admin/Signups";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -29,6 +30,9 @@ const App: React.FC = () => {
 							</Route>
 							<Route path="/admin/possible-matches" exact={true}>
 								<PossibleMatches />
+							</Route>
+							<Route path="/admin/signups" exact={true}>
+								<SignupsPage />
 							</Route>
 							<Route path="/admin/faq" exact={true}>
 								<AdminFAQPage />

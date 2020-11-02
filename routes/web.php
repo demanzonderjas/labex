@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\VerifyAdmin;
+use App\Http\Middleware\VerifyAuthorized;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +46,4 @@ Route::group(['middleware' => VerifyAdmin::class], function () {
 Route::fallback(function () {
     fakeAdminLogin();
     return view('dashboard');
-});
+})->middleware(VerifyAuthorized::class);
