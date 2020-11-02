@@ -45,7 +45,7 @@ class ExchangeOfferController extends Controller
 
     public function getAll()
     {
-        $exchangeOffers = ExchangeOffer::doesntHave('match')->get();
+        $exchangeOffers = ExchangeOffer::doesntHave('match')->where('active', true)->get();
         return response()->json(["success" => true, "exchange_offers" => $exchangeOffers->toArray()]);
     }
 

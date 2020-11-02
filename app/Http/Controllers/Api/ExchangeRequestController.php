@@ -45,7 +45,7 @@ class ExchangeRequestController extends Controller
 
     public function getAll()
     {
-        $exchangeRequests = ExchangeRequest::doesntHave('match')->get();
+        $exchangeRequests = ExchangeRequest::doesntHave('match')->where('active', true)->get();
         return response()->json(["success" => true, "exchange_requests" => $exchangeRequests->toArray()]);
     }
 
