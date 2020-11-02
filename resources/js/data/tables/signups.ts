@@ -1,4 +1,7 @@
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
+import { ApproveButtonCell } from "../../components/overviews/table/custom/ApproveButtonCell";
+import { BlockButtonCell } from "../../components/overviews/table/custom/BlockButtonCell";
+import { DeleteSignupButtonCell } from "../../components/overviews/table/custom/DeleteSignupButtonCell";
 import { NameCell } from "../../components/overviews/table/NameCell";
 import { TextCell } from "../../components/overviews/table/TextCell";
 
@@ -42,16 +45,16 @@ export const signupCells = [
     {
 		id: "approve",
 		value: "",
-		Component: TextCell
+		Component: ApproveButtonCell 
     },
     {
 		id: "block",
 		value: "",
-		Component: TextCell
+		Component: BlockButtonCell
     },
     {
 		id: "delete",
 		value: "",
-		Component: TextCell
+		Component: DeleteSignupButtonCell
 	},
 ];

@@ -56,5 +56,8 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('matches/reject/{matchId}', 'MatchController@reject');
 
         Route::get('signups', 'SignupController@getAll');
+        Route::post('signups/approve/{signupId}', 'SignupController@approve');
+        Route::post('signups/decline/{signupId}', 'SignupController@decline');
+        Route::post('signups/delete/{signupId}', 'SignupController@delete');
     });
 });

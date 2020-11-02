@@ -21,4 +21,32 @@ class SignupController extends Controller
         $signups = Signup::all();
         return response()->json(["success" => true, "signups" => $signups->toArray()]);
     }
+
+    public function approve($signupId)
+    {
+        $signup = Signup::find($signupId);
+        $signup->awaiting_approval = false;
+        $signup->approved = true;
+        $signup->save();
+
+        return response()->json(["success" => true]);
+    }
+
+    public function decline($signupId)
+    {
+        $signup = Signup::find($signupId);
+        $signup->awaiting_approval = false;
+        $signup->approved = false;
+        $signup->save();
+
+        return response()->json(["success" => true]);
+    }
+
+    public function delete($signupId)
+    {
+        $signup = Signup::find($signupId);
+        $signup->delete();
+
+        return response()->json(["success" => true]);
+    }
 }
