@@ -16,7 +16,7 @@ class CreateSignupsTable extends Migration
         Schema::create('signups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->boolean('awaiting_approval')->default(true);
             $table->boolean('approved')->default(false);
             $table->timestamps();
