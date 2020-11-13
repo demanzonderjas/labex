@@ -11,7 +11,7 @@ export const UserProfile: React.FC<TUserProfile> = ({ user, mine }) => {
 			<LocalImage path={`logo/${user.organisation}_logo.png`} />
 			<div className="details inline">
 				<span className="name">
-					{mine ? user.name : t("john_doe")} {mine ? <>({t("you")})</> : ""}
+					{user.name} {mine ? <>({t("you")})</> : ""}
 				</span>
 				<br />
 				{t(user.organisation)}

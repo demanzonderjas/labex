@@ -27,6 +27,7 @@ export interface TExchangeOfferCard extends TSampleCard {
 	sex: string;
 	origin: string;
 	type: string;
+	is_mine: boolean;
 }
 
 export interface TExchangeRequestCard extends TSampleCard {
@@ -40,6 +41,7 @@ export interface TExchangeRequestCard extends TSampleCard {
 	sex: string;
 	origin: string;
 	type: string;
+	is_mine: boolean;
 }
 
 export interface TSampleCard {

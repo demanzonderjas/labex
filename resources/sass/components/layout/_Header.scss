@@ -17,7 +17,7 @@ header {
 		top: 50%;
 		transform: translateY(-50%);
 
-		.SubmitRequestButton {
+		:not(:last-child) {
 			margin-right: 8px;
 		}
 	}

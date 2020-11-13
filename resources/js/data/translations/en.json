@@ -1,6 +1,9 @@
 {
 	"atex": "ATEX",
 	"back_to_homepage": "Back to homepage",
+	"login_as_request_demo": "Login as request demo",
+	"login_as_offer_demo": "Login as offer demo",
+	"log_out": "Log out",
 	"platform_title": "Animal and tissue exchange platform",
 	"login_sso": "Log in with your University account",
 	"signup_sso": "Please use your University email-account",

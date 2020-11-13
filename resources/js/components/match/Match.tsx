@@ -18,7 +18,7 @@ import cx from "classnames";
 
 type Props = {
 	match: TMatch;
-	matchType: MatchType;
+	matchType?: MatchType;
 };
 
 export const Match: React.FC<Props> = ({ match, matchType }) => {
@@ -39,7 +39,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const percentage = getMatchingPercentage(match.exchange_offer, requestFields, offerFields);
 	const linkFilters = createQueryStringFromFilters(requestFields);
 
-	const otherMatchType = matchType != MatchType.Admin ? MatchType.Offers : MatchType.Requests;
+	const requestIsMine = match.exchange_request.is_mine;
 
 	return (
 		<div className="MatchCards">
@@ -51,7 +51,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				<Percentage matchPercentage={percentage} />
 			</div>
 			<div
-				className={cx("cards", { admin: matchType === MatchType.Admin })}
+				className={cx("cards", { admin: matchType == MatchType.Admin })}
 				onClick={
 					matchType != MatchType.Admin
 						? () =>
@@ -62,25 +62,17 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				}
 			>
 				<MatchCard
-					matchType={matchType}
-					mine={matchType != MatchType.Admin}
-					specs={matchType != MatchType.Offers ? requestSpecs : offerSpecs}
-					user={
-						matchType != MatchType.Offers
-							? match.exchange_request.user
-							: match.exchange_offer.user
-					}
+					matchType={requestIsMine ? MatchType.Requests : MatchType.Offers}
+					mine={true}
+					specs={requestIsMine ? requestSpecs : offerSpecs}
+					user={requestIsMine ? match.exchange_request.user : match.exchange_offer.user}
 					status={status}
 				/>
 				<MatchCard
 					mine={false}
-					matchType={otherMatchType}
-					specs={matchType != MatchType.Offers ? offerSpecs : requestSpecs}
-					user={
-						matchType == MatchType.Offers
-							? match.exchange_offer.user
-							: match.exchange_request.user
-					}
+					matchType={requestIsMine ? MatchType.Offers : MatchType.Requests}
+					specs={requestIsMine ? offerSpecs : requestSpecs}
+					user={requestIsMine ? match.exchange_offer.user : match.exchange_request.user}
 					status={status}
 				/>
 			</div>

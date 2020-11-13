@@ -4,13 +4,11 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { PageIntro } from "../components/layout/PageIntro";
 import { getMyMatches } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
-import { TMatch, MatchType } from "../typings/Overview";
-import cx from "classnames";
+import { TMatch } from "../typings/Overview";
 
 export const MyMatchesPage = observer(() => {
 	const { t } = useTranslationStore();
 	const [matches, setMatches]: [TMatch[], Function] = useState([]);
-	const [matchType, setMatchType] = useState(MatchType.Requests);
 
 	useEffect(() => {
 		(async () => {
@@ -26,23 +24,9 @@ export const MyMatchesPage = observer(() => {
 			<PageIntro header="my_matches">
 				<p className="layout-wrapper">{t("my_matches_intro")}</p>
 			</PageIntro>
-			<div className="type-switch layout-wrapper">
-				<h1
-					className={cx({ active: matchType == MatchType.Requests })}
-					onClick={() => setMatchType(MatchType.Requests)}
-				>
-					{t("requests")}
-				</h1>
-				<h1
-					className={cx({ active: matchType == MatchType.Offers })}
-					onClick={() => setMatchType(MatchType.Offers)}
-				>
-					{t("offers")}
-				</h1>
-			</div>
 			<div className="matches layout-wrapper">
 				{matches.map(match => (
-					<Match key={match.id} match={match} matchType={matchType} />
+					<Match key={match.id} match={match} />
 				))}
 			</div>
 		</div>

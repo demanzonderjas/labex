@@ -18,16 +18,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    fakeAdminLogin();
     return view('index');
 });
 Route::get('/about-us', function () {
-    fakeAdminLogin();
     return view('index');
 });
 
+Route::get('/test-request-login', function () {
+    Auth::logout();
+    $user = User::where('name', 'Request Demo')->first();
+    Auth::login($user);
+    return redirect()->to('/app/dashboard');
+});
+
+Route::get('/test-offer-login', function () {
+    Auth::logout();
+    $user = User::where('name', 'Offer Demo')->first();
+    Auth::login($user);
+    return redirect()->to('/app/dashboard');
+});
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->to('/');
+});
+
 Route::get('/app', function () {
-    fakeAdminLogin();
     return view('index');
 });
 
@@ -49,6 +65,5 @@ Route::group(['middleware' => VerifyAdmin::class], function () {
 });
 
 Route::fallback(function () {
-    fakeAdminLogin();
     return view('dashboard');
 })->middleware(VerifyAuthorized::class);

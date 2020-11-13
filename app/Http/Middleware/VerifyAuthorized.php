@@ -17,7 +17,7 @@ class VerifyAuthorized
     public function handle($request, Closure $next)
     {
         if (!$request->user()) {
-            return redirect("/login", 302);
+            return redirect("/", 302);
         }
 
         $signup = Signup::where([
