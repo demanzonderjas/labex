@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/base/Button";
+import { Footer } from "../components/layout/Footer";
 import { HomePageHeader } from "../components/layout/Header";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
@@ -13,7 +14,7 @@ export const AboutUsPage: React.FC = () => {
 		<div className="AboutUs">
 			<HomePageHeader />
 			<PageIntro header="atex"></PageIntro>
-			<div className="layout-wrapper">
+			<div className="layout-wrapper content">
 				<p>
 					In biomedical research (laboratory) animals are also used as tissue donors. This
 					often only involves a single organ or piece of tissue. Often no destination is
@@ -73,6 +74,7 @@ export const AboutUsPage: React.FC = () => {
 				</p>
 				<Button label="back_to_homepage" handleClick={() => history.push("/")} />
 			</div>
+			<Footer />
 		</div>
 	);
 };
