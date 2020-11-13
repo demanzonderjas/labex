@@ -19,6 +19,10 @@
 		}
 	}
 
+	.more-info {
+		margin: $default-margin 0;
+	}
+
 	.layout-wrapper {
 		display: flex;
 	}
@@ -39,10 +43,21 @@
 					font-size: 18px;
 					margin-bottom: $default-margin;
 				}
-				.intro,
+				.intro p,
+				.intro li,
 				.step h4 {
 					font-size: 16px;
 					font-family: $font-header;
+				}
+				.intro {
+					ul {
+						margin: $default-half-margin 0 $default-half-margin $default-half-margin;
+						list-style: disc;
+
+						li {
+							line-height: 20px;
+						}
+					}
 				}
 				p {
 					font-family: $font-header;

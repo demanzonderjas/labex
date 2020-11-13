@@ -18,7 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->to('/app');
+    fakeAdminLogin();
+    return view('index');
+});
+Route::get('/about-us', function () {
+    fakeAdminLogin();
+    return view('index');
 });
 
 Route::get('/app', function () {

@@ -1,0 +1,21 @@
+.AboutUs {
+	p,
+	li {
+		font-size: 16px;
+		line-height: 20px;
+	}
+	p {
+		margin: $default-half-margin 0;
+	}
+	a {
+		color: $correct-color;
+	}
+	ul {
+		margin: $default-half-margin 0 $default-half-margin $default-half-margin;
+		list-style: disc;
+
+		li {
+			line-height: 20px;
+		}
+	}
+}
