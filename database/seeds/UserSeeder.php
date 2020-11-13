@@ -1,5 +1,6 @@
 <?php
 
+use App\Signup;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -14,19 +15,33 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = new User();
-        $user->name =  "Daan";
+        $user->name =  "Offer Demo";
         $user->email = "weustenraad@gmail.com";
         $user->organisation = "universiteit-utrecht";
         $user->is_admin = true;
         $user->token = env('TEST_API_TOKEN');
         $user->save();
 
+        $signup = new Signup();
+        $signup->email = $user->email;
+        $signup->name = $user->name;
+        $signup->awaiting_approval = false;
+        $signup->approved = true;
+        $signup->save();
+
         $user = new User();
-        $user->name =  "Daan";
+        $user->name =  "Request Demo";
         $user->email = "daan@puzzel.org";
         $user->organisation = "universiteit-utrecht";
-        $user->is_admin = false;
+        $user->is_admin = true;
         $user->token = Str::random(40);
         $user->save();
+
+        $signup = new Signup();
+        $signup->email = $user->email;
+        $signup->name = $user->name;
+        $signup->awaiting_approval = false;
+        $signup->approved = true;
+        $signup->save();
     }
 }
