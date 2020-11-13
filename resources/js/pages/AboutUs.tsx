@@ -15,6 +15,7 @@ export const AboutUsPage: React.FC = () => {
 			<HomePageHeader />
 			<PageIntro header="atex"></PageIntro>
 			<div className="layout-wrapper content">
+				<Button label="back" handleClick={() => history.push("/")} />
 				<p>
 					In biomedical research (laboratory) animals are also used as tissue donors. This
 					often only involves a single organ or piece of tissue. Often no destination is
