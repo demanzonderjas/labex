@@ -15,7 +15,7 @@
 	"email": "E-mail address",
 	"successful_signup": "Your sign up has been processed! You will be contacted about your request soon.",
 	"match_steps": "Share animals & tissues in just three steps",
-	"steps_intro": "<p>The Animal and Tissue Exchange platform (ATEX) makes supply and demand visible and thus contributes to better use of animals, organs and tissues. ATEX is intended for the exchange of:</p><ul><li>Live surplus laboratory animals</li><li>Fresh organs and tissue</li><li>Preserved organs and tissue</li>",
+	"steps_intro": "<p>The Animal and Tissue Exchange platform (ATEX) makes supply and demand of animals, organs and tissues visible and thus contributes to their better use. ATEX is intended for the exchange of:</p><ul><li>Live surplus laboratory animals</li><li>Fresh organs and tissue</li><li>Preserved organs and tissue</li>",
 	"filter_existing": "Filter existing material",
 	"filter_existing_description": "Iteratively enter the data of your offer or request and check if it matches existing material.",
 	"select_match_or_save": "Select a match or save for later",
