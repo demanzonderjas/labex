@@ -11,7 +11,7 @@ use App\Mail\MatchDeclinedEmail;
 use App\Mail\MatchMadeEmail;
 use App\Match;
 use App\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class MatchController extends Controller
