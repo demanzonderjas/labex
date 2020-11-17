@@ -43,6 +43,8 @@ Route::group(['namespace' => 'Api'], function () {
 
         Route::get('dashboard-stats', 'StatsController@getDashboardStats');
         Route::get('faq', 'FaqController@getByCategory');
+
+        Route::get('active-user', 'UserController@getActiveUser');
     });
 
     Route::group(['middleware' => VerifyAdmin::class], function () {

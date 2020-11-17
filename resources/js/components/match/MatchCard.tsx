@@ -24,7 +24,6 @@ type Props = {
 };
 
 export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, status }) => {
-	console.log(user);
 	const { t } = useTranslationStore();
 	return (
 		<div className="MatchCard">

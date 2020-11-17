@@ -18,17 +18,24 @@ import { useHistory } from "react-router-dom";
 import { Overview } from "../components/dashboard/DashboardOverview";
 import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
+import { useUserStore } from "../hooks/useUserStore";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
 	const [sampleStore] = useState<SampleStore>(new SampleStore());
 	const [match, setMatch] = useState(null);
+	const { user } = useUserStore();
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
 		TDashboardOverview.Requests
 	);
 	const { offers, requests } = sampleStore;
-	const { setModal } = useModalStore();
 	const history = useHistory();
+
+	useEffect(() => {
+		if (user && user.name == "Offer Demo") {
+			setActiveOverview(TDashboardOverview.Offers);
+		}
+	}, [user]);
 
 	useEffect(() => {
 		(async () => {
@@ -86,9 +93,7 @@ export const DashboardPage = observer(() => {
 							</h3>
 						</div>
 						<div className="overviews">
-							<Overview
-								isActive={activeOverview === TDashboardOverview.Requests}
-							>
+							<Overview isActive={activeOverview === TDashboardOverview.Requests}>
 								<div className="requests">
 									<ExchangeRequests requests={requests} />
 									<div className="layout-wrapper">
@@ -100,9 +105,7 @@ export const DashboardPage = observer(() => {
 									</div>
 								</div>
 							</Overview>
-							<Overview
-								isActive={activeOverview === TDashboardOverview.Offers}
-							>
+							<Overview isActive={activeOverview === TDashboardOverview.Offers}>
 								<div className="offers">
 									<ExchangeOffers offers={offers} />
 									<div className="layout-wrapper">
@@ -114,9 +117,7 @@ export const DashboardPage = observer(() => {
 									</div>
 								</div>
 							</Overview>
-							<Overview
-								isActive={activeOverview === TDashboardOverview.Matches}
-							>
+							<Overview isActive={activeOverview === TDashboardOverview.Matches}>
 								{match && (
 									<div className="latest-match layout-wrapper">
 										<Match
