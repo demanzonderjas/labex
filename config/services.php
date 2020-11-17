@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'surfconext' => [
+        'client_id' => env('SURFCONEXT_CLIENT_ID'),
+        'client_secret' => env('SURFCONEXT_CLIENT_SECRET'),
+        'redirect' => env('SURFCONEXT_REDIRECT_URI'),
+        'test' => env('SURFCONEXT_TEST')
+    ],
+
 ];

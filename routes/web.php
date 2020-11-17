@@ -24,6 +24,9 @@ Route::get('/about-us', function () {
     return view('index');
 });
 
+Route::get('/login/surfconext', 'Auth\LoginController@redirectToProvider');
+Route::get('/login/surfconext/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/test-request-login', function () {
     Auth::logout();
     $user = User::where('name', 'Request Demo')->first();
