@@ -14,7 +14,11 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('surfconext')->redirect();
+        if (!Socialite::driver('surfconext')->user()) {
+            return Socialite::driver('surfconext')->redirect();
+        }
+        $user = Socialite::driver('surfconext')->user();
+        dd("user", $user);
     }
 
     /**
