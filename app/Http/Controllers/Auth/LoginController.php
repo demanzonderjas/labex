@@ -9,12 +9,7 @@ class LoginController extends Controller
 {
     public function redirectToProvider()
     {
-        $user = Socialite::driver('surfconext')->user();
-        if ($user) {
-            dd($user->accessTokenResponseBody);
-        } else {
-            return Socialite::driver('surfconext')->redirect();
-        }
+        return Socialite::driver('surfconext')->redirect();
     }
 
     public function handleProviderCallback()
