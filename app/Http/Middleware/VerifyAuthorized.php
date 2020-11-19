@@ -26,7 +26,7 @@ class VerifyAuthorized
         ])->first();
 
         if (empty($signup)) {
-            abort(403, 'You do not have the right access level.');
+            abort(403, 'You do not have the right access level. Please sign up first to show that you are article 9 qualified.');
         }
 
         return $next($request);
