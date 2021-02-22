@@ -17,9 +17,9 @@ import {
 	mapRequestMatchesToOverviewData
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
-import { ExchangeOffer } from "../data/forms/ExchangeOffer";
+import { SubmitOfferForm } from "../data/forms/ExchangeOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
-import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
+import { FilterRequestsForm } from "../data/forms/ExchangeRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
 
 export class SampleStore {
@@ -48,8 +48,8 @@ export class SampleStore {
 			.map(sample => {
 				const targetFields =
 					this.matchType == MatchType.Offers
-						? ExchangeOffer.fields
-						: ExchangeRequestSpecs.fields;
+						? SubmitOfferForm.fields
+						: FilterRequestsForm.fields;
 				const filledSampleFields = fillFieldsWithKeyValuePairs(targetFields, sample);
 				return {
 					...sample,

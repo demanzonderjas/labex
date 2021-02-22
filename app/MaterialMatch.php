@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class MaterialMatch extends Model
 {
+
+    public $table = "matches";
+
     public $with = ["exchangeRequest", "exchangeOffer"];
 
     public function exchangeRequest()

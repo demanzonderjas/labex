@@ -10,6 +10,7 @@ return [
         "spf" => "nullable|string",
         "storage" => "nullable|string",
         "naive" => "nullable|string",
+        'protocol_number' => 'nullable|string',
         "kill_method" => "nullable|string",
         "sample_number" => "nullable|string"
     ],

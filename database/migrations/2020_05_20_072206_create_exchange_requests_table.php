@@ -33,6 +33,7 @@ class CreateExchangeRequestsTable extends Migration
             $table->string('origin')->nullable();
             $table->string('kill_method')->nullable();
             $table->string('extra_info')->nullable();
+            $table->string('protocol_number')->nullable();
             $table->timestamps();
         });
     }

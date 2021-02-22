@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { useQuery } from "../hooks/useQuery";
-import { ExchangeOffer } from "../data/forms/ExchangeOffer";
-import { ExchangeRequest } from "../data/forms/ExchangeRequest";
+import { SubmitOfferForm } from "../data/forms/ExchangeOffer";
+import { FilterOffersForm } from "../data/forms/ExchangeRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { getExchangeOffer } from "../queries/getExchangeOffers";
@@ -36,12 +36,12 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 	};
 
 	useEffect(() => {
-		setFilters(ExchangeRequest.fields, false);
+		setFilters(FilterOffersForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
 			const response = await getExchangeOffer(id);
 			const filledFields = fillFieldsWithKeyValuePairs(
-				ExchangeOffer.fields,
+				SubmitOfferForm.fields,
 				response.exchange_offer
 			);
 			setOffer(filledFields);

@@ -9,11 +9,5 @@ export const protocolNumberField: FormField = {
 		type: InputType.Text
 	},
 	default: "",
-	value: "",
-	dependencies: [
-		{
-			id: "naive",
-			validate: value => value == "no"
-		}
-	]
+	value: ""
 };

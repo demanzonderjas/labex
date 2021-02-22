@@ -28,7 +28,6 @@ class ExchangeOfferStoreRequest extends FormRequest
             'age' => 'required|string',
             'organs' => 'nullable|string',
             'procedures' => 'nullable|string',
-            'protocol_number' => 'nullable|string',
             'date_available' => 'nullable|string',
             'amount' => 'required|string',
             'extra_info' => 'nullable|string'

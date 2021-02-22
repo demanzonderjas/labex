@@ -3,7 +3,7 @@ import { FormWrapper } from "../components/FormWrapper";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { ExchangeRequestOverview } from "../components/overviews/ExchangeRequestOverview";
-import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
+import { FilterRequestsForm } from "../data/forms/ExchangeRequest";
 import { createQueryStringFromFilters } from "../utils/formatting/matches";
 import { useHistory } from "react-router-dom";
 
@@ -17,11 +17,11 @@ export const RequestsPage = () => {
 		history.push(`/app/submit-offer${queryString}`);
 	};
 
-	ExchangeRequestSpecs.handler = submitOffer;
+	FilterRequestsForm.handler = submitOffer;
 
 	return (
 		<SampleStoreProvider store={sampleStore}>
-			<FormWrapper form={ExchangeRequestSpecs} handleUpdate={sampleStore.setFilters} />
+			<FormWrapper form={FilterRequestsForm} handleUpdate={sampleStore.setFilters} />
 			<ExchangeRequestOverview />
 		</SampleStoreProvider>
 	);

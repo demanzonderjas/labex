@@ -21,13 +21,14 @@ type Props = {
 	offerId: string;
 };
 
-export const DataList: React.FC<Props> = ({ fields, filters, offerId }) => {
+export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offerId }) => {
 	if (!fields || !filters) {
 		return null;
 	}
 	const [sampleStore] = useState(new SampleStore());
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
+	const [protocolNumber, setProtocolNumber] = useState("");
 	const matches = createMatchSpecs(fields, filters);
 	const history = useHistory();
 	const { t } = useTranslationStore();
@@ -61,6 +62,15 @@ export const DataList: React.FC<Props> = ({ fields, filters, offerId }) => {
 					))}
 			</div>
 			<div className="extra-info">
+				<div className="InputField" style={{ maxWidth: "200px", marginBottom: "16px" }}>
+					<label style={{ marginBottom: "16px" }}>{t("protocol_number")}</label>
+					<input
+						type="text"
+						value={protocolNumber}
+						onChange={e => setProtocolNumber(e.target.value)}
+						placeholder={t("work_protocol_number_placeholder")}
+					/>
+				</div>
 				<label>{t("extra_info")}</label>
 				<div className="BigTextField">
 					<textarea

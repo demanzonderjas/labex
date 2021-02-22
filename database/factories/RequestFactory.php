@@ -29,5 +29,6 @@ $factory->define(ExchangeRequest::class, function (Faker $faker) {
         "sex" => selectRandom(config("validation.sex")),
         "origin" => selectRandom(config("validation.origin")),
         "spf" => selectRandom(config("validation.spf")),
+        "protocol_number" => rand(10000, 99999),
     ];
 });

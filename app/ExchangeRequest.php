@@ -21,6 +21,7 @@ class ExchangeRequest extends Model
         "spf",
         "organs",
         "storage",
+        "protocol_number",
         "kill_method",
         "extra_info"
     ];

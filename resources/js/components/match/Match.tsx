@@ -9,8 +9,8 @@ import {
 	createMatchSpecs,
 	createQueryStringFromFilters
 } from "../../utils/formatting/matches";
-import { ExchangeOffer } from "../../data/forms/ExchangeOffer";
-import { ExchangeRequestMatchCard } from "../../data/forms/ExchangeRequest";
+import { SubmitOfferForm } from "../../data/forms/ExchangeOffer";
+import { RequestMatchCardFields } from "../../data/forms/ExchangeRequest";
 import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
 import { useHistory } from "react-router-dom";
@@ -27,9 +27,9 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const dateString = convertDateToReadableString(match.updated_at);
 	const history = useHistory();
 
-	const offerFields = fillFieldsWithKeyValuePairs(ExchangeOffer.fields, match.exchange_offer);
+	const offerFields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, match.exchange_offer);
 	const requestFields = fillFieldsWithKeyValuePairs(
-		ExchangeRequestMatchCard.fields,
+		RequestMatchCardFields.fields,
 		match.exchange_request
 	);
 

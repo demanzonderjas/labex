@@ -10,7 +10,7 @@ import {
 } from "../../utils/formatting/matches";
 import { AgeInPeriod } from "../match/AgeInPeriod";
 import { useHistory } from "react-router-dom";
-import { ExchangeOffer } from "../../data/forms/ExchangeOffer";
+import { SubmitOfferForm } from "../../data/forms/ExchangeOffer";
 import { TExchangeOfferCard, TSampleCard } from "../../typings/Overview";
 import { SampleValue } from "../match/SampleValue";
 import { createQueryStringFromSample } from "../../utils/formatting/samples";
@@ -32,7 +32,7 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	const classes = getMatchClasses(matchPercentage.value);
 	const match = matches[index] as TExchangeOfferCard;
-	const fields = fillFieldsWithKeyValuePairs(ExchangeOffer.fields, match);
+	const fields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, match);
 
 	return (
 		<div className="ExchangeOfferCard Card" onClick={() => selectMatch(index)}>
@@ -67,7 +67,7 @@ export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCa
 }) => {
 	const { t } = useTranslationStore();
 
-	const fields = fillFieldsWithKeyValuePairs(ExchangeOffer.fields, sample);
+	const fields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, sample);
 	const history = useHistory();
 
 	const copy = () => {

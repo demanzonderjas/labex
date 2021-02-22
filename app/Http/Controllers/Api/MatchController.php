@@ -34,7 +34,7 @@ class MatchController extends Controller
     {
         $match = MaterialMatch::whereBelongsToUser($request->user())->latest()->first();
 
-        return response()->json(["match" => $match->toArray()]);
+        return response()->json(["match" => $match ? $match->toArray() : null]);
     }
 
     public static function create($offerId, $requestId)

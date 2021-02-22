@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { useQuery } from "../hooks/useQuery";
-import { ExchangeRequestSpecs } from "../data/forms/ExchangeRequest";
+import { FilterRequestsForm } from "../data/forms/ExchangeRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
@@ -29,7 +29,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
 	const history = useHistory();
-	const { id } = useParams();
+	const { id }: { id: string } = useParams();
 	const { t } = useTranslationStore();
 	const goBack = () => {
 		history.push(`/app/requests${window.location.search}`);
@@ -47,12 +47,12 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	};
 
 	useEffect(() => {
-		setFilters(ExchangeRequestSpecs.fields, false);
+		setFilters(FilterRequestsForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
 			const response = await getExchangeRequest(id);
 			const filledFields = fillFieldsWithKeyValuePairs(
-				ExchangeRequestSpecs.fields,
+				FilterRequestsForm.fields,
 				response.exchange_request
 			);
 			setRequest(filledFields);
