@@ -39,7 +39,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 				base[next.id] = next.value;
 				return base;
 			},
-			{ extra_info: extraInfo }
+			{ extra_info: extraInfo, protocol_number: protocolNumber }
 		);
 		await createOfferMatch(requestData, offerId);
 		confirm();

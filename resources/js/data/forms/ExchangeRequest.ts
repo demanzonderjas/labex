@@ -66,7 +66,7 @@ matchCardFields.splice(ageOfferFieldIdx, 1, ageRangeRequestField);
 
 export const RequestMatchCardFields: TForm = {
 	...FilterOffersForm,
-	fields: [...matchCardFields, extraInfoField]
+	fields: [...matchCardFields, protocolNumberField, extraInfoField]
 };
 
 export const SubmitRequestForm: TForm = {

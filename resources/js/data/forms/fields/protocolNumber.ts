@@ -5,6 +5,7 @@ export const protocolNumberField: FormField = {
 	label: "protocol_number",
 	id: "protocol_number",
 	Component: InputField,
+	ignoreInMatch: true,
 	props: {
 		type: InputType.Text
 	},
