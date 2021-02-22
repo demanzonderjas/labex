@@ -54,6 +54,16 @@
 		transition: max-height 0.3s cubic-bezier(0, 0, 0.3, 1);
 		max-height: 1000px;
 		overflow-y: auto;
+
+		.legend {
+			margin-top: $default-half-margin;
+			display: block;
+		}
+
+		.required {
+			color: $danger-color;
+		}
+
 		.fields {
 			position: relative;
 			display: flex;

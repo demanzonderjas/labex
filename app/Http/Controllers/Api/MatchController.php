@@ -9,7 +9,7 @@ use App\Mail\Admin\AdminMatchMadeEmail;
 use App\Mail\MatchApprovedEmail;
 use App\Mail\MatchDeclinedEmail;
 use App\Mail\MatchMadeEmail;
-use App\Match;
+use App\MaterialMatch;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -19,27 +19,27 @@ class MatchController extends Controller
 
     public function getAll()
     {
-        $matches = Match::all();
+        $matches = MaterialMatch::all();
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 
     public function user(Request $request)
     {
-        $matches = Match::whereBelongsToUser($request->user())->get();
+        $matches = MaterialMatch::whereBelongsToUser($request->user())->get();
 
         return response()->json(["matches" => $matches->toArray()]);
     }
 
     public function myLatest(Request $request)
     {
-        $match = Match::whereBelongsToUser($request->user())->latest()->first();
+        $match = MaterialMatch::whereBelongsToUser($request->user())->latest()->first();
 
         return response()->json(["match" => $match->toArray()]);
     }
 
     public static function create($offerId, $requestId)
     {
-        $match = new Match();
+        $match = new MaterialMatch();
         $match->exchange_offer_id = $offerId;
         $match->exchange_request_id = $requestId;
         $match->save();
@@ -59,7 +59,7 @@ class MatchController extends Controller
 
     public function approve(int $matchId)
     {
-        $match = Match::find($matchId);
+        $match = MaterialMatch::find($matchId);
         if (!$match) {
             return response()->json(["success" => false, "message" => "Match does not exist"]);
         }
@@ -75,7 +75,7 @@ class MatchController extends Controller
 
     public function reject(int $matchId)
     {
-        $match = Match::find($matchId);
+        $match = MaterialMatch::find($matchId);
         if (!$match) {
             return response()->json(["success" => false, "message" => "Match does not exist"]);
         }

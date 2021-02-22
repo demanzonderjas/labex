@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\ExchangeOffer;
 use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
-use App\Match;
+use App\MaterialMatch;
 
 class StatsController extends Controller
 {
@@ -14,8 +14,8 @@ class StatsController extends Controller
     {
         $requests = ExchangeRequest::all()->count();
         $offers = ExchangeOffer::all()->count();
-        $matches = Match::where('approved', true)->count();
-        $totalSaved = Match::where('approved', true)->get()->reduce(function ($base, $match) {
+        $matches = MaterialMatch::where('approved', true)->count();
+        $totalSaved = MaterialMatch::where('approved', true)->get()->reduce(function ($base, $match) {
             return $base + $match->exchangeRequest->amount;
         }, 0);
 

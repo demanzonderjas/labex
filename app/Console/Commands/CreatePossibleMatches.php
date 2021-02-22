@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\ExchangeOffer;
 use App\ExchangeRequest;
 use App\Match;
+use App\MaterialMatch;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -43,7 +44,7 @@ class CreatePossibleMatches extends Command
     {
         $requests = ExchangeRequest::where('active', true)->get();
         $offers = ExchangeOffer::where('active', true)->get();
-        $matches = Match::all();
+        $matches = MaterialMatch::all();
 
         foreach ($requests as $request) {
             $matchingOffers = $this->calculateMatchingOffers($request, $offers, $matches);
@@ -65,7 +66,7 @@ class CreatePossibleMatches extends Command
 
     public function createMatch(ExchangeRequest $request, ExchangeOffer $offer)
     {
-        $match = new Match();
+        $match = new MaterialMatch();
         $match->exchange_request_id = $request->id;
         $match->exchange_offer_id = $offer->id;
         $match->save();

@@ -32,15 +32,22 @@ export const Form: React.FC<Props> = observer(
 			isLoading,
 			serverError,
 			isCollapsed,
-			resetForm,
+			resetForm
 		} = useFormStore();
 		const { t } = useTranslationStore();
 		return (
-			<div className={cx("Form", { collapsed: isCollapsed, "full-width-fields": !!fullWidthFields })}>
-				{header &&<PageIntro header={header}>
-					{intro && <p>{t(intro)}</p>}
-					{matchable && <TotalMatchesFound />}
-				</PageIntro>}
+			<div
+				className={cx("Form", {
+					collapsed: isCollapsed,
+					"full-width-fields": !!fullWidthFields
+				})}
+			>
+				{header && (
+					<PageIntro header={header}>
+						{intro && <p>{t(intro)}</p>}
+						{matchable && <TotalMatchesFound />}
+					</PageIntro>
+				)}
 				<div className="layout-wrapper">
 					{matchable && <ActiveFilters />}
 					{matchable && (
@@ -50,6 +57,10 @@ export const Form: React.FC<Props> = observer(
 						</div>
 					)}
 					<form onSubmit={submit}>
+						<span className="legend">
+							<span className="required">*</span>
+							{t("required_otherwise_optional")}
+						</span>
 						<div className="fields">
 							{activeFields
 								.filter(fieldIsNotHidden)

@@ -36,12 +36,12 @@ class ExchangeRequest extends Model
 
     public function match()
     {
-        return $this->hasOne(Match::class);
+        return $this->hasOne(MaterialMatch::class);
     }
 
     public function getIsMatchAttribute()
     {
-        return Match::where('exchange_request_id', $this->id)->exists();
+        return MaterialMatch::where('exchange_request_id', $this->id)->exists();
     }
 
     public function getIsMineAttribute()

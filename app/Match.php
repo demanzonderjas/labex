@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Match extends Model
+class MaterialMatch extends Model
 {
     public $with = ["exchangeRequest", "exchangeOffer"];
 

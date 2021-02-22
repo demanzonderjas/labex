@@ -204,5 +204,6 @@
 	"signups": "Signups",
 	"approve": "Approve",
 	"block": "Block",
-	"delete": "Delete"
+	"delete": "Delete",
+	"required_otherwise_optional": " = required (otherwise optional)"
 }
