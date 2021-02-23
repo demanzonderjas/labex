@@ -11,5 +11,11 @@
 
 	.table {
 		overflow: auto;
+
+		&.ExchangeOfferTable {
+			thead th {
+				background-color: $purple;
+			}
+		}
 	}
 }

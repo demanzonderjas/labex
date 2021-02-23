@@ -1,6 +1,8 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import cx from 'classnames';
+import cx from "classnames";
+import { TotalMatchesFound } from "../form/TotalMatchesFound";
+import { HeaderIcon } from "../icons/HeaderIcons";
 
 type Props = {
 	header: string;
@@ -8,7 +10,12 @@ type Props = {
 	boldHeader?: boolean;
 };
 
-export const PageIntro: React.FC<Props> = ({ header, children, paddingLeft = 0, boldHeader = false }) => {
+export const PageIntro: React.FC<Props> = ({
+	header,
+	children,
+	paddingLeft = 0,
+	boldHeader = false
+}) => {
 	const { t } = useTranslationStore();
 	return (
 		<div className="PageIntro">
@@ -20,19 +27,27 @@ export const PageIntro: React.FC<Props> = ({ header, children, paddingLeft = 0, 
 	);
 };
 
-export const TwoColumnPageIntro: React.FC<{ header: string; subheader: string }> = ({
-	header,
-	subheader,
-	children
-}) => {
+export const TwoColumnPageIntro: React.FC<{
+	header: string;
+	subheader: string;
+	matchable?: boolean;
+}> = ({ header, subheader, matchable, children }) => {
 	const { t } = useTranslationStore();
 	return (
 		<div className="TwoColumnPageIntro PageIntro">
 			<div className="layout-wrapper">
 				<div className="column">
 					<div className="content">
-						<h1>{t(header)}</h1>
-						<p>{t(subheader)}</p>
+						<div className="icon">
+							<HeaderIcon type={header} />
+						</div>
+						<div className="title">
+							<h1>{t(header)}</h1>
+							<p>
+								{t(subheader)}
+								{!!matchable && <TotalMatchesFound />}
+							</p>
+						</div>
 					</div>
 				</div>
 				<div className="column">

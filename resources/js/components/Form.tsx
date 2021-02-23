@@ -3,14 +3,14 @@ import React from "react";
 import { useFormStore } from "../hooks/useFormStore";
 import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
 import { FormFieldWithLabel } from "./FormField";
-import { SubmitButton } from "./base/Button";
+import { Button, SubmitButton } from "./base/Button";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { Loader } from "./base/Loader";
 import { ErrorNotification } from "./base/ErrorNotification";
 import cx from "classnames";
 import { TotalMatchesFound } from "./form/TotalMatchesFound";
 import { ActiveFilters } from "./form/ActiveFilters";
-import { PageIntro } from "./layout/PageIntro";
+import { PageIntro, TwoColumnPageIntro } from "./layout/PageIntro";
 import { Icon } from "./base/Image";
 
 type Props = {
@@ -43,10 +43,14 @@ export const Form: React.FC<Props> = observer(
 				})}
 			>
 				{header && (
-					<PageIntro header={header}>
-						{intro && <p>{t(intro)}</p>}
-						{matchable && <TotalMatchesFound />}
-					</PageIntro>
+					<TwoColumnPageIntro header={header} subheader="" matchable={matchable}>
+						<p className="layout-wrapper">{t(intro)}</p>
+						{/* <Button
+							label="more_info"
+							handleClick={() => history.push("/app/faq")}
+							classes={{ inline: true }}
+						/> */}
+					</TwoColumnPageIntro>
 				)}
 				<div className="layout-wrapper">
 					{matchable && <ActiveFilters />}

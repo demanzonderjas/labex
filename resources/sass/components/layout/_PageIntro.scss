@@ -5,6 +5,7 @@
 	h1 {
 		margin-bottom: $default-margin;
 		color: $grey-medium;
+		font-family: $font-primary;
 
 		&.bold {
 			font-weight: bold;
@@ -31,7 +32,7 @@
 			align-items: stretch;
 
 			h1 {
-				font-size: 18px;
+				font-size: 30px;
 				font-weight: bold;
 				margin: 0;
 			}
@@ -44,6 +45,17 @@
 				width: 50%;
 				display: flex;
 				align-items: center;
+			}
+
+			.content {
+				.icon,
+				.title {
+					display: inline-block;
+					vertical-align: top;
+				}
+				.icon {
+					margin-right: $default-margin;
+				}
 			}
 		}
 	}
