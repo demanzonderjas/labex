@@ -17,6 +17,10 @@ export const AboutUsPage: React.FC = () => {
 			<div className="layout-wrapper content">
 				<Button label="back" handleClick={() => history.push("/")} />
 				<p>
+					This platform is provided and maintained by the AWB Utrecht - Animal Welfare
+					Body Utrecht - (IVD Utrecht, in Dutch)
+				</p>
+				<p>
 					In biomedical research (laboratory) animals are also used as tissue donors. This
 					often only involves a single organ or piece of tissue. Often no destination is
 					known for the remains and it is either destroyed immediately after collection or
@@ -70,7 +74,7 @@ export const AboutUsPage: React.FC = () => {
 					ex vivo research” (AVD1080020209606) .
 				</p>
 				<p>
-					More information about this can be obtained from the IvD Utrecht (
+					More information about this can be obtained from the AWB Utrecht (
 					<a href="https://www.ivd-utrecht.nl/en">https://www.ivd-utrecht.nl/en</a>).
 				</p>
 				<Button label="back_to_homepage" handleClick={() => history.push("/")} />
