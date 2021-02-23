@@ -73,7 +73,7 @@ export const DashboardPage = observer(() => {
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Requests)}
 							>
-								{t("requests")}
+								{t("my_requests")}
 							</h3>
 							<h3
 								className={cx({
@@ -81,7 +81,7 @@ export const DashboardPage = observer(() => {
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Offers)}
 							>
-								{t("offers")}
+								{t("my_offers")}
 							</h3>
 							<h3
 								className={cx({
@@ -89,7 +89,7 @@ export const DashboardPage = observer(() => {
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Matches)}
 							>
-								{t("matches")}
+								{t("my_matches")}
 							</h3>
 						</div>
 						<div className="overviews">
