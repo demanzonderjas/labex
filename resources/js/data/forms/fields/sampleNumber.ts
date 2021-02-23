@@ -7,7 +7,7 @@ export const sampleNumberField: FormField = {
 	Component: InputField,
 	required: true,
 	props: {
-		type: InputType.Number
+		type: InputType.Text
 	},
 	default: "",
 	value: ""
