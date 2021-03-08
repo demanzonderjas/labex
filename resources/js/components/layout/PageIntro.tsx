@@ -20,7 +20,9 @@ export const PageIntro: React.FC<Props> = ({
 	return (
 		<div className="PageIntro">
 			<div className="layout-wrapper" style={{ paddingLeft: `${paddingLeft}px` }}>
-				<h1 className={cx({ bold: boldHeader })}>{t(header)}</h1>
+				<h1 style={{ margin: "20px 0" }} className={cx({ bold: boldHeader })}>
+					{t(header)}
+				</h1>
 				{children}
 			</div>
 		</div>
