@@ -9,7 +9,7 @@ import { OtherOption } from "./custom-fields/OtherOption";
 import { blockEnter } from "../../utils/dom/keyboard";
 
 export const SelectField: React.FC<SelectFieldData> = observer(
-	({ id, value, options, startsEmpty, allowOther }) => {
+	({ id, value, options, startsEmpty, allowOther, required }) => {
 		const { setFieldValue } = useFormStore();
 		const [showOtherField, setShowOtherField] = useState(false);
 		const [isActive, setIsActive] = useState(false);
@@ -34,7 +34,9 @@ export const SelectField: React.FC<SelectFieldData> = observer(
 					>
 						{!showOtherField ? (
 							startsEmpty && value == "" ? (
-								<SelectOption value="choose_if_relevant" />
+								<SelectOption
+									value={required ? "select_option" : "choose_if_relevant"}
+								/>
 							) : (
 								<SelectOption value={value} />
 							)

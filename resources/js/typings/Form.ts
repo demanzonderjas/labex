@@ -34,6 +34,7 @@ export interface SelectFieldData extends FormFieldData {
 	options: string[];
 	allowOther: boolean;
 	startsEmpty: boolean;
+	required?: boolean;
 }
 
 export interface FormField extends FormFieldData {
