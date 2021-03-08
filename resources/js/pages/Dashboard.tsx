@@ -69,7 +69,8 @@ export const DashboardPage = observer(() => {
 						<div className="submenu">
 							<h3
 								className={cx({
-									active: activeOverview === TDashboardOverview.Requests
+									active: activeOverview === TDashboardOverview.Requests,
+									[activeOverview]: true
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Requests)}
 							>
@@ -77,7 +78,8 @@ export const DashboardPage = observer(() => {
 							</h3>
 							<h3
 								className={cx({
-									active: activeOverview === TDashboardOverview.Offers
+									active: activeOverview === TDashboardOverview.Offers,
+									[activeOverview]: true
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Offers)}
 							>
@@ -85,7 +87,8 @@ export const DashboardPage = observer(() => {
 							</h3>
 							<h3
 								className={cx({
-									active: activeOverview === TDashboardOverview.Matches
+									active: activeOverview === TDashboardOverview.Matches,
+									[activeOverview]: true
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Matches)}
 							>

@@ -18,6 +18,14 @@
 			&.active {
 				font-weight: bold;
 				color: $correct-color;
+
+				&.offers {
+					color: $offer-color;
+				}
+
+				&.requests {
+					color: $request-color;
+				}
 			}
 		}
 	}
