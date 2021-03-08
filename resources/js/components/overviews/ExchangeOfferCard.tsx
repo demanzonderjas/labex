@@ -89,7 +89,7 @@ export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCa
 					</div>
 				))}
 			</div>
-			<Button classes={{ small: true, tertiary: true }} label="copy" />
+			<Button classes={{ small: true, primary: true }} label="copy" />
 		</div>
 	);
 };

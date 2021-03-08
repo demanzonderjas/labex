@@ -1,4 +1,5 @@
 import React from "react";
+import { TModal } from "./Modal";
 import { TSpecMatch } from "./Sample";
 
 export type TForm = {
@@ -12,6 +13,7 @@ export type TForm = {
 	handleSuccess?: Function;
 	handleUpdate?: Function;
 	fullWidthFields?: boolean;
+	infoModal?: TModal;
 };
 
 export enum InputType {

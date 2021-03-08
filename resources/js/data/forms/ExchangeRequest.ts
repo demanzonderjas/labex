@@ -21,6 +21,7 @@ import { amountRequestedField } from "./fields/amount";
 import { typeField } from "./fields/type";
 import { extraInfoField } from "./fields/extraInfo";
 import { protocolNumberField } from "./fields/protocolNumber";
+import { flowchartModal } from "../modals/flowchart";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",
@@ -44,7 +45,8 @@ export const FilterOffersForm: TForm = {
 		amountRequestedField
 	],
 	handler: sendExchangeRequest,
-	matchable: true
+	matchable: true,
+	infoModal: flowchartModal
 };
 
 const specFields = [...FilterOffersForm.fields].filter(f => f.id != "date_requested");

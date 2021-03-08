@@ -18,6 +18,7 @@ export const FormWrapper: React.FC<Props> = ({ form, handleSuccess, handleUpdate
 				submitLabel={form.submitLabel}
 				matchable={form.matchable}
 				fullWidthFields={form.fullWidthFields}
+				infoModal={form.infoModal}
 			/>
 		</FormStoreProvider>
 	);

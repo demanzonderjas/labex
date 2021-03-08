@@ -43,10 +43,10 @@ export const TwoColumnPageIntro: React.FC<{
 						</div>
 						<div className="title">
 							<h1>{t(header)}</h1>
-							<p>
-								{t(subheader)}
+							<div>
+								<p>{t(subheader)}</p>
 								{!!matchable && <TotalMatchesFound />}
-							</p>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -7,4 +7,5 @@ export type TModal = {
 	Component?: React.FC;
 	props?: any;
 	handleConfirm: Function;
+	align?: string;
 };

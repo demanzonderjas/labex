@@ -208,5 +208,7 @@
 	"approve": "Approve",
 	"block": "Block",
 	"delete": "Delete",
-	"required_otherwise_optional": " = required (otherwise optional)"
+	"required_otherwise_optional": " = required (otherwise optional)",
+	"how_it_works": "How it works",
+	"flowchart_intro": "While filtering and searching for matches, please keep the following 'flow' in mind to make the most use out of the existing offers and requests."
 }

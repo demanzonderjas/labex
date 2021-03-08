@@ -8,10 +8,11 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { Loader } from "./base/Loader";
 import { ErrorNotification } from "./base/ErrorNotification";
 import cx from "classnames";
-import { TotalMatchesFound } from "./form/TotalMatchesFound";
 import { ActiveFilters } from "./form/ActiveFilters";
-import { PageIntro, TwoColumnPageIntro } from "./layout/PageIntro";
+import { TwoColumnPageIntro } from "./layout/PageIntro";
 import { Icon } from "./base/Image";
+import { useModalStore } from "../hooks/useModalStore";
+import { TModal } from "../typings/Modal";
 
 type Props = {
 	header: string;
@@ -20,10 +21,19 @@ type Props = {
 	matchable: boolean;
 	intro: string;
 	fullWidthFields?: boolean;
+	infoModal?: TModal;
 };
 
 export const Form: React.FC<Props> = observer(
-	({ header, intro, submitLabel = "submit", matchable, hideSubmit, fullWidthFields }) => {
+	({
+		header,
+		intro,
+		submitLabel = "submit",
+		matchable,
+		hideSubmit,
+		fullWidthFields,
+		infoModal
+	}) => {
 		const {
 			fields,
 			activeFields,
@@ -35,6 +45,7 @@ export const Form: React.FC<Props> = observer(
 			resetForm
 		} = useFormStore();
 		const { t } = useTranslationStore();
+		const { setModal } = useModalStore();
 		return (
 			<div
 				className={cx("Form", {
@@ -45,11 +56,13 @@ export const Form: React.FC<Props> = observer(
 				{header && (
 					<TwoColumnPageIntro header={header} subheader="" matchable={matchable}>
 						<p className="layout-wrapper">{t(intro)}</p>
-						{/* <Button
-							label="more_info"
-							handleClick={() => history.push("/app/faq")}
-							classes={{ inline: true }}
-						/> */}
+						{infoModal && (
+							<Button
+								label={infoModal.header}
+								handleClick={() => setModal(infoModal)}
+								classes={{ inline: true }}
+							/>
+						)}
 					</TwoColumnPageIntro>
 				)}
 				<div className="layout-wrapper">

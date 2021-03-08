@@ -5,7 +5,7 @@ import { ClickHandler } from "../../../typings/Utils";
 type Props = {
 	label: string;
 	handleClick?: ClickHandler;
-	classes: any;
+	classes?: any;
 };
 
 export const ButtonCell: React.FC<Props> = ({ label, handleClick, classes }) => {

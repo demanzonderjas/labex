@@ -18,6 +18,7 @@ import { typeField } from "./fields/type";
 import { dateConservedField } from "./fields/dateConserved";
 import { extraInfoField } from "./fields/extraInfo";
 import { withRequired } from "../../utils/formatting/fields";
+import { flowchartModal } from "../modals/flowchart";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -42,7 +43,8 @@ export const SubmitOfferForm: TForm = {
 		extraInfoField
 	],
 	handler: sendExchangeOffer,
-	matchable: false
+	matchable: false,
+	infoModal: flowchartModal
 };
 
 export const ConfirmOfferMatchForm: TForm = {

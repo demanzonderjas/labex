@@ -11,7 +11,7 @@ export function Modal() {
 	const { modal, cancel, confirm } = useModalStore();
 
 	return (
-		<div className="modal layout-wrapper">
+		<div className={`modal layout-wrapper ${modal.align ? modal.align : ""}`}>
 			{!modal.form && (
 				<div className="header">
 					<h2>{t(modal.header)}</h2>

@@ -12,5 +12,5 @@ export const CopyButtonCell = ({ value, rowIndex, sample, ...props }) => {
 		history.push(`/app/submit-${sampleType}${queryString}`);
 	};
 
-	return <ButtonCell {...props} handleClick={copy} label="copy" classes={{ tertiary: true }} />;
+	return <ButtonCell {...props} handleClick={copy} label="copy" classes={{ primary: true }} />;
 };
