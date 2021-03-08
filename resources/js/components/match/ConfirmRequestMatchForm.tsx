@@ -43,7 +43,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 		);
 		await createOfferMatch(requestData, offerId);
 		confirm();
-		history.push("/app/my-matches");
+		history.push("/app/my-matches?info=true");
 	};
 
 	useEffect(() => {

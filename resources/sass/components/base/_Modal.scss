@@ -56,6 +56,11 @@
 			&.with-form {
 				padding: 0;
 
+				> p {
+					padding: 10px 30px;
+					max-width: 750px;
+				}
+
 				.buttons {
 					padding: 0 30px;
 				}

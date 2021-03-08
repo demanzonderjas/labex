@@ -49,8 +49,9 @@ export const SubmitOfferForm: TForm = {
 
 export const ConfirmOfferMatchForm: TForm = {
 	...SubmitOfferForm,
-	header: "confirm_offer",
+	header: null,
 	intro: "confirm_offer_description",
 	submitLabel: "confirm",
-	matchable: false
+	matchable: false,
+	infoModal: null
 };

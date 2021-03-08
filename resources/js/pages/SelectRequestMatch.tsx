@@ -38,7 +38,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	const confirmMatch = async offerData => {
 		const response = await createRequestMatch(offerData, id);
 		confirm();
-		history.push("/app/my-matches");
+		history.push("/app/my-matches?info=true");
 		return response;
 	};
 	const modalData = {

@@ -8,11 +8,13 @@ import { TMatch } from "../typings/Overview";
 import { Button } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { matchesModal } from "../data/modals/matches";
+import { useQuery } from "../hooks/useQuery";
 
 export const MyMatchesPage = observer(() => {
 	const { t } = useTranslationStore();
 	const { setModal } = useModalStore();
 	const [matches, setMatches]: [TMatch[], Function] = useState([]);
+	const params: any = useQuery();
 
 	useEffect(() => {
 		(async () => {
@@ -22,6 +24,12 @@ export const MyMatchesPage = observer(() => {
 			}
 		})();
 	}, []);
+
+	useEffect(() => {
+		if (params.info) {
+			setModal(matchesModal);
+		}
+	}, [params]);
 
 	return (
 		<div className="MyMatchesPage">

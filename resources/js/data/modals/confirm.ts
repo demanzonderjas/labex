@@ -4,6 +4,8 @@ import { ConfirmRequestMatchForm } from "../../components/match/ConfirmRequestMa
 
 export const confirmOfferMatchModal: TModal = {
 	form: ConfirmOfferMatchForm,
+	header: "confirm_offer",
+	description: "confirm_offer_description",
 	handleConfirm: null
 };
 
