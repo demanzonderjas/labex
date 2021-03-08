@@ -210,5 +210,8 @@
 	"delete": "Delete",
 	"required_otherwise_optional": " = required (otherwise optional)",
 	"how_it_works": "How it works",
-	"flowchart_intro": "While filtering and searching for matches, please keep the following 'flow' in mind to make the most use out of the existing offers and requests."
+	"flowchart_intro": "While filtering and searching for matches, please keep the following 'flow' in mind to make the most use out of the existing offers and requests.",
+	"what_happens_now": "What happens now",
+	"matches_intro": "The matching process requires an approval by the AWB in some cases before it can take place. You will be informed by mail about the status of the match.",
+	"matches_subheader": "Active & past matches"
 }

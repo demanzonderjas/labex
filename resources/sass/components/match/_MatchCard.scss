@@ -50,7 +50,13 @@
 			}
 			&.mine {
 				background-color: $grey-light;
-				color: $grey-medium;
+
+				&.requests {
+					background-color: $request-color;
+				}
+				&.offers {
+					background-color: $offer-color;
+				}
 			}
 		}
 	}

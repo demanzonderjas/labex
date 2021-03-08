@@ -14,13 +14,13 @@
 
 		&.ExchangeOfferTable {
 			thead th {
-				background-color: $purple;
+				background-color: $offer-color;
 			}
 		}
 
 		&.ExchangeRequestTable {
 			thead th {
-				background-color: $pink;
+				background-color: $request-color;
 			}
 		}
 	}

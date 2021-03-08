@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/base/Button";
+import { LocalImage } from "../components/base/Image";
 import { Footer } from "../components/layout/Footer";
 import { HomePageHeader } from "../components/layout/Header";
 import { PageIntro } from "../components/layout/PageIntro";
@@ -16,6 +17,9 @@ export const AboutUsPage: React.FC = () => {
 			<PageIntro header="atex"></PageIntro>
 			<div className="layout-wrapper content">
 				<Button label="back" handleClick={() => history.push("/")} />
+				<div style={{ margin: "40px 0" }}>
+					<LocalImage path="logo/atex.png" />
+				</div>
 				<p>
 					This platform is provided and maintained by the AWB Utrecht - Animal Welfare
 					Body Utrecht - (IVD Utrecht, in Dutch)

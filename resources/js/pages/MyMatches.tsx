@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslationStore } from "../hooks/useTranslationStore";
-import { PageIntro } from "../components/layout/PageIntro";
+import { PageIntro, TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { getMyMatches } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
 import { TMatch } from "../typings/Overview";
+import { Button } from "../components/base/Button";
+import { useModalStore } from "../hooks/useModalStore";
+import { matchesModal } from "../data/modals/matches";
 
 export const MyMatchesPage = observer(() => {
 	const { t } = useTranslationStore();
+	const { setModal } = useModalStore();
 	const [matches, setMatches]: [TMatch[], Function] = useState([]);
 
 	useEffect(() => {
@@ -21,9 +25,14 @@ export const MyMatchesPage = observer(() => {
 
 	return (
 		<div className="MyMatchesPage">
-			<PageIntro header="my_matches">
+			<TwoColumnPageIntro header="my_matches" subheader="matches_subheader">
 				<p className="layout-wrapper">{t("my_matches_intro")}</p>
-			</PageIntro>
+				<Button
+					label={matchesModal.header}
+					handleClick={() => setModal(matchesModal)}
+					classes={{ inline: true }}
+				/>
+			</TwoColumnPageIntro>
 			<div className="matches layout-wrapper">
 				{matches.map(match => (
 					<Match key={match.id} match={match} />

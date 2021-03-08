@@ -19,7 +19,7 @@
 	&:hover {
 		transform: scale(1.05);
 
-		.Button {
+		.Button:not(.primary) {
 			button {
 				background-color: $blue;
 			}
