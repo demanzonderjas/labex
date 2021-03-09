@@ -25,6 +25,11 @@
 			}
 		}
 
+		span:first-child {
+			max-width: calc(100% - 15px);
+			display: block;
+		}
+
 		.icon-wrapper {
 			position: absolute;
 			right: 0;

@@ -13,14 +13,25 @@ type Props = {
 export const SampleValue: React.FC<Props> = ({ value, label, fields }) => {
 	const { t } = useTranslationStore();
 	const isDate = label && label.indexOf("date") > -1;
+	const isOrgan = label && label.indexOf("organ") > -1;
 	return (
 		<>
 			{(label == "age_offer" || label == "age_range") && (
 				<DisplayedAge type={label} value={value} fields={fields} />
 			)}
 			{(isDate || label == "age") && <DisplayedDate value={value} />}
-			{label != "age_offer" && label != "age_range" && label != "age" && !isDate && (
-				<span>{value ? t(value) : "-"}</span>
+			{label != "age_offer" &&
+				label != "age_range" &&
+				label != "age" &&
+				!isDate &&
+				!isOrgan && <span>{value ? t(value) : "-"}</span>}
+			{isOrgan && value && (
+				<span>
+					{value
+						.split(", ")
+						.map(id => t(id))
+						.join(", ")}
+				</span>
 			)}
 		</>
 	);

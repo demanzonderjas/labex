@@ -1,6 +1,6 @@
 import { FormField } from "../../../typings/Form";
-import { SelectField } from "../../../components/form/SelectField";
 import { MultiSelectField } from "../../../components/form/MultiSelectField";
+import { isMultiSelectMatch } from "../../../utils/filters/multiselect";
 
 export const organsField: FormField = {
 	label: "organs",
@@ -25,6 +25,8 @@ export const organsField: FormField = {
 	},
 	default: "",
 	value: "",
+	isHardFilter: true,
+	isMatch: isMultiSelectMatch,
 	dependencies: [
 		{
 			id: "type",

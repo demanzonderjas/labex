@@ -30,16 +30,16 @@ export const MultiSelectField: React.FC<Props> = observer(
 				removeSelection(newValue);
 				return;
 			}
-			const totalSelection = `${value},${newValue}`;
+			const totalSelection = value ? `${value}, ${newValue}` : newValue;
 			setFieldValue(id, totalSelection);
 		};
 
 		const removeSelection = selection => {
-			const filteredSelection = selectionArray.filter(s => s != selection).join(",");
+			const filteredSelection = selectionArray.filter(s => s != selection).join(", ");
 			setFieldValue(id, filteredSelection);
 		};
 
-		const selectionArray = value.split(",");
+		const selectionArray = value.split(", ");
 
 		return (
 			<>
@@ -89,19 +89,17 @@ export const MultiSelectField: React.FC<Props> = observer(
 									value="choose_if_relevant"
 								/>
 							)}
-							{options
-								.filter(option => option != value)
-								.map(option => (
-									<SelectOption
-										key={option}
-										value={option}
-										isSelected={!!value.match(option)}
-										handleClick={() => {
-											addSelection(option);
-											// setIsActive(!isActive);
-										}}
-									/>
-								))}
+							{options.map(option => (
+								<SelectOption
+									key={option}
+									value={option}
+									isSelected={!!value.match(option)}
+									handleClick={() => {
+										addSelection(option);
+										// setIsActive(!isActive);
+									}}
+								/>
+							))}
 							{allowOther && (
 								<OtherOption
 									handleActivate={() => {
