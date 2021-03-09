@@ -47,6 +47,13 @@ $item-height: 42px;
 		margin-bottom: 1px;
 		position: relative;
 
+		span {
+			max-width: calc(100% - 20px);
+			overflow-x: hidden;
+			overflow-y: hidden;
+			display: block;
+		}
+
 		.image-wrapper {
 			position: absolute;
 			top: 50%;

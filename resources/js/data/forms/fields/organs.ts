@@ -1,10 +1,11 @@
 import { FormField } from "../../../typings/Form";
 import { SelectField } from "../../../components/form/SelectField";
+import { MultiSelectField } from "../../../components/form/MultiSelectField";
 
 export const organsField: FormField = {
 	label: "organs",
 	id: "organs",
-	Component: SelectField,
+	Component: MultiSelectField,
 	props: {
 		startsEmpty: true,
 		options: [
@@ -19,8 +20,8 @@ export const organsField: FormField = {
 			"bone",
 			"intestine",
 			"skin"
-		],
-		allowOther: true
+		]
+		// allowOther: true
 	},
 	default: "",
 	value: "",
