@@ -4,18 +4,29 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useSampleStore } from "../../hooks/useSampleStore";
 import { useHistory } from "react-router-dom";
 import { createQueryStringFromFilters } from "../../utils/formatting/matches";
+import { observer } from "mobx-react-lite";
 
 type Props = {
 	matches: any;
 };
 
-export const ExchangeOfferTable: React.FC<Props> = ({ matches }) => {
+export const ExchangeOfferTable: React.FC<Props> = observer(({ matches }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches: savedMatches } = useSampleStore();
+	const { filters, matchType, matches: savedMatches, magicOfferField } = useSampleStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
 		history.push(`/app/${matchType}/select/${savedMatches[rowIndex].id}${queryString}`);
+	};
+
+	const magicColumns = () => {
+		if (!magicOfferField) {
+			return offerMatchColumns.filter(column => column != "magic_cell");
+		}
+		const offerColumnsWithMagic = [...offerMatchColumns];
+		const targetIdx = offerColumnsWithMagic.findIndex(column => column === "magic_cell");
+		offerColumnsWithMagic[targetIdx] = magicOfferField.id;
+		return offerColumnsWithMagic;
 	};
 
 	return (
@@ -23,7 +34,7 @@ export const ExchangeOfferTable: React.FC<Props> = ({ matches }) => {
 			<table className="highlightable">
 				<thead>
 					<tr>
-						{offerMatchColumns.map(column => (
+						{magicColumns().map(column => (
 							<th key={column}>{t(column)}</th>
 						))}
 					</tr>
@@ -31,18 +42,20 @@ export const ExchangeOfferTable: React.FC<Props> = ({ matches }) => {
 				<tbody>
 					{matches.map((cells, idx) => (
 						<tr key={idx} onClick={() => selectMatch(idx)}>
-							{cells.map((cell, cellIdx) => (
-								<cell.Component
-									key={cellIdx}
-									rowIndex={idx}
-									value={cell.value}
-									sample={matches[idx]}
-								/>
-							))}
+							{cells
+								.filter(cell => !!cell)
+								.map((cell, cellIdx) => (
+									<cell.Component
+										key={cellIdx}
+										rowIndex={idx}
+										value={cell.value}
+										sample={matches[idx]}
+									/>
+								))}
 						</tr>
 					))}
 				</tbody>
 			</table>
 		</div>
 	);
-};
+});

@@ -23,8 +23,6 @@ export const DateAvailableCell: React.FC<Props> = ({ value, sample }) => {
 		? sample.find(field => field.id == "type")?.value
 		: sample.type;
 
-	console.log(sampleType);
-
 	if (sampleType == "conserved_tissue") {
 		return (
 			<td className="DateCell">

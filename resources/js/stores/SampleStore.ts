@@ -21,6 +21,8 @@ import { SubmitOfferForm } from "../data/forms/ExchangeOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { FilterRequestsForm } from "../data/forms/ExchangeRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
+import { offerColumns } from "../data/tables/offers";
+import { offerMatchColumns, requestMatchColumns } from "../data/tables/matches";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
@@ -65,15 +67,38 @@ export class SampleStore {
 	}
 
 	@computed get offerMatchOverviewData() {
-		return mapOfferMatchesToOverviewData(this.matches).slice(0, this.currentLimit);
+		return mapOfferMatchesToOverviewData(this.matches, this.magicOfferField).slice(
+			0,
+			this.currentLimit
+		);
 	}
 
 	@computed get requestMatchOverviewData() {
-		return mapRequestMatchesToOverviewData(this.matches).slice(0, this.currentLimit);
+		return mapRequestMatchesToOverviewData(this.matches, this.magicRequestField).slice(
+			0,
+			this.currentLimit
+		);
 	}
 
 	@computed get totalMatches() {
 		return this.matches.length;
+	}
+
+	@computed get magicOfferField() {
+		return this.filters.find(
+			f =>
+				f.value && !f.hidden && !f.id.match("age") && offerMatchColumns.indexOf(f.id) === -1
+		);
+	}
+
+	@computed get magicRequestField() {
+		return this.filters.find(
+			f =>
+				f.value &&
+				!f.hidden &&
+				!f.id.match("age") &&
+				requestMatchColumns.indexOf(f.id) === -1
+		);
 	}
 
 	@action.bound upgradeLimit() {

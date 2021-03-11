@@ -22,7 +22,7 @@ type Props = {
 
 export const ExchangeRequestCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches } = useSampleStore();
+	const { filters, matchType, matches, magicRequestField } = useSampleStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -45,10 +45,14 @@ export const ExchangeRequestCard: React.FC<Props> = ({ data, index }) => {
 			</div>
 			<div className="details">
 				{data
-					.filter(column => column.id != "match_percentage")
+					.filter(column => !!column && column.id != "match_percentage")
 					.map(column => (
 						<div key={column.id} className="info-block">
-							<label>{t(column.label || column.id)}</label>
+							<label>
+								{magicRequestField && column.id === "magic_cell"
+									? t(magicRequestField.id)
+									: t(column.label || column.id)}
+							</label>
 							<SampleValue
 								value={column.value}
 								label={column.label || column.id}
@@ -74,8 +78,6 @@ export const ExchangeRequestDashboardCard: React.FC<{ data: any; sample: TSample
 		const queryString = createQueryStringFromSample(sample);
 		history.push(`/app/submit-request${queryString}`);
 	};
-
-	console.log(data);
 
 	return (
 		<div className="ExchangeRequestCard DashboardCard Card" onClick={copy}>

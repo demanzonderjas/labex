@@ -4,6 +4,7 @@ import { SpecStatus, TSpecMatch } from "../../typings/Sample";
 import { checkIfFieldMatches } from "../matches/utils";
 import { offerCells } from "../../data/tables/offers";
 import { requestCells } from "../../data/tables/requests";
+import { FormField } from "../../typings/Form";
 
 export function getMatchClasses(value) {
 	return {
@@ -29,17 +30,27 @@ export function mapRequestsToOverviewData(matches) {
 	});
 }
 
-export function mapOfferMatchesToOverviewData(matches) {
+export function mapOfferMatchesToOverviewData(matches, magicField: FormField) {
 	return matches.map(match => {
 		return offerMatchCells.map(cell => {
+			if (cell.id === "magic_cell" && magicField) {
+				return { ...cell, value: match[magicField.id] || "" };
+			} else if (cell.id === "magic_cell" && !magicField) {
+				return null;
+			}
 			return { ...cell, value: match[cell.id] || cell.value };
 		});
 	});
 }
 
-export function mapRequestMatchesToOverviewData(matches) {
+export function mapRequestMatchesToOverviewData(matches, magicField: FormField) {
 	return matches.map(match => {
 		return requestMatchCells.map(cell => {
+			if (cell.id === "magic_cell" && magicField) {
+				return { ...cell, value: match[magicField.id] || "" };
+			} else if (cell.id === "magic_cell" && !magicField) {
+				return null;
+			}
 			return { ...cell, value: match[cell.id] || cell.value };
 		});
 	});

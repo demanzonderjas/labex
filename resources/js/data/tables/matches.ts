@@ -13,6 +13,7 @@ export const offerMatchColumns: string[] = [
 	"animal_species",
 	"sex",
 	"age_offer",
+	"magic_cell",
 	"amount",
 	"date_available",
 	"select_header"
@@ -24,6 +25,7 @@ export const requestMatchColumns: string[] = [
 	"animal_species",
 	"sex",
 	"age_offer",
+	"magic_cell",
 	"amount",
 	"date_requested",
 	"select_header"
@@ -55,6 +57,11 @@ export const offerMatchCells = [
 		label: "age_offer",
 		value: "",
 		Component: AgeCell
+	},
+	{
+		id: "magic_cell",
+		value: "",
+		Component: TextCell
 	},
 	{
 		id: "amount",
@@ -99,6 +106,11 @@ export const requestMatchCells = [
 		label: "age_range",
 		value: "",
 		Component: AgeRangeCell
+	},
+	{
+		id: "magic_cell",
+		value: "",
+		Component: TextCell
 	},
 	{
 		id: "amount",

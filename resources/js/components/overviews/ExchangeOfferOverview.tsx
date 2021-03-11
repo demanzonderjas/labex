@@ -6,7 +6,6 @@ import { ExchangeOfferCardContainer } from "./ExchangeOfferCardContainer";
 import { ExchangeOfferTable } from "./ExchangeOfferTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { OverviewSwitch } from "./OverviewSwitch";
-import { SecondaryButton } from "../base/Button";
 import { LoadMore } from "./LoadMore";
 
 export const ExchangeOfferOverview: React.FC = observer(() => {

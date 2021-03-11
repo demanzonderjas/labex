@@ -41,6 +41,11 @@ export const offerCells = [
 		Component: TextCell
 	},
 	{
+		id: "magic_cell",
+		value: "",
+		Component: TextCell
+	},
+	{
 		id: "date_available",
 		value: "",
 		Component: DateAvailableCell

@@ -22,7 +22,7 @@ type Props = {
 
 export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches } = useSampleStore();
+	const { filters, matchType, matches, magicOfferField } = useSampleStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -45,10 +45,14 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 			</div>
 			<div className="details">
 				{data
-					.filter(column => column.id != "match_percentage")
+					.filter(column => !!column && column.id != "match_percentage")
 					.map(column => (
 						<div key={column.id} className="info-block">
-							<label>{t(column.label || column.id)}</label>
+							<label>
+								{magicOfferField && column.id === "magic_cell"
+									? t(magicOfferField.id)
+									: t(column.label || column.id)}
+							</label>
 							<SampleValue
 								value={column.value}
 								label={column.label || column.id}
@@ -78,16 +82,18 @@ export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCa
 	return (
 		<div className="ExchangeOfferCard DashboardCard Card" onClick={copy}>
 			<div className="details">
-				{data.map(column => (
-					<div key={column.id} className="info-block">
-						<label>{t(column.label || column.id)}</label>
-						<SampleValue
-							value={column.value}
-							label={column.label || column.id}
-							fields={fields}
-						/>
-					</div>
-				))}
+				{data
+					.filter(column => !!column)
+					.map(column => (
+						<div key={column.id} className="info-block">
+							<label>{t(column.label || column.id)}</label>
+							<SampleValue
+								value={column.value}
+								label={column.label || column.id}
+								fields={fields}
+							/>
+						</div>
+					))}
 			</div>
 			<Button classes={{ small: true, primary: true }} label="copy" />
 		</div>
