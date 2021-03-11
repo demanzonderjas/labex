@@ -1,5 +1,5 @@
 import React from "react";
-import { prefixWithZeroBelow9 } from "../../utils/formatting/datetime";
+import { getDatePlusTwoWeeks, prefixWithZeroBelow9 } from "../../utils/formatting/datetime";
 
 type Props = {
 	value: string;
@@ -16,5 +16,21 @@ export const DisplayedDate: React.FC<Props> = ({ value }) => {
 			<span>{prefixWithZeroBelow9(month)}</span>
 			<span>{year}</span>
 		</div>
+	);
+};
+
+export const DateAvailableValue: React.FC<Props & { type: string }> = ({ value, type }) => {
+	const datePlusTwoWeeks = getDatePlusTwoWeeks(value);
+
+	if (type == "conserved_tissue") {
+		return <DisplayedDate value={value} />;
+	}
+
+	return (
+		<>
+			<DisplayedDate value={value} />
+			&nbsp;-&nbsp;
+			<DisplayedDate value={datePlusTwoWeeks} />
+		</>
 	);
 };

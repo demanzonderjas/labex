@@ -2,7 +2,7 @@ import React from "react";
 import { DisplayedAge } from "./Age";
 import { FormField } from "../../typings/Form";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { DisplayedDate } from "../base/DisplayedDate";
+import { DateAvailableValue, DisplayedDate } from "../base/DisplayedDate";
 
 type Props = {
 	label: string;
@@ -14,15 +14,20 @@ export const SampleValue: React.FC<Props> = ({ value, label, fields }) => {
 	const { t } = useTranslationStore();
 	const isDate = label && label.indexOf("date") > -1;
 	const isOrgan = label && label.indexOf("organ") > -1;
+	const isDateAvailable = label == "date_available";
 	return (
 		<>
 			{(label == "age_offer" || label == "age_range") && (
 				<DisplayedAge type={label} value={value} fields={fields} />
 			)}
-			{(isDate || label == "age") && <DisplayedDate value={value} />}
+			{label == "date_available" && (
+				<DateAvailableValue value={value} type={fields.find(f => f.id === "type")?.value} />
+			)}
+			{((isDate && !isDateAvailable) || label == "age") && <DisplayedDate value={value} />}
 			{label != "age_offer" &&
 				label != "age_range" &&
 				label != "age" &&
+				!isDateAvailable &&
 				!isDate &&
 				!isOrgan && <span>{value ? t(value) : "-"}</span>}
 			{isOrgan && value && (
