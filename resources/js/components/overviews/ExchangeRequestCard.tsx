@@ -75,6 +75,8 @@ export const ExchangeRequestDashboardCard: React.FC<{ data: any; sample: TSample
 		history.push(`/app/submit-request${queryString}`);
 	};
 
+	console.log(data);
+
 	return (
 		<div className="ExchangeRequestCard DashboardCard Card" onClick={copy}>
 			<div className="details">

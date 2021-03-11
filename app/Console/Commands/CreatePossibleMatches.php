@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\ExchangeOffer;
 use App\ExchangeRequest;
-use App\Match;
 use App\MaterialMatch;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;

@@ -1,7 +1,5 @@
 import { TextCell } from "../../components/overviews/table/TextCell";
-import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
-import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
 import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
 import { DateCell } from "../../components/overviews/table/DateCell";
 
@@ -49,13 +47,13 @@ export const requestCells = [
 		Component: DateCell
 	},
 	{
+		id: "organs",
+		value: "",
+		Component: DateCell
+	},
+	{
 		id: "is_match",
 		value: "",
 		Component: BooleanCell
-	},
-	{
-		id: "copy",
-		value: "",
-		Component: CopyButtonCell
 	}
 ];

@@ -11,7 +11,7 @@ $factory->define(ExchangeOffer::class, function (Faker $faker) {
         "user_id" => User::where('name', 'Offer Demo')->first(),
         "type" => selectRandom(config("validation.type")),
         "animal_species" => selectRandom(config("validation.animal_species")),
-        "organs" => selectRandom(config("validation.organs")),
+        "organs" => selectRandom(config("validation.organs")) . ", " . selectRandom(config("validation.organs")),
         "strain" => $faker->word(),
         "amount" => rand(0, 100),
         "sex" => selectRandom(config("validation.sex")),

@@ -57,6 +57,12 @@
 		}
 		.info-block {
 			width: 33.3333%;
+			vertical-align: top;
+
+			span {
+				min-height: 20px;
+				display: inline-block;
+			}
 		}
 	}
 

@@ -20,7 +20,7 @@ $factory->define(ExchangeRequest::class, function (Faker $faker) {
         "user_id" => User::where('name', 'Request Demo')->first(),
         "type" => selectRandom(config("validation.type")),
         "animal_species" => selectRandom(config("validation.animal_species")),
-        "organs" => selectRandom(config("validation.organs")),
+        "organs" => selectRandom(config("validation.organs")) . ", " . selectRandom(config("validation.organs")),
         "amount" => rand(0, 100),
         "date_requested" => $faker->dateTimeBetween('now', '+30 days')->format('Y-m-d'),
         "age_type" => selectRandom(config("validation.age_type")),

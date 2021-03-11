@@ -2,7 +2,7 @@
 
 namespace App\Mail\Admin;
 
-use App\Match;
+use App\MaterialMatch;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -20,7 +20,7 @@ class AdminMatchMadeEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(Match $match, User $user)
+    public function __construct(MaterialMatch $match, User $user)
     {
         $this->match = $match;
         $this->user = $user;

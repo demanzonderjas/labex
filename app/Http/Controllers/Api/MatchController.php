@@ -45,6 +45,46 @@ class MatchController extends Controller
         } else if ((int) $match->exchangeRequest->amount > (int) $match->exchangeOffer->amount) {
             self::createRequestFromRemainingAmount($match);
         }
+
+        if ($match->exchangeOffer->organs != $match->exchangeRequest->organs) {
+            self::createNewFromRemainingOrgans($match);
+        }
+    }
+
+    public static function createNewFromRemainingOrgans(MaterialMatch $match)
+    {
+        $offerOrgansArray = explode(', ', $match->exchangeOffer->organs);
+        sort($offerOrgansArray);
+        $requestOrgansArray = explode(', ', $match->exchangeRequest->organs);
+        sort($requestOrgansArray);
+
+        if ($offerOrgansArray === $requestOrgansArray) {
+            return;
+        }
+
+        $overlappingOrgans = array_intersect($offerOrgansArray, $requestOrgansArray);
+
+        $match->exchangeOffer->organs = implode(', ', $overlappingOrgans);
+        $match->exchangeOffer->save();
+
+        $match->exchangeRequest->organs = implode(', ', $overlappingOrgans);
+        $match->exchangeRequest->save();
+
+        $remainingOfferOrgans = array_diff($offerOrgansArray, $overlappingOrgans);
+        if (count($remainingOfferOrgans) > 0) {
+            $newOffer = $match->exchangeOffer->replicate()->fill([
+                'organs' => implode(', ', $remainingOfferOrgans)
+            ]);
+            $newOffer->save();
+        }
+
+        $remainingRequestOrgans = array_diff($requestOrgansArray, $overlappingOrgans);
+        if (count($remainingRequestOrgans) > 0) {
+            $newRequest = $match->exchangeRequest->replicate()->fill([
+                'organs' => implode(', ', $remainingRequestOrgans)
+            ]);
+            $newRequest->save();
+        }
     }
 
     public static function createOfferFromRemainingAmount(MaterialMatch $match)
