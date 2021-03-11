@@ -58,9 +58,12 @@ export class FormStore {
 	}
 
 	@action.bound setFieldValue(id: string, value: any) {
-		const fieldIdx = this.fields.findIndex(field => field.id == id);
+		const fieldIdx = this.fields.findIndex(
+			field => field.id == id && fieldMeetsDependencies(field, 0, this.fields)
+		);
 		const fields = [...this.fields];
 		fields[fieldIdx] = { ...fields[fieldIdx], value };
+		console.log(id, value);
 		this.fields = fields;
 		this.setFieldError(id, null);
 		this.serverError = null;
