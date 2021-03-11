@@ -37,12 +37,46 @@ class MatchController extends Controller
         return response()->json(["match" => $match ? $match->toArray() : null]);
     }
 
+    public static function convertRemainsToNewMaterial(MaterialMatch $match)
+    {
+
+        if ((int) $match->exchangeOffer->amount > (int) $match->exchangeRequest->amount) {
+            self::createOfferFromRemainingAmount($match);
+        } else if ((int) $match->exchangeRequest->amount > (int) $match->exchangeOffer->amount) {
+            self::createRequestFromRemainingAmount($match);
+        }
+    }
+
+    public static function createOfferFromRemainingAmount(MaterialMatch $match)
+    {
+        $newAmount = (int) $match->exchangeOffer->amount - (int) $match->exchangeRequest->amount;
+        $newOffer = $match->exchangeOffer->replicate()->fill([
+            'amount' => $newAmount
+        ]);
+        $newOffer->save();
+        $match->exchangeOffer->amount = $match->exchangeRequest->amount;
+        $match->exchangeOffer->save();
+    }
+
+    public static function createRequestFromRemainingAmount(MaterialMatch $match)
+    {
+        $newAmount = (int) $match->exchangeRequest->amount - (int) $match->exchangeOffer->amount;
+        $newRequest = $match->exchangeRequest->replicate()->fill([
+            'amount' => $newAmount
+        ]);
+        $newRequest->save();
+        $match->exchangeRequest->amount = $match->exchangeOffer->amount;
+        $match->exchangeRequest->save();
+    }
+
     public static function create($offerId, $requestId)
     {
         $match = new MaterialMatch();
         $match->exchange_offer_id = $offerId;
         $match->exchange_request_id = $requestId;
         $match->save();
+
+        self::convertRemainsToNewMaterial($match);
 
         $offer = ExchangeOffer::find($offerId);
         $request = ExchangeRequest::find($requestId);
