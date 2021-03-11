@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\ExchangeOffer;
+use App\ExchangeRequest;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 
