@@ -8,7 +8,7 @@ export function FlowChart() {
 		<>
 			<p>{t("flowchart_intro")}</p>
 			<div style={{ margin: "40px 0" }}>
-				<LocalImage path="info/flowchart.jpg" />
+				<LocalImage path="info/flowchart.png" />
 			</div>
 		</>
 	);

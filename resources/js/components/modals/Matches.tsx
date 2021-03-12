@@ -7,9 +7,6 @@ export function MatchesModal() {
 	return (
 		<>
 			<p>{t("matches_intro")}</p>
-			<div style={{ margin: "40px 0" }}>
-				<LocalImage path="info/flowchart.jpg" />
-			</div>
 		</>
 	);
 }
