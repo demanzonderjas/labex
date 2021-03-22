@@ -23,7 +23,7 @@
 
 			.details {
 				margin-left: 16px;
-				font-family: $font-header;
+				font-family: $font-body;
 
 				.name {
 					font-weight: bold;
@@ -80,7 +80,7 @@
 			}
 
 			.MatchValue {
-				font-family: $font-header;
+				font-family: $font-body;
 				line-height: 14px;
 				&.correct {
 					color: $correct-color;

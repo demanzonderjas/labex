@@ -22,7 +22,7 @@ export const AboutUsPage: React.FC = () => {
 				</div>
 				<p>
 					This platform is provided and maintained by the AWB Utrecht - Animal Welfare
-					Body Utrecht - (IVD Utrecht, in Dutch)
+					Body Utrecht - (IvD Utrecht, in Dutch)
 				</p>
 				<p>
 					In biomedical research (laboratory) animals are also used as tissue donors. This

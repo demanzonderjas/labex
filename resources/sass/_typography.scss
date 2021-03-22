@@ -34,7 +34,7 @@ p {
 
 th,
 td {
-	font-family: $font-header;
+	font-family: $font-body;
 }
 
 th {
@@ -44,7 +44,7 @@ th {
 input,
 textarea {
 	font-size: $form-font-size;
-	font-family: $font-primary;
+	font-family: $font-body;
 }
 
 .SelectOption {
@@ -58,18 +58,18 @@ textarea {
 button {
 	font-size: 14px;
 	font-weight: bold;
-	font-family: $font-header;
+	font-family: $font-body;
 	text-transform: uppercase;
 }
 
 label {
 	font-size: 14px;
 	font-weight: bold;
-	font-family: $font-header;
+	font-family: $font-body;
 }
 
 span {
-	font-family: $font-header;
+	font-family: $font-body;
 	font-size: 12px;
 }
 
@@ -98,7 +98,7 @@ span {
 .Filter {
 	span {
 		font-weight: bold;
-		font-family: $font-header;
+		font-family: $font-body;
 		font-size: $default-font-size;
 	}
 }
