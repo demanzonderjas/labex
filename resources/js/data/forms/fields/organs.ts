@@ -16,7 +16,7 @@ export const organsField: FormField = {
 			"brains",
 			"blood",
 			"muscle_tissue",
-			"lynf_knots",
+			"lymph_nodes",
 			"bone",
 			"intestine",
 			"skin"
