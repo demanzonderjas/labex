@@ -14,6 +14,7 @@ class MatchApprovedEmail extends Mailable
 
     public $match;
     public $user;
+    public $contact;
 
     /**
      * Create a new message instance.
@@ -24,6 +25,12 @@ class MatchApprovedEmail extends Mailable
     {
         $this->match = $match;
         $this->user = $user;
+        $this->contact = $this->getContactFromMatch();
+    }
+
+    private function getContactFromMatch(): User
+    {
+        return $this->match->exchangeOffer->user->id === $this->user->id ? $this->match->exchangeRequest->user : $this->match->exchangeOffer->user;
     }
 
     /**
