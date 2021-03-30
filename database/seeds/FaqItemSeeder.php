@@ -32,7 +32,7 @@ class FaqItemSeeder extends Seeder
             ],
             [
                 "category" => "Privacy",
-                "title" => "Are the legal requirements of the Experiments on Animals Act WOD) and the General Data Protection Regulation (AVG) taken into account, and if so how?",
+                "title" => "Are the legal requirements of the Experiments on Animals Act WoD) and the General Data Protection Regulation (AVG) taken into account, and if so how?",
             ],
             [
                 "category" => "Matches",
