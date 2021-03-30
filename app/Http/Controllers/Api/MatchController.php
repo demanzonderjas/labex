@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Mail;
 
 class MatchController extends Controller
 {
-
     public function getAll()
     {
         $matches = MaterialMatch::all();
@@ -40,11 +39,11 @@ class MatchController extends Controller
     public static function convertRemainsToNewMaterial(MaterialMatch $match)
     {
         if (!empty($match->exchangeOffer->organs) && !empty($match->exchangeRequest->organs) && $match->exchangeOffer->organs != $match->exchangeRequest->organs) {
-            self::createNewFromRemainingOrgans($match);
-        } else if ((int) $match->exchangeOffer->amount > (int) $match->exchangeRequest->amount) {
-            self::createOfferFromRemainingAmount($match);
-        } else if ((int) $match->exchangeRequest->amount > (int) $match->exchangeOffer->amount) {
-            self::createRequestFromRemainingAmount($match);
+            return self::createNewFromRemainingOrgans($match);
+        } elseif ((int) $match->exchangeOffer->amount > (int) $match->exchangeRequest->amount) {
+            return self::createOfferFromRemainingAmount($match);
+        } elseif ((int) $match->exchangeRequest->amount > (int) $match->exchangeOffer->amount) {
+            return self::createRequestFromRemainingAmount($match);
         }
     }
 
@@ -57,11 +56,10 @@ class MatchController extends Controller
 
         if ($offerOrgansArray === $requestOrgansArray) {
             if ((int) $match->exchangeOffer->amount > (int) $match->exchangeRequest->amount) {
-                self::createOfferFromRemainingAmount($match);
-            } else if ((int) $match->exchangeRequest->amount > (int) $match->exchangeOffer->amount) {
-                self::createRequestFromRemainingAmount($match);
+                return self::createOfferFromRemainingAmount($match);
+            } elseif ((int) $match->exchangeRequest->amount > (int) $match->exchangeOffer->amount) {
+                return self::createRequestFromRemainingAmount($match);
             }
-            return;
         }
 
         $overlappingOrgans = array_intersect($offerOrgansArray, $requestOrgansArray);
@@ -70,14 +68,16 @@ class MatchController extends Controller
         $remainingOfferOrgans = array_diff($offerOrgansArray, $overlappingOrgans);
         if (count($remainingOfferOrgans) > 0) {
             $newOffer = $match->exchangeOffer->replicate()->fill([
-                'organs' => implode(', ', $remainingOfferOrgans)
+                'organs' => implode(', ', $remainingOfferOrgans),
+                'origin_id' => $match->exchangeOffer->id
             ]);
             $newOffer->save();
         }
         if (count($overlappingOrgans) > 0 && $match->exchangeOffer->amount > $matchAmount) {
             $newOffer = $match->exchangeOffer->replicate()->fill([
                 'organs' => implode(', ', $overlappingOrgans),
-                'amount' => (int) $match->exchangeOffer->amount - $matchAmount
+                'amount' => (int) $match->exchangeOffer->amount - $matchAmount,
+                'origin_id' => $match->exchangeOffer->id
             ]);
             $newOffer->save();
         }
@@ -86,25 +86,41 @@ class MatchController extends Controller
         $remainingRequestOrgans = array_diff($requestOrgansArray, $overlappingOrgans);
         if (count($remainingRequestOrgans) > 0) {
             $newRequest = $match->exchangeRequest->replicate()->fill([
-                'organs' => implode(', ', $remainingRequestOrgans)
+                'organs' => implode(', ', $remainingRequestOrgans),
+                'origin_id' => $match->exchangeRequest->id
             ]);
             $newRequest->save();
         }
         if (count($overlappingOrgans) > 0 && $match->exchangeRequest->amount > $matchAmount) {
             $newRequest = $match->exchangeRequest->replicate()->fill([
                 'organs' => implode(', ', $overlappingOrgans),
-                'amount' => (int) $match->exchangeRequest->amount - $matchAmount
+                'amount' => (int) $match->exchangeRequest->amount - $matchAmount,
+                'origin_id' => $match->exchangeRequest->id
             ]);
             $newRequest->save();
         }
 
-        $match->exchangeOffer->organs = implode(', ', $overlappingOrgans);
-        $match->exchangeOffer->amount = $matchAmount;
+        $matchOffer = $match->exchangeOffer->replicate()->fill([
+            'organs' => implode(', ', $overlappingOrgans),
+            'amount' => $matchAmount,
+            'origin_id' => $match->exchangeOffer->id
+        ]);
+        $matchOffer->save();
+
+        $match->exchangeOffer->active = false;
         $match->exchangeOffer->save();
 
-        $match->exchangeRequest->organs = implode(', ', $overlappingOrgans);
-        $match->exchangeRequest->amount = $matchAmount;
+        $matchRequest = $match->exchangeRequest->replicate()->fill([
+            'organs' => implode(', ', $overlappingOrgans),
+            'amount' => $matchAmount,
+            'origin_id' => $match->exchangeRequest->id
+        ]);
+        $matchRequest->save();
+
+        $match->exchangeRequest->active = false;
         $match->exchangeRequest->save();
+
+        return ["exchange_offer_match_id" => $matchOffer->id, "exchange_request_match_id" => $matchRequest->id];
     }
 
     public static function calculateCorrectMatchAmount(MaterialMatch $match)
@@ -120,22 +136,42 @@ class MatchController extends Controller
     {
         $newAmount = (int) $match->exchangeOffer->amount - (int) $match->exchangeRequest->amount;
         $newOffer = $match->exchangeOffer->replicate()->fill([
-            'amount' => $newAmount
+            'amount' => $newAmount,
+            'origin_id' => $match->exchangeOffer->id
         ]);
         $newOffer->save();
-        $match->exchangeOffer->amount = $match->exchangeRequest->amount;
+
+        $matchOffer = $match->exchangeOffer->replicate()->fill([
+            'amount' => $match->exchangeRequest->amount,
+            'origin_id' => $match->exchangeOffer->id
+        ]);
+        $matchOffer->save();
+
+        $match->exchangeOffer->active = false;
         $match->exchangeOffer->save();
+
+        return ["exchange_offer_match_id" => $matchOffer->id, "exchange_request_match_id" => $match->exchangeRequest->id];
     }
 
     public static function createRequestFromRemainingAmount(MaterialMatch $match)
     {
         $newAmount = (int) $match->exchangeRequest->amount - (int) $match->exchangeOffer->amount;
         $newRequest = $match->exchangeRequest->replicate()->fill([
-            'amount' => $newAmount
+            'amount' => $newAmount,
+            'origin_id' => $match->exchangeRequest->id
         ]);
         $newRequest->save();
-        $match->exchangeRequest->amount = $match->exchangeOffer->amount;
+
+        $matchRequest = $match->exchangeRequest->replicate()->fill([
+            'amount' => $match->exchangeOffer->amount,
+            'origin_id' => $match->exchangeRequest->id
+        ]);
+        $matchRequest->save();
+
+        $match->exchangeRequest->active = false;
         $match->exchangeRequest->save();
+
+        return ["exchange_offer_match_id" => $match->exchangeOffer->id, "exchange_request_match_id" => $matchRequest->id];
     }
 
     public static function create($offerId, $requestId)
@@ -145,10 +181,14 @@ class MatchController extends Controller
         $match->exchange_request_id = $requestId;
         $match->save();
 
-        self::convertRemainsToNewMaterial($match);
+        $matchingIds = self::convertRemainsToNewMaterial($match);
 
-        $offer = ExchangeOffer::find($offerId);
-        $request = ExchangeRequest::find($requestId);
+        $match->exchange_offer_id = $matchingIds["exchange_offer_match_id"];
+        $match->exchange_request_id = $matchingIds["exchange_request_match_id"];
+        $match->save();
+
+        $offer = ExchangeOffer::find($matchingIds["exchange_offer_match_id"]);
+        $request = ExchangeRequest::find($matchingIds["exchange_request_match_id"]);
         Mail::to($offer->user)->queue(new MatchMadeEmail($match, $offer->user));
         Mail::to($request->user)->queue(new MatchMadeEmail($match, $request->user));
 
@@ -164,11 +204,12 @@ class MatchController extends Controller
 
     public static function deactivateActiveMatch(MaterialMatch $match)
     {
-        $match->exchangeOffer->active = false;
-        $match->exchangeOffer->save();
+        $updatedMatch = $match->fresh();
+        $updatedMatch->exchangeOffer->active = false;
+        $updatedMatch->exchangeOffer->save();
 
-        $match->exchangeRequest->active = false;
-        $match->exchangeRequest->save();
+        $updatedMatch->exchangeRequest->active = false;
+        $updatedMatch->exchangeRequest->save();
     }
 
     public function approve(int $matchId)

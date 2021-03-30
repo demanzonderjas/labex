@@ -23,7 +23,8 @@ class ExchangeRequest extends Model
         "storage",
         "protocol_number",
         "kill_method",
-        "extra_info"
+        "extra_info",
+        "origin_id"
     ];
 
     protected $with = ['user'];
