@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Api'], function () {
 
         Route::get('my-matches', 'MatchController@user');
         Route::get('my-latest-match', 'MatchController@myLatest');
+        Route::post('matches/cancel/{matchId}', 'MatchController@cancel');
 
         Route::get('dashboard-stats', 'StatsController@getDashboardStats');
         Route::get('faq', 'FaqController@getByCategory');
