@@ -15,6 +15,7 @@ import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
 import { useHistory } from "react-router-dom";
 import cx from "classnames";
+import { Button } from "../base/Button";
 
 type Props = {
 	match: TMatch;
@@ -49,6 +50,9 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 			<div className="percentage">
 				<span>{t("match")}</span>
 				<Percentage matchPercentage={percentage} />
+			</div>
+			<div className="cancel">
+				<Button label="cancel_match" handleClick={} />
 			</div>
 			<div
 				className={cx("cards", { admin: matchType == MatchType.Admin })}
