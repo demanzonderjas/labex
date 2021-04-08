@@ -12,41 +12,46 @@ import { AdminFAQPage } from "./pages/admin/FAQ";
 import { FAQEditPage } from "./pages/admin/FAQEdit";
 import { FAQCreatePage } from "./pages/admin/FAQCreate";
 import { SignupsPage } from "./pages/admin/Signups";
+import { ModalStore } from "./stores/ModalStore";
+import ModalStoreProvider from "./contexts/ModalContext";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
+	const [modalStore] = useState(new ModalStore());
 	return (
 		<TranslationStoreProvider store={translationStore}>
-			<Router>
-				<div className="App Admin">
-					<Sidebar />
-					<div className="page-wrapper">
-						<Switch>
-							<Route path="/admin" exact={true}>
-								<AdminDashboardPage />
-							</Route>
-							<Route path="/admin/dashboard">
-								<AdminDashboardPage />
-							</Route>
-							<Route path="/admin/possible-matches" exact={true}>
-								<PossibleMatches />
-							</Route>
-							<Route path="/admin/signups" exact={true}>
-								<SignupsPage />
-							</Route>
-							<Route path="/admin/faq" exact={true}>
-								<AdminFAQPage />
-							</Route>
-							<Route path="/admin/faq/create" exact={true}>
-								<FAQCreatePage />
-							</Route>
-							<Route path="/admin/faq/edit/:id" exact={true}>
-								<FAQEditPage />
-							</Route>
-						</Switch>
+			<ModalStoreProvider store={modalStore}>
+				<Router>
+					<div className="App Admin">
+						<Sidebar />
+						<div className="page-wrapper">
+							<Switch>
+								<Route path="/admin" exact={true}>
+									<AdminDashboardPage />
+								</Route>
+								<Route path="/admin/dashboard">
+									<AdminDashboardPage />
+								</Route>
+								<Route path="/admin/possible-matches" exact={true}>
+									<PossibleMatches />
+								</Route>
+								<Route path="/admin/signups" exact={true}>
+									<SignupsPage />
+								</Route>
+								<Route path="/admin/faq" exact={true}>
+									<AdminFAQPage />
+								</Route>
+								<Route path="/admin/faq/create" exact={true}>
+									<FAQCreatePage />
+								</Route>
+								<Route path="/admin/faq/edit/:id" exact={true}>
+									<FAQEditPage />
+								</Route>
+							</Switch>
+						</div>
 					</div>
-				</div>
-			</Router>
+				</Router>
+			</ModalStoreProvider>
 		</TranslationStoreProvider>
 	);
 };

@@ -27,7 +27,7 @@ type Props = {
 
 export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const { t } = useTranslationStore();
-	const { setModal } = useModalStore();
+	const { setModal, confirm } = useModalStore();
 	const status = getStatusFromMatch(match);
 	const dateString = convertDateToReadableString(match.updated_at);
 	const history = useHistory();
@@ -45,8 +45,8 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const linkFilters = createQueryStringFromFilters(requestFields);
 
 	const confirmCancel = () => {
-		// cancelMatch(match.id);
-		console.log("cancel", match.id);
+		cancelMatch(match.id);
+		confirm();
 	};
 
 	const requestIsMine = match.exchange_request.is_mine;
@@ -60,15 +60,17 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				<span>{t("match")}</span>
 				<Percentage matchPercentage={percentage} />
 			</div>
-			<div className="cancel margin-10">
-				<DangerButton
-					label="cancel_match"
-					handleClick={() =>
-						setModal({ ...confirmCancelMatchModal, handleConfirm: confirmCancel })
-					}
-					classes={{ small: true }}
-				/>
-			</div>
+			{matchType != MatchType.Admin && (
+				<div className="cancel margin-10">
+					<DangerButton
+						label="cancel_match"
+						handleClick={() =>
+							setModal({ ...confirmCancelMatchModal, handleConfirm: confirmCancel })
+						}
+						classes={{ small: true }}
+					/>
+				</div>
+			)}
 			<div
 				className={cx("cards", { admin: matchType == MatchType.Admin })}
 				onClick={

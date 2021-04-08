@@ -228,6 +228,55 @@ class MatchController extends Controller
         return response()->json(["success" => true]);
     }
 
+    public function restoreOrigin(MaterialMatch $match)
+    {
+        if (!empty($match->exchangeOffer->origin_id)) {
+            $origin = ExchangeOffer::find($match->exchangeOffer->origin_id);
+            $origin->active = true;
+            $origin->save();
+
+            ExchangeOffer::where('origin_id', $match->exchangeOffer->origin_id)->get()->each(function ($offer) {
+                $offer->delete();
+            });
+        } else {
+            $match->exchangeOffer->active = true;
+            $match->exchangeOffer->save();
+        }
+
+        if (!empty($match->exchangeRequest->origin_id)) {
+            $origin = ExchangeRequest::find($match->exchangeRequest->origin_id);
+            $origin->active = true;
+            $origin->save();
+
+            ExchangeRequest::where('origin_id', $match->exchangeRequest->origin_id)->get()->each(function ($exchangeRequest) {
+                $exchangeRequest->delete();
+            });
+        } else {
+            $match->exchangeRequest->active = true;
+            $match->exchangeRequest->save();
+        }
+    }
+
+    public function cancel(Request $request, int $matchId)
+    {
+        $match = MaterialMatch::find($matchId);
+        if (!$match) {
+            return response()->json(["success" => false, "message" => "Match does not exist"]);
+        }
+        if ($request->user()->id != $match->exchangeOffer->user->id && $request->user()->id != $match->exchangeRequest->user->id) {
+            return response()->json(["success" => false, "message" => "You have no connection to this match"]);
+        }
+
+        $this->restoreOrigin($match);
+
+        Mail::to($match->exchangeOffer->user)->queue(new MatchDeclinedEmail($match, $match->exchangeOffer->user));
+        Mail::to($match->exchangeRequest->user)->queue(new MatchDeclinedEmail($match, $match->exchangeRequest->user));
+
+        $match->delete();
+
+        return response()->json(["success" => true]);
+    }
+
     public function reject(int $matchId)
     {
         $match = MaterialMatch::find($matchId);
@@ -236,6 +285,8 @@ class MatchController extends Controller
         }
         $match->awaiting_approval = false;
         $match->save();
+
+        $this->restoreOrigin($match);
 
         Mail::to($match->exchangeOffer->user)->queue(new MatchDeclinedEmail($match, $match->exchangeOffer->user));
         Mail::to($match->exchangeRequest->user)->queue(new MatchDeclinedEmail($match, $match->exchangeRequest->user));

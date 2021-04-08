@@ -1,6 +1,6 @@
 import { API } from "../utils/api/axios";
 
-export async function cancelMatch(matchId) {
+export async function cancelMatch(matchId: number) {
 	try {
 		const response = await API.post(`matches/cancel/${matchId}`);
 		return response.data;
