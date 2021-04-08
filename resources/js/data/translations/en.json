@@ -214,5 +214,8 @@
 	"flowchart_intro": "While filtering and searching for matches, please keep the following 'flow' in mind to make the most use out of the existing offers and requests.",
 	"what_happens_now": "What happens now",
 	"matches_intro": "The matching process requires an approval by the AWB in some cases before it can take place. You will be informed by mail about the status of the match.",
-	"matches_subheader": "Active & past matches"
+	"matches_subheader": "Active & past matches",
+	"cancel_match": "Cancel match",
+	"confirm_cancel_match": "Confirm the cancellation of your match",
+	"confirm_cancel_match_description": "Please make sure that you would like to cancel the match. Only do this whenever the given offer/request does not match what you are offering/requesting."
 }

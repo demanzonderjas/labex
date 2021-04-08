@@ -15,7 +15,10 @@ import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
 import { useHistory } from "react-router-dom";
 import cx from "classnames";
-import { Button } from "../base/Button";
+import { Button, DangerButton } from "../base/Button";
+import { cancelMatch } from "../../queries/cancelMatch";
+import { useModalStore } from "../../hooks/useModalStore";
+import { confirmCancelMatchModal } from "../../data/modals/confirm";
 
 type Props = {
 	match: TMatch;
@@ -24,6 +27,7 @@ type Props = {
 
 export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const { t } = useTranslationStore();
+	const { setModal } = useModalStore();
 	const status = getStatusFromMatch(match);
 	const dateString = convertDateToReadableString(match.updated_at);
 	const history = useHistory();
@@ -40,6 +44,11 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const percentage = getMatchingPercentage(match.exchange_offer, requestFields, offerFields);
 	const linkFilters = createQueryStringFromFilters(requestFields);
 
+	const confirmCancel = () => {
+		// cancelMatch(match.id);
+		console.log("cancel", match.id);
+	};
+
 	const requestIsMine = match.exchange_request.is_mine;
 
 	return (
@@ -51,8 +60,14 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				<span>{t("match")}</span>
 				<Percentage matchPercentage={percentage} />
 			</div>
-			<div className="cancel">
-				<Button label="cancel_match" handleClick={} />
+			<div className="cancel margin-10">
+				<DangerButton
+					label="cancel_match"
+					handleClick={() =>
+						setModal({ ...confirmCancelMatchModal, handleConfirm: confirmCancel })
+					}
+					classes={{ small: true }}
+				/>
 			</div>
 			<div
 				className={cx("cards", { admin: matchType == MatchType.Admin })}

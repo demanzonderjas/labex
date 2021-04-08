@@ -4,7 +4,7 @@ import { useModalStore } from "../../hooks/useModalStore";
 import { FormWrapper } from "../FormWrapper";
 import { Icon } from "./Image";
 import cx from "classnames";
-import { BlankButton } from "./Button";
+import { BlankButton, Button, SubmitButton } from "./Button";
 
 export function Modal() {
 	const { t } = useTranslationStore();
@@ -29,6 +29,16 @@ export function Modal() {
 					</div>
 				)}
 			</div>
+			{modal.isDefault && (
+				<div className="flex-wrapper">
+					<BlankButton label="cancel" handleClick={cancel} classes={{ inline: true }} />
+					<Button
+						label="confirm"
+						handleClick={() => modal?.handleConfirm()}
+						classes={{ secondary: true }}
+					/>
+				</div>
+			)}
 			<div className="close" onClick={cancel}>
 				<Icon name="cross" />
 			</div>

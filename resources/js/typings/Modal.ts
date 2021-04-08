@@ -8,4 +8,5 @@ export type TModal = {
 	props?: any;
 	handleConfirm: Function;
 	align?: string;
+	isDefault?: boolean;
 };

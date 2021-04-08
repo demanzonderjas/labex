@@ -16,3 +16,11 @@ export const confirmRequestMatchModal: TModal = {
 	props: {},
 	handleConfirm: null
 };
+
+export const confirmCancelMatchModal: TModal = {
+	header: "confirm_cancel_match",
+	description: "confirm_cancel_match_description",
+	props: {},
+	handleConfirm: null,
+	isDefault: true
+};
