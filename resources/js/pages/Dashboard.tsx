@@ -12,8 +12,6 @@ import { ExchangeRequests } from "../components/dashboard/ExchangeRequests";
 import { getMyLatestMatch } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
 import { Button } from "../components/base/Button";
-import { useModalStore } from "../hooks/useModalStore";
-import { moreDashboardInfoModal } from "../data/modals/info";
 import { useHistory } from "react-router-dom";
 import { Overview } from "../components/dashboard/DashboardOverview";
 import cx from "classnames";
@@ -24,12 +22,14 @@ export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
 	const [sampleStore] = useState<SampleStore>(new SampleStore());
 	const [match, setMatch] = useState(null);
+	const [shouldViewAll, setShouldViewAll] = useState(false);
 	const { user } = useUserStore();
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
 		TDashboardOverview.Requests
 	);
 	const { offers, requests } = sampleStore;
 	const history = useHistory();
+	const DEFAULT_SHOW_LIMIT = 4;
 
 	useEffect(() => {
 		if (user && user.name == "Offer Demo") {
@@ -98,11 +98,17 @@ export const DashboardPage = observer(() => {
 						<div className="overviews">
 							<Overview isActive={activeOverview === TDashboardOverview.Requests}>
 								<div className="requests">
-									<ExchangeRequests requests={requests} />
+									<ExchangeRequests
+										requests={
+											shouldViewAll
+												? requests
+												: requests.slice(0, DEFAULT_SHOW_LIMIT)
+										}
+									/>
 									<div className="layout-wrapper">
 										<Button
 											label="see_all_requests"
-											handleClick={() => history.push("/app/requests")}
+											handleClick={() => setShouldViewAll(true)}
 											classes={{ inline: true, primary: true }}
 										/>
 									</div>
@@ -110,14 +116,22 @@ export const DashboardPage = observer(() => {
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Offers}>
 								<div className="offers">
-									<ExchangeOffers offers={offers} />
-									<div className="layout-wrapper">
-										<Button
-											label="see_all_offers"
-											handleClick={() => history.push("/app/offers")}
-											classes={{ inline: true, primary: true }}
-										/>
-									</div>
+									<ExchangeOffers
+										offers={
+											shouldViewAll
+												? offers
+												: offers.slice(0, DEFAULT_SHOW_LIMIT)
+										}
+									/>
+									{offers?.length > DEFAULT_SHOW_LIMIT && !shouldViewAll && (
+										<div className="layout-wrapper">
+											<Button
+												label="see_all_offers"
+												handleClick={() => setShouldViewAll(true)}
+												classes={{ inline: true, primary: true }}
+											/>
+										</div>
+									)}
 								</div>
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Matches}>

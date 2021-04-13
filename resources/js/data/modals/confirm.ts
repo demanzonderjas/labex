@@ -24,3 +24,11 @@ export const confirmCancelMatchModal: TModal = {
 	handleConfirm: null,
 	isDefault: true
 };
+
+export const confirmDeleteModal: TModal = {
+	header: "confirm_delete",
+	description: "confirm_delete_description",
+	props: {},
+	handleConfirm: null,
+	isDefault: true
+};

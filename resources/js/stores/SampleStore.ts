@@ -165,6 +165,14 @@ export class SampleStore {
 		location.href = "/app/dashboard";
 	}
 
+	@action.bound deleteRequest(id: number) {
+		this.requests = this.requests.filter(r => r.id != id);
+	}
+
+	@action.bound deleteOffer(id: number) {
+		this.offers = this.offers.filter(r => r.id != id);
+	}
+
 	@action.bound setOverviewType(overviewType: OverviewType) {
 		this.overviewType = overviewType;
 		localStorage.setItem("overview_preference", (overviewType as unknown) as string);

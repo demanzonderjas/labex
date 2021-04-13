@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
-import { SecondaryButton, Button } from "../base/Button";
+import { SecondaryButton, Button, DangerButton } from "../base/Button";
 import { useSampleStore } from "../../hooks/useSampleStore";
 import { AgeInPeriod } from "../match/AgeInPeriod";
 import { TExchangeRequestCard, TSampleCard } from "../../typings/Overview";
@@ -14,6 +14,9 @@ import { useHistory } from "react-router-dom";
 import { SampleValue } from "../match/SampleValue";
 import { FilterOffersForm } from "../../data/forms/ExchangeRequest";
 import { createQueryStringFromSample } from "../../utils/formatting/samples";
+import { deleteExchangeRequest } from "../../queries/deleteRequest";
+import { useModalStore } from "../../hooks/useModalStore";
+import { confirmDeleteModal } from "../../data/modals/confirm";
 
 type Props = {
 	data?: any;
@@ -70,6 +73,8 @@ export const ExchangeRequestDashboardCard: React.FC<{ data: any; sample: TSample
 	sample
 }) => {
 	const { t } = useTranslationStore();
+	const { setModal, confirm } = useModalStore();
+	const { deleteRequest } = useSampleStore();
 
 	const fields = fillFieldsWithKeyValuePairs(FilterOffersForm.fields, sample);
 	const history = useHistory();
@@ -79,8 +84,14 @@ export const ExchangeRequestDashboardCard: React.FC<{ data: any; sample: TSample
 		history.push(`/app/submit-request${queryString}`);
 	};
 
+	const deleteRequestCallback = async () => {
+		await deleteExchangeRequest(sample.id);
+		deleteRequest(sample.id);
+		confirm();
+	};
+
 	return (
-		<div className="ExchangeRequestCard DashboardCard Card" onClick={copy}>
+		<div className="ExchangeRequestCard DashboardCard Card">
 			<div className="details">
 				{data.map(column => (
 					<div key={column.id} className="info-block">
@@ -93,7 +104,21 @@ export const ExchangeRequestDashboardCard: React.FC<{ data: any; sample: TSample
 					</div>
 				))}
 			</div>
-			<Button classes={{ small: true, primary: true }} label="copy" />
+			<div className="button-spacer">
+				<Button classes={{ small: true, primary: true }} label="copy" handleClick={copy} />
+				{!sample?.is_match && (
+					<DangerButton
+						classes={{ small: true }}
+						label="delete"
+						handleClick={() =>
+							setModal({
+								...confirmDeleteModal,
+								handleConfirm: deleteRequestCallback
+							})
+						}
+					/>
+				)}
+			</div>
 		</div>
 	);
 };

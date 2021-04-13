@@ -55,6 +55,7 @@ export interface TSampleCard {
 	origin: string;
 	type: string;
 	user?: TUser;
+	is_match?: boolean;
 }
 
 export type TMatch = {

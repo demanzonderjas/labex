@@ -26,3 +26,12 @@ export async function getMyLatestExchangeRequests() {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function getAllMyExchangeRequests() {
+	try {
+		const response = await API.get(`exchange-requests/my-all`);
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

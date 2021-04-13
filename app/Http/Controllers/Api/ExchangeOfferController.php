@@ -32,9 +32,16 @@ class ExchangeOfferController extends Controller
     {
         $offers = ExchangeOffer::where(function ($query) use ($request) {
             $query->where('user_id', $request->user()->id);
-        })->latest()->limit(config('samples.SHOW_TOTAL_LAST'))->get();
+        })->latest()->get();
 
         return response()->json(["success" => true, "exchange_offers" => $offers]);
+    }
+
+    public function deleteById($id)
+    {
+        $exchangeOffer = ExchangeOffer::findOrFail($id);
+        $exchangeOffer->delete();
+        return response()->json(["success" => true, "exchange_offer" => $exchangeOffer->toArray()]);
     }
 
     public function getById($id)

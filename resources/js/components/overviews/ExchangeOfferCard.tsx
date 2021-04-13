@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
-import { Button } from "../base/Button";
+import { Button, DangerButton } from "../base/Button";
 import { useSampleStore } from "../../hooks/useSampleStore";
 import {
 	getMatchClasses,
@@ -14,6 +14,9 @@ import { SubmitOfferForm } from "../../data/forms/ExchangeOffer";
 import { TExchangeOfferCard, TSampleCard } from "../../typings/Overview";
 import { SampleValue } from "../match/SampleValue";
 import { createQueryStringFromSample } from "../../utils/formatting/samples";
+import { useModalStore } from "../../hooks/useModalStore";
+import { deleteExchangeOffer } from "../../queries/deleteOffer";
+import { confirmDeleteModal } from "../../data/modals/confirm";
 
 type Props = {
 	data?: any;
@@ -70,6 +73,8 @@ export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCa
 	sample
 }) => {
 	const { t } = useTranslationStore();
+	const { setModal, confirm } = useModalStore();
+	const { deleteOffer } = useSampleStore();
 
 	const fields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, sample);
 	const history = useHistory();
@@ -79,8 +84,14 @@ export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCa
 		history.push(`/app/submit-offer${queryString}`);
 	};
 
+	const deleteOfferCallback = async () => {
+		await deleteExchangeOffer(sample.id);
+		deleteOffer(sample.id);
+		confirm();
+	};
+
 	return (
-		<div className="ExchangeOfferCard DashboardCard Card" onClick={copy}>
+		<div className="ExchangeOfferCard DashboardCard Card">
 			<div className="details">
 				{data
 					.filter(column => !!column)
@@ -95,7 +106,21 @@ export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCa
 						</div>
 					))}
 			</div>
-			<Button classes={{ small: true, primary: true }} label="copy" />
+			<div className="button-spacer">
+				<Button classes={{ small: true, primary: true }} label="copy" handleClick={copy} />
+				{!sample?.is_match && (
+					<DangerButton
+						classes={{ small: true }}
+						label="delete"
+						handleClick={() =>
+							setModal({
+								...confirmDeleteModal,
+								handleConfirm: deleteOfferCallback
+							})
+						}
+					/>
+				)}
+			</div>
 		</div>
 	);
 };

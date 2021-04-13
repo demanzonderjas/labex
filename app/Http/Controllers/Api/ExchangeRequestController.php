@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeRequestStoreRequest;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class ExchangeRequestController extends Controller
@@ -32,7 +31,16 @@ class ExchangeRequestController extends Controller
     {
         $requests = ExchangeRequest::where(function ($query) use ($request) {
             $query->where('user_id', $request->user()->id);
-        })->latest()->limit(config('samples.SHOW_TOTAL_LAST'))->get();
+        })->latest()->get();
+
+        return response()->json(["success" => true, "exchange_requests" => $requests]);
+    }
+
+    public function getMyAll(Request $request)
+    {
+        $requests = ExchangeRequest::where(function ($query) use ($request) {
+            $query->where('user_id', $request->user()->id);
+        })->latest()->get();
 
         return response()->json(["success" => true, "exchange_requests" => $requests]);
     }
@@ -40,6 +48,13 @@ class ExchangeRequestController extends Controller
     public function getById($id)
     {
         $exchangeRequest = ExchangeRequest::findOrFail($id);
+        return response()->json(["success" => true, "exchange_request" => $exchangeRequest->toArray()]);
+    }
+
+    public function deleteById($id)
+    {
+        $exchangeRequest = ExchangeRequest::findOrFail($id);
+        $exchangeRequest->delete();
         return response()->json(["success" => true, "exchange_request" => $exchangeRequest->toArray()]);
     }
 

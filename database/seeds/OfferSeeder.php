@@ -11,6 +11,6 @@ class OfferSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ExchangeOffer::class, 50)->create();
+        App\ExchangeOffer::factory()->count(50)->create();
     }
 }

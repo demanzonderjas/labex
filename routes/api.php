@@ -28,14 +28,18 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['middleware' => VerifyAuthorized::class], function () {
         Route::post('exchange-offers/store', 'ExchangeOfferController@store');
         Route::get('exchange-offers', 'ExchangeOfferController@getAll');
+        Route::get('exchange-offers/my-all', 'ExchangeOfferController@getMyAll');
         Route::get('exchange-offers/my-latest', 'ExchangeOfferController@getMyLatest');
         Route::get('exchange-offer/{id}', 'ExchangeOfferController@getById');
+        Route::post('exchange-offer/{id}/delete', 'ExchangeOfferController@deleteById');
         Route::post('exchange-offer/match/{offerId}', 'ExchangeOfferController@match');
 
         Route::post('exchange-requests/store', 'ExchangeRequestController@store');
         Route::get('exchange-requests', 'ExchangeRequestController@getAll');
+        Route::get('exchange-requests/my-all', 'ExchangeRequestController@getMyAll');
         Route::get('exchange-requests/my-latest', 'ExchangeRequestController@getMyLatest');
         Route::get('exchange-request/{id}', 'ExchangeRequestController@getById');
+        Route::post('exchange-request/{id}/delete', 'ExchangeRequestController@deleteById');
         Route::post('exchange-request/match/{requestId}', 'ExchangeRequestController@match');
 
         Route::get('my-matches', 'MatchController@user');

@@ -52,6 +52,18 @@
 	}
 	&.DashboardCard {
 		width: calc(50% - 8px);
+		transform: none;
+		cursor: default;
+		padding-bottom: 50px;
+		position: relative;
+
+		.button-spacer {
+			position: absolute;
+			bottom: 32px;
+			left: 32px;
+			width: calc(100% - 64px);
+		}
+
 		.details {
 			width: 100%;
 		}
