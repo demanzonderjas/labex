@@ -64,6 +64,11 @@ class FaqItemSeeder extends Seeder
             ],
             [
                 "category" => "Privacy",
+                "title" => "What cookies are stored/used?",
+                "content" => "To be as privacy-friendly as possible, we only store the cookies required to keep you logged in while you navigate between pages. There are no analytical cookies, no marketing cookies and no other third party cookies."
+            ],
+            [
+                "category" => "Privacy",
                 "title" => "How do I get the contact-info of my match?",
             ],
             [
