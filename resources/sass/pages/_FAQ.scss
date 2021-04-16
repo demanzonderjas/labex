@@ -27,7 +27,7 @@
 			.content {
 				overflow: hidden;
 				max-height: 0;
-				transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+				transition: max-height 0.2s cubic-bezier(0, 1, 0, 1);
 				font-size: 16px;
 				line-height: 25px;
 
@@ -47,7 +47,7 @@
 
 			&.open {
 				.content {
-					max-height: 900px;
+					max-height: 2000px;
 					transition: max-height 1s ease-in-out;
 				}
 			}
