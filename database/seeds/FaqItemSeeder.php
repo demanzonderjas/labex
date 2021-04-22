@@ -17,10 +17,16 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Security",
                 "title" => "Is the information being exchanged sufficiently secure?",
+                "content" => "<p>The shown material and contact information within the ATEX platform is all secured behind the 2-factor authentication of the universities, and, as a secondary check, behind a manually controlled list of allowed participants who have the article 9 clearance.</p><p>All of the sensitive data, like contact information and the filled-in material will be encrypted when saved into the database as well, so even when the data would get compromised, it would be useless.</p>"
             ],
             [
                 "category" => "Privacy",
                 "title" => "Which target groups are allowed to use this online platform?",
+                "content" => "<p>Researchers, teachers, biotechnicians, research analysts who conduct biomedical research within
+                Utrecht University, UMC Utrecht, or Hogeschool Utrecht, who conduct in vivo experiments, provide
+                education with laboratory animals, or conduct ex vivo / in vitro research using animal tissue.
+                </p><p>One must have a qualification in accordance with art. 9, or art. 13f2a of the Animal Experiments Act
+                (Wod). Exceptions are possible after consultation with the IvD Utrecht.</p>"
             ],
             [
                 "category" => "Matches",
@@ -33,6 +39,15 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Privacy",
                 "title" => "Are the legal requirements of the Experiments on Animals Act WoD) and the General Data Protection Regulation (AVG) taken into account, and if so how?",
+                "content" => "<p><strong>Wod:</strong> If surplus laboratory animals are offered and an applicant wishes to take them over for reuse,
+                the IvD Utrecht will check whether this is possible, taking into account the legal criteria that are set
+                for reuse and whether an approved work protocol is or will be available on which the animals are
+                reused. In the event that surplus tissue becomes available from animals that are killed in the context
+                of a licensed experiment, and this tissue must be harvested before death occurs, the IvD Utrecht will
+                ensure that the implementation falls within the legal rules and project license.</p>
+                <p><strong>AVG:</strong> All requirements of the General Data Protection Regulation (AVG) are respected. This is also
+                laid down in the processor agreement that UU concludes with other institutions whose employees
+                use ATEX.</p>"
             ],
             [
                 "category" => "Matches",
@@ -81,10 +96,27 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Other",
                 "title" => "How is the safety of the biomaterial?",
+                "content" => "<p><strong>General rule:</strong> when you exchange animal materials, in particular when it is fresh tissue, you have to
+                treat it as biohazardous material. Although material might be available from SPF animals, this does
+                not imply that they are completely pathogen-free. In addition to possible zoonoses, when you also
+                work with animals, infection from tissue to your animals, when not the right precautions are taken, is
+                a real risk.</p><p>Risk is dependent on the source of the tissue, and the lab offering the tissue should supply sufficient
+                information about the (health) risks when handling and using the tissue.</p>
+                <p>More information:</p>
+                <ul>
+                <li><a href='https://intranet.uu.nl/dierlijke-bijproducten'>https://intranet.uu.nl/dierlijke-bijproducten</a>
+                <li><a href='https://www.uu.nl/sites/default/files/dgk-gdl-transport-van-dierlijke-bijproducten-van-en-naar-het-
+                gdl.pdf'>https://www.uu.nl/sites/default/files/dgk-gdl-transport-van-dierlijke-bijproducten-van-en-naar-het-
+                gdl.pdf</a>
+                <li><a href='https://www.nvwa.nl/onderwerpen/dierlijke-bijproducten/regelgeving-over-dierlijke-bijproducten'>https://www.nvwa.nl/onderwerpen/dierlijke-bijproducten/regelgeving-over-dierlijke-bijproducten</a></li>
+                </ul>"
             ],
             [
                 "category" => "Other",
                 "title" => "How does it work with the ownership of the animals/tissues?",
+                "content" => "<p>Ownership of the material or animals has to be agreed on with the lab offering and the lab collecting
+                the animals or tissue.</p><p>As a general rule: the lab receiving the animals or tissue will become the owner of these and be
+                responsible for the proper transport, use, handling, treatment, and disposal of animals or tissues.</p>"
             ],
         ];
 
