@@ -31,10 +31,12 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Matches",
                 "title" => "Do I have to delete my offer myself if it is no longer available?",
+                "content" => "<p>Whenever your offer/request finds a match within the ATEX platform, it will automatically be hidden from further matching. If you find a match outside of ATEX, then you can delete your offer/request from your dashboard manually.</p><p>Offered vital issues and animals are also automatically archived after 14 days, so keeping it up to date is less cumbersome.</p>"
             ],
             [
                 "category" => "Matches",
                 "title" => "How do I know that the offer stated in the application is still available?",
+                "content" => "<p>Offers for vital tissues and animals are automatically archived after 14 days, making sure you only see fresh (or conserved) offers. If offered material has found a match (and thus is not available any more), it will be hidden from the overview, so this way the offers stay relevant and up to date.</p>"
             ],
             [
                 "category" => "Privacy",
@@ -52,28 +54,32 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Matches",
                 "title" => "Why do I see matches below 100%?",
+                "content" => "<p>To keep the platform as versatile and informative as possible, we chose to show matches below 100%. This gives you as the researcher the option to select a match that maybe does not reflect your wishes fully, but is still a workable alternative.</p><p>When selecting a match, you can exactly see which fields of the offer/request did and did not match.</p>"
             ],
             [
                 "category" => "Matches",
                 "title" => "What happens when a match is partial (in amount/organs)",
-                "content" => "",
-                "show" => true
+                "content" => "<p>Partial matches are re-entered into the system for the remaining amounts/organs.</p><p>As a calculation example:</p><p>=====</p><p>Offer: 70 brains, muscle tissue<br />Request: 20 brains, kidneys</p><p>>>></p><p>Match: 20 brains<br />New Offers: 50 brains, 70 muscle tissue<br />New Request: 20 kidneys</p>",
             ],
             [
                 "category" => "Matches",
                 "title" => "How does the matching of offers and requests work?",
+                "content" => "<p>The matching works with two types filters, 'hard' filters and 'soft' filters.</p><p>Hard filters make sure that the only matches that you see, match your given filter criteria. Soft filters influence only the match percentage, but do not filter the animals and tissues in the results.</p>"
             ],
             [
                 "category" => "Matches",
                 "title" => "How do I stay up to date with the status of the match?",
+                "content" => "<p>The status of the match will automatically be communicated once a match is found, approved and declined, via mail.</p><p>The mail will also contain the contact details of the person you are matched up with, so you can arrange for the animals and/or tissues to be exchanged.</p>"
             ],
             [
                 "category" => "Matches",
                 "title" => "I created the wrong match by accident, what should I do now?",
+                "content" => "If you create and submit a match that is not useful to you, you can cancel it via the '<a href='/app/my-matches'>'My matches'</a> page. Your offer or request will then be re-entered into the system automatically, so that you can look for a new match."
             ],
             [
                 "category" => "Privacy",
                 "title" => "What data of my profile do you store?",
+                "content" => "As little as possible! We currently only store your name, email and university. This information is only used to make sure you can reach out to the person you are matched up with."
             ],
             [
                 "category" => "Privacy",
@@ -83,10 +89,12 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Privacy",
                 "title" => "How do I get the contact-info of my match?",
+                "content" => "The info is sent by mail once the match has been made and approved."
             ],
             [
                 "category" => "General",
                 "title" => "Who can I contact for feedback/questions about ATEX?",
+                "content" => "<p>For general questions/feedback on the information provided here, please contact <a href='mailto:info@atex.uu.nl'>info@atex.uu.nl</a></p><p>For technical issues/feedback, please contact <a href='tech@atex.uu.nl'>tech@atex.uu.nl</a></p>"
             ],
             [
                 "category" => "General",
