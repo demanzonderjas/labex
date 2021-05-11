@@ -20,7 +20,7 @@ export const animalSpeciesField: FormField = {
 			"sheep",
 			"goat",
 			"horse",
-			"bovine",
+			"cattle",
 			"chicken",
 			"zebra_finch",
 			"zebrafish"

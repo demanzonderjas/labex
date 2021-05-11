@@ -30,7 +30,7 @@ return [
         "sheep",
         "goat",
         "horse",
-        "bovine",
+        "cattle",
         "chicken",
         "zebra_finch",
         "zebrafish"
