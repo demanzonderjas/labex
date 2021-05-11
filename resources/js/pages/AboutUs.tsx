@@ -21,8 +21,8 @@ export const AboutUsPage: React.FC = () => {
 					<LocalImage path="logo/atex.png" />
 				</div>
 				<p>
-					This platform is provided and maintained by the AWB Utrecht - Animal Welfare
-					Body Utrecht - (IvD Utrecht, in Dutch)
+					This platform is provided and maintained by the AWB Utrecht - Animal WelfareBody
+					Utrecht - (IvD Utrecht, in Dutch)
 				</p>
 				<p>
 					In biomedical research laboratory animals (and sometimes other animals) can be
