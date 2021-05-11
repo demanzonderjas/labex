@@ -47,6 +47,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const confirmCancel = () => {
 		cancelMatch(match.id);
 		confirm();
+		location.reload();
 	};
 
 	const requestIsMine = match.exchange_request.is_mine;

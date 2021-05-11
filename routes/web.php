@@ -29,14 +29,14 @@ Route::get('/login/surfconext/callback', 'Auth\LoginController@handleProviderCal
 
 Route::get('/test-request-login', function () {
     Auth::logout();
-    $user = User::where('name', 'Request Demo')->first();
+    $user = User::where('id', '2')->first();
     Auth::login($user);
     return redirect()->to('/app/dashboard');
 });
 
 Route::get('/test-offer-login', function () {
     Auth::logout();
-    $user = User::where('name', 'Offer Demo')->first();
+    $user = User::where('id', '1')->first();
     Auth::login($user);
     return redirect()->to('/app/dashboard');
 });

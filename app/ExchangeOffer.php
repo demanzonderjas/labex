@@ -2,6 +2,7 @@
 
 namespace App;
 
+use HiHaHo\EncryptableTrait\Encryptable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class ExchangeOffer extends Model
 {
     use HasFactory;
+    use Encryptable;
+
+    protected $encryptable = [
+        'extra_info'
+    ];
 
     protected $fillable = [
         "type",

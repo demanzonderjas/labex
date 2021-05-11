@@ -7,6 +7,7 @@ use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
 use App\Mail\Admin\AdminMatchMadeEmail;
 use App\Mail\MatchApprovedEmail;
+use App\Mail\MatchCancelledEmail;
 use App\Mail\MatchDeclinedEmail;
 use App\Mail\MatchMadeEmail;
 use App\MaterialMatch;
@@ -192,14 +193,24 @@ class MatchController extends Controller
         Mail::to($offer->user)->queue(new MatchMadeEmail($match, $offer->user));
         Mail::to($request->user)->queue(new MatchMadeEmail($match, $request->user));
 
-        $admins = User::whereIsAdmin()->get();
-        foreach ($admins as $admin) {
-            Mail::to($admin)->queue(new AdminMatchMadeEmail($match, $admin));
-        }
-
+        self::handleMadeMatchValidation($match);
         self::deactivateActiveMatch($match);
 
         return $match;
+    }
+
+    public static function handleMadeMatchValidation(MaterialMatch $match)
+    {
+        $isConserved = $match->exchangeOffer->type === 'conserved_tissue';
+
+        if ($isConserved) {
+            self::approve($match->id);
+        } else {
+            $admins = User::whereIsAdmin()->get();
+            foreach ($admins as $admin) {
+                Mail::to($admin)->queue(new AdminMatchMadeEmail($match, $admin));
+            }
+        }
     }
 
     public static function deactivateActiveMatch(MaterialMatch $match)
@@ -212,7 +223,7 @@ class MatchController extends Controller
         $updatedMatch->exchangeRequest->save();
     }
 
-    public function approve(int $matchId)
+    public static function approve(int $matchId)
     {
         $match = MaterialMatch::find($matchId);
         if (!$match) {
@@ -269,8 +280,8 @@ class MatchController extends Controller
 
         $this->restoreOrigin($match);
 
-        Mail::to($match->exchangeOffer->user)->queue(new MatchDeclinedEmail($match, $match->exchangeOffer->user));
-        Mail::to($match->exchangeRequest->user)->queue(new MatchDeclinedEmail($match, $match->exchangeRequest->user));
+        Mail::to($match->exchangeOffer->user)->queue(new MatchCancelledEmail($match->exchangeOffer->user));
+        Mail::to($match->exchangeRequest->user)->queue(new MatchCancelledEmail($match->exchangeRequest->user));
 
         $match->delete();
 

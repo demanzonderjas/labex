@@ -30,7 +30,7 @@ class ExchangeOfferFactory extends Factory
     public function definition()
     {
         return [
-            "user_id" => User::where('name', 'Offer Demo')->first(),
+            "user_id" => User::where('id', '1')->first(),
             "type" => $this->selectRandom(config("validation.type")),
             "animal_species" => $this->selectRandom(config("validation.animal_species")),
             "organs" => $this->selectRandom(config("validation.organs")) . ", " . $this->selectRandom(config("validation.organs")),

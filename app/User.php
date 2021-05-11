@@ -2,15 +2,19 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Mail\Mailable;
 use Illuminate\Notifications\Notifiable;
+use HiHaHo\EncryptableTrait\Encryptable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Encryptable;
+
+    protected $encryptable = [
+        'name'
+    ];
 
     /**
      * The attributes that are mass assignable.
