@@ -16,6 +16,7 @@ class ExchangeRequest extends Model
         'extra_info'
     ];
 
+    protected $dontThrowDecryptException = true;
 
     protected $fillable = [
         "animal_species",

@@ -16,6 +16,8 @@ class ExchangeOffer extends Model
         'extra_info'
     ];
 
+    protected $dontThrowDecryptException = true;
+
     protected $fillable = [
         "type",
         "animal_species",

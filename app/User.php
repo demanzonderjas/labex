@@ -16,6 +16,8 @@ class User extends Authenticatable
         'name'
     ];
 
+    protected $dontThrowDecryptException = true;
+
     /**
      * The attributes that are mass assignable.
      *
