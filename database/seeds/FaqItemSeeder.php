@@ -94,7 +94,7 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "General",
                 "title" => "Who can I contact for feedback/questions about ATEX?",
-                "content" => "<p>For general questions/feedback on the information provided here, please contact <a href='mailto:info@atex.uu.nl'>info@atex.uu.nl</a></p><p>For technical issues/feedback, please contact <a href='tech@atex.uu.nl'>tech@atex.uu.nl</a></p>"
+                "content" => "<p>For general questions/feedback on the information provided here, please contact <a href='mailto:info@atex.uu.nl'>info@atex.uu.nl</a></p><p>For technical issues/feedback, please contact <a href='mailto:tech@atex.uu.nl'>tech@atex.uu.nl</a></p>"
             ],
             [
                 "category" => "General",
