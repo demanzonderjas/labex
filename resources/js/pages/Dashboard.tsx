@@ -108,13 +108,15 @@ export const DashboardPage = observer(() => {
 												: requests.slice(0, DEFAULT_SHOW_LIMIT)
 										}
 									/>
-									<div className="layout-wrapper">
-										<Button
-											label="see_all_requests"
-											handleClick={() => setShouldViewAll(true)}
-											classes={{ inline: true, primary: true }}
-										/>
-									</div>
+									{requests?.length > DEFAULT_SHOW_LIMIT && !shouldViewAll && (
+										<div className="layout-wrapper">
+											<Button
+												label="see_all_requests"
+												handleClick={() => setShouldViewAll(true)}
+												classes={{ inline: true, primary: true }}
+											/>
+										</div>
+									)}
 								</div>
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Offers}>

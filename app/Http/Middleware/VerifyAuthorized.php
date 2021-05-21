@@ -21,10 +21,6 @@ class VerifyAuthorized
             return redirect("/", 302);
         }
 
-        // $signup = Signup::where([
-        //     'email' => $request->user()->email,
-        //     'approved' => true
-        // ])->first();
         $matchingUser = DB::table('signups')
             ->whereRaw('LOWER(`email`) LIKE ? ', [trim(strtolower($request->user()->email)) . '%'])
             ->first();
