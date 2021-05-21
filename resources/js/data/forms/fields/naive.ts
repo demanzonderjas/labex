@@ -8,10 +8,6 @@ export const naiveField: FormField = {
 	required: true,
 	props: {},
 	default: "",
-	value: ""
-};
-
-export const naiveRequestField: FormField = {
-	...naiveField,
-	required: false
+	value: "",
+	dependencies: [{ id: "type", validate: value => value == "animal" }]
 };

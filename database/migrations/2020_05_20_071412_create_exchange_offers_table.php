@@ -29,7 +29,7 @@ class CreateExchangeOffersTable extends Migration
             $table->text('age');
             $table->text('sex')->nullable();
             $table->text('origin')->nullable();
-            $table->text('naive');
+            $table->text('naive')->nullable();
             $table->text('protocol_number')->nullable();
             $table->text('spf')->nullable();
             $table->text('storage')->nullable();
