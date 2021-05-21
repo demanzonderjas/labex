@@ -1,7 +1,13 @@
 .DashboardPage {
 	.dashboard {
 		h1 {
-			margin: 60px 0;
+			margin: 60px 0 20px;
+		}
+		> p {
+			margin-bottom: 60px;
+			font-size: 18px;
+			padding-bottom: 10px;
+			border-bottom: 2px solid $primary;
 		}
 	}
 	.offers,

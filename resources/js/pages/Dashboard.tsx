@@ -65,6 +65,9 @@ export const DashboardPage = observer(() => {
 				</TwoColumnPageIntro>
 				<div className="layout-wrapper dashboard">
 					<h1>{t("dashboard")}</h1>
+					<p>
+						{t("welcome")}, {user?.name}
+					</p>
 					<div className="submenu-with-overviews">
 						<div className="submenu">
 							<h3

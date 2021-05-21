@@ -16,7 +16,6 @@ export const SampleValue: React.FC<Props> = ({ value, label, fields }) => {
 	const isDate = label && label.indexOf("date") > -1;
 	const isOrgan = label && label.indexOf("organ") > -1;
 	const isDateAvailable = label == "date_available";
-	console.log(label);
 	return (
 		<>
 			{(label == "age_offer" || label == "age_range") && (

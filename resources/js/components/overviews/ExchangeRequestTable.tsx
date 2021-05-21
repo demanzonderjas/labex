@@ -28,8 +28,6 @@ export const ExchangeRequestTable: React.FC<Props> = ({ matches }) => {
 		return offerColumnsWithMagic;
 	};
 
-	console.log(matches);
-
 	return (
 		<div className="ExchangeRequestTable table">
 			<table className="highlightable">
