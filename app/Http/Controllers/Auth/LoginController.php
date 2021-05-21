@@ -14,6 +14,11 @@ class LoginController extends Controller
 {
     public function redirectToProvider()
     {
+        if (env('APP_ENV') !== "production") {
+            $user = User::where('email', 'weustenraad@gmail.com')->first();
+            Auth::login($user);
+            return redirect()->to('/app/dashboard');
+        }
         return Socialite::driver('surfconext')->redirect();
     }
 

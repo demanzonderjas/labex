@@ -27,19 +27,19 @@ Route::get('/about-us', function () {
 Route::get('/login/surfconext', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/surfconext/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/test-request-login', function () {
-    Auth::logout();
-    $user = User::where('id', '2')->first();
-    Auth::login($user);
-    return redirect()->to('/app/dashboard');
-});
+// Route::get('/test-request-login', function () {
+//     Auth::logout();
+//     $user = User::where('id', '2')->first();
+//     Auth::login($user);
+//     return redirect()->to('/app/dashboard');
+// });
 
-Route::get('/test-offer-login', function () {
-    Auth::logout();
-    $user = User::where('id', '1')->first();
-    Auth::login($user);
-    return redirect()->to('/app/dashboard');
-});
+// Route::get('/test-offer-login', function () {
+//     Auth::logout();
+//     $user = User::where('id', '1')->first();
+//     Auth::login($user);
+//     return redirect()->to('/app/dashboard');
+// });
 
 Route::get('/logout', function () {
     Auth::logout();
