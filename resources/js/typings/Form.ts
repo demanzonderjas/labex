@@ -14,6 +14,7 @@ export type TForm = {
 	handleUpdate?: Function;
 	fullWidthFields?: boolean;
 	infoModal?: TModal;
+	allowCancel?: boolean;
 };
 
 export enum InputType {

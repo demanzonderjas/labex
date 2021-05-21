@@ -44,7 +44,8 @@ export const SubmitOfferForm: TForm = {
 	],
 	handler: sendExchangeOffer,
 	matchable: false,
-	infoModal: flowchartModal
+	infoModal: flowchartModal,
+	allowCancel: true
 };
 
 export const ConfirmOfferMatchForm: TForm = {
@@ -53,5 +54,6 @@ export const ConfirmOfferMatchForm: TForm = {
 	intro: "confirm_offer_description",
 	submitLabel: "confirm",
 	matchable: false,
-	infoModal: null
+	infoModal: null,
+	allowCancel: false
 };

@@ -77,5 +77,6 @@ export const SubmitRequestForm: TForm = {
 	matchable: false,
 	header: "submit_request",
 	intro: "submit_request_description",
-	submitLabel: "submit"
+	submitLabel: "submit",
+	allowCancel: true
 };

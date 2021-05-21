@@ -3,7 +3,7 @@ import React from "react";
 import { useFormStore } from "../hooks/useFormStore";
 import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
 import { FormFieldWithLabel } from "./FormField";
-import { Button, SubmitButton } from "./base/Button";
+import { Button, DangerButton, SubmitButton } from "./base/Button";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { Loader } from "./base/Loader";
 import { ErrorNotification } from "./base/ErrorNotification";
@@ -13,11 +13,13 @@ import { TwoColumnPageIntro } from "./layout/PageIntro";
 import { Icon } from "./base/Image";
 import { useModalStore } from "../hooks/useModalStore";
 import { TModal } from "../typings/Modal";
+import { useHistory } from "react-router";
 
 type Props = {
 	header: string;
 	submitLabel?: string;
 	hideSubmit?: boolean;
+	allowCancel?: boolean;
 	matchable: boolean;
 	intro: string;
 	fullWidthFields?: boolean;
@@ -31,6 +33,7 @@ export const Form: React.FC<Props> = observer(
 		submitLabel = "submit",
 		matchable,
 		hideSubmit,
+		allowCancel,
 		fullWidthFields,
 		infoModal
 	}) => {
@@ -46,6 +49,8 @@ export const Form: React.FC<Props> = observer(
 		} = useFormStore();
 		const { t } = useTranslationStore();
 		const { setModal } = useModalStore();
+		const history = useHistory();
+
 		return (
 			<div
 				className={cx("Form", {
@@ -93,8 +98,17 @@ export const Form: React.FC<Props> = observer(
 								))}
 						</div>
 						{!hideSubmit && (
-							<div className="button-wrapper">
+							<div
+								className="button-wrapper"
+								style={{ display: "flex", justifyContent: "space-between" }}
+							>
 								<SubmitButton label={submitLabel} />
+								{allowCancel && (
+									<DangerButton
+										label="cancel"
+										handleClick={() => history.goBack()}
+									/>
+								)}
 							</div>
 						)}
 						<Loader isLoading={isLoading} />
