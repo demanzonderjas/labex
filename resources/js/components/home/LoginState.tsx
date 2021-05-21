@@ -12,7 +12,7 @@ export const LoginState: React.FC<{ switchPage: Function }> = ({ switchPage }) =
 			<div style={{ margin: "40px 0" }}>
 				<LocalImage path="logo/atex.png" />
 			</div>
-			<p>{t("login_sso")}</p>
+			{/* <p>{t("login_sso")}</p> */}
 			<Button label="login_sso" handleClick={() => goTo("/login/surfconext")} />
 			{/* <Button label="login_as_request_demo" handleClick={() => goTo("/test-request-login")} />
 			<Button label="login_as_offer_demo" handleClick={() => goTo("/test-offer-login")} /> */}
