@@ -220,5 +220,6 @@
 	"confirm_cancel_match": "Confirm the cancellation of your match",
 	"confirm_cancel_match_description": "Please make sure that you would like to cancel the match. Only do this whenever the given offer/request does not match what you are offering/requesting.",
 	"confirm_delete": "Confirm the deletion",
-	"confirm_delete_description": "Are you sure you would like to delete this item?"
+	"confirm_delete_description": "Are you sure you would like to delete this item?",
+	"filter_search": "Filter/search"
 }
