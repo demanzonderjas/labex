@@ -10,7 +10,7 @@ export const Sidebar: React.FC = () => {
 	return (
 		<div className="Sidebar">
 			<div className="logo-wrapper">
-				<LocalImage path="logo/universiteit-utrecht_logo.png" />
+				<LocalImage path="logo/uu.nl_logo.png" />
 			</div>
 			<MenuItems prefix="admin" menuItems={adminMenuItems} />
 		</div>
