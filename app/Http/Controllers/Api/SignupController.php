@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Admin\AdminSignUpEmail;
 use App\Signup;
+use App\User;
+use App\Mail\SignupApprovedEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SignupController extends Controller
 {
@@ -12,6 +16,11 @@ class SignupController extends Controller
     {
         $signup = new Signup($request->all());
         $signup->save();
+
+        $admins = User::whereIsAdmin()->get();
+        foreach ($admins as $admin) {
+            Mail::to($admin)->queue(new AdminSignUpEmail($signup));
+        }
 
         return response()->json(["success" => true]);
     }
@@ -28,6 +37,8 @@ class SignupController extends Controller
         $signup->awaiting_approval = false;
         $signup->approved = true;
         $signup->save();
+
+        Mail::to($signup)->queue(new SignupApprovedEmail($signup));
 
         return response()->json(["success" => true]);
     }

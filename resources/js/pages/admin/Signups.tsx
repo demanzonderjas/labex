@@ -6,22 +6,23 @@ import { getSignups } from "../../queries/admin/getSignups";
 import { mapSignupsToOverviewData } from "../../utils/formatting/signups";
 
 export const SignupsPage = observer(() => {
-    const { t } = useTranslationStore();
+	const { t } = useTranslationStore();
 	const [signups, setSignups] = useState([]);
 
-    useEffect(() => {
-        (async () => {
-            const response = await getSignups();
-            setSignups(response.signups);
-        })();
-	}, [])   
-	
+	useEffect(() => {
+		(async () => {
+			const response = await getSignups();
+
+			setSignups(response.signups.reverse());
+		})();
+	}, []);
+
 	const signupsWithCells = mapSignupsToOverviewData(signups);
 
 	return (
-        <div className="AdminFAQPage">
-            <h1>{t("signups")}</h1>
-            <table className="not-centered">
+		<div className="AdminFAQPage">
+			<h1>{t("signups")}</h1>
+			<table className="not-centered">
 				<thead>
 					<tr>
 						{signupColumns.map(column => (
@@ -31,7 +32,7 @@ export const SignupsPage = observer(() => {
 				</thead>
 				<tbody>
 					{signupsWithCells.map((cells, idx) => (
-						<tr key={idx}>
+						<tr key={signups[idx].id}>
 							{cells.map((cell, cellIdx) => (
 								<cell.Component
 									key={cellIdx}
@@ -44,6 +45,6 @@ export const SignupsPage = observer(() => {
 					))}
 				</tbody>
 			</table>
-        </div>
-    )
+		</div>
+	);
 });
