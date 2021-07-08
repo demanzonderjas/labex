@@ -15,7 +15,8 @@ export const sexField: FormField = {
 	},
 	isHardFilter: true,
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["sekse", "gender"]
 };
 
 export const sexRequestField: FormField = {

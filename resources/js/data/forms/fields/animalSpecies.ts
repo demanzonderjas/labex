@@ -25,7 +25,8 @@ export const animalSpeciesField: FormField = {
 			"zebra_finch",
 			"zebrafish"
 		],
-		allowOther: true
+		allowOther: true,
+		synonyms: ["species", "animal_type", "type_of_animal"]
 	},
 	isHardFilter: true,
 	default: "",

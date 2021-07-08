@@ -18,5 +18,6 @@ export const dateConservedField: FormField = {
 			id: "type",
 			validate: value => value == "conserved_tissue"
 		}
-	]
+	],
+	synonyms: ["available", "availability", "date"]
 };

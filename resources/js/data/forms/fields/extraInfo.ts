@@ -8,5 +8,6 @@ export const extraInfoField: FormField = {
 	ignoreInMatch: true,
 	props: {},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["info", "extra", "information", "extra_information"]
 };

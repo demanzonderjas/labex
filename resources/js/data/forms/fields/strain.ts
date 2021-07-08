@@ -10,7 +10,8 @@ export const strainField: FormField = {
 		type: InputType.Text
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["strain"]
 };
 
 export const strainRequestField: FormField = {

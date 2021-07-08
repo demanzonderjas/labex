@@ -19,7 +19,8 @@ export const dateAvailableField: FormField = {
 			id: "type",
 			validate: value => value == "animal" || value == "vital_tissue"
 		}
-	]
+	],
+	synonyms: ["available", "availability", "date"]
 };
 
 export const dateRequestedField: FormField = {

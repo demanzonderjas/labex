@@ -32,7 +32,8 @@ export const organsField: FormField = {
 			id: "type",
 			validate: value => value == "vital_tissue" || value == "conserved_tissue"
 		}
-	]
+	],
+	synonyms: ["organ"]
 };
 
 export const organsRequestField: FormField = {

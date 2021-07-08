@@ -11,5 +11,6 @@ export const typeField: FormField = {
 		options: ["animal", "vital_tissue", "conserved_tissue"]
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["type_of", "type_offer", "type_of_material"]
 };

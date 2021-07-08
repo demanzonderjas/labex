@@ -10,7 +10,8 @@ export const sampleNumberField: FormField = {
 		type: InputType.Text
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["samplenumber", "number"]
 };
 
 export const sampleNumberRequestField: FormField = {

@@ -11,5 +11,6 @@ export const originField: FormField = {
 		allowOther: true
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["herkomst"]
 };

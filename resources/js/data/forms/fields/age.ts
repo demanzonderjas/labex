@@ -22,7 +22,8 @@ export const ageField: FormField = {
 			id: "type",
 			validate: value => value == "animal" || value == "vital_tissue"
 		}
-	]
+	],
+	synonyms: ["birth_date"]
 };
 
 export const ageRequestField: FormField = {
@@ -33,7 +34,8 @@ export const ageRequestField: FormField = {
 	value: "1",
 	customValue: getAgeRangeValue,
 	props: {},
-	isMatch: isAgeInRange
+	isMatch: isAgeInRange,
+	synonyms: ["birth_date", "age"]
 };
 
 export const ageRangeRequestField: FormField = {
@@ -49,7 +51,8 @@ export const ageRequestRangeField: FormField = {
 	value: "1",
 	customValue: getAgeRangeValue,
 	props: {},
-	isMatch: isAgeRangeMatching
+	isMatch: isAgeRangeMatching,
+	synonyms: ["birth_date", "age"]
 };
 
 export const ageTypeField: FormField = {

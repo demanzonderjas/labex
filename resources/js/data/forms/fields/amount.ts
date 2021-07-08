@@ -21,7 +21,8 @@ export const amountField: FormField = {
 	},
 	customValue: fields => `${getFieldById("amount", fields).value} requested`,
 	default: "1",
-	value: "1"
+	value: "1",
+	synonyms: ["total", "amounts"]
 };
 
 export const amountRequestedField: FormField = {

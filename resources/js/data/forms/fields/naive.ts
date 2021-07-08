@@ -9,5 +9,6 @@ export const naiveField: FormField = {
 	props: {},
 	default: "",
 	value: "",
-	dependencies: [{ id: "type", validate: value => value == "animal" }]
+	dependencies: [{ id: "type", validate: value => value == "animal" }],
+	synonyms: ["naive_animal"]
 };

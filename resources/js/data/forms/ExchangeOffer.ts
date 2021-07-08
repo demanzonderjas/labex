@@ -39,7 +39,7 @@ export const SubmitOfferForm: TForm = {
 		killMethodField,
 		amountField,
 		protocolNumberField,
-		sampleNumberField,
+		// sampleNumberField,
 		extraInfoField
 	],
 	handler: sendExchangeOffer,

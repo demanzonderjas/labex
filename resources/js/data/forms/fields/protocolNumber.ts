@@ -10,5 +10,6 @@ export const protocolNumberField: FormField = {
 		type: InputType.Text
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["work_protocol", "protocol", "protocolnumber"]
 };

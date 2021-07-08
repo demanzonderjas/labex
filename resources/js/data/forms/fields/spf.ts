@@ -11,5 +11,6 @@ export const spfField: FormField = {
 		startsEmpty: true
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: []
 };

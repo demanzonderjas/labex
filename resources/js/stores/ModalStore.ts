@@ -4,6 +4,7 @@ import { TModal } from "../typings/Modal";
 export class ModalStore {
 	@observable isActive = false;
 	@observable modal: TModal = null;
+	@observable data: any = null;
 
 	@action.bound setModal(modal: TModal) {
 		this.modal = modal;
@@ -14,6 +15,10 @@ export class ModalStore {
 		} else {
 			document.body.classList.remove("block-scroll");
 		}
+	}
+
+	@action.bound setModalData(data: any) {
+		this.data = data;
 	}
 
 	@action.bound confirm() {

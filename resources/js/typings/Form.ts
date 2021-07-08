@@ -51,6 +51,7 @@ export interface FormField extends FormFieldData {
 	description?: string;
 	customValue?: Function;
 	ignoreInMatch?: boolean;
+	synonyms?: string[];
 }
 
 export type FormFieldDependency = {

@@ -24,5 +24,6 @@ export const killMethodField: FormField = {
 			id: "origin",
 			validate: value => value == "vital_tissue"
 		}
-	]
+	],
+	synonyms: ["killed_with", "kill", "death"]
 };

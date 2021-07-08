@@ -18,7 +18,8 @@ export const storageField: FormField = {
 			id: "type",
 			validate: value => value == "conserved_tissue"
 		}
-	]
+	],
+	synonyms: ["storage_method"]
 };
 
 export const storageRequestField: FormField = {
