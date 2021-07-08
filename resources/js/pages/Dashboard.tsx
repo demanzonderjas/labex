@@ -17,6 +17,7 @@ import { Overview } from "../components/dashboard/DashboardOverview";
 import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
+import { ExcelImport } from "../components/excel/ExcelImport";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
@@ -68,6 +69,7 @@ export const DashboardPage = observer(() => {
 					<p>
 						{t("welcome")}, {user?.name}
 					</p>
+					<ExcelImport />
 					<div className="submenu-with-overviews">
 						<div className="submenu">
 							<h3
