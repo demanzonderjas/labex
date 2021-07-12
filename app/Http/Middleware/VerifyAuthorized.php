@@ -26,7 +26,7 @@ class VerifyAuthorized
             ->first();
 
         if (empty($matchingUser) || !$matchingUser->approved) {
-            abort(403, 'You do not have the right access level. Please sign up first to show that you are article 9 or article 13 qualified.');
+            abort(403, 'You do not have the right access level. Please sign up first to show that you are article 9 or article 13f2a qualified. Otherwise, contact the IvD Utrecht (info@atex.uu.nl).');
         }
 
         return $next($request);
