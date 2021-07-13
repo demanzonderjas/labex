@@ -25,8 +25,8 @@ class VerifyAuthorized
             ->whereRaw('LOWER(`email`) LIKE ? ', [trim(strtolower($request->user()->email)) . '%'])
             ->first();
 
-        if (empty($matchingUser)) {
-            abort(403, 'You do not have the right access level. Please sign up first to show that you are article 9 qualified.');
+        if (empty($matchingUser) || !$matchingUser->approved) {
+            abort(403, 'You do not have the right access level. Please sign up first to show that you are article 9 or article 13f2a qualified. Otherwise, contact the IvD Utrecht (info@atex.uu.nl).');
         }
 
         return $next($request);
