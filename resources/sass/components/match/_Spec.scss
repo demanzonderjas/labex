@@ -17,6 +17,9 @@
 		&.correct {
 			color: $correct-color;
 		}
+		&.warning {
+			color: $warning-color;
+		}
 		&.danger {
 			color: $danger-color;
 

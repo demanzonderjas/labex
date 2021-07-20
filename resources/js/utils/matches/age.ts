@@ -5,18 +5,21 @@ import {
 	MONTH_IN_DAYS,
 	YEAR_IN_DAYS
 } from "../../data/configs/datetime";
+import { SpecStatus } from "../../typings/Sample";
 
-export function isAgeInRange(fieldValue, targetValue, filters, fields) {
+export function isAgeInRange(fieldValue, targetValue, filters, fields): SpecStatus {
 	const ageType = getFieldById("age_type", filters) || getFieldById("age_type", fields);
 	const ageMin = getFieldById("age_min", filters) || getFieldById("age_min", fields);
 	const ageMax = getFieldById("age_max", filters) || getFieldById("age_max", fields);
 	const realTarget = getFieldById("age_type", filters) ? targetValue : fieldValue;
 	if (!ageType.value) {
-		return true;
+		return SpecStatus.Match;
 	}
 	const timePeriods = getTimeDiffInPeriods(realTarget);
 	const givenFilter = timePeriods[ageType.value];
-	return givenFilter >= ageMin.value && givenFilter <= ageMax.value;
+	return givenFilter >= ageMin.value && givenFilter <= ageMax.value
+		? SpecStatus.Match
+		: SpecStatus.NoMatch;
 }
 
 export function getTimeDiffInPeriods(date) {
@@ -44,7 +47,7 @@ export function getDayMultiplier(type) {
 	}
 }
 
-export function isAgeRangeMatching(_, targetValue, filters, fields) {
+export function isAgeRangeMatching(_, targetValue, filters, fields): SpecStatus {
 	const ageTypeSpec = getFieldById("age_type", fields);
 	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec.value);
 	const ageMinSpec = getFieldById("age_min", fields);
@@ -59,12 +62,12 @@ export function isAgeRangeMatching(_, targetValue, filters, fields) {
 	const ageMaxFilter = getFieldById("age_max", filters);
 	const ageMaxFilterInDays = parseInt(ageMaxFilter.value) * dayMultiplierFilter;
 
-	return (
-		(ageMinFilterInDays > ageMinSpecInDays && ageMinFilterInDays < ageMaxSpecInDays) ||
+	return (ageMinFilterInDays > ageMinSpecInDays && ageMinFilterInDays < ageMaxSpecInDays) ||
 		(ageMinFilterInDays < ageMinSpecInDays && ageMaxFilterInDays > ageMaxSpecInDays) ||
 		(ageMinSpecInDays > ageMinFilterInDays && ageMaxSpecInDays < ageMaxFilterInDays) ||
 		(ageMaxFilterInDays < ageMaxSpecInDays &&
 			ageMinFilterInDays < ageMaxSpecInDays &&
 			ageMaxFilterInDays > ageMinSpecInDays)
-	);
+		? SpecStatus.Match
+		: SpecStatus.NoMatch;
 }

@@ -6,11 +6,13 @@ export enum SampleType {
 
 export enum SpecStatus {
 	Match = "match",
+	PartialMatch = "partial_match",
 	NoMatch = "no_match",
 	NotSubmitted = "not_submitted"
 }
 
 export type TSpecMatch = {
 	status: SpecStatus;
+	weight?: number;
 	filterValue?: string;
 };

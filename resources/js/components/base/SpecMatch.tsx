@@ -11,11 +11,13 @@ type Props = {
 
 export const SpecMatch: React.FC<Props> = ({ match }) => {
 	const { t } = useTranslationStore();
+	console.log(match);
 	return (
 		<span
 			className={cx("SpecMatch", {
 				correct: match.status == SpecStatus.Match,
-				danger: match.status == SpecStatus.NoMatch
+				danger: match.status == SpecStatus.NoMatch,
+				warning: match.status == SpecStatus.PartialMatch
 			})}
 		>
 			{match.status != SpecStatus.NotSubmitted && t(match.status)}

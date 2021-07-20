@@ -2,6 +2,7 @@ import { InputField } from "../../../components/form/InputField";
 import { FormField, InputType } from "../../../typings/Form";
 import { isDateInFuture, isDateInRangeOfTwoWeeks } from "../../../utils/validation/date";
 import { getFieldById } from "../../../utils/getters/fields";
+import { SpecStatus } from "../../../typings/Sample";
 
 export const dateAvailableField: FormField = {
 	label: "date_available",
@@ -28,13 +29,13 @@ export const dateRequestedField: FormField = {
 	required: false,
 	label: "date_requested",
 	id: "date_requested",
-	isMatch: (givenValue, targetValue, filters, fields) => {
+	isMatch: (givenValue, targetValue, filters, fields): SpecStatus => {
 		const type = getFieldById("type", fields);
 		const dateAvailable = getFieldById("date_available", fields);
-		return (
-			isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) ||
+		return isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) ||
 			(type && type.value == "conserved_tissue")
-		);
+			? SpecStatus.Match
+			: SpecStatus.NoMatch;
 	},
 	validate: undefined,
 	dependencies: []

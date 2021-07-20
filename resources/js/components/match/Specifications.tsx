@@ -34,9 +34,9 @@ export const Specifications: React.FC<Props> = ({
 		if (!filter || !filter.value) {
 			return { ...field, match: { status: SpecStatus.NotSubmitted } };
 		}
-		const isMatch = checkIfFieldMatches(field, filter, filters, fields);
+		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);
 		const match: TSpecMatch = {
-			status: isMatch ? SpecStatus.Match : SpecStatus.NoMatch,
+			status: matchStatus,
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
 		};
 		return { ...field, match };
