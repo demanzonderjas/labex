@@ -1,5 +1,5 @@
 import { FormField } from "../../typings/Form";
-import { SpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/Sample";
 
 export function fieldMeetsDependencies(field: FormField, index: number, fields: FormField[]) {
 	if (!field.dependencies) {
@@ -19,7 +19,7 @@ export function fieldIsNotHidden(field: FormField) {
 }
 
 export function fieldWasFilled(field: FormField) {
-	return field.match && field.match.status != SpecStatus.NotSubmitted && field.value != "";
+	return field.match && field.match.status != TSpecStatus.NotSubmitted && field.value != "";
 }
 
 export function fieldShouldBeIgnoredInMatch(field: FormField) {

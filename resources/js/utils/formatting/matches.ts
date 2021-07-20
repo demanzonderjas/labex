@@ -1,6 +1,6 @@
 import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
-import { SpecStatus, TSpecMatch } from "../../typings/Sample";
+import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
 import { checkIfFieldMatches } from "../matches/utils";
 import { offerCells } from "../../data/tables/offers";
 import { requestCells } from "../../data/tables/requests";
@@ -78,7 +78,7 @@ export function createMatchSpecs(fields, filters) {
 	return fields.map(field => {
 		const filter = filters.find(f => f.id == field.id);
 		if (!filter || !filter.value) {
-			return { ...field, match: { status: SpecStatus.NotSubmitted } };
+			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
 		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);
 		const match: TSpecMatch = {

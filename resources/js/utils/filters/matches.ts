@@ -1,6 +1,6 @@
 import { FormField } from "../../typings/Form";
 import { TSampleCard } from "../../typings/Overview";
-import { SpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/Sample";
 
 export function matchMeetsHardFilters(match: TSampleCard, filters: FormField[]) {
 	return filters
@@ -8,6 +8,7 @@ export function matchMeetsHardFilters(match: TSampleCard, filters: FormField[]) 
 		.every(
 			f =>
 				(!f.isMatch && f.value == match[f.id]) ||
-				(f.isMatch && f.isMatch(f.value, match[f.id]) === SpecStatus.Match)
+				(f.isMatch && f.isMatch(f.value, match[f.id]) === TSpecStatus.Match) ||
+				(f.isMatch && f.isMatch(f.value, match[f.id]) === TSpecStatus.PartialMatch)
 		);
 }

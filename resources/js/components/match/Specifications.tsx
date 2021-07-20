@@ -1,7 +1,7 @@
 import React from "react";
 import { FormField } from "../../typings/Form";
 import { checkIfFieldMatches } from "../../utils/matches/utils";
-import { SpecStatus, TSpecMatch } from "../../typings/Sample";
+import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
 import { Spec } from "./Spec";
 import { PieChart } from "./PieChart";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
@@ -32,7 +32,7 @@ export const Specifications: React.FC<Props> = ({
 	const matches = fields.map(field => {
 		const filter = filters.find(f => f.id == field.id);
 		if (!filter || !filter.value) {
-			return { ...field, match: { status: SpecStatus.NotSubmitted } };
+			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
 		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);
 		const match: TSpecMatch = {

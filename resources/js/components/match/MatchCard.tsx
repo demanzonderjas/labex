@@ -5,7 +5,7 @@ import { TUser } from "../../typings/User";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { MatchType } from "../../typings/Overview";
 import { MatchValue } from "./MatchValue";
-import { SpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/Sample";
 import {
 	fieldIsNotHidden,
 	fieldWasFilled,

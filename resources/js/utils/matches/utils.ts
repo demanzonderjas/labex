@@ -1,5 +1,5 @@
 import { FormField } from "../../typings/Form";
-import { SpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/Sample";
 import { fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../filters/fields";
 
 export function getMatchingPercentage(sample, filters, fields) {
@@ -10,12 +10,12 @@ export function getMatchingPercentage(sample, filters, fields) {
 			fieldMeetsDependencies(filter, 0, fields) &&
 			!fieldShouldBeIgnoredInMatch(filter)
 	);
-	const matchingFilters: SpecStatus[] = activeFilters.map(filter =>
+	const matchingFilters: TSpecStatus[] = activeFilters.map(filter =>
 		checkIfFilterMatches(filter, sample, filters, fields)
 	);
-	const fullMatchFilters = matchingFilters.filter(status => status === SpecStatus.Match);
+	const fullMatchFilters = matchingFilters.filter(status => status === TSpecStatus.Match);
 	const partialMatchFilters = matchingFilters.filter(
-		status => status === SpecStatus.PartialMatch
+		status => status === TSpecStatus.PartialMatch
 	);
 	const PARTIAL_MATCH_WEIGHT = 0.5;
 	return (
@@ -29,19 +29,19 @@ export function checkIfFilterMatches(filter, field, filters, fields) {
 	return filter.isMatch
 		? filter.isMatch(filter.value, field[filter.id], filters, fields)
 		: filter.value == field[filter.id]
-		? SpecStatus.Match
-		: SpecStatus.NoMatch;
+		? TSpecStatus.Match
+		: TSpecStatus.NoMatch;
 }
 
-export function checkIfFieldMatches(field, filter, filters, fields): SpecStatus {
+export function checkIfFieldMatches(field, filter, filters, fields): TSpecStatus {
 	if (field.value === "") {
-		return SpecStatus.Match;
+		return TSpecStatus.Match;
 	}
 	const isEqual = filter.value == field.value;
 	const matchStatus = field.isMatch
 		? field.isMatch(filter.value, field.value, filters, fields)
 		: isEqual
-		? SpecStatus.Match
-		: SpecStatus.NoMatch;
+		? TSpecStatus.Match
+		: TSpecStatus.NoMatch;
 	return matchStatus;
 }

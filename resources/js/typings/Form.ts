@@ -1,6 +1,6 @@
 import React from "react";
 import { TModal } from "./Modal";
-import { SpecStatus, TSpecMatch } from "./Sample";
+import { TSpecStatus, TSpecMatch } from "./Sample";
 
 export type TForm = {
 	header?: string;
@@ -48,7 +48,7 @@ export interface FormField extends FormFieldData {
 		targetValue: any,
 		filters?: FormField[],
 		fields?: FormField[]
-	) => SpecStatus;
+	) => TSpecStatus;
 	isHardFilter?: boolean;
 	hidden?: boolean;
 	default: string;

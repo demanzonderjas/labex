@@ -4,7 +4,7 @@ export enum SampleType {
 	ConservedTissue = "conserved_tissue"
 }
 
-export enum SpecStatus {
+export enum TSpecStatus {
 	Match = "match",
 	PartialMatch = "partial_match",
 	NoMatch = "no_match",
@@ -12,7 +12,7 @@ export enum SpecStatus {
 }
 
 export type TSpecMatch = {
-	status: SpecStatus;
+	status: TSpecStatus;
 	weight?: number;
 	filterValue?: string;
 };
