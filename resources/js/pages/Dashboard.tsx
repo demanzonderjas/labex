@@ -69,7 +69,7 @@ export const DashboardPage = observer(() => {
 					<p>
 						{t("welcome")}, {user?.name}
 					</p>
-					<ExcelImport />
+					{/* <ExcelImport /> */}
 					<div className="submenu-with-overviews">
 						<div className="submenu">
 							<h3
