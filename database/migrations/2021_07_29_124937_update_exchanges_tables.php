@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateExchangeOffersTable extends Migration
+class UpdateExchangesTables extends Migration
 {
     /**
      * Run the migrations.
