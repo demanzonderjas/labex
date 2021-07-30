@@ -1,6 +1,5 @@
 import { PercentageCell } from "../../components/overviews/table/PercentageCell";
 import { TextCell } from "../../components/overviews/table/TextCell";
-import { TableCell } from "../../typings/overviews";
 import { DateCell } from "../../components/overviews/table/DateCell";
 import { MatchButtonCell } from "../../components/overviews/table/custom/MatchButtonCell";
 import { AgeCell } from "../../components/overviews/table/AgeCell";

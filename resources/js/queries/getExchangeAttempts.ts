@@ -19,9 +19,9 @@ export async function getExchangeAttempt(id: string) {
 	}
 }
 
-export async function getMyLatestExchangeAttempts(attempt_type: TExchangeAttemptType) {
+export async function getMyLatestExchangeAttempts() {
 	try {
-		const response = await API.post(`exchange-attempts/mine-latest`, { attempt_type });
+		const response = await API.post(`exchange-attempts/mine-latest`);
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };

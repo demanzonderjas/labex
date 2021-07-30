@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import cx from "classnames";
 import { ClickHandler } from "../../typings/Utils";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { observer } from "mobx-react-lite";
 
 type Props = {
@@ -63,7 +63,7 @@ export const SecondaryButton: React.FC<Props> = (props: Props) => {
 };
 
 export const MatchableButton: React.FC<Props> = observer(({ label }) => {
-	const { totalMatches } = useSampleStore();
+	const { totalMatches } = useExchangeAttemptStore();
 	const { t } = useTranslationStore();
 
 	if (totalMatches > 0) {

@@ -1,8 +1,9 @@
+import { TExchangeAttempt } from "../../typings/exchanges";
 import { TFormField } from "../../typings/Form";
 import { TSampleCard } from "../../typings/overviews";
 import { TSpecStatus } from "../../typings/Sample";
 
-export function matchMeetsHardFilters(match: TSampleCard, filters: TFormField[]) {
+export function matchMeetsHardFilters(match: TExchangeAttempt, filters: TFormField[]) {
 	return filters
 		.filter(f => f.isHardFilter && f.value)
 		.every(

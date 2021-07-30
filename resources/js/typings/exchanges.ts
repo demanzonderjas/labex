@@ -3,7 +3,8 @@ import { TUser } from "./User";
 
 export enum TExchangeAttemptType {
 	Offer = "offer",
-	Request = "request"
+	Request = "request",
+	Admin = "admin"
 }
 
 export type TExchangeAttempt = {

@@ -1,17 +1,18 @@
 import React from "react";
+import { requestCells } from "../../data/tables/requests";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { TSampleCard } from "../../typings/overviews";
-import { mapRequestsToOverviewData } from "../../utils/formatting/matches";
+import { TExchangeAttempt } from "../../typings/exchanges";
+import { convertAttemptsToCells } from "../../utils/formatting/matches";
 import { RequestDashboardCard } from "../overviews/RequestCard";
 
-export const ExchangeRequests: React.FC<{ requests: TSampleCard[] }> = ({ requests }) => {
+export const ExchangeRequests: React.FC<{ requests: TExchangeAttempt[] }> = ({ requests }) => {
 	const { t } = useTranslationStore();
 
-	const requestCells = mapRequestsToOverviewData(requests);
+	const cardsWithData = convertAttemptsToCells(requests, requestCells);
 
 	return (
 		<div className="ExchangeRequests layout-wrapper">
-			{requestCells.map((data, idx) => (
+			{cardsWithData.map((data, idx) => (
 				<RequestDashboardCard key={idx} data={data} sample={requests[idx]} />
 			))}
 		</div>

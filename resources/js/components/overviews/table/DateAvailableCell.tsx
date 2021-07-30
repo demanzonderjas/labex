@@ -4,7 +4,7 @@ import {
 	getDatePlusTwoWeeks
 } from "../../../utils/formatting/datetime";
 import { DisplayedDate } from "../../base/DisplayedDate";
-import { useSampleStore } from "../../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../../hooks/useExchangeAttemptStore";
 import { useTranslationStore } from "../../../hooks/useTranslationStore";
 import { TSampleCard } from "../../../typings/overviews";
 import { TFormFieldData } from "../../../typings/Form";

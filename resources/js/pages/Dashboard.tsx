@@ -4,8 +4,8 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { MatchType, TDashboardOverview } from "../typings/overviews";
 import { TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { ExchangeOffers } from "../components/dashboard/ExchangeOffers";
-import { SampleStore } from "../stores/SampleStore";
-import SampleStoreProvider from "../contexts/SampleContext";
+import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
+import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
 import { ExchangeRequests } from "../components/dashboard/ExchangeRequests";
 import { getMyLatestMatch } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
@@ -15,20 +15,18 @@ import { Overview } from "../components/dashboard/DashboardOverview";
 import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
-import { ExcelImport } from "../components/excel/ExcelImport";
 import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
-import { TExchangeAttemptType } from "../typings/exchanges";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
-	const [sampleStore] = useState<SampleStore>(new SampleStore());
+	const [attemptStore] = useState<ExchangeAttemptStore>(new ExchangeAttemptStore());
 	const [match, setMatch] = useState(null);
 	const [shouldViewAll, setShouldViewAll] = useState(false);
 	const { user } = useUserStore();
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
 		TDashboardOverview.Requests
 	);
-	const { offers, requests } = sampleStore;
+	const { offers, requests } = attemptStore;
 	const history = useHistory();
 	const DEFAULT_SHOW_LIMIT = 4;
 
@@ -40,13 +38,11 @@ export const DashboardPage = observer(() => {
 
 	useEffect(() => {
 		(async () => {
-			const [offers, requests, match] = await Promise.all([
-				getMyLatestExchangeAttempts(TExchangeAttemptType.Offer),
-				getMyLatestExchangeAttempts(TExchangeAttemptType.Request),
+			const [attempts, match] = await Promise.all([
+				getMyLatestExchangeAttempts(),
 				getMyLatestMatch()
 			]);
-			sampleStore.setOffers(offers.exchange_attempts || []);
-			sampleStore.setRequests(requests.exchange_attempts || []);
+			attemptStore.setAttempts(attempts.exchange_attempts || []);
 			if (match && match.match) {
 				setMatch(match.match);
 			}
@@ -54,7 +50,7 @@ export const DashboardPage = observer(() => {
 	}, []);
 
 	return (
-		<SampleStoreProvider store={sampleStore}>
+		<ExchangeAttemptStoreProvider store={attemptStore}>
 			<div className="DashboardPage">
 				<TwoColumnPageIntro header="exchange_platform" subheader="for_animals_tissues">
 					<p className="layout-wrapper">{t("dashboard_intro")}</p>
@@ -162,6 +158,6 @@ export const DashboardPage = observer(() => {
 					</div>
 				</div>
 			</div>
-		</SampleStoreProvider>
+		</ExchangeAttemptStoreProvider>
 	);
 });

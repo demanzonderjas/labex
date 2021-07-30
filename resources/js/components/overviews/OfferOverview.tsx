@@ -1,26 +1,24 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { OverviewType } from "../../typings/overviews";
 import { OfferCardContainer } from "./OfferCardContainer";
 import { OfferTable } from "./OfferTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { OverviewSwitch } from "./OverviewSwitch";
 import { LoadMore } from "./LoadMore";
+import { getExchangeAttempts } from "../../queries/getExchangeAttempts";
+import { TExchangeAttemptType } from "../../typings/exchanges";
 
 export const OfferOverview: React.FC = observer(() => {
-	const {
-		overviewType,
-		offerMatchOverviewData,
-		getSampleOffers,
-		totalMatches,
-		currentLimit,
-		offers
-	} = useSampleStore();
+	const { overviewType, totalMatches, currentLimit, offers } = useExchangeAttemptStore();
 	const { t } = useTranslationStore();
 
 	useEffect(() => {
-		getSampleOffers();
+		(async () => {
+			const data = getExchangeAttempts(TExchangeAttemptType.Offer);
+			console.log(data);
+		})();
 	}, []);
 
 	return (

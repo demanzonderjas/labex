@@ -44,7 +44,7 @@ class ExchangeAttemptController extends Controller
 	public function getMyLatest(Request $request)
 	{
 		$attempts = ExchangeAttempt::where(function ($query) use ($request) {
-			$query->where(['user_id' => $request->user()->id, 'attempt_type' => $request->attempt_type]);
+			$query->where(['user_id' => $request->user()->id]);
 		})->latest()->get();
 
 		return response()->json(["success" => true, "exchange_attempts" => $attempts]);

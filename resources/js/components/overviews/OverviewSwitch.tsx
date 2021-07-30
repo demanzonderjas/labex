@@ -1,10 +1,10 @@
 import React from "react";
 import { LocalImage } from "../base/Image";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { OverviewType } from "../../typings/overviews";
 
 export const OverviewSwitch: React.FC = () => {
-	const { setOverviewType } = useSampleStore();
+	const { setOverviewType } = useExchangeAttemptStore();
 	return (
 		<div className="OverviewSwitch">
 			<div className="image-wrapper" onClick={() => setOverviewType(OverviewType.Table)}>

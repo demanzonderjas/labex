@@ -1,7 +1,7 @@
 import React from "react";
 import { offerMatchColumns } from "../../data/tables/matches";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { useHistory } from "react-router-dom";
 import { createQueryStringFromFilters } from "../../utils/formatting/matches";
 import { observer } from "mobx-react-lite";
@@ -12,7 +12,12 @@ type Props = {
 
 export const OfferTable: React.FC<Props> = observer(({ matches }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches: savedMatches, magicOfferField } = useSampleStore();
+	const {
+		filters,
+		matchType,
+		matches: savedMatches,
+		magicOfferField
+	} = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {

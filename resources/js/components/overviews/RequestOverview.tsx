@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { LoadMore } from "./LoadMore";
 import { OverviewSwitch } from "./OverviewSwitch";
 import { OverviewType } from "../../typings/overviews";
@@ -16,7 +16,7 @@ export const RequestOverview: React.FC = observer(() => {
 		overviewType,
 		requestMatchOverviewData,
 		totalMatches
-	} = useSampleStore();
+	} = useExchangeAttemptStore();
 	const { t } = useTranslationStore();
 
 	useEffect(() => {

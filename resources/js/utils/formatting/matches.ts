@@ -2,8 +2,6 @@ import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
 import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
 import { checkIfFieldMatches } from "../matches/utils";
-import { offerCells } from "../../data/tables/offers";
-import { requestCells } from "../../data/tables/requests";
 import { TFormField } from "../../typings/Form";
 import { TSpecification, TTableCell } from "../../typings/overviews";
 import { TExchangeAttempt } from "../../typings/exchanges";

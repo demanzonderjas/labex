@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { SampleStore } from "../stores/SampleStore";
-import SampleStoreProvider from "../contexts/SampleContext";
+import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
+import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
 import { useQuery } from "../hooks/useQuery";
 import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
 import { FilterOffersForm } from "../data/forms/ExchangeAttemptRequest";
@@ -19,7 +19,7 @@ import { UserProfile } from "../components/match/UserProfile";
 import { TUserProfile } from "../typings/User";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {
-	const [sampleStore] = useState(new SampleStore());
+	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const [offer, setOffer] = useState([]);
 	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [matchPercentage, setMatchPercentage] = useState(0);
@@ -69,7 +69,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 	}
 
 	return (
-		<SampleStoreProvider store={sampleStore}>
+		<ExchangeAttemptStoreProvider store={sampleStore}>
 			{!isMatch && (
 				<PageIntro header="selected_match">
 					<p>{t("review_single_match")}</p>
@@ -100,6 +100,6 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 					</div>
 				)}
 			</div>
-		</SampleStoreProvider>
+		</ExchangeAttemptStoreProvider>
 	);
 });

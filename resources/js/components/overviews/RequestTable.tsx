@@ -3,7 +3,7 @@ import { requestMatchColumns } from "../../data/tables/matches";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useHistory } from "react-router-dom";
 import { createQueryStringFromFilters } from "../../utils/formatting/matches";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 
 type Props = {
 	matches: any;
@@ -11,7 +11,12 @@ type Props = {
 
 export const RequestTable: React.FC<Props> = ({ matches }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches: savedMatches, magicRequestField } = useSampleStore();
+	const {
+		filters,
+		matchType,
+		matches: savedMatches,
+		magicRequestField
+	} = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {

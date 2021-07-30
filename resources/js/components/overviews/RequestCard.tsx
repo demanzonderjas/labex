@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { SecondaryButton, Button, DangerButton } from "../base/Button";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { AgeInPeriod } from "../match/AgeInPeriod";
 import { TRequestCard, TSampleCard } from "../../typings/overviews";
 import {
@@ -18,6 +18,7 @@ import { createQueryStringFromSample } from "../../utils/formatting/samples";
 import { deleteExchangeRequest } from "../../queries/deleteRequest";
 import { useModalStore } from "../../hooks/useModalStore";
 import { confirmDeleteModal } from "../../data/modals/confirm";
+import { TExchangeAttempt } from "../../typings/exchanges";
 
 type Props = {
 	data?: any;
@@ -26,7 +27,7 @@ type Props = {
 
 export const RequestCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches, magicRequestField } = useSampleStore();
+	const { filters, matchType, matches, magicRequestField } = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -35,7 +36,7 @@ export const RequestCard: React.FC<Props> = ({ data, index }) => {
 
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	const classes = getMatchClasses(matchPercentage.value);
-	const match = matches[index] as TRequestCard;
+	const match = matches[index] as TExchangeAttempt;
 	const fields = fillFieldsWithKeyValuePairs(FilterOffersForm.fields, match);
 
 	return (
@@ -69,13 +70,13 @@ export const RequestCard: React.FC<Props> = ({ data, index }) => {
 	);
 };
 
-export const RequestDashboardCard: React.FC<{ data: any; sample: TSampleCard }> = ({
+export const RequestDashboardCard: React.FC<{ data: any; sample: TExchangeAttempt }> = ({
 	data,
 	sample
 }) => {
 	const { t } = useTranslationStore();
 	const { setModal, confirm } = useModalStore();
-	const { deleteRequest } = useSampleStore();
+	const { deleteRequest } = useExchangeAttemptStore();
 
 	const fields = fillFieldsWithSpecifications(FilterOffersForm.fields, sample.specifications);
 	const history = useHistory();

@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { Button, DangerButton } from "../base/Button";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import {
 	getMatchClasses,
 	createQueryStringFromFilters,
@@ -26,7 +26,7 @@ type Props = {
 
 export const OfferCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches, magicOfferField } = useSampleStore();
+	const { filters, matchType, matches, magicOfferField } = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -35,7 +35,7 @@ export const OfferCard: React.FC<Props> = ({ data, index }) => {
 
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	const classes = getMatchClasses(matchPercentage.value);
-	const match = matches[index] as TOfferCard;
+	const match = matches[index] as TExchangeAttempt;
 	const fields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, match.specifications);
 
 	return (
@@ -75,7 +75,7 @@ export const OfferDashboardCard: React.FC<{ data: any; attempt: TExchangeAttempt
 }) => {
 	const { t } = useTranslationStore();
 	const { setModal, confirm } = useModalStore();
-	const { deleteOffer } = useSampleStore();
+	const { deleteOffer } = useExchangeAttemptStore();
 
 	const fields = fillFieldsWithSpecifications(SubmitOfferForm.fields, attempt.specifications);
 	const history = useHistory();
@@ -86,8 +86,8 @@ export const OfferDashboardCard: React.FC<{ data: any; attempt: TExchangeAttempt
 	};
 
 	const deleteOfferCallback = async () => {
-		await deleteExchangeOffer(sample.id);
-		deleteOffer(sample.id);
+		await deleteExchangeOffer(attempt.id);
+		deleteOffer(attempt.id);
 		confirm();
 	};
 
@@ -109,7 +109,7 @@ export const OfferDashboardCard: React.FC<{ data: any; attempt: TExchangeAttempt
 			</div>
 			<div className="button-spacer">
 				<Button classes={{ small: true, primary: true }} label="copy" handleClick={copy} />
-				{!sample?.is_match && (
+				{!attempt?.is_match && (
 					<DangerButton
 						classes={{ small: true }}
 						label="delete"
