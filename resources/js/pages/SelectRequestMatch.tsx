@@ -11,7 +11,7 @@ import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
-import { getExchangeRequest } from "../queries/getExchangeRequests";
+import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmOfferMatchModal } from "../data/modals/confirm";
 import { createRequestMatch } from "../queries/createRequestMatch";
@@ -50,7 +50,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 		setFilters(FilterRequestsForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
-			const response = await getExchangeRequest(id);
+			const response = await getExchangeAttempt(id);
 			const filledFields = fillFieldsWithKeyValuePairs(
 				FilterRequestsForm.fields,
 				response.exchange_request

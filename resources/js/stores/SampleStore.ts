@@ -1,13 +1,11 @@
 import { observable, action, computed } from "mobx";
-import { getExchangeOffers } from "../queries/getExchangeOffers";
 import {
 	OverviewType,
 	MatchType,
-	TSampleCard,
 	TExchangeOfferCard,
 	TExchangeRequestCard
 } from "../typings/Overview";
-import { getExchangeRequests } from "../queries/getExchangeRequests";
+import { getExchangeAttempts } from "../queries/getExchangeAttempts";
 import { FormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import {
@@ -23,6 +21,7 @@ import { FilterRequestsForm } from "../data/forms/ExchangeRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
 import { offerColumns } from "../data/tables/offers";
 import { offerMatchColumns, requestMatchColumns } from "../data/tables/matches";
+import { TExchangeAttemptType } from "../typings/Base";
 
 export class SampleStore {
 	@observable.shallow offers: TExchangeOfferCard[] = [];
@@ -124,9 +123,9 @@ export class SampleStore {
 	}
 
 	@action.bound async getSampleOffers() {
-		const response = await getExchangeOffers();
+		const response = await getExchangeAttempts(TExchangeAttemptType.Offer);
 		if (response.success) {
-			this.setOffers(response.exchange_offers);
+			this.setOffers(response.exchange_attempts);
 			this.setMatchType(MatchType.Offers);
 		}
 	}
@@ -138,9 +137,9 @@ export class SampleStore {
 	@action.bound selectMatch(idx) {}
 
 	@action.bound async getSampleRequests() {
-		const response = await getExchangeRequests();
+		const response = await getExchangeAttempts(TExchangeAttemptType.Request);
 		if (response.success) {
-			this.setRequests(response.exchange_requests);
+			this.setRequests(response.exchange_attempts);
 			this.setMatchType(MatchType.Requests);
 		}
 	}

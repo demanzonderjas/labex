@@ -23,6 +23,16 @@ class ExchangeAttempt extends Model
 		return $this->hasMany(Specification::class);
 	}
 
+	public function matchViaOffer()
+	{
+		return $this->hasOne(MaterialMatch::class, 'exchange_attempt_offer_id');
+	}
+
+	public function matchViaRequest()
+	{
+		return $this->hasOne(MaterialMatch::class, 'exchange_attempt_request_id');
+	}
+
 	public function scopeRequests($query)
 	{
 		return $query->where('attempt_type', '=', config('atex.constants.request'));

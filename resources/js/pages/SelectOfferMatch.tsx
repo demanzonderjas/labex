@@ -6,7 +6,7 @@ import { SubmitOfferForm } from "../data/forms/ExchangeOffer";
 import { FilterOffersForm } from "../data/forms/ExchangeRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
-import { getExchangeOffer } from "../queries/getExchangeOffers";
+import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { Specifications } from "../components/match/Specifications";
 import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
@@ -39,7 +39,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 		setFilters(FilterOffersForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
-			const response = await getExchangeOffer(id);
+			const response = await getExchangeAttempt(id);
 			const filledFields = fillFieldsWithKeyValuePairs(
 				SubmitOfferForm.fields,
 				response.exchange_offer
