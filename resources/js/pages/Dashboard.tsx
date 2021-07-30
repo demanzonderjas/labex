@@ -18,6 +18,8 @@ import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
 import { ExcelImport } from "../components/excel/ExcelImport";
+import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
+import { TExchangeAttemptType } from "../typings/Base";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
@@ -41,12 +43,12 @@ export const DashboardPage = observer(() => {
 	useEffect(() => {
 		(async () => {
 			const [offers, requests, match] = await Promise.all([
-				getMyLatestExchangeOffers(),
-				getMyLatestExchangeRequests(),
+				getMyLatestExchangeAttempts(TExchangeAttemptType.Offer),
+				getMyLatestExchangeAttempts(TExchangeAttemptType.Request),
 				getMyLatestMatch()
 			]);
-			sampleStore.setOffers(offers.exchange_offers);
-			sampleStore.setRequests(requests.exchange_requests);
+			sampleStore.setOffers(offers.exchange_attempts || []);
+			sampleStore.setRequests(requests.exchange_attempts || []);
 			if (match && match.match) {
 				setMatch(match.match);
 			}

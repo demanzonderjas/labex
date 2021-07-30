@@ -20,7 +20,7 @@ class ExchangeAttemptController extends Controller
 			$validated = $request->validated();
 			$exchange = new ExchangeAttempt;
 			$exchange->attempt_type = $request->attempt_type;
-			$exchange->status = config('atex.constants.active');
+			$exchange->status = config('atex.constants.exchange_attempt_status.active');
 			$exchange->user_id = $request->user()->id;
 			$exchange->save();
 
@@ -33,7 +33,7 @@ class ExchangeAttemptController extends Controller
 			}
 			$exchange->specifications()->saveMany($specs);
 
-			return response()->json(["success" => true, "exchange" => $exchange->toArray()]);
+			return response()->json(["success" => true, "exchange_attempt" => $exchange->toArray()]);
 		} catch (Exception $e) {
 			return response()->json(["success" => false, "error" => $e]);
 		}
@@ -41,30 +41,30 @@ class ExchangeAttemptController extends Controller
 
 	public function getMyLatest(Request $request)
 	{
-		$offers = ExchangeAttempt::where(function ($query) use ($request) {
+		$attempts = ExchangeAttempt::where(function ($query) use ($request) {
 			$query->where(['user_id' => $request->user()->id, 'attempt_type' => $request->attempt_type]);
 		})->latest()->get();
 
-		return response()->json(["success" => true, "exchange_offers" => $offers]);
+		return response()->json(["success" => true, "exchange_attempts" => $attempts]);
 	}
 
 	public function deleteById($id)
 	{
-		$exchange = ExchangeAttempt::findOrFail($id);
-		$exchange->delete();
-		return response()->json(["success" => true, "exchange" => $exchange->toArray()]);
+		$attempt = ExchangeAttempt::findOrFail($id);
+		$attempt->delete();
+		return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
 	}
 
 	public function getById($id)
 	{
-		$exchange = ExchangeAttempt::findOrFail($id);
-		return response()->json(["success" => true, "exchange" => $exchange->toArray()]);
+		$attempt = ExchangeAttempt::findOrFail($id);
+		return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
 	}
 
 	public function getAll(Request $request)
 	{
-		$exchanges = ExchangeAttempt::doesntHave('match')->where(['status' => config('atex.constants.active'), 'attempt_type' => $request->attempt_type])->get();
-		return response()->json(["success" => true, "exchanges" => $exchanges->toArray()]);
+		$exchange_attempts = ExchangeAttempt::doesntHave('match')->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
+		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts->toArray()]);
 	}
 
 	public function match(Request $request, $id)

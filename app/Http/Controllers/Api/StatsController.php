@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\ExchangeOffer;
-use App\ExchangeRequest;
+use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\MaterialMatch;
 
@@ -12,11 +11,11 @@ class StatsController extends Controller
 
     public function getDashboardStats()
     {
-        $requests = ExchangeRequest::all()->count();
-        $offers = ExchangeOffer::all()->count();
-        $matches = MaterialMatch::where('approved', true)->count();
-        $totalSaved = MaterialMatch::where('approved', true)->get()->reduce(function ($base, $match) {
-            return $base + $match->exchangeRequest->amount;
+        $requests = ExchangeAttempt::requests()->orderBy('created_at')->get();
+        $offers = ExchangeAttempt::offers()->orderBy('created_at')->get();
+        $matches = MaterialMatch::where('status', config('atex.constants.match_status.approved'))->count();
+        $totalSaved = MaterialMatch::where('status', config('atex.constants.match_status.approved'))->get()->reduce(function ($base, $match) {
+            return $base + $match->request->amount;
         }, 0);
 
         return response()->json([
