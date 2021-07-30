@@ -26,16 +26,18 @@ class ExchangeAttemptController extends Controller
 
 			$specs = [];
 			foreach ($validated as $fieldId => $value) {
-				$specs[] = new Specification([
-					'key' => $fieldId,
-					'value' => $value
-				]);
+				if (!empty($value)) {
+					$specs[] = new Specification([
+						'key' => $fieldId,
+						'value' => $value
+					]);
+				}
 			}
 			$exchange->specifications()->saveMany($specs);
 
 			return response()->json(["success" => true, "exchange_attempt" => $exchange->toArray()]);
 		} catch (Exception $e) {
-			return response()->json(["success" => false, "error" => $e]);
+			return response()->json(["success" => false, "error" => $validated]);
 		}
 	}
 

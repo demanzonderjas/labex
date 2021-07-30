@@ -12,13 +12,13 @@ import { dateAvailableField } from "./fields/dateAvailable";
 import { killMethodField } from "./fields/killMethod";
 import { amountField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
-import { sampleNumberField } from "./fields/sampleNumber";
-import { sendExchangeOffer } from "../../queries/sendExchangeOffer";
 import { typeField } from "./fields/type";
 import { dateConservedField } from "./fields/dateConserved";
 import { extraInfoField } from "./fields/extraInfo";
 import { withRequired } from "../../utils/formatting/fields";
 import { flowchartModal } from "../modals/flowchart";
+import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
+import { attemptTypeOfferField } from "./fields/attemptType";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -40,9 +40,10 @@ export const SubmitOfferForm: TForm = {
 		amountField,
 		protocolNumberField,
 		// sampleNumberField,
-		extraInfoField
+		extraInfoField,
+		attemptTypeOfferField
 	],
-	handler: sendExchangeOffer,
+	handler: sendExchangeAttempt,
 	matchable: false,
 	infoModal: flowchartModal,
 	allowCancel: true

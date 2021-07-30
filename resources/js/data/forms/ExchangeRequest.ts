@@ -1,6 +1,6 @@
 import { TForm } from "../../typings/Form";
 import { animalSpeciesField } from "./fields/animalSpecies";
-import { sendExchangeRequest } from "../../queries/sendExchangeRequest";
+import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { strainRequestField } from "./fields/strain";
 import {
 	ageRequestField,
@@ -22,6 +22,7 @@ import { typeField } from "./fields/type";
 import { extraInfoField } from "./fields/extraInfo";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { flowchartModal } from "../modals/flowchart";
+import { attemptTypeRequestField } from "./fields/attemptType";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",
@@ -42,9 +43,10 @@ export const FilterOffersForm: TForm = {
 		storageRequestField,
 		dateRequestedField,
 		killMethodField,
-		amountRequestedField
+		amountRequestedField,
+		attemptTypeRequestField
 	],
-	handler: sendExchangeRequest,
+	handler: sendExchangeAttempt,
 	matchable: true,
 	infoModal: flowchartModal
 };

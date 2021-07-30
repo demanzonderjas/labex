@@ -23,9 +23,9 @@ class ExchangeAttemptStoreRequest extends FormRequest
      */
     public function rules()
     {
-        $exchangeType = $this->request('attempt_type');
+        $exchangeType = $this->attempt_type;
         $defaultValidation = config('validation.exchange_attempt_fields');
-        $typeValidation = config('validation.exchange_attempt_type' . $exchangeType . 'fields');
+        $typeValidation = config('validation.exchange_attempt_' . $exchangeType . '_fields');
         return array_merge($defaultValidation, $typeValidation);
     }
 }

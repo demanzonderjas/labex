@@ -32,8 +32,8 @@ return [
     ],
     "exchange_attempt_request_fields" => [
         'age_type' => 'required|string',
-        'age_min' => 'required|string',
-        'age_max' => 'required|string',
+        'age_min' => 'required|alpha_num',
+        'age_max' => 'required|alpha_num',
         'date_requested' => 'nullable|string',
     ],
     "type" => [

@@ -21,7 +21,8 @@ export enum InputType {
 	Number = "number",
 	Text = "text",
 	Date = "date",
-	Email = "email"
+	Email = "email",
+	Hidden = "hidden"
 }
 
 export interface FormFieldData {

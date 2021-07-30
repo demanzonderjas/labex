@@ -1,8 +1,8 @@
 import { API } from "../utils/api/axios";
 
-export async function sendExchangeOffer(data) {
+export async function sendExchangeAttempt(data: any) {
 	try {
-		const response = await API.post("exchange-offers/store", data);
+		const response = await API.post("exchange-attempt/store", data);
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };
