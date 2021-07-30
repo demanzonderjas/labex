@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Exchange;
+use App\ExchangeAttempt;
 use App\Specification;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\User;
 
-class ExchangeFactory extends Factory
+class ExchangeAttemptFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Exchange::class;
+    protected $model = ExchangeAttempt::class;
 
     protected $randomDataSet = [];
 
@@ -34,29 +34,29 @@ class ExchangeFactory extends Factory
     {
         return [
             "user_id" => User::all()->random(),
-            "exchange_type" => $this->selectRandom(config("validation.exchange_types")),
+            "attempt_type" => $this->selectRandom(config("validation.attempt_types")),
             "status" => 'active',
         ];
     }
 
     public function configure()
     {
-        return $this->afterCreating(function (Exchange $exchange) {
+        return $this->afterCreating(function (ExchangeAttempt $attempt) {
             $this->createRandomDataSet();
             $specs = [];
-            foreach (config('validation.exchange_fields') as $fieldId => $validation) {
+            foreach (config('validation.exchange_attempt_fields') as $fieldId => $validation) {
                 $specs[] = new Specification([
                     'key' => $fieldId,
                     'value' => $this->randomDataSet[$fieldId]
                 ]);
             }
-            foreach (config('validation.exchange_' . $exchange->exchange_type . '_fields') as $fieldId => $validation) {
+            foreach (config('validation.exchange_attempt_' . $attempt->attempt_type . '_fields') as $fieldId => $validation) {
                 $specs[] = new Specification([
                     'key' => $fieldId,
                     'value' => $this->randomDataSet[$fieldId]
                 ]);
             };
-            $exchange->specifications()->saveMany($specs);
+            $attempt->specifications()->saveMany($specs);
         });
     }
 

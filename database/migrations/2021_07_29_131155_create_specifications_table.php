@@ -15,8 +15,8 @@ class CreateSpecificationsTable extends Migration
     {
         Schema::create('specifications', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('exchange_id')->unsigned();
-            $table->foreign('exchange_id')->references('id')->on('exchanges')->onDelete('cascade');
+            $table->bigInteger('exchange_attempt_id')->unsigned();
+            $table->foreign('exchange_attempt_id')->references('id')->on('exchange_attempts')->onDelete('cascade');
             $table->text('key');
             $table->text('value');
             $table->timestamps();

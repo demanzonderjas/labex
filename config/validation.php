@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "exchange_types" => [
+    "attempt_types" => [
         "offer",
         "request"
     ],
@@ -10,7 +10,7 @@ return [
         "inactive",
         "adoption"
     ],
-    "exchange_fields" => [
+    "exchange_attempt_fields" => [
         "type" => "nullable|string",
         "animal_species" => "nullable|string",
         'organs' => 'nullable|string',
@@ -26,11 +26,11 @@ return [
         'amount' => 'required|string',
         'extra_info' => 'nullable|string',
     ],
-    "exchange_offer_fields" => [
+    "exchange_attempt_offer_fields" => [
         'age' => 'required|string',
         'date_available' => 'nullable|string',
     ],
-    "exchange_request_fields" => [
+    "exchange_attempt_request_fields" => [
         'age_type' => 'required|string',
         'age_min' => 'required|string',
         'age_max' => 'required|string',

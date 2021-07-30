@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ExchangeSeeder extends Seeder
+class ExchangeAttemptSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ExchangeSeeder extends Seeder
      */
     public function run()
     {
-        App\Exchange::factory()->count(50)->create();
+        App\ExchangeAttempt::factory()->count(50)->create();
     }
 }

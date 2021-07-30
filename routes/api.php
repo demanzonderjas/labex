@@ -26,21 +26,13 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('signups/store', 'SignupController@store')->withoutMiddleware(VerifyApiUserToken::class);
 
     Route::group(['middleware' => VerifyAuthorized::class], function () {
-        Route::post('exchange-offers/store', 'ExchangeOfferController@store');
-        Route::get('exchange-offers', 'ExchangeOfferController@getAll');
-        Route::get('exchange-offers/my-all', 'ExchangeOfferController@getMyAll');
-        Route::get('exchange-offers/my-latest', 'ExchangeOfferController@getMyLatest');
-        Route::get('exchange-offer/{id}', 'ExchangeOfferController@getById');
-        Route::post('exchange-offer/{id}/delete', 'ExchangeOfferController@deleteById');
-        Route::post('exchange-offer/match/{offerId}', 'ExchangeOfferController@match');
-
-        Route::post('exchange-requests/store', 'ExchangeRequestController@store');
-        Route::get('exchange-requests', 'ExchangeRequestController@getAll');
-        Route::get('exchange-requests/my-all', 'ExchangeRequestController@getMyAll');
-        Route::get('exchange-requests/my-latest', 'ExchangeRequestController@getMyLatest');
-        Route::get('exchange-request/{id}', 'ExchangeRequestController@getById');
-        Route::post('exchange-request/{id}/delete', 'ExchangeRequestController@deleteById');
-        Route::post('exchange-request/match/{requestId}', 'ExchangeRequestController@match');
+        Route::post('exchange-attempt/store', 'ExchangeAttemptController@store');
+        Route::get('exchange-attempts', 'ExchangeAttemptController@getAll');
+        Route::get('exchange-attempts/mine', 'ExchangeAttemptController@getMyAll');
+        Route::get('exchange-attempts/mine-latest', 'ExchangeAttemptController@getMyLatest');
+        Route::get('exchange-attempt/{id}', 'ExchangeAttemptController@getById');
+        Route::post('exchange-attempt/{id}/delete', 'ExchangeAttemptController@deleteById');
+        Route::post('exchange-attempt/match/{offerId}', 'ExchangeAttemptController@match');
 
         Route::get('my-matches', 'MatchController@user');
         Route::get('my-latest-match', 'MatchController@myLatest');
