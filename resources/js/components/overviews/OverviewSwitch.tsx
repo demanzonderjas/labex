@@ -1,7 +1,7 @@
 import React from "react";
 import { LocalImage } from "../base/Image";
 import { useSampleStore } from "../../hooks/useSampleStore";
-import { OverviewType } from "../../typings/Overview";
+import { OverviewType } from "../../typings/overviews";
 
 export const OverviewSwitch: React.FC = () => {
 	const { setOverviewType } = useSampleStore();

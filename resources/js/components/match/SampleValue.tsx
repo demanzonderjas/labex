@@ -1,6 +1,6 @@
 import React from "react";
 import { DisplayedAge } from "./Age";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { DateAvailableValue, DisplayedDate } from "../base/DisplayedDate";
 import { BooleanIcon } from "../base/BooleanIcon";
@@ -8,7 +8,7 @@ import { BooleanIcon } from "../base/BooleanIcon";
 type Props = {
 	label: string;
 	value: string;
-	fields: FormField[];
+	fields: TFormField[];
 };
 
 export const SampleValue: React.FC<Props> = ({ value, label, fields }) => {

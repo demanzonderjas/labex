@@ -1,7 +1,7 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 import { BigTextField } from "../../../components/form/BigTextField";
 
-export const proceduresField: FormField = {
+export const proceduresField: TFormField = {
 	label: "procedures",
 	id: "procedures",
 	Component: BigTextField,

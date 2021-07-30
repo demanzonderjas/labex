@@ -1,9 +1,9 @@
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { convertNameToSlug } from "../../utils/excel/import";
 
-export const FieldMapper: React.FC<FormField & {
+export const FieldMapper: React.FC<TFormField & {
 	handleSelect: Function;
 	importedFields: string[];
 }> = ({ id, label, importedFields, handleSelect, value }) => {

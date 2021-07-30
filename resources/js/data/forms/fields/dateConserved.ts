@@ -1,8 +1,8 @@
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 import { InputField } from "../../../components/form/InputField";
 import { isAgeInRange } from "../../../utils/matches/age";
 
-export const dateConservedField: FormField = {
+export const dateConservedField: TFormField = {
 	label: "date_conserved",
 	id: "age",
 	Component: InputField,

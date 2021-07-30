@@ -4,7 +4,7 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { PageIntro, TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { getMyMatches } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
-import { TMatch } from "../typings/Overview";
+import { TMatch } from "../typings/overviews";
 import { Button } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { matchesModal } from "../data/modals/matches";

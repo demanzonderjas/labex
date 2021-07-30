@@ -1,7 +1,7 @@
 import React from "react";
-import { ExchangeRequestCard } from "../overviews/ExchangeRequestCard";
-import { ExchangeOfferCard } from "../overviews/ExchangeOfferCard";
-import { TMatch, MatchType } from "../../typings/Overview";
+import { RequestCard } from "../overviews/RequestCard";
+import { OfferCard } from "../overviews/OfferCard";
+import { TMatch, MatchType } from "../../typings/overviews";
 import { ApproveButtons } from "./ApproveButtons";
 import { MatchCard } from "../match/MatchCard";
 import { Match as MatchCards } from "../match/Match";

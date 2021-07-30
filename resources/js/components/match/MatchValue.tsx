@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 import { SampleValue } from "./SampleValue";
 import { TSpecStatus } from "../../typings/Sample";
 
@@ -8,7 +8,7 @@ type Props = {
 	value: string;
 	label: string;
 	matchStatus: TSpecStatus;
-	specs: FormField[];
+	specs: TFormField[];
 	neutral: boolean;
 };
 

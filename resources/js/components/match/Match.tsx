@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { TMatch, MatchType } from "../../typings/Overview";
+import { TMatch, MatchType } from "../../typings/overviews";
 import { getStatusFromMatch } from "../../utils/matches/status";
 import { convertDateToReadableString } from "../../utils/formatting/datetime";
 import { getMatchingPercentage } from "../../utils/matches/utils";
@@ -9,8 +9,8 @@ import {
 	createMatchSpecs,
 	createQueryStringFromFilters
 } from "../../utils/formatting/matches";
-import { SubmitOfferForm } from "../../data/forms/ExchangeOffer";
-import { RequestMatchCardFields } from "../../data/forms/ExchangeRequest";
+import { SubmitOfferForm } from "../../data/forms/ExchangeAttemptOffer";
+import { RequestMatchCardFields } from "../../data/forms/ExchangeAttemptRequest";
 import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
 import { useHistory } from "react-router-dom";

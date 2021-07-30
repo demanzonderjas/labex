@@ -1,5 +1,5 @@
 import React from "react";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 import { checkIfFieldMatches } from "../../utils/matches/utils";
 import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
 import { Spec } from "./Spec";
@@ -12,8 +12,8 @@ import { SecondaryButton } from "../base/Button";
 import { MATCH_CHART_COLORS } from "../../data/configs/colors";
 
 type Props = {
-	fields: FormField[];
-	filters: FormField[];
+	fields: TFormField[];
+	filters: TFormField[];
 	matchPercentage: number;
 	handleBack: Function;
 	handleSelect: Function;

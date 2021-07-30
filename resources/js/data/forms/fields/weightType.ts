@@ -1,7 +1,7 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 import { IconSelectField } from "../../../components/form/IconSelectField";
 
-export const weightTypeField: FormField = {
+export const weightTypeField: TFormField = {
 	label: "weight_type",
 	id: "weight_type",
 	Component: IconSelectField,

@@ -6,24 +6,25 @@ import { useSampleStore } from "../../hooks/useSampleStore";
 import {
 	getMatchClasses,
 	createQueryStringFromFilters,
-	fillFieldsWithKeyValuePairs
+	fillFieldsWithKeyValuePairs,
+	fillFieldsWithSpecifications
 } from "../../utils/formatting/matches";
-import { AgeInPeriod } from "../match/AgeInPeriod";
 import { useHistory } from "react-router-dom";
-import { SubmitOfferForm } from "../../data/forms/ExchangeOffer";
-import { TExchangeOfferCard, TSampleCard } from "../../typings/Overview";
+import { SubmitOfferForm } from "../../data/forms/ExchangeAttemptOffer";
+import { TOfferCard, TSampleCard } from "../../typings/overviews";
 import { SampleValue } from "../match/SampleValue";
 import { createQueryStringFromSample } from "../../utils/formatting/samples";
 import { useModalStore } from "../../hooks/useModalStore";
 import { deleteExchangeOffer } from "../../queries/deleteOffer";
 import { confirmDeleteModal } from "../../data/modals/confirm";
+import { TExchangeAttempt } from "../../typings/exchanges";
 
 type Props = {
 	data?: any;
 	index?: number;
 };
 
-export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
+export const OfferCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
 	const { filters, matchType, matches, magicOfferField } = useSampleStore();
 	const history = useHistory();
@@ -34,11 +35,11 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	const classes = getMatchClasses(matchPercentage.value);
-	const match = matches[index] as TExchangeOfferCard;
-	const fields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, match);
+	const match = matches[index] as TOfferCard;
+	const fields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, match.specifications);
 
 	return (
-		<div className="ExchangeOfferCard Card" onClick={() => selectMatch(index)}>
+		<div className="OfferCard Card" onClick={() => selectMatch(index)}>
 			<div className="match">
 				<div className="info-block">
 					<label>{t("match_percentage")}</label>
@@ -68,19 +69,19 @@ export const ExchangeOfferCard: React.FC<Props> = ({ data, index }) => {
 	);
 };
 
-export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCard }> = ({
+export const OfferDashboardCard: React.FC<{ data: any; attempt: TExchangeAttempt }> = ({
 	data,
-	sample
+	attempt
 }) => {
 	const { t } = useTranslationStore();
 	const { setModal, confirm } = useModalStore();
 	const { deleteOffer } = useSampleStore();
 
-	const fields = fillFieldsWithKeyValuePairs(SubmitOfferForm.fields, sample);
+	const fields = fillFieldsWithSpecifications(SubmitOfferForm.fields, attempt.specifications);
 	const history = useHistory();
 
 	const copy = () => {
-		const queryString = createQueryStringFromSample(sample);
+		const queryString = createQueryStringFromSample(attempt);
 		history.push(`/app/submit-offer${queryString}`);
 	};
 
@@ -91,7 +92,7 @@ export const ExchangeOfferDashboardCard: React.FC<{ data: any; sample: TSampleCa
 	};
 
 	return (
-		<div className="ExchangeOfferCard DashboardCard Card">
+		<div className="OfferCard DashboardCard Card">
 			<div className="details">
 				{data
 					.filter(column => !!column)

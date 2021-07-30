@@ -1,7 +1,7 @@
 import { SelectField } from "../../../components/form/SelectField";
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 
-export const killMethodField: FormField = {
+export const killMethodField: TFormField = {
 	label: "kill_method",
 	id: "kill_method",
 	Component: SelectField,

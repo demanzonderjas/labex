@@ -1,8 +1,8 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 import { BigTextField } from "../../../components/form/BigTextField";
 import { SelectField } from "../../../components/form/SelectField";
 
-export const storageField: FormField = {
+export const storageField: TFormField = {
 	label: "storage",
 	id: "storage",
 	Component: SelectField,
@@ -22,6 +22,6 @@ export const storageField: FormField = {
 	synonyms: ["storage_method"]
 };
 
-export const storageRequestField: FormField = {
+export const storageRequestField: TFormField = {
 	...storageField
 };

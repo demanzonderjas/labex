@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { SubmitOfferForm } from "../../data/forms/ExchangeOffer";
+import { SubmitOfferForm } from "../../data/forms/ExchangeAttemptOffer";
 import { useModalStore } from "../../hooks/useModalStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { makeEducatedFieldNameGuess } from "../../utils/excel/import";
@@ -16,13 +16,11 @@ export const ExcelUpload = observer(() => {
 	const hasRows = !!importedRows && Array.isArray(toJS(importedRows)) && !!importedRows.length;
 
 	useEffect(() => {
-		console.log("educated guess?", importedRows);
 		if (hasRows) {
 			const fieldsWithGuess = mappedFields.map(field => ({
 				...field,
 				value: makeEducatedFieldNameGuess(field, importedRows[0])
 			}));
-			console.log(fieldsWithGuess);
 			setMappedFields(fieldsWithGuess);
 		}
 	}, [hasRows]);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { FormWrapper } from "../components/FormWrapper";
-import { SubmitRequestForm } from "../data/forms/ExchangeRequest";
+import { SubmitRequestForm } from "../data/forms/ExchangeAttemptRequest";
 
 export const SubmitRequestPage = () => {
 	const [sampleStore] = useState(new SampleStore());

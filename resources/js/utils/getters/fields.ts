@@ -1,6 +1,6 @@
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 
-export function getFieldById(id: string, fields: FormField[]) {
+export function getFieldById(id: string, fields: TFormField[]) {
 	return fields.find(field => field.id == id);
 }
 

@@ -1,7 +1,7 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 
-export const protocolNumberField: FormField = {
+export const protocolNumberField: TFormField = {
 	label: "protocol_number",
 	id: "protocol_number",
 	Component: InputField,

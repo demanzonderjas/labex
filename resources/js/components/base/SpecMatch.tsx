@@ -11,7 +11,6 @@ type Props = {
 
 export const SpecMatch: React.FC<Props> = ({ match }) => {
 	const { t } = useTranslationStore();
-	console.log(match);
 	return (
 		<span
 			className={cx("SpecMatch", {

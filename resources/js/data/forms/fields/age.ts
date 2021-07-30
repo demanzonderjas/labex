@@ -1,11 +1,11 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { AgeRangeField } from "../../../components/form/custom-fields/AgeRangeField";
 import { isAgeInRange, isAgeRangeMatching } from "../../../utils/matches/age";
 import { getAgeRangeValue } from "../../../utils/getters/fields";
 
-export const ageField: FormField = {
+export const ageField: TFormField = {
 	label: "age",
 	id: "age",
 	Component: InputField,
@@ -26,7 +26,7 @@ export const ageField: FormField = {
 	synonyms: ["birth_date"]
 };
 
-export const ageRequestField: FormField = {
+export const ageRequestField: TFormField = {
 	label: "age_offer",
 	id: "age",
 	Component: AgeRangeField,
@@ -38,12 +38,12 @@ export const ageRequestField: FormField = {
 	synonyms: ["birth_date", "age"]
 };
 
-export const ageRangeRequestField: FormField = {
+export const ageRangeRequestField: TFormField = {
 	...ageRequestField,
 	label: "age_range"
 };
 
-export const ageRequestRangeField: FormField = {
+export const ageRequestRangeField: TFormField = {
 	label: "age_offer",
 	id: "age",
 	Component: AgeRangeField,
@@ -55,7 +55,7 @@ export const ageRequestRangeField: FormField = {
 	synonyms: ["birth_date", "age"]
 };
 
-export const ageTypeField: FormField = {
+export const ageTypeField: TFormField = {
 	label: "age_type",
 	id: "age_type",
 	hidden: true,
@@ -65,7 +65,7 @@ export const ageTypeField: FormField = {
 	props: {}
 };
 
-export const ageMinField: FormField = {
+export const ageMinField: TFormField = {
 	label: "age_min",
 	id: "age_min",
 	hidden: true,
@@ -75,7 +75,7 @@ export const ageMinField: FormField = {
 	props: {}
 };
 
-export const ageMaxField: FormField = {
+export const ageMaxField: TFormField = {
 	label: "age_max",
 	id: "age_max",
 	hidden: true,

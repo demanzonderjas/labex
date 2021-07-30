@@ -1,7 +1,7 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 import { BooleanField } from "../../../components/form/BooleanField";
 
-export const naiveField: FormField = {
+export const naiveField: TFormField = {
 	label: "naive",
 	id: "naive",
 	Component: BooleanField,

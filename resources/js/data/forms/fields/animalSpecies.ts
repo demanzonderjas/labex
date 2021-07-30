@@ -1,7 +1,7 @@
 import { SelectField } from "../../../components/form/SelectField";
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 
-export const animalSpeciesField: FormField = {
+export const animalSpeciesField: TFormField = {
 	label: "animal_species",
 	id: "animal_species",
 	Component: SelectField,

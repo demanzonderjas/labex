@@ -1,10 +1,10 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 import { isDateInFuture, isDateInRangeOfTwoWeeks } from "../../../utils/validation/date";
 import { getFieldById } from "../../../utils/getters/fields";
 import { TSpecStatus } from "../../../typings/Sample";
 
-export const dateAvailableField: FormField = {
+export const dateAvailableField: TFormField = {
 	label: "date_available",
 	id: "date_available",
 	Component: InputField,
@@ -24,7 +24,7 @@ export const dateAvailableField: FormField = {
 	synonyms: ["available", "availability", "date"]
 };
 
-export const dateRequestedField: FormField = {
+export const dateRequestedField: TFormField = {
 	...dateAvailableField,
 	required: false,
 	label: "date_requested",

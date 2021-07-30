@@ -6,19 +6,19 @@ export enum OverviewType {
 	Table
 }
 
-export type TableCell = {
+export type TTableCell = {
 	id: string;
 	label?: string;
 	value: any;
-	Component: React.FC<TableCellProps>;
+	Component: React.FC<TTableCellProps>;
 };
 
-export type TableCellProps = {
+export type TTableCellProps = {
 	value: any;
 	rowIndex: number;
 };
 
-export interface TExchangeOfferCard extends TSampleCard {
+export interface TOfferCard extends TSampleCard {
 	id: number;
 	animal_species: string;
 	date_available: string;
@@ -28,9 +28,15 @@ export interface TExchangeOfferCard extends TSampleCard {
 	origin: string;
 	type: string;
 	is_mine: boolean;
+	specifications: TSpecification[];
 }
 
-export interface TExchangeRequestCard extends TSampleCard {
+export type TSpecification = {
+	key: string;
+	value: string;
+};
+
+export interface TRequestCard extends TSampleCard {
 	id: number;
 	animal_species: string;
 	date_requested: string;
@@ -42,6 +48,7 @@ export interface TExchangeRequestCard extends TSampleCard {
 	origin: string;
 	type: string;
 	is_mine: boolean;
+	specifications: TSpecification[];
 }
 
 export interface TSampleCard {
@@ -56,12 +63,13 @@ export interface TSampleCard {
 	type: string;
 	user?: TUser;
 	is_match?: boolean;
+	specifications: TSpecification[];
 }
 
 export type TMatch = {
 	id: number;
-	exchange_offer: TExchangeOfferCard;
-	exchange_request: TExchangeRequestCard;
+	exchange_offer: TOfferCard;
+	exchange_request: TRequestCard;
 	awaiting_approval: boolean;
 	approved: boolean;
 	updated_at: string;

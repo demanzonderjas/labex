@@ -12,13 +12,13 @@
 	.table {
 		overflow: auto;
 
-		&.ExchangeOfferTable {
+		&.OfferTable {
 			thead th {
 				background-color: $offer-color;
 			}
 		}
 
-		&.ExchangeRequestTable {
+		&.RequestTable {
 			thead th {
 				background-color: $request-color;
 			}

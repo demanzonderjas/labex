@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SampleStore } from "../stores/SampleStore";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { FormWrapper } from "../components/FormWrapper";
-import { SubmitOfferForm } from "../data/forms/ExchangeOffer";
+import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
 
 export const SubmitOfferPage = () => {
 	const [sampleStore] = useState(new SampleStore());

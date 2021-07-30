@@ -4,7 +4,9 @@ import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
 import { checkIfFieldMatches } from "../matches/utils";
 import { offerCells } from "../../data/tables/offers";
 import { requestCells } from "../../data/tables/requests";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
+import { TSpecification, TTableCell } from "../../typings/overviews";
+import { TExchangeAttempt } from "../../typings/exchanges";
 
 export function getMatchClasses(value) {
 	return {
@@ -14,23 +16,16 @@ export function getMatchClasses(value) {
 	};
 }
 
-export function mapOffersToOverviewData(matches) {
-	return matches.map(match => {
-		return offerCells.map(cell => {
-			return { ...cell, value: match[cell.id] || cell.value };
+export function convertAttemptsToCells(attempts: TExchangeAttempt[], cells: TTableCell[]) {
+	return attempts.map(match => {
+		return cells.map(cell => {
+			const spec = match.specifications.find(s => s.key === cell.id);
+			return { ...cell, value: spec?.value || cell.value };
 		});
 	});
 }
 
-export function mapRequestsToOverviewData(matches) {
-	return matches.map(match => {
-		return requestCells.map(cell => {
-			return { ...cell, value: match[cell.id] || cell.value };
-		});
-	});
-}
-
-export function mapOfferMatchesToOverviewData(matches, magicField: FormField) {
+export function mapOfferMatchesToOverviewData(matches, magicField: TFormField) {
 	return matches.map(match => {
 		return offerMatchCells.map(cell => {
 			if (cell.id === "magic_cell" && magicField) {
@@ -43,7 +38,7 @@ export function mapOfferMatchesToOverviewData(matches, magicField: FormField) {
 	});
 }
 
-export function mapRequestMatchesToOverviewData(matches, magicField: FormField) {
+export function mapRequestMatchesToOverviewData(matches, magicField: TFormField) {
 	return matches.map(match => {
 		return requestMatchCells.map(cell => {
 			if (cell.id === "magic_cell" && magicField) {
@@ -71,6 +66,19 @@ export function fillFieldsWithKeyValuePairs(fields, pairs) {
 			return field;
 		}
 		return { ...field, value: pairs[field.id] };
+	});
+}
+
+export function fillFieldsWithSpecifications(
+	fields: TFormField[],
+	specifications: TSpecification[]
+) {
+	return fields.map(field => {
+		const spec = specifications.find(s => s.key === field.id);
+		if (!spec) {
+			return field;
+		}
+		return { ...field, value: spec.value };
 	});
 }
 

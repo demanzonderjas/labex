@@ -1,10 +1,10 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { getFieldById } from "../../../utils/getters/fields";
 import { TSpecStatus, TSpecMatch } from "../../../typings/Sample";
 
-export const amountField: FormField = {
+export const amountField: TFormField = {
 	label: "amount",
 	id: "amount",
 	Component: InputField,
@@ -27,7 +27,7 @@ export const amountField: FormField = {
 	synonyms: ["total", "amounts"]
 };
 
-export const amountRequestedField: FormField = {
+export const amountRequestedField: TFormField = {
 	...amountField,
 	label: "amount_request",
 	required: false

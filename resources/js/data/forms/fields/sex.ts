@@ -1,4 +1,4 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 import { IconSelectField } from "../../../components/form/IconSelectField";
 
 const sexOptions = [
@@ -6,7 +6,7 @@ const sexOptions = [
 	{ icon: "female", value: "female" }
 ];
 
-export const sexField: FormField = {
+export const sexField: TFormField = {
 	label: "sex",
 	id: "sex",
 	Component: IconSelectField,
@@ -19,7 +19,7 @@ export const sexField: FormField = {
 	synonyms: ["sekse", "gender"]
 };
 
-export const sexRequestField: FormField = {
+export const sexRequestField: TFormField = {
 	...sexField,
 	required: false
 };

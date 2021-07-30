@@ -1,7 +1,7 @@
 import { BooleanField } from "../../../../components/form/BooleanField";
-import { FormField } from "../../../../typings/Form";
+import { TFormField } from "../../../../typings/Form";
 
-export const showField: FormField = {
+export const showField: TFormField = {
 	label: "show",
 	id: "show",
 	Component: BooleanField,

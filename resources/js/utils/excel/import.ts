@@ -1,4 +1,4 @@
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 
 export async function loadFromFile(file) {
 	const workbook = await createWorkbookFromFile(file);
@@ -33,19 +33,17 @@ export function convertNameToSlug(name: string) {
 		.join("_");
 }
 
-export function makeEducatedFieldNameGuess(targetField: FormField, possibleNames: string[]) {
+export function makeEducatedFieldNameGuess(targetField: TFormField, possibleNames: string[]) {
 	const possibleFormattedNames = possibleNames.filter(name => !!name).map(convertNameToSlug);
 
 	const exactMatch = possibleFormattedNames.find(name => name === targetField.id);
 	if (exactMatch) {
-		console.log(exactMatch);
 		return exactMatch;
 	}
 	const synonymMatch = targetField.synonyms
 		? possibleFormattedNames.find(name => targetField.synonyms.some(s => s === name))
 		: false;
 	if (synonymMatch) {
-		console.log(synonymMatch);
 		return synonymMatch;
 	}
 	const partialMatch = possibleFormattedNames.find(

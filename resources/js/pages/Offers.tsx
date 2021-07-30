@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FormWrapper } from "../components/FormWrapper";
-import { ExchangeOfferOverview } from "../components/overviews/ExchangeOfferOverview";
+import { OfferOverview } from "../components/overviews/OfferOverview";
 import SampleStoreProvider from "../contexts/SampleContext";
 import { SampleStore } from "../stores/SampleStore";
-import { FilterOffersForm } from "../data/forms/ExchangeRequest";
+import { FilterOffersForm } from "../data/forms/ExchangeAttemptRequest";
 import { createQueryStringFromFilters } from "../utils/formatting/matches";
 import { useHistory } from "react-router-dom";
 
@@ -26,7 +26,7 @@ export const OffersPage = () => {
 				handleSuccess={null}
 				handleUpdate={sampleStore.setFilters}
 			/>
-			<ExchangeOfferOverview />
+			<OfferOverview />
 		</SampleStoreProvider>
 	);
 };

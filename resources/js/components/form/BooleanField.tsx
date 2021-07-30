@@ -2,10 +2,10 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
 import cx from "classnames";
-import { FormFieldData } from "../../typings/Form";
+import { TFormFieldData } from "../../typings/Form";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
-interface Props extends FormFieldData {}
+interface Props extends TFormFieldData {}
 
 export const BooleanField: React.FC<Props> = observer(({ id, value }) => {
 	const { setFieldValue } = useFormStore();

@@ -1,10 +1,10 @@
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 import { TSpecStatus } from "../../typings/Sample";
 import { fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../filters/fields";
 
 export function getMatchingPercentage(sample, filters, fields) {
 	const activeFilters = filters.filter(
-		(filter: FormField) =>
+		(filter: TFormField) =>
 			filter.value != "" &&
 			!filter.hidden &&
 			fieldMeetsDependencies(filter, 0, fields) &&

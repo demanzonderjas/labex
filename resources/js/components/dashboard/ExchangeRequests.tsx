@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { TSampleCard } from "../../typings/Overview";
+import { TSampleCard } from "../../typings/overviews";
 import { mapRequestsToOverviewData } from "../../utils/formatting/matches";
-import { ExchangeRequestDashboardCard } from "../overviews/ExchangeRequestCard";
+import { RequestDashboardCard } from "../overviews/RequestCard";
 
 export const ExchangeRequests: React.FC<{ requests: TSampleCard[] }> = ({ requests }) => {
 	const { t } = useTranslationStore();
@@ -12,7 +12,7 @@ export const ExchangeRequests: React.FC<{ requests: TSampleCard[] }> = ({ reques
 	return (
 		<div className="ExchangeRequests layout-wrapper">
 			{requestCells.map((data, idx) => (
-				<ExchangeRequestDashboardCard key={idx} data={data} sample={requests[idx]} />
+				<RequestDashboardCard key={idx} data={data} sample={requests[idx]} />
 			))}
 		</div>
 	);

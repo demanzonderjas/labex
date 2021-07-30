@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 import { createMatchSpecs } from "../../utils/formatting/matches";
 import {
 	fieldIsNotHidden,
@@ -16,8 +16,8 @@ import { createOfferMatch } from "../../queries/createOfferMatch";
 import { useParams, useHistory } from "react-router-dom";
 
 type Props = {
-	fields: FormField[];
-	filters: FormField[];
+	fields: TFormField[];
+	filters: TFormField[];
 	offerId: string;
 };
 

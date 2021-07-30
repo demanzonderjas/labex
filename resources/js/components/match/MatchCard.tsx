@@ -1,9 +1,9 @@
 import React from "react";
 import { LocalImage } from "../base/Image";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/Form";
 import { TUser } from "../../typings/User";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { MatchType } from "../../typings/Overview";
+import { MatchType } from "../../typings/overviews";
 import { MatchValue } from "./MatchValue";
 import { TSpecStatus } from "../../typings/Sample";
 import {
@@ -17,7 +17,7 @@ import { UserProfile } from "./UserProfile";
 
 type Props = {
 	mine: boolean;
-	specs: FormField[];
+	specs: TFormField[];
 	user: TUser;
 	matchType: MatchType;
 	status?: string;

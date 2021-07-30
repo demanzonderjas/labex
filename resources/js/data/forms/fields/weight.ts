@@ -1,8 +1,8 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 
-export const weightField: FormField = {
+export const weightField: TFormField = {
 	label: "weight",
 	id: "weight",
 	Component: InputField,

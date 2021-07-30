@@ -1,7 +1,7 @@
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 import { InputField } from "../../../components/form/InputField";
 
-export const strainField: FormField = {
+export const strainField: TFormField = {
 	label: "strain",
 	id: "strain",
 	Component: InputField,
@@ -14,7 +14,7 @@ export const strainField: FormField = {
 	synonyms: ["strain"]
 };
 
-export const strainRequestField: FormField = {
+export const strainRequestField: TFormField = {
 	...strainField,
 	required: false
 };

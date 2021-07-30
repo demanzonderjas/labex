@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 import { getMatches } from "../queries/admin/getMatches";
-import { TMatch } from "../typings/Overview";
+import { TMatch } from "../typings/overviews";
 import { approveMatch, rejectMatch } from "../queries/admin/approveMatch";
 
 export class MatchStore {

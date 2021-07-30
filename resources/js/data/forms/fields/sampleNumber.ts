@@ -1,7 +1,7 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 
-export const sampleNumberField: FormField = {
+export const sampleNumberField: TFormField = {
 	label: "sample_number",
 	id: "sample_number",
 	Component: InputField,
@@ -14,7 +14,7 @@ export const sampleNumberField: FormField = {
 	synonyms: ["samplenumber", "number"]
 };
 
-export const sampleNumberRequestField: FormField = {
+export const sampleNumberRequestField: TFormField = {
 	...sampleNumberField,
 	required: false
 };

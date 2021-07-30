@@ -1,8 +1,8 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/Form";
 import { MultiSelectField } from "../../../components/form/MultiSelectField";
 import { isMultiSelectMatch } from "../../../utils/filters/multiselect";
 
-export const organsField: FormField = {
+export const organsField: TFormField = {
 	label: "organs",
 	id: "organs",
 	Component: MultiSelectField,
@@ -36,7 +36,7 @@ export const organsField: FormField = {
 	synonyms: ["organ"]
 };
 
-export const organsRequestField: FormField = {
+export const organsRequestField: TFormField = {
 	...organsField,
 	required: false
 };

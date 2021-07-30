@@ -1,4 +1,4 @@
-import { TMatch } from "../../typings/Overview";
+import { TMatch } from "../../typings/overviews";
 
 export function getStatusFromMatch(match: TMatch) {
 	if (match.approved) {

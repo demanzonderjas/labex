@@ -1,18 +1,17 @@
 import React from "react";
-import { offerMatchColumns } from "../../data/tables/matches";
+import { requestMatchColumns } from "../../data/tables/matches";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { useSampleStore } from "../../hooks/useSampleStore";
 import { useHistory } from "react-router-dom";
 import { createQueryStringFromFilters } from "../../utils/formatting/matches";
-import { observer } from "mobx-react-lite";
+import { useSampleStore } from "../../hooks/useSampleStore";
 
 type Props = {
 	matches: any;
 };
 
-export const ExchangeOfferTable: React.FC<Props> = observer(({ matches }) => {
+export const RequestTable: React.FC<Props> = ({ matches }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches: savedMatches, magicOfferField } = useSampleStore();
+	const { filters, matchType, matches: savedMatches, magicRequestField } = useSampleStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -20,17 +19,17 @@ export const ExchangeOfferTable: React.FC<Props> = observer(({ matches }) => {
 	};
 
 	const magicColumns = () => {
-		if (!magicOfferField) {
-			return offerMatchColumns.filter(column => column != "magic_cell");
+		if (!magicRequestField) {
+			return requestMatchColumns.filter(column => column != "magic_cell");
 		}
-		const offerColumnsWithMagic = [...offerMatchColumns];
+		const offerColumnsWithMagic = [...requestMatchColumns];
 		const targetIdx = offerColumnsWithMagic.findIndex(column => column === "magic_cell");
-		offerColumnsWithMagic[targetIdx] = magicOfferField.id;
+		offerColumnsWithMagic[targetIdx] = magicRequestField.id;
 		return offerColumnsWithMagic;
 	};
 
 	return (
-		<div className="ExchangeOfferTable table">
+		<div className="RequestTable table">
 			<table className="highlightable">
 				<thead>
 					<tr>
@@ -58,4 +57,4 @@ export const ExchangeOfferTable: React.FC<Props> = observer(({ matches }) => {
 			</table>
 		</div>
 	);
-});
+};

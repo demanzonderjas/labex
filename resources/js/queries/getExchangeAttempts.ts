@@ -1,4 +1,4 @@
-import { TExchangeAttemptType } from "../typings/Base";
+import { TExchangeAttemptType } from "../typings/exchanges";
 import { API } from "../utils/api/axios";
 
 export async function getExchangeAttempts(attempt_type: TExchangeAttemptType) {

@@ -1,7 +1,7 @@
 import { BigTextField } from "../../../../components/form/BigTextField";
-import { FormField } from "../../../../typings/Form";
+import { TFormField } from "../../../../typings/Form";
 
-export const contentField: FormField = {
+export const contentField: TFormField = {
 	label: "content",
 	id: "content",
 	Component: BigTextField,

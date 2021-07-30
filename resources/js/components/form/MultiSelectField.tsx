@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
-import { FormFieldData } from "../../typings/Form";
+import { TFormFieldData } from "../../typings/Form";
 import { SelectOption } from "./SelectOption";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { LocalImage } from "../base/Image";
@@ -9,7 +9,7 @@ import cx from "classnames";
 import { blockEnter } from "../../utils/dom/keyboard";
 import { OtherOption } from "./custom-fields/OtherOption";
 
-interface Props extends FormFieldData {
+interface Props extends TFormFieldData {
 	options: string[];
 	startsEmpty?: boolean;
 	allowOther?: boolean;

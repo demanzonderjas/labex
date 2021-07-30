@@ -1,8 +1,8 @@
 import { InputField } from "../../../components/form/InputField";
-import { TExchangeAttemptType } from "../../../typings/Base";
-import { FormField, InputType } from "../../../typings/Form";
+import { TExchangeAttemptType } from "../../../typings/exchanges";
+import { TFormField, InputType } from "../../../typings/Form";
 
-export const attemptTypeField: FormField = {
+export const attemptTypeField: TFormField = {
 	label: "attempt_type",
 	id: "attempt_type",
 	Component: InputField,

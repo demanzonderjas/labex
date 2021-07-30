@@ -1,17 +1,18 @@
 import React from "react";
-import { requestMatchColumns } from "../../data/tables/matches";
+import { offerMatchColumns } from "../../data/tables/matches";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { useSampleStore } from "../../hooks/useSampleStore";
 import { useHistory } from "react-router-dom";
 import { createQueryStringFromFilters } from "../../utils/formatting/matches";
-import { useSampleStore } from "../../hooks/useSampleStore";
+import { observer } from "mobx-react-lite";
 
 type Props = {
 	matches: any;
 };
 
-export const ExchangeRequestTable: React.FC<Props> = ({ matches }) => {
+export const OfferTable: React.FC<Props> = observer(({ matches }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches: savedMatches, magicRequestField } = useSampleStore();
+	const { filters, matchType, matches: savedMatches, magicOfferField } = useSampleStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -19,17 +20,17 @@ export const ExchangeRequestTable: React.FC<Props> = ({ matches }) => {
 	};
 
 	const magicColumns = () => {
-		if (!magicRequestField) {
-			return requestMatchColumns.filter(column => column != "magic_cell");
+		if (!magicOfferField) {
+			return offerMatchColumns.filter(column => column != "magic_cell");
 		}
-		const offerColumnsWithMagic = [...requestMatchColumns];
+		const offerColumnsWithMagic = [...offerMatchColumns];
 		const targetIdx = offerColumnsWithMagic.findIndex(column => column === "magic_cell");
-		offerColumnsWithMagic[targetIdx] = magicRequestField.id;
+		offerColumnsWithMagic[targetIdx] = magicOfferField.id;
 		return offerColumnsWithMagic;
 	};
 
 	return (
-		<div className="ExchangeRequestTable table">
+		<div className="OfferTable table">
 			<table className="highlightable">
 				<thead>
 					<tr>
@@ -57,4 +58,4 @@ export const ExchangeRequestTable: React.FC<Props> = ({ matches }) => {
 			</table>
 		</div>
 	);
-};
+});

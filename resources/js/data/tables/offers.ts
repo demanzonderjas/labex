@@ -1,47 +1,49 @@
 import { TextCell } from "../../components/overviews/table/TextCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { DateCell } from "../../components/overviews/table/DateCell";
+import { TSpecificationName } from "../../typings/exchanges";
+import { TTableCell } from "../../typings/overviews";
 
 export const offerColumns: string[] = [
-	"type",
-	"animal_species",
-	"sex",
+	TSpecificationName.ExchangeType,
+	TSpecificationName.AnimalSpecies,
+	TSpecificationName.Sex,
 	"age_offer",
-	"amount",
-	"date_available",
+	TSpecificationName.Amount,
+	TSpecificationName.DateAvailable,
 	"is_match",
 	"copy_header"
 ];
 
-export const offerCells = [
+export const offerCells: TTableCell[] = [
 	{
-		id: "type",
+		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "animal_species",
+		id: TSpecificationName.AnimalSpecies,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "sex",
+		id: TSpecificationName.Sex,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "age",
+		id: TSpecificationName.Age,
 		label: "age_offer",
 		value: "",
 		Component: DateCell
 	},
 	{
-		id: "amount",
+		id: TSpecificationName.Amount,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "date_available",
+		id: TSpecificationName.DateAvailable,
 		value: "",
 		Component: DateAvailableCell
 	}

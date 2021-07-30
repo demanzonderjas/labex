@@ -6,13 +6,13 @@ import {
 import { DisplayedDate } from "../../base/DisplayedDate";
 import { useSampleStore } from "../../../hooks/useSampleStore";
 import { useTranslationStore } from "../../../hooks/useTranslationStore";
-import { TSampleCard } from "../../../typings/Overview";
-import { FormFieldData } from "../../../typings/Form";
+import { TSampleCard } from "../../../typings/overviews";
+import { TFormFieldData } from "../../../typings/Form";
 
 type Props = {
 	value: string;
 	rowIndex: number;
-	sample: TSampleCard | FormFieldData[];
+	sample: TSampleCard | TFormFieldData[];
 };
 
 export const DateAvailableCell: React.FC<Props> = ({ value, sample }) => {

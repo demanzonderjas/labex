@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslationStore } from "../hooks/useTranslationStore";
-import { getMyLatestExchangeOffers } from "../queries/getExchangeOffers";
-import { getMyLatestExchangeRequests } from "../queries/getExchangeRequests";
-import { MatchType, TDashboardOverview } from "../typings/Overview";
+import { MatchType, TDashboardOverview } from "../typings/overviews";
 import { TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { ExchangeOffers } from "../components/dashboard/ExchangeOffers";
 import { SampleStore } from "../stores/SampleStore";
@@ -19,7 +17,7 @@ import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
 import { ExcelImport } from "../components/excel/ExcelImport";
 import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
-import { TExchangeAttemptType } from "../typings/Base";
+import { TExchangeAttemptType } from "../typings/exchanges";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();

@@ -1,12 +1,7 @@
 import { observable, action, computed } from "mobx";
-import {
-	OverviewType,
-	MatchType,
-	TExchangeOfferCard,
-	TExchangeRequestCard
-} from "../typings/Overview";
+import { OverviewType, MatchType, TOfferCard, TRequestCard } from "../typings/overviews";
 import { getExchangeAttempts } from "../queries/getExchangeAttempts";
-import { FormField } from "../typings/Form";
+import { TFormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import {
 	fillFieldsWithKeyValuePairs,
@@ -15,19 +10,19 @@ import {
 	mapRequestMatchesToOverviewData
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
-import { SubmitOfferForm } from "../data/forms/ExchangeOffer";
+import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
-import { FilterRequestsForm } from "../data/forms/ExchangeRequest";
+import { FilterRequestsForm } from "../data/forms/ExchangeAttemptRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
 import { offerColumns } from "../data/tables/offers";
 import { offerMatchColumns, requestMatchColumns } from "../data/tables/matches";
-import { TExchangeAttemptType } from "../typings/Base";
+import { TExchangeAttemptType } from "../typings/exchanges";
 
 export class SampleStore {
-	@observable.shallow offers: TExchangeOfferCard[] = [];
-	@observable.shallow requests: TExchangeRequestCard[] = [];
+	@observable.shallow offers: TOfferCard[] = [];
+	@observable.shallow requests: TRequestCard[] = [];
 	@observable overviewType: OverviewType = OverviewType.Table;
-	@observable filters: FormField[] = [];
+	@observable filters: TFormField[] = [];
 	@observable currentLimit = PAGINATION_LIMIT;
 	@observable matchType: MatchType = MatchType.Offers;
 

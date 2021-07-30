@@ -1,16 +1,16 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/Form";
 import { validateEmail } from "../../../utils/validation/string";
 
-export const emailField: FormField = {
+export const emailField: TFormField = {
 	label: "email",
-    id: "email",
-    required: true,
-    validate: validateEmail,
+	id: "email",
+	required: true,
+	validate: validateEmail,
 	Component: InputField,
 	props: {
 		type: InputType.Email
 	},
 	default: "",
-	value: "",
+	value: ""
 };

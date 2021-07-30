@@ -1,18 +1,21 @@
 import React from "react";
+import { offerCells } from "../../data/tables/offers";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { TSampleCard } from "../../typings/Overview";
-import { mapOffersToOverviewData } from "../../utils/formatting/matches";
-import { ExchangeOfferCard, ExchangeOfferDashboardCard } from "../overviews/ExchangeOfferCard";
+import { TExchangeAttempt } from "../../typings/exchanges";
+import { convertAttemptsToCells } from "../../utils/formatting/matches";
+import { OfferDashboardCard } from "../overviews/OfferCard";
 
-export const ExchangeOffers: React.FC<{ offers: TSampleCard[] }> = ({ offers }) => {
+export const ExchangeOffers: React.FC<{ offers: TExchangeAttempt[] }> = ({ offers }) => {
 	const { t } = useTranslationStore();
 
-	const offerCells = mapOffersToOverviewData(offers);
+	const cardsWithSpecs = convertAttemptsToCells(offers, offerCells);
+
+	console.log(cardsWithSpecs);
 
 	return (
 		<div className="ExchangeOffers layout-wrapper">
-			{offerCells.map((data, idx) => (
-				<ExchangeOfferDashboardCard key={idx} data={data} sample={offers[idx]} />
+			{cardsWithSpecs.map((data, idx) => (
+				<OfferDashboardCard key={idx} data={data} attempt={offers[idx]} />
 			))}
 		</div>
 	);

@@ -6,7 +6,7 @@ export type TForm = {
 	header?: string;
 	intro?: string;
 	submitLabel?: string;
-	fields: FormField[];
+	fields: TFormField[];
 	matchable?: boolean;
 	hideSubmit?: boolean;
 	handler: Function;
@@ -25,30 +25,30 @@ export enum InputType {
 	Hidden = "hidden"
 }
 
-export interface FormFieldData {
+export interface TFormFieldData {
 	label: string;
 	id: string;
 	value: string;
 	validate?: Function;
 }
 
-export interface SelectFieldData extends FormFieldData {
+export interface SelectFieldData extends TFormFieldData {
 	options: string[];
 	allowOther: boolean;
 	startsEmpty: boolean;
 	required?: boolean;
 }
 
-export interface FormField extends FormFieldData {
+export interface TFormField extends TFormFieldData {
 	Component: React.FC;
 	props: any;
 	required?: boolean;
-	dependencies?: FormFieldDependency[];
+	dependencies?: TFormFieldDependency[];
 	isMatch?: (
 		givenValue: any,
 		targetValue: any,
-		filters?: FormField[],
-		fields?: FormField[]
+		filters?: TFormField[],
+		fields?: TFormField[]
 	) => TSpecStatus;
 	isHardFilter?: boolean;
 	hidden?: boolean;
@@ -60,7 +60,7 @@ export interface FormField extends FormFieldData {
 	synonyms?: string[];
 }
 
-export type FormFieldDependency = {
+export type TFormFieldDependency = {
 	id: string;
 	validate: Function;
 };
