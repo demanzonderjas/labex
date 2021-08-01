@@ -11,7 +11,7 @@ export const SubmitRequestPage = () => {
 		<ExchangeAttemptStoreProvider store={sampleStore}>
 			<FormWrapper
 				form={SubmitRequestForm}
-				handleSuccess={sampleStore.addRequest}
+				handleSuccess={sampleStore.addAttempt}
 				handleUpdate={fields => console.log(fields)}
 			/>
 		</ExchangeAttemptStoreProvider>

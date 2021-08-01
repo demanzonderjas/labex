@@ -7,6 +7,7 @@ export const attemptTypeField: TFormField = {
 	id: "attempt_type",
 	Component: InputField,
 	required: true,
+	hidden: true,
 	props: {
 		type: InputType.Hidden
 	},

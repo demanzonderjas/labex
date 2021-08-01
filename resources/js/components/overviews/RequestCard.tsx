@@ -27,7 +27,7 @@ type Props = {
 
 export const RequestCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches, magicRequestField } = useExchangeAttemptStore();
+	const { filters, matchType, matches, magicField } = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -54,8 +54,8 @@ export const RequestCard: React.FC<Props> = ({ data, index }) => {
 					.map(column => (
 						<div key={column.id} className="info-block">
 							<label>
-								{magicRequestField && column.id === "magic_cell"
-									? t(magicRequestField.id)
+								{magicField && column.id === "magic_cell"
+									? t(magicField.id)
 									: t(column.label || column.id)}
 							</label>
 							<SampleValue
@@ -76,7 +76,7 @@ export const RequestDashboardCard: React.FC<{ data: any; sample: TExchangeAttemp
 }) => {
 	const { t } = useTranslationStore();
 	const { setModal, confirm } = useModalStore();
-	const { deleteRequest } = useExchangeAttemptStore();
+	const { deleteAttempt } = useExchangeAttemptStore();
 
 	const fields = fillFieldsWithSpecifications(FilterOffersForm.fields, sample.specifications);
 	const history = useHistory();
@@ -88,7 +88,7 @@ export const RequestDashboardCard: React.FC<{ data: any; sample: TExchangeAttemp
 
 	const deleteRequestCallback = async () => {
 		await deleteExchangeRequest(sample.id);
-		deleteRequest(sample.id);
+		deleteAttempt(sample.id);
 		confirm();
 	};
 

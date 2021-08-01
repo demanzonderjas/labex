@@ -1,8 +1,13 @@
+import { TExchangeAttempt } from "../../typings/exchanges";
 import { TFormField } from "../../typings/Form";
 import { TSpecStatus } from "../../typings/Sample";
 import { fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../filters/fields";
 
-export function getMatchingPercentage(sample, filters, fields) {
+export function getMatchingPercentage(
+	attempt: TExchangeAttempt,
+	filters: TFormField[],
+	fields: TFormField[]
+) {
 	const activeFilters = filters.filter(
 		(filter: TFormField) =>
 			filter.value != "" &&
@@ -11,7 +16,7 @@ export function getMatchingPercentage(sample, filters, fields) {
 			!fieldShouldBeIgnoredInMatch(filter)
 	);
 	const matchingFilters: TSpecStatus[] = activeFilters.map(filter =>
-		checkIfFilterMatches(filter, sample, filters, fields)
+		checkIfFilterMatches(filter, attempt, filters, fields)
 	);
 	const fullMatchFilters = matchingFilters.filter(status => status === TSpecStatus.Match);
 	const partialMatchFilters = matchingFilters.filter(
@@ -25,15 +30,26 @@ export function getMatchingPercentage(sample, filters, fields) {
 	);
 }
 
-export function checkIfFilterMatches(filter, field, filters, fields) {
+export function checkIfFilterMatches(
+	filter: TFormField,
+	attempt: TExchangeAttempt,
+	filters: TFormField[],
+	fields: TFormField[]
+) {
+	const matchingSpec = attempt.specifications.find(s => s.key == filter.id);
 	return filter.isMatch
-		? filter.isMatch(filter.value, field[filter.id], filters, fields)
-		: filter.value == field[filter.id]
+		? filter.isMatch(filter.value, matchingSpec?.value, filters, fields)
+		: filter.value == matchingSpec?.value
 		? TSpecStatus.Match
 		: TSpecStatus.NoMatch;
 }
 
-export function checkIfFieldMatches(field, filter, filters, fields): TSpecStatus {
+export function checkIfFieldMatches(
+	field: TFormField,
+	filter: TFormField,
+	filters: TFormField[],
+	fields: TFormField[]
+): TSpecStatus {
 	if (field.value === "") {
 		return TSpecStatus.Match;
 	}

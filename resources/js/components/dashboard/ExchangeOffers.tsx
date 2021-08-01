@@ -10,8 +10,6 @@ export const ExchangeOffers: React.FC<{ offers: TExchangeAttempt[] }> = ({ offer
 
 	const cardsWithSpecs = convertAttemptsToCells(offers, offerCells);
 
-	console.log(cardsWithSpecs);
-
 	return (
 		<div className="ExchangeOffers layout-wrapper">
 			{cardsWithSpecs.map((data, idx) => (

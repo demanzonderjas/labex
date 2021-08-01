@@ -7,18 +7,21 @@ import { OfferTable } from "./OfferTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { OverviewSwitch } from "./OverviewSwitch";
 import { LoadMore } from "./LoadMore";
-import { getExchangeAttempts } from "../../queries/getExchangeAttempts";
 import { TExchangeAttemptType } from "../../typings/exchanges";
 
 export const OfferOverview: React.FC = observer(() => {
-	const { overviewType, totalMatches, currentLimit, offers } = useExchangeAttemptStore();
+	const {
+		overviewType,
+		totalMatches,
+		currentLimit,
+		offers,
+		attemptOverviewData,
+		getExchangeAttempts
+	} = useExchangeAttemptStore();
 	const { t } = useTranslationStore();
 
 	useEffect(() => {
-		(async () => {
-			const data = getExchangeAttempts(TExchangeAttemptType.Offer);
-			console.log(data);
-		})();
+		getExchangeAttempts(TExchangeAttemptType.Offer);
 	}, []);
 
 	return (
@@ -28,9 +31,9 @@ export const OfferOverview: React.FC = observer(() => {
 			</h1>
 			<OverviewSwitch />
 			{overviewType == OverviewType.Cards && (
-				<OfferCardContainer matches={offerMatchOverviewData} />
+				<OfferCardContainer matches={attemptOverviewData} />
 			)}
-			{overviewType == OverviewType.Table && <OfferTable matches={offerMatchOverviewData} />}
+			{overviewType == OverviewType.Table && <OfferTable matches={attemptOverviewData} />}
 			{currentLimit < offers.length && <LoadMore />}
 		</div>
 	);

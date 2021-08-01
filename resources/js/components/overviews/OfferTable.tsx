@@ -12,12 +12,7 @@ type Props = {
 
 export const OfferTable: React.FC<Props> = observer(({ matches }) => {
 	const { t } = useTranslationStore();
-	const {
-		filters,
-		matchType,
-		matches: savedMatches,
-		magicOfferField
-	} = useExchangeAttemptStore();
+	const { filters, matchType, matches: savedMatches, magicField } = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -25,12 +20,12 @@ export const OfferTable: React.FC<Props> = observer(({ matches }) => {
 	};
 
 	const magicColumns = () => {
-		if (!magicOfferField) {
+		if (!magicField) {
 			return offerMatchColumns.filter(column => column != "magic_cell");
 		}
 		const offerColumnsWithMagic = [...offerMatchColumns];
 		const targetIdx = offerColumnsWithMagic.findIndex(column => column === "magic_cell");
-		offerColumnsWithMagic[targetIdx] = magicOfferField.id;
+		offerColumnsWithMagic[targetIdx] = magicField.id;
 		return offerColumnsWithMagic;
 	};
 

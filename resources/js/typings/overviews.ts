@@ -1,4 +1,5 @@
 import React from "react";
+import { TExchangeAttempt } from "./exchanges";
 import { TUser } from "./User";
 
 export enum OverviewType {
@@ -68,8 +69,8 @@ export interface TSampleCard {
 
 export type TMatch = {
 	id: number;
-	exchange_offer: TOfferCard;
-	exchange_request: TRequestCard;
+	exchange_offer: TExchangeAttempt;
+	exchange_request: TExchangeAttempt;
 	awaiting_approval: boolean;
 	approved: boolean;
 	updated_at: string;

@@ -7,20 +7,21 @@ import { OverviewType } from "../../typings/overviews";
 import { RequestCardContainer } from "./RequestCardContainer";
 import { RequestTable } from "./RequestTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { TExchangeAttemptType } from "../../typings/exchanges";
 
 export const RequestOverview: React.FC = observer(() => {
 	const {
 		requests,
-		getSampleRequests,
 		currentLimit,
 		overviewType,
-		requestMatchOverviewData,
+		attemptOverviewData,
+		getExchangeAttempts,
 		totalMatches
 	} = useExchangeAttemptStore();
 	const { t } = useTranslationStore();
 
 	useEffect(() => {
-		getSampleRequests();
+		getExchangeAttempts(TExchangeAttemptType.Request);
 	}, []);
 
 	return (
@@ -30,11 +31,9 @@ export const RequestOverview: React.FC = observer(() => {
 			</h1>
 			<OverviewSwitch />
 			{overviewType == OverviewType.Cards && (
-				<RequestCardContainer matches={requestMatchOverviewData} />
+				<RequestCardContainer matches={attemptOverviewData} />
 			)}
-			{overviewType == OverviewType.Table && (
-				<RequestTable matches={requestMatchOverviewData} />
-			)}
+			{overviewType == OverviewType.Table && <RequestTable matches={attemptOverviewData} />}
 			{currentLimit < requests.length && <LoadMore />}
 		</div>
 	);

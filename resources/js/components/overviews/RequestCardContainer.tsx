@@ -1,9 +1,9 @@
 import React from "react";
 import { RequestCard } from "./RequestCard";
-import { TRequestCard } from "../../typings/overviews";
+import { TTableCell } from "../../typings/overviews";
 
 type Props = {
-	matches: TRequestCard[];
+	matches: TTableCell[][];
 };
 
 export const RequestCardContainer: React.FC<Props> = ({ matches }) => {

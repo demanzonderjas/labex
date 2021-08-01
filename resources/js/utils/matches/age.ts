@@ -49,11 +49,11 @@ export function getDayMultiplier(type) {
 
 export function isAgeRangeMatching(_, targetValue, filters, fields): TSpecStatus {
 	const ageTypeSpec = getFieldById("age_type", fields);
-	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec.value);
+	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec?.value);
 	const ageMinSpec = getFieldById("age_min", fields);
-	const ageMinSpecInDays = parseInt(ageMinSpec.value) * dayMultiplierSpec;
+	const ageMinSpecInDays = parseInt(ageMinSpec?.value) * dayMultiplierSpec;
 	const ageMaxSpec = getFieldById("age_max", fields);
-	const ageMaxSpecInDays = parseInt(ageMaxSpec.value) * dayMultiplierSpec;
+	const ageMaxSpecInDays = parseInt(ageMaxSpec?.value) * dayMultiplierSpec;
 
 	const ageTypeFilter = getFieldById("age_type", filters);
 	const dayMultiplierFilter = getDayMultiplier(ageTypeFilter.value);

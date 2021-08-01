@@ -1,20 +1,25 @@
 import { observable, action, computed } from "mobx";
-import { OverviewType, MatchType } from "../typings/overviews";
+import { OverviewType, TTableCell } from "../typings/overviews";
 import { getExchangeAttempts } from "../queries/getExchangeAttempts";
 import { TFormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import {
 	fillFieldsWithKeyValuePairs,
 	createQueryStringFromFilters,
-	mapOfferMatchesToOverviewData,
-	mapRequestMatchesToOverviewData
+	mapMatchesToOverviewData,
+	fillFieldsWithSpecifications
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { FilterRequestsForm } from "../data/forms/ExchangeAttemptRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
-import { offerMatchColumns, requestMatchColumns } from "../data/tables/matches";
+import {
+	offerMatchCells,
+	offerMatchColumns,
+	requestMatchCells,
+	requestMatchColumns
+} from "../data/tables/matches";
 import { TExchangeAttempt, TExchangeAttemptType } from "../typings/exchanges";
 
 export class ExchangeAttemptStore {
@@ -52,6 +57,10 @@ export class ExchangeAttemptStore {
 			: FilterRequestsForm.fields;
 	}
 
+	@computed get targetMatchCells() {
+		return this.matchType == TExchangeAttemptType.Offer ? offerMatchCells : requestMatchCells;
+	}
+
 	@computed get magicTargetColumns() {
 		return this.matchType == TExchangeAttemptType.Offer
 			? offerMatchColumns
@@ -62,7 +71,10 @@ export class ExchangeAttemptStore {
 		return this.attempts
 			.filter(attempt => matchMeetsHardFilters(attempt, this.filters))
 			.map(attempt => {
-				const filledSampleFields = fillFieldsWithKeyValuePairs(this.targetFields, attempt);
+				const filledSampleFields = fillFieldsWithSpecifications(
+					this.targetFields,
+					attempt.specifications
+				);
 				return {
 					...attempt,
 					match_percentage: getMatchingPercentage(
@@ -76,8 +88,8 @@ export class ExchangeAttemptStore {
 			.sort((a, b) => b.match_percentage - a.match_percentage);
 	}
 
-	@computed get attemptOverviewData() {
-		return mapOfferMatchesToOverviewData(this.matches, this.magicField).slice(
+	@computed get attemptOverviewData(): TTableCell[][] {
+		return mapMatchesToOverviewData(this.matches, this.magicField, this.targetMatchCells).slice(
 			0,
 			this.currentLimit
 		);

@@ -11,12 +11,7 @@ type Props = {
 
 export const RequestTable: React.FC<Props> = ({ matches }) => {
 	const { t } = useTranslationStore();
-	const {
-		filters,
-		matchType,
-		matches: savedMatches,
-		magicRequestField
-	} = useExchangeAttemptStore();
+	const { filters, matchType, matches: savedMatches, magicField } = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -24,12 +19,12 @@ export const RequestTable: React.FC<Props> = ({ matches }) => {
 	};
 
 	const magicColumns = () => {
-		if (!magicRequestField) {
+		if (!magicField) {
 			return requestMatchColumns.filter(column => column != "magic_cell");
 		}
 		const offerColumnsWithMagic = [...requestMatchColumns];
 		const targetIdx = offerColumnsWithMagic.findIndex(column => column === "magic_cell");
-		offerColumnsWithMagic[targetIdx] = magicRequestField.id;
+		offerColumnsWithMagic[targetIdx] = magicField.id;
 		return offerColumnsWithMagic;
 	};
 

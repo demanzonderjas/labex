@@ -4,7 +4,7 @@ import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
 import { checkIfFieldMatches } from "../matches/utils";
 import { TFormField } from "../../typings/Form";
 import { TSpecification, TTableCell } from "../../typings/overviews";
-import { TExchangeAttempt } from "../../typings/exchanges";
+import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
 
 export function getMatchClasses(value) {
 	return {
@@ -23,28 +23,23 @@ export function convertAttemptsToCells(attempts: TExchangeAttempt[], cells: TTab
 	});
 }
 
-export function mapOfferMatchesToOverviewData(matches, magicField: TFormField) {
+export function mapMatchesToOverviewData(
+	matches: TExchangeAttempt[],
+	magicField: TFormField,
+	cells: TTableCell[]
+): TTableCell[][] {
 	return matches.map(match => {
-		return offerMatchCells.map(cell => {
+		return cells.map(cell => {
+			let spec = match.specifications.find(s => s.key === cell.id);
 			if (cell.id === "magic_cell" && magicField) {
-				return { ...cell, value: match[magicField.id] || "" };
+				spec = match.specifications.find(s => s.key === magicField.id);
+				return { ...cell, value: spec?.value || "" };
 			} else if (cell.id === "magic_cell" && !magicField) {
 				return null;
+			} else if (cell.id === TSpecificationName.MatchPercentage) {
+				return { ...cell, value: match.match_percentage };
 			}
-			return { ...cell, value: match[cell.id] || cell.value };
-		});
-	});
-}
-
-export function mapRequestMatchesToOverviewData(matches, magicField: TFormField) {
-	return matches.map(match => {
-		return requestMatchCells.map(cell => {
-			if (cell.id === "magic_cell" && magicField) {
-				return { ...cell, value: match[magicField.id] || "" };
-			} else if (cell.id === "magic_cell" && !magicField) {
-				return null;
-			}
-			return { ...cell, value: match[cell.id] || cell.value };
+			return { ...cell, value: spec?.value || cell.value };
 		});
 	});
 }

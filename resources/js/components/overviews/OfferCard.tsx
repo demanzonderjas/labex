@@ -26,7 +26,7 @@ type Props = {
 
 export const OfferCard: React.FC<Props> = ({ data, index }) => {
 	const { t } = useTranslationStore();
-	const { filters, matchType, matches, magicOfferField } = useExchangeAttemptStore();
+	const { filters, matchType, matches, magicField } = useExchangeAttemptStore();
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
@@ -53,8 +53,8 @@ export const OfferCard: React.FC<Props> = ({ data, index }) => {
 					.map(column => (
 						<div key={column.id} className="info-block">
 							<label>
-								{magicOfferField && column.id === "magic_cell"
-									? t(magicOfferField.id)
+								{magicField && column.id === "magic_cell"
+									? t(magicField.id)
 									: t(column.label || column.id)}
 							</label>
 							<SampleValue
@@ -75,7 +75,7 @@ export const OfferDashboardCard: React.FC<{ data: any; attempt: TExchangeAttempt
 }) => {
 	const { t } = useTranslationStore();
 	const { setModal, confirm } = useModalStore();
-	const { deleteOffer } = useExchangeAttemptStore();
+	const { deleteAttempt } = useExchangeAttemptStore();
 
 	const fields = fillFieldsWithSpecifications(SubmitOfferForm.fields, attempt.specifications);
 	const history = useHistory();
@@ -87,7 +87,7 @@ export const OfferDashboardCard: React.FC<{ data: any; attempt: TExchangeAttempt
 
 	const deleteOfferCallback = async () => {
 		await deleteExchangeOffer(attempt.id);
-		deleteOffer(attempt.id);
+		deleteAttempt(attempt.id);
 		confirm();
 	};
 

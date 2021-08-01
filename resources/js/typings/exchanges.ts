@@ -13,6 +13,8 @@ export type TExchangeAttempt = {
 	status: TExchangeAttemptStatus;
 	user?: TUser;
 	is_match?: boolean;
+	is_mine?: boolean;
+	match_percentage?: number;
 	specifications: TSpecification[];
 };
 
@@ -42,5 +44,6 @@ export enum TSpecificationName {
 	Storage = "storage",
 	Sex = "sex",
 	ExtraInfo = "extra_info",
-	SampleNumber = "sample_number"
+	SampleNumber = "sample_number",
+	MatchPercentage = "match_percentage"
 }
