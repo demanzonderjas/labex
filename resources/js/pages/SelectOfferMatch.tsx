@@ -8,7 +8,10 @@ import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { Specifications } from "../components/match/Specifications";
-import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
+import {
+	fillFieldsWithKeyValuePairs,
+	fillFieldsWithSpecifications
+} from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
@@ -17,6 +20,7 @@ import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 import { UserProfile } from "../components/match/UserProfile";
 import { TUserProfile } from "../typings/User";
+import { TExchangeAttempt } from "../typings/exchanges";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
@@ -29,7 +33,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
 	const history = useHistory();
-	const { id } = useParams();
+	const { id }: any = useParams();
 	const { t } = useTranslationStore();
 	const goBack = () => {
 		history.push(`/app/offers${window.location.search}`);
@@ -39,22 +43,22 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 		setFilters(FilterOffersForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
-			const response = await getExchangeAttempt(id);
-			const filledFields = fillFieldsWithKeyValuePairs(
+			const response: { exchange_attempt: TExchangeAttempt } = await getExchangeAttempt(id);
+			const filledFields = fillFieldsWithSpecifications(
 				SubmitOfferForm.fields,
-				response.exchange_offer
+				response.exchange_attempt.specifications
 			);
 			setOffer(filledFields);
-			setIsMatch(response.exchange_offer.is_match);
+			setIsMatch(response.exchange_attempt.is_match);
 			const _matchPercentage = getMatchingPercentage(
-				response.exchange_offer,
+				response.exchange_attempt,
 				sampleStore.filters,
 				filledFields
 			);
 			setMatchPercentage(_matchPercentage);
 			setUserProfile({
-				user: response.exchange_offer.user,
-				mine: response.exchange_offer.is_mine
+				user: response.exchange_attempt.user,
+				mine: response.exchange_attempt.is_mine
 			});
 		})();
 	}, []);

@@ -14,17 +14,17 @@ class MaterialMatch extends Model
 
     public function request()
     {
-        return $this->belongsTo(ExchangeAttempt::class, 'exchange_attempt_request_id');
+        return $this->belongsTo(ExchangeAttempt::class, 'request_id');
     }
 
     public function offer()
     {
-        return $this->belongsTo(ExchangeAttempt::class, 'exchange_attempt_offer_id');
+        return $this->belongsTo(ExchangeAttempt::class, 'offer_id');
     }
 
     public function isExisting(ExchangeAttempt $request, ExchangeAttempt $offer)
     {
-        return $this->exchange_attempt_request_id == $request->id && $this->exchange_attempt_offer_id == $offer->id;
+        return $this->request_id == $request->id && $this->offer_id == $offer->id;
     }
 
     public function scopeWhereBelongsToUser(Builder $query, User $user)

@@ -31,10 +31,10 @@ class UpdateExchangesTables extends Migration
 
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('exchange_attempt_offer_id')->unsigned()->unique();
-            $table->foreign('exchange_attempt_offer_id')->references('id')->on('exchange_attempts')->onDelete('cascade');
-            $table->bigInteger('exchange_attempt_request_id')->unsigned()->unique();
-            $table->foreign('exchange_attempt_request_id')->references('id')->on('exchange_attempts')->onDelete('cascade');
+            $table->bigInteger('offer_id')->unsigned()->unique();
+            $table->foreign('offer_id')->references('id')->on('exchange_attempts')->onDelete('cascade');
+            $table->bigInteger('request_id')->unsigned()->unique();
+            $table->foreign('request_id')->references('id')->on('exchange_attempts')->onDelete('cascade');
             $table->string('status');
             $table->timestamps();
         });

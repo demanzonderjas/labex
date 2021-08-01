@@ -46,7 +46,7 @@ class RemoveOutdated extends Command
             $date = Carbon::createFromFormat("Y-m-d", $offer->date_available);
             $endDate = $date->addDays(14);
             if ($endDate->isBefore($now)) {
-                $offer->active = false;
+                $offer->status = config('atex.constants.exchange_attempt_status.inactive');
                 $offer->save();
             }
         }

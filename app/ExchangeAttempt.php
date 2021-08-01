@@ -25,17 +25,43 @@ class ExchangeAttempt extends Model
 
 	public function matchViaOffer()
 	{
-		return $this->hasOne(MaterialMatch::class, 'exchange_attempt_offer_id');
+		return $this->hasOne(MaterialMatch::class, 'offer_id');
 	}
 
 	public function matchViaRequest()
 	{
-		return $this->hasOne(MaterialMatch::class, 'exchange_attempt_request_id');
+		return $this->hasOne(MaterialMatch::class, 'request_id');
 	}
 
 	public function scopeRequests($query)
 	{
 		return $query->where('attempt_type', '=', config('atex.constants.request'));
+	}
+
+	public function setAmountAttribute($value)
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'amount');
+		$amountSpec->value = $value;
+		$amountSpec->save();
+	}
+
+	public function setOrgansAttribute($value)
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'organs');
+		$amountSpec->value = $value;
+		$amountSpec->save();
+	}
+
+	public function getAmountAttribute()
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'amount');
+		return $amountSpec ? $amountSpec->value : null;
+	}
+
+	public function getOrgansAttribute()
+	{
+		$organSpec = $this->specifications->firstWhere('key', 'organs');
+		return $organSpec ? $organSpec->value : null;
 	}
 
 	public function scopeOffers($query)

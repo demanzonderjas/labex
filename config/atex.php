@@ -12,7 +12,7 @@ return [
 		"match_status" => [
 			"approved" => "approved",
 			"awaiting_approval" => "awaiting_approval",
-			"denied" => "denied"
+			"rejected" => "rejected"
 		]
 	]
 ];

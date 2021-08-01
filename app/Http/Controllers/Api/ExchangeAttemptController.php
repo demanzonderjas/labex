@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\ExchangeAttempt;
-use App\ExchangeOffer;
-use App\ExchangeRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeAttemptStoreRequest;
 use App\Specification;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ExchangeAttemptController extends Controller
 {
@@ -18,24 +15,9 @@ class ExchangeAttemptController extends Controller
 	{
 		try {
 			$validated = $request->validated();
-			$exchange = new ExchangeAttempt;
-			$exchange->attempt_type = $request->attempt_type;
-			$exchange->status = config('atex.constants.exchange_attempt_status.active');
-			$exchange->user_id = $request->user()->id;
-			$exchange->save();
+			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);
 
-			$specs = [];
-			foreach ($validated as $fieldId => $value) {
-				if (!empty($value)) {
-					$specs[] = new Specification([
-						'key' => $fieldId,
-						'value' => $value
-					]);
-				}
-			}
-			$exchange->specifications()->saveMany($specs);
-
-			return response()->json(["success" => true, "exchange_attempt" => $exchange->toArray()]);
+			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
 		} catch (Exception $e) {
 			return response()->json(["success" => false, "error" => $validated]);
 		}
@@ -70,14 +52,32 @@ class ExchangeAttemptController extends Controller
 		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts->toArray()]);
 	}
 
+	public function saveInDb(Request $request, $specifications, $attempt_type)
+	{
+		$attempt = new ExchangeAttempt;
+		$attempt->attempt_type = $attempt_type;
+		$attempt->status = config('atex.constants.exchange_attempt_status.active');
+		$attempt->user_id = $request->user()->id;
+		$attempt->save();
+
+		$specs = [];
+		foreach ($specifications as $fieldId => $value) {
+			if (!empty($value)) {
+				$specs[] = new Specification([
+					'key' => $fieldId,
+					'value' => $value
+				]);
+			}
+		}
+		$attempt->specifications()->saveMany($specs);
+		return $attempt;
+	}
+
 	public function match(Request $request, $id)
 	{
-		$offer = ExchangeOffer::findOrFail($id);
-		$exchangeRequest = new ExchangeRequest($request->exchange_request);
-		$exchangeRequest->user_id = Auth::user()->id;
-		$exchangeRequest->save();
-
-		$match = MatchController::create($offer->id, $exchangeRequest->id);
+		$attempt = ExchangeAttempt::findOrFail($id);
+		$matchingAttempt = $this->saveInDb($request, $request->exchange_attempt, $request->exchange_attempt["attempt_type"]);
+		$match = MatchController::create($attempt->id, $matchingAttempt->id);
 
 		return response()->json(["success" => true, "match" => $match->toArray()]);
 	}

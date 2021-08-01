@@ -12,7 +12,7 @@ import { ExchangeAttemptStore } from "../../stores/ExchangeAttemptStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useModalStore } from "../../hooks/useModalStore";
 import { BlankButton, Button } from "../base/Button";
-import { createOfferMatch } from "../../queries/createOfferMatch";
+import { createMatch } from "../../queries/createMatch";
 import { useParams, useHistory } from "react-router-dom";
 
 type Props = {
@@ -41,7 +41,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 			},
 			{ extra_info: extraInfo, protocol_number: protocolNumber }
 		);
-		await createOfferMatch(requestData, offerId);
+		await createMatch(requestData, offerId);
 		confirm();
 		history.push("/app/my-matches?info=true");
 	};
