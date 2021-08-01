@@ -16,7 +16,7 @@ export const OfferTable: React.FC<Props> = observer(({ matches }) => {
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
-		history.push(`/app/${matchType}/select/${savedMatches[rowIndex].id}${queryString}`);
+		history.push(`/app/${matchType}s/select/${savedMatches[rowIndex].id}${queryString}`);
 	};
 
 	const magicColumns = () => {

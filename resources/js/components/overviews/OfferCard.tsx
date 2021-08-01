@@ -30,7 +30,7 @@ export const OfferCard: React.FC<Props> = ({ data, index }) => {
 	const history = useHistory();
 	const queryString = createQueryStringFromFilters(filters);
 	const selectMatch = rowIndex => {
-		history.push(`/app/${matchType}/select/${matches[rowIndex].id}${queryString}`);
+		history.push(`/app/${matchType}s/select/${matches[rowIndex].id}${queryString}`);
 	};
 
 	const matchPercentage = data.find(column => column.id == "match_percentage");

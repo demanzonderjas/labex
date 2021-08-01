@@ -6,7 +6,10 @@ import { FilterRequestsForm } from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
-import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
+import {
+	fillFieldsWithKeyValuePairs,
+	fillFieldsWithSpecifications
+} from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
@@ -17,6 +20,7 @@ import { confirmOfferMatchModal } from "../data/modals/confirm";
 import { createRequestMatch } from "../queries/createRequestMatch";
 import { TUserProfile } from "../typings/User";
 import { UserProfile } from "../components/match/UserProfile";
+import { TExchangeAttempt } from "../typings/exchanges";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
@@ -50,22 +54,23 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 		setFilters(FilterRequestsForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
-			const response = await getExchangeAttempt(id);
-			const filledFields = fillFieldsWithKeyValuePairs(
+			const response: { exchange_attempt: TExchangeAttempt } = await getExchangeAttempt(id);
+			console.log("res", response);
+			const filledFields = fillFieldsWithSpecifications(
 				FilterRequestsForm.fields,
-				response.exchange_request
+				response.exchange_attempt.specifications
 			);
 			setRequest(filledFields);
 			const _matchPercentage = getMatchingPercentage(
-				response.exchange_request,
+				response.exchange_attempt,
 				sampleStore.filters,
 				filledFields
 			);
-			setIsMatch(response.exchange_request.is_match);
+			setIsMatch(response.exchange_attempt.is_match);
 			setMatchPercentage(_matchPercentage);
 			setUserProfile({
-				user: response.exchange_request.user,
-				mine: response.exchange_request.is_mine
+				user: response.exchange_attempt.user,
+				mine: response.exchange_attempt.is_mine
 			});
 		})();
 	}, []);
