@@ -58,6 +58,7 @@ export class ExchangeAttemptStore {
 	}
 
 	@computed get targetMatchCells() {
+		console.log(this.matchType);
 		return this.matchType == TExchangeAttemptType.Offer ? offerMatchCells : requestMatchCells;
 	}
 

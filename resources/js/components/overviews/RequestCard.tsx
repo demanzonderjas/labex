@@ -37,7 +37,7 @@ export const RequestCard: React.FC<Props> = ({ data, index }) => {
 	const matchPercentage = data.find(column => column.id == "match_percentage");
 	const classes = getMatchClasses(matchPercentage.value);
 	const match = matches[index] as TExchangeAttempt;
-	const fields = fillFieldsWithKeyValuePairs(FilterOffersForm.fields, match);
+	const fields = fillFieldsWithSpecifications(FilterOffersForm.fields, match.specifications);
 
 	return (
 		<div className="RequestCard Card" onClick={() => selectMatch(index)}>

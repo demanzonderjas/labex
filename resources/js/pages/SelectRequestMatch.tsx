@@ -55,7 +55,6 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
 			const response: { exchange_attempt: TExchangeAttempt } = await getExchangeAttempt(id);
-			console.log("res", response);
 			const filledFields = fillFieldsWithSpecifications(
 				FilterRequestsForm.fields,
 				response.exchange_attempt.specifications

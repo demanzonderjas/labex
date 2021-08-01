@@ -14,6 +14,7 @@ type Props = {
 
 export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
 	const { t } = useTranslationStore();
+	console.log(label, value);
 
 	return (
 		<div className="Spec">
@@ -21,7 +22,7 @@ export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
 				<label>{t(label)}</label>
 			</div>
 			<div className="column">
-				{label == "age" || label == "age_offer" ? (
+				{label == "age" || label == "age_offer" || label == "age_range" ? (
 					<DisplayedAge type={label} value={value} fields={fields} />
 				) : (
 					<span>{value ? t(value) : "-"}</span>

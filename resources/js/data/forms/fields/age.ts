@@ -44,7 +44,7 @@ export const ageRangeRequestField: TFormField = {
 };
 
 export const ageRequestRangeField: TFormField = {
-	label: "age_offer",
+	label: "age_range",
 	id: "age",
 	Component: AgeRangeField,
 	default: "1",
