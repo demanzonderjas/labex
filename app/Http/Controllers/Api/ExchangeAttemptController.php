@@ -62,7 +62,7 @@ class ExchangeAttemptController extends Controller
 
 		$specs = [];
 		foreach ($specifications as $fieldId => $value) {
-			if (!empty($value)) {
+			if ($value !== null && $value !== "") {
 				$specs[] = new Specification([
 					'key' => $fieldId,
 					'value' => $value
