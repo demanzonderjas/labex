@@ -31,7 +31,7 @@ class MatchController extends Controller
 
     public function myLatest(Request $request)
     {
-        $match = MaterialMatch::whereBelongsToUser($request->user())->latest()->first();
+        $match = MaterialMatch::whereBelongsToUser($request->user())->with('offer.user', 'request.user')->latest()->first();
 
         return response()->json(["match" => $match ? $match->toArray() : null]);
     }

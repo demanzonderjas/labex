@@ -1,10 +1,8 @@
 import React from "react";
-import { RequestCard } from "../overviews/RequestCard";
-import { OfferCard } from "../overviews/OfferCard";
-import { TMatch, MatchType } from "../../typings/overviews";
+import { MatchType } from "../../typings/overviews";
 import { ApproveButtons } from "./ApproveButtons";
-import { MatchCard } from "../match/MatchCard";
 import { Match as MatchCards } from "../match/Match";
+import { TMatch } from "../../typings/exchanges";
 
 type Props = {
 	match: TMatch;

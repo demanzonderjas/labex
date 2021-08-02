@@ -47,3 +47,17 @@ export enum TSpecificationName {
 	SampleNumber = "sample_number",
 	MatchPercentage = "match_percentage"
 }
+
+export type TMatch = {
+	id: number;
+	offer: TExchangeAttempt;
+	request: TExchangeAttempt;
+	status: TMatchStatus;
+	updated_at: string;
+};
+
+export enum TMatchStatus {
+	Approved = "approved",
+	AwaitingApproval = "awaiting_approval",
+	Rejected = "rejected"
+}

@@ -67,15 +67,6 @@ export interface TSampleCard {
 	specifications: TSpecification[];
 }
 
-export type TMatch = {
-	id: number;
-	exchange_offer: TExchangeAttempt;
-	exchange_request: TExchangeAttempt;
-	awaiting_approval: boolean;
-	approved: boolean;
-	updated_at: string;
-};
-
 export enum MatchType {
 	Requests = "requests",
 	Offers = "offers",
