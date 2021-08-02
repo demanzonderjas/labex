@@ -68,4 +68,22 @@ class ExchangeAttempt extends Model
 	{
 		return $query->where('attempt_type', '=', config('atex.constants.offer'));
 	}
+
+	public function replicate(?array $except = null)
+	{
+		$copy = parent::replicate();
+		$copy->status = config('atex.constants.exchange_attempt_status.active');
+		$copy->save();
+
+		foreach ($this->specifications as $specification) {
+			$spec = new Specification([
+				"key" => $specification->key,
+				"value" => $specification->value,
+				"exchange_attempt_id" => $copy->id
+			]);
+			$spec->save();
+		}
+
+		return $copy->fresh();
+	}
 }

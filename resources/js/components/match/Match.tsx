@@ -43,6 +43,8 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 		match.request.specifications
 	);
 
+	console.log(match);
+
 	const offerSpecs = createMatchSpecs(offerFields, requestFields);
 	const requestSpecs = createMatchSpecs(requestFields, offerFields);
 

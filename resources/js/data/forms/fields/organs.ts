@@ -1,6 +1,8 @@
 import { TFormField } from "../../../typings/Form";
 import { MultiSelectField } from "../../../components/form/MultiSelectField";
 import { isMultiSelectMatch } from "../../../utils/filters/multiselect";
+import { TTypeSpec } from "../../../typings/specifications";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 export const organsField: TFormField = {
 	label: "organs",
@@ -29,8 +31,8 @@ export const organsField: TFormField = {
 	isMatch: isMultiSelectMatch,
 	dependencies: [
 		{
-			id: "type",
-			validate: value => value == "vital_tissue" || value == "conserved_tissue"
+			id: TSpecificationName.ExchangeType,
+			validate: value => value !== TTypeSpec.Animal
 		}
 	],
 	synonyms: ["organ"]

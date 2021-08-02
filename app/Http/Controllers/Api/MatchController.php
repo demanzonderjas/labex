@@ -44,6 +44,8 @@ class MatchController extends Controller
             return self::createOfferFromRemainingAmount($match);
         } elseif ((int) $match->request->amount > (int) $match->offer->amount) {
             return self::createRequestFromRemainingAmount($match);
+        } else {
+            return ["exchange_offer_match_id" => $match->offer_id, "exchange_request_match_id" => $match->request_id];
         }
     }
 
@@ -112,7 +114,7 @@ class MatchController extends Controller
 
         $matchRequest->save();
 
-        $match->request->active = config('atex.constants.exchange_attempt_status.inactive');
+        $match->request->status = config('atex.constants.exchange_attempt_status.inactive');
         $match->request->save();
 
         return ["exchange_offer_match_id" => $matchOffer->id, "exchange_request_match_id" => $matchRequest->id];
@@ -131,8 +133,8 @@ class MatchController extends Controller
     {
         $newAmount = (int) $match->offer->amount - (int) $match->request->amount;
         $newOffer = $match->offer->replicate();
-        $newOffer->amount = $newAmount;
         $newOffer->origin_id = $match->offer->id;
+        $newOffer->amount = $newAmount;
         $newOffer->save();
 
         $matchOffer = $match->offer->replicate();
@@ -159,7 +161,7 @@ class MatchController extends Controller
         $matchRequest->origin_id = $match->request->id;
         $matchRequest->save();
 
-        $match->request->active = config('atex.constants.exchange_attempt_status.inactive');
+        $match->request->status = config('atex.constants.exchange_attempt_status.inactive');
         $match->request->save();
 
         return ["exchange_offer_match_id" => $match->offer->id, "exchange_request_match_id" => $matchRequest->id];
@@ -233,27 +235,27 @@ class MatchController extends Controller
     {
         if (!empty($match->offer->origin_id)) {
             $origin = ExchangeAttempt::find($match->offer->origin_id);
-            $origin->active = config('atex.constants.exchange_attempt_status.active');
+            $origin->status = config('atex.constants.exchange_attempt_status.active');
             $origin->save();
 
             ExchangeAttempt::where('origin_id', $match->offer->origin_id)->get()->each(function ($offer) {
                 $offer->delete();
             });
         } else {
-            $match->offer->active = config('atex.constants.exchange_attempt_status.active');
+            $match->offer->status = config('atex.constants.exchange_attempt_status.active');
             $match->offer->save();
         }
 
         if (!empty($match->request->origin_id)) {
             $origin = ExchangeAttempt::find($match->request->origin_id);
-            $origin->active = config('atex.constants.exchange_attempt_status.active');
+            $origin->status = config('atex.constants.exchange_attempt_status.active');
             $origin->save();
 
             ExchangeAttempt::where('origin_id', $match->request->origin_id)->get()->each(function ($exchangeRequest) {
                 $exchangeRequest->delete();
             });
         } else {
-            $match->request->active = config('atex.constants.exchange_attempt_status.active');
+            $match->request->status = config('atex.constants.exchange_attempt_status.active');
             $match->request->save();
         }
     }

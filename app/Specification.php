@@ -9,7 +9,7 @@ class Specification extends Model
 {
 	use HasFactory;
 
-	protected $fillable = ["key", "value"];
+	protected $fillable = ["exchange_attempt_id", "key", "value"];
 
 	public $hidden = ["created_at", "updated_at", "exchange_attempt_id", "id"];
 }
