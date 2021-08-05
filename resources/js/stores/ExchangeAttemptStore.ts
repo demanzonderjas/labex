@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import { OverviewType, TTableCell } from "../typings/overviews";
+import { TOverviewType, TTableCell } from "../typings/overviews";
 import { getExchangeAttempts } from "../queries/getExchangeAttempts";
 import { TFormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
@@ -24,13 +24,13 @@ import { TExchangeAttempt, TExchangeAttemptType } from "../typings/exchanges";
 
 export class ExchangeAttemptStore {
 	@observable.shallow attempts: TExchangeAttempt[] = [];
-	@observable overviewType: OverviewType = OverviewType.Table;
+	@observable overviewType: TOverviewType = TOverviewType.Table;
 	@observable filters: TFormField[] = [];
 	@observable currentLimit = PAGINATION_LIMIT;
 	@observable matchType: TExchangeAttemptType = TExchangeAttemptType.Offer;
 
 	constructor() {
-		const pref = (localStorage.getItem("overview_preference") as unknown) as OverviewType;
+		const pref = (localStorage.getItem("overview_preference") as unknown) as TOverviewType;
 		if (!pref) {
 			return;
 		}
@@ -89,10 +89,11 @@ export class ExchangeAttemptStore {
 	}
 
 	@computed get attemptOverviewData(): TTableCell[][] {
-		return mapMatchesToOverviewData(this.matches, this.magicField, this.targetMatchCells).slice(
-			0,
-			this.currentLimit
-		);
+		// return mapMatchesToOverviewData(this.matches, this.magicField, this.targetMatchCells).slice(
+		return [];
+		// 	0,
+		// 	this.currentLimit
+		// );
 	}
 
 	@computed get totalMatches() {
@@ -157,7 +158,7 @@ export class ExchangeAttemptStore {
 		this.attempts = this.attempts.filter(r => r.id != id);
 	}
 
-	@action.bound setOverviewType(overviewType: OverviewType) {
+	@action.bound setOverviewType(overviewType: TOverviewType) {
 		this.overviewType = overviewType;
 		localStorage.setItem("overview_preference", (overviewType as unknown) as string);
 	}

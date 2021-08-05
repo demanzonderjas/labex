@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import { SubmitOfferForm } from "../../data/forms/ExchangeAttemptOffer";
 import { TOfferCard, TSampleCard } from "../../typings/overviews";
 import { SampleValue } from "../match/SampleValue";
-import { createQueryStringFromSample } from "../../utils/formatting/samples";
+import { createQueryStringFromSpecs } from "../../utils/formatting/samples";
 import { useModalStore } from "../../hooks/useModalStore";
 import { deleteExchangeOffer } from "../../queries/deleteOffer";
 import { confirmDeleteModal } from "../../data/modals/confirm";
@@ -81,7 +81,7 @@ export const OfferDashboardCard: React.FC<{ data: any; attempt: TExchangeAttempt
 	const history = useHistory();
 
 	const copy = () => {
-		const queryString = createQueryStringFromSample(attempt);
+		const queryString = createQueryStringFromSpecs(attempt);
 		history.push(`/app/submit-offer${queryString}`);
 	};
 

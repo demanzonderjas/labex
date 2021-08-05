@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { LoadMore } from "./LoadMore";
 import { OverviewSwitch } from "./OverviewSwitch";
-import { OverviewType } from "../../typings/overviews";
+import { TOverviewType } from "../../typings/overviews";
 import { RequestCardContainer } from "./RequestCardContainer";
 import { RequestTable } from "./RequestTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
@@ -30,10 +30,10 @@ export const RequestOverview: React.FC = observer(() => {
 				{t("browse_requests")} ({totalMatches})
 			</h1>
 			<OverviewSwitch />
-			{overviewType == OverviewType.Cards && (
+			{overviewType == TOverviewType.Cards && (
 				<RequestCardContainer matches={attemptOverviewData} />
 			)}
-			{overviewType == OverviewType.Table && <RequestTable matches={attemptOverviewData} />}
+			{overviewType == TOverviewType.Table && <RequestTable matches={attemptOverviewData} />}
 			{currentLimit < requests.length && <LoadMore />}
 		</div>
 	);

@@ -1,10 +1,10 @@
 import React from "react";
-import { TExchangeAttempt } from "./exchanges";
 import { TUser } from "./User";
 
-export enum OverviewType {
+export enum TOverviewType {
 	Cards,
-	Table
+	Table,
+	UserCards
 }
 
 export type TTableCell = {

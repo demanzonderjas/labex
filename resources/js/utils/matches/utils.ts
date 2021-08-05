@@ -7,7 +7,7 @@ export function getMatchingPercentage(
 	attempt: TExchangeAttempt,
 	filters: TFormField[],
 	fields: TFormField[]
-) {
+): number {
 	const activeFilters = filters.filter(
 		(filter: TFormField) =>
 			filter.value != "" &&

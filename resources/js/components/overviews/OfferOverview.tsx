@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
-import { OverviewType } from "../../typings/overviews";
+import { TOverviewType } from "../../typings/overviews";
 import { OfferCardContainer } from "./OfferCardContainer";
 import { OfferTable } from "./OfferTable";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { OverviewSwitch } from "./OverviewSwitch";
 import { LoadMore } from "./LoadMore";
 import { TExchangeAttemptType } from "../../typings/exchanges";
+import { ExchangeAttemptCardOverview } from "./ExchangeAttemptCardOverview";
+import { offerCells } from "../../data/tables/offers";
 
 export const OfferOverview: React.FC = observer(() => {
 	const {
@@ -16,6 +18,7 @@ export const OfferOverview: React.FC = observer(() => {
 		currentLimit,
 		offers,
 		attemptOverviewData,
+		targetMatchCells,
 		getExchangeAttempts
 	} = useExchangeAttemptStore();
 	const { t } = useTranslationStore();
@@ -30,11 +33,11 @@ export const OfferOverview: React.FC = observer(() => {
 				{t("browse_offers")} ({totalMatches})
 			</h1>
 			<OverviewSwitch />
-			{overviewType == OverviewType.Cards && (
-				<OfferCardContainer matches={attemptOverviewData} />
+			{overviewType == TOverviewType.Cards && (
+				<ExchangeAttemptCardOverview attempts={offers} specsToShow={targetMatchCells} />
 			)}
-			{overviewType == OverviewType.Table && <OfferTable matches={attemptOverviewData} />}
-			{currentLimit < offers.length && <LoadMore />}
+			{overviewType == TOverviewType.Table && <OfferTable matches={attemptOverviewData} />}
+			{/* {currentLimit < offers.length && <LoadMore />} */}
 		</div>
 	);
 });

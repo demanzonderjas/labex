@@ -1,10 +1,11 @@
 import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
 import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
-import { checkIfFieldMatches } from "../matches/utils";
+import { checkIfFieldMatches, getMatchingPercentage } from "../matches/utils";
 import { TFormField } from "../../typings/Form";
 import { TSpecification, TTableCell } from "../../typings/overviews";
 import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
+import { matchMeetsHardFilters } from "../filters/matches";
 
 export function getMatchClasses(value) {
 	return {
@@ -25,8 +26,8 @@ export function convertAttemptsToCells(attempts: TExchangeAttempt[], cells: TTab
 
 export function mapMatchesToOverviewData(
 	matches: TExchangeAttempt[],
-	magicField: TFormField,
-	cells: TTableCell[]
+	cells: TTableCell[],
+	magicField?: TFormField
 ): TTableCell[][] {
 	return matches.map(match => {
 		return cells.map(cell => {
@@ -44,7 +45,7 @@ export function mapMatchesToOverviewData(
 	});
 }
 
-export function createQueryStringFromFilters(filters) {
+export function createQueryStringFromFilters(filters: TFormField[]) {
 	return filters.reduce((base, filter) => {
 		if (!base.length) {
 			return `?${filter.id}=${filter.value}`;

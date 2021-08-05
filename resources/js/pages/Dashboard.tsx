@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslationStore } from "../hooks/useTranslationStore";
-import { MatchType, TDashboardOverview } from "../typings/overviews";
+import { MatchType, TDashboardOverview, TOverviewType } from "../typings/overviews";
 import { TwoColumnPageIntro } from "../components/layout/PageIntro";
-import { ExchangeOffers } from "../components/dashboard/ExchangeOffers";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
 import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
-import { ExchangeRequests } from "../components/dashboard/ExchangeRequests";
 import { getMyLatestMatch } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
 import { Button } from "../components/base/Button";
@@ -16,6 +14,9 @@ import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
 import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
+import { ExchangeAttemptCardOverview } from "../components/overviews/ExchangeAttemptCardOverview";
+import { offerCells } from "../data/tables/offers";
+import { requestCells } from "../data/tables/requests";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
@@ -28,7 +29,6 @@ export const DashboardPage = observer(() => {
 	);
 	const { offers, requests } = attemptStore;
 	const history = useHistory();
-	const DEFAULT_SHOW_LIMIT = 4;
 
 	useEffect(() => {
 		if (user && user.name == "Offer Demo") {
@@ -98,44 +98,18 @@ export const DashboardPage = observer(() => {
 						</div>
 						<div className="overviews">
 							<Overview isActive={activeOverview === TDashboardOverview.Requests}>
-								<div className="requests">
-									<ExchangeRequests
-										requests={
-											shouldViewAll
-												? requests
-												: requests.slice(0, DEFAULT_SHOW_LIMIT)
-										}
-									/>
-									{requests?.length > DEFAULT_SHOW_LIMIT && !shouldViewAll && (
-										<div className="layout-wrapper">
-											<Button
-												label="see_all_requests"
-												handleClick={() => setShouldViewAll(true)}
-												classes={{ inline: true, primary: true }}
-											/>
-										</div>
-									)}
-								</div>
+								<ExchangeAttemptCardOverview
+									attempts={requests}
+									specsToShow={requestCells}
+									type={TOverviewType.UserCards}
+								/>
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Offers}>
-								<div className="offers">
-									<ExchangeOffers
-										offers={
-											shouldViewAll
-												? offers
-												: offers.slice(0, DEFAULT_SHOW_LIMIT)
-										}
-									/>
-									{offers?.length > DEFAULT_SHOW_LIMIT && !shouldViewAll && (
-										<div className="layout-wrapper">
-											<Button
-												label="see_all_offers"
-												handleClick={() => setShouldViewAll(true)}
-												classes={{ inline: true, primary: true }}
-											/>
-										</div>
-									)}
-								</div>
+								<ExchangeAttemptCardOverview
+									attempts={offers}
+									specsToShow={offerCells}
+									type={TOverviewType.UserCards}
+								/>
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Matches}>
 								{match && (
