@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { TExchangeAttempt } from "../../typings/exchanges";
+import { TExchangeAttempt, TExchangeAttemptType } from "../../typings/exchanges";
 import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { goToSelectMatchLink } from "../../utils/matches/utils";
 import cx from "classnames";
@@ -11,10 +11,11 @@ export const ExchangeAttemptTable: React.FC<{
 	attempts: TExchangeAttempt[];
 	rows: TTableCell[][];
 	columns: TTableCell[];
+	type: TExchangeAttemptType;
 	isCentered: boolean;
-}> = ({ attempts, rows, columns, isCentered }) => {
+}> = ({ attempts, rows, columns, isCentered, type }) => {
 	const { t } = useTranslationStore();
-	const { filters, magicField, overviewType, matchType } = useExchangeAttemptStore();
+	const { filters, magicField } = useExchangeAttemptStore();
 	const history = useHistory();
 
 	const magicColumns = () => {
@@ -34,7 +35,7 @@ export const ExchangeAttemptTable: React.FC<{
 	};
 
 	return (
-		<div className={cx("OfferTable table", { [matchType]: true })}>
+		<div className={cx("OfferTable table", { [type]: true })}>
 			<table className={cx({ "not-centered": !isCentered, highlightable: isCentered })}>
 				<thead>
 					<tr>

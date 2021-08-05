@@ -24,7 +24,6 @@ export const ExchangeAttemptOverview: React.FC<{
 		magicField,
 		filters,
 		targetFields,
-		totalMatches,
 		overviewType,
 		offers,
 		requests,
@@ -58,6 +57,7 @@ export const ExchangeAttemptOverview: React.FC<{
 				<ExchangeAttemptTable
 					attempts={sortedAttempts}
 					rows={attemptsToShow}
+					type={type}
 					isCentered={!mineOnly}
 					columns={
 						magicField
