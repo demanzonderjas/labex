@@ -1,4 +1,4 @@
-import { TForm } from "../../typings/Form";
+import { TForm } from "../../typings/forms";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { strainRequestField } from "./fields/strain";

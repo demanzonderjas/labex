@@ -1,6 +1,6 @@
 import React from "react";
 import { DisplayedAge } from "./Age";
-import { TFormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { DateAvailableValue, DisplayedDate } from "../base/DisplayedDate";
 import { BooleanIcon } from "../base/BooleanIcon";

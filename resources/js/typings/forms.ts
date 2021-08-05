@@ -1,7 +1,7 @@
 import React from "react";
 import { TSpecificationName } from "./exchanges";
-import { TModal } from "./Modal";
-import { TSpecStatus, TSpecMatch } from "./Sample";
+import { TModal } from "./modals";
+import { TSpecStatus, TSpecMatch } from "./specifications";
 
 export type TForm = {
 	header?: string;

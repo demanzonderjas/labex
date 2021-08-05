@@ -1,4 +1,4 @@
-import { TFormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 
 export async function loadFromFile(file) {
 	const workbook = await createWorkbookFromFile(file);

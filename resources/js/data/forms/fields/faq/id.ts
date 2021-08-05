@@ -1,5 +1,5 @@
 import { InputField } from "../../../../components/form/InputField";
-import { TFormField, InputType, TFormFieldName } from "../../../../typings/Form";
+import { TFormField, InputType, TFormFieldName } from "../../../../typings/forms";
 
 export const idField: TFormField = {
 	label: "id",

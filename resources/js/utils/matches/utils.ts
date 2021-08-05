@@ -1,6 +1,6 @@
 import { TExchangeAttempt } from "../../typings/exchanges";
-import { TFormField } from "../../typings/Form";
-import { TSpecStatus } from "../../typings/Sample";
+import { TFormField } from "../../typings/forms";
+import { TSpecStatus } from "../../typings/specifications";
 import { fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../filters/fields";
 import { createQueryStringFromFilters } from "../formatting/matches";
 

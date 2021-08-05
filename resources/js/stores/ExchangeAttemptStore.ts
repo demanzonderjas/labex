@@ -1,7 +1,7 @@
 import { observable, action, computed } from "mobx";
 import { TOverviewType, TTableCell } from "../typings/overviews";
 import { getExchangeAttempts, getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
-import { TFormField } from "../typings/Form";
+import { TFormField } from "../typings/forms";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import {
 	fillFieldsWithKeyValuePairs,

@@ -1,4 +1,4 @@
 import React from "react";
-import { sampleStoreContext } from "../contexts/SampleContext";
+import { exchangeAttemptContext } from "../contexts/ExchangeAttemptContext";
 
-export const useExchangeAttemptStore = () => React.useContext(sampleStoreContext);
+export const useExchangeAttemptStore = () => React.useContext(exchangeAttemptContext);

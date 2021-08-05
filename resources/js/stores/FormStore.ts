@@ -1,5 +1,5 @@
 import { observable, action, computed, toJS } from "mobx";
-import { TFormField, TForm } from "../typings/Form";
+import { TFormField, TForm } from "../typings/forms";
 import { FormEvent } from "react";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";

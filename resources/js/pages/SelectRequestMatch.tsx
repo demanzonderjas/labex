@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
-import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
+import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { useQuery } from "../hooks/useQuery";
 import { FilterRequestsForm } from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
-import {
-	fillFieldsWithKeyValuePairs,
-	fillFieldsWithSpecifications
-} from "../utils/formatting/matches";
+import { fillFieldsWithSpecifications } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
@@ -17,8 +14,8 @@ import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmOfferMatchModal } from "../data/modals/confirm";
-import { createRequestMatch } from "../queries/createRequestMatch";
-import { TUserProfile } from "../typings/User";
+import { createMatch } from "../queries/createMatch";
+import { TUserProfile } from "../typings/user";
 import { UserProfile } from "../components/match/UserProfile";
 import { TExchangeAttempt } from "../typings/exchanges";
 
@@ -40,7 +37,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	};
 
 	const confirmMatch = async offerData => {
-		const response = await createRequestMatch(offerData, id);
+		const response = await createMatch(offerData, id);
 		confirm();
 		history.push("/app/my-matches?info=true");
 		return response;

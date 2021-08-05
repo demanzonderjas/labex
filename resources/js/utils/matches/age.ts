@@ -5,7 +5,7 @@ import {
 	MONTH_IN_DAYS,
 	YEAR_IN_DAYS
 } from "../../data/configs/datetime";
-import { TSpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/specifications";
 import { TSpecificationName } from "../../typings/exchanges";
 
 export function isAgeInRange(fieldValue, targetValue, filters, fields): TSpecStatus {

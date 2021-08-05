@@ -1,4 +1,4 @@
-import { TFormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 import { InputField } from "../../../components/form/InputField";
 import { isAgeInRange } from "../../../utils/matches/age";
 import { TSpecificationName } from "../../../typings/exchanges";

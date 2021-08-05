@@ -1,4 +1,4 @@
-import { TForm } from "./Form";
+import { TForm } from "./forms";
 
 export type TModal = {
 	header?: string;

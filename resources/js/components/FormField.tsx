@@ -1,5 +1,5 @@
 import React from "react";
-import { TFormField } from "../typings/Form";
+import { TFormField } from "../typings/forms";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import cx from "classnames";
 

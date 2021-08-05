@@ -1,7 +1,7 @@
 import React from "react";
-import { TFormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { checkIfFieldMatches } from "../../utils/matches/utils";
-import { TSpecStatus, TSpecMatch } from "../../typings/Sample";
+import { TSpecStatus, TSpecMatch } from "../../typings/specifications";
 import { Spec } from "./Spec";
 import { PieChart } from "./PieChart";
 import { useTranslationStore } from "../../hooks/useTranslationStore";

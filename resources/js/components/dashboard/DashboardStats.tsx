@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart } from "../match/PieChart";
 import { useState, useEffect } from "react";
-import { TDashboardStats } from "../../typings/Stats";
+import { TDashboardStats } from "../../typings/stats";
 import { getDashboardStats } from "../../queries/getDashboardStats";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { DASHBOARD_CHART_COLORS } from "../../data/configs/colors";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TFormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { createMatchSpecs } from "../../utils/formatting/matches";
 import {
 	fieldIsNotHidden,
@@ -7,13 +7,13 @@ import {
 	fieldWasFilled
 } from "../../utils/filters/fields";
 import { Spec } from "./Spec";
-import ExchangeAttemptStoreProvider from "../../contexts/SampleContext";
+import ExchangeAttemptStoreProvider from "../../contexts/ExchangeAttemptContext";
 import { ExchangeAttemptStore } from "../../stores/ExchangeAttemptStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useModalStore } from "../../hooks/useModalStore";
 import { BlankButton, Button } from "../base/Button";
 import { createMatch } from "../../queries/createMatch";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 type Props = {
 	fields: TFormField[];

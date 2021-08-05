@@ -1,7 +1,6 @@
 import React from "react";
-import { TSpecMatch, TSpecStatus } from "../../typings/Sample";
+import { TSpecMatch, TSpecStatus } from "../../typings/specifications";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { Icon } from "./Image";
 import cx from "classnames";
 import { BooleanIcon } from "./BooleanIcon";
 

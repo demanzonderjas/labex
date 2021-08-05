@@ -1,6 +1,6 @@
 import { SelectField } from "../../../components/form/SelectField";
 import { TSpecificationName } from "../../../typings/exchanges";
-import { TFormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/forms";
 
 export const animalSpeciesField: TFormField = {
 	label: "animal_species",

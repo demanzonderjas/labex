@@ -4,7 +4,7 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { MatchType, TDashboardOverview } from "../typings/overviews";
 import { TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
-import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
+import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { getMyLatestMatch } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
 import { Button } from "../components/base/Button";

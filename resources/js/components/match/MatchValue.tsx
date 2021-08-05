@@ -1,8 +1,8 @@
 import React from "react";
 import cx from "classnames";
-import { TFormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { SampleValue } from "./SampleValue";
-import { TSpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/specifications";
 
 type Props = {
 	value: string;

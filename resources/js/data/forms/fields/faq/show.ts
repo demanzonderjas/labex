@@ -1,5 +1,5 @@
 import { BooleanField } from "../../../../components/form/BooleanField";
-import { TFormField, TFormFieldName } from "../../../../typings/Form";
+import { TFormField, TFormFieldName } from "../../../../typings/forms";
 
 export const showField: TFormField = {
 	label: "show",

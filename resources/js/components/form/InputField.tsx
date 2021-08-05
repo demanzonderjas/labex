@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
-import { TFormFieldData, InputType } from "../../typings/Form";
+import { TFormFieldData, InputType } from "../../typings/forms";
 import cx from "classnames";
 import { blockEnter } from "../../utils/dom/keyboard";
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
-import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
+import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { useQuery } from "../hooks/useQuery";
 import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
 import { FilterOffersForm } from "../data/forms/ExchangeAttemptRequest";
@@ -19,7 +19,7 @@ import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 import { UserProfile } from "../components/match/UserProfile";
-import { TUserProfile } from "../typings/User";
+import { TUserProfile } from "../typings/user";
 import { TExchangeAttempt } from "../typings/exchanges";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {

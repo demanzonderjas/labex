@@ -1,5 +1,5 @@
-import { TFormField } from "../../typings/Form";
-import { TSpecStatus } from "../../typings/Sample";
+import { TFormField } from "../../typings/forms";
+import { TSpecStatus } from "../../typings/specifications";
 
 export function fieldMeetsDependencies(field: TFormField, index: number, fields: TFormField[]) {
 	if (!field.dependencies) {

@@ -1,4 +1,4 @@
-import { TSpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/specifications";
 
 export function isMultiSelectMatch(givenValue: string, targetValue: string): TSpecStatus {
 	const givenArray = givenValue.split(", ");

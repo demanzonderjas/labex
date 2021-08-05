@@ -1,4 +1,4 @@
-import { TFormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/forms";
 import { BigTextField } from "../../../components/form/BigTextField";
 import { SelectField } from "../../../components/form/SelectField";
 import { TSpecificationName } from "../../../typings/exchanges";

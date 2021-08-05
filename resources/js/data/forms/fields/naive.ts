@@ -1,4 +1,4 @@
-import { TFormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/forms";
 import { BooleanField } from "../../../components/form/BooleanField";
 import { TSpecificationName } from "../../../typings/exchanges";
 

@@ -1,4 +1,4 @@
-import { TFormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { convertNameToSlug } from "../../utils/excel/import";

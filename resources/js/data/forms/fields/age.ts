@@ -1,5 +1,5 @@
 import { InputField } from "../../../components/form/InputField";
-import { TFormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { AgeRangeField } from "../../../components/form/custom-fields/AgeRangeField";
 import { isAgeInRange, isAgeRangeMatching } from "../../../utils/matches/age";

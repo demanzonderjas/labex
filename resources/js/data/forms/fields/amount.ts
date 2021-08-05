@@ -1,8 +1,8 @@
 import { InputField } from "../../../components/form/InputField";
-import { TFormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { getFieldById } from "../../../utils/getters/fields";
-import { TSpecStatus, TSpecMatch } from "../../../typings/Sample";
+import { TSpecStatus } from "../../../typings/specifications";
 import { TSpecificationName } from "../../../typings/exchanges";
 
 export const amountField: TFormField = {
@@ -15,7 +15,7 @@ export const amountField: TFormField = {
 		type: InputType.Number,
 		min: 0
 	},
-	isMatch: (requestedValue, offeredValue, filters, fields): TSpecStatus => {
+	isMatch: (requestedValue, offeredValue, filters): TSpecStatus => {
 		const isRequest = filters.some(f => f.label == "amount_request");
 		const isCompleteMatch = isRequest
 			? parseInt(requestedValue) <= parseInt(offeredValue)

@@ -9,3 +9,16 @@ export enum TAgeType {
 	Months = "months",
 	Years = "years"
 }
+
+export enum TSpecStatus {
+	Match = "match",
+	PartialMatch = "partial_match",
+	NoMatch = "no_match",
+	NotSubmitted = "not_submitted"
+}
+
+export type TSpecMatch = {
+	status: TSpecStatus;
+	weight?: number;
+	filterValue?: string;
+};

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
-import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
+import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { FormWrapper } from "../components/FormWrapper";
 import { SubmitRequestForm } from "../data/forms/ExchangeAttemptRequest";
 

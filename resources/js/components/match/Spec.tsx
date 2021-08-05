@@ -1,8 +1,7 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { TSpecMatch } from "../../typings/Sample";
+import { TSpecMatch } from "../../typings/specifications";
 import { SpecMatch } from "../base/SpecMatch";
-import { AgeInPeriod } from "./AgeInPeriod";
 import { DisplayedAge } from "./Age";
 
 type Props = {

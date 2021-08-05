@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
-import { TFormFieldData } from "../../typings/Form";
+import { TFormFieldData } from "../../typings/forms";
 import { SelectOption } from "./SelectOption";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { LocalImage } from "../base/Image";

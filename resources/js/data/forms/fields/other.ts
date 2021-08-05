@@ -1,6 +1,6 @@
 import { InputField } from "../../../components/form/InputField";
 import { TSpecificationName } from "../../../typings/exchanges";
-import { TFormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 
 export const otherField: TFormField = {
 	label: "other",

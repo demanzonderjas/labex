@@ -2,7 +2,7 @@ import React from "react";
 import { useLocalStore } from "mobx-react";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
 
-export const sampleStoreContext = React.createContext<ExchangeAttemptStore | null>(null);
+export const exchangeAttemptContext = React.createContext<ExchangeAttemptStore | null>(null);
 
 type Props = {
 	children?: React.ReactNode;
@@ -12,7 +12,11 @@ type Props = {
 export const ExchangeAttemptStoreProvider: React.FC<Props> = ({ store, children }) => {
 	const storeHook = useLocalStore(() => store);
 
-	return <sampleStoreContext.Provider value={storeHook}>{children}</sampleStoreContext.Provider>;
+	return (
+		<exchangeAttemptContext.Provider value={storeHook}>
+			{children}
+		</exchangeAttemptContext.Provider>
+	);
 };
 
 export default ExchangeAttemptStoreProvider;

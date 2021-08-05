@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
 import cx from "classnames";
-import { TFormFieldData } from "../../typings/Form";
+import { TFormFieldData } from "../../typings/forms";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 interface Props extends TFormFieldData {}

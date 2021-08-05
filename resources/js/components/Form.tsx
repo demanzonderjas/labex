@@ -12,7 +12,7 @@ import { ActiveFilters } from "./form/ActiveFilters";
 import { TwoColumnPageIntro } from "./layout/PageIntro";
 import { Icon } from "./base/Image";
 import { useModalStore } from "../hooks/useModalStore";
-import { TModal } from "../typings/Modal";
+import { TModal } from "../typings/modals";
 import { useHistory } from "react-router";
 
 type Props = {

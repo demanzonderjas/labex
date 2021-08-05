@@ -1,8 +1,8 @@
 import { InputField } from "../../../components/form/InputField";
-import { TFormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 import { isDateInFuture, isDateInRangeOfTwoWeeks } from "../../../utils/validation/date";
 import { getFieldById } from "../../../utils/getters/fields";
-import { TSpecStatus } from "../../../typings/Sample";
+import { TSpecStatus } from "../../../typings/specifications";
 import { TSpecificationName } from "../../../typings/exchanges";
 import { TTypeSpec } from "../../../typings/specifications";
 

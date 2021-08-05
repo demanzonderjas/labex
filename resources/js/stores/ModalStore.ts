@@ -1,5 +1,5 @@
 import { observable, action } from "mobx";
-import { TModal } from "../typings/Modal";
+import { TModal } from "../typings/modals";
 
 export class ModalStore {
 	@observable isActive = false;

@@ -1,6 +1,6 @@
 import React from "react";
 import { TExchangeAttempt, TSpecificationName } from "./exchanges";
-import { TUser } from "./User";
+import { TUser } from "./user";
 
 export enum TOverviewType {
 	Cards,

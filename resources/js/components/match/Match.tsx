@@ -5,7 +5,6 @@ import { getStatusFromMatch } from "../../utils/matches/status";
 import { convertDateToReadableString } from "../../utils/formatting/datetime";
 import { getMatchingPercentage } from "../../utils/matches/utils";
 import {
-	fillFieldsWithKeyValuePairs,
 	createMatchSpecs,
 	createQueryStringFromFilters,
 	fillFieldsWithSpecifications
@@ -16,7 +15,7 @@ import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
 import { useHistory } from "react-router-dom";
 import cx from "classnames";
-import { Button, DangerButton } from "../base/Button";
+import { DangerButton } from "../base/Button";
 import { cancelMatch } from "../../queries/cancelMatch";
 import { useModalStore } from "../../hooks/useModalStore";
 import { confirmCancelMatchModal } from "../../data/modals/confirm";

@@ -1,14 +1,11 @@
 import React from "react";
-import { LocalImage } from "../base/Image";
-import { TFormField } from "../../typings/Form";
-import { TUser } from "../../typings/User";
+import { TFormField } from "../../typings/forms";
+import { TUser } from "../../typings/user";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { MatchType } from "../../typings/overviews";
 import { MatchValue } from "./MatchValue";
-import { TSpecStatus } from "../../typings/Sample";
 import {
 	fieldIsNotHidden,
-	fieldWasFilled,
 	fieldMeetsDependencies,
 	fieldShouldBeIgnoredInMatch
 } from "../../utils/filters/fields";

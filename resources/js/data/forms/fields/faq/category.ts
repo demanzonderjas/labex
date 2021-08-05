@@ -1,5 +1,5 @@
 import { CategorySelectField } from "../../../../components/form/custom-fields/CategorySelectField";
-import { TFormField, TFormFieldName } from "../../../../typings/Form";
+import { TFormField, TFormFieldName } from "../../../../typings/forms";
 
 export const categoryField: TFormField = {
 	label: "category",

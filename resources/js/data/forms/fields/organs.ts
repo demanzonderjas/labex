@@ -1,4 +1,4 @@
-import { TFormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/forms";
 import { MultiSelectField } from "../../../components/form/MultiSelectField";
 import { isMultiSelectMatch } from "../../../utils/filters/multiselect";
 import { TTypeSpec } from "../../../typings/specifications";
