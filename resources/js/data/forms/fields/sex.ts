@@ -1,5 +1,6 @@
 import { TFormField } from "../../../typings/Form";
 import { IconSelectField } from "../../../components/form/IconSelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 const sexOptions = [
 	{ icon: "male", value: "male" },
@@ -8,7 +9,7 @@ const sexOptions = [
 
 export const sexField: TFormField = {
 	label: "sex",
-	id: "sex",
+	id: TSpecificationName.Sex,
 	Component: IconSelectField,
 	props: {
 		options: sexOptions

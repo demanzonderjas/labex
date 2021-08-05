@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FormWrapper } from "../components/FormWrapper";
-import { OfferOverview } from "../components/overviews/OfferOverview";
 import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
 import { FilterOffersForm } from "../data/forms/ExchangeAttemptRequest";

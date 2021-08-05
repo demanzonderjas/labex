@@ -1,9 +1,10 @@
 import { InputField } from "../../../components/form/InputField";
+import { TSpecificationName } from "../../../typings/exchanges";
 import { TFormField, InputType } from "../../../typings/Form";
 
 export const protocolNumberField: TFormField = {
 	label: "protocol_number",
-	id: "protocol_number",
+	id: TSpecificationName.ProtocolNumber,
 	Component: InputField,
 	ignoreInMatch: true,
 	props: {

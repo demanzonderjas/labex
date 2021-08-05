@@ -9,7 +9,7 @@ export enum TOverviewType {
 }
 
 export type TTableCell = {
-	id: TSpecificationName & TTableCellName;
+	id: TSpecificationName | TTableCellName;
 	label?: string;
 	value: any;
 	Component: React.FC<TTableCellProps>;
@@ -17,7 +17,10 @@ export type TTableCell = {
 
 export enum TTableCellName {
 	MagicCell = "magic_cell",
-	MatchButton = "match_button"
+	MatchButton = "match_button",
+	IsMatch = "is_match",
+	CopyButton = "copy_button",
+	DeleteButton = "delete_button"
 }
 
 export type TTableCellProps = {

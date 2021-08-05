@@ -1,9 +1,9 @@
 import { CategorySelectField } from "../../../../components/form/custom-fields/CategorySelectField";
-import { TFormField } from "../../../../typings/Form";
+import { TFormField, TFormFieldName } from "../../../../typings/Form";
 
 export const categoryField: TFormField = {
 	label: "category",
-	id: "category",
+	id: TFormFieldName.Category,
 	required: true,
 	Component: CategorySelectField,
 	props: {},

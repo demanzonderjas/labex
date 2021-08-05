@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 import { TFormField } from "../../../typings/Form";
 
 export const typeField: TFormField = {
 	label: "type",
-	id: "type",
+	id: TSpecificationName.ExchangeType,
 	Component: SelectField,
 	isHardFilter: true,
 	props: {

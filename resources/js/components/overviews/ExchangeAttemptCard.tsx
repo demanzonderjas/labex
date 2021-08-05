@@ -24,6 +24,8 @@ import { Button, DangerButton } from "../base/Button";
 import { Percentage } from "../base/Percentage";
 import { SampleValue } from "../match/SampleValue";
 import cx from "classnames";
+import { goToSelectMatchLink } from "../../utils/matches/utils";
+import { goToCopyLink } from "../../utils/routing/url";
 
 export const ExchangeAttemptCard: React.FC<{
 	attempt: TExchangeAttempt;
@@ -40,20 +42,10 @@ export const ExchangeAttemptCard: React.FC<{
 			: FilterOffersForm.fields;
 	const fields = fillFieldsWithSpecifications(targetFields, attempt.specifications);
 	const history = useHistory();
-	const queryString = createQueryStringFromSpecs(attempt);
 	const matchPercentage = specsToShow.find(s => s.id === TSpecificationName.MatchPercentage)
 		?.value;
 	const classes = getMatchClasses(matchPercentage ? matchPercentage.value : 0);
 	const isGenericCard = type === TOverviewType.Cards;
-
-	const selectMatch = () => {
-		const queryStringFromFilters = createQueryStringFromFilters(filters);
-		history.push(`/app/${attempt.attempt_type}s/select/${attempt.id}${queryStringFromFilters}`);
-	};
-
-	const copy = () => {
-		history.push(`/app/submit-offer${queryString}`);
-	};
 
 	const deleteCallback = async () => {
 		await deleteAttemptQuery(attempt.id);
@@ -64,7 +56,9 @@ export const ExchangeAttemptCard: React.FC<{
 	return (
 		<div
 			className={cx("OfferCard Card", { DashboardCard: !isGenericCard })}
-			onClick={isGenericCard ? selectMatch : undefined}
+			onClick={
+				isGenericCard ? () => goToSelectMatchLink(history, attempt, filters) : undefined
+			}
 		>
 			{isGenericCard && (
 				<div className="match">
@@ -77,7 +71,12 @@ export const ExchangeAttemptCard: React.FC<{
 			)}
 			<div className="details">
 				{specsToShow
-					.filter(column => !!column && column.id != "match_percentage")
+					.filter(
+						column =>
+							!!column &&
+							column.id != "match_percentage" &&
+							!column.id.match("button")
+					)
 					.map(column => (
 						<div key={column.id} className="info-block">
 							<label>
@@ -98,7 +97,7 @@ export const ExchangeAttemptCard: React.FC<{
 					<Button
 						classes={{ small: true, primary: true }}
 						label="copy"
-						handleClick={copy}
+						handleClick={() => goToCopyLink(history, attempt)}
 					/>
 					{!attempt?.is_match && (
 						<DangerButton

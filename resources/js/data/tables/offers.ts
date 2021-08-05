@@ -2,7 +2,10 @@ import { TextCell } from "../../components/overviews/table/TextCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { DateCell } from "../../components/overviews/table/DateCell";
 import { TSpecificationName } from "../../typings/exchanges";
-import { TTableCell } from "../../typings/overviews";
+import { TTableCell, TTableCellName } from "../../typings/overviews";
+import { BooleanCell } from "../../components/overviews/table/BooleanCell";
+import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
+import { DeleteButtonCell } from "../../components/overviews/table/custom/DeleteButtonCell";
 
 export const offerColumns: string[] = [
 	TSpecificationName.ExchangeType,
@@ -46,5 +49,20 @@ export const offerCells: TTableCell[] = [
 		id: TSpecificationName.DateAvailable,
 		value: "",
 		Component: DateAvailableCell
+	},
+	{
+		id: TTableCellName.IsMatch,
+		value: "",
+		Component: BooleanCell
+	},
+	{
+		id: TTableCellName.CopyButton,
+		value: "",
+		Component: CopyButtonCell
+	},
+	{
+		id: TTableCellName.DeleteButton,
+		value: "",
+		Component: DeleteButtonCell
 	}
 ];

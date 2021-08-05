@@ -27,6 +27,7 @@ export enum TExchangeAttemptStatus {
 export enum TSpecificationName {
 	AnimalSpecies = "animal_species",
 	ExchangeType = "type",
+	AttemptType = "attempt_type",
 	Organs = "organs",
 	DateAvailable = "date_available",
 	DateRequested = "date_requested",
@@ -45,7 +46,8 @@ export enum TSpecificationName {
 	Sex = "sex",
 	ExtraInfo = "extra_info",
 	SampleNumber = "sample_number",
-	MatchPercentage = "match_percentage"
+	MatchPercentage = "match_percentage",
+	Other = "other"
 }
 
 export type TMatch = {

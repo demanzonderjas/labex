@@ -24,7 +24,7 @@ class MatchController extends Controller
 
     public function user(Request $request)
     {
-        $matches = MaterialMatch::whereBelongsToUser($request->user())->get();
+        $matches = MaterialMatch::whereBelongsToUser($request->user())->with('offer.user', 'request.user')->get();
 
         return response()->json(["matches" => $matches->toArray()]);
     }

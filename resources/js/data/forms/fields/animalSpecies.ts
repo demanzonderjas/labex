@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 import { TFormField } from "../../../typings/Form";
 
 export const animalSpeciesField: TFormField = {
 	label: "animal_species",
-	id: "animal_species",
+	id: TSpecificationName.AnimalSpecies,
 	Component: SelectField,
 	props: {
 		startsEmpty: true,

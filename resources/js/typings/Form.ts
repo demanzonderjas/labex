@@ -28,9 +28,19 @@ export enum InputType {
 
 export interface TFormFieldData {
 	label: string;
-	id: TSpecificationName;
+	id: TSpecificationName | TFormFieldName;
 	value: string;
 	validate?: Function;
+}
+
+export enum TFormFieldName {
+	Email = "email",
+	Name = "name",
+	Content = "content",
+	Category = "category",
+	ID = "id",
+	Show = "show",
+	Title = "title"
 }
 
 export interface SelectFieldData extends TFormFieldData {

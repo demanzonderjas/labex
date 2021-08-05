@@ -1,10 +1,11 @@
 import { TFormField } from "../../../typings/Form";
 import { BigTextField } from "../../../components/form/BigTextField";
 import { SelectField } from "../../../components/form/SelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 export const storageField: TFormField = {
 	label: "storage",
-	id: "storage",
+	id: TSpecificationName.Storage,
 	Component: SelectField,
 	props: {
 		startsEmpty: true,

@@ -3,10 +3,11 @@ import { TFormField, InputType } from "../../../typings/Form";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { getFieldById } from "../../../utils/getters/fields";
 import { TSpecStatus, TSpecMatch } from "../../../typings/Sample";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 export const amountField: TFormField = {
 	label: "amount",
-	id: "amount",
+	id: TSpecificationName.Amount,
 	Component: InputField,
 	required: true,
 	validate: isBiggerThanZero,
@@ -21,7 +22,7 @@ export const amountField: TFormField = {
 			: parseInt(offeredValue) <= parseInt(requestedValue);
 		return isCompleteMatch ? TSpecStatus.Match : TSpecStatus.PartialMatch;
 	},
-	customValue: fields => `${getFieldById("amount", fields).value} requested`,
+	customValue: fields => `${getFieldById(TSpecificationName.Amount, fields).value} requested`,
 	default: "1",
 	value: "1",
 	synonyms: ["total", "amounts"]

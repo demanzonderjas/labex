@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
 import { TOverviewType, TTableCell } from "../typings/overviews";
-import { getExchangeAttempts } from "../queries/getExchangeAttempts";
+import { getExchangeAttempts, getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
 import { TFormField } from "../typings/Form";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import {
@@ -132,11 +132,13 @@ export class ExchangeAttemptStore {
 		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs);
 	}
 
-	@action.bound async getExchangeAttempts(attempt_type: TExchangeAttemptType) {
-		const response = await getExchangeAttempts(attempt_type);
+	@action.bound async getExchangeAttempts(attemptType: TExchangeAttemptType, mineOnly: boolean) {
+		const response = mineOnly
+			? await getExchangeAttempts(attemptType)
+			: await getMyLatestExchangeAttempts();
 		if (response.success) {
 			this.setAttempts(response.exchange_attempts);
-			this.setMatchType(attempt_type);
+			this.setMatchType(attemptType);
 		}
 	}
 

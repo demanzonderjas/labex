@@ -6,7 +6,7 @@ import { TSpecificationName } from "../../../typings/exchanges";
 
 export const organsField: TFormField = {
 	label: "organs",
-	id: "organs",
+	id: TSpecificationName.Organs,
 	Component: MultiSelectField,
 	props: {
 		startsEmpty: true,

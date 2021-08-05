@@ -1,10 +1,11 @@
 import { TFormField, InputType } from "../../../typings/Form";
 import { InputField } from "../../../components/form/InputField";
 import { isAgeInRange } from "../../../utils/matches/age";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 export const dateConservedField: TFormField = {
 	label: "date_conserved",
-	id: "age",
+	id: TSpecificationName.Age,
 	Component: InputField,
 	required: true,
 	props: {

@@ -1,22 +1,13 @@
 import React from "react";
 import { useTranslationStore } from "../../../hooks/useTranslationStore";
-import { useExchangeAttemptStore } from "../../../hooks/useExchangeAttemptStore";
-import { TRequestCard, TSampleCard } from "../../../typings/overviews";
-import { TExchangeAttempt, TSpecificationName } from "../../../typings/exchanges";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TTableCellProps } from "../../../typings/overviews";
 
-type Props = {
-	value: string;
-	rowIndex: number;
-	sample: any;
-};
-
-export const AgeRangeCell: React.FC<Props> = ({ value, rowIndex, sample }) => {
+export const AgeRangeCell: React.FC<TTableCellProps> = ({ attempt }) => {
 	const { t } = useTranslationStore();
-	const { matches } = useExchangeAttemptStore();
-	const match = matches[rowIndex] as TExchangeAttempt;
-	const ageMinSpec = match.specifications.find(s => s.key === TSpecificationName.AgeMin);
-	const ageMaxSpec = match.specifications.find(s => s.key === TSpecificationName.AgeMax);
-	const ageTypeSpec = match.specifications.find(s => s.key === TSpecificationName.AgeType);
+	const ageMinSpec = attempt.specifications.find(s => s.key === TSpecificationName.AgeMin);
+	const ageMaxSpec = attempt.specifications.find(s => s.key === TSpecificationName.AgeMax);
+	const ageTypeSpec = attempt.specifications.find(s => s.key === TSpecificationName.AgeType);
 	const ageMin = ageMinSpec?.value;
 	const ageMax = ageMaxSpec?.value;
 	const ageType = ageTypeSpec?.value;

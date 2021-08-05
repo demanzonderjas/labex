@@ -1,10 +1,10 @@
 import { InputField } from "../../../components/form/InputField";
-import { TExchangeAttemptType } from "../../../typings/exchanges";
+import { TExchangeAttemptType, TSpecificationName } from "../../../typings/exchanges";
 import { TFormField, InputType } from "../../../typings/Form";
 
 export const attemptTypeField: TFormField = {
 	label: "attempt_type",
-	id: "attempt_type",
+	id: TSpecificationName.AttemptType,
 	Component: InputField,
 	required: true,
 	hidden: true,

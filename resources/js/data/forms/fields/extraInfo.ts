@@ -1,9 +1,10 @@
 import { TFormField } from "../../../typings/Form";
 import { BigTextField } from "../../../components/form/BigTextField";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 export const extraInfoField: TFormField = {
 	label: "extra_info",
-	id: "extra_info",
+	id: TSpecificationName.ExtraInfo,
 	Component: BigTextField,
 	ignoreInMatch: true,
 	props: {},

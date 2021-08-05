@@ -1,9 +1,10 @@
 import { TFormField, InputType } from "../../../typings/Form";
 import { InputField } from "../../../components/form/InputField";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 export const strainField: TFormField = {
 	label: "strain",
-	id: "strain",
+	id: TSpecificationName.Strain,
 	Component: InputField,
 	required: true,
 	props: {

@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 import { TFormField } from "../../../typings/Form";
 
 export const killMethodField: TFormField = {
 	label: "kill_method",
-	id: "kill_method",
+	id: TSpecificationName.KillMethod,
 	Component: SelectField,
 	props: {
 		options: [

@@ -1,9 +1,9 @@
 import { BooleanField } from "../../../../components/form/BooleanField";
-import { TFormField } from "../../../../typings/Form";
+import { TFormField, TFormFieldName } from "../../../../typings/Form";
 
 export const showField: TFormField = {
 	label: "show",
-	id: "show",
+	id: TFormFieldName.Show,
 	Component: BooleanField,
 	required: true,
 	props: {},

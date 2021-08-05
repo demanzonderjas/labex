@@ -17,6 +17,8 @@ import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
 import { ExchangeAttemptCardOverview } from "../components/overviews/ExchangeAttemptCardOverview";
 import { offerCells } from "../data/tables/offers";
 import { requestCells } from "../data/tables/requests";
+import { ExchangeAttemptOverview } from "../components/overviews/ExchangeAttemptOverview";
+import { TExchangeAttemptType } from "../typings/exchanges";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
@@ -26,7 +28,6 @@ export const DashboardPage = observer(() => {
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
 		TDashboardOverview.Requests
 	);
-	const { offers, requests } = attemptStore;
 	const history = useHistory();
 
 	useEffect(() => {
@@ -34,8 +35,6 @@ export const DashboardPage = observer(() => {
 			setActiveOverview(TDashboardOverview.Offers);
 		}
 	}, [user]);
-
-	console.log(offers);
 
 	useEffect(() => {
 		(async () => {
@@ -99,18 +98,20 @@ export const DashboardPage = observer(() => {
 						</div>
 						<div className="overviews">
 							<Overview isActive={activeOverview === TDashboardOverview.Requests}>
-								{/* <ExchangeAttemptCardOverview
-									attempts={requests}
+								<ExchangeAttemptOverview
 									specsToShow={requestCells}
-									type={TOverviewType.UserCards}
-								/> */}
+									mineOnly={true}
+									type={TExchangeAttemptType.Request}
+									SHOW_LIMIT={4}
+								/>
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Offers}>
-								{/* <ExchangeAttemptCardOverview
-									attempts={offers}
+								<ExchangeAttemptOverview
 									specsToShow={offerCells}
-									type={TOverviewType.UserCards}
-								/> */}
+									mineOnly={true}
+									type={TExchangeAttemptType.Offer}
+									SHOW_LIMIT={4}
+								/>
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Matches}>
 								{match && (

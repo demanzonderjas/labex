@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import cx from "classnames";
 import { useFormStore } from "../../hooks/useFormStore";
 import { getFieldById } from "../../utils/getters/fields";
+import { TSpecificationName } from "../../typings/exchanges";
 
 type Props = {
 	min: number;
 	max: number;
-	minId: string;
-	maxId: string;
+	minId: TSpecificationName;
+	maxId: TSpecificationName;
 };
 
 export const RangeField: React.FC<Props> = observer(({ min, max, minId, maxId }) => {

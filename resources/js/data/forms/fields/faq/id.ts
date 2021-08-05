@@ -1,9 +1,9 @@
 import { InputField } from "../../../../components/form/InputField";
-import { TFormField, InputType } from "../../../../typings/Form";
+import { TFormField, InputType, TFormFieldName } from "../../../../typings/Form";
 
 export const idField: TFormField = {
 	label: "id",
-	id: "id",
+	id: TFormFieldName.ID,
 	required: true,
 	hidden: true,
 	Component: InputField,

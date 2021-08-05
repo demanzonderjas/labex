@@ -10,45 +10,55 @@ import { SecondaryButton } from "../base/Button";
 import { ExchangeAttemptCardOverview } from "./ExchangeAttemptCardOverview";
 import { ExchangeAttemptTable } from "./ExchangeAttemptTable";
 import { OverviewSwitch } from "./OverviewSwitch";
+import cx from "classnames";
 
 export const ExchangeAttemptOverview: React.FC<{
 	type: TExchangeAttemptType;
 	specsToShow: TTableCell[];
+	mineOnly?: boolean;
 	SHOW_LIMIT: number;
-}> = observer(({ type, specsToShow, SHOW_LIMIT }) => {
+}> = observer(({ type, specsToShow, SHOW_LIMIT, mineOnly }) => {
+	const { t } = useTranslationStore();
+	const [shouldViewAll, setShouldViewAll] = useState(false);
 	const {
+		magicField,
+		filters,
+		targetFields,
 		totalMatches,
 		overviewType,
 		offers,
 		requests,
-		attempts,
 		getExchangeAttempts
 	} = useExchangeAttemptStore();
-	const { t } = useTranslationStore();
-	const [shouldViewAll, setShouldViewAll] = useState(false);
-	const { magicField, filters, targetFields } = useExchangeAttemptStore();
-	const sortedAttempts = convertAttemptsToMatches(attempts, filters, targetFields);
-	console.log(sortedAttempts);
+	const targetAttempts = type === TExchangeAttemptType.Offer ? offers : requests;
+	const sortedAttempts = convertAttemptsToMatches(targetAttempts, filters, targetFields);
 	const attemptsAsCells = convertMatchesToCells(sortedAttempts, specsToShow, magicField);
 	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
 
 	useEffect(() => {
-		getExchangeAttempts(type);
+		getExchangeAttempts(type, mineOnly);
 	}, []);
 
 	return (
-		<div className="OfferOverview overview">
-			<h1>
-				{t(`browse_${type}s`)} ({totalMatches})
-			</h1>
+		<div className={cx("overview", { dashboard: mineOnly })}>
+			{!mineOnly && (
+				<h1>
+					{t(`browse_${type}s`)} ({attemptsAsCells.length})
+				</h1>
+			)}
 			<OverviewSwitch />
 			{overviewType == TOverviewType.Cards && (
-				<ExchangeAttemptCardOverview attempts={sortedAttempts} cards={attemptsToShow} />
+				<ExchangeAttemptCardOverview
+					attempts={sortedAttempts}
+					cards={attemptsToShow}
+					type={mineOnly ? TOverviewType.UserCards : TOverviewType.Cards}
+				/>
 			)}
 			{overviewType == TOverviewType.Table && (
 				<ExchangeAttemptTable
 					attempts={sortedAttempts}
 					rows={attemptsToShow}
+					isCentered={!mineOnly}
 					columns={
 						magicField
 							? specsToShow

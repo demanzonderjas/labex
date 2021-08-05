@@ -25,11 +25,11 @@ class ExchangeAttemptController extends Controller
 
 	public function getMyLatest(Request $request)
 	{
-		$attempts = ExchangeAttempt::where(function ($query) use ($request) {
-			$query->where(['user_id' => $request->user()->id]);
-		})->latest()->get();
+		$exchange_attempts = ExchangeAttempt::where([
+			'user_id' => $request->user()->id
+		])->get();
 
-		return response()->json(["success" => true, "exchange_attempts" => $attempts]);
+		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts]);
 	}
 
 	public function deleteById($id)

@@ -3,10 +3,12 @@ import { TFormField, InputType } from "../../../typings/Form";
 import { isDateInFuture, isDateInRangeOfTwoWeeks } from "../../../utils/validation/date";
 import { getFieldById } from "../../../utils/getters/fields";
 import { TSpecStatus } from "../../../typings/Sample";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TTypeSpec } from "../../../typings/specifications";
 
 export const dateAvailableField: TFormField = {
 	label: "date_available",
-	id: "date_available",
+	id: TSpecificationName.DateAvailable,
 	Component: InputField,
 	required: true,
 	props: {
@@ -28,12 +30,12 @@ export const dateRequestedField: TFormField = {
 	...dateAvailableField,
 	required: false,
 	label: "date_requested",
-	id: "date_requested",
+	id: TSpecificationName.DateRequested,
 	isMatch: (givenValue, targetValue, filters, fields): TSpecStatus => {
-		const type = getFieldById("type", fields);
-		const dateAvailable = getFieldById("date_available", fields);
+		const type = getFieldById(TSpecificationName.ExchangeType, fields);
+		const dateAvailable = getFieldById(TSpecificationName.DateAvailable, fields);
 		return isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) ||
-			(type && type.value == "conserved_tissue")
+			(type && type.value == TTypeSpec.ConservedTissue)
 			? TSpecStatus.Match
 			: TSpecStatus.NoMatch;
 	},

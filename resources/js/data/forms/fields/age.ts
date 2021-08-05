@@ -4,10 +4,11 @@ import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { AgeRangeField } from "../../../components/form/custom-fields/AgeRangeField";
 import { isAgeInRange, isAgeRangeMatching } from "../../../utils/matches/age";
 import { getAgeRangeValue } from "../../../utils/getters/fields";
+import { TSpecificationName } from "../../../typings/exchanges";
 
 export const ageField: TFormField = {
 	label: "age",
-	id: "age",
+	id: TSpecificationName.Age,
 	Component: InputField,
 	required: true,
 	validate: isBiggerThanZero,
@@ -28,7 +29,7 @@ export const ageField: TFormField = {
 
 export const ageRequestField: TFormField = {
 	label: "age_offer",
-	id: "age",
+	id: TSpecificationName.Age,
 	Component: AgeRangeField,
 	default: "1",
 	value: "1",
@@ -45,7 +46,7 @@ export const ageRangeRequestField: TFormField = {
 
 export const ageRequestRangeField: TFormField = {
 	label: "age_range",
-	id: "age",
+	id: TSpecificationName.Age,
 	Component: AgeRangeField,
 	default: "1",
 	value: "1",
@@ -57,7 +58,7 @@ export const ageRequestRangeField: TFormField = {
 
 export const ageTypeField: TFormField = {
 	label: "age_type",
-	id: "age_type",
+	id: TSpecificationName.AgeType,
 	hidden: true,
 	Component: AgeRangeField,
 	default: "weeks",
@@ -67,7 +68,7 @@ export const ageTypeField: TFormField = {
 
 export const ageMinField: TFormField = {
 	label: "age_min",
-	id: "age_min",
+	id: TSpecificationName.AgeMin,
 	hidden: true,
 	Component: AgeRangeField,
 	default: "0",
@@ -77,7 +78,7 @@ export const ageMinField: TFormField = {
 
 export const ageMaxField: TFormField = {
 	label: "age_max",
-	id: "age_max",
+	id: TSpecificationName.AgeMax,
 	hidden: true,
 	Component: AgeRangeField,
 	default: "20",

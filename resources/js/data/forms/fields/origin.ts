@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 import { TFormField } from "../../../typings/Form";
 
 export const originField: TFormField = {
 	label: "origin",
-	id: "origin",
+	id: TSpecificationName.Origin,
 	Component: SelectField,
 	props: {
 		options: ["experiment", "breeding"],

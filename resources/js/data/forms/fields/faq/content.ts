@@ -1,9 +1,9 @@
 import { BigTextField } from "../../../../components/form/BigTextField";
-import { TFormField } from "../../../../typings/Form";
+import { TFormField, TFormFieldName } from "../../../../typings/Form";
 
 export const contentField: TFormField = {
 	label: "content",
-	id: "content",
+	id: TFormFieldName.Content,
 	Component: BigTextField,
 	ignoreInMatch: true,
 	props: {},

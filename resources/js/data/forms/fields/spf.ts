@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 import { TFormField } from "../../../typings/Form";
 
 export const spfField: TFormField = {
 	label: "spf",
-	id: "spf",
+	id: TSpecificationName.SPF,
 	Component: SelectField,
 	required: false,
 	props: {

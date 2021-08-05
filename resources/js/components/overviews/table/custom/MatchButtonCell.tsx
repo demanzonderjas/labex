@@ -10,7 +10,6 @@ export const MatchButtonCell: React.FC<TTableCellProps> = ({
 	...props
 }) => {
 	const classes = getMatchClasses(attempt.match_percentage);
-	console.log(attempt);
 
 	return <ButtonCell {...props} label="select" classes={classes} />;
 };
