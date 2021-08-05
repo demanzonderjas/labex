@@ -22,7 +22,6 @@ export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
 	const [attemptStore] = useState<ExchangeAttemptStore>(new ExchangeAttemptStore());
 	const [match, setMatch] = useState(null);
-	const [shouldViewAll, setShouldViewAll] = useState(false);
 	const { user } = useUserStore();
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
 		TDashboardOverview.Requests
@@ -35,6 +34,8 @@ export const DashboardPage = observer(() => {
 			setActiveOverview(TDashboardOverview.Offers);
 		}
 	}, [user]);
+
+	console.log(offers);
 
 	useEffect(() => {
 		(async () => {
@@ -98,18 +99,18 @@ export const DashboardPage = observer(() => {
 						</div>
 						<div className="overviews">
 							<Overview isActive={activeOverview === TDashboardOverview.Requests}>
-								<ExchangeAttemptCardOverview
+								{/* <ExchangeAttemptCardOverview
 									attempts={requests}
 									specsToShow={requestCells}
 									type={TOverviewType.UserCards}
-								/>
+								/> */}
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Offers}>
-								<ExchangeAttemptCardOverview
+								{/* <ExchangeAttemptCardOverview
 									attempts={offers}
 									specsToShow={offerCells}
 									type={TOverviewType.UserCards}
-								/>
+								/> */}
 							</Overview>
 							<Overview isActive={activeOverview === TDashboardOverview.Matches}>
 								{match && (

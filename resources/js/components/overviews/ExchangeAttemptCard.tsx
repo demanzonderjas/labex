@@ -20,10 +20,10 @@ import {
 	getMatchClasses
 } from "../../utils/formatting/matches";
 import { createQueryStringFromSpecs } from "../../utils/formatting/samples";
-import { getMatchingPercentage } from "../../utils/matches/utils";
 import { Button, DangerButton } from "../base/Button";
 import { Percentage } from "../base/Percentage";
 import { SampleValue } from "../match/SampleValue";
+import cx from "classnames";
 
 export const ExchangeAttemptCard: React.FC<{
 	attempt: TExchangeAttempt;
@@ -62,7 +62,10 @@ export const ExchangeAttemptCard: React.FC<{
 	};
 
 	return (
-		<div className="OfferCard Card" onClick={isGenericCard ? selectMatch : undefined}>
+		<div
+			className={cx("OfferCard Card", { DashboardCard: !isGenericCard })}
+			onClick={isGenericCard ? selectMatch : undefined}
+		>
 			{isGenericCard && (
 				<div className="match">
 					<div className="info-block">

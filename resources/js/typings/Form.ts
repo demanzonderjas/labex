@@ -1,4 +1,5 @@
 import React from "react";
+import { TSpecificationName } from "./exchanges";
 import { TModal } from "./Modal";
 import { TSpecStatus, TSpecMatch } from "./Sample";
 
@@ -27,7 +28,7 @@ export enum InputType {
 
 export interface TFormFieldData {
 	label: string;
-	id: string;
+	id: TSpecificationName;
 	value: string;
 	validate?: Function;
 }

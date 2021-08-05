@@ -6,6 +6,9 @@ import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
 import { FilterOffersForm } from "../data/forms/ExchangeAttemptRequest";
 import { createQueryStringFromFilters } from "../utils/formatting/matches";
 import { useHistory } from "react-router-dom";
+import { ExchangeAttemptOverview } from "../components/overviews/ExchangeAttemptOverview";
+import { offerMatchCells } from "../data/tables/matches";
+import { TExchangeAttemptType } from "../typings/exchanges";
 
 export const OffersPage = () => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
@@ -26,7 +29,11 @@ export const OffersPage = () => {
 				handleSuccess={null}
 				handleUpdate={sampleStore.setFilters}
 			/>
-			<OfferOverview />
+			<ExchangeAttemptOverview
+				specsToShow={offerMatchCells}
+				type={TExchangeAttemptType.Offer}
+				SHOW_LIMIT={10}
+			/>
 		</ExchangeAttemptStoreProvider>
 	);
 };

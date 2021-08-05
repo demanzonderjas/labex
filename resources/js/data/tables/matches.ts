@@ -5,6 +5,7 @@ import { MatchButtonCell } from "../../components/overviews/table/custom/MatchBu
 import { AgeCell } from "../../components/overviews/table/AgeCell";
 import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
+import { TTableCellName } from "../../typings/overviews";
 
 export const offerMatchColumns: string[] = [
 	"match_percentage",
@@ -73,7 +74,7 @@ export const offerMatchCells = [
 		Component: DateAvailableCell
 	},
 	{
-		id: "match_percentage",
+		id: TTableCellName.MatchButton,
 		value: "",
 		Component: MatchButtonCell
 	}

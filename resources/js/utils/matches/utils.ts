@@ -2,6 +2,7 @@ import { TExchangeAttempt } from "../../typings/exchanges";
 import { TFormField } from "../../typings/Form";
 import { TSpecStatus } from "../../typings/Sample";
 import { fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../filters/fields";
+import { createQueryStringFromFilters } from "../formatting/matches";
 
 export function getMatchingPercentage(
 	attempt: TExchangeAttempt,
@@ -60,4 +61,9 @@ export function checkIfFieldMatches(
 		? TSpecStatus.Match
 		: TSpecStatus.NoMatch;
 	return matchStatus;
+}
+
+export function goToSelectMatchLink(history, attempt: TExchangeAttempt, filters: TFormField[]) {
+	const queryStringFromFilters = createQueryStringFromFilters(filters);
+	history.push(`/app/${attempt.attempt_type}s/select/${attempt.id}${queryStringFromFilters}`);
 }

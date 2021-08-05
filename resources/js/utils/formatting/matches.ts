@@ -24,7 +24,7 @@ export function convertAttemptsToCells(attempts: TExchangeAttempt[], cells: TTab
 	});
 }
 
-export function mapMatchesToOverviewData(
+export function convertMatchesToCells(
 	matches: TExchangeAttempt[],
 	cells: TTableCell[],
 	magicField?: TFormField
@@ -34,7 +34,7 @@ export function mapMatchesToOverviewData(
 			let spec = match.specifications.find(s => s.key === cell.id);
 			if (cell.id === "magic_cell" && magicField) {
 				spec = match.specifications.find(s => s.key === magicField.id);
-				return { ...cell, value: spec?.value || "" };
+				return { ...cell, value: spec?.value || "", label: spec?.key };
 			} else if (cell.id === "magic_cell" && !magicField) {
 				return null;
 			} else if (cell.id === TSpecificationName.MatchPercentage) {
@@ -52,6 +52,34 @@ export function createQueryStringFromFilters(filters: TFormField[]) {
 		}
 		return `${base}&${filter.id}=${filter.value}`;
 	}, "");
+}
+
+export function convertAttemptsToMatches(
+	attempts: TExchangeAttempt[],
+	filters: TFormField[],
+	targetFields: TFormField[]
+) {
+	const sortedAttempts = !filters.length
+		? attempts
+		: attempts
+				.filter(attempt => matchMeetsHardFilters(attempt, filters))
+				.map(attempt => {
+					const filledSampleFields = fillFieldsWithSpecifications(
+						targetFields,
+						attempt.specifications
+					);
+					return {
+						...attempt,
+						match_percentage: getMatchingPercentage(
+							attempt,
+							filters,
+							filledSampleFields
+						)
+					};
+				})
+				.filter(attempt => attempt.match_percentage > 0);
+	sortedAttempts.sort((a, b) => b.match_percentage - a.match_percentage);
+	return sortedAttempts;
 }
 
 export function fillFieldsWithKeyValuePairs(fields, pairs) {

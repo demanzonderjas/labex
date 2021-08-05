@@ -6,7 +6,7 @@ import { getMatchingPercentage } from "../utils/matches/utils";
 import {
 	fillFieldsWithKeyValuePairs,
 	createQueryStringFromFilters,
-	mapMatchesToOverviewData,
+	convertMatchesToCells,
 	fillFieldsWithSpecifications
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";

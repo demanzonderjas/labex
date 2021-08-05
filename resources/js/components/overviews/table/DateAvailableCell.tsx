@@ -1,27 +1,16 @@
 import React from "react";
-import {
-	convertDateToReadableString,
-	getDatePlusTwoWeeks
-} from "../../../utils/formatting/datetime";
+import { getDatePlusTwoWeeks } from "../../../utils/formatting/datetime";
 import { DisplayedDate } from "../../base/DisplayedDate";
-import { useExchangeAttemptStore } from "../../../hooks/useExchangeAttemptStore";
 import { useTranslationStore } from "../../../hooks/useTranslationStore";
-import { TSampleCard } from "../../../typings/overviews";
-import { TFormFieldData } from "../../../typings/Form";
+import { TTableCellProps } from "../../../typings/overviews";
+import { TSpecificationName } from "../../../typings/exchanges";
 
-type Props = {
-	value: string;
-	rowIndex: number;
-	sample: TSampleCard | TFormFieldData[];
-};
-
-export const DateAvailableCell: React.FC<Props> = ({ value, sample }) => {
+export const DateAvailableCell: React.FC<TTableCellProps> = ({ value, attempt }) => {
 	const datePlusTwoWeeks = getDatePlusTwoWeeks(value);
-	const { t } = useTranslationStore();
 
-	const sampleType = Array.isArray(sample)
-		? sample.find(field => field.id == "type")?.value
-		: sample.type;
+	const sampleType = attempt.specifications.find(
+		spec => spec.key == TSpecificationName.ExchangeType
+	)?.value;
 
 	if (sampleType == "conserved_tissue") {
 		return (

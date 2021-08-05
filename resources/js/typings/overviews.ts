@@ -1,4 +1,5 @@
 import React from "react";
+import { TExchangeAttempt, TSpecificationName } from "./exchanges";
 import { TUser } from "./User";
 
 export enum TOverviewType {
@@ -8,15 +9,21 @@ export enum TOverviewType {
 }
 
 export type TTableCell = {
-	id: string;
+	id: TSpecificationName & TTableCellName;
 	label?: string;
 	value: any;
 	Component: React.FC<TTableCellProps>;
 };
 
+export enum TTableCellName {
+	MagicCell = "magic_cell",
+	MatchButton = "match_button"
+}
+
 export type TTableCellProps = {
 	value: any;
 	rowIndex: number;
+	attempt?: TExchangeAttempt;
 };
 
 export interface TOfferCard extends TSampleCard {

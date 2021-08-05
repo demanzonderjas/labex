@@ -224,5 +224,6 @@
 	"filter_search": "Filter/search",
 	"import_excel": "Import my offers via Excel",
 	"excel_import_intro": "To make sure the fields are imported correctly, please map your own Excel headers to the correct ATEX version of the field",
-	"partial_match": "Partial Match"
+	"partial_match": "Partial Match",
+	"match_button": " "
 }
