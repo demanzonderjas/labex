@@ -3,8 +3,7 @@ import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getFAQ } from "../queries/getFaq";
 import cx from "classnames";
-import { Overview } from "../components/dashboard/DashboardOverview";
-import { Icon } from "../components/base/Image";
+import { SubmenuView } from "../components/overviews/SubmenuView";
 import { FAQItem } from "./FAQItem";
 
 export const FAQPage: React.FC = () => {
@@ -42,11 +41,11 @@ export const FAQPage: React.FC = () => {
 				</div>
 				<div className="overviews">
 					{categories.map(category => (
-						<Overview isActive={category.name == activeCategory} key={category.name}>
+						<SubmenuView isActive={category.name == activeCategory} key={category.name}>
 							{category.faq_items.map(item => (
 								<FAQItem item={item} key={item.id} />
 							))}
-						</Overview>
+						</SubmenuView>
 					))}
 				</div>
 			</div>

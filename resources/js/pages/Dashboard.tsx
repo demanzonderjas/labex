@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslationStore } from "../hooks/useTranslationStore";
-import { MatchType, TDashboardOverview, TOverviewType } from "../typings/overviews";
+import { MatchType, TDashboardOverview } from "../typings/overviews";
 import { TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
 import ExchangeAttemptStoreProvider from "../contexts/SampleContext";
@@ -9,12 +9,11 @@ import { getMyLatestMatch } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
 import { Button } from "../components/base/Button";
 import { useHistory } from "react-router-dom";
-import { Overview } from "../components/dashboard/DashboardOverview";
+import { SubmenuView } from "../components/overviews/SubmenuView";
 import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
 import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
-import { ExchangeAttemptCardOverview } from "../components/overviews/ExchangeAttemptCardOverview";
 import { offerCells } from "../data/tables/offers";
 import { requestCells } from "../data/tables/requests";
 import { ExchangeAttemptOverview } from "../components/overviews/ExchangeAttemptOverview";
@@ -97,23 +96,23 @@ export const DashboardPage = observer(() => {
 							</h3>
 						</div>
 						<div className="overviews">
-							<Overview isActive={activeOverview === TDashboardOverview.Requests}>
+							<SubmenuView isActive={activeOverview === TDashboardOverview.Requests}>
 								<ExchangeAttemptOverview
 									specsToShow={requestCells}
 									mineOnly={true}
 									type={TExchangeAttemptType.Request}
 									SHOW_LIMIT={4}
 								/>
-							</Overview>
-							<Overview isActive={activeOverview === TDashboardOverview.Offers}>
+							</SubmenuView>
+							<SubmenuView isActive={activeOverview === TDashboardOverview.Offers}>
 								<ExchangeAttemptOverview
 									specsToShow={offerCells}
 									mineOnly={true}
 									type={TExchangeAttemptType.Offer}
 									SHOW_LIMIT={4}
 								/>
-							</Overview>
-							<Overview isActive={activeOverview === TDashboardOverview.Matches}>
+							</SubmenuView>
+							<SubmenuView isActive={activeOverview === TDashboardOverview.Matches}>
 								{match && (
 									<div className="latest-match layout-wrapper">
 										<Match
@@ -128,7 +127,7 @@ export const DashboardPage = observer(() => {
 										/>
 									</div>
 								)}
-							</Overview>
+							</SubmenuView>
 							<DashboardStats />
 						</div>
 					</div>
