@@ -2,7 +2,7 @@ import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { TSpecStatus, TSpecMatch } from "../../typings/specifications";
 import { checkIfFieldMatches, getMatchingPercentage } from "../matches/utils";
 import { TFormField } from "../../typings/forms";
-import { TSpecification, TTableCell } from "../../typings/overviews";
+import { TSpecification, TTableCell, TTableCellName } from "../../typings/overviews";
 import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
 import { matchMeetsHardFilters } from "../filters/matches";
 
@@ -28,16 +28,19 @@ export function convertMatchesToCells(
 	cells: TTableCell[],
 	magicField?: TFormField
 ): TTableCell[][] {
+	console.log(matches);
 	return matches.map(match => {
 		return cells.map(cell => {
 			let spec = match.specifications.find(s => s.key === cell.id);
-			if (cell.id === "magic_cell" && magicField) {
+			if (cell.id === TTableCellName.MagicCell && magicField) {
 				spec = match.specifications.find(s => s.key === magicField.id);
 				return { ...cell, value: spec?.value || "", label: spec?.key };
-			} else if (cell.id === "magic_cell" && !magicField) {
+			} else if (cell.id === TTableCellName.MagicCell && !magicField) {
 				return null;
 			} else if (cell.id === TSpecificationName.MatchPercentage) {
 				return { ...cell, value: match.match_percentage };
+			} else if (cell.id === TTableCellName.IsMatch) {
+				return { ...cell, value: !!match.is_match };
 			}
 			return { ...cell, value: spec?.value || cell.value };
 		});

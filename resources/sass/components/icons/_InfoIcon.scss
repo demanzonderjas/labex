@@ -1,0 +1,18 @@
+.InfoIcon {
+	display: inline-block;
+	vertical-align: middle;
+	width: 18px;
+	height: 18px;
+	margin-left: 5px;
+	cursor: pointer;
+	transition: transform 0.15s cubic-bezier(0, 0, 0.3, 1);
+
+	&:hover {
+		transform: scale(1.1);
+	}
+
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+}

@@ -11,6 +11,8 @@ class ExchangeAttempt extends Model
 
 	public $with = ["specifications"];
 
+	public $appends = ["is_match"];
+
 	public $hidden = ["origin_id"];
 
 	public function user()
@@ -97,5 +99,10 @@ class ExchangeAttempt extends Model
 		}
 
 		return $copy->fresh();
+	}
+
+	public function getIsMatchAttribute()
+	{
+		return $this->matchViaOffer()->exists() || $this->matchViaRequest()->exists();
 	}
 }

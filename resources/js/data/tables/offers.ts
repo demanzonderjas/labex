@@ -14,7 +14,7 @@ export const offerColumns: string[] = [
 	"age_offer",
 	TSpecificationName.Amount,
 	TSpecificationName.DateAvailable,
-	"is_match",
+	TTableCellName.IsMatch,
 	"copy_header"
 ];
 

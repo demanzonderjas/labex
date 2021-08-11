@@ -19,6 +19,7 @@ import { withRequired } from "../../utils/formatting/fields";
 import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { attemptTypeOfferField } from "./fields/attemptType";
+import { adoptionField } from "./fields/adoption";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -39,7 +40,7 @@ export const SubmitOfferForm: TForm = {
 		killMethodField,
 		amountField,
 		protocolNumberField,
-		// sampleNumberField,
+		adoptionField,
 		extraInfoField,
 		attemptTypeOfferField
 	],

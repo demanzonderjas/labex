@@ -27,7 +27,7 @@ class ExchangeAttemptController extends Controller
 	{
 		$exchange_attempts = ExchangeAttempt::where([
 			'user_id' => $request->user()->id
-		])->get();
+		])->latest()->get();
 
 		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts]);
 	}

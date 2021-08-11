@@ -88,14 +88,6 @@ export class ExchangeAttemptStore {
 			.sort((a, b) => b.match_percentage - a.match_percentage);
 	}
 
-	@computed get attemptOverviewData(): TTableCell[][] {
-		// return mapMatchesToOverviewData(this.matches, this.magicField, this.targetMatchCells).slice(
-		return [];
-		// 	0,
-		// 	this.currentLimit
-		// );
-	}
-
 	@computed get totalMatches() {
 		return this.matches.length;
 	}
@@ -134,9 +126,10 @@ export class ExchangeAttemptStore {
 
 	@action.bound async getExchangeAttempts(attemptType: TExchangeAttemptType, mineOnly: boolean) {
 		const response = mineOnly
-			? await getExchangeAttempts(attemptType)
-			: await getMyLatestExchangeAttempts();
+			? await getMyLatestExchangeAttempts()
+			: await getExchangeAttempts(attemptType);
 		if (response.success) {
+			console.log(response);
 			this.setAttempts(response.exchange_attempts);
 			this.setMatchType(attemptType);
 		}
