@@ -30,6 +30,7 @@ return [
         'age' => 'required|string',
         'date_available' => 'nullable|string',
         'suitable_for_adoption' => 'nullable|string',
+        'location' => 'nullable|string',
     ],
     "exchange_attempt_request_fields" => [
         'age_type' => 'required|string',
