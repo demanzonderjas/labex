@@ -29,6 +29,7 @@ return [
     "exchange_attempt_offer_fields" => [
         'age' => 'required|string',
         'date_available' => 'nullable|string',
+        'suitable_for_adoption' => 'nullable|string',
     ],
     "exchange_attempt_request_fields" => [
         'age_type' => 'required|string',

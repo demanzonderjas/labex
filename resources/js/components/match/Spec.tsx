@@ -14,6 +14,8 @@ type Props = {
 export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
 	const { t } = useTranslationStore();
 
+	console.log(label, value);
+
 	return (
 		<div className="Spec">
 			<div className="column">
