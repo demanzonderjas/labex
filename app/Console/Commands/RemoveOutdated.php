@@ -2,8 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\ExchangeOffer;
-use App\ExchangeRequest;
+use App\ExchangeAttempt;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 
@@ -40,12 +39,12 @@ class RemoveOutdated extends Command
      */
     public function handle()
     {
-        $offers = ExchangeOffer::where('type', '!=', 'conserved_tissue')->get();
+        $offers = ExchangeAttempt::offers()->get();
         $now = Carbon::now();
         foreach ($offers as $offer) {
             $date = Carbon::createFromFormat("Y-m-d", $offer->date_available);
-            $endDate = $date->addDays(14);
-            if ($endDate->isBefore($now)) {
+            $endDate = $date->addDays(config('atex.constants.days_before_inactive'));
+            if ($endDate->isBefore($now) && $offer->type != config('atex.constants.exchange_type.conserved_tissue')) {
                 $offer->status = config('atex.constants.exchange_attempt_status.inactive');
                 $offer->save();
             }

@@ -58,6 +58,18 @@ class ExchangeAttempt extends Model
 		return $amountSpec ? $amountSpec->value : null;
 	}
 
+	public function getTypeAttribute()
+	{
+		$typeSpec = $this->specifications->firstWhere('key', 'type');
+		return $typeSpec ? $typeSpec->value : null;
+	}
+
+	public function getDateAvailableAttribute()
+	{
+		$dateAvailableSpec = $this->specifications->firstWhere('key', 'date_available');
+		return $dateAvailableSpec ? $dateAvailableSpec->value : null;
+	}
+
 	public function getOrgansAttribute()
 	{
 		$organSpec = $this->specifications->firstWhere('key', 'organs');
