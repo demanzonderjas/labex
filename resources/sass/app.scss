@@ -122,3 +122,10 @@ body {
 .with-black-scrollbar::-webkit-scrollbar-thumb {
 	background-color: black;
 }
+
+.success {
+	background-color: $correct-color;
+	color: white;
+	padding: $default-half-margin;
+	margin: $default-half-margin 0;
+}
