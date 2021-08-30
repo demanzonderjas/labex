@@ -50,6 +50,10 @@ Route::get('/app', function () {
     return view('index');
 });
 
+Route::get('/signup-first', function () {
+    return view('signup-first');
+});
+
 function fakeAdminLogin()
 {
     $user = User::where('is_admin', true)->first();
