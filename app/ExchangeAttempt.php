@@ -78,6 +78,12 @@ class ExchangeAttempt extends Model
 		return $organSpec ? $organSpec->value : null;
 	}
 
+	public function getSuitableForAdoptionAttribute()
+	{
+		$suitable_for_adoption = $this->specifications->firstWhere('key', 'suitable_for_adoption');
+		return $suitable_for_adoption ? $suitable_for_adoption->value : null;
+	}
+
 	public function scopeOffers($query)
 	{
 		return $query->where('attempt_type', '=', config('atex.constants.offer'));

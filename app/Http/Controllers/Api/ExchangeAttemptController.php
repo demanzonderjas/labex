@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeAttemptStoreRequest;
+use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Specification;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ExchangeAttemptController extends Controller
 {
@@ -16,6 +19,11 @@ class ExchangeAttemptController extends Controller
 		try {
 			$validated = $request->validated();
 			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);
+
+			if ($request->attempt_type == config('atex.constants.offer')) {
+				$admin = User::where('email', env('ADMIN_MAIL'))->first();
+				Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
+			}
 
 			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
 		} catch (Exception $e) {

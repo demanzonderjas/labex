@@ -1,6 +1,7 @@
 <?php
 
 return [
+	"admin_mail" => "info@atex.uu.nl",
 	"constants" => [
 		"exchange_attempt_status" => [
 			"active" => "active",
