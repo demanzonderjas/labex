@@ -226,6 +226,8 @@
 	"excel_import_intro": "To make sure the fields are imported correctly, please map your own Excel headers to the correct ATEX version of the field",
 	"partial_match": "Partial Match",
 	"match_button": " ",
+	"copy_button": " ",
+	"delete_button": " ",
 	"suitable_for_adoption": "Suitable for adoption?",
 	"suitable_for_adoption_description": "Suitable for adoption? This is when it is and when it is not.. Suitable for adoption? This is when it is and when it is not.. Suitable for adoption? This is when it is and when it is not..",
 	"location": "Location",

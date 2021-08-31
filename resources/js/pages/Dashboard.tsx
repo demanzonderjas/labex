@@ -128,7 +128,7 @@ export const DashboardPage = observer(() => {
 									</div>
 								)}
 							</SubmenuView>
-							<DashboardStats />
+							{/* <DashboardStats /> */}
 						</div>
 					</div>
 				</div>
