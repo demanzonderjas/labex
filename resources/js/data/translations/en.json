@@ -229,7 +229,7 @@
 	"copy_button": " ",
 	"delete_button": " ",
 	"suitable_for_adoption": "Suitable for adoption?",
-	"suitable_for_adoption_description": "Suitable for adoption? This is when it is and when it is not.. Suitable for adoption? This is when it is and when it is not.. Suitable for adoption? This is when it is and when it is not..",
+	"suitable_for_adoption_description": "<p>Animals that are eligible for adoption must meet the following requirements:</p><ul><li>Good overall health and well socialized.</li><li>No signs of early aging.<li>No signs of irreversible well-being problems such as anxiety, stress or depression.</li></ul><p>The following requirements also apply to small rodents:</p><ul><li>Healthy wild-type strains with a minimum of 5 weeks / a maximum of 9 months of age (1 year old with direct placement).</li><li>In a harmonious group of at least 2 animals of the same sex. (male mice are not suitable for adoption due to aggression).</li></ul><p>If you have any doubts or questions, please contact the IvD. The IvD always assesses whether the animals are suitable for adoption if reuse is not possible.</p>",
 	"location": "Location",
 	"signup_first": "Sign up first"
 }

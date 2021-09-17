@@ -23,14 +23,23 @@
 			background-color: #f0f0f0;
 			padding: 20px;
 
-			p {
+			.description {
 				position: relative;
-				font-size: 14px;
+				font-size: 12px;
 				word-break: break-word;
 				overflow-y: auto;
 				max-height: 130px;
 				font-weight: normal;
 				padding-bottom: 10px;
+
+				ul {
+					margin: $default-half-margin 0 $default-half-margin $default-half-margin;
+					list-style: disc;
+
+					li {
+						line-height: 20px;
+					}
+				}
 			}
 
 			.close {

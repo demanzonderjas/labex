@@ -29,7 +29,10 @@ export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 							<span className="close" onClick={() => setShowDescription(false)}>
 								x
 							</span>
-							<p className="description">{t(field.description)}</p>
+							<div
+								className="description"
+								dangerouslySetInnerHTML={{ __html: t(field.description) }}
+							/>
 						</div>
 					)}
 				</label>

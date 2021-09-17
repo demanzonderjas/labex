@@ -7,7 +7,7 @@ export const adoptionField: TFormField = {
 	id: TSpecificationName.SuitableForAdoption,
 	Component: BooleanField,
 	required: true,
-	// description: "suitable_for_adoption_description",
+	description: "suitable_for_adoption_description",
 	props: {},
 	default: "",
 	value: ""
