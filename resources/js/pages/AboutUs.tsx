@@ -70,8 +70,8 @@ export const AboutUsPage: React.FC = () => {
 					If you want to use a supply of live animals and want to (re) use these animals
 					to collect tissues or in an experiment, take into account the “Policy surplus
 					laboratory animals, reuse and relocation” (
-					<a href="https://www.ivd-utrecht.nl/nl/infocentrum/document/beleid-surplus-proefdieren-hergegevens-en-herplaatsing-proefdieren">
-						https://www.ivd-utrecht.nl/nl/infocentrum/document/beleid-surplus-proefdieren-hergegevens-en-herplaatsing-proefdieren
+					<a href="https://ivd-utrecht.nl/en/infocentre/document/policy-on-surplus-laboratory-animals-reuse-and-re-homing">
+						https://ivd-utrecht.nl/en/infocentre/document/policy-on-surplus-laboratory-animals-reuse-and-re-homing
 					</a>
 					).
 				</p>
