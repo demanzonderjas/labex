@@ -18,7 +18,7 @@ class VerifyAuthorized
     public function handle($request, Closure $next)
     {
         if (!$request->user()) {
-            return redirect("/", 302);
+            return redirect("/?target_url=" .  urlencode($request->fullUrl()), 302);
         }
 
         $matchingUser = DB::table('signups')
