@@ -81,7 +81,7 @@ class ExchangeAttempt extends Model
 	public function getSuitableForAdoptionAttribute()
 	{
 		$suitable_for_adoption = $this->specifications->firstWhere('key', 'suitable_for_adoption');
-		return $suitable_for_adoption ? $suitable_for_adoption->value : null;
+		return $suitable_for_adoption ? $suitable_for_adoption->value === "yes" : false;
 	}
 
 	public function scopeOffers($query)
