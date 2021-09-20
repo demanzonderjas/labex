@@ -52,10 +52,8 @@ class RemoveOutdated extends Command
                 $offer->save();
 
                 if ($offer->suitable_for_adoption) {
-                    $offer->status = config('atex.constants.exchange_attempt_status.adoption');
-                    $offer->save();
-                    // $admin = User::where('email', env('ADMIN_MAIL'))->first();
-                    // Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
+                    $admin = User::where('email', env('ADMIN_MAIL'))->first();
+                    Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
                 }
             }
         }
