@@ -21,6 +21,7 @@ export type TForm = {
 export enum InputType {
 	Number = "number",
 	Text = "text",
+	Password = "password",
 	Date = "date",
 	Email = "email",
 	Hidden = "hidden"

@@ -238,5 +238,8 @@
 	"copy_password_before_saving": "Make sure you copy/save the password before saving the user and 'losing' the password",
 	"save_new_user": "Save new user",
 	"organisation": "Organisation",
-	"generate_password": "Generate password"
+	"generate_password": "Generate password",
+	"external_login": "External login",
+	"password": "Password",
+	"log_in": "Log in"
 }

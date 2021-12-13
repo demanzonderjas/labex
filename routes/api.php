@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
 
     Route::post('signups/store', 'SignupController@store')->withoutMiddleware(VerifyApiUserToken::class);
+    Route::post('external-login', '\App\Http\Controllers\Auth\LoginController@handleExternalLogin')->withoutMiddleware(VerifyApiUserToken::class);
 
     Route::group(['middleware' => VerifyAuthorized::class], function () {
         Route::post('exchange-attempt/store', 'ExchangeAttemptController@store');

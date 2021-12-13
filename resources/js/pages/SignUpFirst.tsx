@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/base/Button";
+import { LocalImage } from "../components/base/Image";
 import { SignUpState } from "../components/home/SignupState";
 import { Footer } from "../components/layout/Footer";
 import { HomePageHeader } from "../components/layout/Header";
@@ -17,6 +18,9 @@ export const SignUpFirstPage: React.FC = () => {
 			<div className="page-wrapper">
 				<PageIntro header="signup_first"></PageIntro>
 				<div className="layout-wrapper content ">
+					<div style={{ margin: "40px 0" }}>
+						<LocalImage path="logo/atex.png" />
+					</div>
 					<p className="margin-20" style={{ fontSize: "20px", lineHeight: "24px" }}>
 						You do not have the right access level. Please sign up first to show that
 						you are article 9 or article 13f2a qualified. Otherwise, contact the IvD

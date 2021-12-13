@@ -17,3 +17,12 @@ export async function createUser(user) {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function loginUser(loginAttempt) {
+	try {
+		const response = await API.post("external-login", loginAttempt);
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

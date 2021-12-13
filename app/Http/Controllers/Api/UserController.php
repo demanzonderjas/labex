@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Signup;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +31,13 @@ class UserController
         $user->password = Hash::make($request->password);
         $user->organisation = $request->organisation;
         $user->save();
+
+        $signup = new Signup();
+        $signup->name = $request->name;
+        $signup->email = $request->email;
+        $signup->awaiting_approval = false;
+        $signup->approved = true;
+        $signup->save();
 
         return response()->json(["success" => true, "user" => $request->user()]);
     }

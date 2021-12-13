@@ -8,6 +8,7 @@ use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
@@ -45,6 +46,23 @@ class LoginController extends Controller
             return $this->redirectToCorrectUrl($request);
         } catch (Exception $e) {
             abort(403, $e->getMessage());
+        }
+    }
+
+    public function handleExternalLogin(Request $request)
+    {
+        try {
+            $user = User::where('email', $request->email)->firstOrFail();
+        } catch (Exception $e) {
+            return response()->json(["success" => false, "message" => "Credentials given are not correct"]);
+        }
+        $isCorrect = Hash::check($request->password, $user->password);
+
+        if ($isCorrect) {
+            Auth::login($user);
+            return response()->json(["success" => true]);
+        } else {
+            return response()->json(["success" => false, "message" => "Credentials given are not correct"]);
         }
     }
 

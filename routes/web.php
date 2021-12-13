@@ -27,20 +27,6 @@ Route::get('/about-us', function () {
 Route::get('/login/surfconext', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/surfconext/callback', 'Auth\LoginController@handleProviderCallback');
 
-// Route::get('/test-request-login', function () {
-//     Auth::logout();
-//     $user = User::where('id', '2')->first();
-//     Auth::login($user);
-//     return redirect()->to('/app/dashboard');
-// });
-
-// Route::get('/test-offer-login', function () {
-//     Auth::logout();
-//     $user = User::where('id', '1')->first();
-//     Auth::login($user);
-//     return redirect()->to('/app/dashboard');
-// });
-
 Route::get('/logout', function () {
     Auth::logout();
     return redirect()->to('/');
@@ -52,6 +38,10 @@ Route::get('/app', function () {
 
 Route::get('/signup-first', function () {
     return view('signup-first');
+});
+
+Route::get('external-login', function () {
+    return view('external-login');
 });
 
 function fakeAdminLogin()
