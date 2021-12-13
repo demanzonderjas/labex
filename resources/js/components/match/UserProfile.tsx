@@ -1,4 +1,4 @@
-import { TUser, TUserProfile } from "../../typings/user";
+import { TUserProfile } from "../../typings/user";
 import React from "react";
 import { LocalImage } from "../base/Image";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
