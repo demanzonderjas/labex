@@ -43,7 +43,10 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 		setFilters(FilterOffersForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
-			const response: { exchange_attempt: TExchangeAttempt } = await getExchangeAttempt(id);
+			const response: {
+				exchange_attempt: TExchangeAttempt;
+				success: boolean;
+			} = await getExchangeAttempt(id);
 			const filledFields = fillFieldsWithSpecifications(
 				SubmitOfferForm.fields,
 				response.exchange_attempt.specifications

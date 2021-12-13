@@ -6,9 +6,9 @@ import { TSpecStatus } from "../../../typings/specifications";
 import { TSpecificationName } from "../../../typings/exchanges";
 import { TTypeSpec } from "../../../typings/specifications";
 
-export const dateAvailableField: TFormField = {
-	label: "date_available",
-	id: TSpecificationName.DateAvailable,
+export const dateAvailableStartField: TFormField = {
+	label: "date_available_start",
+	id: TSpecificationName.DateAvailableStart,
 	Component: InputField,
 	required: true,
 	props: {
@@ -26,14 +26,20 @@ export const dateAvailableField: TFormField = {
 	synonyms: ["available", "availability", "date"]
 };
 
+export const dateAvailableEndField: TFormField = {
+	...dateAvailableStartField,
+	label: "date_available_end",
+	id: TSpecificationName.DateAvailableEnd
+};
+
 export const dateRequestedField: TFormField = {
-	...dateAvailableField,
+	...dateAvailableStartField,
 	required: false,
 	label: "date_requested",
 	id: TSpecificationName.DateRequested,
 	isMatch: (givenValue, targetValue, filters, fields): TSpecStatus => {
 		const type = getFieldById(TSpecificationName.ExchangeType, fields);
-		const dateAvailable = getFieldById(TSpecificationName.DateAvailable, fields);
+		const dateAvailable = getFieldById(TSpecificationName.DateAvailableEnd, fields);
 		return isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) ||
 			(type && type.value == TTypeSpec.ConservedTissue)
 			? TSpecStatus.Match

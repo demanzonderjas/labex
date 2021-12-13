@@ -49,7 +49,7 @@ class ExchangeAttemptController extends Controller
 
 	public function getById($id)
 	{
-		$attempt = ExchangeAttempt::with('user')->where('id', $id)->firstOrFail();
+		$attempt = ExchangeAttempt::with('user')->where(['id' => $id])->firstOrFail();
 		return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
 	}
 

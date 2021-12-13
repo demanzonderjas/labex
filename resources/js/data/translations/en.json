@@ -242,5 +242,7 @@
 	"external_login": "External login",
 	"password": "Password",
 	"log_in": "Log in",
-	"contact_user": "Contact user"
+	"contact_user": "Contact user",
+	"date_available_start": "Date available (start)",
+	"date_available_end": "Date available (end)"
 }

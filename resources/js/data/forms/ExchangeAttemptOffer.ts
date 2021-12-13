@@ -8,7 +8,6 @@ import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
 import { organsField } from "./fields/organs";
 import { storageField } from "./fields/storage";
-import { dateAvailableField } from "./fields/dateAvailable";
 import { killMethodField } from "./fields/killMethod";
 import { amountField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
@@ -21,6 +20,7 @@ import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { attemptTypeOfferField } from "./fields/attemptType";
 import { adoptionField } from "./fields/adoption";
 import { locationField } from "./fields/location";
+import { dateAvailableEndField, dateAvailableStartField } from "./fields/dateAvailable";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -35,7 +35,8 @@ export const SubmitOfferForm: TForm = {
 		spfField,
 		organsField,
 		storageField,
-		dateAvailableField,
+		dateAvailableStartField,
+		dateAvailableEndField,
 		dateConservedField,
 		naiveField,
 		killMethodField,

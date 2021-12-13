@@ -70,7 +70,7 @@ export const offerMatchCells: TTableCell[] = [
 		Component: TextCell
 	},
 	{
-		id: TSpecificationName.DateAvailable,
+		id: TSpecificationName.DateAvailableEnd,
 		value: "",
 		Component: DateAvailableCell
 	},

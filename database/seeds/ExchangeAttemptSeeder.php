@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class ExchangeAttemptSeeder extends Seeder
@@ -11,6 +13,6 @@ class ExchangeAttemptSeeder extends Seeder
      */
     public function run()
     {
-        App\ExchangeAttempt::factory()->count(50)->create();
+        \App\ExchangeAttempt::factory()->count(50)->create();
     }
 }

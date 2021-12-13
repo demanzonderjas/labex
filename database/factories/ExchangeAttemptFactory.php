@@ -62,6 +62,10 @@ class ExchangeAttemptFactory extends Factory
 
     public function createRandomDataSet()
     {
+
+        $dateAvailableStart = $this->faker->dateTimeThisMonth()->format('Y-m-d');
+        $dateAvailableEnd = $this->faker->dateTimeBetween($dateAvailableStart, '+3 month')->format('Y-m-d');
+
         $this->randomDataSet = [
             "date_requested" => $this->faker->dateTimeBetween('now', '+30 days')->format('Y-m-d'),
             "age_type" => $this->selectRandom(config("validation.age_type")),
@@ -75,7 +79,8 @@ class ExchangeAttemptFactory extends Factory
             "sex" => $this->selectRandom(config("validation.sex")),
             "storage" => $this->selectRandom(config("validation.storage")),
             "age" => $this->faker->dateTimeThisYear()->format('Y-m-d'),
-            "date_available" => $this->faker->dateTimeThisMonth()->format('Y-m-d'),
+            "date_available_start" => $dateAvailableStart,
+            "date_available" => $dateAvailableEnd,
             "origin" => $this->selectRandom(config("validation.origin")),
             "naive" => $this->selectRandom(config("validation.yes_no")),
             "protocol_number" => rand(10000, 99999),

@@ -13,7 +13,7 @@ export const offerColumns: string[] = [
 	TSpecificationName.Sex,
 	"age_offer",
 	TSpecificationName.Amount,
-	TSpecificationName.DateAvailable,
+	TSpecificationName.DateAvailableEnd,
 	TTableCellName.IsMatch,
 	"copy_header"
 ];
@@ -46,7 +46,7 @@ export const offerCells: TTableCell[] = [
 		Component: TextCell
 	},
 	{
-		id: TSpecificationName.DateAvailable,
+		id: TSpecificationName.DateAvailableEnd,
 		value: "",
 		Component: DateAvailableCell
 	},
