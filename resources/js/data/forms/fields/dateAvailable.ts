@@ -1,6 +1,8 @@
 import { InputField } from "../../../components/form/InputField";
 import { TFormField, InputType } from "../../../typings/forms";
 import {
+	isDateAvailableEndValid,
+	isDateAvailableStartValid,
 	isDateInFuture,
 	isDateInRangeOfTwoWeeks,
 	isDateRequestedAfterStartDate
@@ -21,7 +23,7 @@ export const dateAvailableStartField: TFormField = {
 	default: "",
 	matchVia: TSpecificationName.DateRequested,
 	value: "",
-	validate: isDateInFuture,
+	validate: isDateAvailableStartValid,
 	isMatch: (givenValue, targetValue, filters, fields): TSpecStatus => {
 		const type = getFieldById(TSpecificationName.ExchangeType, fields);
 		const dateRequested = getFieldById(TSpecificationName.DateRequested, fields);
@@ -45,7 +47,8 @@ export const dateAvailableStartField: TFormField = {
 export const dateAvailableEndField: TFormField = {
 	...dateAvailableStartField,
 	label: "date_available_end",
-	id: TSpecificationName.DateAvailableEnd
+	id: TSpecificationName.DateAvailableEnd,
+	validate: isDateAvailableEndValid
 };
 
 export const dateRequestedField: TFormField = {

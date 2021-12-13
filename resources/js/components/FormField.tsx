@@ -4,6 +4,7 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import cx from "classnames";
 import { useState } from "react";
 import { InfoIcon } from "./icons/InfoIcon";
+import { useFormStore } from "../hooks/useFormStore";
 
 type Props = {
 	field: TFormField;
@@ -12,7 +13,10 @@ type Props = {
 
 export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 	const { t } = useTranslationStore();
-	const isCorrect = field.validate ? field.validate(field.value) && field.value : !!field.value;
+	const { fields } = useFormStore();
+	const isCorrect = field.validate
+		? field.validate(field.value, fields) && field.value
+		: !!field.value;
 	const [showDescription, setShowDescription] = useState(false);
 
 	return (

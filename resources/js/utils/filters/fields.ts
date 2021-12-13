@@ -10,7 +10,7 @@ export function fieldMeetsDependencies(field: TFormField, index: number, fields:
 		if (!parentField) {
 			return false;
 		}
-		return dependency.validate(parentField.value);
+		return dependency.validate(parentField.value, fields);
 	});
 }
 
