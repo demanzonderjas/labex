@@ -45,7 +45,12 @@ export const UsersPage = observer(() => {
 					{usersWithCells.map((cells, idx) => (
 						<tr key={users[idx].id}>
 							{cells.map((cell, cellIdx) => (
-								<cell.Component key={cellIdx} value={cell.value} />
+								<cell.Component
+									key={cellIdx}
+									value={cell.value}
+									rowIndex={idx}
+									user={users[idx]}
+								/>
 							))}
 						</tr>
 					))}

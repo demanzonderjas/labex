@@ -62,5 +62,6 @@ Route::group(['namespace' => 'Api'], function () {
 
         Route::get('users', 'UserController@getAll');
         Route::post('user', 'UserController@store');
+        Route::delete('user/{user_id}', 'UserController@delete');
     });
 });

@@ -1,13 +1,13 @@
 import React from "react";
 import { useTranslationStore } from "../../../../hooks/useTranslationStore";
-import { deleteSignup } from "../../../../queries/admin/updateSignups";
+import { deleteUser } from "../../../../queries/admin/users";
 import { ButtonCell } from "../ButtonCell";
 
-export const DeleteSignupButtonCell = ({ value, rowIndex, signup, ...props }) => {
+export const DeleteUserButtonCell = ({ value, rowIndex, user, ...props }) => {
 	const { t } = useTranslationStore();
 
 	const deleteMe = async () => {
-		await deleteSignup(signup);
+		await deleteUser(user);
 		location.reload();
 	};
 

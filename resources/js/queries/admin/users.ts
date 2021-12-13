@@ -26,3 +26,13 @@ export async function loginUser(loginAttempt) {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function deleteUser(signup) {
+	const { id } = signup;
+	try {
+		const response = await API.delete(`user/${id}`);
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

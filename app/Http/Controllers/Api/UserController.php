@@ -18,7 +18,7 @@ class UserController
 
     public function getAll()
     {
-        $users = User::all();
+        $users = User::where('is_admin', false)->get();
         return response()->json(["success" => true, "users" => $users->toArray()]);
     }
 
@@ -40,5 +40,12 @@ class UserController
         $signup->save();
 
         return response()->json(["success" => true, "user" => $request->user()]);
+    }
+
+    public function delete($user_id)
+    {
+        User::destroy($user_id);
+
+        return response()->json(["success" => true]);
     }
 }
