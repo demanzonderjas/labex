@@ -22,7 +22,7 @@
 			padding: 40px 20px;
 			text-decoration: none;
 			display: flex;
-			height: 140px;
+			height: 80px;
 			align-items: center;
 			justify-content: center;
 			text-align: center;
@@ -31,6 +31,8 @@
 
 			&.active {
 				font-weight: bold;
+				background-color: $primary;
+				color: $black;
 			}
 		}
 	}

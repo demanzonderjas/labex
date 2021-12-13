@@ -58,5 +58,8 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('signups/approve/{signupId}', 'SignupController@approve');
         Route::post('signups/decline/{signupId}', 'SignupController@decline');
         Route::post('signups/delete/{signupId}', 'SignupController@delete');
+
+        Route::get('users', 'UserController@getAll');
+        Route::post('user', 'UserController@store');
     });
 });

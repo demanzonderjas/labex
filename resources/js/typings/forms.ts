@@ -40,7 +40,9 @@ export enum TFormFieldName {
 	Category = "category",
 	ID = "id",
 	Show = "show",
-	Title = "title"
+	Title = "title",
+	Organisation = "organisation",
+	Password = "password"
 }
 
 export interface SelectFieldData extends TFormFieldData {
