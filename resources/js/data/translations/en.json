@@ -241,5 +241,6 @@
 	"generate_password": "Generate password",
 	"external_login": "External login",
 	"password": "Password",
-	"log_in": "Log in"
+	"log_in": "Log in",
+	"contact_user": "Contact user"
 }
