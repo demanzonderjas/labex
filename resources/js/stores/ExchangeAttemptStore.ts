@@ -129,7 +129,6 @@ export class ExchangeAttemptStore {
 			? await getMyLatestExchangeAttempts()
 			: await getExchangeAttempts(attemptType);
 		if (response.success) {
-			console.log(response);
 			this.setAttempts(response.exchange_attempts);
 			this.setMatchType(attemptType);
 		}

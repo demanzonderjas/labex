@@ -35,7 +35,6 @@ export const ExchangeAttemptOverview: React.FC<{
 	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
 
 	useEffect(() => {
-		console.log(type, mineOnly);
 		getExchangeAttempts(type, mineOnly);
 	}, []);
 

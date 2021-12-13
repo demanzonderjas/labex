@@ -7,7 +7,6 @@ type Props = {
 
 export const BooleanCell: React.FC<Props> = ({ value }) => {
 	const isTrue = value === "yes" || value === true || value === 1;
-	console.log("value", value);
 	return (
 		<td className="BooleanCell">
 			<BooleanIcon isTrue={!!isTrue} />

@@ -28,7 +28,6 @@ export function convertMatchesToCells(
 	cells: TTableCell[],
 	magicField?: TFormField
 ): TTableCell[][] {
-	console.log(matches);
 	return matches.map(match => {
 		return cells.map(cell => {
 			let spec = match.specifications.find(s => s.key === cell.id);
