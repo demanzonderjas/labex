@@ -20,7 +20,7 @@ import {
 	requestMatchCells,
 	requestMatchColumns
 } from "../data/tables/matches";
-import { TExchangeAttempt, TExchangeAttemptType } from "../typings/exchanges";
+import { TExchangeAttempt, TExchangeAttemptType, TSpecificationName } from "../typings/exchanges";
 
 export class ExchangeAttemptStore {
 	@observable.shallow attempts: TExchangeAttempt[] = [];
@@ -93,13 +93,14 @@ export class ExchangeAttemptStore {
 	}
 
 	@computed get magicField() {
-		return this.filters.find(
+		const field = this.filters.find(
 			f =>
 				f.value &&
 				!f.hidden &&
 				!f.id.match("age") &&
 				this.magicTargetColumns.indexOf(f.id) === -1
 		);
+		return field || this.filters.find(f => f.id === TSpecificationName.Strain);
 	}
 
 	@action.bound upgradeLimit() {
