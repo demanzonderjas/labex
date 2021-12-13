@@ -11,7 +11,7 @@ export function isDateInFuture(date: string) {
 export function isDateInRangeOfTwoWeeks(targetDate: string, startDate: string) {
 	const endDate = dayjs(startDate).add(14, "day");
 	const target = dayjs(targetDate);
-	return target.isAfter(dayjs(startDate)) && target.isBefore(endDate);
+	return target.isBefore(dayjs(startDate)) && target.isBefore(endDate);
 }
 
 export function isDateRequestedAfterStartDate(targetDate: string, startDate: string) {
