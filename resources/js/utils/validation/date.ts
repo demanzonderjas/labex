@@ -11,3 +11,11 @@ export function isDateInRangeOfTwoWeeks(targetDate: string, startDate: string) {
 	const target = dayjs(targetDate);
 	return target.isAfter(dayjs(startDate)) && target.isBefore(endDate);
 }
+
+export function isDateRequestedAfterStartDate(targetDate: string, startDate: string) {
+	if (!startDate) {
+		return true;
+	}
+	const target = dayjs(targetDate);
+	return target.isAfter(dayjs(startDate));
+}

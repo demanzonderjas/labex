@@ -31,6 +31,7 @@ table {
 
 		&.DateCell {
 			min-width: 90px;
+			padding-right: 20px;
 			> .DisplayedDate > span {
 				font-size: 12px;
 				padding: 1px;

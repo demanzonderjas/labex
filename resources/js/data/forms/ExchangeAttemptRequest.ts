@@ -51,15 +51,26 @@ export const FilterOffersForm: TForm = {
 	infoModal: flowchartModal
 };
 
-const specFields = [...FilterOffersForm.fields].filter(f => f.id != "date_requested");
+const specFields = [...FilterOffersForm.fields];
 const ageFieldIdx = specFields.findIndex(f => f.id == "age");
 specFields.splice(ageFieldIdx, 1, ageRequestRangeField);
+const filterFields = [...FilterOffersForm.fields].filter(f => f.id != "date_requested");
+filterFields.splice(ageFieldIdx, 1, ageRequestRangeField);
+
+export const RequestSpecificationsForm: TForm = {
+	...FilterOffersForm,
+	header: "requests",
+	intro: "requests_intro",
+	fields: specFields,
+	submitLabel: "submit_my_offer",
+	hideSubmit: false
+};
 
 export const FilterRequestsForm: TForm = {
 	...FilterOffersForm,
 	header: "requests",
 	intro: "requests_intro",
-	fields: specFields,
+	fields: filterFields,
 	submitLabel: "submit_my_offer",
 	hideSubmit: false
 };

@@ -15,7 +15,7 @@ export const SampleValue: React.FC<Props> = ({ value, label, fields }) => {
 	const { t } = useTranslationStore();
 	const isDate = label && label.indexOf("date") > -1;
 	const isOrgan = label && label.indexOf("organ") > -1;
-	const isDateAvailable = label == "date_available";
+	const isDateAvailable = label == "date_available" || label == "date_available_start";
 	return (
 		<>
 			{(label == "age_offer" || label == "age_range") && (

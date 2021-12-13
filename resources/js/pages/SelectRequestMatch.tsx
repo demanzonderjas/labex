@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
 import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { useQuery } from "../hooks/useQuery";
-import { FilterRequestsForm } from "../data/forms/ExchangeAttemptRequest";
+import {
+	FilterRequestsForm,
+	RequestSpecificationsForm
+} from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
@@ -56,7 +59,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				success: boolean;
 			} = await getExchangeAttempt(id);
 			const filledFields = fillFieldsWithSpecifications(
-				FilterRequestsForm.fields,
+				RequestSpecificationsForm.fields,
 				response.exchange_attempt.specifications
 			);
 			setRequest(filledFields);

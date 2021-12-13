@@ -30,7 +30,7 @@ export const Specifications: React.FC<Props> = ({
 }) => {
 	const { t } = useTranslationStore();
 	const matches = fields.map(field => {
-		const filter = filters.find(f => f.id == field.id);
+		const filter = filters.find(f => f.id == field.id || f.id == field.matchVia);
 		if (!filter || !filter.value) {
 			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
@@ -42,7 +42,7 @@ export const Specifications: React.FC<Props> = ({
 		return { ...field, match };
 	});
 
-	console.log(isAlreadyMatched);
+	console.log(matches);
 
 	return (
 		<div className="Specifications">
