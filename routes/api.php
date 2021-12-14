@@ -43,6 +43,10 @@ Route::group(['namespace' => 'Api'], function () {
         Route::get('faq', 'FaqController@getByCategory');
 
         Route::get('active-user', 'UserController@getActiveUser');
+
+        Route::post('alert', 'AlertController@store');
+        Route::delete('alert/{alert_id}', 'AlertController@delete');
+        Route::get('alerts/mine', 'AlertController@getMine');
     });
 
     Route::group(['middleware' => VerifyAdmin::class], function () {

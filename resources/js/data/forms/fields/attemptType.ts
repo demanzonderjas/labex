@@ -1,4 +1,5 @@
 import { InputField } from "../../../components/form/InputField";
+import { SelectField } from "../../../components/form/SelectField";
 import { TExchangeAttemptType, TSpecificationName } from "../../../typings/exchanges";
 import { TFormField, InputType } from "../../../typings/forms";
 
@@ -24,4 +25,17 @@ export const attemptTypeOfferField = {
 export const attemptTypeRequestField = {
 	...attemptTypeField,
 	value: TExchangeAttemptType.Request
+};
+
+export const attemptTypeAlertField: TFormField = {
+	label: "attempt_type",
+	id: TSpecificationName.AttemptType,
+	Component: SelectField,
+	props: {
+		options: [TExchangeAttemptType.Offer, TExchangeAttemptType.Request],
+		startsEmpty: true,
+		allowOther: false
+	},
+	default: "",
+	value: ""
 };

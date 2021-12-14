@@ -22,6 +22,8 @@ import { SubmitRequestPage } from "./pages/SubmitRequest";
 import { FAQPage } from "./pages/FAQ";
 import { UserStore } from "./stores/UserStore";
 import UserStoreProvider from "./contexts/UserContext";
+import { AlertsPage } from "./pages/Alerts";
+import { AddNewAlertPage } from "./pages/AddNewAlert";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -64,6 +66,12 @@ const App: React.FC = () => {
 									</Route>
 									<Route path="/app/faq" exact={true}>
 										<FAQPage />
+									</Route>
+									<Route path="/app/alerts" exact={true}>
+										<AlertsPage />
+									</Route>
+									<Route path="/app/alerts/add-new" exact={true}>
+										<AddNewAlertPage />
 									</Route>
 								</Switch>
 							</div>

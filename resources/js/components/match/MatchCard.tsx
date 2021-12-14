@@ -25,7 +25,7 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 	return (
 		<div className="MatchCard">
 			<div className="header">
-				<UserProfile user={user} mine={mine} />
+				<UserProfile user={user} mine={mine} hideContact={true} />
 				{matchType != MatchType.Admin && (
 					<div className={cx("match-label", { mine, [status]: true, [matchType]: mine })}>
 						{mine && <span>{t(`${matchType}_by_you`)}</span>}

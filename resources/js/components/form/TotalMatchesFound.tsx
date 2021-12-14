@@ -4,7 +4,7 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { observer } from "mobx-react-lite";
 
 export const TotalMatchesFound: React.FC = observer(() => {
-	const { totalMatches } = useExchangeAttemptStore();
+	const { totalMatches } = useExchangeAttemptStore() || {};
 	const { t } = useTranslationStore();
 
 	if (totalMatches == 0) {

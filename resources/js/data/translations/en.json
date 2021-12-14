@@ -244,5 +244,11 @@
 	"log_in": "Log in",
 	"contact_user": "Contact user",
 	"date_available_start": "Date available (start)",
-	"date_available_end": "Date available (end)"
+	"date_available_end": "Date available (end)",
+	"alerts": "Alerts",
+	"alerts_description": "<p>Here you can configure your personal alerts based on your needs, so you only receive email updates whenever a relevant offer or request is posted on the ATEX platform.</p>",
+	"add_new_alert": "Add new alert",
+	"offer": "Offer",
+	"request": "Request",
+	"attempt_type": "Offer/request"
 }
