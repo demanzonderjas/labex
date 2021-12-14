@@ -18,14 +18,22 @@ table {
 	th {
 		padding: 15px 30px 15px 0;
 	}
-
-	td {
+	o td {
 		padding: 10px 30px 10px 0;
 
 		&.BooleanCell {
 			img {
 				@extend .inline;
 				width: 20px;
+			}
+		}
+
+		&.SpecificationCell {
+			span {
+				display: inline-block;
+				background-color: #ccc;
+				padding: 2px 5px;
+				margin-right: 2px;
 			}
 		}
 
