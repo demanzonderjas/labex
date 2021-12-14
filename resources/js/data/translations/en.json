@@ -248,6 +248,7 @@
 	"alerts": "Alerts",
 	"alerts_description": "<p>Here you can configure your personal alerts based on your needs, so you only receive email updates whenever a relevant offer or request is posted on the ATEX platform.</p>",
 	"add_new_alert": "Add new alert",
+	"add_new_alert_description": "<p>Here you can easily and freely select which specifications are a 'must' for you to receive an email about. If you want to see all the requests and offers coming in, you can leave all the fields empty and click on <strong>'Add new alert'</strong>.</p>",
 	"offer": "Offer",
 	"request": "Request",
 	"attempt_type": "Offer/request"
