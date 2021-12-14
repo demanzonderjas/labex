@@ -45,9 +45,8 @@ class ExchangeAttemptController extends Controller
 
 	public function deleteById($id)
 	{
-		$attempt = ExchangeAttempt::findOrFail($id);
-		$attempt->delete();
-		return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
+		ExchangeAttempt::destroy($id);
+		return response()->json(["success" => true]);
 	}
 
 	public function getById($id)
@@ -84,9 +83,9 @@ class ExchangeAttemptController extends Controller
 		return $attempt;
 	}
 
-	public function match(Request $request, $id)
+	public function match(Request $request, $attempt_id)
 	{
-		$attempt = ExchangeAttempt::findOrFail($id);
+		$attempt = ExchangeAttempt::findOrFail($attempt_id);
 		$matchingAttempt = $this->saveInDb($request, $request->exchange_attempt, $request->exchange_attempt["attempt_type"]);
 		$match = MatchController::create($attempt->id, $matchingAttempt->id);
 

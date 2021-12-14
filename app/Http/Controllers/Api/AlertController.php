@@ -24,9 +24,15 @@ class AlertController extends Controller
 		return response()->json(["success" => true, "alerts" => $alerts->toArray()]);
 	}
 
-	public function delete($alert_id)
+	public function delete(Request $request, $alert_id)
 	{
-		Alert::destroy($alert_id);
+		$alert = Alert::findOrFail($alert_id);
+
+		if ($request->user()->id !== $alert->user->id) {
+			return response()->json(["success" => false, "message" => "You have no connection to this alert"]);
+		}
+
+		$alert->delete();
 
 		return response()->json(["success" => true]);
 	}
