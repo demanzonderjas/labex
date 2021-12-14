@@ -119,10 +119,13 @@ class ExchangeAttemptController extends Controller
 			return $isMatch;
 		});
 
-		dd($matchingAlerts);
+		$usersMailed = [];
 
 		foreach ($matchingAlerts as $alert) {
-			Mail::to($alert->user)->queue(new AlertMatchEmail($attempt));
+			if (!in_array($alert->user->id, $usersMailed)) {
+				Mail::to($alert->user)->queue(new AlertMatchEmail($attempt));
+			}
+			array_push($usersMailed, $alert->user->id);
 		}
 	}
 }
