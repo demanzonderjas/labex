@@ -32,9 +32,8 @@ class UserController
         $user->organisation = $request->organisation;
         $user->save();
 
-        $signup = new Signup();
+        $signup = Signup::firstOrNew(['email' => $request->email]);
         $signup->name = $request->name;
-        $signup->email = $request->email;
         $signup->awaiting_approval = false;
         $signup->approved = true;
         $signup->save();
