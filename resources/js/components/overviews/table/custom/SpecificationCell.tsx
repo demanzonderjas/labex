@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslationStore } from "../../../../hooks/useTranslationStore";
 import { TAlert } from "../../../../typings/alerts";
 import { TSpecification } from "../../../../typings/overviews";
-import { SampleValue } from "../../../match/SampleValue";
 
 type Props = {
 	value: TSpecification[];

@@ -12,4 +12,18 @@ class Alert extends Model
     protected $casts = [
         "specifications" => 'json'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getAttemptTypeAttribute()
+    {
+        foreach ($this->specifications as $spec) {
+            if ($spec['key'] === "attempt_type") {
+                return $spec["value"];
+            }
+        }
+    }
 }
