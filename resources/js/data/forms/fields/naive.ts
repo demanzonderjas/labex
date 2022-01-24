@@ -9,6 +9,7 @@ export const naiveField: TFormField = {
 	required: true,
 	props: {},
 	default: "",
+	description: "naive_animal_description",
 	value: "",
 	dependencies: [{ id: "type", validate: value => value == "animal" }],
 	synonyms: ["naive_animal"]

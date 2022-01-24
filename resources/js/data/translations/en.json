@@ -41,6 +41,7 @@
 	"kill_method": "Kill method",
 	"microbiome": "Microbiome",
 	"naive": "Naive animal",
+	"naive_animal_description": "<p>Select Yes if animals haven’t been used in another experiment before.</p><p class='margin-10'>Select No if animals have been used before in another experiment.</p>",
 	"organs": "Organs",
 	"origin": "Origin",
 	"unknown": "Unknown",
