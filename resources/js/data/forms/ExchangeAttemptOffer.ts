@@ -53,6 +53,14 @@ export const SubmitOfferForm: TForm = {
 	allowCancel: true
 };
 
+export const EditOfferForm: TForm = {
+	...SubmitOfferForm,
+	handler: null,
+	header: "edit_offer",
+	intro: "edit_offer_intro",
+	infoModal: null
+};
+
 export const ConfirmOfferMatchForm: TForm = {
 	...SubmitOfferForm,
 	header: null,

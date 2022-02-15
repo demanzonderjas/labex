@@ -149,6 +149,11 @@ export class ExchangeAttemptStore {
 		location.href = "/app/dashboard";
 	}
 
+	@action.bound viewAttempt(data) {
+		console.log("new data", data);
+		// location.href = "/app/dashboard";
+	}
+
 	@action.bound deleteAttempt(id: number) {
 		this.attempts = this.attempts.filter(r => r.id != id);
 	}

@@ -8,3 +8,12 @@ export async function sendExchangeAttempt(data: any) {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function updateExchangeAttempt(id: string, data: any) {
+	try {
+		const response = await API.post(`exchange-attempt/${id}/update`, data);
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

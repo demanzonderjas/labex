@@ -6,6 +6,7 @@ import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
 import { DeleteButtonCell } from "../../components/overviews/table/custom/DeleteButtonCell";
+import { EditButtonCell } from "../../components/overviews/table/custom/EditButtonCell";
 
 export const offerColumns: string[] = [
 	TSpecificationName.ExchangeType,
@@ -54,6 +55,11 @@ export const offerCells: TTableCell[] = [
 		id: TTableCellName.IsMatch,
 		value: "",
 		Component: BooleanCell
+	},
+	{
+		id: TTableCellName.EditButton,
+		value: "",
+		Component: EditButtonCell
 	},
 	{
 		id: TTableCellName.CopyButton,

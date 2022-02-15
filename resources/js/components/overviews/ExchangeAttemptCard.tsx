@@ -25,7 +25,7 @@ import { Percentage } from "../base/Percentage";
 import { SampleValue } from "../match/SampleValue";
 import cx from "classnames";
 import { goToSelectMatchLink } from "../../utils/matches/utils";
-import { goToCopyLink } from "../../utils/routing/url";
+import { goToCopyLink, goToEditLink } from "../../utils/routing/url";
 
 export const ExchangeAttemptCard: React.FC<{
 	attempt: TExchangeAttempt;
@@ -94,6 +94,11 @@ export const ExchangeAttemptCard: React.FC<{
 			</div>
 			{!isGenericCard && (
 				<div className="button-spacer">
+					<Button
+						classes={{ small: true, primary: true }}
+						label="edit"
+						handleClick={() => goToEditLink(history, attempt)}
+					/>
 					<Button
 						classes={{ small: true, primary: true }}
 						label="copy"

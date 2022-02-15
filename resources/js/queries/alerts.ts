@@ -7,7 +7,6 @@ export async function createAlert(specifications: { [K in TSpecificationName]: a
 	const specificationsArray: TSpecification[] = Object.keys(specifications).reduce(
 		(base, next) => {
 			if (specifications[next] != null && specifications[next] != "" && next !== "age") {
-				console.log(specifications[next]);
 				base.push({ key: next, value: specifications[next] });
 			}
 			return base;

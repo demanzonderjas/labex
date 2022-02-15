@@ -51,9 +51,7 @@ export function checkIfFieldMatches(
 	filters: TFormField[],
 	fields: TFormField[]
 ): TSpecStatus {
-	console.log("match?", filter.id);
 	if (field.value === "") {
-		console.log(field.id);
 		return TSpecStatus.Match;
 	}
 	const isEqual = filter.value == field.value;

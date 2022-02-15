@@ -20,7 +20,8 @@ export enum TTableCellName {
 	MatchButton = "match_button",
 	IsMatch = "is_match",
 	CopyButton = "copy_button",
-	DeleteButton = "delete_button"
+	DeleteButton = "delete_button",
+	EditButton = "edit_button"
 }
 
 export type TTableCellProps = {

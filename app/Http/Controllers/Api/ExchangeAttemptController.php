@@ -34,6 +34,18 @@ class ExchangeAttemptController extends Controller
 		}
 	}
 
+	public function update(ExchangeAttemptStoreRequest $request, $attempt_id)
+	{
+		try {
+			$validated = $request->validated();
+			$attempt = $this->updateInDb($attempt_id, $validated);
+
+			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
+		} catch (Exception $e) {
+			return response()->json(["success" => false, "error" => $validated]);
+		}
+	}
+
 	public function getMyLatest(Request $request)
 	{
 		$exchange_attempts = ExchangeAttempt::where([
@@ -60,6 +72,23 @@ class ExchangeAttemptController extends Controller
 		$matchType = $request->attempt_type === config('atex.constants.offer') ? "matchViaOffer" : "matchViaRequest";
 		$exchange_attempts = ExchangeAttempt::doesntHave($matchType)->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
 		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts->toArray()]);
+	}
+
+	public function updateInDb($attempt_id, $specifications)
+	{
+		$attempt = ExchangeAttempt::find($attempt_id);
+		foreach ($specifications as $fieldId => $value) {
+			if ($value !== null && $value !== "") {
+				$spec = Specification::firstOrNew([
+					'exchange_attempt_id' => $attempt_id,
+					'key' => $fieldId,
+				]);
+				$spec->value = $value;
+				$specs[] = $spec;
+			}
+		}
+		$attempt->specifications()->saveMany($specs);
+		return $attempt;
 	}
 
 	public function saveInDb(Request $request, $specifications, $attempt_type)

@@ -28,7 +28,6 @@ export const dateAvailableStartField: TFormField = {
 		const type = getFieldById(TSpecificationName.ExchangeType, fields);
 		const dateAvailable = getFieldById(TSpecificationName.DateAvailableEnd, fields);
 		const dateAvailableStart = getFieldById(TSpecificationName.DateAvailableStart, fields);
-		console.log(isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value));
 		return (isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) &&
 			isDateRequestedAfterStartDate(givenValue, dateAvailableStart?.value)) ||
 			(type && type.value == TTypeSpec.ConservedTissue)

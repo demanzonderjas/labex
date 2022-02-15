@@ -9,11 +9,7 @@ export const SubmitRequestPage = () => {
 
 	return (
 		<ExchangeAttemptStoreProvider store={sampleStore}>
-			<FormWrapper
-				form={SubmitRequestForm}
-				handleSuccess={sampleStore.addAttempt}
-				handleUpdate={fields => console.log(fields)}
-			/>
+			<FormWrapper form={SubmitRequestForm} handleSuccess={sampleStore.addAttempt} />
 		</ExchangeAttemptStoreProvider>
 	);
 };

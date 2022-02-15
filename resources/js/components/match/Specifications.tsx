@@ -42,8 +42,6 @@ export const Specifications: React.FC<Props> = ({
 		return { ...field, match };
 	});
 
-	console.log(matches);
-
 	return (
 		<div className="Specifications">
 			{!isAlreadyMatched && (
