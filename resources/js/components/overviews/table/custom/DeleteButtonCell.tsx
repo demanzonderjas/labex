@@ -15,6 +15,10 @@ export const DeleteButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ..
 		confirm();
 	};
 
+	if (attempt.is_match) {
+		return <td></td>;
+	}
+
 	return (
 		<ButtonCell
 			{...props}

@@ -94,11 +94,13 @@ export const ExchangeAttemptCard: React.FC<{
 			</div>
 			{!isGenericCard && (
 				<div className="button-spacer">
-					<Button
-						classes={{ small: true, primary: true }}
-						label="edit"
-						handleClick={() => goToEditLink(history, attempt)}
-					/>
+					{!attempt?.is_match && (
+						<Button
+							classes={{ small: true, primary: true }}
+							label="edit"
+							handleClick={() => goToEditLink(history, attempt)}
+						/>
+					)}
 					<Button
 						classes={{ small: true, primary: true }}
 						label="copy"

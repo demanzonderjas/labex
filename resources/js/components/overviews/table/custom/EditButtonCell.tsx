@@ -7,6 +7,10 @@ import { TTableCellProps } from "../../../../typings/overviews";
 export const EditButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ...props }) => {
 	const history = useHistory();
 
+	if (attempt.is_match) {
+		return <td></td>;
+	}
+
 	return (
 		<ButtonCell
 			{...props}

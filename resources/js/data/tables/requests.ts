@@ -6,6 +6,7 @@ import { TSpecificationName } from "../../typings/exchanges";
 import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
 import { DeleteButtonCell } from "../../components/overviews/table/custom/DeleteButtonCell";
+import { EditButtonCell } from "../../components/overviews/table/custom/EditButtonCell";
 
 export const requestCells: TTableCell[] = [
 	{
@@ -48,6 +49,11 @@ export const requestCells: TTableCell[] = [
 		id: TTableCellName.IsMatch,
 		value: "",
 		Component: BooleanCell
+	},
+	{
+		id: TTableCellName.EditButton,
+		value: "",
+		Component: EditButtonCell
 	},
 	{
 		id: TTableCellName.CopyButton,

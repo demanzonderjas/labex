@@ -93,3 +93,9 @@ export const SubmitRequestForm: TForm = {
 	submitLabel: "submit",
 	allowCancel: true
 };
+
+export const EditRequestForm: TForm = {
+	...SubmitRequestForm,
+	header: "edit_request",
+	intro: "edit_request_description"
+};

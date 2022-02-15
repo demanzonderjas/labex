@@ -25,6 +25,7 @@ import UserStoreProvider from "./contexts/UserContext";
 import { AlertsPage } from "./pages/Alerts";
 import { AddNewAlertPage } from "./pages/AddNewAlert";
 import { EditOfferPage } from "./pages/EditOffer";
+import { EditRequestPage } from "./pages/EditRequest";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -62,9 +63,9 @@ const App: React.FC = () => {
 									<Route path="/app/offers/edit/:id">
 										<EditOfferPage />
 									</Route>
-									{/* <Route path="/app/requests/edit/:id">
-										<SelectOfferMatchPage />
-									</Route> */}
+									<Route path="/app/requests/edit/:id">
+										<EditRequestPage />
+									</Route>
 									<Route path="/app/submit-offer">
 										<SubmitOfferPage />
 									</Route>
