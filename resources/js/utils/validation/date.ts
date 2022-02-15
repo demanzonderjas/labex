@@ -8,6 +8,10 @@ export function isDateInFuture(date: string) {
 	return dateObj.getTime() > now;
 }
 
+export function isDateInPast(date: string) {
+	return !isDateInFuture(date);
+}
+
 export function isDateInRangeOfTwoWeeks(targetDate: string, startDate: string) {
 	const endDate = dayjs(startDate).add(14, "day");
 	const target = dayjs(targetDate);
