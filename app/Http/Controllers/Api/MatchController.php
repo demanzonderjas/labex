@@ -18,7 +18,7 @@ class MatchController extends Controller
 {
     public function getAll()
     {
-        $matches = MaterialMatch::all();
+        $matches = MaterialMatch::with('offer.user', 'request.user')->get();
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 
