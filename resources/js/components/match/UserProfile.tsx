@@ -11,6 +11,10 @@ export const UserProfile: React.FC<TUserProfile & { hideContact?: boolean }> = (
 }) => {
 	const { t } = useTranslationStore();
 
+	if (!user) {
+		return null;
+	}
+
 	return (
 		<div className="UserProfile user">
 			<LocalImage path={`logo/${user.organisation}_logo.png`} />
