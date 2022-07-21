@@ -27,6 +27,11 @@ class MaterialMatch extends Model
         return $this->request_id == $request->id && $this->offer_id == $offer->id;
     }
 
+    public function getTypeAttribute()
+    {
+        return $this->offer->type;
+    }
+
     public function scopeWhereBelongsToUser(Builder $query, User $user)
     {
         return $query
