@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
-import { FormField } from "../../../typings/Form";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TFormField } from "../../../typings/forms";
 
-export const typeField: FormField = {
+export const typeField: TFormField = {
 	label: "type",
-	id: "type",
+	id: TSpecificationName.ExchangeType,
 	Component: SelectField,
 	isHardFilter: true,
 	props: {
@@ -11,5 +12,6 @@ export const typeField: FormField = {
 		options: ["animal", "vital_tissue", "conserved_tissue"]
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["type_of", "type_offer", "type_of_material"]
 };

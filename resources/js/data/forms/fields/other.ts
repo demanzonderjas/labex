@@ -1,9 +1,10 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TFormField, InputType } from "../../../typings/forms";
 
-export const otherField: FormField = {
+export const otherField: TFormField = {
 	label: "other",
-	id: "other",
+	id: TSpecificationName.Other,
 	Component: InputField,
 	props: {
 		type: InputType.Text

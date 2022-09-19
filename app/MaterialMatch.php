@@ -10,30 +10,35 @@ class MaterialMatch extends Model
 
     public $table = "matches";
 
-    public $with = ["exchangeRequest", "exchangeOffer"];
+    public $with = ["request", "offer"];
 
-    public function exchangeRequest()
+    public function request()
     {
-        return $this->belongsTo(ExchangeRequest::class);
+        return $this->belongsTo(ExchangeAttempt::class, 'request_id');
     }
 
-    public function exchangeOffer()
+    public function offer()
     {
-        return $this->belongsTo(ExchangeOffer::class);
+        return $this->belongsTo(ExchangeAttempt::class, 'offer_id');
     }
 
-    public function isExisting(ExchangeRequest $request, ExchangeOffer $offer)
+    public function isExisting(ExchangeAttempt $request, ExchangeAttempt $offer)
     {
-        return $this->exchange_request_id == $request->id && $this->exchange_offer_id == $offer->id;
+        return $this->request_id == $request->id && $this->offer_id == $offer->id;
+    }
+
+    public function getTypeAttribute()
+    {
+        return $this->offer->type;
     }
 
     public function scopeWhereBelongsToUser(Builder $query, User $user)
     {
         return $query
-            ->whereHas("exchangeOffer.user", function (Builder $query) use ($user) {
+            ->whereHas("request.user", function (Builder $query) use ($user) {
                 $query->where('id', $user->id);
             })
-            ->orWhereHas("exchangeRequest.user", function (Builder $query) use ($user) {
+            ->orWhereHas("offer.user", function (Builder $query) use ($user) {
                 $query->where('id', $user->id);
             })->orderByDesc('updated_at');
     }

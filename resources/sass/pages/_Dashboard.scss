@@ -4,19 +4,13 @@
 			margin: 60px 0 20px;
 		}
 		> p {
-			margin-bottom: 60px;
 			font-size: 18px;
 			padding-bottom: 10px;
 			border-bottom: 2px solid $primary;
+			margin: 20px 0;
 		}
-	}
-	.offers,
-	.requests {
-		.ExchangeOffers,
-		.ExchangeRequests {
-			display: flex;
-			justify-content: space-between;
-			flex-wrap: wrap;
+		> .ExcelUploadField {
+			margin: 20px 0;
 		}
 	}
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { useFormStore } from "../../hooks/useFormStore";
-import { FormFieldData } from "../../typings/Form";
+import { TFormFieldData } from "../../typings/forms";
 
-interface Props extends FormFieldData {}
+interface Props extends TFormFieldData {}
 
 export const BigTextField: React.FC<Props> = observer(({ id, value }) => {
 	const { setFieldValue } = useFormStore();

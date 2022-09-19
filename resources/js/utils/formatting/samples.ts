@@ -1,12 +1,10 @@
-import { TSampleCard } from "../../typings/Overview";
+import { TExchangeAttempt } from "../../typings/exchanges";
 
-export function createQueryStringFromSample(sample: TSampleCard) {
-	return Object.keys(sample)
-		.filter(key => sample[key] != null)
-		.reduce((base, key) => {
-			if (!base.length) {
-				return `?${key}=${sample[key]}`;
-			}
-			return `${base}&${key}=${sample[key]}`;
-		}, "");
+export function createQueryStringFromSpecs(attempt: TExchangeAttempt) {
+	return attempt.specifications.reduce((base, spec) => {
+		if (!base.length) {
+			return `?${spec.key}=${spec.value}`;
+		}
+		return `${base}&${spec.key}=${spec.value}`;
+	}, "");
 }

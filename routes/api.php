@@ -24,23 +24,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
 
     Route::post('signups/store', 'SignupController@store')->withoutMiddleware(VerifyApiUserToken::class);
+    Route::post('external-login', '\App\Http\Controllers\Auth\LoginController@handleExternalLogin')->withoutMiddleware(VerifyApiUserToken::class);
 
     Route::group(['middleware' => VerifyAuthorized::class], function () {
-        Route::post('exchange-offers/store', 'ExchangeOfferController@store');
-        Route::get('exchange-offers', 'ExchangeOfferController@getAll');
-        Route::get('exchange-offers/my-all', 'ExchangeOfferController@getMyAll');
-        Route::get('exchange-offers/my-latest', 'ExchangeOfferController@getMyLatest');
-        Route::get('exchange-offer/{id}', 'ExchangeOfferController@getById');
-        Route::post('exchange-offer/{id}/delete', 'ExchangeOfferController@deleteById');
-        Route::post('exchange-offer/match/{offerId}', 'ExchangeOfferController@match');
-
-        Route::post('exchange-requests/store', 'ExchangeRequestController@store');
-        Route::get('exchange-requests', 'ExchangeRequestController@getAll');
-        Route::get('exchange-requests/my-all', 'ExchangeRequestController@getMyAll');
-        Route::get('exchange-requests/my-latest', 'ExchangeRequestController@getMyLatest');
-        Route::get('exchange-request/{id}', 'ExchangeRequestController@getById');
-        Route::post('exchange-request/{id}/delete', 'ExchangeRequestController@deleteById');
-        Route::post('exchange-request/match/{requestId}', 'ExchangeRequestController@match');
+        Route::post('exchange-attempt/store', 'ExchangeAttemptController@store');
+        Route::post('exchange-attempts', 'ExchangeAttemptController@getAll');
+        Route::get('exchange-attempts/mine', 'ExchangeAttemptController@getMyAll');
+        Route::post('exchange-attempts/mine-latest', 'ExchangeAttemptController@getMyLatest');
+        Route::get('exchange-attempt/{id}', 'ExchangeAttemptController@getById');
+        Route::middleware('auth.owner')->post('exchange-attempt/{attempt_id}/delete', 'ExchangeAttemptController@deleteById');
+        Route::middleware('auth.owner')->post('exchange-attempt/{attempt_id}/update', 'ExchangeAttemptController@update');
+        Route::post('exchange-attempt/match/{attempt_id}', 'ExchangeAttemptController@match');
 
         Route::get('my-matches', 'MatchController@user');
         Route::get('my-latest-match', 'MatchController@myLatest');
@@ -50,6 +44,10 @@ Route::group(['namespace' => 'Api'], function () {
         Route::get('faq', 'FaqController@getByCategory');
 
         Route::get('active-user', 'UserController@getActiveUser');
+
+        Route::post('alert', 'AlertController@store');
+        Route::delete('alert/{alert_id}', 'AlertController@delete');
+        Route::get('alerts/mine', 'AlertController@getMine');
     });
 
     Route::group(['middleware' => VerifyAdmin::class], function () {
@@ -66,5 +64,9 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('signups/approve/{signupId}', 'SignupController@approve');
         Route::post('signups/decline/{signupId}', 'SignupController@decline');
         Route::post('signups/delete/{signupId}', 'SignupController@delete');
+
+        Route::get('users', 'UserController@getAll');
+        Route::post('user', 'UserController@store');
+        Route::delete('user/{user_id}', 'UserController@delete');
     });
 });

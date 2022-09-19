@@ -1,11 +1,12 @@
 import { PercentageCell } from "../../components/overviews/table/PercentageCell";
 import { TextCell } from "../../components/overviews/table/TextCell";
-import { TableCell } from "../../typings/Overview";
 import { DateCell } from "../../components/overviews/table/DateCell";
 import { MatchButtonCell } from "../../components/overviews/table/custom/MatchButtonCell";
 import { AgeCell } from "../../components/overviews/table/AgeCell";
 import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
+import { TTableCell, TTableCellName } from "../../typings/overviews";
+import { TSpecificationName } from "../../typings/exchanges";
 
 export const offerMatchColumns: string[] = [
 	"match_percentage",
@@ -31,99 +32,99 @@ export const requestMatchColumns: string[] = [
 	"select_header"
 ];
 
-export const offerMatchCells = [
+export const offerMatchCells: TTableCell[] = [
 	{
-		id: "match_percentage",
+		id: TSpecificationName.MatchPercentage,
 		value: "",
 		Component: PercentageCell
 	},
 	{
-		id: "type",
+		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "animal_species",
+		id: TSpecificationName.AnimalSpecies,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "sex",
+		id: TSpecificationName.Sex,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "age",
+		id: TSpecificationName.Age,
 		label: "age_offer",
 		value: "",
 		Component: AgeCell
 	},
 	{
-		id: "magic_cell",
+		id: TTableCellName.MagicCell,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "amount",
+		id: TSpecificationName.Amount,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "date_available",
+		id: TSpecificationName.DateAvailableEnd,
 		value: "",
 		Component: DateAvailableCell
 	},
 	{
-		id: "match_percentage",
+		id: TTableCellName.MatchButton,
 		value: "",
 		Component: MatchButtonCell
 	}
 ];
 
-export const requestMatchCells = [
+export const requestMatchCells: TTableCell[] = [
 	{
-		id: "match_percentage",
+		id: TSpecificationName.MatchPercentage,
 		value: "",
 		Component: PercentageCell
 	},
 	{
-		id: "type",
+		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "animal_species",
+		id: TSpecificationName.AnimalSpecies,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "sex",
+		id: TSpecificationName.Sex,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "age",
+		id: TSpecificationName.Age,
 		label: "age_range",
 		value: "",
 		Component: AgeRangeCell
 	},
 	{
-		id: "magic_cell",
+		id: TTableCellName.MagicCell,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "amount",
+		id: TSpecificationName.Amount,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "date_requested",
+		id: TSpecificationName.DateRequested,
 		value: "",
 		Component: DateCell
 	},
 	{
-		id: "match_percentage",
+		id: TTableCellName.MatchButton,
 		value: "",
 		Component: MatchButtonCell
 	}

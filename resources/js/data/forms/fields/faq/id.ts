@@ -1,15 +1,15 @@
 import { InputField } from "../../../../components/form/InputField";
-import { FormField, InputType } from "../../../../typings/Form";
+import { TFormField, InputType, TFormFieldName } from "../../../../typings/forms";
 
-export const idField: FormField = {
+export const idField: TFormField = {
 	label: "id",
-    id: "id",
-    required: true,
-    hidden: true,
+	id: TFormFieldName.ID,
+	required: true,
+	hidden: true,
 	Component: InputField,
 	props: {
 		type: InputType.Number
 	},
 	default: "",
-	value: "",
+	value: ""
 };

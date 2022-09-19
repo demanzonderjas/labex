@@ -2,58 +2,67 @@ import { TextCell } from "../../components/overviews/table/TextCell";
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
 import { DateCell } from "../../components/overviews/table/DateCell";
+import { TSpecificationName } from "../../typings/exchanges";
+import { TTableCell, TTableCellName } from "../../typings/overviews";
+import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
+import { DeleteButtonCell } from "../../components/overviews/table/custom/DeleteButtonCell";
+import { EditButtonCell } from "../../components/overviews/table/custom/EditButtonCell";
 
-export const requestColumns: string[] = [
-	"type",
-	"animal_species",
-	"sex",
-	"age_offer",
-	"amount",
-	"date_requested",
-	"is_match",
-	"copy_header"
-];
-
-export const requestCells = [
+export const requestCells: TTableCell[] = [
 	{
-		id: "type",
+		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "animal_species",
+		id: TSpecificationName.AnimalSpecies,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "sex",
+		id: TSpecificationName.Sex,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "age",
+		id: TSpecificationName.Age,
 		label: "age_range",
 		value: "",
 		Component: AgeRangeCell
 	},
 	{
-		id: "amount",
+		id: TSpecificationName.Amount,
 		value: "",
 		Component: TextCell
 	},
 	{
-		id: "date_requested",
+		id: TSpecificationName.DateRequested,
 		value: "",
 		Component: DateCell
 	},
 	{
-		id: "organs",
+		id: TSpecificationName.Organs,
 		value: "",
 		Component: DateCell
 	},
 	{
-		id: "is_match",
+		id: TTableCellName.IsMatch,
 		value: "",
 		Component: BooleanCell
+	},
+	{
+		id: TTableCellName.EditButton,
+		value: "",
+		Component: EditButtonCell
+	},
+	{
+		id: TTableCellName.CopyButton,
+		value: "",
+		Component: CopyButtonCell
+	},
+	{
+		id: TTableCellName.DeleteButton,
+		value: "",
+		Component: DeleteButtonCell
 	}
 ];

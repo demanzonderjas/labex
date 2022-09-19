@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FormStore } from "../stores/FormStore";
-import { TForm } from "../typings/Form";
+import { TForm } from "../typings/forms";
 import FormStoreProvider from "../contexts/FormContext";
 import { Form } from "./Form";
 

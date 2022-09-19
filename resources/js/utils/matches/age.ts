@@ -5,18 +5,28 @@ import {
 	MONTH_IN_DAYS,
 	YEAR_IN_DAYS
 } from "../../data/configs/datetime";
+import { TSpecStatus } from "../../typings/specifications";
+import { TSpecificationName } from "../../typings/exchanges";
 
-export function isAgeInRange(fieldValue, targetValue, filters, fields) {
-	const ageType = getFieldById("age_type", filters) || getFieldById("age_type", fields);
-	const ageMin = getFieldById("age_min", filters) || getFieldById("age_min", fields);
-	const ageMax = getFieldById("age_max", filters) || getFieldById("age_max", fields);
-	const realTarget = getFieldById("age_type", filters) ? targetValue : fieldValue;
+export function isAgeInRange(fieldValue, targetValue, filters, fields): TSpecStatus {
+	const ageType =
+		getFieldById(TSpecificationName.AgeType, filters) ||
+		getFieldById(TSpecificationName.AgeType, fields);
+	const ageMin =
+		getFieldById(TSpecificationName.AgeMin, filters) ||
+		getFieldById(TSpecificationName.AgeMin, fields);
+	const ageMax =
+		getFieldById(TSpecificationName.AgeMax, filters) ||
+		getFieldById(TSpecificationName.AgeMax, fields);
+	const realTarget = getFieldById(TSpecificationName.AgeType, filters) ? targetValue : fieldValue;
 	if (!ageType.value) {
-		return true;
+		return TSpecStatus.Match;
 	}
 	const timePeriods = getTimeDiffInPeriods(realTarget);
 	const givenFilter = timePeriods[ageType.value];
-	return givenFilter >= ageMin.value && givenFilter <= ageMax.value;
+	return givenFilter >= ageMin.value && givenFilter <= ageMax.value
+		? TSpecStatus.Match
+		: TSpecStatus.NoMatch;
 }
 
 export function getTimeDiffInPeriods(date) {
@@ -44,27 +54,27 @@ export function getDayMultiplier(type) {
 	}
 }
 
-export function isAgeRangeMatching(_, targetValue, filters, fields) {
-	const ageTypeSpec = getFieldById("age_type", fields);
-	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec.value);
-	const ageMinSpec = getFieldById("age_min", fields);
-	const ageMinSpecInDays = parseInt(ageMinSpec.value) * dayMultiplierSpec;
-	const ageMaxSpec = getFieldById("age_max", fields);
-	const ageMaxSpecInDays = parseInt(ageMaxSpec.value) * dayMultiplierSpec;
+export function isAgeRangeMatching(_, targetValue, filters, fields): TSpecStatus {
+	const ageTypeSpec = getFieldById(TSpecificationName.AgeType, fields);
+	const dayMultiplierSpec = getDayMultiplier(ageTypeSpec?.value);
+	const ageMinSpec = getFieldById(TSpecificationName.AgeMin, fields);
+	const ageMinSpecInDays = parseInt(ageMinSpec?.value) * dayMultiplierSpec;
+	const ageMaxSpec = getFieldById(TSpecificationName.AgeMax, fields);
+	const ageMaxSpecInDays = parseInt(ageMaxSpec?.value) * dayMultiplierSpec;
 
-	const ageTypeFilter = getFieldById("age_type", filters);
+	const ageTypeFilter = getFieldById(TSpecificationName.AgeType, filters);
 	const dayMultiplierFilter = getDayMultiplier(ageTypeFilter.value);
-	const ageMinFilter = getFieldById("age_min", filters);
+	const ageMinFilter = getFieldById(TSpecificationName.AgeMin, filters);
 	const ageMinFilterInDays = parseInt(ageMinFilter.value) * dayMultiplierFilter;
-	const ageMaxFilter = getFieldById("age_max", filters);
+	const ageMaxFilter = getFieldById(TSpecificationName.AgeMax, filters);
 	const ageMaxFilterInDays = parseInt(ageMaxFilter.value) * dayMultiplierFilter;
 
-	return (
-		(ageMinFilterInDays > ageMinSpecInDays && ageMinFilterInDays < ageMaxSpecInDays) ||
+	return (ageMinFilterInDays > ageMinSpecInDays && ageMinFilterInDays < ageMaxSpecInDays) ||
 		(ageMinFilterInDays < ageMinSpecInDays && ageMaxFilterInDays > ageMaxSpecInDays) ||
 		(ageMinSpecInDays > ageMinFilterInDays && ageMaxSpecInDays < ageMaxFilterInDays) ||
 		(ageMaxFilterInDays < ageMaxSpecInDays &&
 			ageMinFilterInDays < ageMaxSpecInDays &&
 			ageMaxFilterInDays > ageMinSpecInDays)
-	);
+		? TSpecStatus.Match
+		: TSpecStatus.NoMatch;
 }

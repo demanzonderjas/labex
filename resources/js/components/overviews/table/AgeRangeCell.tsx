@@ -1,21 +1,16 @@
 import React from "react";
 import { useTranslationStore } from "../../../hooks/useTranslationStore";
-import { useSampleStore } from "../../../hooks/useSampleStore";
-import { TExchangeRequestCard, TSampleCard } from "../../../typings/Overview";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TTableCellProps } from "../../../typings/overviews";
 
-type Props = {
-	value: string;
-	rowIndex: number;
-	sample: TExchangeRequestCard;
-};
-
-export const AgeRangeCell: React.FC<Props> = ({ value, rowIndex, sample }) => {
+export const AgeRangeCell: React.FC<TTableCellProps> = ({ attempt }) => {
 	const { t } = useTranslationStore();
-	const { matches } = useSampleStore();
-	const match = matches[rowIndex] as TExchangeRequestCard;
-	const ageMin = sample.age_min || (match && match.age_min);
-	const ageMax = sample.age_max || (match && match.age_max);
-	const ageType = sample.age_type || (match && match.age_type);
+	const ageMinSpec = attempt.specifications.find(s => s.key === TSpecificationName.AgeMin);
+	const ageMaxSpec = attempt.specifications.find(s => s.key === TSpecificationName.AgeMax);
+	const ageTypeSpec = attempt.specifications.find(s => s.key === TSpecificationName.AgeType);
+	const ageMin = ageMinSpec?.value;
+	const ageMax = ageMaxSpec?.value;
+	const ageType = ageTypeSpec?.value;
 
 	return (
 		<td>

@@ -63,20 +63,34 @@ export const AboutUsPage: React.FC = () => {
 					information about the match (the described material or animals) you can contact
 					the relevant researchers.
 				</p>
+				<h2>
+					<strong>Re-use of animals</strong>
+				</h2>
 				<p>
 					If you want to use a supply of live animals and want to (re) use these animals
 					to collect tissues or in an experiment, take into account the “Policy surplus
 					laboratory animals, reuse and relocation” (
-					<a href="https://www.ivd-utrecht.nl/nl/infocentrum/document/beleid-surplus-proefdieren-hergegevens-en-herplaatsing-proefdieren">
-						https://www.ivd-utrecht.nl/nl/infocentrum/document/beleid-surplus-proefdieren-hergegevens-en-herplaatsing-proefdieren
+					<a href="https://ivd-utrecht.nl/en/infocentre/document/policy-on-surplus-laboratory-animals-reuse-and-re-homing">
+						https://ivd-utrecht.nl/en/infocentre/document/policy-on-surplus-laboratory-animals-reuse-and-re-homing
 					</a>
 					).
 				</p>
 				<p>
-					If you want to use the animals for tissue harvesting and you do not have a
-					project permit for this, you may be able to use the umbrella project “Use of
-					organs and tissues to promote the quality of animal experiments and in vitro and
-					ex vivo research” (AVD1080020209606) .
+					<strong>Harvesting tissue: when is it an animal experiment?</strong>
+					<br />
+					Harvesting tissue is an animal experiment when:
+					<ul>
+						<li>it determines the moment at which the animal is killed</li>
+						<li>
+							actions must be carried out for this purpose prior to killing the
+							animal. In these cases a project permit is required.
+						</li>
+					</ul>
+				</p>
+				<p>
+					If you do not have a project permit for this, you may be able to use the
+					umbrella project “Use of organs and tissues to promote the quality of animal
+					experiments and in vitro and ex vivo research” (AVD1080020209606) .
 				</p>
 				<p>
 					More information about this can be obtained from the AWB Utrecht (

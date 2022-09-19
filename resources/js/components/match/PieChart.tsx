@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import Chart from "chart.js";
-import { MATCH_CHART_COLORS } from "../../data/configs/colors";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 type Props = {

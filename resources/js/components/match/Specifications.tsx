@@ -1,7 +1,7 @@
 import React from "react";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { checkIfFieldMatches } from "../../utils/matches/utils";
-import { SpecStatus, TSpecMatch } from "../../typings/Sample";
+import { TSpecStatus, TSpecMatch } from "../../typings/specifications";
 import { Spec } from "./Spec";
 import { PieChart } from "./PieChart";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
@@ -12,8 +12,8 @@ import { SecondaryButton } from "../base/Button";
 import { MATCH_CHART_COLORS } from "../../data/configs/colors";
 
 type Props = {
-	fields: FormField[];
-	filters: FormField[];
+	fields: TFormField[];
+	filters: TFormField[];
 	matchPercentage: number;
 	handleBack: Function;
 	handleSelect: Function;
@@ -30,13 +30,13 @@ export const Specifications: React.FC<Props> = ({
 }) => {
 	const { t } = useTranslationStore();
 	const matches = fields.map(field => {
-		const filter = filters.find(f => f.id == field.id);
+		const filter = filters.find(f => f.id == field.id || f.id == field.matchVia);
 		if (!filter || !filter.value) {
-			return { ...field, match: { status: SpecStatus.NotSubmitted } };
+			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
-		const isMatch = checkIfFieldMatches(field, filter, filters, fields);
+		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);
 		const match: TSpecMatch = {
-			status: isMatch ? SpecStatus.Match : SpecStatus.NoMatch,
+			status: matchStatus,
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
 		};
 		return { ...field, match };

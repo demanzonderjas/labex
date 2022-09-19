@@ -1,16 +1,17 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
-import { isBiggerThanZero } from "../../../utils/validation/numbers";
+import { TFormField, InputType } from "../../../typings/forms";
 import { AgeRangeField } from "../../../components/form/custom-fields/AgeRangeField";
 import { isAgeInRange, isAgeRangeMatching } from "../../../utils/matches/age";
 import { getAgeRangeValue } from "../../../utils/getters/fields";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { isDateInPast } from "../../../utils/validation/date";
 
-export const ageField: FormField = {
+export const ageField: TFormField = {
 	label: "age",
-	id: "age",
+	id: TSpecificationName.Age,
 	Component: InputField,
 	required: true,
-	validate: isBiggerThanZero,
+	validate: isDateInPast,
 	isMatch: isAgeInRange,
 	props: {
 		type: InputType.Date
@@ -22,39 +23,42 @@ export const ageField: FormField = {
 			id: "type",
 			validate: value => value == "animal" || value == "vital_tissue"
 		}
-	]
+	],
+	synonyms: ["birth_date"]
 };
 
-export const ageRequestField: FormField = {
+export const ageRequestField: TFormField = {
 	label: "age_offer",
-	id: "age",
+	id: TSpecificationName.Age,
 	Component: AgeRangeField,
 	default: "1",
 	value: "1",
 	customValue: getAgeRangeValue,
 	props: {},
-	isMatch: isAgeInRange
+	isMatch: isAgeInRange,
+	synonyms: ["birth_date", "age"]
 };
 
-export const ageRangeRequestField: FormField = {
+export const ageRangeRequestField: TFormField = {
 	...ageRequestField,
 	label: "age_range"
 };
 
-export const ageRequestRangeField: FormField = {
-	label: "age_offer",
-	id: "age",
+export const ageRequestRangeField: TFormField = {
+	label: "age_range",
+	id: TSpecificationName.Age,
 	Component: AgeRangeField,
 	default: "1",
 	value: "1",
 	customValue: getAgeRangeValue,
 	props: {},
-	isMatch: isAgeRangeMatching
+	isMatch: isAgeRangeMatching,
+	synonyms: ["birth_date", "age"]
 };
 
-export const ageTypeField: FormField = {
+export const ageTypeField: TFormField = {
 	label: "age_type",
-	id: "age_type",
+	id: TSpecificationName.AgeType,
 	hidden: true,
 	Component: AgeRangeField,
 	default: "weeks",
@@ -62,9 +66,9 @@ export const ageTypeField: FormField = {
 	props: {}
 };
 
-export const ageMinField: FormField = {
+export const ageMinField: TFormField = {
 	label: "age_min",
-	id: "age_min",
+	id: TSpecificationName.AgeMin,
 	hidden: true,
 	Component: AgeRangeField,
 	default: "0",
@@ -72,9 +76,9 @@ export const ageMinField: FormField = {
 	props: {}
 };
 
-export const ageMaxField: FormField = {
+export const ageMaxField: TFormField = {
 	label: "age_max",
-	id: "age_max",
+	id: TSpecificationName.AgeMax,
 	hidden: true,
 	Component: AgeRangeField,
 	default: "20",

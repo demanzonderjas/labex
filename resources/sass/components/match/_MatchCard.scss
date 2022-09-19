@@ -13,7 +13,7 @@
 		align-items: flex-start;
 
 		.user {
-			max-width: calc(100% - 200px);
+			max-width: calc(100% - 20px);
 
 			img {
 				display: inline-block;
@@ -75,8 +75,9 @@
 
 			label {
 				display: block;
-				line-height: 26px;
+				line-height: 16px;
 				font-size: 12px;
+				margin-bottom: 4px;
 			}
 
 			.MatchValue {

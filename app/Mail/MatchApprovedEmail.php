@@ -30,7 +30,7 @@ class MatchApprovedEmail extends Mailable
 
     private function getContactFromMatch(): User
     {
-        return $this->match->exchangeOffer->user->id === $this->user->id ? $this->match->exchangeRequest->user : $this->match->exchangeOffer->user;
+        return $this->match->offer->user->id === $this->user->id ? $this->match->request->user : $this->match->offer->user;
     }
 
     /**

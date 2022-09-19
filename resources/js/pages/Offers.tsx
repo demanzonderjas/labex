@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { FormWrapper } from "../components/FormWrapper";
-import { ExchangeOfferOverview } from "../components/overviews/ExchangeOfferOverview";
-import SampleStoreProvider from "../contexts/SampleContext";
-import { SampleStore } from "../stores/SampleStore";
-import { FilterOffersForm } from "../data/forms/ExchangeRequest";
+import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
+import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
+import { FilterOffersForm } from "../data/forms/ExchangeAttemptRequest";
 import { createQueryStringFromFilters } from "../utils/formatting/matches";
 import { useHistory } from "react-router-dom";
+import { ExchangeAttemptOverview } from "../components/overviews/ExchangeAttemptOverview";
+import { offerMatchCells } from "../data/tables/matches";
+import { TExchangeAttemptType } from "../typings/exchanges";
 
 export const OffersPage = () => {
-	const [sampleStore] = useState(new SampleStore());
+	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const history = useHistory();
 
 	const submitRequest = () => {
@@ -20,13 +22,17 @@ export const OffersPage = () => {
 	FilterOffersForm.handler = submitRequest;
 
 	return (
-		<SampleStoreProvider store={sampleStore}>
+		<ExchangeAttemptStoreProvider store={sampleStore}>
 			<FormWrapper
 				form={FilterOffersForm}
 				handleSuccess={null}
 				handleUpdate={sampleStore.setFilters}
 			/>
-			<ExchangeOfferOverview />
-		</SampleStoreProvider>
+			<ExchangeAttemptOverview
+				specsToShow={offerMatchCells}
+				type={TExchangeAttemptType.Offer}
+				SHOW_LIMIT={10}
+			/>
+		</ExchangeAttemptStoreProvider>
 	);
 };

@@ -1,10 +1,19 @@
-import { TUser, TUserProfile } from "../../typings/User";
+import { TUserProfile } from "../../typings/user";
 import React from "react";
 import { LocalImage } from "../base/Image";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { Button } from "../base/Button";
 
-export const UserProfile: React.FC<TUserProfile> = ({ user, mine }) => {
+export const UserProfile: React.FC<TUserProfile & { hideContact?: boolean }> = ({
+	user,
+	mine,
+	hideContact
+}) => {
 	const { t } = useTranslationStore();
+
+	if (!user) {
+		return null;
+	}
 
 	return (
 		<div className="UserProfile user">
@@ -15,6 +24,13 @@ export const UserProfile: React.FC<TUserProfile> = ({ user, mine }) => {
 				</span>
 				<br />
 				{t(user.organisation)}
+				{!hideContact && (
+					<div className="margin-10">
+						<a href={`mailto:${user.email}`}>
+							<Button label="contact_user" classes={{ small: true }} />
+						</a>
+					</div>
+				)}
 			</div>
 		</div>
 	);

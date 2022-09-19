@@ -1,10 +1,11 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/forms";
 import { BigTextField } from "../../../components/form/BigTextField";
 import { SelectField } from "../../../components/form/SelectField";
+import { TSpecificationName } from "../../../typings/exchanges";
 
-export const storageField: FormField = {
+export const storageField: TFormField = {
 	label: "storage",
-	id: "storage",
+	id: TSpecificationName.Storage,
 	Component: SelectField,
 	props: {
 		startsEmpty: true,
@@ -18,9 +19,10 @@ export const storageField: FormField = {
 			id: "type",
 			validate: value => value == "conserved_tissue"
 		}
-	]
+	],
+	synonyms: ["storage_method"]
 };
 
-export const storageRequestField: FormField = {
+export const storageRequestField: TFormField = {
 	...storageField
 };

@@ -1,10 +1,12 @@
-import { FormField } from "../../../typings/Form";
+import { TFormField } from "../../../typings/forms";
 import { MultiSelectField } from "../../../components/form/MultiSelectField";
 import { isMultiSelectMatch } from "../../../utils/filters/multiselect";
+import { TTypeSpec } from "../../../typings/specifications";
+import { TSpecificationName } from "../../../typings/exchanges";
 
-export const organsField: FormField = {
+export const organsField: TFormField = {
 	label: "organs",
-	id: "organs",
+	id: TSpecificationName.Organs,
 	Component: MultiSelectField,
 	props: {
 		startsEmpty: true,
@@ -29,13 +31,14 @@ export const organsField: FormField = {
 	isMatch: isMultiSelectMatch,
 	dependencies: [
 		{
-			id: "type",
-			validate: value => value == "vital_tissue" || value == "conserved_tissue"
+			id: TSpecificationName.ExchangeType,
+			validate: value => value !== TTypeSpec.Animal
 		}
-	]
+	],
+	synonyms: ["organ"]
 };
 
-export const organsRequestField: FormField = {
+export const organsRequestField: TFormField = {
 	...organsField,
 	required: false
 };

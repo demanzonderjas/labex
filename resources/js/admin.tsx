@@ -14,6 +14,8 @@ import { FAQCreatePage } from "./pages/admin/FAQCreate";
 import { SignupsPage } from "./pages/admin/Signups";
 import { ModalStore } from "./stores/ModalStore";
 import ModalStoreProvider from "./contexts/ModalContext";
+import { UsersPage } from "./pages/admin/Users";
+import { UserCreatePage } from "./pages/admin/UserCreate";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -46,6 +48,12 @@ const App: React.FC = () => {
 								</Route>
 								<Route path="/admin/faq/edit/:id" exact={true}>
 									<FAQEditPage />
+								</Route>
+								<Route path="/admin/users" exact={true}>
+									<UsersPage />
+								</Route>
+								<Route path="/admin/users/add-user" exact={true}>
+									<UserCreatePage />
 								</Route>
 							</Switch>
 						</div>

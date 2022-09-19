@@ -1,6 +1,6 @@
 import React from "react";
 import { DisplayedAge } from "./Age";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { DateAvailableValue, DisplayedDate } from "../base/DisplayedDate";
 import { BooleanIcon } from "../base/BooleanIcon";
@@ -8,14 +8,14 @@ import { BooleanIcon } from "../base/BooleanIcon";
 type Props = {
 	label: string;
 	value: string;
-	fields: FormField[];
+	fields: TFormField[];
 };
 
 export const SampleValue: React.FC<Props> = ({ value, label, fields }) => {
 	const { t } = useTranslationStore();
 	const isDate = label && label.indexOf("date") > -1;
 	const isOrgan = label && label.indexOf("organ") > -1;
-	const isDateAvailable = label == "date_available";
+	const isDateAvailable = label == "date_available" || label == "date_available_start";
 	return (
 		<>
 			{(label == "age_offer" || label == "age_range") && (

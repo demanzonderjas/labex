@@ -1,7 +1,6 @@
 import React from "react";
-import { TSpecMatch, SpecStatus } from "../../typings/Sample";
+import { TSpecMatch, TSpecStatus } from "../../typings/specifications";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { Icon } from "./Image";
 import cx from "classnames";
 import { BooleanIcon } from "./BooleanIcon";
 
@@ -14,14 +13,15 @@ export const SpecMatch: React.FC<Props> = ({ match }) => {
 	return (
 		<span
 			className={cx("SpecMatch", {
-				correct: match.status == SpecStatus.Match,
-				danger: match.status == SpecStatus.NoMatch
+				correct: match.status == TSpecStatus.Match,
+				danger: match.status == TSpecStatus.NoMatch,
+				warning: match.status == TSpecStatus.PartialMatch
 			})}
 		>
-			{match.status != SpecStatus.NotSubmitted && t(match.status)}
-			{match.status != SpecStatus.NotSubmitted && <span> ({t(match.filterValue)})</span>}
-			{match.status != SpecStatus.NotSubmitted && (
-				<BooleanIcon isTrue={match.status == SpecStatus.Match} />
+			{match.status != TSpecStatus.NotSubmitted && t(match.status)}
+			{match.status != TSpecStatus.NotSubmitted && <span> ({t(match.filterValue)})</span>}
+			{match.status != TSpecStatus.NotSubmitted && (
+				<BooleanIcon isTrue={match.status == TSpecStatus.Match} />
 			)}
 		</span>
 	);

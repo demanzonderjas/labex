@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { SampleStore } from "../stores/SampleStore";
-import SampleStoreProvider from "../contexts/SampleContext";
+import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
+import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { useQuery } from "../hooks/useQuery";
-import { FilterRequestsForm } from "../data/forms/ExchangeRequest";
+import {
+	FilterRequestsForm,
+	RequestSpecificationsForm
+} from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
-import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
+import { fillFieldsWithSpecifications } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
 import { SecondaryButton, BlankButton } from "../components/base/Button";
-import { getExchangeRequest } from "../queries/getExchangeRequests";
+import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmOfferMatchModal } from "../data/modals/confirm";
-import { createRequestMatch } from "../queries/createRequestMatch";
-import { TUserProfile } from "../typings/User";
+import { createMatch } from "../queries/createMatch";
+import { TUserProfile } from "../typings/user";
 import { UserProfile } from "../components/match/UserProfile";
+import { TExchangeAttempt } from "../typings/exchanges";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
-	const [sampleStore] = useState(new SampleStore());
+	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const [request, setRequest] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
 	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
@@ -36,7 +40,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	};
 
 	const confirmMatch = async offerData => {
-		const response = await createRequestMatch(offerData, id);
+		const response = await createMatch(offerData, id);
 		confirm();
 		history.push("/app/my-matches?info=true");
 		return response;
@@ -50,22 +54,25 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 		setFilters(FilterRequestsForm.fields, false);
 		loadFiltersFromKeyValuePairs(filterParams);
 		(async () => {
-			const response = await getExchangeRequest(id);
-			const filledFields = fillFieldsWithKeyValuePairs(
-				FilterRequestsForm.fields,
-				response.exchange_request
+			const response: {
+				exchange_attempt: TExchangeAttempt;
+				success: boolean;
+			} = await getExchangeAttempt(id);
+			const filledFields = fillFieldsWithSpecifications(
+				RequestSpecificationsForm.fields,
+				response.exchange_attempt.specifications
 			);
 			setRequest(filledFields);
 			const _matchPercentage = getMatchingPercentage(
-				response.exchange_request,
+				response.exchange_attempt,
 				sampleStore.filters,
 				filledFields
 			);
-			setIsMatch(response.exchange_request.is_match);
+			setIsMatch(response.exchange_attempt.is_match);
 			setMatchPercentage(_matchPercentage);
 			setUserProfile({
-				user: response.exchange_request.user,
-				mine: response.exchange_request.is_mine
+				user: response.exchange_attempt.user,
+				mine: response.exchange_attempt.is_mine
 			});
 		})();
 	}, []);
@@ -75,7 +82,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	}
 
 	return (
-		<SampleStoreProvider store={sampleStore}>
+		<ExchangeAttemptStoreProvider store={sampleStore}>
 			{!isMatch && (
 				<PageIntro header="selected_match">
 					<p>{t("review_single_match")}</p>
@@ -106,6 +113,6 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					</div>
 				)}
 			</div>
-		</SampleStoreProvider>
+		</ExchangeAttemptStoreProvider>
 	);
 });

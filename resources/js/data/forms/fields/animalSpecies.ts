@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
-import { FormField } from "../../../typings/Form";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TFormField } from "../../../typings/forms";
 
-export const animalSpeciesField: FormField = {
+export const animalSpeciesField: TFormField = {
 	label: "animal_species",
-	id: "animal_species",
+	id: TSpecificationName.AnimalSpecies,
 	Component: SelectField,
 	props: {
 		startsEmpty: true,
@@ -25,7 +26,8 @@ export const animalSpeciesField: FormField = {
 			"zebra_finch",
 			"zebrafish"
 		],
-		allowOther: true
+		allowOther: true,
+		synonyms: ["species", "animal_type", "type_of_animal"]
 	},
 	isHardFilter: true,
 	default: "",

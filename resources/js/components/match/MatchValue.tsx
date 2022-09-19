@@ -1,14 +1,14 @@
 import React from "react";
 import cx from "classnames";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { SampleValue } from "./SampleValue";
-import { SpecStatus } from "../../typings/Sample";
+import { TSpecStatus } from "../../typings/specifications";
 
 type Props = {
 	value: string;
 	label: string;
-	matchStatus: SpecStatus;
-	specs: FormField[];
+	matchStatus: TSpecStatus;
+	specs: TFormField[];
 	neutral: boolean;
 };
 
@@ -16,8 +16,8 @@ export const MatchValue: React.FC<Props> = ({ value, matchStatus, label, specs, 
 	return (
 		<span
 			className={cx("MatchValue", {
-				correct: matchStatus == SpecStatus.Match,
-				danger: matchStatus == SpecStatus.NoMatch,
+				correct: matchStatus == TSpecStatus.Match,
+				danger: matchStatus == TSpecStatus.NoMatch,
 				neutral
 			})}
 		>

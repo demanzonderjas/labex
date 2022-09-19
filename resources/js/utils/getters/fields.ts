@@ -1,13 +1,14 @@
-import { FormField } from "../../typings/Form";
+import { TSpecificationName } from "../../typings/exchanges";
+import { TFormField } from "../../typings/forms";
 
-export function getFieldById(id: string, fields: FormField[]) {
+export function getFieldById(id: TSpecificationName, fields: TFormField[]) {
 	return fields.find(field => field.id == id);
 }
 
 export function getAgeRangeValue(fields) {
-	const ageMin = getFieldById("age_min", fields);
-	const ageMax = getFieldById("age_max", fields);
-	const ageType = getFieldById("age_type", fields);
+	const ageMin = getFieldById(TSpecificationName.AgeMin, fields);
+	const ageMax = getFieldById(TSpecificationName.AgeMax, fields);
+	const ageType = getFieldById(TSpecificationName.AgeType, fields);
 
 	return `${ageMin.value} - ${ageMax.value} ${ageType.value}`;
 }

@@ -1,16 +1,19 @@
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 import { InputField } from "../../../components/form/InputField";
 import { isAgeInRange } from "../../../utils/matches/age";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { isDateInPast } from "../../../utils/validation/date";
 
-export const dateConservedField: FormField = {
+export const dateConservedField: TFormField = {
 	label: "date_conserved",
-	id: "age",
+	id: TSpecificationName.Age,
 	Component: InputField,
 	required: true,
 	props: {
 		type: InputType.Date
 	},
 	isMatch: isAgeInRange,
+	validate: isDateInPast,
 	default: "",
 	value: "",
 	dependencies: [
@@ -18,5 +21,6 @@ export const dateConservedField: FormField = {
 			id: "type",
 			validate: value => value == "conserved_tissue"
 		}
-	]
+	],
+	synonyms: ["available", "availability", "date"]
 };

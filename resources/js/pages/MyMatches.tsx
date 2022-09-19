@@ -4,11 +4,11 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 import { PageIntro, TwoColumnPageIntro } from "../components/layout/PageIntro";
 import { getMyMatches } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
-import { TMatch } from "../typings/Overview";
 import { Button } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { matchesModal } from "../data/modals/matches";
 import { useQuery } from "../hooks/useQuery";
+import { TMatch } from "../typings/exchanges";
 
 export const MyMatchesPage = observer(() => {
 	const { t } = useTranslationStore();

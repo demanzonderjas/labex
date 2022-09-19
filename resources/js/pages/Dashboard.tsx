@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslationStore } from "../hooks/useTranslationStore";
-import { getMyLatestExchangeOffers } from "../queries/getExchangeOffers";
-import { getMyLatestExchangeRequests } from "../queries/getExchangeRequests";
-import { MatchType, TDashboardOverview } from "../typings/Overview";
+import { MatchType, TDashboardOverview } from "../typings/overviews";
 import { TwoColumnPageIntro } from "../components/layout/PageIntro";
-import { ExchangeOffers } from "../components/dashboard/ExchangeOffers";
-import { SampleStore } from "../stores/SampleStore";
-import SampleStoreProvider from "../contexts/SampleContext";
-import { ExchangeRequests } from "../components/dashboard/ExchangeRequests";
+import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
+import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { getMyLatestMatch } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
 import { Button } from "../components/base/Button";
 import { useHistory } from "react-router-dom";
-import { Overview } from "../components/dashboard/DashboardOverview";
+import { SubmenuView } from "../components/overviews/SubmenuView";
 import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
+import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
+import { offerCells } from "../data/tables/offers";
+import { requestCells } from "../data/tables/requests";
+import { ExchangeAttemptOverview } from "../components/overviews/ExchangeAttemptOverview";
+import { TExchangeAttemptType } from "../typings/exchanges";
 
 export const DashboardPage = observer(() => {
 	const { t } = useTranslationStore();
-	const [sampleStore] = useState<SampleStore>(new SampleStore());
+	const [attemptStore] = useState<ExchangeAttemptStore>(new ExchangeAttemptStore());
 	const [match, setMatch] = useState(null);
-	const [shouldViewAll, setShouldViewAll] = useState(false);
 	const { user } = useUserStore();
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
 		TDashboardOverview.Requests
 	);
-	const { offers, requests } = sampleStore;
 	const history = useHistory();
-	const DEFAULT_SHOW_LIMIT = 4;
 
 	useEffect(() => {
 		if (user && user.name == "Offer Demo") {
@@ -39,13 +37,11 @@ export const DashboardPage = observer(() => {
 
 	useEffect(() => {
 		(async () => {
-			const [offers, requests, match] = await Promise.all([
-				getMyLatestExchangeOffers(),
-				getMyLatestExchangeRequests(),
+			const [attempts, match] = await Promise.all([
+				getMyLatestExchangeAttempts(),
 				getMyLatestMatch()
 			]);
-			sampleStore.setOffers(offers.exchange_offers);
-			sampleStore.setRequests(requests.exchange_requests);
+			attemptStore.setAttempts(attempts.exchange_attempts || []);
 			if (match && match.match) {
 				setMatch(match.match);
 			}
@@ -53,7 +49,7 @@ export const DashboardPage = observer(() => {
 	}, []);
 
 	return (
-		<SampleStoreProvider store={sampleStore}>
+		<ExchangeAttemptStoreProvider store={attemptStore}>
 			<div className="DashboardPage">
 				<TwoColumnPageIntro header="exchange_platform" subheader="for_animals_tissues">
 					<p className="layout-wrapper">{t("dashboard_intro")}</p>
@@ -68,6 +64,7 @@ export const DashboardPage = observer(() => {
 					<p>
 						{t("welcome")}, {user?.name}
 					</p>
+					{/* <ExcelImport /> */}
 					<div className="submenu-with-overviews">
 						<div className="submenu">
 							<h3
@@ -99,47 +96,23 @@ export const DashboardPage = observer(() => {
 							</h3>
 						</div>
 						<div className="overviews">
-							<Overview isActive={activeOverview === TDashboardOverview.Requests}>
-								<div className="requests">
-									<ExchangeRequests
-										requests={
-											shouldViewAll
-												? requests
-												: requests.slice(0, DEFAULT_SHOW_LIMIT)
-										}
-									/>
-									{requests?.length > DEFAULT_SHOW_LIMIT && !shouldViewAll && (
-										<div className="layout-wrapper">
-											<Button
-												label="see_all_requests"
-												handleClick={() => setShouldViewAll(true)}
-												classes={{ inline: true, primary: true }}
-											/>
-										</div>
-									)}
-								</div>
-							</Overview>
-							<Overview isActive={activeOverview === TDashboardOverview.Offers}>
-								<div className="offers">
-									<ExchangeOffers
-										offers={
-											shouldViewAll
-												? offers
-												: offers.slice(0, DEFAULT_SHOW_LIMIT)
-										}
-									/>
-									{offers?.length > DEFAULT_SHOW_LIMIT && !shouldViewAll && (
-										<div className="layout-wrapper">
-											<Button
-												label="see_all_offers"
-												handleClick={() => setShouldViewAll(true)}
-												classes={{ inline: true, primary: true }}
-											/>
-										</div>
-									)}
-								</div>
-							</Overview>
-							<Overview isActive={activeOverview === TDashboardOverview.Matches}>
+							<SubmenuView isActive={activeOverview === TDashboardOverview.Requests}>
+								<ExchangeAttemptOverview
+									specsToShow={requestCells}
+									mineOnly={true}
+									type={TExchangeAttemptType.Request}
+									SHOW_LIMIT={4}
+								/>
+							</SubmenuView>
+							<SubmenuView isActive={activeOverview === TDashboardOverview.Offers}>
+								<ExchangeAttemptOverview
+									specsToShow={offerCells}
+									mineOnly={true}
+									type={TExchangeAttemptType.Offer}
+									SHOW_LIMIT={4}
+								/>
+							</SubmenuView>
+							<SubmenuView isActive={activeOverview === TDashboardOverview.Matches}>
 								{match && (
 									<div className="latest-match layout-wrapper">
 										<Match
@@ -154,12 +127,12 @@ export const DashboardPage = observer(() => {
 										/>
 									</div>
 								)}
-							</Overview>
-							<DashboardStats />
+							</SubmenuView>
+							{/* <DashboardStats /> */}
 						</div>
 					</div>
 				</div>
 			</div>
-		</SampleStoreProvider>
+		</ExchangeAttemptStoreProvider>
 	);
 });

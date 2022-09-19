@@ -1,16 +1,18 @@
 import React from "react";
 import { ButtonCell } from "../ButtonCell";
 import { useHistory } from "react-router-dom";
-import { createQueryStringFromSample } from "../../../../utils/formatting/samples";
+import { goToCopyLink } from "../../../../utils/routing/url";
+import { TTableCellProps } from "../../../../typings/overviews";
 
-export const CopyButtonCell = ({ value, rowIndex, sample, ...props }) => {
-	const sampleType = !!sample.age ? "offer" : "request";
+export const CopyButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ...props }) => {
 	const history = useHistory();
 
-	const copy = () => {
-		const queryString = createQueryStringFromSample(sample);
-		history.push(`/app/submit-${sampleType}${queryString}`);
-	};
-
-	return <ButtonCell {...props} handleClick={copy} label="copy" classes={{ primary: true }} />;
+	return (
+		<ButtonCell
+			{...props}
+			handleClick={() => goToCopyLink(history, attempt)}
+			label="copy"
+			classes={{ primary: true }}
+		/>
+	);
 };

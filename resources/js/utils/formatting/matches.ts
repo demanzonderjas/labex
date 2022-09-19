@@ -1,10 +1,10 @@
 import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
-import { requestMatchCells, offerMatchCells } from "../../data/tables/matches";
-import { SpecStatus, TSpecMatch } from "../../typings/Sample";
-import { checkIfFieldMatches } from "../matches/utils";
-import { offerCells } from "../../data/tables/offers";
-import { requestCells } from "../../data/tables/requests";
-import { FormField } from "../../typings/Form";
+import { TSpecStatus, TSpecMatch } from "../../typings/specifications";
+import { checkIfFieldMatches, getMatchingPercentage } from "../matches/utils";
+import { TFormField } from "../../typings/forms";
+import { TSpecification, TTableCell, TTableCellName } from "../../typings/overviews";
+import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
+import { matchMeetsHardFilters } from "../filters/matches";
 
 export function getMatchClasses(value) {
 	return {
@@ -14,55 +14,73 @@ export function getMatchClasses(value) {
 	};
 }
 
-export function mapOffersToOverviewData(matches) {
-	return matches.map(match => {
-		return offerCells.map(cell => {
-			return { ...cell, value: match[cell.id] || cell.value };
+export function convertAttemptsToCells(attempts: TExchangeAttempt[], cells: TTableCell[]) {
+	return attempts.map(match => {
+		return cells.map(cell => {
+			const spec = match.specifications.find(s => s.key === cell.id);
+			return { ...cell, value: spec?.value || cell.value };
 		});
 	});
 }
 
-export function mapRequestsToOverviewData(matches) {
+export function convertMatchesToCells(
+	matches: TExchangeAttempt[],
+	cells: TTableCell[],
+	magicField?: TFormField
+): TTableCell[][] {
 	return matches.map(match => {
-		return requestCells.map(cell => {
-			return { ...cell, value: match[cell.id] || cell.value };
-		});
-	});
-}
-
-export function mapOfferMatchesToOverviewData(matches, magicField: FormField) {
-	return matches.map(match => {
-		return offerMatchCells.map(cell => {
-			if (cell.id === "magic_cell" && magicField) {
-				return { ...cell, value: match[magicField.id] || "" };
-			} else if (cell.id === "magic_cell" && !magicField) {
+		return cells.map(cell => {
+			let spec = match.specifications.find(s => s.key === cell.id);
+			if (cell.id === TTableCellName.MagicCell && magicField) {
+				spec = match.specifications.find(s => s.key === magicField.id);
+				return { ...cell, value: spec?.value || "", label: spec?.key };
+			} else if (cell.id === TTableCellName.MagicCell && !magicField) {
 				return null;
+			} else if (cell.id === TSpecificationName.MatchPercentage) {
+				return { ...cell, value: match.match_percentage };
+			} else if (cell.id === TTableCellName.IsMatch) {
+				return { ...cell, value: !!match.is_match };
 			}
-			return { ...cell, value: match[cell.id] || cell.value };
+			return { ...cell, value: spec?.value || cell.value };
 		});
 	});
 }
 
-export function mapRequestMatchesToOverviewData(matches, magicField: FormField) {
-	return matches.map(match => {
-		return requestMatchCells.map(cell => {
-			if (cell.id === "magic_cell" && magicField) {
-				return { ...cell, value: match[magicField.id] || "" };
-			} else if (cell.id === "magic_cell" && !magicField) {
-				return null;
-			}
-			return { ...cell, value: match[cell.id] || cell.value };
-		});
-	});
-}
-
-export function createQueryStringFromFilters(filters) {
+export function createQueryStringFromFilters(filters: TFormField[]) {
 	return filters.reduce((base, filter) => {
 		if (!base.length) {
 			return `?${filter.id}=${filter.value}`;
 		}
 		return `${base}&${filter.id}=${filter.value}`;
 	}, "");
+}
+
+export function convertAttemptsToMatches(
+	attempts: TExchangeAttempt[],
+	filters: TFormField[],
+	targetFields: TFormField[]
+) {
+	const sortedAttempts = !filters.length
+		? attempts
+		: attempts
+				.filter(attempt => matchMeetsHardFilters(attempt, filters))
+				.map(attempt => {
+					const filledSampleFields = fillFieldsWithSpecifications(
+						targetFields,
+						attempt.specifications
+					);
+					return {
+						...attempt,
+						match_percentage: getMatchingPercentage(
+							attempt,
+							filters,
+							filledSampleFields
+						)
+					};
+				})
+				.filter(attempt => attempt.match_percentage > 0);
+	sortedAttempts.sort((a, b) => b.match_percentage - a.match_percentage);
+	return sortedAttempts;
 }
 
 export function fillFieldsWithKeyValuePairs(fields, pairs) {
@@ -74,15 +92,28 @@ export function fillFieldsWithKeyValuePairs(fields, pairs) {
 	});
 }
 
+export function fillFieldsWithSpecifications(
+	fields: TFormField[],
+	specifications: TSpecification[]
+) {
+	return fields.map(field => {
+		const spec = specifications.find(s => s.key === field.id);
+		if (!spec) {
+			return field;
+		}
+		return { ...field, value: spec.value };
+	});
+}
+
 export function createMatchSpecs(fields, filters) {
 	return fields.map(field => {
 		const filter = filters.find(f => f.id == field.id);
 		if (!filter || !filter.value) {
-			return { ...field, match: { status: SpecStatus.NotSubmitted } };
+			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
-		const isMatch = checkIfFieldMatches(field, filter, filters, fields);
+		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);
 		const match: TSpecMatch = {
-			status: isMatch ? SpecStatus.Match : SpecStatus.NoMatch,
+			status: matchStatus,
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
 		};
 		return { ...field, match };

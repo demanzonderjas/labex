@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
-import { FormField } from "../../../typings/Form";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TFormField } from "../../../typings/forms";
 
-export const killMethodField: FormField = {
+export const killMethodField: TFormField = {
 	label: "kill_method",
-	id: "kill_method",
+	id: TSpecificationName.KillMethod,
 	Component: SelectField,
 	props: {
 		options: [
@@ -24,5 +25,6 @@ export const killMethodField: FormField = {
 			id: "origin",
 			validate: value => value == "vital_tissue"
 		}
-	]
+	],
+	synonyms: ["killed_with", "kill", "death"]
 };

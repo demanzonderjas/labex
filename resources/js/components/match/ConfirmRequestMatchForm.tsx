@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FormField } from "../../typings/Form";
+import { TFormField } from "../../typings/forms";
 import { createMatchSpecs } from "../../utils/formatting/matches";
 import {
 	fieldIsNotHidden,
@@ -7,17 +7,17 @@ import {
 	fieldWasFilled
 } from "../../utils/filters/fields";
 import { Spec } from "./Spec";
-import SampleStoreProvider from "../../contexts/SampleContext";
-import { SampleStore } from "../../stores/SampleStore";
+import ExchangeAttemptStoreProvider from "../../contexts/ExchangeAttemptContext";
+import { ExchangeAttemptStore } from "../../stores/ExchangeAttemptStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useModalStore } from "../../hooks/useModalStore";
 import { BlankButton, Button } from "../base/Button";
-import { createOfferMatch } from "../../queries/createOfferMatch";
-import { useParams, useHistory } from "react-router-dom";
+import { createMatch } from "../../queries/createMatch";
+import { useHistory } from "react-router-dom";
 
 type Props = {
-	fields: FormField[];
-	filters: FormField[];
+	fields: TFormField[];
+	filters: TFormField[];
 	offerId: string;
 };
 
@@ -25,7 +25,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	if (!fields || !filters) {
 		return null;
 	}
-	const [sampleStore] = useState(new SampleStore());
+	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
 	const [protocolNumber, setProtocolNumber] = useState("");
@@ -41,7 +41,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 			},
 			{ extra_info: extraInfo, protocol_number: protocolNumber }
 		);
-		await createOfferMatch(requestData, offerId);
+		await createMatch(requestData, offerId);
 		confirm();
 		history.push("/app/my-matches?info=true");
 	};
@@ -51,7 +51,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	}, [filters]);
 
 	return (
-		<SampleStoreProvider store={sampleStore}>
+		<ExchangeAttemptStoreProvider store={sampleStore}>
 			<div className="DataList layout-wrapper">
 				{matches
 					.filter(fieldIsNotHidden)
@@ -88,6 +88,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 					/>
 				</div>
 			</div>
-		</SampleStoreProvider>
+		</ExchangeAttemptStoreProvider>
 	);
 };

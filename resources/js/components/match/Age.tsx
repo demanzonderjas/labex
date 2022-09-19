@@ -11,8 +11,6 @@ type Props = {
 };
 
 export const DisplayedAge: React.FC<Props> = ({ type, value, fields }) => {
-	const { t } = useTranslationStore();
-
 	switch (type) {
 		case "age":
 			return <AgeInPeriod value={value} />;

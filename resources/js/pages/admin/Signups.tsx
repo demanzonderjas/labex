@@ -6,22 +6,30 @@ import { getSignups } from "../../queries/admin/getSignups";
 import { mapSignupsToOverviewData } from "../../utils/formatting/signups";
 
 export const SignupsPage = observer(() => {
-    const { t } = useTranslationStore();
+	const { t } = useTranslationStore();
 	const [signups, setSignups] = useState([]);
+	const [filter, setFilter] = useState("");
 
-    useEffect(() => {
-        (async () => {
-            const response = await getSignups();
-            setSignups(response.signups);
-        })();
-	}, [])   
-	
-	const signupsWithCells = mapSignupsToOverviewData(signups);
+	useEffect(() => {
+		(async () => {
+			const response = await getSignups();
+
+			setSignups(response.signups.reverse());
+		})();
+	}, []);
+
+	const signupsWithCells = mapSignupsToOverviewData(
+		signups.filter(s => s.name.match(filter) || s.email.match(filter))
+	);
 
 	return (
-        <div className="AdminFAQPage">
-            <h1>{t("signups")}</h1>
-            <table className="not-centered">
+		<div className="AdminFAQPage">
+			<h1>{t("signups")}</h1>
+			<div className="filter margin-10">
+				<h3 className="margin-20-0">{t("filter_search")}</h3>
+				<input type="text" value={filter} onChange={e => setFilter(e.target.value)} />
+			</div>
+			<table className="not-centered">
 				<thead>
 					<tr>
 						{signupColumns.map(column => (
@@ -31,7 +39,7 @@ export const SignupsPage = observer(() => {
 				</thead>
 				<tbody>
 					{signupsWithCells.map((cells, idx) => (
-						<tr key={idx}>
+						<tr key={signups[idx].id}>
 							{cells.map((cell, cellIdx) => (
 								<cell.Component
 									key={cellIdx}
@@ -44,6 +52,6 @@ export const SignupsPage = observer(() => {
 					))}
 				</tbody>
 			</table>
-        </div>
-    )
+		</div>
+	);
 });

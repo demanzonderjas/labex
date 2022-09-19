@@ -33,6 +33,6 @@ class AdminMatchMadeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.admin.match-made')->subject("ATEX - A new match has been made!");
+        return $this->view('mail.admin.match-made')->subject("ATEX [" . $this->match->type . "] - A new match has been made!");
     }
 }

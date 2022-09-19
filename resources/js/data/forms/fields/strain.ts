@@ -1,19 +1,21 @@
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 import { InputField } from "../../../components/form/InputField";
+import { TSpecificationName } from "../../../typings/exchanges";
 
-export const strainField: FormField = {
+export const strainField: TFormField = {
 	label: "strain",
-	id: "strain",
+	id: TSpecificationName.Strain,
 	Component: InputField,
 	required: true,
 	props: {
 		type: InputType.Text
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["strain"]
 };
 
-export const strainRequestField: FormField = {
+export const strainRequestField: TFormField = {
 	...strainField,
 	required: false
 };

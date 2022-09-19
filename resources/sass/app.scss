@@ -14,6 +14,8 @@
 @import "components/layout/Footer";
 @import "components/layout/PageIntro";
 
+@import "components/icons/InfoIcon";
+
 @import "components/forms/Form";
 @import "components/forms/FormField";
 @import "components/forms/IconSelectField";
@@ -40,6 +42,8 @@
 @import "components/admin/Sidebar";
 
 @import "components/dashboard/DashboardStats";
+
+@import "components/excel/UploadButton";
 
 @import "pages/HomePage";
 @import "pages/Dashboard";
@@ -117,4 +121,11 @@ body {
 
 .with-black-scrollbar::-webkit-scrollbar-thumb {
 	background-color: black;
+}
+
+.success {
+	background-color: $correct-color;
+	color: white;
+	padding: $default-half-margin;
+	margin: $default-half-margin 0;
 }

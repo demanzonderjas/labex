@@ -4,6 +4,9 @@
 		margin: 40px auto;
 	}
 
+	&.mine_only {
+	}
+
 	.LoadMore {
 		margin: 20px 0;
 		text-align: center;
@@ -12,13 +15,13 @@
 	.table {
 		overflow: auto;
 
-		&.ExchangeOfferTable {
+		&.offer {
 			thead th {
 				background-color: $offer-color;
 			}
 		}
 
-		&.ExchangeRequestTable {
+		&.request {
 			thead th {
 				background-color: $request-color;
 			}

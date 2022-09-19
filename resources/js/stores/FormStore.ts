@@ -1,12 +1,12 @@
 import { observable, action, computed, toJS } from "mobx";
-import { FormField, TForm } from "../typings/Form";
+import { TFormField, TForm } from "../typings/forms";
 import { FormEvent } from "react";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { fillFieldsWithKeyValuePairs } from "../utils/formatting/matches";
 import { parseQueryString } from "../utils/formatting/query";
 
 export class FormStore {
-	@observable fields: FormField[] = [];
+	@observable fields: TFormField[] = [];
 	@observable handler: Function = null;
 	@observable handleSuccess: Function = null;
 	@observable handleUpdate: Function = null;
@@ -74,7 +74,7 @@ export class FormStore {
 
 	@action.bound validate() {
 		const errors = this.fields.filter(fieldMeetsDependencies).reduce((base, field) => {
-			if (field.validate && !field.validate(field.value)) {
+			if (field.validate && !field.validate(field.value, this.fields)) {
 				base[field.id] = "field_not_valid";
 			}
 			if (field.required && field.value == "") {
@@ -132,7 +132,7 @@ export class FormStore {
 		}, {});
 	}
 
-	@action.bound addField(field: FormField) {
+	@action.bound addField(field: TFormField) {
 		const fields = [...this.fields];
 		fields.push(field);
 		this.fields = fields;

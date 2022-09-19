@@ -1,5 +1,5 @@
 <?php
 
 return [
-    "universiteit-utrecht" => "University of Utrecht"
+    "uu.nl" => "University of Utrecht"
 ];

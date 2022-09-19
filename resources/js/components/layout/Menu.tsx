@@ -5,6 +5,7 @@ import { LocalImage } from "../base/Image";
 import { MenuItems } from "./MenuItems";
 import { useLocation } from "react-router";
 import { PAGE_NAVBAR_COLOR } from "../../data/configs/colors";
+import { Link } from "react-router-dom";
 
 export const Menu = observer(() => {
 	const loc = useLocation();
@@ -15,13 +16,13 @@ export const Menu = observer(() => {
 		<div className="Menu" style={{ backgroundColor: navBarColor }}>
 			<div className="menu-wrapper">
 				<MenuItems prefix="app" menuItems={menuItems} />
-				{/* <ul className="menu-icons">
-					{menuIcons.map(icon => (
-						<li key={icon}>
-							<LocalImage path={`icons/${icon}.svg`} />
-						</li>
-					))}
-				</ul> */}
+				<ul className="menu-icons">
+					<li>
+						<Link to="/app/alerts">
+							<LocalImage path={`icons/alert.png`} />
+						</Link>
+					</li>
+				</ul>
 			</div>
 		</div>
 	);

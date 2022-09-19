@@ -1,19 +1,21 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TFormField, InputType } from "../../../typings/forms";
 
-export const sampleNumberField: FormField = {
+export const sampleNumberField: TFormField = {
 	label: "sample_number",
-	id: "sample_number",
+	id: TSpecificationName.SampleNumber,
 	Component: InputField,
 	required: true,
 	props: {
 		type: InputType.Text
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["samplenumber", "number"]
 };
 
-export const sampleNumberRequestField: FormField = {
+export const sampleNumberRequestField: TFormField = {
 	...sampleNumberField,
 	required: false
 };

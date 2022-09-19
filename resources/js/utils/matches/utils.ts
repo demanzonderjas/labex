@@ -1,31 +1,69 @@
-import { FormField } from "../../typings/Form";
+import { TExchangeAttempt } from "../../typings/exchanges";
+import { TFormField } from "../../typings/forms";
+import { TSpecStatus } from "../../typings/specifications";
 import { fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../filters/fields";
+import { createQueryStringFromFilters } from "../formatting/matches";
 
-export function getMatchingPercentage(sample, filters, fields) {
+export function getMatchingPercentage(
+	attempt: TExchangeAttempt,
+	filters: TFormField[],
+	fields: TFormField[]
+): number {
 	const activeFilters = filters.filter(
-		(filter: FormField) =>
+		(filter: TFormField) =>
 			filter.value != "" &&
 			!filter.hidden &&
 			fieldMeetsDependencies(filter, 0, fields) &&
 			!fieldShouldBeIgnoredInMatch(filter)
 	);
-	const matchingFilters = activeFilters.filter(filter =>
-		checkIfFilterMatches(filter, sample, filters, fields)
+	const matchingFilters: TSpecStatus[] = activeFilters.map(filter =>
+		checkIfFilterMatches(filter, attempt, filters, fields)
 	);
-	return (matchingFilters.length / activeFilters.length) * 100;
+	const fullMatchFilters = matchingFilters.filter(status => status === TSpecStatus.Match);
+	const partialMatchFilters = matchingFilters.filter(
+		status => status === TSpecStatus.PartialMatch
+	);
+	const PARTIAL_MATCH_WEIGHT = 0.5;
+	return (
+		((fullMatchFilters.length + partialMatchFilters.length * PARTIAL_MATCH_WEIGHT) /
+			activeFilters.length) *
+		100
+	);
 }
 
-export function checkIfFilterMatches(filter, field, filters, fields) {
+export function checkIfFilterMatches(
+	filter: TFormField,
+	attempt: TExchangeAttempt,
+	filters: TFormField[],
+	fields: TFormField[]
+) {
+	const matchingSpec = attempt.specifications.find(s => s.key == filter.id);
 	return filter.isMatch
-		? filter.isMatch(filter.value, field[filter.id], filters, fields)
-		: filter.value == field[filter.id];
+		? filter.isMatch(filter.value, matchingSpec?.value, filters, fields)
+		: filter.value == matchingSpec?.value
+		? TSpecStatus.Match
+		: TSpecStatus.NoMatch;
 }
 
-export function checkIfFieldMatches(field, filter, filters, fields) {
+export function checkIfFieldMatches(
+	field: TFormField,
+	filter: TFormField,
+	filters: TFormField[],
+	fields: TFormField[]
+): TSpecStatus {
 	if (field.value === "") {
-		return true;
+		return TSpecStatus.Match;
 	}
-	return field.isMatch
+	const isEqual = filter.value == field.value;
+	const matchStatus = field.isMatch
 		? field.isMatch(filter.value, field.value, filters, fields)
-		: filter.value == field.value;
+		: isEqual
+		? TSpecStatus.Match
+		: TSpecStatus.NoMatch;
+	return matchStatus;
+}
+
+export function goToSelectMatchLink(history, attempt: TExchangeAttempt, filters: TFormField[]) {
+	const queryStringFromFilters = createQueryStringFromFilters(filters);
+	history.push(`/app/${attempt.attempt_type}s/select/${attempt.id}${queryStringFromFilters}`);
 }

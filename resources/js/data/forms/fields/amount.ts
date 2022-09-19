@@ -1,11 +1,13 @@
 import { InputField } from "../../../components/form/InputField";
-import { FormField, InputType } from "../../../typings/Form";
+import { TFormField, InputType } from "../../../typings/forms";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 import { getFieldById } from "../../../utils/getters/fields";
+import { TSpecStatus } from "../../../typings/specifications";
+import { TSpecificationName } from "../../../typings/exchanges";
 
-export const amountField: FormField = {
+export const amountField: TFormField = {
 	label: "amount",
-	id: "amount",
+	id: TSpecificationName.Amount,
 	Component: InputField,
 	required: true,
 	validate: isBiggerThanZero,
@@ -13,18 +15,20 @@ export const amountField: FormField = {
 		type: InputType.Number,
 		min: 0
 	},
-	isMatch: (requestedValue, offeredValue, filters, fields) => {
+	isMatch: (requestedValue, offeredValue, filters): TSpecStatus => {
 		const isRequest = filters.some(f => f.label == "amount_request");
-		return isRequest
+		const isCompleteMatch = isRequest
 			? parseInt(requestedValue) <= parseInt(offeredValue)
 			: parseInt(offeredValue) <= parseInt(requestedValue);
+		return isCompleteMatch ? TSpecStatus.Match : TSpecStatus.PartialMatch;
 	},
-	customValue: fields => `${getFieldById("amount", fields).value} requested`,
+	customValue: fields => `${getFieldById(TSpecificationName.Amount, fields).value} requested`,
 	default: "1",
-	value: "1"
+	value: "1",
+	synonyms: ["total", "amounts"]
 };
 
-export const amountRequestedField: FormField = {
+export const amountRequestedField: TFormField = {
 	...amountField,
 	label: "amount_request",
 	required: false

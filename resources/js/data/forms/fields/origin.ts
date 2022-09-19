@@ -1,9 +1,10 @@
 import { SelectField } from "../../../components/form/SelectField";
-import { FormField } from "../../../typings/Form";
+import { TSpecificationName } from "../../../typings/exchanges";
+import { TFormField } from "../../../typings/forms";
 
-export const originField: FormField = {
+export const originField: TFormField = {
 	label: "origin",
-	id: "origin",
+	id: TSpecificationName.Origin,
 	Component: SelectField,
 	props: {
 		options: ["experiment", "breeding"],
@@ -11,5 +12,6 @@ export const originField: FormField = {
 		allowOther: true
 	},
 	default: "",
-	value: ""
+	value: "",
+	synonyms: ["herkomst"]
 };

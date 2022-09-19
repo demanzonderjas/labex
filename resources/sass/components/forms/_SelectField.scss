@@ -41,14 +41,16 @@ $item-height: 42px;
 	}
 
 	.SelectOption {
-		padding: 15px 50px 15px 15px;
+		padding: 10px 50px 10px 15px;
 		height: $item-height;
 		background-color: $grey-light;
 		margin-bottom: 1px;
 		position: relative;
 
 		span {
+			margin-top: 5px;
 			max-width: calc(100% - 20px);
+			min-height: 14px;
 			overflow-x: hidden;
 			overflow-y: hidden;
 			display: block;

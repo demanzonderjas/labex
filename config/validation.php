@@ -1,9 +1,19 @@
 <?php
 
 return [
-    "samples" => [
+    "attempt_types" => [
+        "offer",
+        "request"
+    ],
+    "exchange_status" => [
+        "active",
+        "inactive",
+        "adoption"
+    ],
+    "exchange_attempt_fields" => [
         "type" => "nullable|string",
         "animal_species" => "nullable|string",
+        'organs' => 'nullable|string',
         "strain" => "nullable|string",
         "sex" => "nullable|string",
         "origin" => "nullable|string",
@@ -12,7 +22,22 @@ return [
         "naive" => "nullable|string",
         'protocol_number' => 'nullable|string',
         "kill_method" => "nullable|string",
-        "sample_number" => "nullable|string"
+        "sample_number" => "nullable|string",
+        'amount' => 'required|string',
+        'extra_info' => 'nullable|string',
+    ],
+    "exchange_attempt_offer_fields" => [
+        'age' => 'required|string',
+        'date_available_start' => 'nullable|string',
+        'date_available' => 'nullable|string',
+        'suitable_for_adoption' => 'nullable|string',
+        'location' => 'nullable|string',
+    ],
+    "exchange_attempt_request_fields" => [
+        'age_type' => 'required|string',
+        'age_min' => 'required|alpha_num',
+        'age_max' => 'required|alpha_num',
+        'date_requested' => 'nullable|string',
     ],
     "type" => [
         "animal", "vital_tissue", "conserved_tissue"

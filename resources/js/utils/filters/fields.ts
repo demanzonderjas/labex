@@ -1,7 +1,7 @@
-import { FormField } from "../../typings/Form";
-import { SpecStatus } from "../../typings/Sample";
+import { TFormField } from "../../typings/forms";
+import { TSpecStatus } from "../../typings/specifications";
 
-export function fieldMeetsDependencies(field: FormField, index: number, fields: FormField[]) {
+export function fieldMeetsDependencies(field: TFormField, index: number, fields: TFormField[]) {
 	if (!field.dependencies) {
 		return true;
 	}
@@ -10,18 +10,18 @@ export function fieldMeetsDependencies(field: FormField, index: number, fields: 
 		if (!parentField) {
 			return false;
 		}
-		return dependency.validate(parentField.value);
+		return dependency.validate(parentField.value, fields);
 	});
 }
 
-export function fieldIsNotHidden(field: FormField) {
+export function fieldIsNotHidden(field: TFormField) {
 	return !field.hidden;
 }
 
-export function fieldWasFilled(field: FormField) {
-	return field.match && field.match.status != SpecStatus.NotSubmitted && field.value != "";
+export function fieldWasFilled(field: TFormField) {
+	return field.match && field.match.status != TSpecStatus.NotSubmitted && field.value != "";
 }
 
-export function fieldShouldBeIgnoredInMatch(field: FormField) {
+export function fieldShouldBeIgnoredInMatch(field: TFormField) {
 	return field.ignoreInMatch;
 }

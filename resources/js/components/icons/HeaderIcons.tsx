@@ -47,10 +47,16 @@ export const HeaderIcon = ({ type }) => {
 		submit_offer: {
 			Component: OfferIcon
 		},
+		edit_offer: {
+			Component: OfferIcon
+		},
 		requests: {
 			Component: RequestIcon
 		},
 		submit_request: {
+			Component: RequestIcon
+		},
+		edit_request: {
 			Component: RequestIcon
 		},
 		my_matches: {

@@ -1,5 +1,5 @@
-import { TModal } from "../../typings/Modal";
-import { ConfirmOfferMatchForm } from "../forms/ExchangeOffer";
+import { TModal } from "../../typings/modals";
+import { ConfirmOfferMatchForm } from "../forms/ExchangeAttemptOffer";
 import { ConfirmRequestMatchForm } from "../../components/match/ConfirmRequestMatchForm";
 
 export const confirmOfferMatchModal: TModal = {
