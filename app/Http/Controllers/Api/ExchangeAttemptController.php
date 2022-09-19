@@ -30,7 +30,6 @@ class ExchangeAttemptController extends Controller
 
 			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
 		} catch (Exception $e) {
-			dd($e);
 			return response()->json(["success" => false, "error" => $validated]);
 		}
 	}
