@@ -4,14 +4,14 @@ import { AgeRangeField } from "../../../components/form/custom-fields/AgeRangeFi
 import { isAgeInRange, isAgeRangeMatching } from "../../../utils/matches/age";
 import { getAgeRangeValue } from "../../../utils/getters/fields";
 import { TSpecificationName } from "../../../typings/exchanges";
-import { isDateInPast } from "../../../utils/validation/date";
+import { isValidDate } from "../../../utils/validation/date";
 
 export const ageField: TFormField = {
 	label: "age",
 	id: TSpecificationName.Age,
 	Component: InputField,
 	required: true,
-	validate: isDateInPast,
+	validate: isValidDate,
 	isMatch: isAgeInRange,
 	props: {
 		type: InputType.Date

@@ -8,6 +8,11 @@ export function isDateInFuture(date: string) {
 	return dateObj.getTime() > now;
 }
 
+export function isValidDate(date: string) {
+	const timestamp = Date.parse(date);
+	return isNaN(timestamp) == false;
+}
+
 export function isDateInPast(date: string) {
 	return !isDateInFuture(date);
 }
