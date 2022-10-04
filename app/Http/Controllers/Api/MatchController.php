@@ -19,7 +19,7 @@ class MatchController extends Controller
     public function getAll()
     {
         $matches = MaterialMatch::with('offer.user', 'request.user')->get();
-        return response()->json(["success" => true, "matches" => array_reverse($matches->toArray())]);
+        return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 
     public function user(Request $request)
@@ -291,8 +291,8 @@ class MatchController extends Controller
 
         $this->restoreOrigin($match);
 
-        // Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user));
-        // Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user));
+        Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user));
+        Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user));
 
         return response()->json(["success" => true]);
     }
