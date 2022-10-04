@@ -291,8 +291,8 @@ class MatchController extends Controller
 
         $this->restoreOrigin($match);
 
-        Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user));
-        Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user));
+        // Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user));
+        // Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user));
 
         return response()->json(["success" => true]);
     }
