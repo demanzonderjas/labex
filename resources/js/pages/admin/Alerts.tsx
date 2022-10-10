@@ -14,6 +14,7 @@ export const AdminAlertsPage = () => {
 	useEffect(() => {
 		(async () => {
 			const response = await getAllAlerts();
+			console.log(response);
 			setAlerts(response.alerts);
 		})();
 	}, []);
