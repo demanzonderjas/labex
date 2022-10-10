@@ -17,6 +17,7 @@ import ModalStoreProvider from "./contexts/ModalContext";
 import { UsersPage } from "./pages/admin/Users";
 import { UserCreatePage } from "./pages/admin/UserCreate";
 import { ModalWrapper } from "./components/base/ModalWrapper";
+import { AdminAlertsPage } from "./pages/admin/Alerts";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -55,6 +56,9 @@ const App: React.FC = () => {
 								</Route>
 								<Route path="/admin/users/add-user" exact={true}>
 									<UserCreatePage />
+								</Route>
+								<Route path="/admin/alerts" exact={true}>
+									<AdminAlertsPage />
 								</Route>
 							</Switch>
 						</div>

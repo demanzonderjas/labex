@@ -31,6 +31,15 @@ export async function getAlerts() {
 	}
 }
 
+export async function getAllAlerts() {
+	try {
+		const response = await API.get("alerts");
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}
+
 export async function deleteAlert(alert_id: string) {
 	try {
 		const response = await API.delete(`alert/${alert_id}`);
