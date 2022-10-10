@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\AdminAction;
 use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\Mail\Admin\AdminMatchMadeEmail;
@@ -238,6 +239,9 @@ class MatchController extends Controller
             $origin->status = config('atex.constants.exchange_attempt_status.active');
             $origin->save();
 
+            $match->offer_id = $origin->id;
+            $match->save();
+
             ExchangeAttempt::where('origin_id', $match->offer->origin_id)->get()->each(function ($offer) {
                 $offer->delete();
             });
@@ -250,6 +254,9 @@ class MatchController extends Controller
             $origin = ExchangeAttempt::find($match->request->origin_id);
             $origin->status = config('atex.constants.exchange_attempt_status.active');
             $origin->save();
+
+            $match->request_id = $origin->id;
+            $match->save();
 
             ExchangeAttempt::where('origin_id', $match->request->origin_id)->get()->each(function ($exchangeRequest) {
                 $exchangeRequest->delete();
@@ -280,20 +287,27 @@ class MatchController extends Controller
         return response()->json(["success" => true]);
     }
 
-    public function reject(int $matchId)
+    public function reject(MaterialMatch $match, Request $request)
     {
-        $match = MaterialMatch::find($matchId);
-        if (!$match) {
-            return response()->json(["success" => false, "message" => "Match does not exist"]);
-        }
         $match->status = config('atex.constants.match_status.rejected');
         $match->save();
 
         $this->restoreOrigin($match);
 
-        Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user));
-        Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user));
+        $this->addAdminAction($match, "reject_match", $request->message);
+
+        Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user, $request->message));
+        Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user, $request->message));
 
         return response()->json(["success" => true]);
+    }
+
+    public function addAdminAction(MaterialMatch $match, $action, $message)
+    {
+        $adminAction = new AdminAction();
+        $adminAction->match_id = $match->id;
+        $adminAction->action = $action;
+        $adminAction->message = $message;
+        $adminAction->save();
     }
 }

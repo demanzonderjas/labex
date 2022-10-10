@@ -24,12 +24,12 @@ export class MatchStore {
 		}
 	}
 
-	@action.bound async rejectMatch(matchId) {
-		const response = await rejectMatch(matchId);
-		if (response.success) {
-			this.updateMatchById(matchId, TMatchStatus.Rejected);
-		}
-	}
+	// @action.bound async rejectMatch(matchId) {
+	// 	const response = await rejectMatch(matchId);
+	// 	if (response.success) {
+	// 		this.updateMatchById(matchId, TMatchStatus.Rejected);
+	// 	}
+	// }
 
 	@action.bound updateMatchById(matchId: number, status: TMatchStatus) {
 		const matchIndex = this.matches.findIndex(m => m.id == matchId);

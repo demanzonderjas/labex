@@ -257,5 +257,10 @@
 	"add_new_alert_description": "<p>Here you can easily and freely select which specifications are a 'must' for you to receive an email about. If you want to see all the requests and offers coming in, you can leave all the fields empty and click on <strong>'Add new alert'</strong>.</p>",
 	"offer": "Offer",
 	"request": "Request",
-	"attempt_type": "Offer/request"
+	"attempt_type": "Offer/request",
+	"reject_match": "Reject match",
+	"reject_match_description": "Please explain to the researchers why the match was declined.",
+	"why_reject_message": "Why did you decline the match?",
+	"rejected": "Match was declined",
+	"rejected_label": "Rejected"
 }

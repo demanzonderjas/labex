@@ -3,14 +3,17 @@ import { ConfirmButton, DangerButton } from "../base/Button";
 import { observer } from "mobx-react-lite";
 import { useMatchStore } from "../../hooks/useMatchStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { useModalStore } from "../../hooks/useModalStore";
+import { rejectMatchModal } from "../../data/modals/matches";
 
 type Props = {
 	matchId: number;
 };
 
 export const ApproveButtons: React.FC<Props> = observer(({ matchId }) => {
-	const { approveMatch, rejectMatch } = useMatchStore();
+	const { approveMatch } = useMatchStore();
 	const { t } = useTranslationStore();
+	const { setModal } = useModalStore();
 
 	return (
 		<div className="ApproveButtons">
@@ -22,7 +25,7 @@ export const ApproveButtons: React.FC<Props> = observer(({ matchId }) => {
 			/>
 			<DangerButton
 				label="no"
-				handleClick={() => rejectMatch(matchId)}
+				handleClick={() => setModal({ ...rejectMatchModal, props: { matchId } })}
 				classes={{ inline: true }}
 			/>
 		</div>

@@ -19,7 +19,7 @@ import { DangerButton } from "../base/Button";
 import { cancelMatch } from "../../queries/cancelMatch";
 import { useModalStore } from "../../hooks/useModalStore";
 import { confirmCancelMatchModal } from "../../data/modals/confirm";
-import { TMatch } from "../../typings/exchanges";
+import { TMatch, TMatchStatus } from "../../typings/exchanges";
 
 type Props = {
 	match: TMatch;
@@ -65,7 +65,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				<span>{t("match")}</span>
 				<Percentage matchPercentage={percentage} />
 			</div>
-			{matchType != MatchType.Admin && (
+			{matchType != MatchType.Admin && status !== TMatchStatus.Rejected && (
 				<div className="cancel margin-10">
 					<DangerButton
 						label="cancel_match"

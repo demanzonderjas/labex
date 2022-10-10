@@ -16,6 +16,7 @@ import { ModalStore } from "./stores/ModalStore";
 import ModalStoreProvider from "./contexts/ModalContext";
 import { UsersPage } from "./pages/admin/Users";
 import { UserCreatePage } from "./pages/admin/UserCreate";
+import { ModalWrapper } from "./components/base/ModalWrapper";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -57,6 +58,7 @@ const App: React.FC = () => {
 								</Route>
 							</Switch>
 						</div>
+						<ModalWrapper />
 					</div>
 				</Router>
 			</ModalStoreProvider>

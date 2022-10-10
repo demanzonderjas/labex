@@ -9,9 +9,9 @@ export async function approveMatch(matchId) {
 	}
 }
 
-export async function rejectMatch(matchId) {
+export async function rejectMatch(matchId: number, message: string) {
 	try {
-		const response = await API.post(`matches/reject/${matchId}`);
+		const response = await API.post(`matches/reject/${matchId}`, { message });
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };
