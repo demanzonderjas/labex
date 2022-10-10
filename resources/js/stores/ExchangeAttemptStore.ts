@@ -122,7 +122,11 @@ export class ExchangeAttemptStore {
 	}
 
 	@action.bound loadFiltersFromKeyValuePairs(pairs) {
-		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs);
+		console.log(pairs);
+		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs).map((f: TFormField) => ({
+			...f,
+			ignoreInMatch: !pairs[f.id]
+		}));
 	}
 
 	@action.bound async getExchangeAttempts(attemptType: TExchangeAttemptType, mineOnly: boolean) {
