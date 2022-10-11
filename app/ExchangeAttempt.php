@@ -11,8 +11,6 @@ class ExchangeAttempt extends Model
 
 	public $with = ["specifications"];
 
-	// public $appends = ["is_match"];
-
 	public $hidden = ["origin_id"];
 
 	public function user()
@@ -27,12 +25,12 @@ class ExchangeAttempt extends Model
 
 	public function matchViaOffer()
 	{
-		return $this->hasOne(MaterialMatch::class, 'offer_id');
+		return $this->hasMany(MaterialMatch::class, 'offer_id');
 	}
 
 	public function matchViaRequest()
 	{
-		return $this->hasOne(MaterialMatch::class, 'request_id');
+		return $this->hasMany(MaterialMatch::class, 'request_id');
 	}
 
 	public function scopeRequests($query)
@@ -109,10 +107,14 @@ class ExchangeAttempt extends Model
 
 	public function getIsMatchAttribute()
 	{
-		if ($this->attempt_type === config('atex.constants.offer') && $this->matchViaOffer()->exists()) {
-			return $this->matchViaOffer->status !== "rejected";
-		} else if ($this->attempt_type === config('atex.constants.request') && $this->matchViaRequest()->exists()) {
-			return $this->matchViaRequest->status !== "rejected";
+		if ($this->attempt_type === config('atex.constants.offer')) {
+			return $this->matchViaOffer->contains(function (MaterialMatch $m) {
+				return $m->isActive();
+			});
+		} else if ($this->attempt_type === config('atex.constants.request')) {
+			return $this->matchViaRequest->contains(function (MaterialMatch $m) {
+				return $m->isActive();
+			});
 		}
 		return false;
 	}

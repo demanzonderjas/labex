@@ -42,4 +42,9 @@ class MaterialMatch extends Model
                 $query->where('id', $user->id);
             })->orderByDesc('updated_at');
     }
+
+    public function isActive()
+    {
+        return $this->status !== "rejected";
+    }
 }
