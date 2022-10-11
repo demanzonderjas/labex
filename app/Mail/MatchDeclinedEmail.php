@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\ExchangeAttempt;
 use App\MaterialMatch;
 use App\User;
 use Illuminate\Bus\Queueable;

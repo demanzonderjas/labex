@@ -47,12 +47,18 @@ class RemoveOutdated extends Command
         foreach ($offers as $offer) {
             $date = Carbon::createFromFormat("Y-m-d", $offer->date_available);
             $endDate = $date->addDays(config('atex.constants.days_before_inactive'));
+            $adoptionReminderDate = $date->addDays(config('atex.constants.days_before_adoption_reminder'));
             if ($endDate->isBefore($now) && $offer->type != config('atex.constants.exchange_type.conserved_tissue') && $offer->status != config('atex.constants.exchange_attempt_status.inactive')) {
                 $offer->status = config('atex.constants.exchange_attempt_status.inactive');
                 $offer->save();
 
                 if ($offer->suitable_for_adoption) {
                     $admin = User::where('email', env('ADMIN_MAIL'))->first();
+                    Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
+                }
+            } else if ($adoptionReminderDate->diffInDays($now) === config('atex.constants.days_before_adoption_reminder') && $offer->suitable_for_adoption) {
+                $admins = User::whereIsAdmin()->get();
+                foreach ($admins as $admin) {
                     Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
                 }
             }

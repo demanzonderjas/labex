@@ -20,6 +20,7 @@ return [
 			"vital_tissue" => "vital_tissue",
 			"conserved_tissue" => "conserved_tissue",
 		],
-		"days_before_inactive" => 14
+		"days_before_inactive" => 14,
+		"days_before_adoption_reminder" => 7
 	]
 ];

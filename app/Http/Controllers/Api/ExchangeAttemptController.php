@@ -6,6 +6,7 @@ use App\Alert;
 use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeAttemptStoreRequest;
+use App\Http\Resources\ExchangeAttemptResource;
 use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Mail\AlertMatchEmail;
 use App\Specification;
@@ -28,7 +29,7 @@ class ExchangeAttemptController extends Controller
 			}
 			self::activateAlerts($attempt);
 
-			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
+			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
 			return response()->json(["success" => false, "error" => $validated]);
 		}
@@ -40,7 +41,7 @@ class ExchangeAttemptController extends Controller
 			$validated = $request->validated();
 			$attempt = $this->updateInDb($attempt_id, $validated);
 
-			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
+			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
 			return response()->json(["success" => false, "error" => $validated]);
 		}
@@ -52,7 +53,7 @@ class ExchangeAttemptController extends Controller
 			'user_id' => $request->user()->id
 		])->latest()->get();
 
-		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts]);
+		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
 
 	public function deleteById($id)
@@ -71,7 +72,7 @@ class ExchangeAttemptController extends Controller
 	{
 		$matchType = $request->attempt_type === config('atex.constants.offer') ? "matchViaOffer" : "matchViaRequest";
 		$exchange_attempts = ExchangeAttempt::doesntHave($matchType)->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
-		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts->toArray()]);
+		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
 
 	public function updateInDb($attempt_id, $specifications)

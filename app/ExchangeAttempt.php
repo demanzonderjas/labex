@@ -11,7 +11,7 @@ class ExchangeAttempt extends Model
 
 	public $with = ["specifications"];
 
-	public $appends = ["is_match"];
+	// public $appends = ["is_match"];
 
 	public $hidden = ["origin_id"];
 
@@ -109,6 +109,11 @@ class ExchangeAttempt extends Model
 
 	public function getIsMatchAttribute()
 	{
-		return $this->matchViaOffer()->exists() || $this->matchViaRequest()->exists();
+		if ($this->attempt_type === config('atex.constants.offer') && $this->matchViaOffer()->exists()) {
+			return $this->matchViaOffer->status !== "rejected";
+		} else if ($this->attempt_type === config('atex.constants.request') && $this->matchViaRequest()->exists()) {
+			return $this->matchViaRequest->status !== "rejected";
+		}
+		return false;
 	}
 }
