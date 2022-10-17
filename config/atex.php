@@ -21,6 +21,11 @@ return [
 			"conserved_tissue" => "conserved_tissue",
 		],
 		"days_before_inactive" => 14,
-		"days_before_adoption_reminder" => 7
+		"days_before_adoption_reminder" => 7,
+		"days_per_period" => [
+			"weeks" => 7,
+			"years" => 365,
+			"months" => 30
+		]
 	]
 ];
