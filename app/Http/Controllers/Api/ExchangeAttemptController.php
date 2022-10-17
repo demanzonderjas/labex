@@ -177,12 +177,10 @@ class ExchangeAttemptController extends Controller
 		$usersMailed = [];
 
 		foreach ($matchingAlerts as $alert) {
-			// if (!in_array($alert->user->id, $usersMailed)) {
-			// 	Mail::to($alert->user)->queue(new AlertMatchEmail($attempt));
-			// }
+			if (!in_array($alert->user->id, $usersMailed)) {
+				Mail::to($alert->user)->queue(new AlertMatchEmail($attempt));
+			}
 			array_push($usersMailed, $alert->user->id);
 		}
-
-		dd($usersMailed);
 	}
 }
