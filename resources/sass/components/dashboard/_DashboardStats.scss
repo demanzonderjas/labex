@@ -5,10 +5,12 @@
 	margin-top: $default-margin !important;
 	display: flex;
 	align-items: stretch;
-	justify-content: space-between;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 
 	.card {
 		padding: 20px;
+		margin: 20px;
 		position: relative;
 		padding: $default-margin;
 		box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, 0.05);
@@ -17,6 +19,15 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			align-items: center;
+			justify-content: space-evenly;
+		}
 
 		.matches {
 			position: absolute;
@@ -27,7 +38,7 @@
 			font-family: $font-body;
 			font-size: 16px;
 			line-height: 20px;
-			margin-top: 30px;
+			margin-top: 15px;
 			color: $correct-color;
 
 			.number {
@@ -39,6 +50,7 @@
 		h3 {
 			font-weight: bold;
 			text-align: center;
+			font-size: 23px;
 		}
 
 		h4 {

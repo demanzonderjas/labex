@@ -262,5 +262,11 @@
 	"reject_match_description": "Please explain to the researchers why the match was declined.",
 	"why_reject_message": "Why did you decline the match?",
 	"rejected": "Match was declined",
-	"rejected_label": "Rejected"
+	"rejected_label": "Rejected",
+	"stats": "Stats",
+	"total_offers": "Total offers",
+	"total_requests": "Total requests",
+	"total_users": "Total users",
+	"total_offered": "Total offered",
+	"total_requested": "Total requested"
 }
