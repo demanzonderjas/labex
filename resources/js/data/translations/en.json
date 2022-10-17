@@ -268,5 +268,6 @@
 	"total_requests": "Total requests",
 	"total_users": "Total users",
 	"total_offered": "Total offered",
-	"total_requested": "Total requested"
+	"total_requested": "Total requested",
+	"alert_me": "Alert me!"
 }

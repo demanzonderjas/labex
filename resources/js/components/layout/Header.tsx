@@ -3,8 +3,9 @@ import { Menu } from "./Menu";
 import { LogoWrapper } from "./LogoWrapper";
 import { SubmitOfferButton } from "./SubmitOfferButton";
 import { SubmitRequestButton } from "./SubmitRequestButton";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button } from "../base/Button";
+import { LocalImage } from "../base/Image";
 
 export const Header = () => {
 	const history = useHistory();
@@ -15,6 +16,11 @@ export const Header = () => {
 				<div className="buttons">
 					<SubmitRequestButton />
 					<SubmitOfferButton />
+					<Button
+						label="alert_me"
+						handleClick={() => history.push("/app/alerts")}
+						classes={{ small: true, inline: true, tertiary: true }}
+					/>
 					<Button
 						classes={{ small: true, inline: true, danger: true }}
 						label="log_out"
