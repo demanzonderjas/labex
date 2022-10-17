@@ -70,6 +70,30 @@ class ExchangeAttempt extends Model
 		return $dateAvailableSpec ? $dateAvailableSpec->value : null;
 	}
 
+	public function getAgeAttribute()
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'age');
+		return $amountSpec ? $amountSpec->value : null;
+	}
+
+	public function getAgeMinAttribute()
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'age_min');
+		return $amountSpec ? $amountSpec->value : null;
+	}
+
+	public function getAgeMaxAttribute()
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'age_max');
+		return $amountSpec ? $amountSpec->value : null;
+	}
+
+	public function getSpec(string $specKey)
+	{
+		$spec = $this->specifications->firstWhere('key', $specKey);
+		return $spec ? $spec->value : null;
+	}
+
 	public function getOrgansAttribute()
 	{
 		$organSpec = $this->specifications->firstWhere('key', 'organs');

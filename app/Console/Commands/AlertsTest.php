@@ -39,7 +39,7 @@ class AlertsTest extends Command
      */
     public function handle()
     {
-        $attempt = ExchangeAttempt::find(4);
+        $attempt = ExchangeAttempt::find(63);
         ExchangeAttemptController::activateAlerts($attempt);
 
         return 0;

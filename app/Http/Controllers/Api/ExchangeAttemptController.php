@@ -11,6 +11,7 @@ use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Mail\AlertMatchEmail;
 use App\Specification;
 use App\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -129,7 +130,7 @@ class ExchangeAttemptController extends Controller
 			if (!empty($alert->attempt_type) && $alert->attempt_type != $attempt->attempt_type) {
 				return false;
 			}
-			$isMatch = array_reduce($alert->specifications, function ($base, $next) use ($attempt) {
+			$isMatch = array_reduce($alert->specifications, function ($base, $next) use ($alert, $attempt) {
 
 				if ($base === false) {
 					return $base;
@@ -138,6 +139,13 @@ class ExchangeAttemptController extends Controller
 					$attemptOrgans = !empty($attempt->organs) ? explode(", ", $attempt->organs) : [];
 					$hasOverlap = count(array_intersect($alertOrgans, $attemptOrgans)) > 0;
 					return $hasOverlap;
+				} else if ($next["key"] === "age_type" && $attempt->attempt_type === config('atex.constants.offer')) {
+					$minAge = Carbon::createFromFormat("Y-m-d", $attempt->getSpec("age"));
+					$minAge->add($alert->getSpec("age_min"), $alert->getSpec("age_type"));
+					$maxAge = Carbon::createFromFormat("Y-m-d", $attempt->getSpec("age"));
+					$maxAge->add($alert->getSpec("age_max"), $alert->getSpec("age_type"));
+					$now = Carbon::now();
+					return $now->isAfter($minAge) && $now->isBefore($maxAge);
 				} else if (strpos($next["key"], "age") === false && $next["key"] != "attempt_type") {
 					$spec = $attempt->specifications->firstWhere('key', $next["key"]);
 					$base = $spec ? $next["value"] === $spec->value : $base;
@@ -151,10 +159,12 @@ class ExchangeAttemptController extends Controller
 		$usersMailed = [];
 
 		foreach ($matchingAlerts as $alert) {
-			if (!in_array($alert->user->id, $usersMailed)) {
-				Mail::to($alert->user)->queue(new AlertMatchEmail($attempt));
-			}
+			// if (!in_array($alert->user->id, $usersMailed)) {
+			// 	Mail::to($alert->user)->queue(new AlertMatchEmail($attempt));
+			// }
 			array_push($usersMailed, $alert->user->id);
 		}
+
+		dd($usersMailed);
 	}
 }

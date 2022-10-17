@@ -5,10 +5,7 @@ import { FilterRequestsForm } from "./ExchangeAttemptRequest";
 import { attemptTypeAlertField } from "./fields/attemptType";
 
 const alertFields = FilterRequestsForm.fields.filter(
-	f =>
-		f.id !== TSpecificationName.Amount &&
-		f.id !== TSpecificationName.AttemptType &&
-		f.id.indexOf("age") === -1
+	f => f.id !== TSpecificationName.Amount && f.id !== TSpecificationName.AttemptType
 );
 alertFields.unshift(attemptTypeAlertField);
 
