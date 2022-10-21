@@ -16,7 +16,7 @@ class VerifyAdmin
     public function handle($request, Closure $next)
     {
         if (!$request->user()) {
-            return redirect("/login", 302);
+            return redirect("/?target_url=" .  urlencode($request->fullUrl()), 302);
         }
         if (!$request->user()->is_admin) {
             abort(403, 'You are not qualified as an administrator.');
