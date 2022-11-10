@@ -20,7 +20,11 @@ export const AdminAlertsPage = () => {
 	}, []);
 
 	const filteredAlertsWithCells = mapAdminAlertsToOverviewData(
-		alerts.filter((a: TAlert) => a.user.name.match(filter) || a.user.email.match(filter))
+		alerts.filter(
+			(a: TAlert) =>
+				a.user.name.toLowerCase().match(filter.toLowerCase()) ||
+				a.user.email.toLowerCase().match(filter.toLowerCase())
+		)
 	);
 
 	return (
