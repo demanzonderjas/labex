@@ -28,6 +28,7 @@ export const organsField: TFormField = {
 	default: "",
 	value: "",
 	isHardFilter: true,
+	required: true,
 	isMatch: isMultiSelectMatch,
 	dependencies: [
 		{
