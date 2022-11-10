@@ -1,6 +1,5 @@
 import React from "react";
 import { AgeInPeriod } from "./AgeInPeriod";
-import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { AgeRange } from "./AgeRange";
 import { DisplayedDate } from "../base/DisplayedDate";
 
