@@ -3,6 +3,7 @@ import React from "react";
 import { LocalImage } from "../base/Image";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Button } from "../base/Button";
+import { organisations } from "../../data/configs/organisations";
 
 export const UserProfile: React.FC<TUserProfile & { hideContact?: boolean }> = ({
 	user,
@@ -17,7 +18,9 @@ export const UserProfile: React.FC<TUserProfile & { hideContact?: boolean }> = (
 
 	return (
 		<div className="UserProfile user">
-			<LocalImage path={`logo/${user.organisation}_logo.png`} />
+			{organisations.some(o => o == user.organisation) && (
+				<LocalImage path={`logo/${user.organisation}_logo.png`} />
+			)}
 			<div className="details inline">
 				<span className="name">
 					{user.name} {mine ? <>({t("you")})</> : ""}
