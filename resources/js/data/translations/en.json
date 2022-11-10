@@ -269,5 +269,7 @@
 	"total_users": "Total users",
 	"total_offered": "Total offered",
 	"total_requested": "Total requested",
-	"alert_me": "Alert me!"
+	"alert_me": "Alert me!",
+	"required": "Required fields",
+	"optional": "Optional fields"
 }

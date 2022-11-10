@@ -16,6 +16,7 @@ export type TForm = {
 	fullWidthFields?: boolean;
 	infoModal?: TModal;
 	allowCancel?: boolean;
+	splitByRequired?: boolean;
 };
 
 export enum InputType {

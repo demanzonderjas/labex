@@ -50,7 +50,8 @@ export const SubmitOfferForm: TForm = {
 	handler: sendExchangeAttempt,
 	matchable: false,
 	infoModal: flowchartModal,
-	allowCancel: true
+	allowCancel: true,
+	splitByRequired: true
 };
 
 export const EditOfferForm: TForm = {
