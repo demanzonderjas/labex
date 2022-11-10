@@ -14,7 +14,6 @@ export const DashboardStats: React.FC = React.memo(() => {
 	useEffect(() => {
 		(async () => {
 			const stats = await getDashboardStats();
-			console.log(stats);
 			setStats(stats);
 		})();
 	}, []);

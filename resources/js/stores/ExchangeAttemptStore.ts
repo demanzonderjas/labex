@@ -122,7 +122,6 @@ export class ExchangeAttemptStore {
 	}
 
 	@action.bound loadFiltersFromKeyValuePairs(pairs) {
-		console.log(pairs);
 		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs).map((f: TFormField) => ({
 			...f,
 			ignoreInMatch: !pairs[f.id]
@@ -151,11 +150,6 @@ export class ExchangeAttemptStore {
 		const { exchange_attempt } = data;
 		this.attempts = [...this.attempts, exchange_attempt];
 		location.href = "/app/dashboard";
-	}
-
-	@action.bound viewAttempt(data) {
-		console.log("new data", data);
-		// location.href = "/app/dashboard";
 	}
 
 	@action.bound deleteAttempt(id: number) {

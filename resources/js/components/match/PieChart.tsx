@@ -12,8 +12,6 @@ export const PieChart: React.FC<Props> = ({ percentages, colors, labels }) => {
 	const canvasRef = useRef(null);
 	const { t } = useTranslationStore();
 
-	console.log(percentages);
-
 	useEffect(() => {
 		const ctx = canvasRef.current.getContext("2d");
 		new Chart(ctx, {

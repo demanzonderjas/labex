@@ -4,7 +4,6 @@ import { TSpecification } from "../typings/overviews";
 import { API } from "../utils/api/axios";
 
 export async function createAlert(specifications: { [K in TSpecificationName]: any }) {
-	console.log(specifications);
 	const specificationsArray: TSpecification[] = Object.keys(specifications).reduce(
 		(base, next) => {
 			if (specifications[next] != null && specifications[next] !== "" && next !== "age") {
@@ -14,8 +13,6 @@ export async function createAlert(specifications: { [K in TSpecificationName]: a
 		},
 		[]
 	);
-
-	console.log(specificationsArray);
 
 	try {
 		const response = await API.post("alert", { specifications: specificationsArray });

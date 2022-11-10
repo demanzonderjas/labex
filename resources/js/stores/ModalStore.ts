@@ -10,8 +10,6 @@ export class ModalStore {
 		this.modal = modal;
 		this.isActive = !!modal;
 
-		console.log(this.isActive, modal);
-
 		if (this.isActive) {
 			document.body.classList.add("block-scroll");
 		} else {
