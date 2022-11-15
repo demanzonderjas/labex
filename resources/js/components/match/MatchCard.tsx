@@ -1,5 +1,5 @@
 import React from "react";
-import { TFormField } from "../../typings/forms";
+import { TFormField, TFormFieldName } from "../../typings/forms";
 import { TUser } from "../../typings/user";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { MatchType } from "../../typings/overviews";
@@ -11,6 +11,7 @@ import {
 } from "../../utils/filters/fields";
 import cx from "classnames";
 import { UserProfile } from "./UserProfile";
+import { TSpecificationName } from "../../typings/exchanges";
 
 type Props = {
 	mine: boolean;
@@ -39,7 +40,12 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 					.filter(f => f.value != "")
 					.filter(fieldMeetsDependencies)
 					.map(spec => (
-						<div className="spec" key={spec.id}>
+						<div
+							className={cx("spec", {
+								full_width: spec.label === TSpecificationName.ExtraInfo
+							})}
+							key={spec.id}
+						>
 							<label>{t(spec.label)}</label>
 							<MatchValue
 								matchStatus={spec.match.status}

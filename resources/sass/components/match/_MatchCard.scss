@@ -73,6 +73,10 @@
 			margin-bottom: 24px;
 			padding-right: 8px;
 
+			&.full_width {
+				width: 100%;
+			}
+
 			label {
 				display: block;
 				line-height: 16px;

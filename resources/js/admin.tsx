@@ -5,7 +5,7 @@ import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { PossibleMatches } from "./pages/admin/PossibleMatches";
+import { MatchesPage } from "./pages/admin/Matches";
 import { AdminDashboardPage } from "./pages/admin/Dashboard";
 import { Sidebar } from "./components/admin/Sidebar";
 import { AdminFAQPage } from "./pages/admin/FAQ";
@@ -36,8 +36,8 @@ const App: React.FC = () => {
 								<Route path="/admin/dashboard">
 									<AdminDashboardPage />
 								</Route>
-								<Route path="/admin/possible-matches" exact={true}>
-									<PossibleMatches />
+								<Route path="/admin/matches" exact={true}>
+									<MatchesPage />
 								</Route>
 								<Route path="/admin/signups" exact={true}>
 									<SignupsPage />

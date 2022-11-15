@@ -118,8 +118,6 @@
 	"my_matches": "My matches",
 	"my-matches": "My matches",
 	"invalid_request": "Invalid request to the server",
-	"possible_matches": "Possible matches",
-	"possible-matches": "Possible matches",
 	"yes": "Yes",
 	"no": "No",
 	"match_percentage": "Match %",
@@ -273,5 +271,7 @@
 	"required": "Required fields",
 	"optional": "Optional fields",
 	"universiteit-utrecht": "Universiteit Utrecht",
-	"umcutrecht.nl": "UMC Utrecht"
+	"umcutrecht.nl": "UMC Utrecht",
+	"previous_matches": "Match history",
+	"show_previous_matches": "Show match history"
 }
