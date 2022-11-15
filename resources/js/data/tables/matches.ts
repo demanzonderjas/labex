@@ -129,3 +129,42 @@ export const requestMatchCells: TTableCell[] = [
 		Component: MatchButtonCell
 	}
 ];
+
+export const adminOfferCells: TTableCell[] = [
+	{
+		id: TSpecificationName.ExchangeType,
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: TSpecificationName.AnimalSpecies,
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: TSpecificationName.Sex,
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: TSpecificationName.Age,
+		label: "age_offer",
+		value: "",
+		Component: AgeCell
+	},
+	{
+		id: TTableCellName.MagicCell,
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: TSpecificationName.Amount,
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: TSpecificationName.DateAvailableEnd,
+		value: "",
+		Component: DateAvailableCell
+	}
+];

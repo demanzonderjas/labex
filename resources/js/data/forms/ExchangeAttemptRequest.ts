@@ -99,3 +99,11 @@ export const EditRequestForm: TForm = {
 	header: "edit_request",
 	intro: "edit_request_description"
 };
+
+export const AdminOffersForm: TForm = {
+	...FilterOffersForm,
+	intro: null,
+	matchable: false,
+	header: null,
+	hideSubmit: true
+};

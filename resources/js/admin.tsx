@@ -18,6 +18,7 @@ import { UsersPage } from "./pages/admin/Users";
 import { UserCreatePage } from "./pages/admin/UserCreate";
 import { ModalWrapper } from "./components/base/ModalWrapper";
 import { AdminAlertsPage } from "./pages/admin/Alerts";
+import { OffersPage } from "./pages/admin/Offers";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -38,6 +39,9 @@ const App: React.FC = () => {
 								</Route>
 								<Route path="/admin/matches" exact={true}>
 									<MatchesPage />
+								</Route>
+								<Route path="/admin/offers" exact={true}>
+									<OffersPage />
 								</Route>
 								<Route path="/admin/signups" exact={true}>
 									<SignupsPage />
