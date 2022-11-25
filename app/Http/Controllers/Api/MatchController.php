@@ -302,6 +302,15 @@ class MatchController extends Controller
         return response()->json(["success" => true]);
     }
 
+    public function updateAmount(MaterialMatch $match, Request $request)
+    {
+        $match->offer->amount = $request->amount;
+        $match->request->amount = $request->amount;
+        $match->offer->save();
+        $match->request->save();
+        return response()->json(["success" => true, "match" => $match]);
+    }
+
     public function addAdminAction(MaterialMatch $match, $action, $message)
     {
         $adminAction = new AdminAction();

@@ -10,7 +10,7 @@ class MaterialMatch extends Model
 
     public $table = "matches";
 
-    public $with = ["request", "offer"];
+    public $with = ["request", "offer", "request.user", "offer.user"];
 
     public function request()
     {

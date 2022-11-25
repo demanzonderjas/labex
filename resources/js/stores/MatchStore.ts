@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 import { getMatches } from "../queries/admin/getMatches";
-import { approveMatch } from "../queries/admin/approveMatch";
+import { approveMatch, updateAmount } from "../queries/admin/approveMatch";
 import { TMatch, TMatchStatus } from "../typings/exchanges";
 
 export class MatchStore {
@@ -25,6 +25,16 @@ export class MatchStore {
 		const response = await approveMatch(matchId);
 		if (response.success) {
 			this.updateMatchById(matchId, TMatchStatus.Approved);
+		}
+	}
+
+	@action.bound async updateMatchAmount(matchId: number, amount: number) {
+		const response = await updateAmount(matchId, amount);
+		if (response.success) {
+			const matchIndex = this.matches.findIndex(m => m.id == matchId);
+			const matches = [...this.matches];
+			matches[matchIndex] = response.match;
+			this.setMatches(matches);
 		}
 	}
 
