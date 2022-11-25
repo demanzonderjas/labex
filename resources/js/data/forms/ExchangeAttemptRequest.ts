@@ -24,6 +24,7 @@ import { protocolNumberField } from "./fields/protocolNumber";
 import { flowchartModal } from "../modals/flowchart";
 import { attemptTypeRequestField } from "./fields/attemptType";
 import { adoptionField, adoptionFilterField } from "./fields/adoption";
+import { statusField } from "./fields/status";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",
@@ -99,13 +100,4 @@ export const EditRequestForm: TForm = {
 	...SubmitRequestForm,
 	header: "edit_request",
 	intro: "edit_request_description"
-};
-
-export const AdminOffersForm: TForm = {
-	...FilterOffersForm,
-	fields: [...FilterOffersForm.fields, adoptionFilterField],
-	intro: null,
-	matchable: false,
-	header: null,
-	hideSubmit: true
 };

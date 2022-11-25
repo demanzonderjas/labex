@@ -7,6 +7,7 @@ import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { TSpecificationName } from "../../typings/exchanges";
+import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 
 export const offerMatchColumns: string[] = [
 	"match_percentage",
@@ -153,11 +154,6 @@ export const adminOfferCells: TTableCell[] = [
 		Component: AgeCell
 	},
 	{
-		id: TTableCellName.MagicCell,
-		value: "",
-		Component: TextCell
-	},
-	{
 		id: TSpecificationName.Amount,
 		value: "",
 		Component: TextCell
@@ -166,5 +162,16 @@ export const adminOfferCells: TTableCell[] = [
 		id: TSpecificationName.DateAvailableEnd,
 		value: "",
 		Component: DateAvailableCell
+	},
+	{
+		id: TTableCellName.MagicCell,
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: TSpecificationName.Status,
+		label: "active",
+		value: "",
+		Component: BooleanCell
 	}
 ];

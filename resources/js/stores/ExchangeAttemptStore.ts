@@ -128,10 +128,14 @@ export class ExchangeAttemptStore {
 		}));
 	}
 
-	@action.bound async getExchangeAttempts(attemptType: TExchangeAttemptType, mineOnly: boolean) {
+	@action.bound async getExchangeAttempts(
+		attemptType: TExchangeAttemptType,
+		mineOnly: boolean,
+		adminView: boolean
+	) {
 		const response = mineOnly
 			? await getMyLatestExchangeAttempts()
-			: await getExchangeAttempts(attemptType);
+			: await getExchangeAttempts(attemptType, adminView);
 		if (response.success) {
 			this.setAttempts(response.exchange_attempts);
 			this.setMatchType(attemptType);

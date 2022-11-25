@@ -4,10 +4,10 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { ExchangeAttemptStore } from "../../stores/ExchangeAttemptStore";
 import ExchangeAttemptStoreProvider from "../../contexts/ExchangeAttemptContext";
 import { FormWrapper } from "../../components/FormWrapper";
-import { AdminOffersForm } from "../../data/forms/ExchangeAttemptRequest";
 import { adminOfferCells } from "../../data/tables/matches";
 import { TExchangeAttemptType } from "../../typings/exchanges";
 import { ExchangeAttemptOverview } from "../../components/overviews/ExchangeAttemptOverview";
+import { AdminOffersForm } from "../../data/forms/ExchangeAttemptOffer";
 
 export const OffersPage = observer(() => {
 	const { t } = useTranslationStore();

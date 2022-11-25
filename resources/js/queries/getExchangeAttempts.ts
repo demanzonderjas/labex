@@ -1,9 +1,12 @@
 import { TExchangeAttemptType } from "../typings/exchanges";
 import { API } from "../utils/api/axios";
 
-export async function getExchangeAttempts(attempt_type: TExchangeAttemptType) {
+export async function getExchangeAttempts(attempt_type: TExchangeAttemptType, adminView?: boolean) {
 	try {
-		const response = await API.post("exchange-attempts", { attempt_type });
+		const response = await API.post("exchange-attempts", {
+			attempt_type,
+			admin_view: adminView
+		});
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };

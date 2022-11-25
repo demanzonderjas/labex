@@ -40,6 +40,8 @@ export function convertMatchesToCells(
 				return { ...cell, value: match.match_percentage };
 			} else if (cell.id === TTableCellName.IsMatch) {
 				return { ...cell, value: !!match.is_match };
+			} else if (cell.id === TSpecificationName.Status) {
+				return { ...cell, value: match.status };
 			}
 			return { ...cell, value: spec?.value || cell.value };
 		});

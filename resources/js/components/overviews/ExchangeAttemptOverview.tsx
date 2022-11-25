@@ -35,8 +35,10 @@ export const ExchangeAttemptOverview: React.FC<{
 	const attemptsAsCells = convertMatchesToCells(sortedAttempts, specsToShow, magicField);
 	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
 
+	console.log(targetAttempts);
+
 	useEffect(() => {
-		getExchangeAttempts(type, mineOnly);
+		getExchangeAttempts(type, mineOnly, adminView);
 	}, []);
 
 	return (

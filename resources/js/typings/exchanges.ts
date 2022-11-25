@@ -50,7 +50,8 @@ export enum TSpecificationName {
 	MatchPercentage = "match_percentage",
 	Other = "other",
 	SuitableForAdoption = "suitable_for_adoption",
-	Location = "location"
+	Location = "location",
+	Status = "status"
 }
 
 export type TMatch = {

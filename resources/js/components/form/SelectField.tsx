@@ -66,15 +66,17 @@ export const SelectField: React.FC<SelectFieldData> = observer(
 									setFieldValue(id, "");
 									setIsActive(!isActive);
 								}}
-								value="choose_if_relevant"
+								isClear={true}
+								value="clear"
 							/>
 						)}
 						{options
-							.filter(option => option != value)
+							// .filter(option => option != value)
 							.map(option => (
 								<SelectOption
 									key={option}
 									value={option}
+									isSelected={option == value}
 									handleClick={() => {
 										setFieldValue(id, option);
 										setIsActive(!isActive);

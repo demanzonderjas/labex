@@ -273,5 +273,9 @@
 	"universiteit-utrecht": "Universiteit Utrecht",
 	"umcutrecht.nl": "UMC Utrecht",
 	"previous_matches": "Match history",
-	"show_previous_matches": "Show match history"
+	"show_previous_matches": "Show match history",
+	"status": "Status",
+	"active": "Active",
+	"inactive": "Inactive",
+	"clear": "Clear"
 }
