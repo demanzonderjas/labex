@@ -280,5 +280,6 @@
 	"clear": "Clear",
 	"match_amount": "Match amount",
 	"change_amount": "Change amount",
-	"change_requested_amount": "Change requested amount"
+	"change_requested_amount": "Change requested amount",
+	"is_active": "Active?"
 }

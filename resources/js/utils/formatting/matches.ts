@@ -36,6 +36,8 @@ export function convertMatchesToCells(
 				return { ...cell, value: spec?.value || "", label: spec?.key };
 			} else if (cell.id === TTableCellName.MagicCell && !magicField) {
 				return null;
+			} else if (cell.id === TTableCellName.ID) {
+				return { ...cell, value: match.id };
 			} else if (cell.id === TSpecificationName.MatchPercentage) {
 				return { ...cell, value: match.match_percentage };
 			} else if (cell.id === TTableCellName.IsMatch) {

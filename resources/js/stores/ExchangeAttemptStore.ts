@@ -98,6 +98,7 @@ export class ExchangeAttemptStore {
 				f.value &&
 				!f.hidden &&
 				!f.id.match("age") &&
+				!f.id.match("status") &&
 				this.magicTargetColumns.indexOf(f.id) === -1
 		);
 		return field || this.filters.find(f => f.id === TSpecificationName.Strain);

@@ -133,6 +133,11 @@ export const requestMatchCells: TTableCell[] = [
 
 export const adminOfferCells: TTableCell[] = [
 	{
+		id: TTableCellName.ID,
+		value: "",
+		Component: TextCell
+	},
+	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell
@@ -170,7 +175,12 @@ export const adminOfferCells: TTableCell[] = [
 	},
 	{
 		id: TSpecificationName.Status,
-		label: "active",
+		label: "is_active",
+		value: "",
+		Component: BooleanCell
+	},
+	{
+		id: TTableCellName.IsMatch,
 		value: "",
 		Component: BooleanCell
 	}
