@@ -279,5 +279,6 @@
 	"inactive": "Inactive",
 	"clear": "Clear",
 	"match_amount": "Match amount",
-	"change_amount": "Change amount"
+	"change_amount": "Change amount",
+	"change_requested_amount": "Change requested amount"
 }
