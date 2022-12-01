@@ -42,10 +42,12 @@ export const OfferAdoptionPage = () => {
 				handleClick={history.goBack}
 				classes={{ tertiary: true, small: true, "margin-20": true }}
 			/>
-			<FormWrapper
-				form={OfferAdoptionForm}
-				handleSuccess={() => history.push("/admin/faq")}
-			/>
+			<div style={{ maxWidth: "400px " }}>
+				<FormWrapper
+					form={OfferAdoptionForm}
+					handleSuccess={() => history.push("/admin/offers")}
+				/>
+			</div>
 		</div>
 	);
 };

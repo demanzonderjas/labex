@@ -71,5 +71,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('user/{user_id}', 'UserController@delete');
 
         Route::get('alerts', 'AlertController@all');
+
+        Route::post('offers/adoption/{offer}', 'AdoptionInfoController@update');
     });
 });
