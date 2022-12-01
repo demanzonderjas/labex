@@ -1,29 +1,28 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { TFormFieldData, TFormFieldName } from "../../../typings/forms";
+import { TFormFieldData } from "../../../typings/forms";
 import { useFormStore } from "../../../hooks/useFormStore";
 import { blockEnter } from "../../../utils/dom/keyboard";
 import { Button } from "../../base/Button";
-import { useTranslationStore } from "../../../hooks/useTranslationStore";
 
 export const AdoptionCodeField: React.FC<TFormFieldData> = observer(({ id, value }) => {
-	const { setFieldValue, fields } = useFormStore();
-	const { t } = useTranslationStore();
+	const { setFieldValue, form } = useFormStore();
 
-	console.log(value);
-
-	const userField = fields.find(f => f.id === TFormFieldName.User) as any;
-	const nameSplitInParts = userField.value.name.split(" ");
+	const nameSplitInParts = form.data.user.name.split(" ");
 	const codePrefix = nameSplitInParts[nameSplitInParts.length - 1].substring(0, 3);
 
 	useEffect(() => {
 		generateCode();
-	}, []);
+	}, [form.data.user]);
 
 	const generateCode = () => {
-		const idField = fields.find(f => f.id === TFormFieldName.ID) as any;
+		if (form.data.adoption_info?.code) {
+			setFieldValue(id, form.data.adoption_info.code);
+			return;
+		}
+		const offerId = form.data.id;
 		const currentYear = new Date().getFullYear();
-		setFieldValue(id, `${codePrefix}${currentYear}-${idField.value}`);
+		setFieldValue(id, `${codePrefix}${currentYear}-${offerId}`);
 	};
 
 	return (

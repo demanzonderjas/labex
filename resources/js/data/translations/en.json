@@ -283,5 +283,7 @@
 	"change_requested_amount": "Change requested amount",
 	"is_active": "Active?",
 	"manage_adoption": "Manage adoption",
-	"adoption_code": "Adoption code"
+	"adoption_code": "Adoption code",
+	"go_back": "Go back",
+	"adoption_amount": "Adoption amount"
 }

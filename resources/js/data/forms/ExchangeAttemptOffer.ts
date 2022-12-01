@@ -19,10 +19,10 @@ import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { attemptTypeOfferField } from "./fields/attemptType";
 import {
+	adoptionAmountField,
 	adoptionCodeField,
 	adoptionField,
-	adoptionFilterField,
-	userField
+	adoptionFilterField
 } from "./fields/adoption";
 import { locationField } from "./fields/location";
 import { dateAvailableEndField, dateAvailableStartField } from "./fields/dateAvailable";
@@ -93,8 +93,9 @@ export const AdminOffersForm: TForm = {
 export const OfferAdoptionForm: TForm = {
 	handler: updateAdoptionOffer,
 	fullWidthFields: true,
-	fields: [idField, userField, adoptionCodeField],
+	fields: [idField, adoptionAmountField, adoptionCodeField],
 	intro: null,
+	data: null,
 	matchable: false,
 	header: null
 };

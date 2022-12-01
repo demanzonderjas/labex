@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { Button } from "../../components/base/Button";
 import { FormWrapper } from "../../components/FormWrapper";
 import { OfferAdoptionForm } from "../../data/forms/ExchangeAttemptOffer";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
@@ -24,6 +25,7 @@ export const OfferAdoptionPage = () => {
 				response.exchange_attempt
 			);
 			OfferAdoptionForm.fields = filledFields;
+			OfferAdoptionForm.data = response.exchange_attempt;
 			setOffer(response.exchange_attempt);
 		})();
 	}, []);
@@ -33,8 +35,13 @@ export const OfferAdoptionPage = () => {
 	}
 
 	return (
-		<div className="FAQEditPage">
-			<h1>{t("edit")}</h1>
+		<div className="ManageAdoption">
+			<h1>{t("manage_adoption")}</h1>
+			<Button
+				label="go_back"
+				handleClick={history.goBack}
+				classes={{ tertiary: true, small: true, "margin-20": true }}
+			/>
 			<FormWrapper
 				form={OfferAdoptionForm}
 				handleSuccess={() => history.push("/admin/faq")}

@@ -9,7 +9,7 @@ class ExchangeAttempt extends Model
 {
 	use HasFactory;
 
-	public $with = ["specifications"];
+	public $with = ["specifications", "adoptionInfo"];
 
 	public $hidden = ["origin_id"];
 
@@ -26,6 +26,11 @@ class ExchangeAttempt extends Model
 	public function matchViaOffer()
 	{
 		return $this->hasMany(MaterialMatch::class, 'offer_id');
+	}
+
+	public function adoptionInfo()
+	{
+		return $this->hasOne(AdoptionInfo::class, 'offer_id');
 	}
 
 	public function matchViaRequest()
