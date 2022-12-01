@@ -83,6 +83,10 @@
 
 		.Button {
 			margin: $default-margin 0;
+
+			&.no_margin {
+				margin: 0;
+			}
 		}
 
 		.no-matches {

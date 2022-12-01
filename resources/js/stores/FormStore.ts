@@ -66,6 +66,7 @@ export class FormStore {
 		);
 		const fields = [...this.fields];
 		fields[fieldIdx] = { ...fields[fieldIdx], value };
+
 		this.fields = fields;
 		this.setFieldError(id, null);
 		this.serverError = null;

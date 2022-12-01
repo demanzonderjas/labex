@@ -282,5 +282,6 @@
 	"change_amount": "Change amount",
 	"change_requested_amount": "Change requested amount",
 	"is_active": "Active?",
-	"manage_adoption": "Manage adoption"
+	"manage_adoption": "Manage adoption",
+	"adoption_code": "Adoption code"
 }

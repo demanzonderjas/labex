@@ -18,11 +18,18 @@ import { withRequired } from "../../utils/formatting/fields";
 import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { attemptTypeOfferField } from "./fields/attemptType";
-import { adoptionField, adoptionFilterField } from "./fields/adoption";
+import {
+	adoptionCodeField,
+	adoptionField,
+	adoptionFilterField,
+	userField
+} from "./fields/adoption";
 import { locationField } from "./fields/location";
 import { dateAvailableEndField, dateAvailableStartField } from "./fields/dateAvailable";
 import { FilterOffersForm } from "./ExchangeAttemptRequest";
 import { statusField } from "./fields/status";
+import { idField } from "./fields/faq/id";
+import { updateAdoptionOffer } from "../../queries/admin/updateAdoptionOffer";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -81,4 +88,13 @@ export const AdminOffersForm: TForm = {
 	matchable: false,
 	header: null,
 	hideSubmit: true
+};
+
+export const OfferAdoptionForm: TForm = {
+	handler: updateAdoptionOffer,
+	fullWidthFields: true,
+	fields: [idField, userField, adoptionCodeField],
+	intro: null,
+	matchable: false,
+	header: null
 };
