@@ -5,5 +5,6 @@ export type TDashboardStats = {
 	users: number;
 	total_offered: number;
 	total_requested: number;
+	total_adopted: number;
 	total_saved: number;
 };

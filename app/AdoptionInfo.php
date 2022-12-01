@@ -10,4 +10,6 @@ class AdoptionInfo extends Model
     use HasFactory;
 
     protected $table = "adoption_info";
+
+    protected $fillable = ["offer_id"];
 }

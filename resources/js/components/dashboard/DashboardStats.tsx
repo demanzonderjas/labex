@@ -71,6 +71,12 @@ export const DashboardStats: React.FC = React.memo(() => {
 					<h4 className="number">{stats.total_requested}</h4>
 				</div>
 			</div>
+			<div className="card">
+				<div className="content">
+					<h3>{t("total_adopted")}</h3>
+					<h4 className="number">{stats.total_adopted}</h4>
+				</div>
+			</div>
 		</div>
 	);
 });

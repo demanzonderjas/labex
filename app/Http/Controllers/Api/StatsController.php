@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\AdoptionInfo;
 use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\MaterialMatch;
@@ -27,6 +28,10 @@ class StatsController extends Controller
             return $base + $attempt->amount;
         }, 0);
 
+        $totalAdopted = AdoptionInfo::all()->reduce(function ($base, $adoption) {
+            return $base + $adoption->amount;
+        }, 0);
+
         return response()->json([
             "requests" => $requests,
             "offers" => $offers,
@@ -34,6 +39,7 @@ class StatsController extends Controller
             "matches" => $matches,
             "total_offered" => $totalOffered,
             "total_requested" => $totalRequested,
+            "total_adopted" => $totalAdopted,
             "total_saved" => $totalSaved
         ]);
     }
