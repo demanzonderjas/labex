@@ -7,7 +7,6 @@ import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { TSpecificationName } from "../../typings/exchanges";
-import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 
 export const offerMatchColumns: string[] = [
 	"match_percentage",
@@ -128,60 +127,5 @@ export const requestMatchCells: TTableCell[] = [
 		id: TTableCellName.MatchButton,
 		value: "",
 		Component: MatchButtonCell
-	}
-];
-
-export const adminOfferCells: TTableCell[] = [
-	{
-		id: TTableCellName.ID,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.ExchangeType,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.AnimalSpecies,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Sex,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Age,
-		label: "age_offer",
-		value: "",
-		Component: AgeCell
-	},
-	{
-		id: TSpecificationName.Amount,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.DateAvailableEnd,
-		value: "",
-		Component: DateAvailableCell
-	},
-	{
-		id: TTableCellName.MagicCell,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Status,
-		label: "is_active",
-		value: "",
-		Component: BooleanCell
-	},
-	{
-		id: TTableCellName.IsMatch,
-		value: "",
-		Component: BooleanCell
 	}
 ];

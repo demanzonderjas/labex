@@ -4,7 +4,7 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { ExchangeAttemptStore } from "../../stores/ExchangeAttemptStore";
 import ExchangeAttemptStoreProvider from "../../contexts/ExchangeAttemptContext";
 import { FormWrapper } from "../../components/FormWrapper";
-import { adminOfferCells } from "../../data/tables/matches";
+import { adminOfferCells } from "../../data/tables/offers";
 import { TExchangeAttemptType } from "../../typings/exchanges";
 import { ExchangeAttemptOverview } from "../../components/overviews/ExchangeAttemptOverview";
 import { AdminOffersForm } from "../../data/forms/ExchangeAttemptOffer";
