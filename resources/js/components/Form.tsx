@@ -70,10 +70,12 @@ export const Form: React.FC<Props> = observer(
 						</div>
 					)}
 					<form onSubmit={submit}>
-						<span className="legend">
-							<span className="required">*</span>
-							{t("required_otherwise_optional")}
-						</span>
+						{!hideSubmit && (
+							<span className="legend">
+								<span className="required">*</span>
+								{t("required_otherwise_optional")}
+							</span>
+						)}
 						{form.splitByRequired ? <RequiredFormLayout /> : <RegularFormLayout />}
 						{!hideSubmit && (
 							<div
