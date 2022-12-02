@@ -10,7 +10,7 @@ export const PreviousMatchOverview = observer(() => {
 
 	return (
 		<div className="PreviousMatchOverview overview">
-			{previousMatches.map(match => (
+			{previousMatches.reverse().map(match => (
 				<Match key={match.id} match={match} />
 			))}
 		</div>
