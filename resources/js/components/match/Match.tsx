@@ -20,6 +20,7 @@ import { cancelMatch } from "../../queries/cancelMatch";
 import { useModalStore } from "../../hooks/useModalStore";
 import { confirmCancelMatchModal } from "../../data/modals/confirm";
 import { TMatch, TMatchStatus } from "../../typings/exchanges";
+import { MatchMessage } from "./MatchMessage";
 
 type Props = {
 	match: TMatch;
@@ -57,48 +58,57 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const requestIsMine = match.request.is_mine;
 
 	return (
-		<div className="MatchCards">
-			<h3>
-				{t(status)} ({dateString})
-			</h3>
-			<div className="percentage">
-				<span>{t("match")}</span>
-				<Percentage matchPercentage={percentage} />
-			</div>
-			{matchType != MatchType.Admin && status !== TMatchStatus.Rejected && (
-				<div className="cancel margin-10">
-					<DangerButton
-						label="cancel_match"
-						handleClick={() =>
-							setModal({ ...confirmCancelMatchModal, handleConfirm: confirmCancel })
-						}
-						classes={{ small: true }}
+		<div className="Match">
+			<div className="MatchCards">
+				<h3>
+					{t(status)} ({dateString})
+				</h3>
+				<div className="percentage">
+					<span>{t("match")}</span>
+					<Percentage matchPercentage={percentage} />
+				</div>
+				{matchType != MatchType.Admin && status !== TMatchStatus.Rejected && (
+					<div className="cancel margin-10">
+						<DangerButton
+							label="cancel_match"
+							handleClick={() =>
+								setModal({
+									...confirmCancelMatchModal,
+									handleConfirm: confirmCancel
+								})
+							}
+							classes={{ small: true }}
+						/>
+					</div>
+				)}
+				<div
+					className={cx("cards", { admin: matchType == MatchType.Admin })}
+					onClick={
+						matchType != MatchType.Admin
+							? () =>
+									history.push(
+										`/app/offers/select/${match.offer.id}${linkFilters}`
+									)
+							: undefined
+					}
+				>
+					<MatchCard
+						matchType={requestIsMine ? MatchType.Requests : MatchType.Offers}
+						mine={true}
+						specs={requestIsMine ? requestSpecs : offerSpecs}
+						user={requestIsMine ? match.request.user : match.offer.user}
+						status={status}
+					/>
+					<MatchCard
+						mine={false}
+						matchType={requestIsMine ? MatchType.Offers : MatchType.Requests}
+						specs={requestIsMine ? offerSpecs : requestSpecs}
+						user={requestIsMine ? match.offer.user : match.request.user}
+						status={status}
 					/>
 				</div>
-			)}
-			<div
-				className={cx("cards", { admin: matchType == MatchType.Admin })}
-				onClick={
-					matchType != MatchType.Admin
-						? () => history.push(`/app/offers/select/${match.offer.id}${linkFilters}`)
-						: undefined
-				}
-			>
-				<MatchCard
-					matchType={requestIsMine ? MatchType.Requests : MatchType.Offers}
-					mine={true}
-					specs={requestIsMine ? requestSpecs : offerSpecs}
-					user={requestIsMine ? match.request.user : match.offer.user}
-					status={status}
-				/>
-				<MatchCard
-					mine={false}
-					matchType={requestIsMine ? MatchType.Offers : MatchType.Requests}
-					specs={requestIsMine ? offerSpecs : requestSpecs}
-					user={requestIsMine ? match.offer.user : match.request.user}
-					status={status}
-				/>
 			</div>
+			<MatchMessage match={match} />
 		</div>
 	);
 };

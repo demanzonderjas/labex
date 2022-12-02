@@ -10,7 +10,7 @@ class MaterialMatch extends Model
 
     public $table = "matches";
 
-    public $with = ["request", "offer", "request.user", "offer.user"];
+    public $with = ["request", "offer", "request.user", "offer.user", "adminActions"];
 
     public function request()
     {
@@ -20,6 +20,11 @@ class MaterialMatch extends Model
     public function offer()
     {
         return $this->belongsTo(ExchangeAttempt::class, 'offer_id');
+    }
+
+    public function adminActions()
+    {
+        return $this->hasMany(AdminAction::class, 'match_id');
     }
 
     public function isExisting(ExchangeAttempt $request, ExchangeAttempt $offer)

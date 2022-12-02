@@ -6,6 +6,7 @@ import { TMatch, TMatchStatus, TSpecificationName } from "../../typings/exchange
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Button } from "../base/Button";
 import { useMatchStore } from "../../hooks/useMatchStore";
+import { MatchMessage } from "../match/MatchMessage";
 
 type Props = {
 	match: TMatch;

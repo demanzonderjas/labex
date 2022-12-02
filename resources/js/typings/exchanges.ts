@@ -58,8 +58,14 @@ export type TMatch = {
 	id: number;
 	offer: TExchangeAttempt;
 	request: TExchangeAttempt;
+	admin_actions: TAdminAction[];
 	status: TMatchStatus;
 	updated_at: string;
+};
+
+export type TAdminAction = {
+	action: string;
+	message: string;
 };
 
 export enum TMatchStatus {
