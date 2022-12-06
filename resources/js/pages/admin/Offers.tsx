@@ -8,6 +8,7 @@ import { adminOfferCells } from "../../data/tables/offers";
 import { TExchangeAttemptType } from "../../typings/exchanges";
 import { ExchangeAttemptOverview } from "../../components/overviews/ExchangeAttemptOverview";
 import { AdminOffersForm } from "../../data/forms/ExchangeAttemptOffer";
+import { ExportOffers } from "../../components/admin/ExportOffers";
 
 export const OffersPage = observer(() => {
 	const { t } = useTranslationStore();
@@ -27,6 +28,7 @@ export const OffersPage = observer(() => {
 					type={TExchangeAttemptType.Offer}
 					SHOW_LIMIT={10}
 				/>
+				<ExportOffers />
 			</ExchangeAttemptStoreProvider>
 		</div>
 	);

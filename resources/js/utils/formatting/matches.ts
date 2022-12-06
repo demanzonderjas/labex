@@ -5,6 +5,7 @@ import { TFormField, TFormFieldName } from "../../typings/forms";
 import { TSpecification, TTableCell, TTableCellName } from "../../typings/overviews";
 import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
 import { matchMeetsHardFilters } from "../filters/matches";
+import dayjs from "dayjs";
 
 export function getMatchClasses(value) {
 	return {
@@ -125,5 +126,22 @@ export function createMatchSpecs(fields, filters) {
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
 		};
 		return { ...field, match };
+	});
+}
+
+export function formatAttemptsForExport(attempts: TExchangeAttempt[]) {
+	return attempts.map(a => {
+		const specs = a.specifications.reduce((base, spec) => {
+			return { ...base, [spec.key]: spec.value };
+		}, {});
+
+		return {
+			id: a.id,
+			code: a.adoption_info?.code,
+			status: a.status,
+			adoption_amount: a.adoption_info?.amount,
+			created_at: dayjs(a.created_at).format("DD/MM/YYYY"),
+			...specs
+		};
 	});
 }

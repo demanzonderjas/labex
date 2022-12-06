@@ -17,6 +17,7 @@ export type TExchangeAttempt = {
 	match_percentage?: number;
 	adoption_info?: TAdoptionInfo;
 	specifications: TSpecification[];
+	created_at: string;
 };
 
 export enum TExchangeAttemptStatus {
