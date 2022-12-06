@@ -98,6 +98,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 						specs={requestIsMine ? requestSpecs : offerSpecs}
 						user={requestIsMine ? match.request.user : match.offer.user}
 						status={status}
+						id={requestIsMine ? match.request.id : match.offer.id}
 					/>
 					<MatchCard
 						mine={false}
@@ -105,6 +106,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 						specs={requestIsMine ? offerSpecs : requestSpecs}
 						user={requestIsMine ? match.offer.user : match.request.user}
 						status={status}
+						id={requestIsMine ? match.offer.id : match.request.id}
 					/>
 				</div>
 			</div>

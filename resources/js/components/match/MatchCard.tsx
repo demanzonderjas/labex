@@ -12,6 +12,7 @@ import {
 import cx from "classnames";
 import { UserProfile } from "./UserProfile";
 import { TSpecificationName } from "../../typings/exchanges";
+import { TSpecStatus } from "../../typings/specifications";
 
 type Props = {
 	mine: boolean;
@@ -19,9 +20,10 @@ type Props = {
 	user: TUser;
 	matchType: MatchType;
 	status?: string;
+	id?: number;
 };
 
-export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, status }) => {
+export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, status, id }) => {
 	const { t } = useTranslationStore();
 	return (
 		<div className="MatchCard">
@@ -35,6 +37,16 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 				)}
 			</div>
 			<div className="specs">
+				<div className={cx("spec")}>
+					<label>{t("id")}</label>
+					<MatchValue
+						matchStatus={TSpecStatus.NotSubmitted}
+						value={id.toString()}
+						specs={specs}
+						label="id"
+						neutral={true}
+					/>
+				</div>
 				{specs
 					.filter(fieldIsNotHidden)
 					.filter(f => f.value != "")

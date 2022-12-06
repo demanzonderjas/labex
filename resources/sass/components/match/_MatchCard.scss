@@ -11,6 +11,16 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
+		position: relative;
+
+		.id {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: black;
+			color: white;
+			padding: 5px;
+		}
 
 		.user {
 			max-width: calc(100% - 20px);
