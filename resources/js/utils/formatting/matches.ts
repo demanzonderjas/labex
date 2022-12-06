@@ -6,6 +6,7 @@ import { TSpecification, TTableCell, TTableCellName } from "../../typings/overvi
 import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
 import { matchMeetsHardFilters } from "../filters/matches";
 import dayjs from "dayjs";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 export function getMatchClasses(value) {
 	return {
@@ -130,9 +131,10 @@ export function createMatchSpecs(fields, filters) {
 }
 
 export function formatAttemptsForExport(attempts: TExchangeAttempt[]) {
+	const { t } = useTranslationStore();
 	return attempts.map(a => {
 		const specs = a.specifications.reduce((base, spec) => {
-			return { ...base, [spec.key]: spec.value };
+			return { ...base, [spec.key]: t(spec.value) };
 		}, {});
 
 		return {
@@ -141,6 +143,7 @@ export function formatAttemptsForExport(attempts: TExchangeAttempt[]) {
 			status: a.status,
 			adoption_amount: a.adoption_info?.amount,
 			created_at: dayjs(a.created_at).format("DD/MM/YYYY"),
+			is_matched: a.is_match,
 			...specs
 		};
 	});

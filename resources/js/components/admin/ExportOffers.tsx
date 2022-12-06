@@ -8,9 +8,7 @@ import { Button } from "../base/Button";
 export const ExportOffers: React.FC = observer(() => {
 	const { filters, targetFields, offers } = useExchangeAttemptStore();
 	const validOffers = convertAttemptsToMatches(offers, filters, targetFields);
-	const exportableOffers = formatAttemptsForExport(offers);
-
-	console.log(validOffers);
+	const exportableOffers = formatAttemptsForExport(validOffers);
 
 	return (
 		<div className="ExportOffers margin-20">
