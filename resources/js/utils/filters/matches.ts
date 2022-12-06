@@ -10,8 +10,12 @@ export function matchMeetsHardFilters(match: TExchangeAttempt, filters: TFormFie
 			return (
 				f.value === match[f.id] ||
 				(!f.isMatch && f.value == spec?.value) ||
-				(f.isMatch && f.isMatch(f.value, spec?.value) === TSpecStatus.Match) ||
-				(f.isMatch && f.isMatch(f.value, spec?.value) === TSpecStatus.PartialMatch)
+				(f.isMatch &&
+					f.isMatch(f.value, spec?.value, filters, filters, match) ===
+						TSpecStatus.Match) ||
+				(f.isMatch &&
+					f.isMatch(f.value, spec?.value, filters, filters, match) ===
+						TSpecStatus.PartialMatch)
 			);
 		});
 }

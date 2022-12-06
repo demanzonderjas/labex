@@ -100,6 +100,7 @@ export class ExchangeAttemptStore {
 				!f.id.match("age") &&
 				!f.id.match("status") &&
 				!f.id.match("date_available_start") &&
+				!f.id.match("adoption_code") &&
 				this.magicTargetColumns.indexOf(f.id) === -1
 		);
 		return field || this.filters.find(f => f.id === TSpecificationName.Strain);

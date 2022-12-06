@@ -39,7 +39,7 @@ export function checkIfFilterMatches(
 ) {
 	const matchingSpec = attempt.specifications.find(s => s.key == filter.id);
 	return filter.isMatch
-		? filter.isMatch(filter.value, matchingSpec?.value, filters, fields)
+		? filter.isMatch(filter.value, matchingSpec?.value, filters, fields, attempt)
 		: filter.value == matchingSpec?.value
 		? TSpecStatus.Match
 		: TSpecStatus.NoMatch;

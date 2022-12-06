@@ -21,6 +21,7 @@ import { attemptTypeOfferField } from "./fields/attemptType";
 import {
 	adoptionAmountField,
 	adoptionCodeField,
+	adoptionCodeSearchField,
 	adoptionField,
 	adoptionFilterField,
 	isActiveField
@@ -91,7 +92,8 @@ const adminOfferFields = [
 	...FilterOffersForm.fields.filter(f => f.id !== TSpecificationName.DateRequested),
 	yearSelectField,
 	adoptionFilterField,
-	statusField
+	statusField,
+	adoptionCodeSearchField
 ];
 
 export const AdminOffersForm: TForm = {

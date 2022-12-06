@@ -2,8 +2,9 @@ import { BooleanField } from "../../../components/form/BooleanField";
 import { AdoptionAmountField } from "../../../components/form/custom-fields/AdoptionAmountField";
 import { AdoptionCodeField } from "../../../components/form/custom-fields/AdoptionCodeField";
 import { InputField } from "../../../components/form/InputField";
-import { TSpecificationName } from "../../../typings/exchanges";
+import { TExchangeAttempt, TSpecificationName } from "../../../typings/exchanges";
 import { InputType, TFormField, TFormFieldName } from "../../../typings/forms";
+import { TSpecStatus } from "../../../typings/specifications";
 import { isBiggerThanZero } from "../../../utils/validation/numbers";
 
 export const adoptionField: TFormField = {
@@ -31,6 +32,22 @@ export const adoptionCodeField: TFormField = {
 	props: {},
 	value: "",
 	default: ""
+};
+
+export const adoptionCodeSearchField: TFormField = {
+	...adoptionCodeField,
+	Component: InputField,
+	required: false,
+	isHardFilter: true,
+	isMatch: (givenValue, _, __, ___, attempt: TExchangeAttempt) => {
+		console.log(givenValue, attempt);
+		if (!attempt || (!attempt.adoption_info && givenValue)) {
+			return TSpecStatus.NoMatch;
+		}
+		return attempt.adoption_info.code.toLowerCase().match(givenValue.toLowerCase())
+			? TSpecStatus.Match
+			: TSpecStatus.NoMatch;
+	}
 };
 
 export const adoptionAmountField: TFormField = {

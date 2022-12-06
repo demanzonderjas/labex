@@ -67,7 +67,8 @@ export interface TFormField extends TFormFieldData {
 		givenValue: any,
 		targetValue: any,
 		filters?: TFormField[],
-		fields?: TFormField[]
+		fields?: TFormField[],
+		data?: any
 	) => TSpecStatus;
 	matchVia?: TSpecificationName;
 	isHardFilter?: boolean;
