@@ -20,6 +20,13 @@ class AdoptionInfoController extends Controller
 		$adoptionInfo->amount = $request->adoption_amount;
 		$adoptionInfo->save();
 
+		if ($request->status === "no" || $adoptionInfo->amount == $offer->amount) {
+			$offer->status = "inactive";
+		} else if ($request->status === "yes") {
+			$offer->status = "active";
+		}
+		$offer->save();
+
 		return response()->json(["success" => true]);
 	}
 }

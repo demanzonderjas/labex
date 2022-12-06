@@ -38,8 +38,27 @@ export const adoptionAmountField: TFormField = {
 	id: TFormFieldName.AdoptionAmount,
 	Component: AdoptionAmountField,
 	required: true,
-	validate: isBiggerThanZero,
+	validate: null,
 	props: {},
 	default: "0",
 	value: "0"
+};
+
+export const isActiveField: TFormField = {
+	label: "is_active",
+	id: TSpecificationName.Status,
+	Component: BooleanField,
+	required: true,
+	transform: (value: any) => {
+		if (value === "active") {
+			return "yes";
+		} else if (value === "inactive") {
+			return "no";
+		} else {
+			return value;
+		}
+	},
+	props: {},
+	default: "",
+	value: ""
 };

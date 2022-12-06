@@ -22,7 +22,8 @@ import {
 	adoptionAmountField,
 	adoptionCodeField,
 	adoptionField,
-	adoptionFilterField
+	adoptionFilterField,
+	isActiveField
 } from "./fields/adoption";
 import { locationField } from "./fields/location";
 import {
@@ -105,7 +106,7 @@ export const AdminOffersForm: TForm = {
 export const OfferAdoptionForm: TForm = {
 	handler: updateAdoptionOffer,
 	fullWidthFields: true,
-	fields: [idField, adoptionAmountField, adoptionCodeField],
+	fields: [idField, adoptionAmountField, adoptionCodeField, isActiveField],
 	intro: null,
 	data: null,
 	matchable: false,

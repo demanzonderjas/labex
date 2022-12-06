@@ -286,5 +286,6 @@
 	"adoption_code": "Adoption code",
 	"go_back": "Go back",
 	"adoption_amount": "Adoption amount",
-	"total_adopted": "Total adopted"
+	"total_adopted": "Total adopted",
+	"select_year": "Select year"
 }
