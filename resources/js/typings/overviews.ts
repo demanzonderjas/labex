@@ -1,5 +1,6 @@
 import React from "react";
 import { TExchangeAttempt, TSpecificationName } from "./exchanges";
+import { TFormFieldName } from "./forms";
 import { TUser } from "./user";
 
 export enum TOverviewType {
@@ -9,7 +10,7 @@ export enum TOverviewType {
 }
 
 export type TTableCell = {
-	id: TSpecificationName | TTableCellName;
+	id: TSpecificationName | TTableCellName | TFormFieldName;
 	label?: string;
 	value: any;
 	Component: React.FC<TTableCellProps>;

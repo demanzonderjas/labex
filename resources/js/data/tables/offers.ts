@@ -9,6 +9,7 @@ import { DeleteButtonCell } from "../../components/overviews/table/custom/Delete
 import { EditButtonCell } from "../../components/overviews/table/custom/EditButtonCell";
 import { ManageAdoptionCell } from "../../components/overviews/table/custom/ManageAdoptionCell";
 import { AgeCell } from "../../components/overviews/table/AgeCell";
+import { TFormFieldName } from "../../typings/forms";
 
 export const offerColumns: string[] = [
 	TSpecificationName.ExchangeType,
@@ -82,6 +83,11 @@ export const adminOfferCells: TTableCell[] = [
 		Component: TextCell
 	},
 	{
+		id: TFormFieldName.AdoptionCode,
+		value: "",
+		Component: TextCell
+	},
+	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell
@@ -104,6 +110,11 @@ export const adminOfferCells: TTableCell[] = [
 	},
 	{
 		id: TSpecificationName.Amount,
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: TFormFieldName.AdoptionAmount,
 		value: "",
 		Component: TextCell
 	},

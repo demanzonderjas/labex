@@ -1,7 +1,7 @@
 import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { TSpecStatus, TSpecMatch } from "../../typings/specifications";
 import { checkIfFieldMatches, getMatchingPercentage } from "../matches/utils";
-import { TFormField } from "../../typings/forms";
+import { TFormField, TFormFieldName } from "../../typings/forms";
 import { TSpecification, TTableCell, TTableCellName } from "../../typings/overviews";
 import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
 import { matchMeetsHardFilters } from "../filters/matches";
@@ -44,6 +44,10 @@ export function convertMatchesToCells(
 				return { ...cell, value: !!match.is_match };
 			} else if (cell.id === TSpecificationName.Status) {
 				return { ...cell, value: match.status };
+			} else if (cell.id === TFormFieldName.AdoptionAmount) {
+				return { ...cell, value: match.adoption_info?.amount };
+			} else if (cell.id === TFormFieldName.AdoptionCode) {
+				return { ...cell, value: match.adoption_info?.code };
 			}
 			return { ...cell, value: spec?.value || cell.value };
 		});

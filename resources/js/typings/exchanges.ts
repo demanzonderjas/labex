@@ -15,6 +15,7 @@ export type TExchangeAttempt = {
 	is_match?: boolean;
 	is_mine?: boolean;
 	match_percentage?: number;
+	adoption_info?: TAdoptionInfo;
 	specifications: TSpecification[];
 };
 
@@ -73,3 +74,8 @@ export enum TMatchStatus {
 	AwaitingApproval = "awaiting_approval",
 	Rejected = "rejected"
 }
+
+export type TAdoptionInfo = {
+	code: string;
+	amount: number;
+};
