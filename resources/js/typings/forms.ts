@@ -75,6 +75,7 @@ export interface TFormField extends TFormFieldData {
 	default: string;
 	match?: TSpecMatch;
 	description?: string;
+	filter?: Function;
 	customValue?: Function;
 	ignoreInMatch?: boolean;
 	synonyms?: string[];

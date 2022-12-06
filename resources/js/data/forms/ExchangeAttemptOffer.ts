@@ -25,11 +25,16 @@ import {
 	adoptionFilterField
 } from "./fields/adoption";
 import { locationField } from "./fields/location";
-import { dateAvailableEndField, dateAvailableStartField } from "./fields/dateAvailable";
+import {
+	dateAvailableEndField,
+	dateAvailableStartField,
+	yearSelectField
+} from "./fields/dateAvailable";
 import { FilterOffersForm } from "./ExchangeAttemptRequest";
 import { statusField } from "./fields/status";
 import { idField } from "./fields/faq/id";
 import { updateAdoptionOffer } from "../../queries/admin/updateAdoptionOffer";
+import { TSpecificationName } from "../../typings/exchanges";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -81,9 +86,16 @@ export const ConfirmOfferMatchForm: TForm = {
 	allowCancel: false
 };
 
+const adminOfferFields = [
+	...FilterOffersForm.fields.filter(f => f.id !== TSpecificationName.DateRequested),
+	yearSelectField,
+	adoptionFilterField,
+	statusField
+];
+
 export const AdminOffersForm: TForm = {
 	...FilterOffersForm,
-	fields: [...FilterOffersForm.fields, adoptionFilterField, statusField],
+	fields: adminOfferFields,
 	intro: null,
 	matchable: false,
 	header: null,
