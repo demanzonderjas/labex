@@ -40,7 +40,6 @@ export const adoptionCodeSearchField: TFormField = {
 	required: false,
 	isHardFilter: true,
 	isMatch: (givenValue, _, __, ___, attempt: TExchangeAttempt) => {
-		console.log(givenValue, attempt);
 		if (!attempt || (!attempt.adoption_info && givenValue)) {
 			return TSpecStatus.NoMatch;
 		}
