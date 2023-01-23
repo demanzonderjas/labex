@@ -10,6 +10,7 @@ import { EditButtonCell } from "../../components/overviews/table/custom/EditButt
 import { ManageAdoptionCell } from "../../components/overviews/table/custom/ManageAdoptionCell";
 import { AgeCell } from "../../components/overviews/table/AgeCell";
 import { TFormFieldName } from "../../typings/forms";
+import { UserCell } from "../../components/overviews/table/custom/UserCell";
 
 export const offerColumns: string[] = [
 	TSpecificationName.ExchangeType,
@@ -81,6 +82,11 @@ export const adminOfferCells: TTableCell[] = [
 		id: TTableCellName.ID,
 		value: "",
 		Component: TextCell
+	},
+	{
+		id: TFormFieldName.User,
+		value: "",
+		Component: UserCell
 	},
 	{
 		id: TFormFieldName.AdoptionCode,

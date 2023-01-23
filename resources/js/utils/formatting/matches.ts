@@ -44,6 +44,8 @@ export function convertMatchesToCells(
 				return { ...cell, value: match.match_percentage };
 			} else if (cell.id === TTableCellName.IsMatch) {
 				return { ...cell, value: !!match.is_match };
+			} else if (cell.id === TFormFieldName.User) {
+				return { ...cell, value: match.user };
 			} else if (cell.id === TSpecificationName.Status) {
 				return { ...cell, value: match.status };
 			} else if (cell.id === TFormFieldName.AdoptionAmount) {

@@ -37,6 +37,7 @@ import { statusField } from "./fields/status";
 import { idField } from "./fields/faq/id";
 import { updateAdoptionOffer } from "../../queries/admin/updateAdoptionOffer";
 import { TSpecificationName } from "../../typings/exchanges";
+import { userFilterField } from "./fields/user/userFilter";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -93,7 +94,8 @@ const adminOfferFields = [
 	yearSelectField,
 	adoptionFilterField,
 	statusField,
-	adoptionCodeSearchField
+	adoptionCodeSearchField,
+	userFilterField
 ];
 
 export const AdminOffersForm: TForm = {
