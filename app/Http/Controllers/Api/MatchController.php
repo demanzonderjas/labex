@@ -198,7 +198,7 @@ class MatchController extends Controller
         $isConserved = $match->offer->type === 'conserved_tissue';
 
         if ($isConserved) {
-            self::approve($match->id);
+            self::approve($match->id, "");
         } else {
             $admins = User::whereIsAdmin()->get();
             foreach ($admins as $admin) {
@@ -236,7 +236,7 @@ class MatchController extends Controller
 
     public function approveWithMessage(int $matchId, Request $request)
     {
-        return self::approve($matchId, $request->message);
+        return self::approve($matchId, $request->message ?? "");
     }
 
     public function restoreOrigin(MaterialMatch $match)
