@@ -14,7 +14,7 @@ class MatchApprovedEmail extends Mailable
 
     public $match;
     public $user;
-    public $message;
+    public $note;
     public $contact;
 
     /**
@@ -26,7 +26,7 @@ class MatchApprovedEmail extends Mailable
     {
         $this->match = $match;
         $this->user = $user;
-        $this->message = $message;
+        $this->note = $message;
         $this->contact = $this->getContactFromMatch();
     }
 
