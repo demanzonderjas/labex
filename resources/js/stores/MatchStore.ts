@@ -21,13 +21,6 @@ export class MatchStore {
 		}
 	}
 
-	@action.bound async approveMatch(matchId) {
-		const response = await approveMatch(matchId);
-		if (response.success) {
-			this.updateMatchById(matchId, TMatchStatus.Approved);
-		}
-	}
-
 	@action.bound async updateMatchAmount(matchId: number, amount: number) {
 		const response = await updateAmount(matchId, amount);
 		if (response.success) {

@@ -256,6 +256,8 @@
 	"offer": "Offer",
 	"request": "Request",
 	"attempt_type": "Offer/request",
+	"approve_match_label": "Approve match",
+	"approve_match_description": "Describe any details that might help after approving the match.",
 	"reject_match": "Reject match",
 	"reject_match_description": "Please explain to the researchers why the match was declined.",
 	"why_reject_message": "Why did you decline the match?",

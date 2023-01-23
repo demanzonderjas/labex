@@ -57,7 +57,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('faq-items/create', 'FaqController@createItem');
         Route::post('faq-items/edit/{itemId}', 'FaqController@editItem');
         Route::post('faq-items/delete/{itemId}', 'FaqController@deleteItem');
-        Route::post('matches/approve/{matchId}', 'MatchController@approve');
+        Route::post('matches/approve/{matchId}', 'MatchController@approveWithMessage');
         Route::post('matches/amount/{match}', 'MatchController@updateAmount');
         Route::post('matches/reject/{match}', 'MatchController@reject');
 

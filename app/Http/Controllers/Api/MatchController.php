@@ -217,7 +217,7 @@ class MatchController extends Controller
         $updatedMatch->request->save();
     }
 
-    public static function approve(int $matchId)
+    public static function approve(int $matchId, $message = "")
     {
         $match = MaterialMatch::find($matchId);
         if (!$match) {
@@ -226,10 +226,17 @@ class MatchController extends Controller
         $match->status = config('atex.constants.match_status.approved');
         $match->save();
 
-        Mail::to($match->offer->user)->queue(new MatchApprovedEmail($match, $match->offer->user));
-        Mail::to($match->request->user)->queue(new MatchApprovedEmail($match, $match->request->user));
+        self::addAdminAction($match, "approve_match", $message);
+
+        Mail::to($match->offer->user)->queue(new MatchApprovedEmail($match, $match->offer->user, $message));
+        Mail::to($match->request->user)->queue(new MatchApprovedEmail($match, $match->request->user, $message));
 
         return response()->json(["success" => true]);
+    }
+
+    public function approveWithMessage(int $matchId, Request $request)
+    {
+        return self::approve($matchId, $request->message);
     }
 
     public function restoreOrigin(MaterialMatch $match)
@@ -294,7 +301,7 @@ class MatchController extends Controller
 
         $this->restoreOrigin($match);
 
-        $this->addAdminAction($match, "reject_match", $request->message);
+        self::addAdminAction($match, "reject_match", $request->message);
 
         Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user, $request->message));
         Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user, $request->message));
@@ -311,7 +318,7 @@ class MatchController extends Controller
         return response()->json(["success" => true, "match" => $match]);
     }
 
-    public function addAdminAction(MaterialMatch $match, $action, $message)
+    public static function addAdminAction(MaterialMatch $match, $action, $message)
     {
         $adminAction = new AdminAction();
         $adminAction->match_id = $match->id;

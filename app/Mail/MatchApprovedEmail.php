@@ -14,6 +14,7 @@ class MatchApprovedEmail extends Mailable
 
     public $match;
     public $user;
+    public $message;
     public $contact;
 
     /**
@@ -21,10 +22,11 @@ class MatchApprovedEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(MaterialMatch $match, User $user)
+    public function __construct(MaterialMatch $match, User $user, string $message)
     {
         $this->match = $match;
         $this->user = $user;
+        $this->message = $message;
         $this->contact = $this->getContactFromMatch();
     }
 

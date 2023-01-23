@@ -1,8 +1,8 @@
 import { API } from "../../utils/api/axios";
 
-export async function approveMatch(matchId) {
+export async function approveMatch(matchId, message: string) {
 	try {
-		const response = await API.post(`matches/approve/${matchId}`);
+		const response = await API.post(`matches/approve/${matchId}`, { message });
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };

@@ -6,23 +6,27 @@
 @section('name', $user->name)
 
 @section('content')
-<p>
-    One of your matches within the platform has just been approved.
-    You can contact your match via the following information to set up the exchange:
-</p>
-<ul>
-    <li>{{ $contact->name }}</li>
-    <li>{{ $contact->email }}</li>
-    <li>{{ __('users.' . $contact->organisation) }}</li>
-</ul>
+    <p>
+        One of your matches within the platform has just been approved.
+    </p>
+    <p>The following note was added:</p>
+    <p>{!! $note !!}</p>
+    <p>
+        You can contact your match via the following information to set up the exchange:
+    </p>
+    <ul>
+        <li>{{ $contact->name }}</li>
+        <li>{{ $contact->email }}</li>
+        <li>{{ __('users.' . $contact->organisation) }}</li>
+    </ul>
 @stop
 
 @section('cta-link', env('APP_URL') . '/app/my-matches')
 @section('cta-text', 'View approved match')
 
 @section('closing')
-<p>
-    Friendly regards,<br />
-    ATEX
-</p>
+    <p>
+        Friendly regards,<br />
+        ATEX
+    </p>
 @stop
