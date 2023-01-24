@@ -7,6 +7,7 @@ use App\Mail\Admin\AdminSignUpEmail;
 use App\Signup;
 use App\User;
 use App\Mail\SignupApprovedEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -17,7 +18,8 @@ class SignupController extends Controller
         $signup = new Signup($request->all());
         $signup->save();
 
-        $admins = User::whereIsAdmin()->get();
+        $admins = User::whereUserHasOrganisationAccess([$signup->organisation]);
+
         foreach ($admins as $admin) {
             Mail::to($admin)->queue(new AdminSignUpEmail($signup));
         }
@@ -27,7 +29,7 @@ class SignupController extends Controller
 
     public function getAll()
     {
-        $signups = Signup::whereUserIsEmailAdmin();
+        $signups = Signup::whereUserIsOrganisationAdmin();
         return response()->json(["success" => true, "signups" => $signups->toArray()]);
     }
 

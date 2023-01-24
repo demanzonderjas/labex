@@ -9,7 +9,7 @@ class Signup extends Model
 {
     protected $fillable = ["name", "email", "organisation"];
 
-    public function scopeWhereUserIsEmailAdmin(Builder $query)
+    public function scopeWhereUserIsOrganisationAdmin(Builder $query)
     {
         $organisationRoles = auth()->user()->adminRoles->filter(function ($role) {
             return $role->type === "organisation";

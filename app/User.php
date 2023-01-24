@@ -43,8 +43,22 @@ class User extends Authenticatable
         });
     }
 
-    public function scopeWhereUserIsLocationAdmin(Builder $query)
+    public function organisationRoles()
+    {
+        return $this->adminRoles->filter(function ($role) {
+            return $role->type === "organisation";
+        });
+    }
+
+    public function scopeWhereActiveUserIsLocationAdmin(Builder $query)
     {
         return $query->whereIn('organisation', auth()->user()->adminRolesByValue())->where('is_admin', false)->get();
+    }
+
+    public function scopeWhereUserHasOrganisationAccess(Builder $query, array $organisations)
+    {
+        return $query->whereHas('adminRoles', function (Builder $query) use ($organisations) {
+            $query->whereIn('value', $organisations);
+        })->get();
     }
 }

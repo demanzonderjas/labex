@@ -150,7 +150,7 @@ class ExchangeAttempt extends Model
 		return false;
 	}
 
-	public function scopeWhereUserIsLocationAdmin(Builder $query)
+	public function scopeWhereActiveUserIsLocationAdmin(Builder $query)
 	{
 		return $query->whereHas('user', function ($query) {
 			$query->whereIn('organisation', auth()->user()->adminRolesByValue());

@@ -75,7 +75,7 @@ class ExchangeAttemptController extends Controller
 
 
 		$exchange_attempts = $request->admin_view
-			? ExchangeAttempt::whereUserIsLocationAdmin()
+			? ExchangeAttempt::whereActiveUserIsLocationAdmin()
 			: ExchangeAttempt::doesntHave($matchType)->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
 		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
