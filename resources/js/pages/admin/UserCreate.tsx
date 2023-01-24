@@ -11,7 +11,12 @@ export const UserCreatePage = () => {
 	return (
 		<div className="UserCreatePage">
 			<h1>{t("add_new_user")}</h1>
-			<FormWrapper form={CreateUserForm} handleSuccess={() => history.push("/admin/users")} />
+			<div style={{ maxWidth: "500px " }}>
+				<FormWrapper
+					form={CreateUserForm}
+					handleSuccess={() => history.push("/admin/users")}
+				/>
+			</div>
 		</div>
 	);
 };
