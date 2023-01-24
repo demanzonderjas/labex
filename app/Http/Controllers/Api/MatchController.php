@@ -200,8 +200,7 @@ class MatchController extends Controller
         if ($isConserved) {
             self::approve($match->id, "");
         } else {
-            $admins = User::whereUserHasOrganisationAccess([$match->offer->user->organisation, $match->request->user->organisation]);
-            dd($admins);
+            $admins = User::whereUserGetsOrganisationAdminEmail([$match->offer->user->organisation, $match->request->user->organisation]);
             foreach ($admins as $admin) {
                 Mail::to($admin)->queue(new AdminMatchMadeEmail($match, $admin));
             }

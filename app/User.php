@@ -50,10 +50,12 @@ class User extends Authenticatable
         return $query->whereIn('organisation', auth()->user()->adminRolesByValue())->where('is_admin', false)->get();
     }
 
-    public function scopeWhereUserHasOrganisationAccess(Builder $query, array $organisations)
+    public function scopeWhereUserGetsOrganisationAdminEmail(Builder $query, array $organisations)
     {
-        return $query->whereHas('adminRoles', function (Builder $query) use ($organisations) {
+        $query->whereHas('adminRoles', function (Builder $query) use ($organisations) {
             $query->whereIn('value', $organisations);
+        })->whereHas('adminRoles', function (Builder $query) {
+            $query->where(['type' => 'mailable', 'value' => 'yes']);
         })->get();
     }
 }

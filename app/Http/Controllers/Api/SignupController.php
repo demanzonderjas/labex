@@ -18,7 +18,7 @@ class SignupController extends Controller
         $signup = new Signup($request->all());
         $signup->save();
 
-        $admins = User::whereUserHasOrganisationAccess([$signup->organisation]);
+        $admins = User::whereUserGetsOrganisationAdminEmail([$signup->organisation]);
 
         foreach ($admins as $admin) {
             Mail::to($admin)->queue(new AdminSignUpEmail($signup));

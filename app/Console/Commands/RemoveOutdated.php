@@ -50,7 +50,7 @@ class RemoveOutdated extends Command
                 continue;
             }
 
-            $admins = User::whereUserHasOrganisationAccess([$offer->user->organisation]);
+            $admins = User::whereUserGetsOrganisationAdminEmail([$offer->user->organisation]);
 
             $date = Carbon::createFromFormat("Y-m-d", $offer->date_available);
             $endDate = $date->copy()->addDays(config('atex.constants.days_before_inactive'));
