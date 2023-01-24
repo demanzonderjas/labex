@@ -26,11 +26,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function scopeWhereIsAdmin(Builder $query)
-    {
-        return $query->where("email", env('ADMIN_MAIL', 'info@atex.uu.nl'));
-    }
-
     public function adminRoles()
     {
         return $this->hasMany(AdminRole::class);
