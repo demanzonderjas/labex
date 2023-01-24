@@ -11,17 +11,9 @@ class Signup extends Model
 
     public function scopeWhereUserIsEmailAdmin(Builder $query)
     {
-        $emailRoles = auth()->user()->adminRoles->filter(function ($role) {
-            return $role->type === "email";
-        });
-
         $organisationRoles = auth()->user()->adminRoles->filter(function ($role) {
             return $role->type === "organisation";
         });
-
-        foreach ($emailRoles as $role) {
-            $query->orWhere('email', 'LIKE', '%' . $role->value . '%');
-        }
 
         foreach ($organisationRoles as $role) {
             $query->orWhere('organisation', $role->value);

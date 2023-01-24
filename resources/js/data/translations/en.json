@@ -290,5 +290,7 @@
 	"adoption_amount": "Adoption amount",
 	"total_adopted": "Total adopted",
 	"select_year": "Select year",
-	"user": "User"
+	"user": "User",
+	"radboudumc": "RadboudUMC",
+	"radboud-universiteit": "Radboud Universiteit"
 }
