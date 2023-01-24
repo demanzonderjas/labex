@@ -27,7 +27,7 @@ class SignupController extends Controller
 
     public function getAll()
     {
-        $signups = Signup::all();
+        $signups = Signup::whereUserIsEmailAdmin();
         return response()->json(["success" => true, "signups" => $signups->toArray()]);
     }
 

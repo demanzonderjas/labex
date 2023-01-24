@@ -1,7 +1,7 @@
 import { DeleteUserButtonCell } from "../../components/overviews/table/custom/DeleteUserCell";
 import { TextCell } from "../../components/overviews/table/TextCell";
 
-export const userColumns = ["id", "name", "email", "delete"];
+export const userColumns = ["id", "name", "email", "organisation", "delete"];
 
 export const userCells = [
 	{
@@ -16,6 +16,11 @@ export const userCells = [
 	},
 	{
 		id: "email",
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: "organisation",
 		value: "",
 		Component: TextCell
 	},

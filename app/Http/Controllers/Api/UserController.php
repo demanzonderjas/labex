@@ -18,7 +18,7 @@ class UserController
 
     public function getAll()
     {
-        $users = User::where('is_admin', false)->get();
+        $users = User::whereUserIsLocationAdmin();
         return response()->json(["success" => true, "users" => $users->toArray()]);
     }
 

@@ -72,8 +72,10 @@ class ExchangeAttemptController extends Controller
 	public function getAll(Request $request)
 	{
 		$matchType = $request->attempt_type === config('atex.constants.offer') ? "matchViaOffer" : "matchViaRequest";
+
+
 		$exchange_attempts = $request->admin_view
-			? ExchangeAttempt::where(['attempt_type' => $request->attempt_type])->with('user')->get()
+			? ExchangeAttempt::whereUserIsLocationAdmin()
 			: ExchangeAttempt::doesntHave($matchType)->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
 		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}

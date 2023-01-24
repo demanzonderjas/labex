@@ -18,35 +18,33 @@ class User extends Authenticatable
 
     protected $dontThrowDecryptException = true;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password', 'organisation'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     public function scopeWhereIsAdmin(Builder $query)
     {
         return $query->where("email", env('ADMIN_MAIL', 'info@atex.uu.nl'));
+    }
+
+    public function adminRoles()
+    {
+        return $this->hasMany(AdminRole::class);
+    }
+
+    public function adminRolesByValue()
+    {
+        return auth()->user()->adminRoles->map(function ($role) {
+            return $role->value;
+        });
+    }
+
+    public function scopeWhereUserIsLocationAdmin(Builder $query)
+    {
+        return $query->whereIn('organisation', auth()->user()->adminRolesByValue())->where('is_admin', false)->get();
     }
 }

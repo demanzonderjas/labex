@@ -6,14 +6,15 @@ import { NameCell } from "../../components/overviews/table/NameCell";
 import { TextCell } from "../../components/overviews/table/TextCell";
 
 export const signupColumns: string[] = [
-    "id",
-    "name",
-    "email",
-    "awaiting_approval_label",
-    "approved_label",
-    "approve",
-    "block",
-    "delete"
+	"id",
+	"name",
+	"email",
+	"organisation",
+	"awaiting_approval_label",
+	"approved_label",
+	"approve",
+	"block",
+	"delete"
 ];
 
 export const signupCells = [
@@ -25,7 +26,7 @@ export const signupCells = [
 	{
 		id: "name",
 		value: "",
-		Component: NameCell 
+		Component: NameCell
 	},
 	{
 		id: "email",
@@ -33,28 +34,33 @@ export const signupCells = [
 		Component: TextCell
 	},
 	{
+		id: "organisation",
+		value: "",
+		Component: TextCell
+	},
+	{
 		id: "awaiting_approval",
 		value: "",
 		Component: BooleanCell
-    },
-    {
+	},
+	{
 		id: "approved",
 		value: "",
 		Component: BooleanCell
-    },
-    {
+	},
+	{
 		id: "approve",
 		value: "",
-		Component: ApproveButtonCell 
-    },
-    {
+		Component: ApproveButtonCell
+	},
+	{
 		id: "block",
 		value: "",
 		Component: BlockButtonCell
-    },
-    {
+	},
+	{
 		id: "delete",
 		value: "",
 		Component: DeleteSignupButtonCell
-	},
+	}
 ];

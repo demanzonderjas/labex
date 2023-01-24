@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use App\User;
 
 class ExchangeAttempt extends Model
 {
@@ -146,5 +148,12 @@ class ExchangeAttempt extends Model
 			});
 		}
 		return false;
+	}
+
+	public function scopeWhereUserIsLocationAdmin(Builder $query)
+	{
+		return $query->whereHas('user', function ($query) {
+			$query->whereIn('organisation', auth()->user()->adminRolesByValue());
+		})->with('user')->get();
 	}
 }
