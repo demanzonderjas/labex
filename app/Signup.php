@@ -19,6 +19,9 @@ class Signup extends Model
             $query->orWhere('organisation', $role->value);
         }
 
+        $managedOrganisations = AdminRole::where('type', 'organisation')->get()->pluck('value');
+        $query->orWhereNotIn('organisation', $managedOrganisations)->get();
+
         return $query->distinct()->get();
     }
 }

@@ -50,6 +50,13 @@ class User extends Authenticatable
         return $query->whereIn('organisation', auth()->user()->adminRolesByValue())->where('is_admin', false)->get();
     }
 
+    public function scopeWhereUserIsFallbackAdminEmail(Builder $query)
+    {
+        return $query->whereHas('adminRoles', function (Builder $query) {
+            $query->where(['type' => 'mailable', 'value' => 'yes']);
+        })->get();
+    }
+
     public function scopeWhereUserGetsOrganisationAdminEmail(Builder $query, array $organisations)
     {
         $query->whereHas('adminRoles', function (Builder $query) use ($organisations) {
