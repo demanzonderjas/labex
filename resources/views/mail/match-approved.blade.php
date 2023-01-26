@@ -15,9 +15,9 @@
         You can contact your match via the following information to set up the exchange:
     </p>
     <ul>
-        <li>{{ $contact->name }}</li>
-        <li>{{ $contact->email }}</li>
-        <li>{{ __('users.' . $contact->organisation) }}</li>
+        <li><strong>Name: </strong> {{ $contact->name }}</li>
+        <li><strong>Email: </strong>{{ $contact->email }}</li>
+        <li><strong>Organisation: </strong>{{ config('atex.' . $contact->organisation) ?? $contact->organisation }}</li>
     </ul>
 @stop
 

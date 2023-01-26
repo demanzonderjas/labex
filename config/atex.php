@@ -1,7 +1,11 @@
 <?php
 
 return [
-	"admin_mail" => "info@atex.uu.nl",
+	"organisations" => [
+		"uu.nl" => "University of Utrecht",
+		"universiteit-utrecht" => "University of Utrecht",
+		"umcutrecht.nl" => "UMC Utrecht"
+	],
 	"constants" => [
 		"exchange_attempt_status" => [
 			"active" => "active",

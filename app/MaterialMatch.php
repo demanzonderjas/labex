@@ -52,4 +52,17 @@ class MaterialMatch extends Model
     {
         return $this->status !== "rejected";
     }
+
+    public function scopeWhereActiveUserIsLocationAdmin(Builder $query)
+    {
+        $query->whereHas('offer.user', function ($query) {
+            $query->whereIn('organisation', auth()->user()->adminRolesByValue());
+        });
+
+        $query->orWhereHas('request.user', function ($query) {
+            $query->whereIn('organisation', auth()->user()->adminRolesByValue());
+        });
+
+        return $query->with('offer.user', 'request.user')->get();
+    }
 }

@@ -19,7 +19,7 @@ class MatchController extends Controller
 {
     public function getAll()
     {
-        $matches = MaterialMatch::with('offer.user', 'request.user')->get();
+        $matches = MaterialMatch::whereActiveUserIsLocationAdmin();
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 
