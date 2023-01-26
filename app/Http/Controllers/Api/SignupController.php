@@ -8,7 +8,6 @@ use App\Mail\Admin\AdminSignUpEmail;
 use App\Signup;
 use App\User;
 use App\Mail\SignupApprovedEmail;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -46,7 +45,7 @@ class SignupController extends Controller
         $signup->save();
 
         $managedOrganisations = AdminRole::where('type', 'organisation')->get();
-        if (!$managedOrganisations->contains('value', $signup->organisation)) {
+        if ($signup->organisation && !$managedOrganisations->contains('value', $signup->organisation)) {
             auth()->user()->adminRoles()->save(
                 new AdminRole([
                     'type' => 'organisation',

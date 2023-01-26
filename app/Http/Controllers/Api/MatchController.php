@@ -6,7 +6,7 @@ use App\AdminAction;
 use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\Mail\Admin\AdminMatchMadeEmail;
-use App\Mail\AdminMatchApprovedEmail;
+use App\Mail\Admin\AdminMatchApprovedEmail;
 use App\Mail\MatchApprovedEmail;
 use App\Mail\MatchCancelledEmail;
 use App\Mail\MatchDeclinedEmail;
@@ -201,7 +201,7 @@ class MatchController extends Controller
         if ($isConserved) {
             self::approve($match->id, "");
         } else {
-            $admins = User::whereUserGetsOrganisationAdminEmail([$match->offer->user->organisation, $match->request->user->organisation]);
+            $admins = User::whereUserGetsOrganisationAdminEmail([$match->offer->user->organisation, $match->request->user->organisation])->get();
             foreach ($admins as $admin) {
                 Mail::to($admin)->queue(new AdminMatchMadeEmail($match, $admin));
             }
@@ -225,7 +225,7 @@ class MatchController extends Controller
             return response()->json(["success" => false, "message" => "Match does not exist"]);
         }
 
-        $connectedAdmins = User::whereUserGetsOrganisationAdminEmail([$match->offer->user->organisation, $match->request->user->organisation]);
+        $connectedAdmins = User::whereUserGetsOrganisationAdminEmail([$match->offer->user->organisation, $match->request->user->organisation])->get();
         $needsTwoApprovals = $connectedAdmins->count() > 1;
         $isFirstApproval = $match->status === config('atex.constants.match_status.awaiting_approval') && $needsTwoApprovals;
 
@@ -238,8 +238,10 @@ class MatchController extends Controller
         $match->save();
         $approval_action = $isFirstApproval ? "approve_match_once" : "approve_match_final";
 
-        Mail::to($match->offer->user)->queue(new MatchApprovedEmail($match, $match->offer->user, $message));
-        Mail::to($match->request->user)->queue(new MatchApprovedEmail($match, $match->request->user, $message));
+        if (!$isFirstApproval) {
+            Mail::to($match->offer->user)->queue(new MatchApprovedEmail($match, $match->offer->user, $message));
+            Mail::to($match->request->user)->queue(new MatchApprovedEmail($match, $match->request->user, $message));
+        }
 
         if ($needsTwoApprovals) {
             foreach ($connectedAdmins as $admin) {
