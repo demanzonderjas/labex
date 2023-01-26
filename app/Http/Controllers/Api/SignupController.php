@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\AdminRole;
 use App\Http\Controllers\Controller;
 use App\Mail\Admin\AdminSignUpEmail;
 use App\Signup;
@@ -43,6 +44,16 @@ class SignupController extends Controller
         $signup->awaiting_approval = false;
         $signup->approved = true;
         $signup->save();
+
+        $managedOrganisations = AdminRole::where('type', 'organisation')->get();
+        if (!$managedOrganisations->contains('value', $signup->organisation)) {
+            auth()->user()->adminRoles()->save(
+                new AdminRole([
+                    'type' => 'organisation',
+                    'value' => $signup->organisation
+                ])
+            );
+        }
 
         Mail::to($signup)->queue(new SignupApprovedEmail($signup));
 

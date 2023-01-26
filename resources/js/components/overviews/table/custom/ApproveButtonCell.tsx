@@ -5,22 +5,17 @@ import { ButtonCell } from "../ButtonCell";
 import { TextCell } from "../TextCell";
 
 export const ApproveButtonCell = ({ value, rowIndex, signup, ...props }) => {
-    const { t } = useTranslationStore();
+	const { t } = useTranslationStore();
 	const approve = async () => {
-        await approveSignup(signup);
-        location.reload();
-    };
-    
-    if(signup.approved) {
-        return <TextCell value="-" />
-    }
+		await approveSignup(signup);
+		location.reload();
+	};
+
+	if (signup.approved) {
+		return <TextCell value="-" />;
+	}
 
 	return (
-		<ButtonCell
-			{...props}
-			handleClick={approve}
-			label="approve"
-			classes={{ confirm: true }}
-		/>
+		<ButtonCell {...props} handleClick={approve} label="approve" classes={{ confirm: true }} />
 	);
 };
