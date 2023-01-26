@@ -25,14 +25,14 @@ class ExchangeAttemptController extends Controller
 			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);
 
 			if ($request->attempt_type == config('atex.constants.offer')) {
-				$admin = User::where('email', env('ADMIN_MAIL'))->first();
+				$admin = User::whereUserGetsOrganisationAdminEmail([$attempt->user->organisation])->get();
 				Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
 			}
 			self::activateAlerts($attempt);
 
 			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
-			return response()->json(["success" => false, "error" => $validated]);
+			return response()->json(["success" => false, "error" => $e, "validated" => $validated]);
 		}
 	}
 
