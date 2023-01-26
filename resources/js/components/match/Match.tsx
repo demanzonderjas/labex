@@ -52,7 +52,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const confirmCancel = () => {
 		cancelMatch(match.id);
 		confirm();
-		location.reload();
+		// location.reload();
 	};
 
 	const requestIsMine = match.request.is_mine;

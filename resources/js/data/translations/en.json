@@ -296,5 +296,6 @@
 	"select_year": "Select year",
 	"user": "User",
 	"radboudumc": "RadboudUMC",
-	"radboud-universiteit": "Radboud Universiteit"
+	"radboud-universiteit": "Radboud Universiteit",
+	"no_matches_in_history": "No matches in history"
 }
