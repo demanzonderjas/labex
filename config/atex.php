@@ -16,6 +16,7 @@ return [
 		"request" => "request",
 		"match_status" => [
 			"approved" => "approved",
+			"approved_once" => "approved_once",
 			"awaiting_approval" => "awaiting_approval",
 			"rejected" => "rejected"
 		],

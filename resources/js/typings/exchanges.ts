@@ -63,15 +63,18 @@ export type TMatch = {
 	admin_actions: TAdminAction[];
 	status: TMatchStatus;
 	updated_at: string;
+	is_approved_by_you?: boolean;
 };
 
 export type TAdminAction = {
+	admin?: TUser;
 	action: string;
 	message: string;
 };
 
 export enum TMatchStatus {
 	Approved = "approved",
+	ApprovedOnce = "approved_once",
 	AwaitingApproval = "awaiting_approval",
 	Rejected = "rejected"
 }

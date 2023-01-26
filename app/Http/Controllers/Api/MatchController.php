@@ -6,6 +6,7 @@ use App\AdminAction;
 use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\Mail\Admin\AdminMatchMadeEmail;
+use App\Mail\AdminMatchApprovedEmail;
 use App\Mail\MatchApprovedEmail;
 use App\Mail\MatchCancelledEmail;
 use App\Mail\MatchDeclinedEmail;
@@ -19,7 +20,7 @@ class MatchController extends Controller
 {
     public function getAll()
     {
-        $matches = MaterialMatch::whereActiveUserIsLocationAdmin();
+        $matches = MaterialMatch::whereActiveUserIsLocationAdmin()->append('is_approved_by_you')->sortBy('updated_at')->values();
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 
@@ -223,13 +224,30 @@ class MatchController extends Controller
         if (!$match) {
             return response()->json(["success" => false, "message" => "Match does not exist"]);
         }
-        $match->status = config('atex.constants.match_status.approved');
-        $match->save();
 
-        self::addAdminAction($match, "approve_match", $message);
+        $connectedAdmins = User::whereUserGetsOrganisationAdminEmail([$match->offer->user->organisation, $match->request->user->organisation]);
+        $needsTwoApprovals = $connectedAdmins->count() > 1;
+        $isFirstApproval = $match->status === config('atex.constants.match_status.awaiting_approval') && $needsTwoApprovals;
+
+        if ($isFirstApproval) {
+            $match->status = config('atex.constants.match_status.approved_once');
+        } else {
+            $match->status = config('atex.constants.match_status.approved');
+        }
+
+        $match->save();
+        $approval_action = $isFirstApproval ? "approve_match_once" : "approve_match_final";
 
         Mail::to($match->offer->user)->queue(new MatchApprovedEmail($match, $match->offer->user, $message));
         Mail::to($match->request->user)->queue(new MatchApprovedEmail($match, $match->request->user, $message));
+
+        if ($needsTwoApprovals) {
+            foreach ($connectedAdmins as $admin) {
+                Mail::to($admin)->queue(new AdminMatchApprovedEmail($match, $match->offer->user, $message));
+            }
+        }
+
+        self::addAdminAction($match, $approval_action, $message);
 
         return response()->json(["success" => true]);
     }
@@ -301,10 +319,10 @@ class MatchController extends Controller
 
         $this->restoreOrigin($match);
 
-        self::addAdminAction($match, "reject_match", $request->message);
-
         Mail::to($match->offer->user)->queue(new MatchDeclinedEmail($match, $match->offer->user, $request->message));
         Mail::to($match->request->user)->queue(new MatchDeclinedEmail($match, $match->request->user, $request->message));
+
+        self::addAdminAction($match, "reject_match", $request->message);
 
         return response()->json(["success" => true]);
     }
@@ -320,10 +338,12 @@ class MatchController extends Controller
 
     public static function addAdminAction(MaterialMatch $match, $action, $message)
     {
-        $adminAction = new AdminAction();
-        $adminAction->match_id = $match->id;
-        $adminAction->action = $action;
-        $adminAction->message = $message;
-        $adminAction->save();
+        if (!empty(auth()->user())) {
+            auth()->user()->adminActions()->save(new AdminAction([
+                'match_id' => $match->id,
+                'action' => $action,
+                'message' => $message
+            ]));
+        }
     }
 }

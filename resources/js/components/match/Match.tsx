@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
-import { MatchType } from "../../typings/overviews";
+import { MatchType as TMatchType } from "../../typings/overviews";
 import { getStatusFromMatch } from "../../utils/matches/status";
 import { convertDateToReadableString } from "../../utils/formatting/datetime";
 import { getMatchingPercentage } from "../../utils/matches/utils";
@@ -24,7 +24,7 @@ import { MatchMessage } from "./MatchMessage";
 
 type Props = {
 	match: TMatch;
-	matchType?: MatchType;
+	matchType?: TMatchType;
 };
 
 export const Match: React.FC<Props> = ({ match, matchType }) => {
@@ -67,7 +67,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 					<span>{t("match")}</span>
 					<Percentage matchPercentage={percentage} />
 				</div>
-				{matchType != MatchType.Admin && status !== TMatchStatus.Rejected && (
+				{matchType != TMatchType.Admin && status !== TMatchStatus.Rejected && (
 					<div className="cancel margin-10">
 						<DangerButton
 							label="cancel_match"
@@ -82,9 +82,9 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 					</div>
 				)}
 				<div
-					className={cx("cards", { admin: matchType == MatchType.Admin })}
+					className={cx("cards", { admin: matchType == TMatchType.Admin })}
 					onClick={
-						matchType != MatchType.Admin
+						matchType != TMatchType.Admin
 							? () =>
 									history.push(
 										`/app/offers/select/${match.offer.id}${linkFilters}`
@@ -93,7 +93,13 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 					}
 				>
 					<MatchCard
-						matchType={requestIsMine ? MatchType.Requests : MatchType.Offers}
+						matchType={
+							matchType === TMatchType.Admin
+								? TMatchType.Admin
+								: requestIsMine
+								? TMatchType.Requests
+								: TMatchType.Offers
+						}
 						mine={true}
 						specs={requestIsMine ? requestSpecs : offerSpecs}
 						user={requestIsMine ? match.request.user : match.offer.user}
@@ -102,7 +108,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 					/>
 					<MatchCard
 						mine={false}
-						matchType={requestIsMine ? MatchType.Offers : MatchType.Requests}
+						matchType={requestIsMine ? TMatchType.Offers : TMatchType.Requests}
 						specs={requestIsMine ? offerSpecs : requestSpecs}
 						user={requestIsMine ? match.offer.user : match.request.user}
 						status={status}

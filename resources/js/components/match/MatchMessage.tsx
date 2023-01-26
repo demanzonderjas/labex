@@ -14,7 +14,12 @@ export const MatchMessage: React.FC<{ match: TMatch }> = ({ match }) => {
 			{match.admin_actions.map((m, idx) => (
 				<div className="message" key={idx}>
 					<p>{m.message}</p>
-					<span>{t(m.action)}</span>
+					<span className="action">{t(m.action)}</span>
+					{m.admin && (
+						<span className="admin">
+							{m.admin.name} - {m.admin.email} - {t(m.admin.organisation)}
+						</span>
+					)}
 				</div>
 			))}
 		</div>

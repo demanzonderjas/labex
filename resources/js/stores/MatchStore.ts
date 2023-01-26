@@ -7,11 +7,19 @@ export class MatchStore {
 	@observable matches: TMatch[] = [];
 
 	@computed get possibleMatches() {
-		return this.matches.filter(match => match.status === TMatchStatus.AwaitingApproval);
+		return this.matches.filter(
+			match =>
+				match.status === TMatchStatus.AwaitingApproval ||
+				match.status === TMatchStatus.ApprovedOnce
+		);
 	}
 
 	@computed get previousMatches() {
-		return this.matches.filter(match => match.status !== TMatchStatus.AwaitingApproval);
+		return this.matches.filter(
+			match =>
+				match.status !== TMatchStatus.AwaitingApproval &&
+				match.status !== TMatchStatus.ApprovedOnce
+		);
 	}
 
 	@action.bound async getMatches() {

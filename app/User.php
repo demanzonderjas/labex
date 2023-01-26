@@ -31,6 +31,11 @@ class User extends Authenticatable
         return $this->hasMany(AdminRole::class);
     }
 
+    public function adminActions()
+    {
+        return $this->hasMany(AdminAction::class);
+    }
+
     public function adminRolesByValue()
     {
         return auth()->user()->adminRoles->map(function ($role) {

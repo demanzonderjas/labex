@@ -10,7 +10,7 @@ class MaterialMatch extends Model
 
     public $table = "matches";
 
-    public $with = ["request", "offer", "request.user", "offer.user", "adminActions"];
+    public $with = ["request", "offer", "request.user", "offer.user", "adminActions", "adminActions.admin"];
 
     public function request()
     {
@@ -64,5 +64,21 @@ class MaterialMatch extends Model
         });
 
         return $query->with('offer.user', 'request.user')->get();
+    }
+
+    public function getIsApprovedByYouAttribute()
+    {
+        $approval = $this->adminActions->first(function ($a) {
+            return $a->action === "approve_match_once";
+        });
+
+        if (empty($approval)) {
+            return false;
+        }
+        $connectedAdmin = User::find($approval->user_id);
+        $adminOrganisations = $connectedAdmin->organisationRoles()->pluck('value');
+        $activeAdminOrganisations = auth()->user()->organisationRoles()->pluck('value');
+
+        return $activeAdminOrganisations->intersect($adminOrganisations)->count() > 0;
     }
 }

@@ -6,7 +6,6 @@ import { TMatch, TMatchStatus, TSpecificationName } from "../../typings/exchange
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Button } from "../base/Button";
 import { useMatchStore } from "../../hooks/useMatchStore";
-import { MatchMessage } from "../match/MatchMessage";
 
 type Props = {
 	match: TMatch;
@@ -23,9 +22,9 @@ export const Match: React.FC<Props> = ({ match }) => {
 		<div className="AdminMatch" key={match.id}>
 			<MatchCards match={match} matchType={MatchType.Admin} />
 			<div className="controls">
-				{match.status === TMatchStatus.AwaitingApproval && (
-					<ApproveButtons matchId={match.id} />
-				)}
+				{(match.status === TMatchStatus.AwaitingApproval ||
+					match.status === TMatchStatus.ApprovedOnce) &&
+					!match.is_approved_by_you && <ApproveButtons matchId={match.id} />}
 				<div className="UpdateMatchAmount">
 					<h3>{t("match_amount")}</h3>
 					<div className="InputField">

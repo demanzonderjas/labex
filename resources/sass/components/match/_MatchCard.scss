@@ -55,6 +55,9 @@
 			&.approved {
 				background-color: $correct-color;
 			}
+			&.approved_once {
+				background-color: $tertiary;
+			}
 			&.declined, &.rejected {
 				background-color: $danger-color;
 			}
