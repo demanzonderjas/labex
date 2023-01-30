@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\AdminRole;
 use App\Signup;
 use App\User;
 use Illuminate\Http\Request;
@@ -38,6 +39,16 @@ class UserController
         $signup->awaiting_approval = false;
         $signup->approved = true;
         $signup->save();
+
+        $managedOrganisations = AdminRole::where('type', 'organisation')->get();
+        if ($signup->organisation && !$managedOrganisations->contains('value', $signup->organisation)) {
+            auth()->user()->adminRoles()->save(
+                new AdminRole([
+                    'type' => 'organisation',
+                    'value' => $signup->organisation
+                ])
+            );
+        }
 
         return response()->json(["success" => true, "user" => $request->user()]);
     }
