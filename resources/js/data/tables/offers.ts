@@ -152,6 +152,12 @@ export const adminOfferCells: TTableCell[] = [
 		Component: EditButtonCell
 	},
 	{
+		id: TTableCellName.DeleteButton,
+		label: "delete",
+		value: "",
+		Component: DeleteButtonCell
+	},
+	{
 		id: TTableCellName.AdoptionButton,
 		label: "manage_adoption",
 		value: "",

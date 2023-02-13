@@ -7,7 +7,7 @@ import { TTableCellProps } from "../../../../typings/overviews";
 import { ButtonCell } from "../ButtonCell";
 
 export const DeleteButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ...props }) => {
-	const { deleteAttempt } = useExchangeAttemptStore();
+	const { deleteAttempt, adminView } = useExchangeAttemptStore();
 	const { setModal, confirm } = useModalStore();
 	const deleteCallback = async () => {
 		await deleteAttemptQuery(attempt.id);
@@ -15,7 +15,7 @@ export const DeleteButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ..
 		confirm();
 	};
 
-	if (attempt.is_match) {
+	if (attempt.is_match && !adminView) {
 		return <td></td>;
 	}
 
