@@ -12,7 +12,7 @@ import { ExportOffers } from "../../components/admin/ExportOffers";
 
 export const OffersPage = observer(() => {
 	const { t } = useTranslationStore();
-	const [sampleStore] = useState(new ExchangeAttemptStore());
+	const [sampleStore] = useState(new ExchangeAttemptStore({ adminView: true }));
 	return (
 		<div className="OffersPage">
 			<h1>{t("offers")}</h1>

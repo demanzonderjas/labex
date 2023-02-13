@@ -28,13 +28,15 @@ export class ExchangeAttemptStore {
 	@observable filters: TFormField[] = [];
 	@observable currentLimit = PAGINATION_LIMIT;
 	@observable matchType: TExchangeAttemptType = TExchangeAttemptType.Offer;
+	@observable adminView: boolean = false;
 
-	constructor() {
+	constructor({ adminView }: { adminView?: boolean } = {}) {
 		const pref = (localStorage.getItem("overview_preference") as unknown) as TOverviewType;
 		if (!pref) {
 			return;
 		}
 		this.setOverviewType(pref);
+		this.adminView = !!adminView;
 	}
 
 	@computed get offers() {

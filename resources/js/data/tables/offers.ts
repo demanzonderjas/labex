@@ -146,6 +146,12 @@ export const adminOfferCells: TTableCell[] = [
 		Component: BooleanCell
 	},
 	{
+		id: TTableCellName.EditButton,
+		label: "edit",
+		value: "",
+		Component: EditButtonCell
+	},
+	{
 		id: TTableCellName.AdoptionButton,
 		label: "manage_adoption",
 		value: "",

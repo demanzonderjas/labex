@@ -14,3 +14,8 @@ export function goToEditLink(history: any, attempt: TExchangeAttempt) {
 	const queryString = createQueryStringFromSpecs(attempt);
 	history.push(`/app/${attempt.attempt_type}s/edit/${attempt.id}${queryString}`);
 }
+
+export function goToAdminEditLink(history: any, attempt: TExchangeAttempt) {
+	const queryString = createQueryStringFromSpecs(attempt);
+	history.push(`/admin/${attempt.attempt_type}s/edit/${attempt.id}${queryString}`);
+}
