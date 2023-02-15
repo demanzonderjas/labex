@@ -10,7 +10,7 @@ export const SignupsPage = observer(() => {
 	const [signups, setSignups] = useState([]);
 	const [filter, setFilter] = useState("");
 	const [sortingKey, setSortingKey] = useState("id");
-	const [reverse, setReverse] = useState(false);
+	const [reverse, setReverse] = useState(true);
 
 	const sortByColumn = (byColumn: string) => {
 		if (sortingKey === byColumn) {
