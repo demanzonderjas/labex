@@ -1,4 +1,4 @@
-import { TForm } from "../../typings/forms";
+import { TForm, TFormFieldName } from "../../typings/forms";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { strainField } from "./fields/strain";
 import { ageField } from "./fields/age";
@@ -28,7 +28,9 @@ import {
 } from "./fields/adoption";
 import { locationField } from "./fields/location";
 import {
+	dateAvailableEndAsAdminField,
 	dateAvailableEndField,
+	dateAvailableStartAsAdminField,
 	dateAvailableStartField,
 	yearSelectField
 } from "./fields/dateAvailable";
@@ -77,6 +79,21 @@ export const EditOfferForm: TForm = {
 	header: "edit_offer",
 	intro: "edit_offer_intro",
 	infoModal: null
+};
+
+const dateAvailableStartFieldIndex = EditOfferForm.fields.findIndex(
+	f => f.id === TSpecificationName.DateAvailableStart
+);
+const dateAvailableEndFieldIndex = EditOfferForm.fields.findIndex(
+	f => f.id === TSpecificationName.DateAvailableEnd
+);
+const editOfferAsAdminFields = [...EditOfferForm.fields];
+editOfferAsAdminFields[dateAvailableStartFieldIndex] = dateAvailableStartAsAdminField;
+editOfferAsAdminFields[dateAvailableEndFieldIndex] = dateAvailableEndAsAdminField;
+
+export const EditOfferAsAdminForm: TForm = {
+	...EditOfferForm,
+	fields: editOfferAsAdminFields
 };
 
 export const ConfirmOfferMatchForm: TForm = {

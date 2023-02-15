@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ExchangeAttemptStore } from "../../stores/ExchangeAttemptStore";
 import ExchangeAttemptStoreProvider from "../../contexts/ExchangeAttemptContext";
 import { FormWrapper } from "../../components/FormWrapper";
-import { EditOfferForm } from "../../data/forms/ExchangeAttemptOffer";
+import { EditOfferAsAdminForm, EditOfferForm } from "../../data/forms/ExchangeAttemptOffer";
 import { useHistory, useParams } from "react-router-dom";
 import { updateExchangeAttempt } from "../../queries/sendExchangeAttempt";
 
@@ -15,7 +15,7 @@ export const AdminEditOfferPage = () => {
 		<ExchangeAttemptStoreProvider store={attemptStore}>
 			<FormWrapper
 				form={{
-					...EditOfferForm,
+					...EditOfferAsAdminForm,
 					handler: data => updateExchangeAttempt(offer_id, data)
 				}}
 				handleSuccess={() => history.goBack()}
