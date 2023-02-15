@@ -1,5 +1,4 @@
 import { adminAlertsCells, alertsCells } from "../../data/tables/alerts";
-import { signupCells } from "../../data/tables/signups";
 import { TAlert } from "../../typings/alerts";
 
 export function mapAlertsToOverviewData(alerts: TAlert[]) {

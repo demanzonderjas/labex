@@ -30,7 +30,7 @@ export const SignupsPage = observer(() => {
 
 	const signupsWithCells = mapSignupsToOverviewData(
 		signups
-			.filter(s => s.name.match(filter) || s.email.match(filter))
+			.filter(s => s.name.match(filter.toLowerCase()) || s.email.match(filter.toLowerCase()))
 			.sort((a, b) => {
 				if (a[sortingKey] < b[sortingKey]) {
 					return reverse ? 1 : -1;
