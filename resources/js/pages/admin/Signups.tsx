@@ -28,23 +28,23 @@ export const SignupsPage = observer(() => {
 		})();
 	}, []);
 
-	const signupsWithCells = mapSignupsToOverviewData(
-		signups
-			.filter(
-				s =>
-					s.name.toLowerCase().match(filter.toLowerCase()) ||
-					s.email.toLowerCase().match(filter.toLowerCase())
-			)
-			.sort((a, b) => {
-				if (a[sortingKey] < b[sortingKey]) {
-					return reverse ? 1 : -1;
-				}
-				if (a[sortingKey] > b[sortingKey]) {
-					return reverse ? -1 : 1;
-				}
-				return 0;
-			})
-	);
+	const sorted = signups
+		.filter(
+			s =>
+				s.name.toLowerCase().match(filter.toLowerCase()) ||
+				s.email.toLowerCase().match(filter.toLowerCase())
+		)
+		.sort((a, b) => {
+			if (a[sortingKey] < b[sortingKey]) {
+				return reverse ? 1 : -1;
+			}
+			if (a[sortingKey] > b[sortingKey]) {
+				return reverse ? -1 : 1;
+			}
+			return 0;
+		});
+
+	const signupsWithCells = mapSignupsToOverviewData(sorted);
 
 	return (
 		<div className="AdminFAQPage">
@@ -69,13 +69,13 @@ export const SignupsPage = observer(() => {
 				</thead>
 				<tbody>
 					{signupsWithCells.map((cells, idx) => (
-						<tr key={signups[idx].id}>
+						<tr key={sorted[idx].id}>
 							{cells.map((cell, cellIdx) => (
 								<cell.Component
 									key={cellIdx}
 									rowIndex={idx}
 									value={cell.value}
-									signup={signups[idx]}
+									signup={sorted[idx]}
 								/>
 							))}
 						</tr>
