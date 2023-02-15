@@ -32,10 +32,9 @@ export class ExchangeAttemptStore {
 
 	constructor({ adminView }: { adminView?: boolean } = {}) {
 		const pref = (localStorage.getItem("overview_preference") as unknown) as TOverviewType;
-		if (!pref) {
-			return;
+		if (pref) {
+			this.setOverviewType(pref);
 		}
-		this.setOverviewType(pref);
 		this.adminView = !!adminView;
 	}
 
