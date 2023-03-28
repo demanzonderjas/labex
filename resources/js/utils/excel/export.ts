@@ -36,12 +36,13 @@ export function convertValidOffersToOrigin(
 		if (!offer.origin_id || !type || type.value !== TTypeSpec.Animal) {
 			base.push(baseOffer);
 		} else {
-			const addedToOrigin = addUpToOrigin(baseOffer, allOffers);
+			const currentListing = base.find(origin => origin.id === baseOffer.origin_id);
+			const addedToOrigin = addUpToOrigin(baseOffer, allOffers, currentListing);
 			const originIndex = base.findIndex(origin => origin.id === baseOffer.origin_id);
 			if (originIndex === -1) {
-				base.push(addedToOrigin);
+				base.push({ ...addedToOrigin, id: baseOffer.origin_id });
 			} else {
-				base[originIndex] = addedToOrigin;
+				base[originIndex] = { ...addedToOrigin, id: baseOffer.origin_id };
 			}
 		}
 
@@ -51,12 +52,17 @@ export function convertValidOffersToOrigin(
 
 export function addUpToOrigin(
 	offer: TExportableOffer,
-	offers: TExchangeAttempt[]
+	offers: TExchangeAttempt[],
+	currentListing?: TExportableOffer
 ): TExportableOffer {
 	const originOffer = offers.find(o => o.id === offer.origin_id);
 	const amount = originOffer.specifications.find(s => s.key === TSpecificationName.Amount);
 	const totalAmount = +amount.value;
-	const adoptionAmount = originOffer.adoption_info?.amount || 0;
+	let adoptionAmount = originOffer.adoption_info?.amount || 0;
+
+	if (currentListing) {
+		adoptionAmount = adoptionAmount + currentListing.adopted;
+	}
 
 	const newBaseOffer = {
 		...originOffer,

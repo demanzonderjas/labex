@@ -84,6 +84,11 @@ export const adminOfferCells: TTableCell[] = [
 		Component: TextCell
 	},
 	{
+		id: TTableCellName.OriginID,
+		value: "",
+		Component: TextCell
+	},
+	{
 		id: TFormFieldName.User,
 		value: "",
 		Component: UserCell

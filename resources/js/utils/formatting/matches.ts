@@ -52,6 +52,8 @@ export function convertMatchesToCells(
 				return { ...cell, value: match.adoption_info?.amount };
 			} else if (cell.id === TFormFieldName.AdoptionCode) {
 				return { ...cell, value: match.adoption_info?.code };
+			} else if (cell.id === TSpecificationName.OriginId) {
+				return { ...cell, value: match.origin_id };
 			}
 			return { ...cell, value: spec?.value || cell.value };
 		});

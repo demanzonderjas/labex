@@ -4,7 +4,7 @@ import { strainField } from "./fields/strain";
 import { ageField } from "./fields/age";
 import { naiveField } from "./fields/naive";
 import { sexField } from "./fields/sex";
-import { originField } from "./fields/origin";
+import { originField, originIdField } from "./fields/origin";
 import { spfField } from "./fields/spf";
 import { organsField } from "./fields/organs";
 import { storageField } from "./fields/storage";
@@ -112,7 +112,8 @@ const adminOfferFields = [
 	adoptionFilterField,
 	statusField,
 	adoptionCodeSearchField,
-	userFilterField
+	userFilterField,
+	originIdField
 ];
 
 export const AdminOffersForm: TForm = {
