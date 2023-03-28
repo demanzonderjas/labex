@@ -11,7 +11,7 @@ class ExchangeAttempt extends Model
 
 	public $with = ["specifications", "adoptionInfo"];
 
-	public $hidden = ["origin_id"];
+	public $hidden = [];
 
 	public function user()
 	{
