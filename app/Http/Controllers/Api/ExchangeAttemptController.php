@@ -6,10 +6,12 @@ use App\Alert;
 use App\ExchangeAttempt;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExchangeAttemptStoreRequest;
+use App\Http\Resources\ExchangeAttemptResource;
 use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Mail\AlertMatchEmail;
 use App\Specification;
 use App\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -28,7 +30,7 @@ class ExchangeAttemptController extends Controller
 			}
 			self::activateAlerts($attempt);
 
-			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
+			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
 			return response()->json(["success" => false, "error" => $validated]);
 		}
@@ -40,7 +42,7 @@ class ExchangeAttemptController extends Controller
 			$validated = $request->validated();
 			$attempt = $this->updateInDb($attempt_id, $validated);
 
-			return response()->json(["success" => true, "exchange_attempt" => $attempt->toArray()]);
+			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
 			return response()->json(["success" => false, "error" => $validated]);
 		}
@@ -52,7 +54,7 @@ class ExchangeAttemptController extends Controller
 			'user_id' => $request->user()->id
 		])->latest()->get();
 
-		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts]);
+		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
 
 	public function deleteById($id)
@@ -70,8 +72,10 @@ class ExchangeAttemptController extends Controller
 	public function getAll(Request $request)
 	{
 		$matchType = $request->attempt_type === config('atex.constants.offer') ? "matchViaOffer" : "matchViaRequest";
-		$exchange_attempts = ExchangeAttempt::doesntHave($matchType)->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
-		return response()->json(["success" => true, "exchange_attempts" => $exchange_attempts->toArray()]);
+		$exchange_attempts = $request->admin_view
+			? ExchangeAttempt::where(['attempt_type' => $request->attempt_type])->with('user')->get()
+			: ExchangeAttempt::doesntHave($matchType)->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
+		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
 
 	public function updateInDb($attempt_id, $specifications)
@@ -128,7 +132,7 @@ class ExchangeAttemptController extends Controller
 			if (!empty($alert->attempt_type) && $alert->attempt_type != $attempt->attempt_type) {
 				return false;
 			}
-			$isMatch = array_reduce($alert->specifications, function ($base, $next) use ($attempt) {
+			$isMatch = array_reduce($alert->specifications, function ($base, $next) use ($alert, $attempt) {
 
 				if ($base === false) {
 					return $base;
@@ -137,6 +141,31 @@ class ExchangeAttemptController extends Controller
 					$attemptOrgans = !empty($attempt->organs) ? explode(", ", $attempt->organs) : [];
 					$hasOverlap = count(array_intersect($alertOrgans, $attemptOrgans)) > 0;
 					return $hasOverlap;
+				} else if ($next["key"] === "age_type" && $attempt->attempt_type === config('atex.constants.offer')) {
+					$minAge = Carbon::createFromFormat("Y-m-d", $attempt->getSpec("age"));
+					$minAge->add($alert->getSpec("age_min"), $alert->getSpec("age_type"));
+					$maxAge = Carbon::createFromFormat("Y-m-d", $attempt->getSpec("age"));
+					$maxAge->add($alert->getSpec("age_max"), $alert->getSpec("age_type"));
+					$now = Carbon::now();
+					return $now->isAfter($minAge) && $now->isBefore($maxAge);
+				} else if ($next["key"] === "age_type" && $attempt->attempt_type === config('atex.constants.request')) {
+					if (!$attempt->getSpec("age_type")) {
+						return $base;
+					}
+					$dayMultiplierAttempt = config('atex.constants.days_per_period.' . $attempt->getSpec("age_type"));
+					$minDaysAttempt = $dayMultiplierAttempt * $attempt->getSpec("age_min");
+					$maxDaysAttempt = $dayMultiplierAttempt * $attempt->getSpec("age_max");
+
+					$dayMultiplierAlert = config('atex.constants.days_per_period.' . $alert->getSpec("age_type"));
+					$minDaysAlert = $dayMultiplierAlert * $alert->getSpec("age_min");
+					$maxDaysAlert = $dayMultiplierAlert * $alert->getSpec("age_max");
+
+					return ($minDaysAlert > $minDaysAttempt && $minDaysAlert < $maxDaysAttempt) ||
+						($minDaysAlert < $minDaysAttempt && $maxDaysAlert > $maxDaysAttempt) ||
+						($minDaysAttempt > $minDaysAlert && $maxDaysAttempt < $maxDaysAlert) ||
+						($maxDaysAlert < $maxDaysAttempt &&
+							$minDaysAlert < $maxDaysAttempt &&
+							$maxDaysAlert > $minDaysAttempt);
 				} else if (strpos($next["key"], "age") === false && $next["key"] != "attempt_type") {
 					$spec = $attempt->specifications->firstWhere('key', $next["key"]);
 					$base = $spec ? $next["value"] === $spec->value : $base;

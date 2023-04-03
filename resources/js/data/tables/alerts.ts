@@ -4,6 +4,8 @@ import { TextCell } from "../../components/overviews/table/TextCell";
 
 export const alertsColumns: string[] = ["id", "specifications", "delete"];
 
+export const adminAlertsColumns: string[] = ["id", "email", "specifications"];
+
 export const alertsCells = [
 	{
 		id: "id",
@@ -19,5 +21,23 @@ export const alertsCells = [
 		id: "delete",
 		value: "",
 		Component: DeleteAlertCell
+	}
+];
+
+export const adminAlertsCells = [
+	{
+		id: "id",
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: "email",
+		value: "",
+		Component: TextCell
+	},
+	{
+		id: "specifications",
+		value: "",
+		Component: SpecificationCell
 	}
 ];

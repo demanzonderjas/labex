@@ -12,11 +12,13 @@ export class FormStore {
 	@observable handleUpdate: Function = null;
 	@observable errors: any = {};
 	@observable isLoading = false;
+	@observable form: TForm = null;
 	@observable serverError = null;
 	@observable isCollapsed = false;
 	@observable activeFilter: string | null = null;
 
 	constructor(form: TForm, handleSuccess?: Function, handleUpdate?: Function) {
+		this.form = form;
 		this.fields = form.fields;
 		this.handler = form.handler;
 		this.handleSuccess = handleSuccess;
@@ -34,6 +36,7 @@ export class FormStore {
 		if (!this.activeFilter) {
 			return this.fields;
 		}
+
 		return this.fields.filter(field => field.id == this.activeFilter);
 	}
 
@@ -63,6 +66,7 @@ export class FormStore {
 		);
 		const fields = [...this.fields];
 		fields[fieldIdx] = { ...fields[fieldIdx], value };
+
 		this.fields = fields;
 		this.setFieldError(id, null);
 		this.serverError = null;

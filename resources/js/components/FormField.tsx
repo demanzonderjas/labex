@@ -48,7 +48,7 @@ export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 					{...field.props}
 					id={field.id}
 					label={field.label}
-					value={field.value}
+					value={field.transform ? field.transform(field.value) : field.value}
 					required={field.required}
 				/>
 			</div>

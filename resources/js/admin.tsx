@@ -5,7 +5,7 @@ import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { PossibleMatches } from "./pages/admin/PossibleMatches";
+import { MatchesPage } from "./pages/admin/Matches";
 import { AdminDashboardPage } from "./pages/admin/Dashboard";
 import { Sidebar } from "./components/admin/Sidebar";
 import { AdminFAQPage } from "./pages/admin/FAQ";
@@ -16,6 +16,11 @@ import { ModalStore } from "./stores/ModalStore";
 import ModalStoreProvider from "./contexts/ModalContext";
 import { UsersPage } from "./pages/admin/Users";
 import { UserCreatePage } from "./pages/admin/UserCreate";
+import { ModalWrapper } from "./components/base/ModalWrapper";
+import { AdminAlertsPage } from "./pages/admin/Alerts";
+import { OffersPage } from "./pages/admin/Offers";
+import { OfferAdoptionPage } from "./pages/admin/OfferAdoption";
+import { AdminEditOfferPage } from "./pages/admin/EditOfferPage";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -34,8 +39,17 @@ const App: React.FC = () => {
 								<Route path="/admin/dashboard">
 									<AdminDashboardPage />
 								</Route>
-								<Route path="/admin/possible-matches" exact={true}>
-									<PossibleMatches />
+								<Route path="/admin/matches" exact={true}>
+									<MatchesPage />
+								</Route>
+								<Route path="/admin/offers" exact={true}>
+									<OffersPage />
+								</Route>
+								<Route path="/admin/offers/edit/:offer_id">
+									<AdminEditOfferPage />
+								</Route>
+								<Route path="/admin/offers/adoption/:offer_id" exact={true}>
+									<OfferAdoptionPage />
 								</Route>
 								<Route path="/admin/signups" exact={true}>
 									<SignupsPage />
@@ -55,8 +69,12 @@ const App: React.FC = () => {
 								<Route path="/admin/users/add-user" exact={true}>
 									<UserCreatePage />
 								</Route>
+								<Route path="/admin/alerts" exact={true}>
+									<AdminAlertsPage />
+								</Route>
 							</Switch>
 						</div>
+						<ModalWrapper />
 					</div>
 				</Router>
 			</ModalStoreProvider>

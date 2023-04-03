@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { TSpecMatch } from "../../typings/specifications";
+import { DisplayedDate } from "../base/DisplayedDate";
 import { SpecMatch } from "../base/SpecMatch";
 import { DisplayedAge } from "./Age";
 
@@ -21,7 +22,15 @@ export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
 			</div>
 			<div className="column">
 				{label == "age" || label == "age_offer" || label == "age_range" ? (
-					<DisplayedAge type={label} value={value} fields={fields} />
+					<>
+						<DisplayedAge type={label} value={value} fields={fields} />
+						{label == "age" && (
+							<>
+								<br />
+								<DisplayedDate value={value} />
+							</>
+						)}
+					</>
 				) : (
 					<span>{value ? t(value) : "-"}</span>
 				)}

@@ -16,8 +16,9 @@ export const ExchangeAttemptOverview: React.FC<{
 	type: TExchangeAttemptType;
 	specsToShow: TTableCell[];
 	mineOnly?: boolean;
+	adminView?: boolean;
 	SHOW_LIMIT: number;
-}> = observer(({ type, specsToShow, SHOW_LIMIT, mineOnly }) => {
+}> = observer(({ type, specsToShow, SHOW_LIMIT, mineOnly, adminView }) => {
 	const { t } = useTranslationStore();
 	const [shouldViewAll, setShouldViewAll] = useState(false);
 	const {
@@ -34,8 +35,10 @@ export const ExchangeAttemptOverview: React.FC<{
 	const attemptsAsCells = convertMatchesToCells(sortedAttempts, specsToShow, magicField);
 	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
 
+	console.log(sortedAttempts);
+
 	useEffect(() => {
-		getExchangeAttempts(type, mineOnly);
+		getExchangeAttempts(type, mineOnly, adminView);
 	}, []);
 
 	return (
@@ -45,7 +48,7 @@ export const ExchangeAttemptOverview: React.FC<{
 					{t(`browse_${type}s`)} ({attemptsAsCells.length})
 				</h1>
 			)}
-			<OverviewSwitch />
+			{!adminView && <OverviewSwitch />}
 			{overviewType == TOverviewType.Cards && (
 				<ExchangeAttemptCardOverview
 					attempts={sortedAttempts}
@@ -58,7 +61,7 @@ export const ExchangeAttemptOverview: React.FC<{
 					attempts={sortedAttempts}
 					rows={attemptsToShow}
 					type={type}
-					isCentered={!mineOnly}
+					isCentered={!mineOnly && !adminView}
 					columns={
 						magicField
 							? specsToShow

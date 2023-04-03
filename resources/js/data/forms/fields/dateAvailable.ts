@@ -11,6 +11,8 @@ import { getFieldById } from "../../../utils/getters/fields";
 import { TSpecStatus } from "../../../typings/specifications";
 import { TSpecificationName } from "../../../typings/exchanges";
 import { TTypeSpec } from "../../../typings/specifications";
+import { YearSelectField } from "../../../components/form/custom-fields/YearSelectField";
+import dayjs from "dayjs";
 
 export const dateAvailableStartField: TFormField = {
 	label: "date_available_start",
@@ -50,6 +52,9 @@ export const dateAvailableEndField: TFormField = {
 	validate: isDateAvailableEndValid
 };
 
+export const dateAvailableStartAsAdminField = { ...dateAvailableStartField, validate: undefined };
+export const dateAvailableEndAsAdminField = { ...dateAvailableEndField, validate: undefined };
+
 export const dateRequestedField: TFormField = {
 	...dateAvailableStartField,
 	required: false,
@@ -68,4 +73,18 @@ export const dateRequestedField: TFormField = {
 	},
 	validate: undefined,
 	dependencies: []
+};
+
+export const yearSelectField: TFormField = {
+	id: TSpecificationName.DateAvailableStart,
+	Component: YearSelectField,
+	default: "",
+	value: "",
+	isHardFilter: true,
+	label: "select_year",
+	props: {},
+	isMatch: (givenValue, targetValue) => {
+		const targetYear = dayjs(targetValue).year();
+		return targetYear == givenValue ? TSpecStatus.Match : TSpecStatus.NoMatch;
+	}
 };

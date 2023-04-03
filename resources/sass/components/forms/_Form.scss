@@ -65,15 +65,28 @@
 			color: $danger-color;
 		}
 
+		.section {
+			h2 {
+				font-family: $font-body;
+				text-transform: none;
+				margin: $default-half-margin 0;
+			}
+		}
+
 		.fields {
 			position: relative;
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-between;
+			justify-content: flex-start;
+			gap: 0 10px;
 		}
 
 		.Button {
 			margin: $default-margin 0;
+
+			&.no_margin {
+				margin: 0;
+			}
 		}
 
 		.no-matches {

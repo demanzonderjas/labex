@@ -28,13 +28,14 @@ export class ExchangeAttemptStore {
 	@observable filters: TFormField[] = [];
 	@observable currentLimit = PAGINATION_LIMIT;
 	@observable matchType: TExchangeAttemptType = TExchangeAttemptType.Offer;
+	@observable adminView: boolean = false;
 
-	constructor() {
+	constructor({ adminView }: { adminView?: boolean } = {}) {
 		const pref = (localStorage.getItem("overview_preference") as unknown) as TOverviewType;
-		if (!pref) {
-			return;
+		if (pref) {
+			this.setOverviewType(pref);
 		}
-		this.setOverviewType(pref);
+		this.adminView = !!adminView;
 	}
 
 	@computed get offers() {
@@ -98,6 +99,11 @@ export class ExchangeAttemptStore {
 				f.value &&
 				!f.hidden &&
 				!f.id.match("age") &&
+				!f.id.match("status") &&
+				!f.id.match("date_available_start") &&
+				!f.id.match("user") &&
+				!f.id.match("adoption_code") &&
+				!f.id.match("origin_id") &&
 				this.magicTargetColumns.indexOf(f.id) === -1
 		);
 		return field || this.filters.find(f => f.id === TSpecificationName.Strain);
@@ -122,13 +128,20 @@ export class ExchangeAttemptStore {
 	}
 
 	@action.bound loadFiltersFromKeyValuePairs(pairs) {
-		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs);
+		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs).map((f: TFormField) => ({
+			...f,
+			ignoreInMatch: !pairs[f.id]
+		}));
 	}
 
-	@action.bound async getExchangeAttempts(attemptType: TExchangeAttemptType, mineOnly: boolean) {
+	@action.bound async getExchangeAttempts(
+		attemptType: TExchangeAttemptType,
+		mineOnly: boolean,
+		adminView: boolean
+	) {
 		const response = mineOnly
 			? await getMyLatestExchangeAttempts()
-			: await getExchangeAttempts(attemptType);
+			: await getExchangeAttempts(attemptType, adminView);
 		if (response.success) {
 			this.setAttempts(response.exchange_attempts);
 			this.setMatchType(attemptType);
@@ -147,11 +160,6 @@ export class ExchangeAttemptStore {
 		const { exchange_attempt } = data;
 		this.attempts = [...this.attempts, exchange_attempt];
 		location.href = "/app/dashboard";
-	}
-
-	@action.bound viewAttempt(data) {
-		console.log("new data", data);
-		// location.href = "/app/dashboard";
 	}
 
 	@action.bound deleteAttempt(id: number) {

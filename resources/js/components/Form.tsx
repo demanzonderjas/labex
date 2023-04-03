@@ -1,8 +1,6 @@
 import { observer } from "mobx-react";
 import React from "react";
 import { useFormStore } from "../hooks/useFormStore";
-import { fieldMeetsDependencies, fieldIsNotHidden } from "../utils/filters/fields";
-import { FormFieldWithLabel } from "./FormField";
 import { Button, DangerButton, SubmitButton } from "./base/Button";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { Loader } from "./base/Loader";
@@ -14,6 +12,8 @@ import { Icon } from "./base/Image";
 import { useModalStore } from "../hooks/useModalStore";
 import { TModal } from "../typings/modals";
 import { useHistory } from "react-router";
+import { RegularFormLayout } from "./form/layouts/RegularLayout";
+import { RequiredFormLayout } from "./form/layouts/RequiredLayout";
 
 type Props = {
 	header: string;
@@ -37,16 +37,7 @@ export const Form: React.FC<Props> = observer(
 		fullWidthFields,
 		infoModal
 	}) => {
-		const {
-			fields,
-			activeFields,
-			submit,
-			errors,
-			isLoading,
-			serverError,
-			isCollapsed,
-			resetForm
-		} = useFormStore();
+		const { submit, isLoading, serverError, isCollapsed, resetForm, form } = useFormStore();
 		const { t } = useTranslationStore();
 		const { setModal } = useModalStore();
 		const history = useHistory();
@@ -79,24 +70,13 @@ export const Form: React.FC<Props> = observer(
 						</div>
 					)}
 					<form onSubmit={submit}>
-						<span className="legend">
-							<span className="required">*</span>
-							{t("required_otherwise_optional")}
-						</span>
-						<div className="fields">
-							{activeFields
-								.filter(fieldIsNotHidden)
-								.filter((field, index) =>
-									fieldMeetsDependencies(field, index, fields)
-								)
-								.map(field => (
-									<FormFieldWithLabel
-										key={field.id}
-										field={field}
-										error={errors[field.id]}
-									/>
-								))}
-						</div>
+						{!hideSubmit && (
+							<span className="legend">
+								<span className="required">*</span>
+								{t("required_otherwise_optional")}
+							</span>
+						)}
+						{form.splitByRequired ? <RequiredFormLayout /> : <RegularFormLayout />}
 						{!hideSubmit && (
 							<div
 								className="button-wrapper"

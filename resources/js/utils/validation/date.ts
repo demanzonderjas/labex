@@ -4,8 +4,9 @@ import { TFormField } from "../../typings/forms";
 
 export function isDateInFuture(date: string) {
 	const dateObj = new Date(date);
-	const now = Date.now();
-	return dateObj.getTime() > now;
+	dateObj.setHours(23);
+	dateObj.setMinutes(59);
+	return dateObj.getTime() >= Date.now();
 }
 
 export function isValidDate(date: string) {
@@ -32,6 +33,7 @@ export function isDateRequestedAfterStartDate(targetDate: string, startDate: str
 }
 
 export function isDateAvailableStartValid(dateAvailableStart: string, fields: TFormField[]) {
+	console.log(isDateInFuture(dateAvailableStart));
 	if (!isDateInFuture(dateAvailableStart)) {
 		return false;
 	}
@@ -39,7 +41,8 @@ export function isDateAvailableStartValid(dateAvailableStart: string, fields: TF
 
 	const startTarget = dayjs(dateAvailableStart);
 	const endTarget = dayjs(endDate?.value);
-	return endTarget.isAfter(startTarget);
+	console.log(endTarget.isSame(startTarget));
+	return endTarget.isAfter(startTarget) || endTarget.isSame(startTarget);
 }
 
 export function isDateAvailableEndValid(dateAvailableEnd: string, fields: TFormField[]) {
@@ -49,6 +52,6 @@ export function isDateAvailableEndValid(dateAvailableEnd: string, fields: TFormF
 	const startDate = fields.find(f => f.id === TSpecificationName.DateAvailableStart);
 
 	const startTarget = dayjs(startDate?.value);
-	const endTarget = dayjs(dateAvailableEnd);
-	return endTarget.isAfter(startTarget);
+	const endTarget = dayjs(dateAvailableEnd).clone();
+	return endTarget.isAfter(startTarget) || endTarget.isSame(startTarget);
 }

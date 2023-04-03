@@ -11,6 +11,16 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
+		position: relative;
+
+		.id {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: black;
+			color: white;
+			padding: 5px;
+		}
 
 		.user {
 			max-width: calc(100% - 20px);
@@ -45,7 +55,7 @@
 			&.approved {
 				background-color: $correct-color;
 			}
-			&.declined {
+			&.declined, &.rejected {
 				background-color: $danger-color;
 			}
 			&.mine {
@@ -72,6 +82,10 @@
 			width: 33.333%;
 			margin-bottom: 24px;
 			padding-right: 8px;
+
+			&.full_width {
+				width: 100%;
+			}
 
 			label {
 				display: block;

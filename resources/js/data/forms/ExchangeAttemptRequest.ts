@@ -23,6 +23,8 @@ import { extraInfoField } from "./fields/extraInfo";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { flowchartModal } from "../modals/flowchart";
 import { attemptTypeRequestField } from "./fields/attemptType";
+import { adoptionField, adoptionFilterField } from "./fields/adoption";
+import { statusField } from "./fields/status";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",

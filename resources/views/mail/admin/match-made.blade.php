@@ -6,18 +6,18 @@
 @section('name', $user->name)
 
 @section('content')
-<p>
-    A new match has just been registered within the ATEX platform of the type: <strong>'{{ $match->type }}'</strong>.
-    View the details of the match within the platform and decide if it is valid.
-</p>
+    <p>
+        A new match has just been registered within the ATEX platform of the type: <strong>'{{ $match->type }}'</strong>.
+        View the details of the match within the platform and decide if it is valid.
+    </p>
 @stop
 
-@section('cta-link', env('APP_URL') . '/admin/possible-matches')
+@section('cta-link', env('APP_URL') . '/admin/matches')
 @section('cta-text', 'View the match')
 
 @section('closing')
-<p>
-    Friendly regards,<br />
-    ATEX
-</p>
+    <p>
+        Friendly regards,<br />
+        ATEX
+    </p>
 @stop

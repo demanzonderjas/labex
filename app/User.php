@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function scopeWhereIsAdmin(Builder $query)
     {
-        return $query->where("is_admin", true);
+        return $query->where("email", env('ADMIN_MAIL', 'info@atex.uu.nl'));
     }
 }

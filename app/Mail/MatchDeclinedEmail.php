@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\ExchangeAttempt;
 use App\MaterialMatch;
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -14,16 +15,18 @@ class MatchDeclinedEmail extends Mailable
 
     public $match;
     public $user;
+    public $note;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(MaterialMatch $match, User $user)
+    public function __construct(MaterialMatch $match, User $user, $note)
     {
         $this->match = $match;
         $this->user = $user;
+        $this->note = $note;
     }
 
     /**

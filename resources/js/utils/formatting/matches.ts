@@ -1,10 +1,12 @@
 import { MATCHING_THRESHOLDS } from "../../data/configs/matches";
 import { TSpecStatus, TSpecMatch } from "../../typings/specifications";
 import { checkIfFieldMatches, getMatchingPercentage } from "../matches/utils";
-import { TFormField } from "../../typings/forms";
+import { TFormField, TFormFieldName } from "../../typings/forms";
 import { TSpecification, TTableCell, TTableCellName } from "../../typings/overviews";
-import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
+import { TExchangeAttempt, TExportableOffer, TSpecificationName } from "../../typings/exchanges";
 import { matchMeetsHardFilters } from "../filters/matches";
+import dayjs from "dayjs";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
 
 export function getMatchClasses(value) {
 	return {
@@ -36,10 +38,22 @@ export function convertMatchesToCells(
 				return { ...cell, value: spec?.value || "", label: spec?.key };
 			} else if (cell.id === TTableCellName.MagicCell && !magicField) {
 				return null;
+			} else if (cell.id === TTableCellName.ID) {
+				return { ...cell, value: match.id };
 			} else if (cell.id === TSpecificationName.MatchPercentage) {
 				return { ...cell, value: match.match_percentage };
 			} else if (cell.id === TTableCellName.IsMatch) {
 				return { ...cell, value: !!match.is_match };
+			} else if (cell.id === TFormFieldName.User) {
+				return { ...cell, value: match.user };
+			} else if (cell.id === TSpecificationName.Status) {
+				return { ...cell, value: match.status };
+			} else if (cell.id === TFormFieldName.AdoptionAmount) {
+				return { ...cell, value: match.adoption_info?.amount };
+			} else if (cell.id === TFormFieldName.AdoptionCode) {
+				return { ...cell, value: match.adoption_info?.code };
+			} else if (cell.id === TSpecificationName.OriginId) {
+				return { ...cell, value: match.origin_id };
 			}
 			return { ...cell, value: spec?.value || cell.value };
 		});
@@ -79,7 +93,7 @@ export function convertAttemptsToMatches(
 					};
 				})
 				.filter(attempt => attempt.match_percentage > 0);
-	sortedAttempts.sort((a, b) => b.match_percentage - a.match_percentage);
+	sortedAttempts.sort((a, b) => a.id - b.id);
 	return sortedAttempts;
 }
 
@@ -117,5 +131,29 @@ export function createMatchSpecs(fields, filters) {
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
 		};
 		return { ...field, match };
+	});
+}
+
+export function formatAttemptsForExport(attempts: TExportableOffer[]) {
+	const { t } = useTranslationStore();
+	return attempts.map(a => {
+		const specs = a.specifications.reduce((base, spec) => {
+			return { ...base, [spec.key]: t(spec.value) };
+		}, {});
+
+		return {
+			id: a.id,
+			origin_id: a.origin_id,
+			offered: a.offered,
+			matched: a.matched,
+			adopted: a.adopted,
+			remaining: a.remaining,
+			code: a.adoption_info?.code,
+			status: a.status,
+			adoption_amount: a.adoption_info?.amount,
+			created_at: dayjs(a.created_at).format("DD/MM/YYYY"),
+			is_matched: a.is_match,
+			...specs
+		};
 	});
 }

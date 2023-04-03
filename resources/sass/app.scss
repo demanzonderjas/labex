@@ -74,7 +74,7 @@ body {
 }
 .Admin.App {
 	.page-wrapper {
-		max-width: 1100px;
+		max-width: $admin-layout-wrapper-width;
 		margin: 0 auto;
 
 		display: inline-block;
@@ -82,6 +82,30 @@ body {
 		width: calc(100vw - #{$sidebar-width});
 		min-height: 100vh;
 		padding: 80px 30px 80px 210px;
+
+		.layout-wrapper {
+			max-width: $admin-layout-wrapper-width;
+		}
+
+		.overview {
+			h1 {
+				max-width: $admin-layout-wrapper-width;
+			}
+		}
+
+		table {
+			&:not(.not-centered) {
+				th:first-child,
+				td:first-child {
+					padding-left: calc((100vw - #{$admin-layout-wrapper-width}) / 2);
+				}
+		
+				th:last-child,
+				td:last-child {
+					padding-right: calc((100vw - #{$admin-layout-wrapper-width} - 20px) / 2);
+				}
+			}
+		}
 	}
 }
 

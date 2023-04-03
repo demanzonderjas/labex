@@ -6,7 +6,7 @@ import { API } from "../utils/api/axios";
 export async function createAlert(specifications: { [K in TSpecificationName]: any }) {
 	const specificationsArray: TSpecification[] = Object.keys(specifications).reduce(
 		(base, next) => {
-			if (specifications[next] != null && specifications[next] != "" && next !== "age") {
+			if (specifications[next] != null && specifications[next] !== "" && next !== "age") {
 				base.push({ key: next, value: specifications[next] });
 			}
 			return base;
@@ -25,6 +25,15 @@ export async function createAlert(specifications: { [K in TSpecificationName]: a
 export async function getAlerts() {
 	try {
 		const response = await API.get("alerts/mine");
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}
+
+export async function getAllAlerts() {
+	try {
+		const response = await API.get("alerts");
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };

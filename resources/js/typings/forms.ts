@@ -16,6 +16,8 @@ export type TForm = {
 	fullWidthFields?: boolean;
 	infoModal?: TModal;
 	allowCancel?: boolean;
+	data?: any;
+	splitByRequired?: boolean;
 };
 
 export enum InputType {
@@ -43,7 +45,10 @@ export enum TFormFieldName {
 	Show = "show",
 	Title = "title",
 	Organisation = "organisation",
-	Password = "password"
+	Password = "password",
+	AdoptionCode = "adoption_code",
+	AdoptionAmount = "adoption_amount",
+	User = "user"
 }
 
 export interface SelectFieldData extends TFormFieldData {
@@ -62,7 +67,8 @@ export interface TFormField extends TFormFieldData {
 		givenValue: any,
 		targetValue: any,
 		filters?: TFormField[],
-		fields?: TFormField[]
+		fields?: TFormField[],
+		data?: any
 	) => TSpecStatus;
 	matchVia?: TSpecificationName;
 	isHardFilter?: boolean;
@@ -70,6 +76,7 @@ export interface TFormField extends TFormFieldData {
 	default: string;
 	match?: TSpecMatch;
 	description?: string;
+	transform?: Function;
 	customValue?: Function;
 	ignoreInMatch?: boolean;
 	synonyms?: string[];

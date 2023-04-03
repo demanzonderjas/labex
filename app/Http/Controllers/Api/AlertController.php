@@ -24,6 +24,13 @@ class AlertController extends Controller
 		return response()->json(["success" => true, "alerts" => $alerts->toArray()]);
 	}
 
+	public function all()
+	{
+		$alerts = Alert::with('user')->orderBy('user_id')->get();
+
+		return response()->json(["success" => true, "alerts" => $alerts]);
+	}
+
 	public function delete(Request $request, $alert_id)
 	{
 		$alert = Alert::findOrFail($alert_id);

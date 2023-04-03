@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\ExchangeAttempt;
 use App\Mail\Admin\AdminSuitableForAdoptionDeactivatedEmail;
+use App\Mail\Admin\AdminSuitableForAdoptionReminderEmail;
 use App\User;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
@@ -45,15 +46,25 @@ class RemoveOutdated extends Command
         $offers = ExchangeAttempt::offers()->get();
         $now = Carbon::now();
         foreach ($offers as $offer) {
+            if (!$offer->date_available) {
+                continue;
+            }
             $date = Carbon::createFromFormat("Y-m-d", $offer->date_available);
-            $endDate = $date->addDays(config('atex.constants.days_before_inactive'));
-            if ($endDate->isBefore($now) && $offer->type != config('atex.constants.exchange_type.conserved_tissue') && $offer->status != config('atex.constants.exchange_attempt_status.inactive')) {
+            $endDate = $date->copy()->addDays(config('atex.constants.days_before_inactive'));
+            if ($offer->type != config('atex.constants.exchange_type.conserved_tissue') && $endDate->isBefore($now) && $offer->status != config('atex.constants.exchange_attempt_status.inactive')) {
                 $offer->status = config('atex.constants.exchange_attempt_status.inactive');
                 $offer->save();
 
                 if ($offer->suitable_for_adoption) {
-                    $admin = User::where('email', env('ADMIN_MAIL'))->first();
-                    Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
+                    $admins = User::whereIsAdmin()->get();
+                    foreach ($admins as $admin) {
+                        Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
+                    }
+                }
+            } else if ($date->diffInDays($now) === config('atex.constants.days_before_adoption_reminder') && $offer->suitable_for_adoption) {
+                $admins = User::whereIsAdmin()->get();
+                foreach ($admins as $admin) {
+                    Mail::to($admin)->queue(new AdminSuitableForAdoptionReminderEmail($offer));
                 }
             }
         }

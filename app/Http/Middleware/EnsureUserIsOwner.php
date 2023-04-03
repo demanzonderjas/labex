@@ -19,7 +19,7 @@ class EnsureUserIsOwner
 	{
 		$targetAttempt = ExchangeAttempt::findOrFail($request->attempt_id);
 
-		if ($targetAttempt->user->id !== $request->user()->id) {
+		if ($targetAttempt->user->id !== $request->user()->id && !$request->user()->is_admin) {
 			return abort(403, 'Not your exchange attempt.');
 		}
 

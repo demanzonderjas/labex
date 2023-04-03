@@ -1,5 +1,6 @@
 import React from "react";
 import { TExchangeAttempt, TSpecificationName } from "./exchanges";
+import { TFormFieldName } from "./forms";
 import { TUser } from "./user";
 
 export enum TOverviewType {
@@ -9,19 +10,22 @@ export enum TOverviewType {
 }
 
 export type TTableCell = {
-	id: TSpecificationName | TTableCellName;
+	id: TSpecificationName | TTableCellName | TFormFieldName;
 	label?: string;
 	value: any;
 	Component: React.FC<TTableCellProps>;
 };
 
 export enum TTableCellName {
+	ID = "id",
+	OriginID = "origin_id",
 	MagicCell = "magic_cell",
 	MatchButton = "match_button",
 	IsMatch = "is_match",
 	CopyButton = "copy_button",
 	DeleteButton = "delete_button",
-	EditButton = "edit_button"
+	EditButton = "edit_button",
+	AdoptionButton = "adoption_button"
 }
 
 export type TTableCellProps = {

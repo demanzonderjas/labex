@@ -9,11 +9,9 @@ class ExchangeAttempt extends Model
 {
 	use HasFactory;
 
-	public $with = ["specifications"];
+	public $with = ["specifications", "adoptionInfo"];
 
-	public $appends = ["is_match"];
-
-	public $hidden = ["origin_id"];
+	public $hidden = [];
 
 	public function user()
 	{
@@ -27,12 +25,17 @@ class ExchangeAttempt extends Model
 
 	public function matchViaOffer()
 	{
-		return $this->hasOne(MaterialMatch::class, 'offer_id');
+		return $this->hasMany(MaterialMatch::class, 'offer_id');
+	}
+
+	public function adoptionInfo()
+	{
+		return $this->hasOne(AdoptionInfo::class, 'offer_id');
 	}
 
 	public function matchViaRequest()
 	{
-		return $this->hasOne(MaterialMatch::class, 'request_id');
+		return $this->hasMany(MaterialMatch::class, 'request_id');
 	}
 
 	public function scopeRequests($query)
@@ -72,6 +75,30 @@ class ExchangeAttempt extends Model
 		return $dateAvailableSpec ? $dateAvailableSpec->value : null;
 	}
 
+	public function getAgeAttribute()
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'age');
+		return $amountSpec ? $amountSpec->value : null;
+	}
+
+	public function getAgeMinAttribute()
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'age_min');
+		return $amountSpec ? $amountSpec->value : null;
+	}
+
+	public function getAgeMaxAttribute()
+	{
+		$amountSpec = $this->specifications->firstWhere('key', 'age_max');
+		return $amountSpec ? $amountSpec->value : null;
+	}
+
+	public function getSpec(string $specKey)
+	{
+		$spec = $this->specifications->firstWhere('key', $specKey);
+		return $spec ? $spec->value : null;
+	}
+
 	public function getOrgansAttribute()
 	{
 		$organSpec = $this->specifications->firstWhere('key', 'organs');
@@ -109,6 +136,15 @@ class ExchangeAttempt extends Model
 
 	public function getIsMatchAttribute()
 	{
-		return $this->matchViaOffer()->exists() || $this->matchViaRequest()->exists();
+		if ($this->attempt_type === config('atex.constants.offer')) {
+			return $this->matchViaOffer->contains(function (MaterialMatch $m) {
+				return $m->isActive();
+			});
+		} else if ($this->attempt_type === config('atex.constants.request')) {
+			return $this->matchViaRequest->contains(function (MaterialMatch $m) {
+				return $m->isActive();
+			});
+		}
+		return false;
 	}
 }

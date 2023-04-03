@@ -9,18 +9,42 @@ export const SignupsPage = observer(() => {
 	const { t } = useTranslationStore();
 	const [signups, setSignups] = useState([]);
 	const [filter, setFilter] = useState("");
+	const [sortingKey, setSortingKey] = useState("id");
+	const [reverse, setReverse] = useState(true);
+
+	const sortByColumn = (byColumn: string) => {
+		if (sortingKey === byColumn) {
+			setReverse(!reverse);
+		} else {
+			setSortingKey(byColumn);
+		}
+	};
 
 	useEffect(() => {
 		(async () => {
 			const response = await getSignups();
 
-			setSignups(response.signups.reverse());
+			setSignups(response.signups);
 		})();
 	}, []);
 
-	const signupsWithCells = mapSignupsToOverviewData(
-		signups.filter(s => s.name.match(filter) || s.email.match(filter))
-	);
+	const sorted = signups
+		.filter(
+			s =>
+				s.name.toLowerCase().match(filter.toLowerCase()) ||
+				s.email.toLowerCase().match(filter.toLowerCase())
+		)
+		.sort((a, b) => {
+			if (a[sortingKey] < b[sortingKey]) {
+				return reverse ? 1 : -1;
+			}
+			if (a[sortingKey] > b[sortingKey]) {
+				return reverse ? -1 : 1;
+			}
+			return 0;
+		});
+
+	const signupsWithCells = mapSignupsToOverviewData(sorted);
 
 	return (
 		<div className="AdminFAQPage">
@@ -33,19 +57,25 @@ export const SignupsPage = observer(() => {
 				<thead>
 					<tr>
 						{signupColumns.map(column => (
-							<th key={column}>{t(column)}</th>
+							<th
+								key={column}
+								onClick={() => sortByColumn(column)}
+								style={{ cursor: "pointer" }}
+							>
+								{t(column)}
+							</th>
 						))}
 					</tr>
 				</thead>
 				<tbody>
 					{signupsWithCells.map((cells, idx) => (
-						<tr key={signups[idx].id}>
+						<tr key={sorted[idx].id}>
 							{cells.map((cell, cellIdx) => (
 								<cell.Component
 									key={cellIdx}
 									rowIndex={idx}
 									value={cell.value}
-									signup={signups[idx]}
+									signup={sorted[idx]}
 								/>
 							))}
 						</tr>

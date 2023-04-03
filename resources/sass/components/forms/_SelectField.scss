@@ -47,6 +47,11 @@ $item-height: 42px;
 		margin-bottom: 1px;
 		position: relative;
 
+		&.undo {
+			background-color: $danger-color;
+			color: white;
+		}
+
 		span {
 			margin-top: 5px;
 			max-width: calc(100% - 20px);
