@@ -8,3 +8,5 @@ export type TDashboardStats = {
 	total_adopted: number;
 	total_saved: number;
 };
+
+console.log("new!");
