@@ -143,6 +143,7 @@ export function formatAttemptsForExport(attempts: TExportableOffer[]) {
 
 		return {
 			id: a.id,
+			user: a.user?.email,
 			origin_id: a.origin_id,
 			offered: a.offered,
 			matched: a.matched,

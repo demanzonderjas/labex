@@ -7,6 +7,7 @@ export const protocolNumberField: TFormField = {
 	id: TSpecificationName.ProtocolNumber,
 	Component: InputField,
 	ignoreInMatch: true,
+	required: true,
 	props: {
 		type: InputType.Text
 	},
