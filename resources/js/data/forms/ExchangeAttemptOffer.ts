@@ -13,7 +13,7 @@ import { amountField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { typeField } from "./fields/type";
 import { dateConservedField } from "./fields/dateConserved";
-import { extraInfoField } from "./fields/extraInfo";
+import { animalNumbersField, extraInfoField } from "./fields/extraInfo";
 import { withRequired } from "../../utils/formatting/fields";
 import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
@@ -64,6 +64,7 @@ export const SubmitOfferForm: TForm = {
 		adoptionField,
 		locationField,
 		extraInfoField,
+		animalNumbersField,
 		attemptTypeOfferField
 	],
 	handler: sendExchangeAttempt,

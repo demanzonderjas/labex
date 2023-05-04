@@ -9,6 +9,7 @@ use App\Http\Requests\ExchangeAttemptStoreRequest;
 use App\Http\Resources\ExchangeAttemptResource;
 use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Mail\AlertMatchEmail;
+use App\Mail\OfferAddedEmail;
 use App\Specification;
 use App\User;
 use Carbon\Carbon;
@@ -23,6 +24,7 @@ class ExchangeAttemptController extends Controller
 		try {
 			$validated = $request->validated();
 			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);
+			Mail::to($attempt->user)->queue(new OfferAddedEmail($attempt, $attempt->user));
 
 			if ($request->attempt_type == config('atex.constants.offer')) {
 				$admin = User::where('email', env('ADMIN_MAIL'))->first();

@@ -25,6 +25,7 @@ return [
         "sample_number" => "nullable|string",
         'amount' => 'required|string',
         'extra_info' => 'nullable|string',
+        'animal_numbers' => 'nullable|string',
     ],
     "exchange_attempt_offer_fields" => [
         'age' => 'required|string',

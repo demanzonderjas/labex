@@ -62,7 +62,8 @@ export enum TSpecificationName {
 	SuitableForAdoption = "suitable_for_adoption",
 	Location = "location",
 	Status = "status",
-	OriginId = "origin_id"
+	OriginId = "origin_id",
+	AnimalNumbers = "animal_numbers"
 }
 
 export type TMatch = {
