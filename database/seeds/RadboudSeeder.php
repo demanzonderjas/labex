@@ -88,63 +88,68 @@ class RadboudSeeder extends Seeder
 
 		foreach ($admins as $admin) {
 			$u = User::firstOrNew(['email' => $admin['email']]);
-			$u->fill($admin);
-			$u->is_admin = true;
-			$u->token = Str::random(20);
+			// $u->fill($admin);
+			// $u->is_admin = true;
+			// $u->token = Str::random(20);
 			$u->save();
 
-			$s = Signup::firstOrNew(['email' => $admin['email']]);
-			$s->fill($admin);
-			$s->awaiting_approval = false;
-			$s->approved = true;
-			$s->save();
+			// $s = Signup::firstOrNew(['email' => $admin['email']]);
+			// $s->fill($admin);
+			// $s->awaiting_approval = false;
+			// $s->approved = true;
+			// $s->save();
+
+			// $newRole = new AdminRole([
+			// 	"type" => "organisation",
+			// 	"value" => $admin["organisation"]
+			// ]);
 
 			$newRole = new AdminRole([
-				"type" => "organisation",
-				"value" => $admin["organisation"]
-			]);
-
-			$u->adminRoles()->save($newRole);
-		}
-
-		foreach ($users as $user) {
-			$u = User::firstOrNew(['email' => $user['email']]);
-			$u->fill($user);
-			$u->token = Str::random(20);
-			$u->save();
-
-			$s = Signup::firstOrNew(['email' => $user['email']]);
-			$s->fill($user);
-			$s->awaiting_approval = false;
-			$s->approved = true;
-			$s->save();
-		}
-
-		foreach ($mailables as $mailable) {
-			$u = User::firstOrNew(['email' => $mailable['email']]);
-			$u->fill($mailable);
-			$u->is_admin = true;
-			$u->token = Str::random(20);
-			$u->save();
-
-			$newRole = new AdminRole([
-				"type" => "organisation",
-				"value" => $mailable["organisation"]
-			]);
-
-			$newRole2 = new AdminRole([
 				"type" => "organisation",
 				"value" => "radboud-universiteit"
 			]);
 
-			$mailRole = new AdminRole([
-				"type" => "mailable",
-				"value" => "yes"
-			]);
-
 			$u->adminRoles()->save($newRole);
-			$u->adminRoles()->save($newRole2);
-			$u->adminRoles()->save($mailRole);
 		}
+
+		// foreach ($users as $user) {
+		// 	$u = User::firstOrNew(['email' => $user['email']]);
+		// 	$u->fill($user);
+		// 	$u->token = Str::random(20);
+		// 	$u->save();
+
+		// 	$s = Signup::firstOrNew(['email' => $user['email']]);
+		// 	$s->fill($user);
+		// 	$s->awaiting_approval = false;
+		// 	$s->approved = true;
+		// 	$s->save();
+		// }
+
+		// foreach ($mailables as $mailable) {
+		// 	$u = User::firstOrNew(['email' => $mailable['email']]);
+		// 	$u->fill($mailable);
+		// 	$u->is_admin = true;
+		// 	$u->token = Str::random(20);
+		// 	$u->save();
+
+		// 	$newRole = new AdminRole([
+		// 		"type" => "organisation",
+		// 		"value" => $mailable["organisation"]
+		// 	]);
+
+		// 	$newRole2 = new AdminRole([
+		// 		"type" => "organisation",
+		// 		"value" => "radboud-universiteit"
+		// 	]);
+
+		// 	$mailRole = new AdminRole([
+		// 		"type" => "mailable",
+		// 		"value" => "yes"
+		// 	]);
+
+		// 	$u->adminRoles()->save($newRole);
+		// 	$u->adminRoles()->save($newRole2);
+		// 	$u->adminRoles()->save($mailRole);
+		// }
 	}
 }
