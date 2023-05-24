@@ -20,6 +20,7 @@ import { ModalWrapper } from "./components/base/ModalWrapper";
 import { AdminAlertsPage } from "./pages/admin/Alerts";
 import { OffersPage } from "./pages/admin/Offers";
 import { OfferAdoptionPage } from "./pages/admin/OfferAdoption";
+import { AdminEditOfferPage } from "./pages/admin/EditOfferPage";
 
 const App: React.FC = () => {
 	const [translationStore] = useState(new TranslationStore());
@@ -43,6 +44,9 @@ const App: React.FC = () => {
 								</Route>
 								<Route path="/admin/offers" exact={true}>
 									<OffersPage />
+								</Route>
+								<Route path="/admin/offers/edit/:offer_id">
+									<AdminEditOfferPage />
 								</Route>
 								<Route path="/admin/offers/adoption/:offer_id" exact={true}>
 									<OfferAdoptionPage />

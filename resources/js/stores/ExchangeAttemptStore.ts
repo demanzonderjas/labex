@@ -28,13 +28,14 @@ export class ExchangeAttemptStore {
 	@observable filters: TFormField[] = [];
 	@observable currentLimit = PAGINATION_LIMIT;
 	@observable matchType: TExchangeAttemptType = TExchangeAttemptType.Offer;
+	@observable adminView: boolean = false;
 
-	constructor() {
+	constructor({ adminView }: { adminView?: boolean } = {}) {
 		const pref = (localStorage.getItem("overview_preference") as unknown) as TOverviewType;
-		if (!pref) {
-			return;
+		if (pref) {
+			this.setOverviewType(pref);
 		}
-		this.setOverviewType(pref);
+		this.adminView = !!adminView;
 	}
 
 	@computed get offers() {
@@ -102,6 +103,7 @@ export class ExchangeAttemptStore {
 				!f.id.match("date_available_start") &&
 				!f.id.match("user") &&
 				!f.id.match("adoption_code") &&
+				!f.id.match("origin_id") &&
 				this.magicTargetColumns.indexOf(f.id) === -1
 		);
 		return field || this.filters.find(f => f.id === TSpecificationName.Strain);

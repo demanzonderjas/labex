@@ -30,6 +30,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
 	const [protocolNumber, setProtocolNumber] = useState("");
+	const [hasNumberError, setNumberError] = useState(false);
 	const [amount, setAmount] = useState(
 		filters.find(f => f.id === TSpecificationName.Amount)?.value
 	);
@@ -38,6 +39,10 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const { t } = useTranslationStore();
 
 	const confirmMatch = async () => {
+		if (!protocolNumber) {
+			setNumberError(true);
+			return;
+		}
 		const requestData: any = filters.reduce(
 			(base, next) => {
 				base[next.id] = next.value;
@@ -71,13 +76,19 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 					<label style={{ marginBottom: "16px" }}>{t("change_requested_amount")}</label>
 					<input type="number" value={amount} onChange={e => setAmount(e.target.value)} />
 				</div>
-				<div className="InputField" style={{ maxWidth: "200px", marginBottom: "16px" }}>
-					<label style={{ marginBottom: "16px" }}>{t("protocol_number")}</label>
+				<div className="InputField" style={{ maxWidth: "250px", marginBottom: "16px" }}>
+					<label style={{ marginBottom: "16px" }}>
+						{t("protocol_number")}
+						<span className="required">*</span>
+					</label>
+					{hasNumberError && <p className="error">{t("field_required")}</p>}
 					<input
 						type="text"
 						value={protocolNumber}
-						onChange={e => setProtocolNumber(e.target.value)}
-						placeholder={t("work_protocol_number_placeholder")}
+						onChange={e => {
+							setProtocolNumber(e.target.value);
+							setNumberError(false);
+						}}
 					/>
 				</div>
 				<label>{t("extra_info")}</label>

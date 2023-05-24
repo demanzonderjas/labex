@@ -52,6 +52,9 @@ export const dateAvailableEndField: TFormField = {
 	validate: isDateAvailableEndValid
 };
 
+export const dateAvailableStartAsAdminField = { ...dateAvailableStartField, validate: undefined };
+export const dateAvailableEndAsAdminField = { ...dateAvailableEndField, validate: undefined };
+
 export const dateRequestedField: TFormField = {
 	...dateAvailableStartField,
 	required: false,

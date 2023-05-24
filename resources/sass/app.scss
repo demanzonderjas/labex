@@ -153,3 +153,14 @@ body {
 	padding: $default-half-margin;
 	margin: $default-half-margin 0;
 }
+
+.required {
+	color: $danger-color;
+}
+
+.error {
+	background-color: $danger-color;
+	color: $highlight-text-color;
+	padding: 5px;
+	margin: 5px 0;
+}

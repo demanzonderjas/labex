@@ -18,7 +18,7 @@ class LoginController extends Controller
     {
         $request->session()->put('target_url', urldecode($request->query('target_url')));
         if (env('APP_ENV') !== "production") {
-            $user = User::where('email', 'weustenraad@gmail.com')->first();
+            $user = User::where('email', env('ADMIN_MAIL'))->first();
             Auth::login($user);
             return $this->redirectToCorrectUrl($request);
         }

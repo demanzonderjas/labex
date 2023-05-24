@@ -1,10 +1,10 @@
-import { TForm } from "../../typings/forms";
+import { TForm, TFormFieldName } from "../../typings/forms";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { strainField } from "./fields/strain";
 import { ageField } from "./fields/age";
 import { naiveField } from "./fields/naive";
 import { sexField } from "./fields/sex";
-import { originField } from "./fields/origin";
+import { originField, originIdField } from "./fields/origin";
 import { spfField } from "./fields/spf";
 import { organsField } from "./fields/organs";
 import { storageField } from "./fields/storage";
@@ -13,7 +13,7 @@ import { amountField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { typeField } from "./fields/type";
 import { dateConservedField } from "./fields/dateConserved";
-import { extraInfoField } from "./fields/extraInfo";
+import { animalNumbersField, extraInfoField } from "./fields/extraInfo";
 import { withRequired } from "../../utils/formatting/fields";
 import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
@@ -28,7 +28,9 @@ import {
 } from "./fields/adoption";
 import { locationField } from "./fields/location";
 import {
+	dateAvailableEndAsAdminField,
 	dateAvailableEndField,
+	dateAvailableStartAsAdminField,
 	dateAvailableStartField,
 	yearSelectField
 } from "./fields/dateAvailable";
@@ -62,6 +64,7 @@ export const SubmitOfferForm: TForm = {
 		adoptionField,
 		locationField,
 		extraInfoField,
+		animalNumbersField,
 		attemptTypeOfferField
 	],
 	handler: sendExchangeAttempt,
@@ -77,6 +80,21 @@ export const EditOfferForm: TForm = {
 	header: "edit_offer",
 	intro: "edit_offer_intro",
 	infoModal: null
+};
+
+const dateAvailableStartFieldIndex = EditOfferForm.fields.findIndex(
+	f => f.id === TSpecificationName.DateAvailableStart
+);
+const dateAvailableEndFieldIndex = EditOfferForm.fields.findIndex(
+	f => f.id === TSpecificationName.DateAvailableEnd
+);
+const editOfferAsAdminFields = [...EditOfferForm.fields];
+editOfferAsAdminFields[dateAvailableStartFieldIndex] = dateAvailableStartAsAdminField;
+editOfferAsAdminFields[dateAvailableEndFieldIndex] = dateAvailableEndAsAdminField;
+
+export const EditOfferAsAdminForm: TForm = {
+	...EditOfferForm,
+	fields: editOfferAsAdminFields
 };
 
 export const ConfirmOfferMatchForm: TForm = {
@@ -95,7 +113,8 @@ const adminOfferFields = [
 	adoptionFilterField,
 	statusField,
 	adoptionCodeSearchField,
-	userFilterField
+	userFilterField,
+	originIdField
 ];
 
 export const AdminOffersForm: TForm = {

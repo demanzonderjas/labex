@@ -9,6 +9,7 @@ export enum TExchangeAttemptType {
 
 export type TExchangeAttempt = {
 	id: number;
+	origin_id: number;
 	attempt_type: TExchangeAttemptType;
 	status: TExchangeAttemptStatus;
 	user?: TUser;
@@ -18,6 +19,13 @@ export type TExchangeAttempt = {
 	adoption_info?: TAdoptionInfo;
 	specifications: TSpecification[];
 	created_at: string;
+};
+
+export type TExportableOffer = TExchangeAttempt & {
+	offered: number;
+	matched: number;
+	adopted: number;
+	remaining: number;
 };
 
 export enum TExchangeAttemptStatus {
@@ -53,7 +61,9 @@ export enum TSpecificationName {
 	Other = "other",
 	SuitableForAdoption = "suitable_for_adoption",
 	Location = "location",
-	Status = "status"
+	Status = "status",
+	OriginId = "origin_id",
+	AnimalNumbers = "animal_numbers"
 }
 
 export type TMatch = {

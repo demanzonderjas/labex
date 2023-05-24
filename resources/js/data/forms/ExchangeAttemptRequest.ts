@@ -19,7 +19,7 @@ import { dateRequestedField } from "./fields/dateAvailable";
 import { killMethodField } from "./fields/killMethod";
 import { amountRequestedField } from "./fields/amount";
 import { typeField } from "./fields/type";
-import { extraInfoField } from "./fields/extraInfo";
+import { animalNumbersField, extraInfoField } from "./fields/extraInfo";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { flowchartModal } from "../modals/flowchart";
 import { attemptTypeRequestField } from "./fields/attemptType";
@@ -83,12 +83,12 @@ matchCardFields.splice(ageOfferFieldIdx, 1, ageRangeRequestField);
 
 export const RequestMatchCardFields: TForm = {
 	...FilterOffersForm,
-	fields: [...matchCardFields, protocolNumberField, extraInfoField]
+	fields: [...matchCardFields, protocolNumberField, extraInfoField, animalNumbersField]
 };
 
 export const SubmitRequestForm: TForm = {
 	...FilterOffersForm,
-	fields: [...FilterOffersForm.fields, protocolNumberField, extraInfoField],
+	fields: [...FilterOffersForm.fields, protocolNumberField, extraInfoField, animalNumbersField],
 	matchable: false,
 	header: "submit_request",
 	intro: "submit_request_description",

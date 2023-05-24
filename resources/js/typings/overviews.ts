@@ -18,6 +18,7 @@ export type TTableCell = {
 
 export enum TTableCellName {
 	ID = "id",
+	OriginID = "origin_id",
 	MagicCell = "magic_cell",
 	MatchButton = "match_button",
 	IsMatch = "is_match",

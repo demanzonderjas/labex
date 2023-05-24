@@ -84,6 +84,11 @@ export const adminOfferCells: TTableCell[] = [
 		Component: TextCell
 	},
 	{
+		id: TTableCellName.OriginID,
+		value: "",
+		Component: TextCell
+	},
+	{
 		id: TFormFieldName.User,
 		value: "",
 		Component: UserCell
@@ -144,6 +149,18 @@ export const adminOfferCells: TTableCell[] = [
 		id: TTableCellName.IsMatch,
 		value: "",
 		Component: BooleanCell
+	},
+	{
+		id: TTableCellName.EditButton,
+		label: "edit",
+		value: "",
+		Component: EditButtonCell
+	},
+	{
+		id: TTableCellName.DeleteButton,
+		label: "delete",
+		value: "",
+		Component: DeleteButtonCell
 	},
 	{
 		id: TTableCellName.AdoptionButton,
