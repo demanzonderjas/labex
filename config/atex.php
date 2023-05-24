@@ -4,7 +4,9 @@ return [
 	"organisations" => [
 		"uu.nl" => "University of Utrecht",
 		"universiteit-utrecht" => "University of Utrecht",
-		"umcutrecht.nl" => "UMC Utrecht"
+		"umcutrecht.nl" => "UMC Utrecht",
+		"radboudumc" => "RadboudUMC",
+		"radboud-universiteit" => "Radboud Universiteit"
 	],
 	"constants" => [
 		"exchange_attempt_status" => [
