@@ -2,22 +2,14 @@ header {
 	height: $header-height;
 	position: relative;
 
-	> .layout-wrapper {
-		min-height: 100px;
-	}
-
 	&.homepage-header {
 		height: auto;
 	}
 
 	.buttons {
-		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-
-		:not(:last-child) {
-			margin-right: 8px;
-		}
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+		margin: 0px 0 20px;
 	}
 }

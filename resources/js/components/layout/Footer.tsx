@@ -3,10 +3,8 @@ import { LogoWrapper } from "./LogoWrapper";
 
 export function Footer() {
 	return (
-		<div className="Footer">
-			<div className="layout-wrapper">
+		<div className="Footer">{/* <div className="layout-wrapper">
 				<LogoWrapper />
-			</div>
-		</div>
+			</div> */}</div>
 	);
 }

@@ -12,7 +12,9 @@ export const Header = () => {
 	return (
 		<header>
 			<div className="layout-wrapper">
-				{/* <LogoWrapper /> */}
+				<div className="logo">
+					<LogoWrapper />
+				</div>
 				<div className="buttons">
 					<SubmitRequestButton />
 					<SubmitOfferButton />
