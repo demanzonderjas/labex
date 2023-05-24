@@ -94,6 +94,7 @@ class RadboudSeeder extends Seeder
 			$u->save();
 
 			$s = Signup::firstOrNew(['email' => $admin['email']]);
+			$s->fill($admin);
 			$s->awaiting_approval = false;
 			$s->approved = true;
 			$s->save();
@@ -108,10 +109,12 @@ class RadboudSeeder extends Seeder
 
 		foreach ($users as $user) {
 			$u = User::firstOrNew(['email' => $user['email']]);
+			$u->fill($user);
 			$u->token = Str::random(20);
 			$u->save();
 
 			$s = Signup::firstOrNew(['email' => $user['email']]);
+			$s->fill($user);
 			$s->awaiting_approval = false;
 			$s->approved = true;
 			$s->save();
