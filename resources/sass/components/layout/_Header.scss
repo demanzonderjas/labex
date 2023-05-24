@@ -2,13 +2,12 @@ header {
 	height: $header-height;
 	position: relative;
 
-	.LogoWrapper {
-		img {
-			display: inline-block;
-			margin: 0 20px 0 0;
-			vertical-align: middle;
-			height: 130px;
-		}
+	> .layout-wrapper {
+		min-height: 100px;
+	}
+
+	&.homepage-header {
+		height: auto;
 	}
 
 	.buttons {

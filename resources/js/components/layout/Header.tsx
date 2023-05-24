@@ -12,7 +12,7 @@ export const Header = () => {
 	return (
 		<header>
 			<div className="layout-wrapper">
-				<LogoWrapper />
+				{/* <LogoWrapper /> */}
 				<div className="buttons">
 					<SubmitRequestButton />
 					<SubmitOfferButton />
@@ -35,7 +35,7 @@ export const Header = () => {
 
 export const HomePageHeader: React.FC = () => {
 	return (
-		<header>
+		<header className="homepage-header">
 			<div className="layout-wrapper">
 				<LogoWrapper />
 			</div>
