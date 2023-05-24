@@ -20,7 +20,7 @@ export const organisationSelectField: TFormField = {
 	required: true,
 	Component: SelectField,
 	props: {
-		options: ["universiteit-utrecht", "umcutrecht.nl", "radboudumc", "radboud-universiteit"],
+		options: ["uu.nl", "umcutrecht.nl", "radboudumc.nl", "ru.nl"],
 		startsEmpty: true,
 		allowOther: true
 	},
