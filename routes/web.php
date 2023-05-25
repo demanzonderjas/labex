@@ -52,11 +52,11 @@ function fakeAdminLogin()
 
 Route::group(['middleware' => VerifyAdmin::class], function () {
     Route::get('/admin/{page?}', function () {
-        fakeAdminLogin();
+        // fakeAdminLogin();
         return view('admin');
     });
     Route::get('/admin/{page?}/{action?}/{id?}', function () {
-        fakeAdminLogin();
+        // fakeAdminLogin();
         return view('admin');
     });
 });
