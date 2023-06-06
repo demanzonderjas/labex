@@ -16,7 +16,13 @@ export const adoptionField: TFormField = {
 	description: "suitable_for_adoption_description",
 	props: {},
 	default: "",
-	value: ""
+	value: "",
+	dependencies: [
+		{
+			id: "type",
+			validate: value => value == "animal"
+		}
+	]
 };
 
 export const adoptionFilterField: TFormField = {
