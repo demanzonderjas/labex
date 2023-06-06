@@ -227,7 +227,7 @@ class MatchController extends Controller
 
         $isConserved = $match->offer->type === 'conserved_tissue';
         $connectedAdmins = User::whereUserGetsOrganisationAdminEmail([$match->offer->user->organisation, $match->request->user->organisation])->get();
-        $needsTwoApprovals = $connectedAdmins->count() > 1 && !$isConserved;
+        $needsTwoApprovals = $connectedAdmins->count() > 1 && !$isConserved && $match->offer->user->organisation !== $match->request->user->organisation;
         $isFirstApproval = $match->status === config('atex.constants.match_status.awaiting_approval') && $needsTwoApprovals;
 
         if ($isFirstApproval) {

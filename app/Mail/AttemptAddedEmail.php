@@ -8,22 +8,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OfferAddedEmail extends Mailable
+class AttemptAddedEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $user;
-    public $offer;
+    public $attempt;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(ExchangeAttempt $offer, User $user)
+    public function __construct(ExchangeAttempt $attempt, User $user)
     {
         $this->user = $user;
-        $this->offer = $offer;
+        $this->attempt = $attempt;
     }
 
     /**
@@ -33,6 +33,6 @@ class OfferAddedEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.offer-added')->subject("ATEX - Your offer has been added");
+        return $this->view('mail.attempt-added')->subject("ATEX - Your " . $this->attempt->attempt_type . " has been added");
     }
 }
