@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
         $signup = new Signup();
         $signup->email = $user->email;
         $signup->name = $user->name;
+        $signup->organisation = "uu.nl";
         $signup->awaiting_approval = false;
         $signup->approved = true;
         $signup->save();
@@ -40,6 +41,7 @@ class UserSeeder extends Seeder
         $signup = new Signup();
         $signup->email = $user->email;
         $signup->name = $user->name;
+        $signup->organisation = "uu.nl";
         $signup->awaiting_approval = false;
         $signup->approved = true;
         $signup->save();
