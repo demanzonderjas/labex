@@ -6,6 +6,9 @@ type Props = {
 };
 
 export const DisplayedDate: React.FC<Props> = ({ value }) => {
+	if (!value) {
+		return <span>-</span>;
+	}
 	const [year, month, day] = value.split("-");
 	if (!year || !month || !day) {
 		return <span>-</span>;

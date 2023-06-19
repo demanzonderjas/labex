@@ -6,7 +6,7 @@ import { FormFields } from "../FormFields";
 export const RegularFormLayout: React.FC = observer(() => {
 	const { activeFields } = useFormStore();
 
-	const sortedFields = [...activeFields].sort((a, b) => (a.required && !b.required ? -1 : 1));
+	const sortedFields = [...activeFields].sort((a, b) => (a.required && !b.required ? -1 : 0));
 
 	return (
 		<div className="fields">
