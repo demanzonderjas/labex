@@ -31,6 +31,7 @@ class ExchangeAttemptController extends Controller
 				Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
 			}
 			self::activateAlerts($attempt);
+			self::checkForMatchInSystem($attempt);
 
 			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
@@ -188,5 +189,36 @@ class ExchangeAttemptController extends Controller
 			}
 			array_push($usersMailed, $alert->user->id);
 		}
+	}
+
+	public static function checkForMatchInSystem(ExchangeAttempt $newAttempt)
+	{
+		$possibleMatches = ExchangeAttempt::where('user_id', '!=', $newAttempt->user_id)->where('attempt_type', '!=', $newAttempt->attempt_type)->get();
+		$matches = $possibleMatches->filter(function ($possibleMatch) use ($newAttempt) {
+			$attemptToCheck = $newAttempt->attempt_type === "request" ? $newAttempt : $possibleMatch;
+			$attemptToMatch = $newAttempt->attempt_type === "request" ? $possibleMatch : $newAttempt;
+
+			return $attemptToCheck->specifications
+				->filter(function ($checkSpec) {
+					return $checkSpec->key !== "amount"
+						&& $checkSpec->key !== "age_type"
+						&& $checkSpec->key !== "age_min"
+						&& $checkSpec->key !== "age_max";
+				})
+				->reduce(function ($base, $checkSpec) use ($attemptToMatch) {
+					$matchSpec = $attemptToMatch->getSpec($checkSpec->key);
+					if ($base === false || $checkSpec->key === "protocol_number") {
+						return $base;
+					} else if (empty($matchSpec)) {
+						return false;
+					} else if ($matchSpec !== $checkSpec->value) {
+						return false;
+					}
+
+					return $base;
+				}, true);
+		});
+
+		dd($matches);
 	}
 }
