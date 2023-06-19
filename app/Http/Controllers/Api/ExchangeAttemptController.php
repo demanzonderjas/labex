@@ -201,14 +201,25 @@ class ExchangeAttemptController extends Controller
 			return $attemptToCheck->specifications
 				->filter(function ($checkSpec) {
 					return $checkSpec->key !== "amount"
-						&& $checkSpec->key !== "age_type"
 						&& $checkSpec->key !== "age_min"
 						&& $checkSpec->key !== "age_max";
 				})
-				->reduce(function ($base, $checkSpec) use ($attemptToMatch) {
+				->reduce(function ($base, $checkSpec) use ($attemptToCheck, $attemptToMatch) {
 					$matchSpec = $attemptToMatch->getSpec($checkSpec->key);
 					if ($base === false || $checkSpec->key === "protocol_number") {
 						return $base;
+					} else if ($checkSpec->key === "organs") {
+						$organsToCheck = explode(", ", $checkSpec->value);
+						$organsToMatch = !empty($attemptToMatch->organs) ? explode(", ", $attemptToMatch->organs) : [];
+						$hasOverlap = count(array_intersect($organsToCheck, $organsToMatch)) > 0;
+						return $hasOverlap;
+					} else if ($checkSpec->key === "age_type" && $attemptToMatch->attempt_type === config('atex.constants.offer')) {
+						$minAge = Carbon::createFromFormat("Y-m-d", $attemptToMatch->getSpec("age"));
+						$minAge->add($attemptToCheck->getSpec("age_min"), $attemptToCheck->getSpec("age_type"));
+						$maxAge = Carbon::createFromFormat("Y-m-d", $attemptToMatch->getSpec("age"));
+						$maxAge->add($attemptToCheck->getSpec("age_max"), $attemptToCheck->getSpec("age_type"));
+						$now = Carbon::now();
+						return $now->isAfter($minAge) && $now->isBefore($maxAge);
 					} else if (empty($matchSpec)) {
 						return false;
 					} else if ($matchSpec !== $checkSpec->value) {
@@ -218,7 +229,13 @@ class ExchangeAttemptController extends Controller
 					return $base;
 				}, true);
 		});
+		$usersMailed = [];
 
-		dd($matches);
+		foreach ($matches as $alert) {
+			if (!in_array($alert->user->id, $usersMailed)) {
+				Mail::to($alert->user)->queue(new AlertMatchEmail($newAttempt));
+			}
+			array_push($usersMailed, $alert->user->id);
+		}
 	}
 }
