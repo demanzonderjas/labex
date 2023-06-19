@@ -15,7 +15,7 @@ export const DateAvailableCell: React.FC<TTableCellProps> = ({ value, attempt })
 	if (sampleType == "conserved_tissue") {
 		return (
 			<td className="DateCell">
-				<DisplayedDate value={value} />
+				<DisplayedDate value={dateAvailableStart} />
 			</td>
 		);
 	}

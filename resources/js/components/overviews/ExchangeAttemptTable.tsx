@@ -13,7 +13,8 @@ export const ExchangeAttemptTable: React.FC<{
 	columns: TTableCell[];
 	type: TExchangeAttemptType;
 	isCentered: boolean;
-}> = ({ attempts, rows, columns, isCentered, type }) => {
+	sortByColumn: Function;
+}> = ({ attempts, rows, columns, isCentered, type, sortByColumn }) => {
 	const { t } = useTranslationStore();
 	const { filters, magicField } = useExchangeAttemptStore();
 	const history = useHistory();
@@ -40,7 +41,9 @@ export const ExchangeAttemptTable: React.FC<{
 				<thead>
 					<tr>
 						{magicColumns().map(column => (
-							<th key={column.id}>{t(column.label || column.id)}</th>
+							<th key={column.id} onClick={() => sortByColumn(column.id)}>
+								{t(column.label || column.id)}
+							</th>
 						))}
 					</tr>
 				</thead>

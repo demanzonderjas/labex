@@ -11,6 +11,7 @@ import { ExchangeAttemptCardOverview } from "./ExchangeAttemptCardOverview";
 import { ExchangeAttemptTable } from "./ExchangeAttemptTable";
 import { OverviewSwitch } from "./OverviewSwitch";
 import cx from "classnames";
+import { useSortedTable } from "../../hooks/useSortedTable";
 
 export const ExchangeAttemptOverview: React.FC<{
 	type: TExchangeAttemptType;
@@ -32,10 +33,20 @@ export const ExchangeAttemptOverview: React.FC<{
 	} = useExchangeAttemptStore();
 	const targetAttempts = type === TExchangeAttemptType.Offer ? offers : requests;
 	const sortedAttempts = convertAttemptsToMatches(targetAttempts, filters, targetFields);
-	const attemptsAsCells = convertMatchesToCells(sortedAttempts, specsToShow, magicField);
-	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
+	const flattened = sortedAttempts.map(attempt => ({
+		...attempt,
+		...attempt.specifications.reduce((base, next) => {
+			base[next.key] = next.value;
+			return base;
+		}, {})
+	}));
 
-	console.log(sortedAttempts);
+	const { sorted, sortByColumn } = useSortedTable(flattened, "match_percentage");
+
+	const attemptsAsCells = convertMatchesToCells(sorted, specsToShow, magicField);
+	const attemptsToShow = attemptsAsCells;
+
+	console.log(sorted);
 
 	useEffect(() => {
 		getExchangeAttempts(type, mineOnly, adminView);
@@ -51,14 +62,15 @@ export const ExchangeAttemptOverview: React.FC<{
 			{!adminView && <OverviewSwitch />}
 			{overviewType == TOverviewType.Cards && (
 				<ExchangeAttemptCardOverview
-					attempts={sortedAttempts}
+					attempts={sorted}
 					cards={attemptsToShow}
 					type={mineOnly ? TOverviewType.UserCards : TOverviewType.Cards}
 				/>
 			)}
 			{overviewType == TOverviewType.Table && (
 				<ExchangeAttemptTable
-					attempts={sortedAttempts}
+					attempts={sorted}
+					sortByColumn={sortByColumn}
 					rows={attemptsToShow}
 					type={type}
 					isCentered={!mineOnly && !adminView}
