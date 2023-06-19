@@ -26,7 +26,6 @@ export function useSortedTable(rows: any[], defaultKey?: string, filter?: string
 			if (sortingKey === "date_available") {
 				const timeA = new Date(a.date_available_start).getTime();
 				const timeB = new Date(b.date_available_start).getTime();
-				console.log(timeA, timeB);
 				if (timeA < timeB) {
 					return reverse ? 1 : -1;
 				} else if (timeA > timeB) {

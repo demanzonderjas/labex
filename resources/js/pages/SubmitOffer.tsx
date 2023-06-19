@@ -8,11 +8,7 @@ export const SubmitOfferPage = () => {
 	const [attemptStore] = useState(new ExchangeAttemptStore());
 	return (
 		<ExchangeAttemptStoreProvider store={attemptStore}>
-			<FormWrapper
-				form={SubmitOfferForm}
-				handleSuccess={attemptStore.addAttempt}
-				handleUpdate={fields => console.log(fields)}
-			/>
+			<FormWrapper form={SubmitOfferForm} handleSuccess={attemptStore.addAttempt} />
 		</ExchangeAttemptStoreProvider>
 	);
 };
