@@ -33,7 +33,6 @@ export function isDateRequestedAfterStartDate(targetDate: string, startDate: str
 }
 
 export function isDateAvailableStartValid(dateAvailableStart: string, fields: TFormField[]) {
-	console.log(isDateInFuture(dateAvailableStart));
 	if (!isDateInFuture(dateAvailableStart)) {
 		return false;
 	}
@@ -41,7 +40,6 @@ export function isDateAvailableStartValid(dateAvailableStart: string, fields: TF
 
 	const startTarget = dayjs(dateAvailableStart);
 	const endTarget = dayjs(endDate?.value);
-	console.log(endTarget.isSame(startTarget));
 	return endTarget.isAfter(startTarget) || endTarget.isSame(startTarget);
 }
 
