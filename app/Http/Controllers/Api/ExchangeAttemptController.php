@@ -193,22 +193,21 @@ class ExchangeAttemptController extends Controller
 
 	public static function checkForMatchInSystem(ExchangeAttempt $newAttempt)
 	{
-		$possibleMatches = ExchangeAttempt::where('user_id', '!=', $newAttempt->user_id)->where('attempt_type', '!=', $newAttempt->attempt_type)->get();
+		$possibleMatches = ExchangeAttempt::where('user_id', '!=', $newAttempt->user_id)->where('attempt_type', '!=', $newAttempt->attempt_type)->where('status', 'active')->get();
 		$matches = $possibleMatches->filter(function ($possibleMatch) use ($newAttempt) {
 			$attemptToCheck = $newAttempt->attempt_type === "request" ? $newAttempt : $possibleMatch;
 			$attemptToMatch = $newAttempt->attempt_type === "request" ? $possibleMatch : $newAttempt;
 
-			return $attemptToCheck->specifications
+			$isMatch = $attemptToCheck->specifications
 				->filter(function ($checkSpec) {
 					return $checkSpec->key !== "amount"
 						&& $checkSpec->key !== "age_min"
-						&& $checkSpec->key !== "age_max";
+						&& $checkSpec->key !== "age_max"
+						&& $checkSpec->key !== "protocol_number";
 				})
-				->reduce(function ($base, $checkSpec) use ($attemptToCheck, $attemptToMatch) {
+				->every(function ($checkSpec) use ($attemptToCheck, $attemptToMatch) {
 					$matchSpec = $attemptToMatch->getSpec($checkSpec->key);
-					if ($base === false || $checkSpec->key === "protocol_number") {
-						return $base;
-					} else if ($checkSpec->key === "organs") {
+					if ($checkSpec->key === "organs") {
 						$organsToCheck = explode(", ", $checkSpec->value);
 						$organsToMatch = !empty($attemptToMatch->organs) ? explode(", ", $attemptToMatch->organs) : [];
 						$hasOverlap = count(array_intersect($organsToCheck, $organsToMatch)) > 0;
@@ -221,13 +220,13 @@ class ExchangeAttemptController extends Controller
 						$now = Carbon::now();
 						return $now->isAfter($minAge) && $now->isBefore($maxAge);
 					} else if (empty($matchSpec)) {
-						return false;
-					} else if ($matchSpec !== $checkSpec->value) {
-						return false;
+						return true;
+					} else {
+						return $matchSpec === $checkSpec->value;
 					}
+				});
 
-					return $base;
-				}, true);
+			return $isMatch;
 		});
 		$usersMailed = [];
 
