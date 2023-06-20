@@ -146,6 +146,16 @@ class ExchangeAttemptController extends Controller
 					$attemptOrgans = !empty($attempt->organs) ? explode(", ", $attempt->organs) : [];
 					$hasOverlap = count(array_intersect($alertOrgans, $attemptOrgans)) > 0;
 					return $hasOverlap;
+				} else if ($next["key"] === "sex") {
+					$spec = $attempt->specifications->firstWhere('key', $next["key"]);
+
+					if (!$spec) {
+						return $base;
+					} else if ($spec->value === "both" || $next["value"] === "both") {
+						return true;
+					}
+
+					return $next["value"] === $spec->value;
 				} else if ($next["key"] === "age_type" && $attempt->attempt_type === config('atex.constants.offer')) {
 					$minAge = Carbon::createFromFormat("Y-m-d", $attempt->getSpec("age"));
 					$minAge->add($alert->getSpec("age_min"), $alert->getSpec("age_type"));
@@ -207,11 +217,19 @@ class ExchangeAttemptController extends Controller
 				})
 				->every(function ($checkSpec) use ($attemptToCheck, $attemptToMatch) {
 					$matchSpec = $attemptToMatch->getSpec($checkSpec->key);
+					echo $checkSpec->key;
 					if ($checkSpec->key === "organs") {
 						$organsToCheck = explode(", ", $checkSpec->value);
 						$organsToMatch = !empty($attemptToMatch->organs) ? explode(", ", $attemptToMatch->organs) : [];
 						$hasOverlap = count(array_intersect($organsToCheck, $organsToMatch)) > 0;
 						return $hasOverlap;
+					} else if ($checkSpec->key === "sex") {
+						if (empty($matchSpec)) {
+							return true;
+						} else if ($checkSpec->value === "both" || $matchSpec === "both") {
+							return true;
+						}
+						return $checkSpec->value === $matchSpec;
 					} else if ($checkSpec->key === "age_type" && $attemptToMatch->attempt_type === config('atex.constants.offer')) {
 						$minAge = Carbon::createFromFormat("Y-m-d", $attemptToMatch->getSpec("age"));
 						$minAge->add($attemptToCheck->getSpec("age_min"), $attemptToCheck->getSpec("age_type"));
