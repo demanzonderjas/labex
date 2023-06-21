@@ -69,5 +69,19 @@ class RemoveOutdated extends Command
                 }
             }
         }
+        $requests = ExchangeAttempt::requests()->get();
+        foreach ($requests as $request) {
+            $dateRequestedSpec = $request->specifications->firstWhere('key', 'date_requested');
+            $requestedValue = $dateRequestedSpec ? $dateRequestedSpec->value : null;
+            if (empty($requestedValue) || empty($request->user)) {
+                continue;
+            }
+            $date = Carbon::createFromFormat("Y-m-d", $requestedValue);
+            $endDate = $date->copy()->addDays(config('atex.constants.days_before_inactive'));
+            if ($endDate->isBefore($now) && $request->status != config('atex.constants.exchange_attempt_status.inactive')) {
+                $request->status = config('atex.constants.exchange_attempt_status.inactive');
+                $request->save();
+            }
+        }
     }
 }
