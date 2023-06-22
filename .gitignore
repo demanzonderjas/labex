@@ -6,6 +6,7 @@
 /public/images
 /public/mix-manifest.json
 /storage/*.key
+/storage/framework/
 /vendor
 .env
 /resources/js/env.ts
@@ -15,4 +16,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+php_errors.log
+/storage/logs/laravel.log
+worker.log
 *.DS_Store
