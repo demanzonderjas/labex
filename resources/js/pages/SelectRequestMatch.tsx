@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ExchangeAttemptStore } from "../stores/ExchangeAttemptStore";
 import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { useQuery } from "../hooks/useQuery";
-import {
-	FilterRequestsForm,
-	RequestSpecificationsForm
-} from "../data/forms/ExchangeAttemptRequest";
+import { FilterRequestsForm, RequestSpecificationsForm } from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
@@ -58,16 +55,9 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				exchange_attempt: TExchangeAttempt;
 				success: boolean;
 			} = await getExchangeAttempt(id);
-			const filledFields = fillFieldsWithSpecifications(
-				RequestSpecificationsForm.fields,
-				response.exchange_attempt.specifications
-			);
+			const filledFields = fillFieldsWithSpecifications(RequestSpecificationsForm.fields, response.exchange_attempt.specifications);
 			setRequest(filledFields);
-			const _matchPercentage = getMatchingPercentage(
-				response.exchange_attempt,
-				sampleStore.filters,
-				filledFields
-			);
+			const _matchPercentage = getMatchingPercentage(response.exchange_attempt, sampleStore.filters, filledFields);
 			setIsMatch(response.exchange_attempt.is_match);
 			setMatchPercentage(_matchPercentage);
 			setUserProfile({
@@ -106,10 +96,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				{!isMatch && (
 					<div className="button-wrapper">
 						<BlankButton label="return_to_overview" handleClick={goBack} />
-						<SecondaryButton
-							label="select_match"
-							handleClick={() => setModal(modalData)}
-						/>
+						<SecondaryButton label="select_match" handleClick={() => setModal(modalData)} />
 					</div>
 				)}
 			</div>

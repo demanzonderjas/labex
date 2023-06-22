@@ -300,5 +300,7 @@
 	"no_matches_in_history": "No matches in history",
 	"origin_id": "Origin ID",
 	"animal_numbers": "Animal number(s)",
-	"both": "Both"
+	"both": "Both",
+	"load_your_outstanding_request": "Load your outstanding requests",
+	"load_requests": "Load requests"
 }

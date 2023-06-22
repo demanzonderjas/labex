@@ -33,6 +33,8 @@ $chart-offset: 100px;
 				top: 0;
 				right: 0;
 				margin: -120px 0 0;
+				display: flex;
+				gap: 10px;
 
 				.Button button {
 					padding: 7px 20px;

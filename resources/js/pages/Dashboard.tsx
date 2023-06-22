@@ -11,7 +11,6 @@ import { Button } from "../components/base/Button";
 import { useHistory } from "react-router-dom";
 import { SubmenuView } from "../components/overviews/SubmenuView";
 import cx from "classnames";
-import { DashboardStats } from "../components/dashboard/DashboardStats";
 import { useUserStore } from "../hooks/useUserStore";
 import { getMyLatestExchangeAttempts } from "../queries/getExchangeAttempts";
 import { offerCells } from "../data/tables/offers";
@@ -24,9 +23,7 @@ export const DashboardPage = observer(() => {
 	const [attemptStore] = useState<ExchangeAttemptStore>(new ExchangeAttemptStore());
 	const [match, setMatch] = useState(null);
 	const { user } = useUserStore();
-	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
-		TDashboardOverview.Requests
-	);
+	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(TDashboardOverview.Requests);
 	const history = useHistory();
 
 	useEffect(() => {
@@ -37,10 +34,7 @@ export const DashboardPage = observer(() => {
 
 	useEffect(() => {
 		(async () => {
-			const [attempts, match] = await Promise.all([
-				getMyLatestExchangeAttempts(),
-				getMyLatestMatch()
-			]);
+			const [attempts, match] = await Promise.all([getMyLatestExchangeAttempts(), getMyLatestMatch()]);
 			attemptStore.setAttempts(attempts.exchange_attempts || []);
 			if (match && match.match) {
 				setMatch(match.match);
@@ -53,11 +47,7 @@ export const DashboardPage = observer(() => {
 			<div className="DashboardPage">
 				<TwoColumnPageIntro header="exchange_platform" subheader="for_animals_tissues">
 					<p className="layout-wrapper">{t("dashboard_intro")}</p>
-					<Button
-						label="more_info"
-						handleClick={() => history.push("/app/faq")}
-						classes={{ inline: true }}
-					/>
+					<Button label="more_info" handleClick={() => history.push("/app/faq")} classes={{ inline: true }} />
 				</TwoColumnPageIntro>
 				<div className="layout-wrapper dashboard">
 					<h1>{t("dashboard")}</h1>
@@ -115,11 +105,7 @@ export const DashboardPage = observer(() => {
 							<SubmenuView isActive={activeOverview === TDashboardOverview.Matches}>
 								{match && (
 									<div className="latest-match layout-wrapper">
-										<Match
-											key={match.id}
-											match={match}
-											matchType={MatchType.Requests}
-										/>
+										<Match key={match.id} match={match} matchType={MatchType.Requests} />
 										<Button
 											label="see_all_my_matches"
 											handleClick={() => history.push("/app/my-matches")}

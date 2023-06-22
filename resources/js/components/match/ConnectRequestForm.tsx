@@ -11,8 +11,6 @@ import { BlankButton, Button } from "../base/Button";
 import { createMatch } from "../../queries/createMatch";
 import { useHistory } from "react-router-dom";
 import { TSpecificationName } from "../../typings/exchanges";
-import { getMyLatestExchangeAttempts } from "../../queries/getExchangeAttempts";
-import { MatchOutstanding } from "./MatchOutstanding";
 
 type Props = {
 	fields: TFormField[];
@@ -20,7 +18,7 @@ type Props = {
 	offerId: string;
 };
 
-export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offerId }) => {
+export const ConnectRequestForm: React.FC<Props> = ({ fields, filters, offerId }) => {
 	if (!fields || !filters) {
 		return null;
 	}
@@ -28,7 +26,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
 	const [protocolNumber, setProtocolNumber] = useState("");
-	const [myRequests, setMyRequests] = useState([]);
 	const [hasNumberError, setNumberError] = useState(false);
 	const [amount, setAmount] = useState(filters.find(f => f.id === TSpecificationName.Amount)?.value);
 	const matches = createMatchSpecs(fields, filters);
@@ -59,7 +56,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 
 	return (
 		<ExchangeAttemptStoreProvider store={sampleStore}>
-			<MatchOutstanding />
 			<div className="DataList layout-wrapper">
 				{matches
 					.filter(fieldIsNotHidden)

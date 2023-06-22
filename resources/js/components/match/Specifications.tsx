@@ -8,7 +8,7 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { fieldIsNotHidden, fieldMeetsDependencies } from "../../utils/filters/fields";
 import { Icon } from "../base/Image";
-import { SecondaryButton } from "../base/Button";
+import { Button, SecondaryButton } from "../base/Button";
 import { MATCH_CHART_COLORS } from "../../data/configs/colors";
 
 type Props = {
@@ -59,10 +59,7 @@ export const Specifications: React.FC<Props> = ({
 				<div className="specs">
 					{!isAlreadyMatched && (
 						<div className="button-wrapper">
-							<SecondaryButton
-								label="select_match"
-								handleClick={() => handleSelect()}
-							/>
+							<SecondaryButton label="select_match" handleClick={() => handleSelect()} />
 						</div>
 					)}
 					{matches
@@ -72,10 +69,7 @@ export const Specifications: React.FC<Props> = ({
 							<Spec key={match.id} {...match} fields={fields} />
 						))}
 				</div>
-				<PieChart
-					percentages={[matchPercentage, 100 - matchPercentage]}
-					colors={MATCH_CHART_COLORS}
-				/>
+				<PieChart percentages={[matchPercentage, 100 - matchPercentage]} colors={MATCH_CHART_COLORS} />
 			</div>
 		</div>
 	);
