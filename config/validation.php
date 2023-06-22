@@ -63,7 +63,8 @@ return [
     ],
     "sex" => [
         "male",
-        "female"
+        "female",
+        "both"
     ],
     "origin" => [
         "experiment", "breeding"
