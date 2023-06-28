@@ -30,3 +30,12 @@ export async function getMyLatestExchangeAttempts() {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function getMyRequests() {
+	try {
+		const response = await API.post(`exchange-attempts/requests/mine`);
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

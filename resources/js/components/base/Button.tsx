@@ -22,44 +22,27 @@ export const Button: React.FC<Props> = ({ isSubmit, label, handleClick, classes 
 };
 
 export const SubmitButton: React.FC<Props> = (props: Props) => {
-	return (
-		<Button
-			{...props}
-			classes={props.classes ? { ...props.classes, primary: true } : { primary: true }}
-			isSubmit={true}
-		/>
-	);
+	return <Button {...props} classes={props.classes ? { ...props.classes, primary: true } : { primary: true }} isSubmit={true} />;
 };
 
 export const BlankButton: React.FC<Props> = (props: Props) => {
-	return (
-		<Button
-			{...props}
-			classes={props.classes ? { ...props.classes, blank: true } : { blank: true }}
-		/>
-	);
+	return <Button {...props} classes={props.classes ? { ...props.classes, blank: true } : { blank: true }} />;
 };
 
 export const ConfirmButton: React.FC<Props> = (props: Props) => {
-	return (
-		<Button
-			{...props}
-			classes={props.classes ? { ...props.classes, confirm: true } : { confirm: true }}
-		/>
-	);
+	return <Button {...props} classes={props.classes ? { ...props.classes, confirm: true } : { confirm: true }} />;
 };
 
 export const DangerButton: React.FC<Props> = (props: Props) => {
-	return (
-		<Button
-			{...props}
-			classes={props.classes ? { ...props.classes, danger: true } : { danger: true }}
-		/>
-	);
+	return <Button {...props} classes={props.classes ? { ...props.classes, danger: true } : { danger: true }} />;
 };
 
 export const SecondaryButton: React.FC<Props> = (props: Props) => {
 	return <Button {...props} classes={{ secondary: true }} />;
+};
+
+export const TertiaryButton: React.FC<Props> = (props: Props) => {
+	return <Button {...props} classes={{ tertiary: true }} />;
 };
 
 export const MatchableButton: React.FC<Props> = observer(({ label }) => {

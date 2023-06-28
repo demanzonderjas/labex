@@ -301,6 +301,6 @@
 	"origin_id": "Origin ID",
 	"animal_numbers": "Animal number(s)",
 	"both": "Both",
-	"load_your_outstanding_request": "Load your outstanding requests",
-	"load_requests": "Load requests"
+	"connect_to_existing": "Connect to existing",
+	"connect_button": "Connect"
 }

@@ -7,27 +7,15 @@ import { PieChart } from "./PieChart";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { fieldIsNotHidden, fieldMeetsDependencies } from "../../utils/filters/fields";
-import { Icon } from "../base/Image";
-import { Button, SecondaryButton } from "../base/Button";
 import { MATCH_CHART_COLORS } from "../../data/configs/colors";
 
 type Props = {
 	fields: TFormField[];
 	filters: TFormField[];
 	matchPercentage: number;
-	handleBack: Function;
-	handleSelect: Function;
-	isMatch?: boolean;
 };
 
-export const Specifications: React.FC<Props> = ({
-	fields,
-	filters,
-	matchPercentage,
-	handleBack,
-	handleSelect,
-	isMatch: isAlreadyMatched
-}) => {
+export const Specifications: React.FC<Props> = ({ fields, filters, matchPercentage }) => {
 	const { t } = useTranslationStore();
 	const matches = fields.map(field => {
 		const filter = filters.find(f => f.id == field.id || f.id == field.matchVia);
@@ -44,24 +32,12 @@ export const Specifications: React.FC<Props> = ({
 
 	return (
 		<div className="Specifications">
-			{!isAlreadyMatched && (
-				<div className="back-button">
-					<div className="inline" onClick={() => handleBack()}>
-						<Icon name="back" />
-					</div>
-				</div>
-			)}
 			<h1>{t("specifications")}</h1>
 			<div className="percentage-wrapper">
 				<Percentage matchPercentage={matchPercentage} />
 			</div>
 			<div className="body">
 				<div className="specs">
-					{!isAlreadyMatched && (
-						<div className="button-wrapper">
-							<SecondaryButton label="select_match" handleClick={() => handleSelect()} />
-						</div>
-					)}
 					{matches
 						.filter(fieldIsNotHidden)
 						.filter(fieldMeetsDependencies)

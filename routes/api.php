@@ -29,8 +29,8 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['middleware' => VerifyAuthorized::class], function () {
         Route::post('exchange-attempt/store', 'ExchangeAttemptController@store');
         Route::post('exchange-attempts', 'ExchangeAttemptController@getAll');
-        Route::get('exchange-attempts/mine', 'ExchangeAttemptController@getMyAll');
         Route::post('exchange-attempts/mine-latest', 'ExchangeAttemptController@getMyLatest');
+        Route::post('exchange-attempts/requests/mine', 'ExchangeAttemptController@getMyRequests');
         Route::get('exchange-attempt/{id}', 'ExchangeAttemptController@getById');
         Route::middleware('auth.owner')->post('exchange-attempt/{attempt_id}/delete', 'ExchangeAttemptController@deleteById');
         Route::middleware('auth.owner')->post('exchange-attempt/{attempt_id}/update', 'ExchangeAttemptController@update');

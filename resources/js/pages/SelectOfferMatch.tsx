@@ -12,12 +12,14 @@ import { fillFieldsWithKeyValuePairs, fillFieldsWithSpecifications } from "../ut
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
-import { SecondaryButton, BlankButton } from "../components/base/Button";
+import { SecondaryButton, BlankButton, TertiaryButton } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 import { UserProfile } from "../components/match/UserProfile";
 import { TUserProfile } from "../typings/user";
 import { TExchangeAttempt } from "../typings/exchanges";
+import { MatchControls } from "../components/match/MatchControls";
+import { connectRequestMatchModal } from "../data/modals/matches";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
@@ -56,9 +58,14 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 		})();
 	}, []);
 
-	const modalData = {
+	const selectMatchModalData = {
 		...confirmRequestMatchModal,
 		props: { fields: offer, filters, offerId: id }
+	};
+
+	const connectRequestMatchModalData = {
+		...connectRequestMatchModal,
+		props: { offerId: id }
 	};
 
 	if (isMatch === null || !userProfile) {
@@ -77,20 +84,21 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 					</ol>
 				</PageIntro>
 			)}
-			<div className="layout-wrapper SelectMatchPage">
-				<Specifications
-					isMatch={isMatch}
-					fields={offer}
-					filters={filters}
-					matchPercentage={matchPercentage}
+			{!isMatch && (
+				<MatchControls
 					handleBack={goBack}
-					handleSelect={() => setModal(modalData)}
+					handleSelect={() => setModal(selectMatchModalData)}
+					handleConnect={() => setModal(connectRequestMatchModalData)}
 				/>
+			)}
+			<div className="layout-wrapper SelectMatchPage">
+				<Specifications fields={offer} filters={filters} matchPercentage={matchPercentage} />
 				<UserProfile {...userProfile} />
 				{!isMatch && (
-					<div className="button-wrapper">
+					<div className="button-wrapper" style={{ display: "flex", gap: "20px" }}>
 						<BlankButton label="return_to_overview" handleClick={goBack} />
-						<SecondaryButton label="select_match" handleClick={() => setModal(modalData)} />
+						<SecondaryButton label="select_match" handleClick={() => setModal(selectMatchModalData)} />
+						<TertiaryButton label="connect_to_existing" handleClick={() => setModal(connectRequestMatchModalData)} />
 					</div>
 				)}
 			</div>

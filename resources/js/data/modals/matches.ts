@@ -1,3 +1,4 @@
+import { ConnectRequestMatchForm } from "../../components/match/ConnectRequestMatchForm";
 import { ApproveMatchModal } from "../../components/modals/ApproveMatch";
 import { MatchesModal } from "../../components/modals/Matches";
 import { RejectMatchModal } from "../../components/modals/RejectMatch";
@@ -23,6 +24,14 @@ export const approveMatchModal: TModal = {
 	header: "approve_match_label",
 	description: "approve_match_description",
 	Component: ApproveMatchModal,
+	props: {},
+	handleConfirm: null
+};
+
+export const connectRequestMatchModal: TModal = {
+	header: "connect_request",
+	description: "connect_request_description",
+	Component: ConnectRequestMatchForm,
 	props: {},
 	handleConfirm: null
 };

@@ -59,7 +59,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 
 	return (
 		<ExchangeAttemptStoreProvider store={sampleStore}>
-			<MatchOutstanding />
 			<div className="DataList layout-wrapper">
 				{matches
 					.filter(fieldIsNotHidden)

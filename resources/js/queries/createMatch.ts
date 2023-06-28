@@ -11,3 +11,14 @@ export async function createMatch(specifications: any, attemptId: string) {
 		return { success: false, message: "invalid_request" };
 	}
 }
+
+export async function connectMatch(connectingId: number, targetId: number) {
+	try {
+		const response = await API.post(`exchange-attempt/match/${targetId}`, {
+			connecting_id: connectingId
+		});
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}

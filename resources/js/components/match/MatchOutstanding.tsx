@@ -4,7 +4,6 @@ import { getMyLatestExchangeAttempts } from "../../queries/getExchangeAttempts";
 import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { observer } from "mobx-react-lite";
-import { ExchangeAttemptTable } from "../overviews/ExchangeAttemptTable";
 import { ExchangeAttemptOverview } from "../overviews/ExchangeAttemptOverview";
 import { requestMatchCells } from "../../data/tables/matches";
 import { TExchangeAttemptType } from "../../typings/exchanges";

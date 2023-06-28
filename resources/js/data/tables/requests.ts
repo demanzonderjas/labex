@@ -7,8 +7,9 @@ import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { CopyButtonCell } from "../../components/overviews/table/custom/CopyButtonCell";
 import { DeleteButtonCell } from "../../components/overviews/table/custom/DeleteButtonCell";
 import { EditButtonCell } from "../../components/overviews/table/custom/EditButtonCell";
+import { ConnectButtonCell } from "../../components/overviews/table/custom/ConnectButton";
 
-export const requestCells: TTableCell[] = [
+const baseRequestCells: TTableCell[] = [
 	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
@@ -44,7 +45,11 @@ export const requestCells: TTableCell[] = [
 		id: TSpecificationName.Organs,
 		value: "",
 		Component: DateCell
-	},
+	}
+];
+
+export const requestCells: TTableCell[] = [
+	...baseRequestCells,
 	{
 		id: TTableCellName.IsMatch,
 		value: "",
@@ -64,5 +69,13 @@ export const requestCells: TTableCell[] = [
 		id: TTableCellName.DeleteButton,
 		value: "",
 		Component: DeleteButtonCell
+	}
+];
+
+export const connectRequestCells = [
+	...baseRequestCells,
+	{
+		id: TTableCellName.ConnectButton,
+		Component: ConnectButtonCell
 	}
 ];
