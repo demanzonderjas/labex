@@ -141,6 +141,15 @@ class ExchangeAttemptController extends Controller
 		return response()->json(["success" => true, "match" => $match->toArray()]);
 	}
 
+	public function connect(Request $request, $attempt_id)
+	{
+		$selectedAttempt = ExchangeAttempt::findOrFail($attempt_id);
+		$connectingAttempt = ExchangeAttempt::findOrFail($request->connecting_id);
+		$match = MatchController::create($selectedAttempt->id, $connectingAttempt->id);
+
+		return response()->json(["success" => true, "match" => $match->toArray()]);
+	}
+
 	public static function activateAlerts(ExchangeAttempt $attempt)
 	{
 		$alerts = Alert::where('user_id', '!=', $attempt->user->id)->get();
@@ -228,7 +237,6 @@ class ExchangeAttemptController extends Controller
 				})
 				->every(function ($checkSpec) use ($attemptToCheck, $attemptToMatch) {
 					$matchSpec = $attemptToMatch->getSpec($checkSpec->key);
-					echo $checkSpec->key;
 					if ($checkSpec->key === "organs") {
 						$organsToCheck = explode(", ", $checkSpec->value);
 						$organsToMatch = !empty($attemptToMatch->organs) ? explode(", ", $attemptToMatch->organs) : [];

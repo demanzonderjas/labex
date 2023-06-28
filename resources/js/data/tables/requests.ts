@@ -40,16 +40,16 @@ const baseRequestCells: TTableCell[] = [
 		id: TSpecificationName.DateRequested,
 		value: "",
 		Component: DateCell
-	},
-	{
-		id: TSpecificationName.Organs,
-		value: "",
-		Component: DateCell
 	}
 ];
 
 export const requestCells: TTableCell[] = [
 	...baseRequestCells,
+	{
+		id: TSpecificationName.Organs,
+		value: "",
+		Component: DateCell
+	},
 	{
 		id: TTableCellName.IsMatch,
 		value: "",

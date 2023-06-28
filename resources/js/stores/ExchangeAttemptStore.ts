@@ -14,12 +14,7 @@ import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
 import { fieldMeetsDependencies } from "../utils/filters/fields";
 import { FilterRequestsForm } from "../data/forms/ExchangeAttemptRequest";
 import { matchMeetsHardFilters } from "../utils/filters/matches";
-import {
-	offerMatchCells,
-	offerMatchColumns,
-	requestMatchCells,
-	requestMatchColumns
-} from "../data/tables/matches";
+import { offerMatchCells, offerMatchColumns, requestMatchCells, requestMatchColumns } from "../data/tables/matches";
 import { TExchangeAttempt, TExchangeAttemptType, TSpecificationName } from "../typings/exchanges";
 
 export class ExchangeAttemptStore {
@@ -53,9 +48,7 @@ export class ExchangeAttemptStore {
 	}
 
 	@computed get targetFields() {
-		return this.matchType == TExchangeAttemptType.Offer
-			? SubmitOfferForm.fields
-			: FilterRequestsForm.fields;
+		return this.matchType == TExchangeAttemptType.Offer ? SubmitOfferForm.fields : FilterRequestsForm.fields;
 	}
 
 	@computed get targetMatchCells() {
@@ -63,26 +56,17 @@ export class ExchangeAttemptStore {
 	}
 
 	@computed get magicTargetColumns() {
-		return this.matchType == TExchangeAttemptType.Offer
-			? offerMatchColumns
-			: requestMatchColumns;
+		return this.matchType == TExchangeAttemptType.Offer ? offerMatchColumns : requestMatchColumns;
 	}
 
 	@computed get matches() {
 		return this.attempts
 			.filter(attempt => matchMeetsHardFilters(attempt, this.filters))
 			.map(attempt => {
-				const filledSampleFields = fillFieldsWithSpecifications(
-					this.targetFields,
-					attempt.specifications
-				);
+				const filledSampleFields = fillFieldsWithSpecifications(this.targetFields, attempt.specifications);
 				return {
 					...attempt,
-					match_percentage: getMatchingPercentage(
-						attempt,
-						this.filters,
-						filledSampleFields
-					)
+					match_percentage: getMatchingPercentage(attempt, this.filters, filledSampleFields)
 				};
 			})
 			.filter(attempt => attempt.match_percentage > 0)
@@ -116,14 +100,8 @@ export class ExchangeAttemptStore {
 	@action.bound setFilters(filters, updateHistory = true) {
 		this.filters = filters;
 		if (updateHistory) {
-			const querystring = createQueryStringFromFilters(
-				filters.filter(fieldMeetsDependencies)
-			);
-			window.history.pushState(
-				"filter",
-				"Updated filters",
-				window.location.pathname + querystring
-			);
+			const querystring = createQueryStringFromFilters(filters.filter(fieldMeetsDependencies));
+			window.history.pushState("filter", "Updated filters", window.location.pathname + querystring);
 		}
 	}
 
@@ -134,14 +112,8 @@ export class ExchangeAttemptStore {
 		}));
 	}
 
-	@action.bound async getExchangeAttempts(
-		attemptType: TExchangeAttemptType,
-		mineOnly: boolean,
-		adminView: boolean
-	) {
-		const response = mineOnly
-			? await getMyLatestExchangeAttempts()
-			: await getExchangeAttempts(attemptType, adminView);
+	@action.bound async getExchangeAttempts(attemptType: TExchangeAttemptType, mineOnly: boolean, adminView: boolean) {
+		const response = mineOnly ? await getMyLatestExchangeAttempts() : await getExchangeAttempts(attemptType, adminView);
 		if (response.success) {
 			this.setAttempts(response.exchange_attempts);
 			this.setMatchType(attemptType);
@@ -157,6 +129,7 @@ export class ExchangeAttemptStore {
 	}
 
 	@action.bound addAttempt(data) {
+		console.log("redirect");
 		const { exchange_attempt } = data;
 		this.attempts = [...this.attempts, exchange_attempt];
 		location.href = "/app/dashboard";

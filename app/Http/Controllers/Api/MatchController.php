@@ -20,7 +20,7 @@ class MatchController extends Controller
 {
     public function getAll()
     {
-        $matches = MaterialMatch::whereActiveUserIsLocationAdmin()->append('is_approved_by_you')->sortBy('updated_at')->values();
+        $matches = MaterialMatch::whereActiveUserIsLocationAdmin()->append('is_approved_by_you')->sortByDesc('updated_at')->values();
         return response()->json(["success" => true, "matches" => $matches->toArray()]);
     }
 

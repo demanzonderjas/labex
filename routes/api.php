@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::middleware('auth.owner')->post('exchange-attempt/{attempt_id}/delete', 'ExchangeAttemptController@deleteById');
         Route::middleware('auth.owner')->post('exchange-attempt/{attempt_id}/update', 'ExchangeAttemptController@update');
         Route::post('exchange-attempt/match/{attempt_id}', 'ExchangeAttemptController@match');
+        Route::post('exchange-attempt/connect/{attempt_id}', 'ExchangeAttemptController@connect');
 
         Route::get('my-matches', 'MatchController@user');
         Route::get('my-latest-match', 'MatchController@myLatest');

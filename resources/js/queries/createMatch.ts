@@ -14,7 +14,7 @@ export async function createMatch(specifications: any, attemptId: string) {
 
 export async function connectMatch(connectingId: number, targetId: number) {
 	try {
-		const response = await API.post(`exchange-attempt/match/${targetId}`, {
+		const response = await API.post(`exchange-attempt/connect/${targetId}`, {
 			connecting_id: connectingId
 		});
 		return response.data;

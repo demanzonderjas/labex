@@ -12,7 +12,7 @@ export enum TOverviewType {
 export type TTableCell = {
 	id: TSpecificationName | TTableCellName | TFormFieldName;
 	label?: string;
-	value: any;
+	value?: any;
 	Component: React.FC<TTableCellProps>;
 };
 
