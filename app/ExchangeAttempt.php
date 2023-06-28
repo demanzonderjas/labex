@@ -27,7 +27,12 @@ class ExchangeAttempt extends Model
 
 	public function matchViaOffer()
 	{
-		return $this->hasMany(MaterialMatch::class, 'offer_id');
+		return $this->hasMany(MaterialMatch::class, 'offer_id')->where('status', '!=', 'rejected');
+	}
+
+	public function matchViaRequest()
+	{
+		return $this->hasMany(MaterialMatch::class, 'request_id')->where('status', '!=', 'rejected');
 	}
 
 	public function adoptionInfo()
@@ -35,10 +40,6 @@ class ExchangeAttempt extends Model
 		return $this->hasOne(AdoptionInfo::class, 'offer_id');
 	}
 
-	public function matchViaRequest()
-	{
-		return $this->hasMany(MaterialMatch::class, 'request_id');
-	}
 
 	public function scopeRequests($query)
 	{
