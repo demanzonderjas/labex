@@ -60,15 +60,15 @@ class ExchangeAttemptController extends Controller
 		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
 
-	public function getMyRequests(Request $request)
+	public function getMine(Request $request)
 	{
 		$exchange_attempts = ExchangeAttempt::where([
 			'user_id' => $request->user()->id,
-			'attempt_type' => 'request',
+			'attempt_type' => $request->attempt_type,
 			'status' => 'active'
 		])->latest()->get();
 
-		return response()->json(["success" => true, "requests" => ExchangeAttemptResource::collection($exchange_attempts)]);
+		return response()->json(["success" => true, "attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
 
 	public function deleteById($id)

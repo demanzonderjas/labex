@@ -17,7 +17,7 @@ import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 import { UserProfile } from "../components/match/UserProfile";
 import { TUserProfile } from "../typings/user";
-import { TExchangeAttempt } from "../typings/exchanges";
+import { TExchangeAttempt, TExchangeAttemptType } from "../typings/exchanges";
 import { MatchControls } from "../components/match/MatchControls";
 import { connectRequestMatchModal } from "../data/modals/matches";
 
@@ -65,7 +65,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 
 	const connectRequestMatchModalData = {
 		...connectRequestMatchModal,
-		props: { offerId: id }
+		props: { offerId: id, type: TExchangeAttemptType.Request }
 	};
 
 	if (isMatch === null || !userProfile) {

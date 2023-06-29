@@ -11,6 +11,7 @@ import { ManageAdoptionCell } from "../../components/overviews/table/custom/Mana
 import { AgeCell } from "../../components/overviews/table/AgeCell";
 import { TFormFieldName } from "../../typings/forms";
 import { UserCell } from "../../components/overviews/table/custom/UserCell";
+import { ConnectButtonCell } from "../../components/overviews/table/custom/ConnectButton";
 
 export const offerColumns: string[] = [
 	TSpecificationName.ExchangeType,
@@ -23,7 +24,7 @@ export const offerColumns: string[] = [
 	"copy_header"
 ];
 
-export const offerCells: TTableCell[] = [
+export const baseOfferCells: TTableCell[] = [
 	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
@@ -54,7 +55,11 @@ export const offerCells: TTableCell[] = [
 		id: TSpecificationName.DateAvailableEnd,
 		value: "",
 		Component: DateAvailableCell
-	},
+	}
+];
+
+export const offerCells: TTableCell[] = [
+	...baseOfferCells,
 	{
 		id: TTableCellName.IsMatch,
 		value: "",
@@ -167,5 +172,13 @@ export const adminOfferCells: TTableCell[] = [
 		label: "manage_adoption",
 		value: "",
 		Component: ManageAdoptionCell
+	}
+];
+
+export const connectOffersCells = [
+	...baseOfferCells,
+	{
+		id: TTableCellName.ConnectButton,
+		Component: ConnectButtonCell
 	}
 ];

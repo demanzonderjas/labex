@@ -4,18 +4,22 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { convertMatchesToCells } from "../../utils/formatting/matches";
 import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { connectRequestCells } from "../../data/tables/requests";
+import { TExchangeAttemptType } from "../../typings/exchanges";
+import { connectOffersCells } from "../../data/tables/offers";
 
-export const ConnectTable: React.FC = observer(() => {
+export const ConnectTable: React.FC<{ type: TExchangeAttemptType }> = observer(({ type }) => {
 	const { t } = useTranslationStore();
 	const { attempts } = useExchangeAttemptStore();
 
-	const attemptsAsCells = convertMatchesToCells(attempts, connectRequestCells);
+	const cells = type === TExchangeAttemptType.Offer ? connectOffersCells : connectRequestCells;
+
+	const attemptsAsCells = convertMatchesToCells(attempts, cells);
 
 	return (
 		<table className="not-centered">
 			<thead>
 				<tr>
-					{connectRequestCells.map(cell => (
+					{cells.map(cell => (
 						<th key={cell.id}>{t(cell.label || cell.id)}</th>
 					))}
 				</tr>

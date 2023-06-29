@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import ExchangeAttemptStoreProvider from "../../contexts/ExchangeAttemptContext";
 import { ExchangeAttemptStore } from "../../stores/ExchangeAttemptStore";
-import { getMyRequests } from "../../queries/getExchangeAttempts";
+import { getMyAttempts } from "../../queries/getExchangeAttempts";
 import { ConnectTable } from "./ConnectTable";
+import { TExchangeAttemptType } from "../../typings/exchanges";
 
 type Props = {
-	offerId: string;
+	type: TExchangeAttemptType;
 };
 
-export const ConnectRequestMatchForm: React.FC<Props> = () => {
+export const ConnectMatchForm: React.FC<Props> = ({ type }) => {
 	const [attemptStore] = useState(new ExchangeAttemptStore());
 
 	useEffect(() => {
 		(async () => {
-			const response = await getMyRequests();
-			attemptStore.setAttempts(response.requests || []);
+			const response = await getMyAttempts(type);
+			attemptStore.setAttempts(response.attempts || []);
 		})();
 	}, []);
 
 	return (
 		<ExchangeAttemptStoreProvider store={attemptStore}>
-			<ConnectTable />
+			<ConnectTable type={type} />
 		</ExchangeAttemptStoreProvider>
 	);
 };

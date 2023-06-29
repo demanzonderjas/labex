@@ -1,4 +1,4 @@
-import { ConnectRequestMatchForm } from "../../components/match/ConnectRequestMatchForm";
+import { ConnectMatchForm } from "../../components/match/ConnectMatchForm";
 import { ApproveMatchModal } from "../../components/modals/ApproveMatch";
 import { MatchesModal } from "../../components/modals/Matches";
 import { RejectMatchModal } from "../../components/modals/RejectMatch";
@@ -31,7 +31,15 @@ export const approveMatchModal: TModal = {
 export const connectRequestMatchModal: TModal = {
 	header: "connect_request",
 	description: "connect_request_description",
-	Component: ConnectRequestMatchForm,
+	Component: ConnectMatchForm,
+	props: {},
+	handleConfirm: null
+};
+
+export const connectOfferMatchModal: TModal = {
+	header: "connect_offer",
+	description: "connect_offer_description",
+	Component: ConnectMatchForm,
 	props: {},
 	handleConfirm: null
 };
