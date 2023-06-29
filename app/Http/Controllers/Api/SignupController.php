@@ -15,6 +15,12 @@ class SignupController extends Controller
 {
     public function store(Request $request)
     {
+
+        $existingEmail = Signup::where('email', $request->email)->first();
+        if (!empty($existingEmail)) {
+            return response()->json(["success" => false, "message" => "Email already exists."]);
+        }
+
         $signup = new Signup($request->all());
         $signup->save();
 
