@@ -18,7 +18,7 @@ class SignupController extends Controller
 
         $existingEmail = Signup::where('email', $request->email)->first();
         if (!empty($existingEmail)) {
-            return response()->json(["success" => false, "message" => "Email already exists."]);
+            return response()->json(["success" => false, "message" => "Email address already exists."]);
         }
 
         $signup = new Signup($request->all());
