@@ -129,7 +129,6 @@ export class ExchangeAttemptStore {
 	}
 
 	@action.bound addAttempt(data) {
-		console.log("redirect");
 		const { exchange_attempt } = data;
 		this.attempts = [...this.attempts, exchange_attempt];
 		location.href = "/app/dashboard";

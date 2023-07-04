@@ -100,12 +100,10 @@ export class FormStore {
 			this.setIsLoading(true);
 			const data = this.generateKeyValuePairs();
 			const response = await this.handler(data);
-			console.log("response", response);
 			if (!response.success) {
 				this.serverError = response.message;
 				this.setIsLoading(false);
 			} else {
-				console.log("success!");
 				setTimeout(() => {
 					this.setIsLoading(false);
 					this.resetForm();

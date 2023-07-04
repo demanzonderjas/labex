@@ -95,6 +95,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					handleBack={goBack}
 					handleSelect={() => setModal(selectMatchModalData)}
 					handleConnect={() => setModal(connectOfferMatchModalData)}
+					connectType={TExchangeAttemptType.Offer}
 				/>
 			)}
 			<div className="layout-wrapper SelectMatchPage">
@@ -104,7 +105,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					<div className="button-wrapper">
 						<BlankButton label="return_to_overview" handleClick={goBack} />
 						<SecondaryButton label="select_match" handleClick={() => setModal(selectMatchModalData)} />
-						<TertiaryButton label="connect_to_existing" handleClick={() => setModal(connectOfferMatchModalData)} />
+						<TertiaryButton label="connect_to_offer" handleClick={() => setModal(connectOfferMatchModalData)} />
 					</div>
 				)}
 			</div>

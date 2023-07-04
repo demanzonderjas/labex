@@ -10,7 +10,6 @@ export const ConnectButtonCell: React.FC<TTableCellProps> = ({ attempt, ...props
 	const history = useHistory();
 
 	const confirmMatch = async () => {
-		console.log("connect", attempt.id, modal.props.offerId);
 		await connectMatch(attempt.id, modal.props.offerId);
 		confirm();
 		history.push("/app/my-matches?info=true");

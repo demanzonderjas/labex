@@ -89,6 +89,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 					handleBack={goBack}
 					handleSelect={() => setModal(selectMatchModalData)}
 					handleConnect={() => setModal(connectRequestMatchModalData)}
+					connectType={TExchangeAttemptType.Request}
 				/>
 			)}
 			<div className="layout-wrapper SelectMatchPage">
