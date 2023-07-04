@@ -13,12 +13,7 @@ export function useSortedTable(rows: any[], defaultKey?: string, filter?: string
 	};
 
 	const sorted = rows
-		.filter(
-			s =>
-				!filter ||
-				s.name.toLowerCase().match(filter.toLowerCase()) ||
-				s.email.toLowerCase().match(filter.toLowerCase())
-		)
+		.filter(s => !filter || s.name.toLowerCase().match(filter.toLowerCase()) || s.email.toLowerCase().match(filter.toLowerCase()))
 		.sort((a, b) => {
 			if (!sortingKey) {
 				return 0;
@@ -29,6 +24,14 @@ export function useSortedTable(rows: any[], defaultKey?: string, filter?: string
 				if (timeA < timeB) {
 					return reverse ? 1 : -1;
 				} else if (timeA > timeB) {
+					return reverse ? -1 : 1;
+				} else {
+					return 0;
+				}
+			} else if (sortingKey === "amount") {
+				if (+a[sortingKey] < +b[sortingKey]) {
+					return reverse ? 1 : -1;
+				} else if (+a[sortingKey] > +b[sortingKey]) {
 					return reverse ? -1 : 1;
 				} else {
 					return 0;
