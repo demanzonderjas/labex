@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Signup extends Model
 {
-    protected $fillable = ["name", "email", "organisation"];
+    protected $fillable = ["name", "email", "organisation", "awaiting_approval", "approved"];
 
     public function scopeWhereUserIsOrganisationAdmin(Builder $query)
     {
