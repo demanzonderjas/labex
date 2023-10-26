@@ -19,6 +19,7 @@ export type TExchangeAttempt = {
 	adoption_info?: TAdoptionInfo;
 	specifications: TSpecification[];
 	created_at: string;
+	remaining: string | number;
 };
 
 export type TExportableOffer = TExchangeAttempt & {
@@ -63,7 +64,8 @@ export enum TSpecificationName {
 	Location = "location",
 	Status = "status",
 	OriginId = "origin_id",
-	AnimalNumbers = "animal_numbers"
+	AnimalNumbers = "animal_numbers",
+	Remaining = "remaining"
 }
 
 export type TMatch = {

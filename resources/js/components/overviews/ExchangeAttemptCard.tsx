@@ -8,17 +8,9 @@ import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { useModalStore } from "../../hooks/useModalStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { deleteAttemptQuery } from "../../queries/deleteAttempt";
-import {
-	TExchangeAttempt,
-	TExchangeAttemptType,
-	TSpecificationName
-} from "../../typings/exchanges";
+import { TExchangeAttempt, TExchangeAttemptType, TSpecificationName } from "../../typings/exchanges";
 import { TOverviewType, TTableCell } from "../../typings/overviews";
-import {
-	createQueryStringFromFilters,
-	fillFieldsWithSpecifications,
-	getMatchClasses
-} from "../../utils/formatting/matches";
+import { createQueryStringFromFilters, fillFieldsWithSpecifications, getMatchClasses } from "../../utils/formatting/matches";
 import { createQueryStringFromSpecs } from "../../utils/formatting/samples";
 import { Button, DangerButton } from "../base/Button";
 import { Percentage } from "../base/Percentage";
@@ -36,14 +28,10 @@ export const ExchangeAttemptCard: React.FC<{
 	const { setModal, confirm } = useModalStore();
 	const { deleteAttempt, magicField, filters } = useExchangeAttemptStore();
 
-	const targetFields =
-		attempt.attempt_type === TExchangeAttemptType.Offer
-			? SubmitOfferForm.fields
-			: FilterOffersForm.fields;
+	const targetFields = attempt.attempt_type === TExchangeAttemptType.Offer ? SubmitOfferForm.fields : FilterOffersForm.fields;
 	const fields = fillFieldsWithSpecifications(targetFields, attempt.specifications);
 	const history = useHistory();
-	const matchPercentage = specsToShow.find(s => s.id === TSpecificationName.MatchPercentage)
-		?.value;
+	const matchPercentage = specsToShow.find(s => s.id === TSpecificationName.MatchPercentage)?.value;
 	const classes = getMatchClasses(matchPercentage ? matchPercentage.value : 0);
 	const isGenericCard = type === TOverviewType.Cards;
 
@@ -56,9 +44,7 @@ export const ExchangeAttemptCard: React.FC<{
 	return (
 		<div
 			className={cx("OfferCard Card", { DashboardCard: !isGenericCard })}
-			onClick={
-				isGenericCard ? () => goToSelectMatchLink(history, attempt, filters) : undefined
-			}
+			onClick={isGenericCard ? () => goToSelectMatchLink(history, attempt, filters) : undefined}
 		>
 			{isGenericCard && (
 				<div className="match">
@@ -71,41 +57,20 @@ export const ExchangeAttemptCard: React.FC<{
 			)}
 			<div className="details">
 				{specsToShow
-					.filter(
-						column =>
-							!!column &&
-							column.id != "match_percentage" &&
-							!column.id.match("button")
-					)
+					.filter(column => !!column && column.id != "match_percentage" && !column.id.match("button"))
 					.map(column => (
 						<div key={column.id} className="info-block">
-							<label>
-								{magicField && column.id === "magic_cell"
-									? t(magicField.id)
-									: t(column.label || column.id)}
-							</label>
-							<SampleValue
-								value={column.value}
-								label={column.label || column.id}
-								fields={fields}
-							/>
+							<label>{magicField && column.id === "magic_cell" ? t(magicField.id) : t(column.label || column.id)}</label>
+							<SampleValue value={column.value} label={column.label || column.id} fields={fields} attempt={attempt} />
 						</div>
 					))}
 			</div>
 			{!isGenericCard && (
 				<div className="button-spacer">
 					{!attempt?.is_match && (
-						<Button
-							classes={{ small: true, primary: true }}
-							label="edit"
-							handleClick={() => goToEditLink(history, attempt)}
-						/>
+						<Button classes={{ small: true, primary: true }} label="edit" handleClick={() => goToEditLink(history, attempt)} />
 					)}
-					<Button
-						classes={{ small: true, primary: true }}
-						label="copy"
-						handleClick={() => goToCopyLink(history, attempt)}
-					/>
+					<Button classes={{ small: true, primary: true }} label="copy" handleClick={() => goToCopyLink(history, attempt)} />
 					{!attempt?.is_match && (
 						<DangerButton
 							classes={{ small: true }}

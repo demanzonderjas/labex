@@ -4,11 +4,7 @@ import { MatchType as TMatchType } from "../../typings/overviews";
 import { getStatusFromMatch } from "../../utils/matches/status";
 import { convertDateToReadableString } from "../../utils/formatting/datetime";
 import { getMatchingPercentage } from "../../utils/matches/utils";
-import {
-	createMatchSpecs,
-	createQueryStringFromFilters,
-	fillFieldsWithSpecifications
-} from "../../utils/formatting/matches";
+import { createMatchSpecs, createQueryStringFromFilters, fillFieldsWithSpecifications } from "../../utils/formatting/matches";
 import { SubmitOfferForm } from "../../data/forms/ExchangeAttemptOffer";
 import { RequestMatchCardFields } from "../../data/forms/ExchangeAttemptRequest";
 import { Percentage } from "../base/Percentage";
@@ -34,17 +30,11 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const dateString = convertDateToReadableString(match.updated_at);
 	const history = useHistory();
 
-	const offerFields = fillFieldsWithSpecifications(
-		SubmitOfferForm.fields,
-		match.offer.specifications
-	);
-	const requestFields = fillFieldsWithSpecifications(
-		RequestMatchCardFields.fields,
-		match.request.specifications
-	);
+	const offerFields = fillFieldsWithSpecifications(SubmitOfferForm.fields, match.offer.specifications);
+	const requestFields = fillFieldsWithSpecifications(RequestMatchCardFields.fields, match.request.specifications);
 
-	const offerSpecs = createMatchSpecs(offerFields, requestFields);
-	const requestSpecs = createMatchSpecs(requestFields, offerFields);
+	const offerSpecs = createMatchSpecs(offerFields, requestFields, {});
+	const requestSpecs = createMatchSpecs(requestFields, offerFields, {});
 
 	const percentage = getMatchingPercentage(match.offer, requestFields, offerFields);
 	const linkFilters = createQueryStringFromFilters(requestFields);
@@ -84,27 +74,19 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 				<div
 					className={cx("cards", { admin: matchType == TMatchType.Admin })}
 					onClick={
-						matchType != TMatchType.Admin
-							? () =>
-									history.push(
-										`/app/offers/select/${match.offer.id}${linkFilters}`
-									)
-							: undefined
+						matchType != TMatchType.Admin ? () => history.push(`/app/offers/select/${match.offer.id}${linkFilters}`) : undefined
 					}
 				>
 					<MatchCard
 						matchType={
-							matchType === TMatchType.Admin
-								? TMatchType.Admin
-								: requestIsMine
-								? TMatchType.Requests
-								: TMatchType.Offers
+							matchType === TMatchType.Admin ? TMatchType.Admin : requestIsMine ? TMatchType.Requests : TMatchType.Offers
 						}
 						mine={true}
 						specs={requestIsMine ? requestSpecs : offerSpecs}
 						user={requestIsMine ? match.request.user : match.offer.user}
 						status={status}
 						id={requestIsMine ? match.request.id : match.offer.id}
+						attempt={match.request}
 					/>
 					<MatchCard
 						mine={false}
@@ -113,6 +95,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 						user={requestIsMine ? match.offer.user : match.request.user}
 						status={status}
 						id={requestIsMine ? match.offer.id : match.request.id}
+						attempt={match.offer}
 					/>
 				</div>
 			</div>

@@ -8,21 +8,23 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { fieldIsNotHidden, fieldMeetsDependencies } from "../../utils/filters/fields";
 import { MATCH_CHART_COLORS } from "../../data/configs/colors";
+import { TExchangeAttempt } from "../../typings/exchanges";
 
 type Props = {
 	fields: TFormField[];
 	filters: TFormField[];
 	matchPercentage: number;
+	attempt: TExchangeAttempt;
 };
 
-export const Specifications: React.FC<Props> = ({ fields, filters, matchPercentage }) => {
+export const Specifications: React.FC<Props> = ({ fields, filters, matchPercentage, attempt }) => {
 	const { t } = useTranslationStore();
 	const matches = fields.map(field => {
 		const filter = filters.find(f => f.id == field.id || f.id == field.matchVia);
 		if (!filter || !filter.value || filter.ignoreInMatch) {
 			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
-		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);
+		const matchStatus = checkIfFieldMatches(field, filter, filters, fields, attempt);
 		const match: TSpecMatch = {
 			status: matchStatus,
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
@@ -42,7 +44,7 @@ export const Specifications: React.FC<Props> = ({ fields, filters, matchPercenta
 						.filter(fieldIsNotHidden)
 						.filter(fieldMeetsDependencies)
 						.map(match => (
-							<Spec key={match.id} {...match} fields={fields} />
+							<Spec key={match.id} {...match} fields={fields} attempt={attempt} />
 						))}
 				</div>
 				<PieChart percentages={[matchPercentage, 100 - matchPercentage]} colors={MATCH_CHART_COLORS} />

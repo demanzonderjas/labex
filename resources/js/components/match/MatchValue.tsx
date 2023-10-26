@@ -3,6 +3,7 @@ import cx from "classnames";
 import { TFormField } from "../../typings/forms";
 import { SampleValue } from "./SampleValue";
 import { TSpecStatus } from "../../typings/specifications";
+import { TExchangeAttempt } from "../../typings/exchanges";
 
 type Props = {
 	value: string;
@@ -10,9 +11,10 @@ type Props = {
 	matchStatus: TSpecStatus;
 	specs: TFormField[];
 	neutral: boolean;
+	attempt: TExchangeAttempt;
 };
 
-export const MatchValue: React.FC<Props> = ({ value, matchStatus, label, specs, neutral }) => {
+export const MatchValue: React.FC<Props> = ({ value, matchStatus, label, specs, neutral, attempt }) => {
 	return (
 		<span
 			className={cx("MatchValue", {
@@ -21,7 +23,7 @@ export const MatchValue: React.FC<Props> = ({ value, matchStatus, label, specs, 
 				neutral
 			})}
 		>
-			<SampleValue value={value} label={label} fields={specs} />
+			<SampleValue value={value} label={label} fields={specs} attempt={attempt} />
 		</span>
 	);
 };

@@ -4,14 +4,10 @@ import { TUser } from "../../typings/user";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { MatchType } from "../../typings/overviews";
 import { MatchValue } from "./MatchValue";
-import {
-	fieldIsNotHidden,
-	fieldMeetsDependencies,
-	fieldShouldBeIgnoredInMatch
-} from "../../utils/filters/fields";
+import { fieldIsNotHidden, fieldMeetsDependencies, fieldShouldBeIgnoredInMatch } from "../../utils/filters/fields";
 import cx from "classnames";
 import { UserProfile } from "./UserProfile";
-import { TSpecificationName } from "../../typings/exchanges";
+import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
 import { TSpecStatus } from "../../typings/specifications";
 
 type Props = {
@@ -21,18 +17,15 @@ type Props = {
 	matchType: MatchType;
 	status?: string;
 	id?: number;
+	attempt: TExchangeAttempt;
 };
 
-export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, status, id }) => {
+export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, status, id, attempt }) => {
 	const { t } = useTranslationStore();
 	return (
 		<div className="MatchCard">
 			<div className="header">
-				<UserProfile
-					user={user}
-					mine={matchType != MatchType.Admin ? mine : false}
-					hideContact={true}
-				/>
+				<UserProfile user={user} mine={matchType != MatchType.Admin ? mine : false} hideContact={true} />
 				{matchType != MatchType.Admin && (
 					<div className={cx("match-label", { mine, [status]: true, [matchType]: mine })}>
 						{mine && <span>{t(`${matchType}_by_you`)}</span>}
@@ -49,6 +42,7 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 						specs={specs}
 						label="id"
 						neutral={true}
+						attempt={attempt}
 					/>
 				</div>
 				{specs
@@ -69,6 +63,7 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 								specs={specs}
 								label={spec.label}
 								neutral={fieldShouldBeIgnoredInMatch(spec)}
+								attempt={attempt}
 							/>
 						</div>
 					))}

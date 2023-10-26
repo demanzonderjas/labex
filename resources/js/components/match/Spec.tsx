@@ -4,15 +4,18 @@ import { TSpecMatch } from "../../typings/specifications";
 import { DisplayedDate } from "../base/DisplayedDate";
 import { SpecMatch } from "../base/SpecMatch";
 import { DisplayedAge } from "./Age";
+import { SampleValue } from "./SampleValue";
+import { TExchangeAttempt } from "../../typings/exchanges";
 
 type Props = {
 	label: string;
 	value: string;
 	match: TSpecMatch;
 	fields: any;
+	attempt: TExchangeAttempt;
 };
 
-export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
+export const Spec: React.FC<Props> = ({ label, value, match, fields, attempt }) => {
 	const { t } = useTranslationStore();
 
 	return (
@@ -32,7 +35,7 @@ export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
 						)}
 					</>
 				) : (
-					<span>{value ? t(value) : "-"}</span>
+					<SampleValue label={label} value={value ? t(value) : "-"} fields={fields} attempt={attempt} />
 				)}
 			</div>
 			<div className="column">

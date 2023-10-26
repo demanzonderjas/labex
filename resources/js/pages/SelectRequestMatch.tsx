@@ -24,6 +24,7 @@ import { connectOfferMatchModal } from "../data/modals/matches";
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const [request, setRequest] = useState([]);
+	const [attempt, setAttempt] = useState<TExchangeAttempt>(null);
 	const [matchPercentage, setMatchPercentage] = useState(0);
 	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [isMatch, setIsMatch] = useState(null);
@@ -62,6 +63,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				exchange_attempt: TExchangeAttempt;
 				success: boolean;
 			} = await getExchangeAttempt(id);
+			setAttempt(response.exchange_attempt);
 			const filledFields = fillFieldsWithSpecifications(RequestSpecificationsForm.fields, response.exchange_attempt.specifications);
 			setRequest(filledFields);
 			const _matchPercentage = getMatchingPercentage(response.exchange_attempt, sampleStore.filters, filledFields);
@@ -99,7 +101,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				/>
 			)}
 			<div className="layout-wrapper SelectMatchPage">
-				<Specifications fields={request} filters={filters} matchPercentage={matchPercentage} />
+				<Specifications fields={request} filters={filters} matchPercentage={matchPercentage} attempt={attempt} />
 				<UserProfile {...userProfile} />
 				{!isMatch && (
 					<div className="button-wrapper">

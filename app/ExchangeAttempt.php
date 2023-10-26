@@ -13,6 +13,8 @@ class ExchangeAttempt extends Model
 
 	public $with = ["specifications", "adoptionInfo"];
 
+	protected $appends = ["remaining"];
+
 	public $hidden = [];
 
 	public function user()
@@ -38,6 +40,14 @@ class ExchangeAttempt extends Model
 	public function adoptionInfo()
 	{
 		return $this->hasOne(AdoptionInfo::class, 'offer_id');
+	}
+
+	public function getRemainingAttribute()
+	{
+		if (empty($this->adoptionInfo)) {
+			return $this->amount;
+		}
+		return max($this->amount - $this->adoptionInfo->amount, 0);
 	}
 
 

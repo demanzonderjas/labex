@@ -24,6 +24,7 @@ import { connectRequestMatchModal } from "../data/modals/matches";
 export const SelectOfferMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const [offer, setOffer] = useState([]);
+	const [attempt, setAttempt] = useState<TExchangeAttempt>(null);
 	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [matchPercentage, setMatchPercentage] = useState(0);
 	const [isMatch, setIsMatch] = useState(null);
@@ -48,6 +49,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 			} = await getExchangeAttempt(id);
 			const filledFields = fillFieldsWithSpecifications(SubmitOfferForm.fields, response.exchange_attempt.specifications);
 			setOffer(filledFields);
+			setAttempt(response.exchange_attempt);
 			setIsMatch(response.exchange_attempt.is_match);
 			const _matchPercentage = getMatchingPercentage(response.exchange_attempt, sampleStore.filters, filledFields);
 			setMatchPercentage(_matchPercentage);
@@ -93,7 +95,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 				/>
 			)}
 			<div className="layout-wrapper SelectMatchPage">
-				<Specifications fields={offer} filters={filters} matchPercentage={matchPercentage} />
+				<Specifications fields={offer} filters={filters} matchPercentage={matchPercentage} attempt={attempt} />
 				<UserProfile {...userProfile} />
 				{!isMatch && (
 					<div className="button-wrapper" style={{ display: "flex", gap: "20px" }}>

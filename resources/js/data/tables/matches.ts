@@ -65,7 +65,8 @@ export const offerMatchCells: TTableCell[] = [
 		Component: TextCell
 	},
 	{
-		id: TSpecificationName.Amount,
+		id: TSpecificationName.Remaining,
+		label: "amount",
 		value: "",
 		Component: TextCell
 	},

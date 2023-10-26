@@ -31,7 +31,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const [myRequests, setMyRequests] = useState([]);
 	const [hasNumberError, setNumberError] = useState(false);
 	const [amount, setAmount] = useState(filters.find(f => f.id === TSpecificationName.Amount)?.value);
-	const matches = createMatchSpecs(fields, filters);
+	const matches = createMatchSpecs(fields, filters, {});
 	const history = useHistory();
 	const { t } = useTranslationStore();
 

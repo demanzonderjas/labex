@@ -47,7 +47,8 @@ export const baseOfferCells: TTableCell[] = [
 		Component: DateCell
 	},
 	{
-		id: TSpecificationName.Amount,
+		id: TSpecificationName.Remaining,
+		label: "amount",
 		value: "",
 		Component: TextCell
 	},

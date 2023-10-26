@@ -25,11 +25,7 @@ export function convertAttemptsToCells(attempts: TExchangeAttempt[], cells: TTab
 	});
 }
 
-export function convertMatchesToCells(
-	matches: TExchangeAttempt[],
-	cells: TTableCell[],
-	magicField?: TFormField
-): TTableCell[][] {
+export function convertMatchesToCells(matches: TExchangeAttempt[], cells: TTableCell[], magicField?: TFormField): TTableCell[][] {
 	return matches.map(match => {
 		return cells.map(cell => {
 			let spec = match.specifications.find(s => s.key === cell.id);
@@ -54,6 +50,8 @@ export function convertMatchesToCells(
 				return { ...cell, value: match.adoption_info?.code };
 			} else if (cell.id === TSpecificationName.OriginId) {
 				return { ...cell, value: match.origin_id };
+			} else if (cell.id === TSpecificationName.Remaining) {
+				return { ...cell, value: match.remaining };
 			}
 			return { ...cell, value: spec?.value || cell.value };
 		});
@@ -69,27 +67,16 @@ export function createQueryStringFromFilters(filters: TFormField[]) {
 	}, "");
 }
 
-export function convertAttemptsToMatches(
-	attempts: TExchangeAttempt[],
-	filters: TFormField[],
-	targetFields: TFormField[]
-) {
+export function convertAttemptsToMatches(attempts: TExchangeAttempt[], filters: TFormField[], targetFields: TFormField[]) {
 	const sortedAttempts = !filters.length
 		? attempts
 		: attempts
 				.filter(attempt => matchMeetsHardFilters(attempt, filters))
 				.map(attempt => {
-					const filledSampleFields = fillFieldsWithSpecifications(
-						targetFields,
-						attempt.specifications
-					);
+					const filledSampleFields = fillFieldsWithSpecifications(targetFields, attempt.specifications);
 					return {
 						...attempt,
-						match_percentage: getMatchingPercentage(
-							attempt,
-							filters,
-							filledSampleFields
-						)
+						match_percentage: getMatchingPercentage(attempt, filters, filledSampleFields)
 					};
 				})
 				.filter(attempt => attempt.match_percentage > 0);
@@ -106,10 +93,7 @@ export function fillFieldsWithKeyValuePairs(fields, pairs) {
 	});
 }
 
-export function fillFieldsWithSpecifications(
-	fields: TFormField[],
-	specifications: TSpecification[]
-) {
+export function fillFieldsWithSpecifications(fields: TFormField[], specifications: TSpecification[]) {
 	return fields.map(field => {
 		const spec = specifications.find(s => s.key === field.id);
 		if (!spec) {
@@ -119,13 +103,13 @@ export function fillFieldsWithSpecifications(
 	});
 }
 
-export function createMatchSpecs(fields, filters) {
+export function createMatchSpecs(fields, filters, attempt) {
 	return fields.map(field => {
 		const filter = filters.find(f => f.id == field.id);
 		if (!filter || !filter.value) {
 			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
-		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);
+		const matchStatus = checkIfFieldMatches(field, filter, filters, fields, attempt);
 		const match: TSpecMatch = {
 			status: matchStatus,
 			filterValue: filter.customValue ? filter.customValue(filters) : filter.value
