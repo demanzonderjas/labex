@@ -10,7 +10,7 @@ import { useModalStore } from "../../hooks/useModalStore";
 import { BlankButton, Button } from "../base/Button";
 import { createMatch } from "../../queries/createMatch";
 import { useHistory } from "react-router-dom";
-import { TSpecificationName } from "../../typings/exchanges";
+import { TExchangeAttempt, TSpecificationName } from "../../typings/exchanges";
 import { getMyLatestExchangeAttempts } from "../../queries/getExchangeAttempts";
 import { MatchOutstanding } from "./MatchOutstanding";
 
@@ -18,9 +18,10 @@ type Props = {
 	fields: TFormField[];
 	filters: TFormField[];
 	offerId: string;
+	attempt: TExchangeAttempt;
 };
 
-export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offerId }) => {
+export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offerId, attempt }) => {
 	if (!fields || !filters) {
 		return null;
 	}
@@ -28,10 +29,9 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
 	const [protocolNumber, setProtocolNumber] = useState("");
-	const [myRequests, setMyRequests] = useState([]);
 	const [hasNumberError, setNumberError] = useState(false);
 	const [amount, setAmount] = useState(filters.find(f => f.id === TSpecificationName.Amount)?.value);
-	const matches = createMatchSpecs(fields, filters, {});
+	const matches = createMatchSpecs(fields, filters, attempt || {});
 	const history = useHistory();
 	const { t } = useTranslationStore();
 

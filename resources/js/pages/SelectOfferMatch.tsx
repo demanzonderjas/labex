@@ -62,7 +62,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 
 	const selectMatchModalData = {
 		...confirmRequestMatchModal,
-		props: { fields: offer, filters, offerId: id }
+		props: { fields: offer, attempt, filters, offerId: id }
 	};
 
 	const connectRequestMatchModalData = {
