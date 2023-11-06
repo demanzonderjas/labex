@@ -42,7 +42,7 @@ export const SampleValue: React.FC<Props> = ({ value, label, fields, attempt }) 
 						.join(", ")}
 				</span>
 			)}
-			{label === "amount" && <span>{attempt.remaining || value}</span>}
+			{label === "amount" && <span>{attempt?.remaining || value}</span>}
 			{label === "amount_request" && <span>{value}</span>}
 			{label === "is_match" && (
 				<span style={{ marginLeft: "5px" }}>
