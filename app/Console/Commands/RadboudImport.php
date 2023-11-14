@@ -39,7 +39,7 @@ class RadboudImport extends Command
      */
     public function handle()
     {
-        Excel::import(new SignupImport, 'radboud-atex.xlsx');
+        Excel::import(new SignupImport, 'radboud-atex2.xlsx');
         info("import completed");
 
         return 0;

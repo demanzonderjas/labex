@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Signup;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class SignupImport implements ToModel
+class SignupImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -14,9 +15,9 @@ class SignupImport implements ToModel
      */
     public function model(array $row)
     {
-        $signup = Signup::firstOrNew(['email' => $row[1]]);
+        $signup = Signup::firstOrNew(['email' => $row['mail']]);
         $signup->fill([
-            'name' => $row[0],
+            'name' => $row['name'],
             'organisation' => 'radboudumc',
             'awaiting_approval' => false,
             'approved' => true
