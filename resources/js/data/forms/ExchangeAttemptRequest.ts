@@ -1,4 +1,4 @@
-import { TForm } from "../../typings/forms";
+import { TForm, TFormFieldName } from "../../typings/forms";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { strainRequestField } from "./fields/strain";
@@ -83,7 +83,12 @@ export const RequestMatchCardFields: TForm = {
 
 export const SubmitRequestForm: TForm = {
 	...FilterOffersForm,
-	fields: [...FilterOffersForm.fields, protocolNumberField, extraInfoField, animalNumbersField],
+	fields: [
+		...FilterOffersForm.fields.filter(f => f.id !== TFormFieldName.Organisation),
+		protocolNumberField,
+		extraInfoField,
+		animalNumbersField
+	],
 	matchable: false,
 	header: "submit_request",
 	intro: "submit_request_description",
