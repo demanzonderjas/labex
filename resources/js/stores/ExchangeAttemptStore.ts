@@ -125,6 +125,7 @@ export class ExchangeAttemptStore {
 	}
 
 	@action.bound setAttempts(attempts: TExchangeAttempt[]) {
+		console.log(attempts);
 		this.attempts = attempts;
 	}
 

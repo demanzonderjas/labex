@@ -2,14 +2,7 @@ import { TForm } from "../../typings/forms";
 import { animalSpeciesField } from "./fields/animalSpecies";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { strainRequestField } from "./fields/strain";
-import {
-	ageRequestField,
-	ageMinField,
-	ageMaxField,
-	ageTypeField,
-	ageRequestRangeField,
-	ageRangeRequestField
-} from "./fields/age";
+import { ageRequestField, ageMinField, ageMaxField, ageTypeField, ageRequestRangeField, ageRangeRequestField } from "./fields/age";
 import { sexRequestField } from "./fields/sex";
 import { originField } from "./fields/origin";
 import { spfField } from "./fields/spf";
@@ -25,6 +18,7 @@ import { flowchartModal } from "../modals/flowchart";
 import { attemptTypeRequestField } from "./fields/attemptType";
 import { adoptionField, adoptionFilterField } from "./fields/adoption";
 import { statusField } from "./fields/status";
+import { organisationFilterField } from "./fields/user/organisation";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",
@@ -46,7 +40,8 @@ export const FilterOffersForm: TForm = {
 		dateRequestedField,
 		killMethodField,
 		amountRequestedField,
-		attemptTypeRequestField
+		attemptTypeRequestField,
+		organisationFilterField
 	],
 	handler: sendExchangeAttempt,
 	matchable: true,
