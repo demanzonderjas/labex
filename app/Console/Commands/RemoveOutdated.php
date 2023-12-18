@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\ExchangeAttempt;
 use App\Mail\Admin\AdminSuitableForAdoptionDeactivatedEmail;
 use App\Mail\Admin\AdminSuitableForAdoptionReminderEmail;
+use App\Mail\SuitableForAdoptionDeactivatedEmail;
 use App\User;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
@@ -43,7 +44,7 @@ class RemoveOutdated extends Command
      */
     public function handle()
     {
-        $offers = ExchangeAttempt::offers()->get();
+        $offers = ExchangeAttempt::where('id', 257)->get();
         $now = Carbon::now();
         foreach ($offers as $offer) {
             if (!$offer->date_available || empty($offer->user)) {
@@ -55,14 +56,14 @@ class RemoveOutdated extends Command
             $date = Carbon::createFromFormat("Y-m-d", $offer->date_available);
             $endDate = $date->copy()->addDays(config('atex.constants.days_before_inactive'));
             if ($offer->type != config('atex.constants.exchange_type.conserved_tissue') && $endDate->isBefore($now) && $offer->status != config('atex.constants.exchange_attempt_status.inactive')) {
-                $offer->status = config('atex.constants.exchange_attempt_status.inactive');
-                $offer->save();
-
                 if ($offer->suitable_for_adoption && $offer->status === config('atex.constants.exchange_attempt_status.active')) {
                     foreach ($admins as $admin) {
                         Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
                     }
+                    Mail::to($offer->user)->queue(new SuitableForAdoptionDeactivatedEmail($offer));
                 }
+                $offer->status = config('atex.constants.exchange_attempt_status.inactive');
+                $offer->save();
             } else if ($date->diffInDays($now) === config('atex.constants.days_before_adoption_reminder') && $offer->suitable_for_adoption) {
                 foreach ($admins as $admin) {
                     Mail::to($admin)->queue(new AdminSuitableForAdoptionReminderEmail($offer));
