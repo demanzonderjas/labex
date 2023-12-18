@@ -15,7 +15,7 @@ export const DisplayedDate: React.FC<Props> = ({ value }) => {
 	}
 	return (
 		<div className="DisplayedDate inline">
-			<span>{prefixWithZeroBelow9(day)}</span>
+			<span>{prefixWithZeroBelow9(day.substring(0, 2))}</span>
 			<span>{prefixWithZeroBelow9(month)}</span>
 			<span>{year}</span>
 		</div>

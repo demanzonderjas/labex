@@ -52,6 +52,8 @@ export function convertMatchesToCells(matches: TExchangeAttempt[], cells: TTable
 				return { ...cell, value: match.origin_id };
 			} else if (cell.id === TSpecificationName.Remaining) {
 				return { ...cell, value: match.remaining };
+			} else if (cell.id === "deleted_at") {
+				return { ...cell, value: match.deleted_at };
 			}
 			return { ...cell, value: spec?.value || cell.value };
 		});

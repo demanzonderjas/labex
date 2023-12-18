@@ -157,6 +157,11 @@ export const adminOfferCells: TTableCell[] = [
 		Component: BooleanCell
 	},
 	{
+		id: TTableCellName.DeletedAt,
+		value: "",
+		Component: DateCell
+	},
+	{
 		id: TTableCellName.EditButton,
 		label: "edit",
 		value: "",

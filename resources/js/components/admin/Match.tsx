@@ -12,9 +12,7 @@ type Props = {
 };
 
 export const Match: React.FC<Props> = ({ match }) => {
-	const [amount, setAmount] = useState<number>(
-		+match.offer.specifications.find(s => s.key == TSpecificationName.Amount)?.value
-	);
+	const [amount, setAmount] = useState<number>(+match.offer.specifications.find(s => s.key == TSpecificationName.Amount)?.value);
 	const { t } = useTranslationStore();
 	const { updateMatchAmount } = useMatchStore();
 
@@ -22,17 +20,12 @@ export const Match: React.FC<Props> = ({ match }) => {
 		<div className="AdminMatch" key={match.id}>
 			<MatchCards match={match} matchType={MatchType.Admin} />
 			<div className="controls">
-				{(match.status === TMatchStatus.AwaitingApproval ||
-					match.status === TMatchStatus.ApprovedOnce) &&
+				{(match.status === TMatchStatus.AwaitingApproval || match.status === TMatchStatus.ApprovedOnce) &&
 					!match.is_approved_by_you && <ApproveButtons matchId={match.id} />}
 				<div className="UpdateMatchAmount">
 					<h3>{t("match_amount")}</h3>
 					<div className="InputField">
-						<input
-							type="number"
-							value={amount}
-							onChange={e => setAmount(+e.target.value)}
-						/>
+						<input type="number" value={amount} onChange={e => setAmount(+e.target.value)} />
 					</div>
 					<Button
 						label="change_amount"

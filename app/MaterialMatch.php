@@ -14,12 +14,12 @@ class MaterialMatch extends Model
 
     public function request()
     {
-        return $this->belongsTo(ExchangeAttempt::class, 'request_id');
+        return $this->belongsTo(ExchangeAttempt::class, 'request_id')->withTrashed();
     }
 
     public function offer()
     {
-        return $this->belongsTo(ExchangeAttempt::class, 'offer_id');
+        return $this->belongsTo(ExchangeAttempt::class, 'offer_id')->withTrashed();
     }
 
     public function adminActions()

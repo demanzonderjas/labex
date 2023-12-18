@@ -12,6 +12,7 @@ import { ExchangeAttemptTable } from "./ExchangeAttemptTable";
 import { OverviewSwitch } from "./OverviewSwitch";
 import cx from "classnames";
 import { useSortedTable } from "../../hooks/useSortedTable";
+import { toJS } from "mobx";
 
 export const ExchangeAttemptOverview: React.FC<{
 	type: TExchangeAttemptType;
@@ -22,15 +23,7 @@ export const ExchangeAttemptOverview: React.FC<{
 }> = observer(({ type, specsToShow, SHOW_LIMIT, mineOnly, adminView }) => {
 	const { t } = useTranslationStore();
 	const [shouldViewAll, setShouldViewAll] = useState(false);
-	const {
-		magicField,
-		filters,
-		targetFields,
-		overviewType,
-		offers,
-		requests,
-		getExchangeAttempts
-	} = useExchangeAttemptStore();
+	const { magicField, filters, targetFields, overviewType, offers, requests, getExchangeAttempts } = useExchangeAttemptStore();
 	const targetAttempts = type === TExchangeAttemptType.Offer ? offers : requests;
 	const sortedAttempts = convertAttemptsToMatches(targetAttempts, filters, targetFields);
 	const flattened = sortedAttempts.map(attempt => ({
@@ -72,11 +65,7 @@ export const ExchangeAttemptOverview: React.FC<{
 					rows={attemptsToShow}
 					type={type}
 					isCentered={!mineOnly && !adminView}
-					columns={
-						magicField
-							? specsToShow
-							: specsToShow.filter(cell => cell.id != "magic_cell")
-					}
+					columns={magicField ? specsToShow : specsToShow.filter(cell => cell.id != "magic_cell")}
 				/>
 			)}
 			{sortedAttempts.length > SHOW_LIMIT && !shouldViewAll && (

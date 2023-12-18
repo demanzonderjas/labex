@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ExchangeAttempt extends Model
 {
-	use HasFactory;
+	use HasFactory, SoftDeletes;
 
 	public $with = ["specifications", "adoptionInfo"];
 
@@ -165,6 +166,6 @@ class ExchangeAttempt extends Model
 	{
 		return $query->whereHas('user', function ($query) {
 			$query->whereIn('organisation', auth()->user()->adminRolesByValue());
-		})->with('user')->get();
+		})->with('user')->withTrashed()->get();
 	}
 }

@@ -308,5 +308,6 @@
 	"connect_request": "Connect this offer to your request",
 	"connect_request_description": "Choose one of your existing requests below and click the connect button if you want to finalize the match and connect your match to the selected offer.",
 	"connect_offer": "Connect this request to your offer",
-	"connect_offer_description": "Choose one of your existing offers below and click the connect button if you want to finalize the match and connect your match to the selected request."
+	"connect_offer_description": "Choose one of your existing offers below and click the connect button if you want to finalize the match and connect your match to the selected request.",
+	"deleted_at": "Deleted on"
 }

@@ -20,6 +20,7 @@ export type TExchangeAttempt = {
 	specifications: TSpecification[];
 	created_at: string;
 	remaining: string | number;
+	deleted_at: string;
 };
 
 export type TExportableOffer = TExchangeAttempt & {

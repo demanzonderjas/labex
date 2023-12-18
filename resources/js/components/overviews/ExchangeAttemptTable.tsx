@@ -49,23 +49,11 @@ export const ExchangeAttemptTable: React.FC<{
 				</thead>
 				<tbody>
 					{rows.map((specsToShow, idx) => (
-						<tr
-							key={idx}
-							onClick={
-								isCentered
-									? () => goToSelectMatchLink(history, attempts[idx], filters)
-									: undefined
-							}
-						>
+						<tr key={idx} onClick={isCentered ? () => goToSelectMatchLink(history, attempts[idx], filters) : undefined}>
 							{specsToShow
 								.filter(cell => !!cell)
 								.map((cell, cellIdx) => (
-									<cell.Component
-										key={cellIdx}
-										rowIndex={idx}
-										value={cell.value}
-										attempt={attempts[idx]}
-									/>
+									<cell.Component key={cellIdx} rowIndex={idx} value={cell.value} attempt={attempts[idx]} />
 								))}
 						</tr>
 					))}
