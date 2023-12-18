@@ -1,4 +1,5 @@
 import { InputField } from "../../../../components/form/InputField";
+import { MultiSelectField } from "../../../../components/form/MultiSelectField";
 import { SelectField } from "../../../../components/form/SelectField";
 import { InputType, TFormField, TFormFieldName } from "../../../../typings/forms";
 import { TSpecStatus } from "../../../../typings/specifications";
@@ -31,11 +32,13 @@ export const organisationSelectField: TFormField = {
 
 export const organisationFilterField: TFormField = {
 	...organisationSelectField,
+	Component: MultiSelectField,
 	required: false,
 	isHardFilter: true,
 	isMatch: (givenValue, _, __, ___, data) => {
-		const isPartOfOrganisation = !!data.user && data.user.organisation === givenValue;
-		const isSynonym = givenValue === "radboudumc.nl" && !!data.user && data.user.organisation === "umcn.nl";
+		const givenArray = givenValue.split(", ");
+		const isPartOfOrganisation = !!data.user && givenArray.some(org => org === data.user.organisation);
+		const isSynonym = givenArray.some(org => org === "radboudumc.nl") && !!data.user && data.user.organisation === "umcn.nl";
 
 		return isPartOfOrganisation || isSynonym ? TSpecStatus.Match : TSpecStatus.NoMatch;
 	},
