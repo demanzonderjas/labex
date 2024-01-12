@@ -44,7 +44,7 @@ class RemoveOutdated extends Command
      */
     public function handle()
     {
-        $offers = ExchangeAttempt::where('id', 257)->get();
+        $offers = ExchangeAttempt::offers()->get();
         $now = Carbon::now();
         foreach ($offers as $offer) {
             if (!$offer->date_available || empty($offer->user)) {
