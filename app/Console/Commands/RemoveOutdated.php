@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\ExchangeAttempt;
 use App\Mail\Admin\AdminSuitableForAdoptionDeactivatedEmail;
 use App\Mail\Admin\AdminSuitableForAdoptionReminderEmail;
+use App\Mail\NotSuitableForAdoptionDeactivatedEmail;
 use App\Mail\SuitableForAdoptionDeactivatedEmail;
 use App\User;
 use Illuminate\Console\Command;
@@ -61,6 +62,8 @@ class RemoveOutdated extends Command
                         Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
                     }
                     Mail::to($offer->user)->queue(new SuitableForAdoptionDeactivatedEmail($offer));
+                } else if (!$offer->suitable_for_adoption && $offer->status === config('atex.constants.exchange_attempt_status.active')) {
+                    Mail::to($offer->user)->queue(new NotSuitableForAdoptionDeactivatedEmail($offer));
                 }
                 $offer->status = config('atex.constants.exchange_attempt_status.inactive');
                 $offer->save();
