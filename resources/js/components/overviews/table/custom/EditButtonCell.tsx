@@ -1,12 +1,12 @@
 import React from "react";
 import { ButtonCell } from "../ButtonCell";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { goToAdminEditLink, goToEditLink } from "../../../../utils/routing/url";
 import { TTableCellProps } from "../../../../typings/overviews";
 import { useExchangeAttemptStore } from "../../../../hooks/useExchangeAttemptStore";
 
 export const EditButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ...props }) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const { adminView } = useExchangeAttemptStore();
 
 	if (attempt.is_match && !adminView) {
@@ -17,7 +17,7 @@ export const EditButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ...p
 		<ButtonCell
 			{...props}
 			handleClick={() =>
-				adminView ? goToAdminEditLink(history, attempt) : goToEditLink(history, attempt)
+				adminView ? goToAdminEditLink(navigate, attempt) : goToEditLink(navigate, attempt)
 			}
 			label="edit"
 			classes={{ primary: true }}

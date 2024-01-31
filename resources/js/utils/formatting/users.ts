@@ -1,5 +1,5 @@
 import { userCells } from "../../data/tables/users";
-import { TUser } from "../../typings/User";
+import { TUser } from "../../typings/user";
 
 export function mapUsersToOverviewData(users: TUser[]) {
 	return users.map((item) => {

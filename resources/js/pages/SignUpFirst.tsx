@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/base/Button";
 import { LocalImage } from "../components/base/Image";
 import { SignUpState } from "../components/home/SignupState";
@@ -10,7 +10,7 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 
 export const SignUpFirstPage: React.FC = () => {
 	const { t } = useTranslationStore();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	return (
 		<div className="SignUpFirstPage">

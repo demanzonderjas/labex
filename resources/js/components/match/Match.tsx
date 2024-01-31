@@ -7,13 +7,13 @@ import { getMatchingPercentage } from "../../utils/matches/utils";
 import {
 	createMatchSpecs,
 	createQueryStringFromFilters,
-	fillFieldsWithSpecifications
+	fillFieldsWithSpecifications,
 } from "../../utils/formatting/matches";
 import { SubmitOfferForm } from "../../data/forms/ExchangeAttemptOffer";
 import { RequestMatchCardFields } from "../../data/forms/ExchangeAttemptRequest";
 import { Percentage } from "../base/Percentage";
 import { MatchCard } from "./MatchCard";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import cx from "classnames";
 import { DangerButton } from "../base/Button";
 import { cancelMatch } from "../../queries/cancelMatch";
@@ -32,7 +32,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const { setModal, confirm } = useModalStore();
 	const status = getStatusFromMatch(match);
 	const dateString = convertDateToReadableString(match.updated_at);
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const offerFields = fillFieldsWithSpecifications(
 		SubmitOfferForm.fields,
@@ -74,7 +74,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 							handleClick={() =>
 								setModal({
 									...confirmCancelMatchModal,
-									handleConfirm: confirmCancel
+									handleConfirm: confirmCancel,
 								})
 							}
 							classes={{ small: true }}
@@ -85,10 +85,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 					className={cx("cards", { admin: matchType == MatchType.Admin })}
 					onClick={
 						matchType != MatchType.Admin
-							? () =>
-									history.push(
-										`/app/offers/select/${match.offer.id}${linkFilters}`
-									)
+							? () => navigate(`/app/offers/select/${match.offer.id}${linkFilters}`)
 							: undefined
 					}
 				>

@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/base/Button";
 import { faqItemColumns } from "../../data/tables/faq";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
@@ -8,32 +8,29 @@ import { getFaqItems } from "../../queries/admin/getFaqItems";
 import { mapFaqItemsToOverviewData } from "../../utils/formatting/faq";
 
 export const AdminFAQPage = observer(() => {
-    const { t } = useTranslationStore();
+	const { t } = useTranslationStore();
 	const [faqItems, setFaqItems] = useState([]);
-	const history = useHistory();
+	const navigate = useNavigate();
 
-    useEffect(() => {
-        (async () => {
-            const response = await getFaqItems();
-            setFaqItems(response.items);
-        })();
-	}, [])   
-	
+	useEffect(() => {
+		(async () => {
+			const response = await getFaqItems();
+			setFaqItems(response.items);
+		})();
+	}, []);
+
 	const faqItemsWithCells = mapFaqItemsToOverviewData(faqItems);
 
 	return (
-        <div className="AdminFAQPage">
-            <h1>{t("faq")}</h1>
+		<div className="AdminFAQPage">
+			<h1>{t("faq")}</h1>
 			<div className="button-wrapper margin-20">
-				<Button
-					label="create_faq_item"
-					handleClick={() => history.push("/admin/faq/create")}
-				/>
+				<Button label="create_faq_item" handleClick={() => navigate("/admin/faq/create")} />
 			</div>
-            <table className="not-centered">
+			<table className="not-centered">
 				<thead>
 					<tr>
-						{faqItemColumns.map(column => (
+						{faqItemColumns.map((column) => (
 							<th key={column}>{t(column)}</th>
 						))}
 					</tr>
@@ -53,6 +50,6 @@ export const AdminFAQPage = observer(() => {
 					))}
 				</tbody>
 			</table>
-        </div>
-    )
+		</div>
+	);
 });

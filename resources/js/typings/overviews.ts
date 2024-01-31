@@ -1,7 +1,7 @@
 import React from "react";
 import { TExchangeAttempt, TSpecificationName } from "./exchanges";
 import { TFormFieldName } from "./forms";
-import { TUser } from "./User";
+import { TUser } from "./user";
 
 export enum TOverviewType {
 	Cards,

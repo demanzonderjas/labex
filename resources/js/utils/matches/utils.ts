@@ -16,12 +16,12 @@ export function getMatchingPercentage(
 			fieldMeetsDependencies(filter, 0, fields) &&
 			!fieldShouldBeIgnoredInMatch(filter)
 	);
-	const matchingFilters: TSpecStatus[] = activeFilters.map(filter =>
+	const matchingFilters: TSpecStatus[] = activeFilters.map((filter) =>
 		checkIfFilterMatches(filter, attempt, filters, fields)
 	);
-	const fullMatchFilters = matchingFilters.filter(status => status === TSpecStatus.Match);
+	const fullMatchFilters = matchingFilters.filter((status) => status === TSpecStatus.Match);
 	const partialMatchFilters = matchingFilters.filter(
-		status => status === TSpecStatus.PartialMatch
+		(status) => status === TSpecStatus.PartialMatch
 	);
 	const PARTIAL_MATCH_WEIGHT = 0.5;
 	return (
@@ -37,7 +37,7 @@ export function checkIfFilterMatches(
 	filters: TFormField[],
 	fields: TFormField[]
 ) {
-	const matchingSpec = attempt.specifications.find(s => s.key == filter.id);
+	const matchingSpec = attempt.specifications.find((s) => s.key == filter.id);
 	return filter.isMatch
 		? filter.isMatch(filter.value, matchingSpec?.value, filters, fields, attempt)
 		: filter.value == matchingSpec?.value
@@ -63,7 +63,7 @@ export function checkIfFieldMatches(
 	return matchStatus;
 }
 
-export function goToSelectMatchLink(history, attempt: TExchangeAttempt, filters: TFormField[]) {
+export function goToSelectMatchLink(navigate, attempt: TExchangeAttempt, filters: TFormField[]) {
 	const queryStringFromFilters = createQueryStringFromFilters(filters);
-	history.push(`/app/${attempt.attempt_type}s/select/${attempt.id}${queryStringFromFilters}`);
+	navigate(`/app/${attempt.attempt_type}s/select/${attempt.id}${queryStringFromFilters}`);
 }

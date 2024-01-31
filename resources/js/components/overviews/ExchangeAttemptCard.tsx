@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SubmitOfferForm } from "../../data/forms/ExchangeAttemptOffer";
 import { FilterOffersForm } from "../../data/forms/ExchangeAttemptRequest";
 import { confirmDeleteModal } from "../../data/modals/confirm";
@@ -11,13 +11,13 @@ import { deleteAttemptQuery } from "../../queries/deleteAttempt";
 import {
 	TExchangeAttempt,
 	TExchangeAttemptType,
-	TSpecificationName
+	TSpecificationName,
 } from "../../typings/exchanges";
 import { TOverviewType, TTableCell } from "../../typings/overviews";
 import {
 	createQueryStringFromFilters,
 	fillFieldsWithSpecifications,
-	getMatchClasses
+	getMatchClasses,
 } from "../../utils/formatting/matches";
 import { createQueryStringFromSpecs } from "../../utils/formatting/samples";
 import { Button, DangerButton } from "../base/Button";
@@ -41,9 +41,10 @@ export const ExchangeAttemptCard: React.FC<{
 			? SubmitOfferForm.fields
 			: FilterOffersForm.fields;
 	const fields = fillFieldsWithSpecifications(targetFields, attempt.specifications);
-	const history = useHistory();
-	const matchPercentage = specsToShow.find(s => s.id === TSpecificationName.MatchPercentage)
-		?.value;
+	const navigate = useNavigate();
+	const matchPercentage = specsToShow.find(
+		(s) => s.id === TSpecificationName.MatchPercentage
+	)?.value;
 	const classes = getMatchClasses(matchPercentage ? matchPercentage.value : 0);
 	const isGenericCard = type === TOverviewType.Cards;
 
@@ -57,7 +58,7 @@ export const ExchangeAttemptCard: React.FC<{
 		<div
 			className={cx("OfferCard Card", { DashboardCard: !isGenericCard })}
 			onClick={
-				isGenericCard ? () => goToSelectMatchLink(history, attempt, filters) : undefined
+				isGenericCard ? () => goToSelectMatchLink(navigate, attempt, filters) : undefined
 			}
 		>
 			{isGenericCard && (
@@ -72,12 +73,12 @@ export const ExchangeAttemptCard: React.FC<{
 			<div className="details">
 				{specsToShow
 					.filter(
-						column =>
+						(column) =>
 							!!column &&
 							column.id != "match_percentage" &&
 							!column.id.match("button")
 					)
-					.map(column => (
+					.map((column) => (
 						<div key={column.id} className="info-block">
 							<label>
 								{magicField && column.id === "magic_cell"
@@ -98,13 +99,13 @@ export const ExchangeAttemptCard: React.FC<{
 						<Button
 							classes={{ small: true, primary: true }}
 							label="edit"
-							handleClick={() => goToEditLink(history, attempt)}
+							handleClick={() => goToEditLink(navigate, attempt)}
 						/>
 					)}
 					<Button
 						classes={{ small: true, primary: true }}
 						label="copy"
-						handleClick={() => goToCopyLink(history, attempt)}
+						handleClick={() => goToCopyLink(navigate, attempt)}
 					/>
 					{!attempt?.is_match && (
 						<DangerButton
@@ -113,7 +114,7 @@ export const ExchangeAttemptCard: React.FC<{
 							handleClick={() =>
 								setModal({
 									...confirmDeleteModal,
-									handleConfirm: deleteCallback
+									handleConfirm: deleteCallback,
 								})
 							}
 						/>

@@ -3,12 +3,12 @@ import { Menu } from "./Menu";
 import { LogoWrapper } from "./LogoWrapper";
 import { SubmitOfferButton } from "./SubmitOfferButton";
 import { SubmitRequestButton } from "./SubmitRequestButton";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../base/Button";
 import { LocalImage } from "../base/Image";
 
 export const Header = () => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	return (
 		<header>
 			<div className="layout-wrapper">
@@ -18,7 +18,7 @@ export const Header = () => {
 					<SubmitOfferButton />
 					<Button
 						label="alert_me"
-						handleClick={() => history.push("/app/alerts")}
+						handleClick={() => navigate("/app/alerts")}
 						classes={{ small: true, inline: true, tertiary: true }}
 					/>
 					<Button

@@ -32,7 +32,7 @@ $form-font-size: $default-font-size;
 $layout-wrapper-width: 1040px;
 $admin-layout-wrapper-width: 1500px;
 $default-margin: 32px;
-$default-half-margin: calc(#{$default-margin / 2});
+$default-half-margin: calc($default-margin / 2);
 $header-height: 190px;
 $footer-height: 300px;
 $sidebar-width: 130px;

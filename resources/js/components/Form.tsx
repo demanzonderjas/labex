@@ -11,7 +11,7 @@ import { TwoColumnPageIntro } from "./layout/PageIntro";
 import { Icon } from "./base/Image";
 import { useModalStore } from "../hooks/useModalStore";
 import { TModal } from "../typings/modals";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { RegularFormLayout } from "./form/layouts/RegularLayout";
 import { RequiredFormLayout } from "./form/layouts/RequiredLayout";
 
@@ -35,18 +35,18 @@ export const Form: React.FC<Props> = observer(
 		hideSubmit,
 		allowCancel,
 		fullWidthFields,
-		infoModal
+		infoModal,
 	}) => {
 		const { submit, isLoading, serverError, isCollapsed, resetForm, form } = useFormStore();
 		const { t } = useTranslationStore();
 		const { setModal } = useModalStore();
-		const history = useHistory();
+		const navigate = useNavigate();
 
 		return (
 			<div
 				className={cx("Form", {
 					collapsed: isCollapsed,
-					"full-width-fields": !!fullWidthFields
+					"full-width-fields": !!fullWidthFields,
 				})}
 			>
 				{header && (
@@ -84,10 +84,7 @@ export const Form: React.FC<Props> = observer(
 							>
 								<SubmitButton label={submitLabel} />
 								{allowCancel && (
-									<DangerButton
-										label="cancel"
-										handleClick={() => history.goBack()}
-									/>
+									<DangerButton label="cancel" handleClick={() => navigate(-1)} />
 								)}
 							</div>
 						)}

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { TExchangeAttempt, TExchangeAttemptType } from "../../typings/exchanges";
@@ -16,20 +16,20 @@ export const ExchangeAttemptTable: React.FC<{
 }> = ({ attempts, rows, columns, isCentered, type }) => {
 	const { t } = useTranslationStore();
 	const { filters, magicField } = useExchangeAttemptStore();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const magicColumns = () => {
 		if (!magicField) {
-			return columns.filter(column => column.id != TTableCellName.MagicCell);
+			return columns.filter((column) => column.id != TTableCellName.MagicCell);
 		}
 		const offerColumnsWithMagic = [...columns];
-		const targetIdx = offerColumnsWithMagic.findIndex(column => {
+		const targetIdx = offerColumnsWithMagic.findIndex((column) => {
 			return column.id == TTableCellName.MagicCell;
 		});
 		offerColumnsWithMagic[targetIdx] = {
 			...offerColumnsWithMagic[targetIdx],
 			//@ts-ignore
-			id: magicField.id
+			id: magicField.id,
 		};
 		return offerColumnsWithMagic;
 	};
@@ -39,7 +39,7 @@ export const ExchangeAttemptTable: React.FC<{
 			<table className={cx({ "not-centered": !isCentered, highlightable: isCentered })}>
 				<thead>
 					<tr>
-						{magicColumns().map(column => (
+						{magicColumns().map((column) => (
 							<th key={column.id}>{t(column.label || column.id)}</th>
 						))}
 					</tr>
@@ -55,7 +55,7 @@ export const ExchangeAttemptTable: React.FC<{
 							}
 						>
 							{specsToShow
-								.filter(cell => !!cell)
+								.filter((cell) => !!cell)
 								.map((cell, cellIdx) => (
 									<cell.Component
 										key={cellIdx}

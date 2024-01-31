@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { MatchesPage } from "./pages/admin/Matches";
 import { AdminDashboardPage } from "./pages/admin/Dashboard";
 import { Sidebar } from "./components/admin/Sidebar";
@@ -32,47 +32,47 @@ const App: React.FC = () => {
 					<div className="App Admin">
 						<Sidebar />
 						<div className="page-wrapper">
-							<Switch>
-								<Route path="/admin" exact={true}>
+							<Routes>
+								<Route path="/admin">
 									<AdminDashboardPage />
 								</Route>
 								<Route path="/admin/dashboard">
 									<AdminDashboardPage />
 								</Route>
-								<Route path="/admin/matches" exact={true}>
+								<Route path="/admin/matches">
 									<MatchesPage />
 								</Route>
-								<Route path="/admin/offers" exact={true}>
+								<Route path="/admin/offers">
 									<OffersPage />
 								</Route>
 								<Route path="/admin/offers/edit/:offer_id">
 									<AdminEditOfferPage />
 								</Route>
-								<Route path="/admin/offers/adoption/:offer_id" exact={true}>
+								<Route path="/admin/offers/adoption/:offer_id">
 									<OfferAdoptionPage />
 								</Route>
-								<Route path="/admin/signups" exact={true}>
+								<Route path="/admin/signups">
 									<SignupsPage />
 								</Route>
-								<Route path="/admin/faq" exact={true}>
+								<Route path="/admin/faq">
 									<AdminFAQPage />
 								</Route>
-								<Route path="/admin/faq/create" exact={true}>
+								<Route path="/admin/faq/create">
 									<FAQCreatePage />
 								</Route>
-								<Route path="/admin/faq/edit/:id" exact={true}>
+								<Route path="/admin/faq/edit/:id">
 									<FAQEditPage />
 								</Route>
-								<Route path="/admin/users" exact={true}>
+								<Route path="/admin/users">
 									<UsersPage />
 								</Route>
-								<Route path="/admin/users/add-user" exact={true}>
+								<Route path="/admin/users/add-user">
 									<UserCreatePage />
 								</Route>
-								<Route path="/admin/alerts" exact={true}>
+								<Route path="/admin/alerts">
 									<AdminAlertsPage />
 								</Route>
-							</Switch>
+							</Routes>
 						</div>
 						<ModalWrapper />
 					</div>

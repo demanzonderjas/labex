@@ -5,7 +5,7 @@ import { useQuery } from "../hooks/useQuery";
 import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
 import { FilterOffersForm } from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { Specifications } from "../components/match/Specifications";
 import {
@@ -19,7 +19,7 @@ import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 import { UserProfile } from "../components/match/UserProfile";
-import { TUserProfile } from "../typings/User";
+import { TUserProfile } from "../typings/user";
 import { TExchangeAttempt } from "../typings/exchanges";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {
@@ -32,11 +32,11 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
-	const history = useHistory();
+	const navigate = useNavigate();
 	const { id }: any = useParams();
 	const { t } = useTranslationStore();
 	const goBack = () => {
-		history.push(`/app/offers${window.location.search}`);
+		navigate(`/app/offers${window.location.search}`);
 	};
 
 	useEffect(() => {

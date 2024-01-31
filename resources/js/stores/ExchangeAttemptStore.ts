@@ -7,7 +7,7 @@ import {
 	fillFieldsWithKeyValuePairs,
 	createQueryStringFromFilters,
 	convertMatchesToCells,
-	fillFieldsWithSpecifications
+	fillFieldsWithSpecifications,
 } from "../utils/formatting/matches";
 import { PAGINATION_LIMIT } from "../data/configs/overviews";
 import { SubmitOfferForm } from "../data/forms/ExchangeAttemptOffer";
@@ -18,7 +18,7 @@ import {
 	offerMatchCells,
 	offerMatchColumns,
 	requestMatchCells,
-	requestMatchColumns
+	requestMatchColumns,
 } from "../data/tables/matches";
 import { TExchangeAttempt, TExchangeAttemptType, TSpecificationName } from "../typings/exchanges";
 
@@ -31,7 +31,7 @@ export class ExchangeAttemptStore {
 	@observable adminView: boolean = false;
 
 	constructor({ adminView }: { adminView?: boolean } = {}) {
-		const pref = (localStorage.getItem("overview_preference") as unknown) as TOverviewType;
+		const pref = localStorage.getItem("overview_preference") as unknown as TOverviewType;
 		if (pref) {
 			this.setOverviewType(pref);
 		}
@@ -42,14 +42,14 @@ export class ExchangeAttemptStore {
 		if (!this.attempts) {
 			return [];
 		}
-		return this.attempts.filter(a => a.attempt_type === TExchangeAttemptType.Offer);
+		return this.attempts.filter((a) => a.attempt_type === TExchangeAttemptType.Offer);
 	}
 
 	@computed get requests() {
 		if (!this.attempts) {
 			return [];
 		}
-		return this.attempts.filter(a => a.attempt_type === TExchangeAttemptType.Request);
+		return this.attempts.filter((a) => a.attempt_type === TExchangeAttemptType.Request);
 	}
 
 	@computed get targetFields() {
@@ -70,8 +70,8 @@ export class ExchangeAttemptStore {
 
 	@computed get matches() {
 		return this.attempts
-			.filter(attempt => matchMeetsHardFilters(attempt, this.filters))
-			.map(attempt => {
+			.filter((attempt) => matchMeetsHardFilters(attempt, this.filters))
+			.map((attempt) => {
 				const filledSampleFields = fillFieldsWithSpecifications(
 					this.targetFields,
 					attempt.specifications
@@ -82,10 +82,10 @@ export class ExchangeAttemptStore {
 						attempt,
 						this.filters,
 						filledSampleFields
-					)
+					),
 				};
 			})
-			.filter(attempt => attempt.match_percentage > 0)
+			.filter((attempt) => attempt.match_percentage > 0)
 			.sort((a, b) => b.match_percentage - a.match_percentage);
 	}
 
@@ -95,7 +95,7 @@ export class ExchangeAttemptStore {
 
 	@computed get magicField() {
 		const field = this.filters.find(
-			f =>
+			(f) =>
 				f.value &&
 				!f.hidden &&
 				!f.id.match("age") &&
@@ -106,7 +106,7 @@ export class ExchangeAttemptStore {
 				!f.id.match("origin_id") &&
 				this.magicTargetColumns.indexOf(f.id) === -1
 		);
-		return field || this.filters.find(f => f.id === TSpecificationName.Strain);
+		return field || this.filters.find((f) => f.id === TSpecificationName.Strain);
 	}
 
 	@action.bound upgradeLimit() {
@@ -130,7 +130,7 @@ export class ExchangeAttemptStore {
 	@action.bound loadFiltersFromKeyValuePairs(pairs) {
 		this.filters = fillFieldsWithKeyValuePairs(this.filters, pairs).map((f: TFormField) => ({
 			...f,
-			ignoreInMatch: !pairs[f.id]
+			ignoreInMatch: !pairs[f.id],
 		}));
 	}
 
@@ -163,11 +163,11 @@ export class ExchangeAttemptStore {
 	}
 
 	@action.bound deleteAttempt(id: number) {
-		this.attempts = this.attempts.filter(r => r.id != id);
+		this.attempts = this.attempts.filter((r) => r.id != id);
 	}
 
 	@action.bound setOverviewType(overviewType: TOverviewType) {
 		this.overviewType = overviewType;
-		localStorage.setItem("overview_preference", (overviewType as unknown) as string);
+		localStorage.setItem("overview_preference", overviewType as unknown as string);
 	}
 }

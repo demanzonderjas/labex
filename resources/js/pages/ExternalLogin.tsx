@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { Button } from "../components/base/Button";
 import { LocalImage } from "../components/base/Image";
 import { FormWrapper } from "../components/FormWrapper";

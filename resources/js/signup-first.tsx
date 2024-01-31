@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ModalStoreProvider from "./contexts/ModalContext";
 import { ModalStore } from "./stores/ModalStore";
 import { SignUpFirstPage } from "./pages/SignUpFirst";
@@ -15,13 +15,11 @@ const App: React.FC = () => {
 	return (
 		<TranslationStoreProvider store={translationStore}>
 			<ModalStoreProvider store={modalStore}>
-				<Router>
-					<Switch>
-						<Route path="/signup-first" exact={true}>
-							<SignUpFirstPage />
-						</Route>
-					</Switch>
-				</Router>
+				<Routes>
+					<Route path="/signup-first">
+						<SignUpFirstPage />
+					</Route>
+				</Routes>
 			</ModalStoreProvider>
 		</TranslationStoreProvider>
 	);

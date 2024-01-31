@@ -4,7 +4,7 @@ import { createMatchSpecs } from "../../utils/formatting/matches";
 import {
 	fieldIsNotHidden,
 	fieldMeetsDependencies,
-	fieldWasFilled
+	fieldWasFilled,
 } from "../../utils/filters/fields";
 import { Spec } from "./Spec";
 import ExchangeAttemptStoreProvider from "../../contexts/ExchangeAttemptContext";
@@ -13,7 +13,7 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { useModalStore } from "../../hooks/useModalStore";
 import { BlankButton, Button } from "../base/Button";
 import { createMatch } from "../../queries/createMatch";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { TSpecificationName } from "../../typings/exchanges";
 
 type Props = {
@@ -31,10 +31,10 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const [extraInfo, setExtraInfo] = useState("");
 	const [protocolNumber, setProtocolNumber] = useState("");
 	const [amount, setAmount] = useState(
-		filters.find(f => f.id === TSpecificationName.Amount)?.value
+		filters.find((f) => f.id === TSpecificationName.Amount)?.value
 	);
 	const matches = createMatchSpecs(fields, filters);
-	const history = useHistory();
+	const navigate = useNavigate();
 	const { t } = useTranslationStore();
 
 	const confirmMatch = async () => {
@@ -48,7 +48,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 		requestData.amount = amount;
 		await createMatch(requestData, offerId);
 		confirm();
-		history.push("/app/my-matches?info=true");
+		navigate("/app/my-matches?info=true");
 	};
 
 	useEffect(() => {
@@ -62,21 +62,25 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 					.filter(fieldIsNotHidden)
 					.filter(fieldMeetsDependencies)
 					.filter(fieldWasFilled)
-					.map(match => (
+					.map((match) => (
 						<Spec key={match.id} {...match} fields={fields} />
 					))}
 			</div>
 			<div className="extra-info">
 				<div className="InputField" style={{ maxWidth: "200px", marginBottom: "16px" }}>
 					<label style={{ marginBottom: "16px" }}>{t("change_requested_amount")}</label>
-					<input type="number" value={amount} onChange={e => setAmount(e.target.value)} />
+					<input
+						type="number"
+						value={amount}
+						onChange={(e) => setAmount(e.target.value)}
+					/>
 				</div>
 				<div className="InputField" style={{ maxWidth: "200px", marginBottom: "16px" }}>
 					<label style={{ marginBottom: "16px" }}>{t("protocol_number")}</label>
 					<input
 						type="text"
 						value={protocolNumber}
-						onChange={e => setProtocolNumber(e.target.value)}
+						onChange={(e) => setProtocolNumber(e.target.value)}
 						placeholder={t("work_protocol_number_placeholder")}
 					/>
 				</div>
@@ -84,7 +88,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 				<div className="BigTextField">
 					<textarea
 						value={extraInfo}
-						onChange={e => setExtraInfo(e.target.value)}
+						onChange={(e) => setExtraInfo(e.target.value)}
 						placeholder={t("extra_information_placeholder")}
 					/>
 				</div>

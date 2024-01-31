@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/base/Button";
 import { LoginForm } from "../components/home/LoginForm";
 import { HomePageHeader } from "../components/layout/Header";
@@ -7,7 +7,7 @@ import { useTranslationStore } from "../hooks/useTranslationStore";
 
 export const HomePage: React.FC = () => {
 	const { t } = useTranslationStore();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	return (
 		<div className="HomePage">
@@ -45,7 +45,7 @@ export const HomePage: React.FC = () => {
 						</div>
 					</div>
 					<div className="more-info">
-						<Button label="more_info" handleClick={() => history.push("/about-us")} />
+						<Button label="more_info" handleClick={() => navigate("/about-us")} />
 					</div>
 				</div>
 			</div>

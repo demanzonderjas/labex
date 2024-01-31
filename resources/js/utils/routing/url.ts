@@ -5,17 +5,17 @@ export function goTo(url: string) {
 	location.href = url;
 }
 
-export function goToCopyLink(history: any, attempt: TExchangeAttempt) {
+export function goToCopyLink(navigate: any, attempt: TExchangeAttempt) {
 	const queryString = createQueryStringFromSpecs(attempt);
-	history.push(`/app/submit-${attempt.attempt_type}${queryString}`);
+	navigate(`/app/submit-${attempt.attempt_type}${queryString}`);
 }
 
-export function goToEditLink(history: any, attempt: TExchangeAttempt) {
+export function goToEditLink(navigate: any, attempt: TExchangeAttempt) {
 	const queryString = createQueryStringFromSpecs(attempt);
-	history.push(`/app/${attempt.attempt_type}s/edit/${attempt.id}${queryString}`);
+	navigate(`/app/${attempt.attempt_type}s/edit/${attempt.id}${queryString}`);
 }
 
-export function goToAdminEditLink(history: any, attempt: TExchangeAttempt) {
+export function goToAdminEditLink(navigate: any, attempt: TExchangeAttempt) {
 	const queryString = createQueryStringFromSpecs(attempt);
-	history.push(`/admin/${attempt.attempt_type}s/edit/${attempt.id}${queryString}`);
+	navigate(`/admin/${attempt.attempt_type}s/edit/${attempt.id}${queryString}`);
 }

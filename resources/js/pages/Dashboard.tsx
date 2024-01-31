@@ -8,7 +8,7 @@ import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { getMyLatestMatch } from "../queries/getMatches";
 import { Match } from "../components/match/Match";
 import { Button } from "../components/base/Button";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SubmenuView } from "../components/overviews/SubmenuView";
 import cx from "classnames";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
@@ -27,7 +27,7 @@ export const DashboardPage = observer(() => {
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
 		TDashboardOverview.Requests
 	);
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (user && user.name == "Offer Demo") {
@@ -39,7 +39,7 @@ export const DashboardPage = observer(() => {
 		(async () => {
 			const [attempts, match] = await Promise.all([
 				getMyLatestExchangeAttempts(),
-				getMyLatestMatch()
+				getMyLatestMatch(),
 			]);
 			attemptStore.setAttempts(attempts.exchange_attempts || []);
 			if (match && match.match) {
@@ -55,7 +55,7 @@ export const DashboardPage = observer(() => {
 					<p className="layout-wrapper">{t("dashboard_intro")}</p>
 					<Button
 						label="more_info"
-						handleClick={() => history.push("/app/faq")}
+						handleClick={() => navigate("/app/faq")}
 						classes={{ inline: true }}
 					/>
 				</TwoColumnPageIntro>
@@ -70,7 +70,7 @@ export const DashboardPage = observer(() => {
 							<h3
 								className={cx({
 									active: activeOverview === TDashboardOverview.Requests,
-									[activeOverview]: true
+									[activeOverview]: true,
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Requests)}
 							>
@@ -79,7 +79,7 @@ export const DashboardPage = observer(() => {
 							<h3
 								className={cx({
 									active: activeOverview === TDashboardOverview.Offers,
-									[activeOverview]: true
+									[activeOverview]: true,
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Offers)}
 							>
@@ -88,7 +88,7 @@ export const DashboardPage = observer(() => {
 							<h3
 								className={cx({
 									active: activeOverview === TDashboardOverview.Matches,
-									[activeOverview]: true
+									[activeOverview]: true,
 								})}
 								onClick={() => setActiveOverview(TDashboardOverview.Matches)}
 							>
@@ -122,7 +122,7 @@ export const DashboardPage = observer(() => {
 										/>
 										<Button
 											label="see_all_my_matches"
-											handleClick={() => history.push("/app/my-matches")}
+											handleClick={() => navigate("/app/my-matches")}
 											classes={{ inline: true, primary: true }}
 										/>
 									</div>

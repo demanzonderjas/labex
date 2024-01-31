@@ -8,12 +8,12 @@ import { updateExchangeAttempt } from "../queries/sendExchangeAttempt";
 
 export const EditOfferPage = () => {
 	const [attemptStore] = useState(new ExchangeAttemptStore());
-	const { id }: { id: string } = useParams();
+	const { id } = useParams();
 
 	return (
 		<ExchangeAttemptStoreProvider store={attemptStore}>
 			<FormWrapper
-				form={{ ...EditOfferForm, handler: data => updateExchangeAttempt(id, data) }}
+				form={{ ...EditOfferForm, handler: (data) => updateExchangeAttempt(id, data) }}
 				handleSuccess={attemptStore.addAttempt}
 			/>
 		</ExchangeAttemptStoreProvider>

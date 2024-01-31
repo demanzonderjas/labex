@@ -5,7 +5,7 @@ import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
 import { Header } from "./components/layout/Header";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DashboardPage } from "./pages/Dashboard";
 import { MyMatchesPage } from "./pages/MyMatches";
 import { OffersPage } from "./pages/Offers";
@@ -36,57 +36,58 @@ const App: React.FC = () => {
 		<UserStoreProvider store={userStore}>
 			<TranslationStoreProvider store={translationStore}>
 				<ModalStoreProvider store={modalStore}>
-					<Router>
+					<BrowserRouter>
 						<div className="App">
 							<ScrollToTop />
-							<Header />
 							<div className="page-wrapper">
-								<Switch>
-									<Route path="/app/dashboard">
-										<DashboardPage />
-									</Route>
-									<Route path="/app/offers" exact={true}>
-										<OffersPage />
-									</Route>
-									<Route path="/app/offers/select/:id">
-										<SelectOfferMatchPage />
-									</Route>
-									<Route path="/app/requests" exact={true}>
-										<RequestsPage />
-									</Route>
-									<Route path="/app/requests/select/:id">
-										<SelectRequestMatchPage />
-									</Route>
-									<Route path="/app/my-matches">
-										<MyMatchesPage />
-									</Route>
-									<Route path="/app/offers/edit/:id">
-										<EditOfferPage />
-									</Route>
-									<Route path="/app/requests/edit/:id">
-										<EditRequestPage />
-									</Route>
-									<Route path="/app/submit-offer">
-										<SubmitOfferPage />
-									</Route>
-									<Route path="/app/submit-request">
-										<SubmitRequestPage />
-									</Route>
-									<Route path="/app/faq" exact={true}>
-										<FAQPage />
-									</Route>
-									<Route path="/app/alerts" exact={true}>
-										<AlertsPage />
-									</Route>
-									<Route path="/app/alerts/add-new" exact={true}>
-										<AddNewAlertPage />
-									</Route>
-								</Switch>
+								<Header />
+								<Routes>
+									<Route
+										path="/app/dashboard"
+										element={<DashboardPage />}
+									></Route>
+									<Route path="/app/offers" element={<OffersPage />}></Route>
+									<Route
+										path="/app/offers/select/:id"
+										element={<SelectOfferMatchPage />}
+									></Route>
+									<Route path="/app/requests" element={<RequestsPage />}></Route>
+									<Route
+										path="/app/requests/select/:id"
+										element={<SelectRequestMatchPage />}
+									></Route>
+									<Route
+										path="/app/my-matches"
+										element={<MyMatchesPage />}
+									></Route>
+									<Route
+										path="/app/offers/edit/:id"
+										element={<EditOfferPage />}
+									></Route>
+									<Route
+										path="/app/requests/edit/:id"
+										element={<EditRequestPage />}
+									></Route>
+									<Route
+										path="/app/submit-offer"
+										element={<SubmitOfferPage />}
+									></Route>
+									<Route
+										path="/app/submit-request"
+										element={<SubmitRequestPage />}
+									></Route>
+									<Route path="/app/faq" element={<FAQPage />}></Route>
+									<Route path="/app/alerts" element={<AlertsPage />}></Route>
+									<Route
+										path="/app/alerts/add-new"
+										element={<AddNewAlertPage />}
+									></Route>
+								</Routes>
 							</div>
 							<Footer />
 							<ModalWrapper />
 						</div>
-					</Router>
+					</BrowserRouter>
 				</ModalStoreProvider>
 			</TranslationStoreProvider>
 		</UserStoreProvider>

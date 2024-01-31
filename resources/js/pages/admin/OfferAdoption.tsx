@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/base/Button";
 import { FormWrapper } from "../../components/FormWrapper";
 import { OfferAdoptionForm } from "../../data/forms/ExchangeAttemptOffer";
@@ -15,7 +15,7 @@ export const OfferAdoptionPage = () => {
 	const [offer, setOffer] = useState(null);
 	const { t } = useTranslationStore();
 	const { offer_id } = useParams() as OfferAdoptionParams;
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		(async () => {
@@ -39,13 +39,13 @@ export const OfferAdoptionPage = () => {
 			<h1>{t("manage_adoption")}</h1>
 			<Button
 				label="go_back"
-				handleClick={history.goBack}
+				handleClick={() => navigate(-1)}
 				classes={{ tertiary: true, small: true, "margin-20": true }}
 			/>
 			<div style={{ maxWidth: "400px " }}>
 				<FormWrapper
 					form={OfferAdoptionForm}
-					handleSuccess={() => history.push("/admin/offers")}
+					handleSuccess={() => navigate("/admin/offers")}
 				/>
 			</div>
 		</div>

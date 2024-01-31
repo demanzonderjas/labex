@@ -7,7 +7,7 @@ import {
 	RequestSpecificationsForm,
 } from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Specifications } from "../components/match/Specifications";
 import { fillFieldsWithSpecifications } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
@@ -18,7 +18,7 @@ import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmOfferMatchModal } from "../data/modals/confirm";
 import { createMatch } from "../queries/createMatch";
-import { TUserProfile } from "../typings/User";
+import { TUserProfile } from "../typings/user";
 import { UserProfile } from "../components/match/UserProfile";
 import { TExchangeAttempt } from "../typings/exchanges";
 
@@ -32,17 +32,17 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
-	const history = useHistory();
-	const { id }: { id: string } = useParams();
+	const navigate = useNavigate();
+	const { id } = useParams();
 	const { t } = useTranslationStore();
 	const goBack = () => {
-		history.push(`/app/requests${window.location.search}`);
+		navigate(`/app/requests${window.location.search}`);
 	};
 
 	const confirmMatch = async (offerData) => {
 		const response = await createMatch(offerData, id);
 		confirm();
-		history.push("/app/my-matches?info=true");
+		navigate("/app/my-matches?info=true");
 		return response;
 	};
 	const modalData = {

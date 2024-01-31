@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { menuItems, menuIcons } from "../../data/layout/menu";
+import { menuItems } from "../../data/layout/menu";
 import { LocalImage } from "../base/Image";
 import { MenuItems } from "./MenuItems";
 import { useLocation } from "react-router";

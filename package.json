@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"scripts": {
-		"development": "mix",
+		"dev": "mix",
 		"watch": "mix watch",
 		"watch-poll": "mix watch -- --watch-options-poll=1000",
 		"hot": "mix watch --hot",
@@ -22,11 +22,12 @@
 	"dependencies": {
 		"@types/axios": "^0.14.0",
 		"@types/chart.js": "^2.9.23",
+		"@types/classnames": "^2.3.1",
 		"@types/react": "^16.9.35",
 		"@types/react-dom": "^16.9.8",
 		"@types/react-router-dom": "^5.1.5",
 		"chart.js": "^2.9.3",
-		"classnames": "^2.2.6",
+		"classnames": "^2.5.1",
 		"dayjs": "^1.8.34",
 		"mobx": "^4.*",
 		"mobx-react": "6.*",
@@ -34,7 +35,8 @@
 		"query-string": "^6.13.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"react-router-dom": "^5.2.0",
+		"react-router": "^6.21.3",
+		"react-router-dom": "^6.21.3",
 		"react-scripts": "^5.0.1",
 		"xlsx": "^0.18.5"
 	}

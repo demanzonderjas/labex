@@ -3,10 +3,9 @@ import { render } from "react-dom";
 import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ModalStoreProvider from "./contexts/ModalContext";
 import { ModalStore } from "./stores/ModalStore";
-import { SignUpFirstPage } from "./pages/SignUpFirst";
 import { ExternalLoginPage } from "./pages/ExternalLogin";
 
 const App: React.FC = () => {
@@ -17,11 +16,11 @@ const App: React.FC = () => {
 		<TranslationStoreProvider store={translationStore}>
 			<ModalStoreProvider store={modalStore}>
 				<Router>
-					<Switch>
-						<Route path="/external-login" exact={true}>
+					<Routes>
+						<Route path="/external-login">
 							<ExternalLoginPage />
 						</Route>
-					</Switch>
+					</Routes>
 				</Router>
 			</ModalStoreProvider>
 		</TranslationStoreProvider>
