@@ -1,5 +1,5 @@
 import { TSpecification } from "./overviews";
-import { TUser } from "./user";
+import { TUser } from "./User";
 
 export type TAlert = {
 	id: number;

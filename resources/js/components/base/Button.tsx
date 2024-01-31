@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import cx from "classnames";
-import { ClickHandler } from "../../typings/utils";
+import { ClickHandler } from "../../typings/Utils";
 import { useExchangeAttemptStore } from "../../hooks/useExchangeAttemptStore";
 import { observer } from "mobx-react-lite";
 

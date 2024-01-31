@@ -1,12 +1,12 @@
 import React from "react";
 import { TExchangeAttempt, TSpecificationName } from "./exchanges";
 import { TFormFieldName } from "./forms";
-import { TUser } from "./user";
+import { TUser } from "./User";
 
 export enum TOverviewType {
 	Cards,
 	Table,
-	UserCards
+	UserCards,
 }
 
 export type TTableCell = {
@@ -25,7 +25,7 @@ export enum TTableCellName {
 	CopyButton = "copy_button",
 	DeleteButton = "delete_button",
 	EditButton = "edit_button",
-	AdoptionButton = "adoption_button"
+	AdoptionButton = "adoption_button",
 }
 
 export type TTableCellProps = {
@@ -85,11 +85,11 @@ export interface TSampleCard {
 export enum MatchType {
 	Requests = "requests",
 	Offers = "offers",
-	Admin = "admin"
+	Admin = "admin",
 }
 
 export enum TDashboardOverview {
 	Requests = "requests",
 	Offers = "offers",
-	Matches = "matches"
+	Matches = "matches",
 }

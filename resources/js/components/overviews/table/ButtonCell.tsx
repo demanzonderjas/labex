@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../base/Button";
-import { ClickHandler } from "../../../typings/utils";
+import { ClickHandler } from "../../../typings/Utils";
 
 type Props = {
 	label: string;

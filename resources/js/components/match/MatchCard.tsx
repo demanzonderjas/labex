@@ -1,13 +1,13 @@
 import React from "react";
 import { TFormField, TFormFieldName } from "../../typings/forms";
-import { TUser } from "../../typings/user";
+import { TUser } from "../../typings/User";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { MatchType } from "../../typings/overviews";
 import { MatchValue } from "./MatchValue";
 import {
 	fieldIsNotHidden,
 	fieldMeetsDependencies,
-	fieldShouldBeIgnoredInMatch
+	fieldShouldBeIgnoredInMatch,
 } from "../../utils/filters/fields";
 import cx from "classnames";
 import { UserProfile } from "./UserProfile";
@@ -49,12 +49,12 @@ export const MatchCard: React.FC<Props> = ({ mine, user, specs, matchType, statu
 				</div>
 				{specs
 					.filter(fieldIsNotHidden)
-					.filter(f => f.value != "")
+					.filter((f) => f.value != "")
 					.filter(fieldMeetsDependencies)
-					.map(spec => (
+					.map((spec) => (
 						<div
 							className={cx("spec", {
-								full_width: spec.label === TSpecificationName.ExtraInfo
+								full_width: spec.label === TSpecificationName.ExtraInfo,
 							})}
 							key={spec.id}
 						>

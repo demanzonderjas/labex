@@ -1,5 +1,5 @@
 import React from "react";
-import { TUser } from "../../../../typings/user";
+import { TUser } from "../../../../typings/User";
 
 type Props = {
 	value: TUser;

@@ -10,7 +10,7 @@ import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { Specifications } from "../components/match/Specifications";
 import {
 	fillFieldsWithKeyValuePairs,
-	fillFieldsWithSpecifications
+	fillFieldsWithSpecifications,
 } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
@@ -19,7 +19,7 @@ import { SecondaryButton, BlankButton } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 import { UserProfile } from "../components/match/UserProfile";
-import { TUserProfile } from "../typings/user";
+import { TUserProfile } from "../typings/User";
 import { TExchangeAttempt } from "../typings/exchanges";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {
@@ -61,14 +61,14 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 			setMatchPercentage(_matchPercentage);
 			setUserProfile({
 				user: response.exchange_attempt.user,
-				mine: response.exchange_attempt.is_mine
+				mine: response.exchange_attempt.is_mine,
 			});
 		})();
 	}, []);
 
 	const modalData = {
 		...confirmRequestMatchModal,
-		props: { fields: offer, filters, offerId: id }
+		props: { fields: offer, filters, offerId: id },
 	};
 
 	if (isMatch === null || !userProfile) {

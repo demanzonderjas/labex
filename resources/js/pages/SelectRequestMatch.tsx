@@ -4,7 +4,7 @@ import ExchangeAttemptStoreProvider from "../contexts/ExchangeAttemptContext";
 import { useQuery } from "../hooks/useQuery";
 import {
 	FilterRequestsForm,
-	RequestSpecificationsForm
+	RequestSpecificationsForm,
 } from "../data/forms/ExchangeAttemptRequest";
 import { observer } from "mobx-react-lite";
 import { useParams, useHistory } from "react-router-dom";
@@ -18,7 +18,7 @@ import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmOfferMatchModal } from "../data/modals/confirm";
 import { createMatch } from "../queries/createMatch";
-import { TUserProfile } from "../typings/user";
+import { TUserProfile } from "../typings/User";
 import { UserProfile } from "../components/match/UserProfile";
 import { TExchangeAttempt } from "../typings/exchanges";
 
@@ -39,7 +39,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 		history.push(`/app/requests${window.location.search}`);
 	};
 
-	const confirmMatch = async offerData => {
+	const confirmMatch = async (offerData) => {
 		const response = await createMatch(offerData, id);
 		confirm();
 		history.push("/app/my-matches?info=true");
@@ -47,7 +47,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	};
 	const modalData = {
 		...confirmOfferMatchModal,
-		form: { ...confirmOfferMatchModal.form, handler: confirmMatch }
+		form: { ...confirmOfferMatchModal.form, handler: confirmMatch },
 	};
 
 	useEffect(() => {
@@ -72,7 +72,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 			setMatchPercentage(_matchPercentage);
 			setUserProfile({
 				user: response.exchange_attempt.user,
-				mine: response.exchange_attempt.is_mine
+				mine: response.exchange_attempt.is_mine,
 			});
 		})();
 	}, []);

@@ -1,4 +1,4 @@
-import { TUserProfile } from "../../typings/user";
+import { TUserProfile } from "../../typings/User";
 import React from "react";
 import { LocalImage } from "../base/Image";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
@@ -8,7 +8,7 @@ import { organisations } from "../../data/configs/organisations";
 export const UserProfile: React.FC<TUserProfile & { hideContact?: boolean }> = ({
 	user,
 	mine,
-	hideContact
+	hideContact,
 }) => {
 	const { t } = useTranslationStore();
 
@@ -18,7 +18,7 @@ export const UserProfile: React.FC<TUserProfile & { hideContact?: boolean }> = (
 
 	return (
 		<div className="UserProfile user">
-			{organisations.some(o => o == user.organisation) && (
+			{organisations.some((o) => o == user.organisation) && (
 				<LocalImage path={`logo/${user.organisation}_logo.png`} />
 			)}
 			<div className="details inline">

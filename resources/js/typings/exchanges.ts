@@ -1,10 +1,10 @@
 import { TSpecification } from "./overviews";
-import { TUser } from "./user";
+import { TUser } from "./User";
 
 export enum TExchangeAttemptType {
 	Offer = "offer",
 	Request = "request",
-	Admin = "admin"
+	Admin = "admin",
 }
 
 export type TExchangeAttempt = {
@@ -31,7 +31,7 @@ export type TExportableOffer = TExchangeAttempt & {
 export enum TExchangeAttemptStatus {
 	Active = "active",
 	Inactive = "inactive",
-	Adoption = "adoption"
+	Adoption = "adoption",
 }
 
 export enum TSpecificationName {
@@ -62,7 +62,7 @@ export enum TSpecificationName {
 	SuitableForAdoption = "suitable_for_adoption",
 	Location = "location",
 	Status = "status",
-	OriginId = "origin_id"
+	OriginId = "origin_id",
 }
 
 export type TMatch = {
@@ -82,7 +82,7 @@ export type TAdminAction = {
 export enum TMatchStatus {
 	Approved = "approved",
 	AwaitingApproval = "awaiting_approval",
-	Rejected = "rejected"
+	Rejected = "rejected",
 }
 
 export type TAdoptionInfo = {
