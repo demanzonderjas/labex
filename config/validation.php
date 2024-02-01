@@ -8,7 +8,6 @@ return [
     "exchange_status" => [
         "active",
         "inactive",
-        "adoption"
     ],
     "exchange_attempt_fields" => [
         "type" => "nullable|string",
@@ -30,7 +29,6 @@ return [
         'age' => 'required|string',
         'date_available_start' => 'nullable|string',
         'date_available' => 'nullable|string',
-        'suitable_for_adoption' => 'nullable|string',
         'location' => 'nullable|string',
     ],
     "exchange_attempt_request_fields" => [

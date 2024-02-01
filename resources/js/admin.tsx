@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import TranslationStoreProvider from "./contexts/TranslationContext";
 import { TranslationStore } from "./stores/TranslationStore";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from "react-router-dom";
 import { MatchesPage } from "./pages/admin/Matches";
 import { AdminDashboardPage } from "./pages/admin/Dashboard";
 import { Sidebar } from "./components/admin/Sidebar";
@@ -19,7 +19,6 @@ import { UserCreatePage } from "./pages/admin/UserCreate";
 import { ModalWrapper } from "./components/base/ModalWrapper";
 import { AdminAlertsPage } from "./pages/admin/Alerts";
 import { OffersPage } from "./pages/admin/Offers";
-import { OfferAdoptionPage } from "./pages/admin/OfferAdoption";
 import { AdminEditOfferPage } from "./pages/admin/EditOfferPage";
 
 const App: React.FC = () => {
@@ -28,55 +27,37 @@ const App: React.FC = () => {
 	return (
 		<TranslationStoreProvider store={translationStore}>
 			<ModalStoreProvider store={modalStore}>
-				<Router>
+				<BrowserRouter>
 					<div className="App Admin">
 						<Sidebar />
 						<div className="page-wrapper">
 							<Routes>
-								<Route path="/admin">
-									<AdminDashboardPage />
-								</Route>
-								<Route path="/admin/dashboard">
-									<AdminDashboardPage />
-								</Route>
-								<Route path="/admin/matches">
-									<MatchesPage />
-								</Route>
-								<Route path="/admin/offers">
-									<OffersPage />
-								</Route>
-								<Route path="/admin/offers/edit/:offer_id">
-									<AdminEditOfferPage />
-								</Route>
-								<Route path="/admin/offers/adoption/:offer_id">
-									<OfferAdoptionPage />
-								</Route>
-								<Route path="/admin/signups">
-									<SignupsPage />
-								</Route>
-								<Route path="/admin/faq">
-									<AdminFAQPage />
-								</Route>
-								<Route path="/admin/faq/create">
-									<FAQCreatePage />
-								</Route>
-								<Route path="/admin/faq/edit/:id">
-									<FAQEditPage />
-								</Route>
-								<Route path="/admin/users">
-									<UsersPage />
-								</Route>
-								<Route path="/admin/users/add-user">
-									<UserCreatePage />
-								</Route>
-								<Route path="/admin/alerts">
-									<AdminAlertsPage />
-								</Route>
+								<Route path="/admin" element={<AdminDashboardPage />}></Route>
+								<Route
+									path="/admin/dashboard"
+									element={<AdminDashboardPage />}
+								></Route>
+								<Route path="/admin/matches" element={<MatchesPage />}></Route>
+								<Route path="/admin/offers" element={<OffersPage />}></Route>
+								<Route
+									path="/admin/offers/edit/:offer_id"
+									element={<AdminEditOfferPage />}
+								></Route>
+								<Route path="/admin/signups" element={<SignupsPage />}></Route>
+								<Route path="/admin/faq" element={<AdminFAQPage />}></Route>
+								<Route path="/admin/faq/create" element={<FAQCreatePage />}></Route>
+								<Route path="/admin/faq/edit/:id" element={<FAQEditPage />}></Route>
+								<Route path="/admin/users" element={<UsersPage />}></Route>
+								<Route
+									path="/admin/users/add-user"
+									element={<UserCreatePage />}
+								></Route>
+								<Route path="/admin/alerts" element={<AdminAlertsPage />}></Route>
 							</Routes>
 						</div>
 						<ModalWrapper />
 					</div>
-				</Router>
+				</BrowserRouter>
 			</ModalStoreProvider>
 		</TranslationStoreProvider>
 	);

@@ -87,7 +87,6 @@ class ExchangeAttemptFactory extends Factory
             "sample_number" => rand(10000, 99999),
             "spf" => $this->selectRandom(config("validation.spf")),
             "kill_method" => $this->selectRandom(config("validation.kill_method")),
-            "suitable_for_adoption" => $this->selectRandom(config("validation.yes_no")),
             "location" => $this->faker->city(),
             "extra_info" => $this->faker->text(140)
         ];

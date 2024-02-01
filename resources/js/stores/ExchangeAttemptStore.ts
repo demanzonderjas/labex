@@ -102,7 +102,6 @@ export class ExchangeAttemptStore {
 				!f.id.match("status") &&
 				!f.id.match("date_available_start") &&
 				!f.id.match("user") &&
-				!f.id.match("adoption_code") &&
 				!f.id.match("origin_id") &&
 				this.magicTargetColumns.indexOf(f.id) === -1
 		);

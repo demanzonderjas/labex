@@ -11,7 +11,7 @@ export const ApproveButtonCell = ({ value, rowIndex, signup, ...props }) => {
 		location.reload();
 	};
 
-	if (!signup.awaiting_approval) {
+	if (!signup.approved) {
 		return <TextCell value="-" />;
 	}
 

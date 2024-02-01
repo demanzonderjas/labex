@@ -47,8 +47,7 @@ export const DashboardStats: React.FC = React.memo(() => {
 			</div>
 			<div className="card">
 				<div className="content">
-					<h3>{t("match_amount_lives_saved")}</h3>
-					<LocalImage path="mouse.png" />
+					<h3>{t("match_amount")}</h3>
 					<h4 className="number">{stats.total_saved}</h4>
 				</div>
 			</div>
@@ -69,12 +68,6 @@ export const DashboardStats: React.FC = React.memo(() => {
 				<div className="content">
 					<h3>{t("total_requested")}</h3>
 					<h4 className="number">{stats.total_requested}</h4>
-				</div>
-			</div>
-			<div className="card">
-				<div className="content">
-					<h3>{t("total_adopted")}</h3>
-					<h4 className="number">{stats.total_adopted}</h4>
 				</div>
 			</div>
 		</div>

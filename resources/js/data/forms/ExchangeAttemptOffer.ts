@@ -18,28 +18,20 @@ import { withRequired } from "../../utils/formatting/fields";
 import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { attemptTypeOfferField } from "./fields/attemptType";
-import {
-	adoptionAmountField,
-	adoptionCodeField,
-	adoptionCodeSearchField,
-	adoptionField,
-	adoptionFilterField,
-	isActiveField
-} from "./fields/adoption";
 import { locationField } from "./fields/location";
 import {
 	dateAvailableEndAsAdminField,
 	dateAvailableEndField,
 	dateAvailableStartAsAdminField,
 	dateAvailableStartField,
-	yearSelectField
+	yearSelectField,
 } from "./fields/dateAvailable";
 import { FilterOffersForm } from "./ExchangeAttemptRequest";
 import { statusField } from "./fields/status";
 import { idField } from "./fields/faq/id";
-import { updateAdoptionOffer } from "../../queries/admin/updateAdoptionOffer";
 import { TSpecificationName } from "../../typings/exchanges";
 import { userFilterField } from "./fields/user/userFilter";
+import { isActiveField } from "./fields/active";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -61,16 +53,15 @@ export const SubmitOfferForm: TForm = {
 		killMethodField,
 		amountField,
 		protocolNumberField,
-		adoptionField,
 		locationField,
 		extraInfoField,
-		attemptTypeOfferField
+		attemptTypeOfferField,
 	],
 	handler: sendExchangeAttempt,
 	matchable: false,
 	infoModal: flowchartModal,
 	allowCancel: true,
-	splitByRequired: true
+	splitByRequired: true,
 };
 
 export const EditOfferForm: TForm = {
@@ -78,14 +69,14 @@ export const EditOfferForm: TForm = {
 	handler: null,
 	header: "edit_offer",
 	intro: "edit_offer_intro",
-	infoModal: null
+	infoModal: null,
 };
 
 const dateAvailableStartFieldIndex = EditOfferForm.fields.findIndex(
-	f => f.id === TSpecificationName.DateAvailableStart
+	(f) => f.id === TSpecificationName.DateAvailableStart
 );
 const dateAvailableEndFieldIndex = EditOfferForm.fields.findIndex(
-	f => f.id === TSpecificationName.DateAvailableEnd
+	(f) => f.id === TSpecificationName.DateAvailableEnd
 );
 const editOfferAsAdminFields = [...EditOfferForm.fields];
 editOfferAsAdminFields[dateAvailableStartFieldIndex] = dateAvailableStartAsAdminField;
@@ -93,7 +84,7 @@ editOfferAsAdminFields[dateAvailableEndFieldIndex] = dateAvailableEndAsAdminFiel
 
 export const EditOfferAsAdminForm: TForm = {
 	...EditOfferForm,
-	fields: editOfferAsAdminFields
+	fields: editOfferAsAdminFields,
 };
 
 export const ConfirmOfferMatchForm: TForm = {
@@ -103,17 +94,15 @@ export const ConfirmOfferMatchForm: TForm = {
 	submitLabel: "confirm",
 	matchable: false,
 	infoModal: null,
-	allowCancel: false
+	allowCancel: false,
 };
 
 const adminOfferFields = [
-	...FilterOffersForm.fields.filter(f => f.id !== TSpecificationName.DateRequested),
+	...FilterOffersForm.fields.filter((f) => f.id !== TSpecificationName.DateRequested),
 	yearSelectField,
-	adoptionFilterField,
 	statusField,
-	adoptionCodeSearchField,
 	userFilterField,
-	originIdField
+	originIdField,
 ];
 
 export const AdminOffersForm: TForm = {
@@ -122,15 +111,5 @@ export const AdminOffersForm: TForm = {
 	intro: null,
 	matchable: false,
 	header: null,
-	hideSubmit: true
-};
-
-export const OfferAdoptionForm: TForm = {
-	handler: updateAdoptionOffer,
-	fullWidthFields: true,
-	fields: [idField, adoptionAmountField, adoptionCodeField, isActiveField],
-	intro: null,
-	data: null,
-	matchable: false,
-	header: null
+	hideSubmit: true,
 };

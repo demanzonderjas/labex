@@ -17,8 +17,6 @@ class CreateSignupsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->boolean('article_9')->default(false);
-            $table->boolean('awaiting_approval')->default(true);
             $table->boolean('approved')->default(false);
             $table->timestamps();
         });

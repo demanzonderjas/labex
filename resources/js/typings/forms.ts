@@ -26,7 +26,7 @@ export enum InputType {
 	Password = "password",
 	Date = "date",
 	Email = "email",
-	Hidden = "hidden"
+	Hidden = "hidden",
 }
 
 export interface TFormFieldData {
@@ -46,9 +46,7 @@ export enum TFormFieldName {
 	Title = "title",
 	Organisation = "organisation",
 	Password = "password",
-	AdoptionCode = "adoption_code",
-	AdoptionAmount = "adoption_amount",
-	User = "user"
+	User = "user",
 }
 
 export interface SelectFieldData extends TFormFieldData {

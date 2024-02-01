@@ -1,60 +1,47 @@
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 import { ApproveButtonCell } from "../../components/overviews/table/custom/ApproveButtonCell";
-import { BlockButtonCell } from "../../components/overviews/table/custom/BlockButtonCell";
 import { DeleteSignupButtonCell } from "../../components/overviews/table/custom/DeleteSignupButtonCell";
 import { NameCell } from "../../components/overviews/table/NameCell";
 import { TextCell } from "../../components/overviews/table/TextCell";
 
 export const signupColumns: string[] = [
-    "id",
-    "name",
-    "email",
-    "awaiting_approval_label",
-    "approved_label",
-    "approve",
-    "block",
-    "delete"
+	"id",
+	"name",
+	"email",
+	"approved_label",
+	"approve",
+	"delete",
 ];
 
 export const signupCells = [
 	{
 		id: "id",
 		value: "",
-		Component: TextCell
+		Component: TextCell,
 	},
 	{
 		id: "name",
 		value: "",
-		Component: NameCell 
+		Component: NameCell,
 	},
 	{
 		id: "email",
 		value: "",
-		Component: TextCell
+		Component: TextCell,
 	},
 	{
-		id: "awaiting_approval",
-		value: "",
-		Component: BooleanCell
-    },
-    {
 		id: "approved",
 		value: "",
-		Component: BooleanCell
-    },
-    {
+		Component: BooleanCell,
+	},
+	{
 		id: "approve",
 		value: "",
-		Component: ApproveButtonCell 
-    },
-    {
-		id: "block",
-		value: "",
-		Component: BlockButtonCell
-    },
-    {
+		Component: ApproveButtonCell,
+	},
+	{
 		id: "delete",
 		value: "",
-		Component: DeleteSignupButtonCell
+		Component: DeleteSignupButtonCell,
 	},
 ];

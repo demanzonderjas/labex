@@ -9,7 +9,7 @@ class ExchangeAttempt extends Model
 {
 	use HasFactory;
 
-	public $with = ["specifications", "adoptionInfo"];
+	public $with = ["specifications"];
 
 	public $hidden = [];
 
@@ -26,11 +26,6 @@ class ExchangeAttempt extends Model
 	public function matchViaOffer()
 	{
 		return $this->hasMany(MaterialMatch::class, 'offer_id');
-	}
-
-	public function adoptionInfo()
-	{
-		return $this->hasOne(AdoptionInfo::class, 'offer_id');
 	}
 
 	public function matchViaRequest()
@@ -103,12 +98,6 @@ class ExchangeAttempt extends Model
 	{
 		$organSpec = $this->specifications->firstWhere('key', 'organs');
 		return $organSpec ? $organSpec->value : null;
-	}
-
-	public function getSuitableForAdoptionAttribute()
-	{
-		$suitable_for_adoption = $this->specifications->firstWhere('key', 'suitable_for_adoption');
-		return $suitable_for_adoption ? $suitable_for_adoption->value === "yes" : false;
 	}
 
 	public function scopeOffers($query)

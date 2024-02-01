@@ -1,9 +1,4 @@
-import {
-	TExchangeAttempt,
-	TExchangeAttemptType,
-	TExportableOffer,
-	TSpecificationName
-} from "../../typings/exchanges";
+import { TExchangeAttempt, TExportableOffer, TSpecificationName } from "../../typings/exchanges";
 import { TTypeSpec } from "../../typings/specifications";
 
 export async function exportToExcel(rows: any, name: string) {
@@ -20,25 +15,23 @@ export function convertValidOffersToOrigin(
 	allOffers: TExchangeAttempt[]
 ): TExportableOffer[] {
 	return shownOffers.reduce((base, offer) => {
-		const type = offer.specifications.find(s => s.key === TSpecificationName.ExchangeType);
-		const amount = offer.specifications.find(s => s.key === TSpecificationName.Amount);
+		const type = offer.specifications.find((s) => s.key === TSpecificationName.ExchangeType);
+		const amount = offer.specifications.find((s) => s.key === TSpecificationName.Amount);
 		const totalAmount = +amount.value;
-		const adoptionAmount = offer.adoption_info?.amount || 0;
 
 		const baseOffer = {
 			...offer,
 			offered: totalAmount,
 			matched: offer.is_match ? totalAmount : 0,
-			adopted: adoptionAmount,
-			remaining: offer.is_match ? 0 : totalAmount - adoptionAmount
+			remaining: offer.is_match ? 0 : totalAmount,
 		};
 
 		if (!offer.origin_id || !type || type.value !== TTypeSpec.Animal) {
 			base.push(baseOffer);
 		} else {
-			const currentListing = base.find(origin => origin.id === baseOffer.origin_id);
-			const addedToOrigin = addUpToOrigin(baseOffer, allOffers, currentListing);
-			const originIndex = base.findIndex(origin => origin.id === baseOffer.origin_id);
+			const currentListing = base.find((origin) => origin.id === baseOffer.origin_id);
+			const addedToOrigin = addUpToOrigin(baseOffer, allOffers);
+			const originIndex = base.findIndex((origin) => origin.id === baseOffer.origin_id);
 			if (originIndex === -1) {
 				base.push({ ...addedToOrigin, id: baseOffer.origin_id });
 			} else {
@@ -52,26 +45,17 @@ export function convertValidOffersToOrigin(
 
 export function addUpToOrigin(
 	offer: TExportableOffer,
-	offers: TExchangeAttempt[],
-	currentListing?: TExportableOffer
+	offers: TExchangeAttempt[]
 ): TExportableOffer {
-	const originOffer = offers.find(o => o.id === offer.origin_id);
-	const amount = originOffer.specifications.find(s => s.key === TSpecificationName.Amount);
+	const originOffer = offers.find((o) => o.id === offer.origin_id);
+	const amount = originOffer.specifications.find((s) => s.key === TSpecificationName.Amount);
 	const totalAmount = +amount.value;
-	let adoptionAmount = originOffer.adoption_info?.amount || 0;
-
-	if (currentListing) {
-		adoptionAmount = adoptionAmount + currentListing.adopted;
-	}
 
 	const newBaseOffer = {
 		...originOffer,
 		offered: totalAmount,
 		matched: originOffer.is_match ? totalAmount + offer.matched : offer.matched,
-		adopted: offer.adopted + adoptionAmount,
-		remaining: originOffer.is_match
-			? 0
-			: totalAmount - adoptionAmount - offer.matched - offer.adopted
+		remaining: originOffer.is_match ? 0 : totalAmount - offer.matched,
 	};
 
 	return originOffer.origin_id ? addUpToOrigin(newBaseOffer, offers) : newBaseOffer;

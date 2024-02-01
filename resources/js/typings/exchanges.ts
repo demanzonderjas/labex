@@ -16,7 +16,6 @@ export type TExchangeAttempt = {
 	is_match?: boolean;
 	is_mine?: boolean;
 	match_percentage?: number;
-	adoption_info?: TAdoptionInfo;
 	specifications: TSpecification[];
 	created_at: string;
 };
@@ -24,14 +23,12 @@ export type TExchangeAttempt = {
 export type TExportableOffer = TExchangeAttempt & {
 	offered: number;
 	matched: number;
-	adopted: number;
 	remaining: number;
 };
 
 export enum TExchangeAttemptStatus {
 	Active = "active",
 	Inactive = "inactive",
-	Adoption = "adoption",
 }
 
 export enum TSpecificationName {
@@ -59,7 +56,6 @@ export enum TSpecificationName {
 	SampleNumber = "sample_number",
 	MatchPercentage = "match_percentage",
 	Other = "other",
-	SuitableForAdoption = "suitable_for_adoption",
 	Location = "location",
 	Status = "status",
 	OriginId = "origin_id",
@@ -84,8 +80,3 @@ export enum TMatchStatus {
 	AwaitingApproval = "awaiting_approval",
 	Rejected = "rejected",
 }
-
-export type TAdoptionInfo = {
-	code: string;
-	amount: number;
-};

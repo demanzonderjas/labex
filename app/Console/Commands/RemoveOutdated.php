@@ -3,12 +3,8 @@
 namespace App\Console\Commands;
 
 use App\ExchangeAttempt;
-use App\Mail\Admin\AdminSuitableForAdoptionDeactivatedEmail;
-use App\Mail\Admin\AdminSuitableForAdoptionReminderEmail;
-use App\User;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
 
 class RemoveOutdated extends Command
 {
@@ -51,21 +47,9 @@ class RemoveOutdated extends Command
             }
             $date = Carbon::createFromFormat("Y-m-d", $offer->date_available);
             $endDate = $date->copy()->addDays(config('atex.constants.days_before_inactive'));
-            if ($offer->type != config('atex.constants.exchange_type.conserved_tissue') && $endDate->isBefore($now) && $offer->status != config('atex.constants.exchange_attempt_status.inactive')) {
+            if ($endDate->isBefore($now) && $offer->status != config('atex.constants.exchange_attempt_status.inactive')) {
                 $offer->status = config('atex.constants.exchange_attempt_status.inactive');
                 $offer->save();
-
-                if ($offer->suitable_for_adoption) {
-                    $admins = User::whereIsAdmin()->get();
-                    foreach ($admins as $admin) {
-                        Mail::to($admin)->queue(new AdminSuitableForAdoptionDeactivatedEmail($offer));
-                    }
-                }
-            } else if ($date->diffInDays($now) === config('atex.constants.days_before_adoption_reminder') && $offer->suitable_for_adoption) {
-                $admins = User::whereIsAdmin()->get();
-                foreach ($admins as $admin) {
-                    Mail::to($admin)->queue(new AdminSuitableForAdoptionReminderEmail($offer));
-                }
             }
         }
     }

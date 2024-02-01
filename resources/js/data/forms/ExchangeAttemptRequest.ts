@@ -8,7 +8,7 @@ import {
 	ageMaxField,
 	ageTypeField,
 	ageRequestRangeField,
-	ageRangeRequestField
+	ageRangeRequestField,
 } from "./fields/age";
 import { sexRequestField } from "./fields/sex";
 import { originField } from "./fields/origin";
@@ -23,8 +23,6 @@ import { extraInfoField } from "./fields/extraInfo";
 import { protocolNumberField } from "./fields/protocolNumber";
 import { flowchartModal } from "../modals/flowchart";
 import { attemptTypeRequestField } from "./fields/attemptType";
-import { adoptionField, adoptionFilterField } from "./fields/adoption";
-import { statusField } from "./fields/status";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",
@@ -46,17 +44,17 @@ export const FilterOffersForm: TForm = {
 		dateRequestedField,
 		killMethodField,
 		amountRequestedField,
-		attemptTypeRequestField
+		attemptTypeRequestField,
 	],
 	handler: sendExchangeAttempt,
 	matchable: true,
-	infoModal: flowchartModal
+	infoModal: flowchartModal,
 };
 
 const specFields = [...FilterOffersForm.fields];
-const ageFieldIdx = specFields.findIndex(f => f.id == "age");
+const ageFieldIdx = specFields.findIndex((f) => f.id == "age");
 specFields.splice(ageFieldIdx, 1, ageRequestRangeField);
-const filterFields = [...FilterOffersForm.fields].filter(f => f.id != "date_requested");
+const filterFields = [...FilterOffersForm.fields].filter((f) => f.id != "date_requested");
 filterFields.splice(ageFieldIdx, 1, ageRequestRangeField);
 
 export const RequestSpecificationsForm: TForm = {
@@ -65,7 +63,7 @@ export const RequestSpecificationsForm: TForm = {
 	intro: "requests_intro",
 	fields: specFields,
 	submitLabel: "submit_my_offer",
-	hideSubmit: false
+	hideSubmit: false,
 };
 
 export const FilterRequestsForm: TForm = {
@@ -74,16 +72,16 @@ export const FilterRequestsForm: TForm = {
 	intro: "requests_intro",
 	fields: filterFields,
 	submitLabel: "submit_my_offer",
-	hideSubmit: false
+	hideSubmit: false,
 };
 
 const matchCardFields = [...FilterOffersForm.fields];
-const ageOfferFieldIdx = matchCardFields.findIndex(f => f.label == "age_offer");
+const ageOfferFieldIdx = matchCardFields.findIndex((f) => f.label == "age_offer");
 matchCardFields.splice(ageOfferFieldIdx, 1, ageRangeRequestField);
 
 export const RequestMatchCardFields: TForm = {
 	...FilterOffersForm,
-	fields: [...matchCardFields, protocolNumberField, extraInfoField]
+	fields: [...matchCardFields, protocolNumberField, extraInfoField],
 };
 
 export const SubmitRequestForm: TForm = {
@@ -93,11 +91,11 @@ export const SubmitRequestForm: TForm = {
 	header: "submit_request",
 	intro: "submit_request_description",
 	submitLabel: "submit",
-	allowCancel: true
+	allowCancel: true,
 };
 
 export const EditRequestForm: TForm = {
 	...SubmitRequestForm,
 	header: "edit_request",
-	intro: "edit_request_description"
+	intro: "edit_request_description",
 };

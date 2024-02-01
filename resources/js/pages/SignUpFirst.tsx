@@ -22,9 +22,8 @@ export const SignUpFirstPage: React.FC = () => {
 						<LocalImage path="logo/atex.png" />
 					</div>
 					<p className="margin-20" style={{ fontSize: "20px", lineHeight: "24px" }}>
-						You do not have the right access level. Please sign up first to show that
-						you are article 9 or article 13f2a qualified. Otherwise, contact the IvD
-						Utrecht (<a href="mailto:info@atex.uu.nl">info@atex.uu.nl</a>).
+						You do not have the right access level. Please sign up first. Otherwise,
+						contact LABEX (<a href="mailto:info@labex.uu.nl">info@labex.uu.nl</a>).
 					</p>
 					<div className="LoginForm">
 						<SignUpState switchPage={() => (location.href = "/")} hideHeader={true} />
