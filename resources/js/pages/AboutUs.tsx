@@ -14,7 +14,7 @@ export const AboutUsPage: React.FC = () => {
 	return (
 		<div className="AboutUs">
 			<HomePageHeader />
-			<PageIntro header="atex"></PageIntro>
+			<PageIntro header="platform_name"></PageIntro>
 			<div className="layout-wrapper content">
 				<Button label="back" handleClick={() => navigate("/")} />
 				<div style={{ height: "150px", margin: "40px 0" }}>

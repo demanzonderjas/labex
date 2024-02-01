@@ -51,7 +51,7 @@ export const DashboardPage = observer(() => {
 	return (
 		<ExchangeAttemptStoreProvider store={attemptStore}>
 			<div className="DashboardPage">
-				<TwoColumnPageIntro header="exchange_platform" subheader="for_animals_tissues">
+				<TwoColumnPageIntro header="exchange_platform" subheader="dashboard_subheader">
 					<p className="layout-wrapper">{t("dashboard_intro")}</p>
 					<Button
 						label="more_info"
