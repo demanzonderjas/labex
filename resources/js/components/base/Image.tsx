@@ -6,7 +6,13 @@ type Props = {
 };
 
 export const LocalImage: React.FC<Props> = ({ path }) => {
-	return <img className="LocalImage" src={`${env.baseUrl}/images/${path}`} />;
+	return (
+		<img
+			style={{ maxHeight: "100%", maxWidth: "100%" }}
+			className="LocalImage"
+			src={`${env.baseUrl}/images/${path}`}
+		/>
+	);
 };
 
 type IconProps = {

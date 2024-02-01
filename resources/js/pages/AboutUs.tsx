@@ -17,86 +17,51 @@ export const AboutUsPage: React.FC = () => {
 			<PageIntro header="atex"></PageIntro>
 			<div className="layout-wrapper content">
 				<Button label="back" handleClick={() => navigate("/")} />
-				<div style={{ margin: "40px 0" }}>
-					<LocalImage path="logo/atex.png" />
+				<div style={{ height: "150px", margin: "40px 0" }}>
+					<LocalImage path="logo/labex.jpg" />
 				</div>
+				<p>This platform is provided and maintained by ........ Utrecht</p>
 				<p>
-					This platform is provided and maintained by the AWB Utrecht - Animal WelfareBody
-					Utrecht - (IvD Utrecht, in Dutch)
+					Some of the equipment is not used optimally in both laboratories and clinics.
+					For example, because the devices are used infrequently, or because equipment
+					remains present after completion of a project or after departure of researchers
+					but is no longer used. This often concerns equipment that is still in good
+					working order. This can be very useful for fellow researchers, but they are
+					usually unaware of its presence. A digital marketplace can make supply and
+					demand visible and thus enable transfer or joint use. This enables more
+					sustainable use of equipment. Moreover, this reduces the costs for the
+					researchers.
 				</p>
 				<p>
-					In biomedical research laboratory animals (and sometimes other animals) can be
-					used as tissue donors. This often only involves a single organ or piece of
-					tissue. Often there is no destination for the remains and they are either
-					destroyed immediately after collection or left unused in researchers' freezers
-					for years. If fellow researchers know in good time which tissues and organs are
-					or will become available, or vice versa, if researchers inform colleagues in
-					good time of what organs or tissues they need, this creates the opportunity to
-					make better use of laboratory animals.
+					In many laboratories and clinics also contain chemical preparations, medicines,
+					or disposables are available that are either no longer used or are present in
+					quantities that far exceed requirements. If these surpluses are made available
+					to fellow researchers/clinicians, the material will be used more optimally and
+					less of it will have to be purchased and disposed of unused.
 				</p>
 				<p>
-					A substantial number of the animals that are alive but redundant are also no
-					longer used. These are animals that have been used for breeding, animals that
-					have been bred but for which there is no destination, or animals that are alive
-					and healthy after use in an experiment. These healthy surplus laboratory animals
-					can possibly be used in new experiments, so no animals need to be purchased or
-					bred for this.
+					As a result, fewer equipment, chemical substances and disposables are needed
+					overall.
 				</p>
-				<p>As a result, fewer laboratory animals are needed overall.</p>
 				<p>
-					The Animal and Tissue Exchange platform (ATEX) makes offers and requests visible
-					and thus contributes to better use of animals, organs and tissues.
+					The Laboratory Exchange platform (LABEX) makes offers and requests visible and
+					thus contributes to better use of these materials.
 				</p>
-				<p>ATEX is intended for the exchange of:</p>
+				<p>LABEX is intended for the exchange of:</p>
 				<ul>
-					<li>Live surplus laboratory animals</li>
-					<li>Fresh organs and tissue</li>
-					<li>Preserved organs and tissue</li>
+					<li>Laboratory or Clinical Equipment</li>
+					<li>Chemical substances</li>
+					<li>Disposables</li>
 				</ul>
 				<p>
 					To use this application you must first create an account. You can then enter
 					specifications for your offer or request within the secure environment of the
-					application, such as the animal species, strain, sex and age. In addition, you
-					can indicate whether the animals have undergone a certain operation or
-					treatment, which materials have been stored and how. Finally, you can check
-					whether there are matches for your offer or request. If you would like more
-					information about the match (the described material or animals) you can contact
-					the relevant researchers.
+					application, such as kind of device or substance, type of availability, the
+					moment it becomes available or is needed, etc.. Finally, you can check whether
+					there are matches for your offer or request. If you would like more information
+					about the match (the described equipment or material) you can contact the owner
+					of the offer or request.
 				</p>
-				<h2>
-					<strong>Re-use of animals</strong>
-				</h2>
-				<p>
-					If you want to use a supply of live animals and want to (re) use these animals
-					to collect tissues or in an experiment, take into account the “Policy surplus
-					laboratory animals, reuse and relocation” (
-					<a href="https://ivd-utrecht.nl/en/infocentre/document/policy-on-surplus-laboratory-animals-reuse-and-re-homing">
-						https://ivd-utrecht.nl/en/infocentre/document/policy-on-surplus-laboratory-animals-reuse-and-re-homing
-					</a>
-					).
-				</p>
-				<p>
-					<strong>Harvesting tissue: when is it an animal experiment?</strong>
-					<br />
-					Harvesting tissue is an animal experiment when:
-					<ul>
-						<li>it determines the moment at which the animal is killed</li>
-						<li>
-							actions must be carried out for this purpose prior to killing the
-							animal. In these cases a project permit is required.
-						</li>
-					</ul>
-				</p>
-				<p>
-					If you do not have a project permit for this, you may be able to use the
-					umbrella project “Use of organs and tissues to promote the quality of animal
-					experiments and in vitro and ex vivo research” (AVD1080020209606) .
-				</p>
-				<p>
-					More information about this can be obtained from the AWB Utrecht (
-					<a href="https://www.ivd-utrecht.nl/en">https://www.ivd-utrecht.nl/en</a>).
-				</p>
-				<Button label="back_to_homepage" handleClick={() => navigate("/")} />
 			</div>
 			<Footer />
 		</div>
