@@ -1,1 +1,1 @@
-export const organisations = ["uu.nl", "umcutrecht.nl"];
+export const organisations = ["uu.nl"];
