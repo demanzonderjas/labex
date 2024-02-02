@@ -36,7 +36,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 	const { id }: any = useParams();
 	const { t } = useTranslationStore();
 	const goBack = () => {
-		navigate(`/app/offers${window.location.search}`);
+		navigate(-1);
 	};
 
 	useEffect(() => {

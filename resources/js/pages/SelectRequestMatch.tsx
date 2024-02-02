@@ -36,7 +36,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	const { id } = useParams();
 	const { t } = useTranslationStore();
 	const goBack = () => {
-		navigate(`/app/requests${window.location.search}`);
+		navigate(-1);
 	};
 
 	const confirmMatch = async (offerData) => {

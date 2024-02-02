@@ -50,7 +50,7 @@ export const ExchangeAttemptTable: React.FC<{
 							key={idx}
 							onClick={
 								isCentered
-									? () => goToSelectMatchLink(history, attempts[idx], filters)
+									? () => goToSelectMatchLink(navigate, attempts[idx], filters)
 									: undefined
 							}
 						>
