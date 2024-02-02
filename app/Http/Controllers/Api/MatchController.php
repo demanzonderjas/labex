@@ -39,86 +39,13 @@ class MatchController extends Controller
 
     public static function convertRemainsToNewMaterial(MaterialMatch $match)
     {
-        if (!empty($match->offer->organs) && !empty($match->request->organs) && $match->offer->organs != $match->request->organs) {
-            return self::createNewFromRemainingOrgans($match);
-        } elseif ((int) $match->offer->amount > (int) $match->request->amount) {
+        if ((int) $match->offer->amount > (int) $match->request->amount) {
             return self::createOfferFromRemainingAmount($match);
         } elseif ((int) $match->request->amount > (int) $match->offer->amount) {
             return self::createRequestFromRemainingAmount($match);
         } else {
             return ["exchange_offer_match_id" => $match->offer_id, "exchange_request_match_id" => $match->request_id];
         }
-    }
-
-    public static function createNewFromRemainingOrgans(MaterialMatch $match)
-    {
-        $offerOrgansArray = explode(', ', $match->offer->organs);
-        sort($offerOrgansArray);
-        $requestOrgansArray = explode(', ', $match->request->organs);
-        sort($requestOrgansArray);
-
-        if ($offerOrgansArray === $requestOrgansArray) {
-            if ((int) $match->offer->amount > (int) $match->request->amount) {
-                return self::createOfferFromRemainingAmount($match);
-            } elseif ((int) $match->request->amount > (int) $match->offer->amount) {
-                return self::createRequestFromRemainingAmount($match);
-            }
-        }
-
-        $overlappingOrgans = array_intersect($offerOrgansArray, $requestOrgansArray);
-        $matchAmount = self::calculateCorrectMatchAmount($match);
-
-        $remainingOfferOrgans = array_diff($offerOrgansArray, $overlappingOrgans);
-        if (count($remainingOfferOrgans) > 0) {
-            $newOffer = $match->offer->replicate();
-            $newOffer->organs = implode(', ', $remainingOfferOrgans);
-            $newOffer->origin_id = $match->offer->id;
-            $newOffer->save();
-        }
-        if (count($overlappingOrgans) > 0 && $match->offer->amount > $matchAmount) {
-            $newOffer = $match->offer->replicate();
-            $newOffer->organs = implode(', ', $overlappingOrgans);
-            $newOffer->amount = (int) $match->offer->amount - $matchAmount;
-            $newOffer->origin_id = $match->offer->id;
-            $newOffer->save();
-        }
-
-
-        $remainingRequestOrgans = array_diff($requestOrgansArray, $overlappingOrgans);
-        if (count($remainingRequestOrgans) > 0) {
-            $newRequest = $match->request->replicate();
-            $newRequest->organs = implode(', ', $remainingRequestOrgans);
-            $newRequest->origin_id = $match->request->id;
-            $newRequest->save();
-        }
-        if (count($overlappingOrgans) > 0 && $match->request->amount > $matchAmount) {
-            $newRequest = $match->request->replicate();
-            $newRequest->organs = implode(', ', $overlappingOrgans);
-            $newRequest->amount = (int) $match->request->amount - $matchAmount;
-            $newRequest->origin_id = $match->request->id;
-            $newRequest->save();
-        }
-
-        $matchOffer = $match->offer->replicate();
-        $matchOffer->organs = implode(', ', $overlappingOrgans);
-        $matchOffer->amount = $matchAmount;
-        $matchOffer->origin_id = $match->offer->id;
-        $matchOffer->save();
-
-        $match->offer->status = config('atex.constants.exchange_attempt_status.inactive');
-        $match->offer->save();
-
-        $matchRequest = $match->request->replicate();
-        $matchRequest->organs = implode(', ', $overlappingOrgans);
-        $matchRequest->amount = $matchAmount;
-        $matchRequest->origin_id = $match->request->id;
-
-        $matchRequest->save();
-
-        $match->request->status = config('atex.constants.exchange_attempt_status.inactive');
-        $match->request->save();
-
-        return ["exchange_offer_match_id" => $matchOffer->id, "exchange_request_match_id" => $matchRequest->id];
     }
 
     public static function calculateCorrectMatchAmount(MaterialMatch $match)
@@ -195,16 +122,7 @@ class MatchController extends Controller
 
     public static function handleMadeMatchValidation(MaterialMatch $match)
     {
-        $isConserved = $match->offer->type === 'conserved_tissue';
-
-        if ($isConserved) {
-            self::approve($match->id, "");
-        } else {
-            $admins = User::whereIsAdmin()->get();
-            foreach ($admins as $admin) {
-                Mail::to($admin)->queue(new AdminMatchMadeEmail($match, $admin));
-            }
-        }
+        self::approve($match->id, "");
     }
 
     public static function deactivateActiveMatch(MaterialMatch $match)

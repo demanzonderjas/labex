@@ -2,8 +2,6 @@ import { PercentageCell } from "../../components/overviews/table/PercentageCell"
 import { TextCell } from "../../components/overviews/table/TextCell";
 import { DateCell } from "../../components/overviews/table/DateCell";
 import { MatchButtonCell } from "../../components/overviews/table/custom/MatchButtonCell";
-import { AgeCell } from "../../components/overviews/table/AgeCell";
-import { AgeRangeCell } from "../../components/overviews/table/AgeRangeCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { TSpecificationName } from "../../typings/exchanges";
@@ -11,121 +9,71 @@ import { TSpecificationName } from "../../typings/exchanges";
 export const offerMatchColumns: string[] = [
 	"match_percentage",
 	"type",
-	"animal_species",
-	"sex",
-	"age_offer",
 	"magic_cell",
-	"amount",
 	"date_available",
-	"select_header"
+	"select_header",
 ];
 
 export const requestMatchColumns: string[] = [
 	"match_percentage",
 	"type",
-	"animal_species",
-	"sex",
-	"age_offer",
 	"magic_cell",
-	"amount",
 	"date_requested",
-	"select_header"
+	"select_header",
 ];
 
 export const offerMatchCells: TTableCell[] = [
 	{
 		id: TSpecificationName.MatchPercentage,
 		value: "",
-		Component: PercentageCell
+		Component: PercentageCell,
 	},
 	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.AnimalSpecies,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Sex,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Age,
-		label: "age_offer",
-		value: "",
-		Component: AgeCell
+		Component: TextCell,
 	},
 	{
 		id: TTableCellName.MagicCell,
 		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Amount,
-		value: "",
-		Component: TextCell
+		Component: TextCell,
 	},
 	{
 		id: TSpecificationName.DateAvailableEnd,
 		value: "",
-		Component: DateAvailableCell
+		Component: DateAvailableCell,
 	},
 	{
 		id: TTableCellName.MatchButton,
 		value: "",
-		Component: MatchButtonCell
-	}
+		Component: MatchButtonCell,
+	},
 ];
 
 export const requestMatchCells: TTableCell[] = [
 	{
 		id: TSpecificationName.MatchPercentage,
 		value: "",
-		Component: PercentageCell
+		Component: PercentageCell,
 	},
 	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.AnimalSpecies,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Sex,
-		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Age,
-		label: "age_range",
-		value: "",
-		Component: AgeRangeCell
+		Component: TextCell,
 	},
 	{
 		id: TTableCellName.MagicCell,
 		value: "",
-		Component: TextCell
-	},
-	{
-		id: TSpecificationName.Amount,
-		value: "",
-		Component: TextCell
+		Component: TextCell,
 	},
 	{
 		id: TSpecificationName.DateRequested,
 		value: "",
-		Component: DateCell
+		Component: DateCell,
 	},
 	{
 		id: TTableCellName.MatchButton,
 		value: "",
-		Component: MatchButtonCell
-	}
+		Component: MatchButtonCell,
+	},
 ];

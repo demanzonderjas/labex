@@ -35,19 +35,9 @@ class FaqItemSeeder extends Seeder
                 "content" => "<p>If offered material has found a match (and thus is not available any more), it will be hidden from the overview, so this way the offers stay relevant and up to date.</p>"
             ],
             [
-                "category" => "Privacy",
-                "title" => "Are the legal requirements of the Experiments on Animals Act (Wod) and the General Data Protection Regulation (AVG) taken into account, and if so how?",
-                "content" => "<p>All requirements of the General Data Protection Regulation (AVG) are respected. This is also laid down in the processor agreement that UU concludes with other institutions whose employees use LABEX.</p>"
-            ],
-            [
                 "category" => "Matches",
                 "title" => "Why do I see matches below 100%?",
                 "content" => "<p>To keep the platform as versatile and informative as possible, we chose to show matches below 100%. This gives you the option to select a match that may not reflect your wishes fully, but is still a workable alternative.</p><p>When selecting a match, you can see exactly which fields of the offer/request did and did not match.</p>"
-            ],
-            [
-                "category" => "Matches",
-                "title" => "What happens when a match is partial (in amount/organs)",
-                "content" => "<p>Partial matches are re-entered into the system for the remaining amounts/organs.</p><p>As a calculation example:</p><p>=====</p><p>Offer: 70 brains, muscle tissue<br />Request: 20 brains, kidneys</p><p>>>></p><p>Match: 20 brains<br />New Offers: 50 brains, 70 muscle tissue<br />New Request: 20 kidneys</p>",
             ],
             [
                 "category" => "Matches",
@@ -92,7 +82,7 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Other",
                 "title" => "What about the ownership of the equipment and materials?",
-                "content" => "<p>Ownership of the equipment or materials has to be agreed on with the lab offering and the lab collecting the animals or tissue.</p><p>As a general rule: the lab receiving the equipment or materials will become the owner of these and be responsible for the proper transport, use, handling, treatment, and disposal.</p>"
+                "content" => "<p>Ownership of the equipment or materials has to be agreed on with the lab offering and the lab collecting the material.</p><p>As a general rule: the lab receiving the equipment or materials will become the owner of these and be responsible for the proper transport, use, handling, treatment, and disposal.</p>"
             ],
         ];
 

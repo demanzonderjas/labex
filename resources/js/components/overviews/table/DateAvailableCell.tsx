@@ -5,20 +5,12 @@ import { TSpecificationName } from "../../../typings/exchanges";
 
 export const DateAvailableCell: React.FC<TTableCellProps> = ({ value, attempt }) => {
 	const sampleType = attempt.specifications.find(
-		spec => spec.key == TSpecificationName.ExchangeType
+		(spec) => spec.key == TSpecificationName.ExchangeType
 	)?.value;
 
 	const dateAvailableStart = attempt.specifications.find(
-		spec => spec.key == TSpecificationName.DateAvailableStart
+		(spec) => spec.key == TSpecificationName.DateAvailableStart
 	)?.value;
-
-	if (sampleType == "conserved_tissue") {
-		return (
-			<td className="DateCell">
-				<DisplayedDate value={value} />
-			</td>
-		);
-	}
 
 	return (
 		<td className="DateCell">

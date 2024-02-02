@@ -1,22 +1,7 @@
 import { InputField } from "../../../components/form/InputField";
-import { SelectField } from "../../../components/form/SelectField";
 import { TSpecificationName } from "../../../typings/exchanges";
 import { InputType, TFormField } from "../../../typings/forms";
 import { TSpecStatus } from "../../../typings/specifications";
-
-export const originField: TFormField = {
-	label: "origin",
-	id: TSpecificationName.Origin,
-	Component: SelectField,
-	props: {
-		options: ["experiment", "breeding"],
-		startsEmpty: true,
-		allowOther: true
-	},
-	default: "",
-	value: "",
-	synonyms: ["herkomst"]
-};
 
 export const originIdField: TFormField = {
 	label: "origin_id",
@@ -29,8 +14,8 @@ export const originIdField: TFormField = {
 			: TSpecStatus.NoMatch;
 	},
 	props: {
-		type: InputType.Text
+		type: InputType.Text,
 	},
 	default: "",
-	value: ""
+	value: "",
 };

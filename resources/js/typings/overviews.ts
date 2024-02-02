@@ -35,12 +35,8 @@ export type TTableCellProps = {
 
 export interface TOfferCard extends TSampleCard {
 	id: number;
-	animal_species: string;
 	date_available: string;
 	match_percentage: number;
-	amount: string;
-	sex: string;
-	origin: string;
 	type: string;
 	is_mine: boolean;
 	specifications: TSpecification[];
@@ -53,14 +49,7 @@ export type TSpecification = {
 
 export interface TRequestCard extends TSampleCard {
 	id: number;
-	animal_species: string;
 	date_requested: string;
-	age_min: string;
-	age_max: string;
-	age_type: string;
-	amount: string;
-	sex: string;
-	origin: string;
 	type: string;
 	is_mine: boolean;
 	specifications: TSpecification[];
@@ -68,13 +57,8 @@ export interface TRequestCard extends TSampleCard {
 
 export interface TSampleCard {
 	id: number;
-	animal_species: string;
 	date_available: string;
 	match_percentage: number;
-	age?: string;
-	amount: string;
-	sex: string;
-	origin: string;
 	type: string;
 	user?: TUser;
 	is_match?: boolean;

@@ -45,13 +45,6 @@ class ExchangeAttempt extends Model
 		$amountSpec->save();
 	}
 
-	public function setOrgansAttribute($value)
-	{
-		$amountSpec = $this->specifications->firstWhere('key', 'organs');
-		$amountSpec->value = $value;
-		$amountSpec->save();
-	}
-
 	public function getAmountAttribute()
 	{
 		$amountSpec = $this->specifications->firstWhere('key', 'amount');
@@ -92,12 +85,6 @@ class ExchangeAttempt extends Model
 	{
 		$spec = $this->specifications->firstWhere('key', $specKey);
 		return $spec ? $spec->value : null;
-	}
-
-	public function getOrgansAttribute()
-	{
-		$organSpec = $this->specifications->firstWhere('key', 'organs');
-		return $organSpec ? $organSpec->value : null;
 	}
 
 	public function scopeOffers($query)

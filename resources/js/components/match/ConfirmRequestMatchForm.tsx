@@ -14,7 +14,6 @@ import { useModalStore } from "../../hooks/useModalStore";
 import { BlankButton, Button } from "../base/Button";
 import { createMatch } from "../../queries/createMatch";
 import { useNavigate } from "react-router-dom";
-import { TSpecificationName } from "../../typings/exchanges";
 
 type Props = {
 	fields: TFormField[];
@@ -30,9 +29,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
 	const [protocolNumber, setProtocolNumber] = useState("");
-	const [amount, setAmount] = useState(
-		filters.find((f) => f.id === TSpecificationName.Amount)?.value
-	);
 	const matches = createMatchSpecs(fields, filters);
 	const navigate = useNavigate();
 	const { t } = useTranslationStore();
@@ -45,7 +41,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 			},
 			{ extra_info: extraInfo, protocol_number: protocolNumber }
 		);
-		requestData.amount = amount;
 		await createMatch(requestData, offerId);
 		confirm();
 		navigate("/app/my-matches?info=true");
@@ -67,14 +62,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 					))}
 			</div>
 			<div className="extra-info">
-				<div className="InputField" style={{ maxWidth: "200px", marginBottom: "16px" }}>
-					<label style={{ marginBottom: "16px" }}>{t("change_requested_amount")}</label>
-					<input
-						type="number"
-						value={amount}
-						onChange={(e) => setAmount(e.target.value)}
-					/>
-				</div>
 				<div className="InputField" style={{ maxWidth: "200px", marginBottom: "16px" }}>
 					<label style={{ marginBottom: "16px" }}>{t("protocol_number")}</label>
 					<input

@@ -14,10 +14,6 @@ class UpdateExchangesTables extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('matches');
-        Schema::dropIfExists('exchange_offers');
-        Schema::dropIfExists('exchange_requests');
-
         Schema::create('exchange_attempts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
@@ -47,9 +43,7 @@ class UpdateExchangesTables extends Migration
      */
     public function down()
     {
-        Artisan::call('migrate', array('--path' => 'database/migrations/2020_05_20_072206_create_exchange_requests_table.php', '--force' => true));
-        Artisan::call('migrate', array('--path' => 'database/migrations/2020_05_20_071412_create_exchange_offers_table.php', '--force' => true));
-        Artisan::call('migrate', array('--path' => 'database/migrations/2020_05_27_083152_create_matches_table.php', '--force' => true));
         Schema::dropIfExists('exchange_attempts');
+        Schema::dropIfExists('matches');
     }
 }

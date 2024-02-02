@@ -136,39 +136,6 @@ class ExchangeAttemptController extends Controller
 
 				if ($base === false) {
 					return $base;
-				} else if ($next["key"] === "organs") {
-					$alertOrgans = explode(", ", $next['value']);
-					$attemptOrgans = !empty($attempt->organs) ? explode(", ", $attempt->organs) : [];
-					$hasOverlap = count(array_intersect($alertOrgans, $attemptOrgans)) > 0;
-					return $hasOverlap;
-				} else if ($next["key"] === "age_type" && $attempt->attempt_type === config('atex.constants.offer')) {
-					$minAge = Carbon::createFromFormat("Y-m-d", $attempt->getSpec("age"));
-					$minAge->add($alert->getSpec("age_min"), $alert->getSpec("age_type"));
-					$maxAge = Carbon::createFromFormat("Y-m-d", $attempt->getSpec("age"));
-					$maxAge->add($alert->getSpec("age_max"), $alert->getSpec("age_type"));
-					$now = Carbon::now();
-					return $now->isAfter($minAge) && $now->isBefore($maxAge);
-				} else if ($next["key"] === "age_type" && $attempt->attempt_type === config('atex.constants.request')) {
-					if (!$attempt->getSpec("age_type")) {
-						return $base;
-					}
-					$dayMultiplierAttempt = config('atex.constants.days_per_period.' . $attempt->getSpec("age_type"));
-					$minDaysAttempt = $dayMultiplierAttempt * $attempt->getSpec("age_min");
-					$maxDaysAttempt = $dayMultiplierAttempt * $attempt->getSpec("age_max");
-
-					$dayMultiplierAlert = config('atex.constants.days_per_period.' . $alert->getSpec("age_type"));
-					$minDaysAlert = $dayMultiplierAlert * $alert->getSpec("age_min");
-					$maxDaysAlert = $dayMultiplierAlert * $alert->getSpec("age_max");
-
-					return ($minDaysAlert > $minDaysAttempt && $minDaysAlert < $maxDaysAttempt) ||
-						($minDaysAlert < $minDaysAttempt && $maxDaysAlert > $maxDaysAttempt) ||
-						($minDaysAttempt > $minDaysAlert && $maxDaysAttempt < $maxDaysAlert) ||
-						($maxDaysAlert < $maxDaysAttempt &&
-							$minDaysAlert < $maxDaysAttempt &&
-							$maxDaysAlert > $minDaysAttempt);
-				} else if (strpos($next["key"], "age") === false && $next["key"] != "attempt_type") {
-					$spec = $attempt->specifications->firstWhere('key', $next["key"]);
-					$base = $spec ? $next["value"] === $spec->value : $base;
 				}
 
 				return $base;

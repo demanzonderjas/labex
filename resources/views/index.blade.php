@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/app.css?t={{ time() }}">
-    <title>Exchange Platform Animals & Tissues</title>
+    <title>Laboratory Exchange Platform (LABEX)</title>
 </head>
 
 <body>

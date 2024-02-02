@@ -50,12 +50,6 @@ class ExchangeAttemptFactory extends Factory
                     'value' => $this->randomDataSet[$fieldId]
                 ]);
             }
-            foreach (config('validation.exchange_attempt_' . $attempt->attempt_type . '_fields') as $fieldId => $validation) {
-                $specs[] = new Specification([
-                    'key' => $fieldId,
-                    'value' => $this->randomDataSet[$fieldId]
-                ]);
-            };
             $attempt->specifications()->saveMany($specs);
         });
     }
@@ -68,27 +62,23 @@ class ExchangeAttemptFactory extends Factory
 
         $this->randomDataSet = [
             "date_requested" => $this->faker->dateTimeBetween('now', '+30 days')->format('Y-m-d'),
-            "age_type" => $this->selectRandom(config("validation.age_type")),
-            "age_min" => rand(0, 5),
-            "age_max" => rand(6, 20),
             "type" => $this->selectRandom(config("validation.type")),
-            "animal_species" => $this->selectRandom(config("validation.animal_species")),
-            "organs" => $this->selectRandom(config("validation.organs")) . ", " . $this->selectRandom(config("validation.organs")),
-            "strain" => $this->faker->word(),
-            "amount" => rand(0, 100),
-            "sex" => $this->selectRandom(config("validation.sex")),
+            "device_type" => $this->selectRandom(config("validation.device_type")),
+            "specifications" => $this->faker->text(140),
+            "availability" => $this->selectRandom(config("validation.availability")),
+            "substance_category" => $this->faker->word(),
+            "substance_details" => $this->faker->text(140),
+            "product_producer_number" => rand(10000, 99999),
+            "packaging_method" => $this->selectRandom(config("validation.packaging_method")),
+            "number" => rand(10000, 99999),
             "storage" => $this->selectRandom(config("validation.storage")),
-            "age" => $this->faker->dateTimeThisYear()->format('Y-m-d'),
+            "reason_for_availability" => $this->selectRandom(config("validation.reason_for_availability")),
+            "disposable_category" => $this->faker->word(),
+            "disposable_details" => $this->faker->text(140),
             "date_available_start" => $dateAvailableStart,
             "date_available" => $dateAvailableEnd,
-            "origin" => $this->selectRandom(config("validation.origin")),
-            "naive" => $this->selectRandom(config("validation.yes_no")),
-            "protocol_number" => rand(10000, 99999),
-            "sample_number" => rand(10000, 99999),
-            "spf" => $this->selectRandom(config("validation.spf")),
-            "kill_method" => $this->selectRandom(config("validation.kill_method")),
-            "location" => $this->faker->city(),
-            "extra_info" => $this->faker->text(140)
+            "partial_use" => $this->selectRandom(config("validation.yes_no")),
+            "contact_details" => $this->faker->email(),
         ];
     }
 }

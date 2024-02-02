@@ -1,5 +1,5 @@
 import React from "react";
-import { TFormField, TFormFieldName } from "../../typings/forms";
+import { TFormField } from "../../typings/forms";
 import { TUser } from "../../typings/user";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { MatchType } from "../../typings/overviews";

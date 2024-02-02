@@ -18,7 +18,6 @@ export const deviceTypeField: TFormField = {
 			"refrigerator",
 			"microscope",
 			"elisa_reader",
-			"other",
 		],
 		allowOther: true,
 	},

@@ -1,24 +1,10 @@
-import { TForm, TFormFieldName } from "../../typings/forms";
-import { animalSpeciesField } from "./fields/animalSpecies";
-import { strainField } from "./fields/strain";
-import { ageField } from "./fields/age";
-import { naiveField } from "./fields/naive";
-import { sexField } from "./fields/sex";
-import { originField, originIdField } from "./fields/origin";
-import { spfField } from "./fields/spf";
-import { organsField } from "./fields/organs";
+import { TForm } from "../../typings/forms";
 import { storageField } from "./fields/storage";
-import { killMethodField } from "./fields/killMethod";
-import { amountField } from "./fields/amount";
-import { protocolNumberField } from "./fields/protocolNumber";
 import { deviceTypeField, typeField } from "./fields/type";
-import { dateConservedField } from "./fields/dateConserved";
-import { contactDetailsField, extraInfoField, specificationsField } from "./fields/extraInfo";
+import { contactDetailsField, specificationsField } from "./fields/extraInfo";
 import { withRequired } from "../../utils/formatting/fields";
-import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { attemptTypeOfferField } from "./fields/attemptType";
-import { locationField } from "./fields/location";
 import {
 	dateAvailableEndAsAdminField,
 	dateAvailableEndField,
@@ -40,6 +26,7 @@ import { substanceCategoryField, substanceDetailsField } from "./fields/substanc
 import { numberField, productProducerField } from "./fields/sampleNumber";
 import { disposablePackagingField, packagingMethodField } from "./fields/packaging";
 import { disposableCategoryField, disposableDetailsField } from "./fields/disposables";
+import { originIdField } from "./fields/origin";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",

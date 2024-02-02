@@ -1,7 +1,7 @@
 <?php
 
 return [
-	"admin_mail" => "info@atex.uu.nl",
+	"admin_mail" => "info@labex.uu.nl",
 	"constants" => [
 		"exchange_attempt_status" => [
 			"active" => "active",
@@ -15,9 +15,9 @@ return [
 			"rejected" => "rejected"
 		],
 		"exchange_type" => [
-			"animal" => "animal",
-			"vital_tissue" => "vital_tissue",
-			"conserved_tissue" => "conserved_tissue",
+			"equipment" => "equipment",
+			"chemicals" => "chemicals",
+			"disposables" => "disposables",
 		],
 		"days_before_inactive" => 14,
 		"days_per_period" => [

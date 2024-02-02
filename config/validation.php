@@ -11,87 +11,48 @@ return [
     ],
     "exchange_attempt_fields" => [
         "type" => "nullable|string",
-        "animal_species" => "nullable|string",
-        'organs' => 'nullable|string',
-        "strain" => "nullable|string",
-        "sex" => "nullable|string",
-        "origin" => "nullable|string",
-        "spf" => "nullable|string",
+        "device_type" => "nullable|string",
+        'specifications' => 'nullable|string',
+        "availability" => "nullable|string",
+        "substance_category" => "nullable|string",
+        "substance_details" => "nullable|string",
+        "product_producer_number" => "nullable|string",
+        "packaging_method" => "nullable|string",
         "storage" => "nullable|string",
-        "naive" => "nullable|string",
-        'protocol_number' => 'nullable|string',
-        "kill_method" => "nullable|string",
-        "sample_number" => "nullable|string",
-        'amount' => 'required|string',
-        'extra_info' => 'nullable|string',
-    ],
-    "exchange_attempt_offer_fields" => [
-        'age' => 'required|string',
+        'reason_for_availability' => 'nullable|string',
+        "disposable_category" => "nullable|string",
+        "disposable_details" => "nullable|string",
+        'number' => 'required|string',
         'date_available_start' => 'nullable|string',
         'date_available' => 'nullable|string',
-        'location' => 'nullable|string',
-    ],
-    "exchange_attempt_request_fields" => [
-        'age_type' => 'required|string',
-        'age_min' => 'required|alpha_num',
-        'age_max' => 'required|alpha_num',
-        'date_requested' => 'nullable|string',
+        'partial_use' => 'nullable|string',
+        'contact_details' => 'nullable|string',
+        'extra_info' => 'nullable|string',
+        'attempt_type' => 'nullable|string',
     ],
     "type" => [
-        "animal", "vital_tissue", "conserved_tissue"
+        "equipment", "chemicals", "disposables"
     ],
-    "animal_species" => [
-        "mouse",
-        "rat",
-        "guinea_pig",
-        "hamster",
-        "rabbit",
-        "dog",
-        "cat",
-        "ferret",
-        "pig",
-        "sheep",
-        "goat",
-        "horse",
-        "cattle",
-        "chicken",
-        "zebra_finch",
-        "zebrafish"
+    "device_type" => [
+        "incubator",
+        "centrifuge",
+        "water_bath",
+        "freezer",
+        "refrigerator",
+        "microscope",
+        "elisa_reader",
     ],
-    "sex" => [
-        "male",
-        "female"
+    "availability" => [
+        "on_loan", "for_rent", "for_sale", "available_free_of_charge"
     ],
-    "origin" => [
-        "experiment", "breeding"
+    "packaging_method" => [
+        "non_packaged", "sterile", "net_sterile"
     ],
     "storage" => [
-        "fresh", "frozen", "liquid_nitrogen", "preserved"
+        "chilled", "in_freezer", "room_temperature", "liquid_nitrogen"
     ],
-    "age_type" => ["weeks", "months", "years"],
-    "spf" => [
-        "spf", "conventional", "unknown"
-    ],
-    "kill_method" => [
-        "co2_o2",
-        "cervical_dislocation",
-        "decapitation",
-        "terminal_anesthesia",
-        "overdose_of_euthasate",
-        "electrocution"
-    ],
-    "organs" => [
-        "liver",
-        "kidneys",
-        "lung",
-        "heart",
-        "brains",
-        "blood",
-        "muscle_tissue",
-        "lymph_nodes",
-        "bone",
-        "intestine",
-        "skin",
+    "reason_for_availability" => [
+        "redundant", "overdate"
     ],
     "yes_no" => ["yes", "no"]
 ];

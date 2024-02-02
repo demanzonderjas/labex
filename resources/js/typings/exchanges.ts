@@ -20,11 +20,7 @@ export type TExchangeAttempt = {
 	created_at: string;
 };
 
-export type TExportableOffer = TExchangeAttempt & {
-	offered: number;
-	matched: number;
-	remaining: number;
-};
+export type TExportableOffer = TExchangeAttempt;
 
 export enum TExchangeAttemptStatus {
 	Active = "active",
@@ -32,7 +28,6 @@ export enum TExchangeAttemptStatus {
 }
 
 export enum TSpecificationName {
-	AnimalSpecies = "animal_species",
 	DeviceType = "device_type",
 	ExchangeType = "type",
 	AvailabilityType = "availability_type",
@@ -42,25 +37,10 @@ export enum TSpecificationName {
 	ContactDetails = "contact_details",
 	PartialUse = "partial_use",
 	AttemptType = "attempt_type",
-	Organs = "organs",
 	DateAvailableStart = "date_available_start",
 	DateAvailableEnd = "date_available",
 	DateRequested = "date_requested",
-	Age = "age",
-	AgeMin = "age_min",
-	AgeMax = "age_max",
-	AgeType = "age_type",
-	SPF = "spf",
-	Naive = "naive",
-	Amount = "amount",
-	Origin = "origin",
-	KillMethod = "kill_method",
-	Strain = "strain",
-	ProtocolNumber = "protocol_number",
 	Storage = "storage",
-	Sex = "sex",
-	ExtraInfo = "extra_info",
-	SampleNumber = "sample_number",
 	MatchPercentage = "match_percentage",
 	Other = "other",
 	Location = "location",
@@ -73,6 +53,7 @@ export enum TSpecificationName {
 	DisposableDetails = "disposable_details",
 	SafetyAspects = "safety_aspects",
 	Number = "number",
+	ExtraInfo = "extra_info",
 }
 
 export type TMatch = {

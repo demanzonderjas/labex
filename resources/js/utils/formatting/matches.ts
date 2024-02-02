@@ -140,9 +140,6 @@ export function formatAttemptsForExport(attempts: TExportableOffer[]) {
 		return {
 			id: a.id,
 			origin_id: a.origin_id,
-			offered: a.offered,
-			matched: a.matched,
-			remaining: a.remaining,
 			status: a.status,
 			created_at: dayjs(a.created_at).format("DD/MM/YYYY"),
 			is_matched: a.is_match,

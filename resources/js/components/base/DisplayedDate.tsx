@@ -22,10 +22,6 @@ export const DisplayedDate: React.FC<Props> = ({ value }) => {
 export const DateAvailableValue: React.FC<Props & { type: string }> = ({ value, type }) => {
 	const datePlusTwoWeeks = getDatePlusTwoWeeks(value);
 
-	if (type == "conserved_tissue") {
-		return <DisplayedDate value={value} />;
-	}
-
 	return (
 		<>
 			<DisplayedDate value={value} />
