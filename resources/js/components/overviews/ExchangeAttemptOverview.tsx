@@ -28,14 +28,12 @@ export const ExchangeAttemptOverview: React.FC<{
 		overviewType,
 		offers,
 		requests,
-		getExchangeAttempts
+		getExchangeAttempts,
 	} = useExchangeAttemptStore();
 	const targetAttempts = type === TExchangeAttemptType.Offer ? offers : requests;
 	const sortedAttempts = convertAttemptsToMatches(targetAttempts, filters, targetFields);
 	const attemptsAsCells = convertMatchesToCells(sortedAttempts, specsToShow, magicField);
 	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
-
-	console.log(sortedAttempts);
 
 	useEffect(() => {
 		getExchangeAttempts(type, mineOnly, adminView);
@@ -65,7 +63,7 @@ export const ExchangeAttemptOverview: React.FC<{
 					columns={
 						magicField
 							? specsToShow
-							: specsToShow.filter(cell => cell.id != "magic_cell")
+							: specsToShow.filter((cell) => cell.id != "magic_cell")
 					}
 				/>
 			)}

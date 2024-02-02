@@ -26,14 +26,14 @@ export const FilterOffersForm: TForm = {
 		withRequired(deviceTypeField),
 		equipmentAvailabilityField,
 		// Chemicals fields
-		withRequired(substanceCategoryField),
+		substanceCategoryField,
 		packagingMethodField,
 		storageField,
 		chemicalsAvailabilityField,
 		reasonForAvailabilityField,
 		// disposables fields
-		withRequired(disposableCategoryField),
-		withRequired(disposableDetailsField),
+		disposableCategoryField,
+		disposableDetailsField,
 		disposablePackagingField,
 		// general fields
 		partialUseField,

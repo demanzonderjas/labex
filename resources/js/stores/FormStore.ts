@@ -37,11 +37,11 @@ export class FormStore {
 			return this.fields;
 		}
 
-		return this.fields.filter(field => field.id == this.activeFilter);
+		return this.fields.filter((field) => field.id == this.activeFilter);
 	}
 
 	@computed get filters() {
-		return this.fields.filter(fieldMeetsDependencies).filter(field => field.value != "");
+		return this.fields.filter(fieldMeetsDependencies).filter((field) => field.value != "");
 	}
 
 	@action.bound setActiveFilter(id) {
@@ -62,7 +62,7 @@ export class FormStore {
 
 	@action.bound setFieldValue(id: string, value: any) {
 		const fieldIdx = this.fields.findIndex(
-			field => field.id == id && fieldMeetsDependencies(field, 0, this.fields)
+			(field) => field.id == id && fieldMeetsDependencies(field, 0, this.fields)
 		);
 		const fields = [...this.fields];
 		fields[fieldIdx] = { ...fields[fieldIdx], value };
@@ -113,12 +113,12 @@ export class FormStore {
 				}, 1000);
 			}
 		} else {
-			console.log(this.errors, this.serverError);
+			console.error(this.errors, this.serverError);
 		}
 	}
 
 	@action.bound resetForm() {
-		this.fields = this.fields.map(field => {
+		this.fields = this.fields.map((field) => {
 			return { ...field, value: field.default };
 		});
 		this.serverError = null;
@@ -143,6 +143,6 @@ export class FormStore {
 	}
 
 	@action.bound removeField(id: string) {
-		this.fields = this.fields.filter(field => field.id != id);
+		this.fields = this.fields.filter((field) => field.id != id);
 	}
 }

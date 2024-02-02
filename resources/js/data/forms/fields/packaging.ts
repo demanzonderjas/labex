@@ -7,7 +7,6 @@ import { TTypeSpec } from "../../../typings/specifications";
 export const packagingMethodField: TFormField = {
 	label: "packaging_method",
 	id: TSpecificationName.PackagingMethod,
-	required: true,
 	Component: InputField,
 	props: {
 		type: InputType.Text,

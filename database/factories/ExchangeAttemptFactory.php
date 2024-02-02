@@ -75,10 +75,13 @@ class ExchangeAttemptFactory extends Factory
             "reason_for_availability" => $this->selectRandom(config("validation.reason_for_availability")),
             "disposable_category" => $this->faker->word(),
             "disposable_details" => $this->faker->text(140),
+            "extra_info" => $this->faker->text(140),
             "date_available_start" => $dateAvailableStart,
             "date_available" => $dateAvailableEnd,
             "partial_use" => $this->selectRandom(config("validation.yes_no")),
             "contact_details" => $this->faker->email(),
+            "attempt_type" => $this->selectRandom(config("validation.attempt_types")),
+            "date_requested" => $dateAvailableStart,
         ];
     }
 }

@@ -16,6 +16,9 @@ export function getMatchingPercentage(
 			fieldMeetsDependencies(filter, 0, fields) &&
 			!fieldShouldBeIgnoredInMatch(filter)
 	);
+	if (!activeFilters.length) {
+		return 100;
+	}
 	const matchingFilters: TSpecStatus[] = activeFilters.map((filter) =>
 		checkIfFilterMatches(filter, attempt, filters, fields)
 	);

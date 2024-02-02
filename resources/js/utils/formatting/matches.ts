@@ -7,6 +7,7 @@ import { TExchangeAttempt, TExportableOffer, TSpecificationName } from "../../ty
 import { matchMeetsHardFilters } from "../filters/matches";
 import dayjs from "dayjs";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
+import { toJS } from "mobx";
 
 export function getMatchClasses(value) {
 	return {
@@ -89,7 +90,7 @@ export function convertAttemptsToMatches(
 					};
 				})
 				.filter((attempt) => attempt.match_percentage > 0);
-	sortedAttempts.sort((a, b) => a.id - b.id);
+	sortedAttempts.sort((a, b) => b.id - a.id);
 	return sortedAttempts;
 }
 

@@ -22,13 +22,14 @@ return [
         'reason_for_availability' => 'nullable|string',
         "disposable_category" => "nullable|string",
         "disposable_details" => "nullable|string",
-        'number' => 'required|string',
+        'number' => 'nullable|string',
         'date_available_start' => 'nullable|string',
         'date_available' => 'nullable|string',
+        'date_requested' => 'nullable|string',
         'partial_use' => 'nullable|string',
         'contact_details' => 'nullable|string',
         'extra_info' => 'nullable|string',
-        'attempt_type' => 'nullable|string',
+        'attempt_type' => 'required',
     ],
     "type" => [
         "equipment", "chemicals", "disposables"
