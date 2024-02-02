@@ -1,7 +1,7 @@
 import { TFormField } from "../../../typings/forms";
-import { BigTextField } from "../../../components/form/BigTextField";
 import { SelectField } from "../../../components/form/SelectField";
 import { TSpecificationName } from "../../../typings/exchanges";
+import { TTypeSpec } from "../../../typings/specifications";
 
 export const storageField: TFormField = {
 	label: "storage",
@@ -9,20 +9,19 @@ export const storageField: TFormField = {
 	Component: SelectField,
 	props: {
 		startsEmpty: true,
-		options: ["fresh", "frozen", "liquid_nitrogen", "preserved"],
-		allowOther: true
+		options: ["chilled", "in_freezer", "room_temperature", "liquid_nitrogen"],
 	},
 	default: "",
 	value: "",
 	dependencies: [
 		{
-			id: "type",
-			validate: value => value == "conserved_tissue"
-		}
+			id: TSpecificationName.ExchangeType,
+			validate: (value) => value == TTypeSpec.Chemicals,
+		},
 	],
-	synonyms: ["storage_method"]
+	synonyms: ["storage_method"],
 };
 
 export const storageRequestField: TFormField = {
-	...storageField
+	...storageField,
 };

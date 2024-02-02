@@ -5,7 +5,7 @@ import {
 	isDateAvailableStartValid,
 	isDateInFuture,
 	isDateInRangeOfTwoWeeks,
-	isDateRequestedAfterStartDate
+	isDateRequestedAfterStartDate,
 } from "../../../utils/validation/date";
 import { getFieldById } from "../../../utils/getters/fields";
 import { TSpecStatus } from "../../../typings/specifications";
@@ -20,7 +20,7 @@ export const dateAvailableStartField: TFormField = {
 	Component: InputField,
 	required: true,
 	props: {
-		type: InputType.Date
+		type: InputType.Date,
 	},
 	default: "",
 	matchVia: TSpecificationName.DateRequested,
@@ -32,24 +32,24 @@ export const dateAvailableStartField: TFormField = {
 		const dateAvailableStart = getFieldById(TSpecificationName.DateAvailableStart, fields);
 		return (isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) &&
 			isDateRequestedAfterStartDate(givenValue, dateAvailableStart?.value)) ||
-			(type && type.value == TTypeSpec.ConservedTissue)
+			(type && type.value == TTypeSpec.Equipment)
 			? TSpecStatus.Match
 			: TSpecStatus.NoMatch;
 	},
 	dependencies: [
 		{
-			id: "type",
-			validate: value => value == "animal" || value == "vital_tissue"
-		}
+			id: TSpecificationName.ExchangeType,
+			validate: (value) => value == TTypeSpec.Equipment || value == TTypeSpec.Chemicals,
+		},
 	],
-	synonyms: ["available", "availability", "date"]
+	synonyms: ["available", "availability", "date"],
 };
 
 export const dateAvailableEndField: TFormField = {
 	...dateAvailableStartField,
 	label: "date_available_end",
 	id: TSpecificationName.DateAvailableEnd,
-	validate: isDateAvailableEndValid
+	validate: isDateAvailableEndValid,
 };
 
 export const dateAvailableStartAsAdminField = { ...dateAvailableStartField, validate: undefined };
@@ -67,12 +67,12 @@ export const dateRequestedField: TFormField = {
 		const dateAvailableStart = getFieldById(TSpecificationName.DateAvailableStart, fields);
 		return (isDateInRangeOfTwoWeeks(givenValue, dateAvailable.value) &&
 			isDateRequestedAfterStartDate(givenValue, dateAvailableStart?.value)) ||
-			(type && type.value == TTypeSpec.ConservedTissue)
+			(type && type.value == TTypeSpec.Equipment)
 			? TSpecStatus.Match
 			: TSpecStatus.NoMatch;
 	},
 	validate: undefined,
-	dependencies: []
+	dependencies: [],
 };
 
 export const yearSelectField: TFormField = {
@@ -86,5 +86,5 @@ export const yearSelectField: TFormField = {
 	isMatch: (givenValue, targetValue) => {
 		const targetYear = dayjs(targetValue).year();
 		return targetYear == givenValue ? TSpecStatus.Match : TSpecStatus.NoMatch;
-	}
+	},
 };

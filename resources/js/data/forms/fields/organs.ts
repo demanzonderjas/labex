@@ -21,8 +21,8 @@ export const organsField: TFormField = {
 			"lymph_nodes",
 			"bone",
 			"intestine",
-			"skin"
-		]
+			"skin",
+		],
 		// allowOther: true
 	},
 	default: "",
@@ -33,13 +33,13 @@ export const organsField: TFormField = {
 	dependencies: [
 		{
 			id: TSpecificationName.ExchangeType,
-			validate: value => value !== TTypeSpec.Animal
-		}
+			validate: (value) => value !== TTypeSpec.Equipment,
+		},
 	],
-	synonyms: ["organ"]
+	synonyms: ["organ"],
 };
 
 export const organsRequestField: TFormField = {
 	...organsField,
-	required: false
+	required: false,
 };

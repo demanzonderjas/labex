@@ -33,7 +33,14 @@ export enum TExchangeAttemptStatus {
 
 export enum TSpecificationName {
 	AnimalSpecies = "animal_species",
+	DeviceType = "device_type",
 	ExchangeType = "type",
+	AvailabilityType = "availability_type",
+	ProductProducerNumber = "product_producer_number",
+	ReasonForAvailability = "reason_for_availability",
+	PackagingMethod = "packaging_method",
+	ContactDetails = "contact_details",
+	PartialUse = "partial_use",
 	AttemptType = "attempt_type",
 	Organs = "organs",
 	DateAvailableStart = "date_available_start",
@@ -59,6 +66,13 @@ export enum TSpecificationName {
 	Location = "location",
 	Status = "status",
 	OriginId = "origin_id",
+	Specifications = "specifications",
+	SubstanceCategory = "substance_category",
+	SubstanceDetails = "substance_details",
+	DisposableCategory = "disposable_category",
+	DisposableDetails = "disposable_details",
+	SafetyAspects = "safety_aspects",
+	Number = "number",
 }
 
 export type TMatch = {

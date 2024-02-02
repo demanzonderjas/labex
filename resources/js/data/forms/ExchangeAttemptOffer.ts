@@ -11,9 +11,9 @@ import { storageField } from "./fields/storage";
 import { killMethodField } from "./fields/killMethod";
 import { amountField } from "./fields/amount";
 import { protocolNumberField } from "./fields/protocolNumber";
-import { typeField } from "./fields/type";
+import { deviceTypeField, typeField } from "./fields/type";
 import { dateConservedField } from "./fields/dateConserved";
-import { extraInfoField } from "./fields/extraInfo";
+import { contactDetailsField, extraInfoField, specificationsField } from "./fields/extraInfo";
 import { withRequired } from "../../utils/formatting/fields";
 import { flowchartModal } from "../modals/flowchart";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
@@ -28,38 +28,51 @@ import {
 } from "./fields/dateAvailable";
 import { FilterOffersForm } from "./ExchangeAttemptRequest";
 import { statusField } from "./fields/status";
-import { idField } from "./fields/faq/id";
 import { TSpecificationName } from "../../typings/exchanges";
 import { userFilterField } from "./fields/user/userFilter";
-import { isActiveField } from "./fields/active";
+import {
+	chemicalsAvailabilityField,
+	equipmentAvailabilityField,
+	partialUseField,
+	reasonForAvailabilityField,
+} from "./fields/availability";
+import { substanceCategoryField, substanceDetailsField } from "./fields/substance";
+import { numberField, productProducerField } from "./fields/sampleNumber";
+import { disposablePackagingField, packagingMethodField } from "./fields/packaging";
+import { disposableCategoryField, disposableDetailsField } from "./fields/disposables";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
 	intro: "submit_offer_intro",
 	fields: [
 		withRequired(typeField),
-		withRequired(animalSpeciesField),
-		strainField,
-		sexField,
-		ageField,
-		withRequired(originField),
-		spfField,
-		organsField,
+		// Equipment fields
+		withRequired(deviceTypeField),
+		withRequired(specificationsField),
+		equipmentAvailabilityField,
+		// Chemicals fields
+		withRequired(substanceCategoryField),
+		withRequired(substanceDetailsField),
+		productProducerField,
+		packagingMethodField,
 		storageField,
+		chemicalsAvailabilityField,
+		reasonForAvailabilityField,
+		// disposables fields
+		withRequired(disposableCategoryField),
+		withRequired(disposableDetailsField),
+		disposablePackagingField,
+		numberField,
+		// general fields
 		dateAvailableStartField,
 		dateAvailableEndField,
-		dateConservedField,
-		naiveField,
-		killMethodField,
-		amountField,
-		protocolNumberField,
-		locationField,
-		extraInfoField,
+		partialUseField,
+		contactDetailsField,
 		attemptTypeOfferField,
 	],
 	handler: sendExchangeAttempt,
 	matchable: false,
-	infoModal: flowchartModal,
+	// infoModal: flowchartModal,
 	allowCancel: true,
 	splitByRequired: true,
 };

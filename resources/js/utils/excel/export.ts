@@ -26,7 +26,7 @@ export function convertValidOffersToOrigin(
 			remaining: offer.is_match ? 0 : totalAmount,
 		};
 
-		if (!offer.origin_id || !type || type.value !== TTypeSpec.Animal) {
+		if (!offer.origin_id || !type || type.value !== TTypeSpec.Equipment) {
 			base.push(baseOffer);
 		} else {
 			const currentListing = base.find((origin) => origin.id === baseOffer.origin_id);

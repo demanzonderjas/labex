@@ -1,20 +1,20 @@
 export enum TTypeSpec {
-	Animal = "animal",
-	VitalTissue = "vital_tissue",
-	ConservedTissue = "conserved_tissue"
+	Equipment = "equipment",
+	Chemicals = "chemicals",
+	Disposables = "disposables",
 }
 
 export enum TAgeType {
 	Weeks = "weeks",
 	Months = "months",
-	Years = "years"
+	Years = "years",
 }
 
 export enum TSpecStatus {
 	Match = "match",
 	PartialMatch = "partial_match",
 	NoMatch = "no_match",
-	NotSubmitted = "not_submitted"
+	NotSubmitted = "not_submitted",
 }
 
 export type TSpecMatch = {
