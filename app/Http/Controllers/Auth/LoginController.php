@@ -66,6 +66,16 @@ class LoginController extends Controller
         }
     }
 
+    public function handleDemoLogin(Request $request)
+    {
+        if ($request->password === 'demolab') {
+            Auth::login(User::find($request->user_id));
+            return response()->json(["success" => true]);
+        } else {
+            return response()->json(["success" => false, "message" => "Credentials given are not correct"]);
+        }
+    }
+
     public function createNewUser($ssoUser): User
     {
         $u = new User();

@@ -27,6 +27,15 @@ export async function loginUser(loginAttempt) {
 	}
 }
 
+export async function demoLogin(password: string, user_id: number) {
+	try {
+		const response = await API.post("demo-login", { password, user_id });
+		return response.data;
+	} catch (e) {
+		return { success: false, message: "invalid_request" };
+	}
+}
+
 export async function deleteUser(signup) {
 	const { id } = signup;
 	try {
