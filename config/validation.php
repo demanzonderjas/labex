@@ -13,7 +13,7 @@ return [
         "type" => "nullable|string",
         "device_type" => "nullable|string",
         'specifications' => 'nullable|string',
-        "availability" => "nullable|string",
+        "availability_type" => "nullable|string",
         "substance_category" => "nullable|string",
         "substance_details" => "nullable|string",
         "product_producer_number" => "nullable|string",
@@ -43,7 +43,7 @@ return [
         "microscope",
         "elisa_reader",
     ],
-    "availability" => [
+    "availability_type" => [
         "on_loan", "for_rent", "for_sale", "available_free_of_charge"
     ],
     "packaging_method" => [

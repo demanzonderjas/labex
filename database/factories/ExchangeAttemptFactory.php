@@ -65,7 +65,7 @@ class ExchangeAttemptFactory extends Factory
             "type" => $this->selectRandom(config("validation.type")),
             "device_type" => $this->selectRandom(config("validation.device_type")),
             "specifications" => $this->faker->text(140),
-            "availability" => $this->selectRandom(config("validation.availability")),
+            "availability_type" => $this->selectRandom(config("validation.availability_type")),
             "substance_category" => $this->faker->word(),
             "substance_details" => $this->faker->text(140),
             "product_producer_number" => rand(10000, 99999),
