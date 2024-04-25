@@ -5,7 +5,7 @@ import { TMatch } from "../../typings/exchanges";
 export const MatchMessage: React.FC<{ match: TMatch }> = ({ match }) => {
 	const { t } = useTranslationStore();
 
-	if (!match.admin_actions.length) {
+	if (!match.admin_actions.filter((action) => !!action.message).length) {
 		return null;
 	}
 
