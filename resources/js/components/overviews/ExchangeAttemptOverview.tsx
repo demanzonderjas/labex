@@ -32,6 +32,7 @@ export const ExchangeAttemptOverview: React.FC<{
 	} = useExchangeAttemptStore();
 	const targetAttempts = type === TExchangeAttemptType.Offer ? offers : requests;
 	const sortedAttempts = convertAttemptsToMatches(targetAttempts, filters, targetFields);
+	console.log(sortedAttempts);
 	const attemptsAsCells = convertMatchesToCells(sortedAttempts, specsToShow, magicField);
 	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
 

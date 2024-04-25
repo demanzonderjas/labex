@@ -92,7 +92,7 @@ export function convertAttemptsToMatches(
 					};
 				})
 				.filter((attempt) => attempt.match_percentage > 0);
-	sortedAttempts.sort((a, b) => b.id - a.id);
+	sortedAttempts.sort((a, b) => b.match_percentage - a.match_percentage);
 	return sortedAttempts;
 }
 

@@ -7,7 +7,6 @@ export function matchMeetsHardFilters(match: TExchangeAttempt, filters: TFormFie
 	return filters
 		.filter((f) => f.isHardFilter && f.value)
 		.every((f) => {
-			console.log(f);
 			const spec = match.specifications.find((s) => s.key === f.id);
 			return (
 				f.value === match[f.id] ||
