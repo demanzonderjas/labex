@@ -58,12 +58,14 @@ export function convertMatchesToCells(
 }
 
 export function createQueryStringFromFilters(filters: TFormField[]) {
-	return filters.reduce((base, filter) => {
-		if (!base.length) {
-			return `?${filter.id}=${filter.value}`;
-		}
-		return `${base}&${filter.id}=${filter.value}`;
-	}, "");
+	return filters
+		.filter((f) => f.value !== "")
+		.reduce((base, filter) => {
+			if (!base.length) {
+				return `?${filter.id}=${filter.value}`;
+			}
+			return `${base}&${filter.id}=${filter.value}`;
+		}, "");
 }
 
 export function convertAttemptsToMatches(
