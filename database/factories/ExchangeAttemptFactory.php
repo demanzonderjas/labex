@@ -64,6 +64,7 @@ class ExchangeAttemptFactory extends Factory
             "date_requested" => $this->faker->dateTimeBetween('now', '+30 days')->format('Y-m-d'),
             "type" => $this->selectRandom(config("validation.type")),
             "title" => $this->faker->text(50),
+            "image" => null,
             "description" => $this->faker->text(140),
             "location_building" => $this->faker->address(),
             "location_room" => 'Room ' . $this->faker->buildingNumber,

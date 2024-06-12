@@ -9,7 +9,7 @@ export const ExcelImport = () => {
 	const [tempFile, setTempFile] = useState("");
 	const { setModal, setModalData } = useModalStore();
 
-	const handleUpload = async e => {
+	const handleUpload = async (e) => {
 		if (!e.target.files || !e.target.files.length) {
 			return;
 		}

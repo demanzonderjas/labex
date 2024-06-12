@@ -59,6 +59,7 @@ export enum TSpecificationName {
 	Amount = "amount",
 	Title = "title",
 	Description = "description",
+	Image = "image",
 }
 
 export type TMatch = {

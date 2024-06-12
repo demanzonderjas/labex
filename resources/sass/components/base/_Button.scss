@@ -104,6 +104,9 @@
 			}
 		}
 	}
+	&.nomargin {
+		margin: 0 !important;
+	}
 }
 .button-wrapper {
 	display: flex;

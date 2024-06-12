@@ -25,6 +25,7 @@
 @import "components/forms/SelectField";
 @import "components/forms/RangeField";
 @import "components/forms/ActiveFilters";
+@import "components/forms/ImageUploadField";
 
 @import "components/overviews/Card";
 @import "components/overviews/Overview";
@@ -99,7 +100,7 @@ body {
 				td:first-child {
 					padding-left: calc((100vw - #{$admin-layout-wrapper-width}) / 2);
 				}
-		
+
 				th:last-child,
 				td:last-child {
 					padding-right: calc((100vw - #{$admin-layout-wrapper-width} - 20px) / 2);

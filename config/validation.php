@@ -12,6 +12,7 @@ return [
     "exchange_attempt_fields" => [
         "type" => "nullable|string",
         "title" => "nullable|string",
+        "image" => "nullable|string",
         "description" => "nullable|string",
         "location_building" => "nullable|string",
         "location_room" => "nullable|string",

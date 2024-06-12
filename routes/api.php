@@ -49,6 +49,9 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('alert', 'AlertController@store');
         Route::delete('alert/{alert_id}', 'AlertController@delete');
         Route::get('alerts/mine', 'AlertController@getMine');
+
+        Route::post('upload-image', 'ImageUploadController@upload');
+        Route::post('delete-image', 'ImageUploadController@delete');
     });
 
     Route::group(['middleware' => VerifyAdmin::class], function () {

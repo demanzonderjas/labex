@@ -30,6 +30,7 @@ import { originIdField } from "./fields/origin";
 import { amountField, volumeWeightField } from "./fields/amount";
 import { descriptionField, titleField } from "./fields/info";
 import { locationBuildingField, locationRoomField } from "./fields/location";
+import { imageField } from "./fields/image";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -37,6 +38,7 @@ export const SubmitOfferForm: TForm = {
 	fields: [
 		titleField,
 		descriptionField,
+		imageField,
 		withRequired(typeField),
 		// Equipment fields
 		withRequired(deviceTypeField),
