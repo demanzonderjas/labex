@@ -2,40 +2,43 @@ import React, { useState } from "react";
 import { Button } from "../../base/Button";
 import { deleteImageFromServer, uploadImage } from "../../../queries/uploadImage";
 import { UploadedImage } from "../../base/Image";
+import { useFormStore } from "../../../hooks/useFormStore";
 
-export const ImageUploadField: React.FC = (props) => {
-	const [path, setPath] = useState(null);
+export const ImageUploadField: React.FC<{ id: string; value: string }> = ({ id, value }) => {
+	const { setFieldValue } = useFormStore();
 
 	const upload = async (e) => {
-		if (!e.target.files || !e.target.files.length) {
-			setPath(null);
+		if (!e.target || !e.target.files || !e.target.files.length) {
 			return;
 		}
 		const file = e.target.files[0];
-		console.log("file?", file);
 		const response = await uploadImage(file);
+		if (value) {
+			await deleteImage();
+		}
 		if (response.success) {
-			setPath(response.path);
+			setFieldValue(id, response.path);
 		}
 	};
 
 	const deleteImage = async () => {
-		if (!path) return;
+		if (!value) return;
 
-		const response = await deleteImageFromServer(path);
+		const response = await deleteImageFromServer(value);
 		if (response.success) {
-			setPath(null);
+			setFieldValue(id, null);
 		}
 	};
 
 	return (
 		<div className="ImageUploadField">
-			Path: {path}
-			{/* <Button label="upload!" handleClick={upload} /> */}
-			<input type="file" accept="image/*" onChange={upload} />
-			{!!path && (
+			<div className="upload-wrapper">
+				<Button label="choose_image" classes={{ tertiary: true, nomargin: true }} />
+				<input type="file" accept="image/*" onChange={upload} />
+			</div>
+			{!!value && (
 				<div className="image-wrapper">
-					<UploadedImage path={path} />
+					<UploadedImage path={value} />
 					<div className="button">
 						<Button
 							label="x"

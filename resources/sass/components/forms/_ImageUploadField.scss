@@ -1,6 +1,22 @@
 .ImageUploadField {
+	.upload-wrapper {
+		position: relative;
+		cursor: pointer;
+
+		input {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			opacity: 0;
+		}
+	}
 	.image-wrapper {
 		position: relative;
+		margin: 10px 0;
 
 		.button {
 			position: absolute;
