@@ -18,6 +18,7 @@ return [
 			"equipment" => "equipment",
 			"chemicals" => "chemicals",
 			"disposables" => "disposables",
+			"furniture" => "furniture"
 		],
 		"days_before_inactive" => 14,
 		"days_per_period" => [

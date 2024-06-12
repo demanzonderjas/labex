@@ -39,7 +39,7 @@ return [
         'volume_weight' => 'nullable|string',
     ],
     "type" => [
-        "equipment", "chemicals", "disposables"
+        "equipment", "chemicals", "disposables", "furniture"
     ],
     "device_type" => [
         "incubator",

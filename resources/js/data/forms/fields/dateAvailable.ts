@@ -59,6 +59,7 @@ export const dateRequestedField: TFormField = {
 	...dateAvailableStartField,
 	required: false,
 	label: "date_requested",
+	hideAsFilter: true,
 	id: TSpecificationName.DateRequested,
 	matchVia: null,
 	isMatch: (givenValue, targetValue, filters, fields): TSpecStatus => {
