@@ -255,5 +255,6 @@
 	"furniture": "Furniture",
 	"location_building": "Location (building)",
 	"location_room": "Location (room)",
-	"description": "Description"
+	"description": "Description",
+	"image": "Image"
 }

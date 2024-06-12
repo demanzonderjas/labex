@@ -8,6 +8,7 @@ import { DeleteButtonCell } from "../../components/overviews/table/custom/Delete
 import { EditButtonCell } from "../../components/overviews/table/custom/EditButtonCell";
 import { TFormFieldName } from "../../typings/forms";
 import { UserCell } from "../../components/overviews/table/custom/UserCell";
+import { ImageCell } from "../../components/overviews/table/ImageCell";
 
 export const offerColumns: string[] = [
 	TSpecificationName.ExchangeType,
@@ -17,6 +18,21 @@ export const offerColumns: string[] = [
 ];
 
 export const offerCells: TTableCell[] = [
+	{
+		id: TSpecificationName.Title,
+		value: "",
+		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Description,
+		value: "",
+		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Image,
+		value: "",
+		Component: ImageCell,
+	},
 	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
@@ -64,6 +80,11 @@ export const adminOfferCells: TTableCell[] = [
 		id: TSpecificationName.Description,
 		value: "",
 		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Image,
+		value: "",
+		Component: ImageCell,
 	},
 	{
 		id: TFormFieldName.User,

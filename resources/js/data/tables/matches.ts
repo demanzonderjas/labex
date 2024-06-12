@@ -5,6 +5,7 @@ import { MatchButtonCell } from "../../components/overviews/table/custom/MatchBu
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { TTableCell, TTableCellName } from "../../typings/overviews";
 import { TSpecificationName } from "../../typings/exchanges";
+import { ImageCell } from "../../components/overviews/table/ImageCell";
 
 export const offerMatchColumns: string[] = [
 	"match_percentage",
@@ -37,6 +38,11 @@ export const offerMatchCells: TTableCell[] = [
 		id: TSpecificationName.Description,
 		value: "",
 		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Image,
+		value: "",
+		Component: ImageCell,
 	},
 	{
 		id: TSpecificationName.ExchangeType,

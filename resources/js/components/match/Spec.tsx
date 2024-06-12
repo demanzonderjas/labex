@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { TSpecMatch } from "../../typings/specifications";
 import { SpecMatch } from "../base/SpecMatch";
+import { SampleValue } from "./SampleValue";
 
 type Props = {
 	label: string;
@@ -19,7 +20,7 @@ export const Spec: React.FC<Props> = ({ label, value, match, fields }) => {
 				<label>{t(label)}</label>
 			</div>
 			<div className="column">
-				<span>{value ? t(value) : "-"}</span>
+				<SampleValue label={label} value={value} fields={fields} />
 			</div>
 			<div className="column">
 				<SpecMatch match={match} />

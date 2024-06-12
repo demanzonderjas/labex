@@ -9,6 +9,16 @@ import { EditButtonCell } from "../../components/overviews/table/custom/EditButt
 
 export const requestCells: TTableCell[] = [
 	{
+		id: TSpecificationName.Title,
+		value: "",
+		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Description,
+		value: "",
+		Component: TextCell,
+	},
+	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell,
