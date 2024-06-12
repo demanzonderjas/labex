@@ -25,11 +25,11 @@ export const DeleteButtonCell: React.FC<TTableCellProps> = ({ value, attempt, ..
 			handleClick={() =>
 				setModal({
 					...confirmDeleteModal,
-					handleConfirm: deleteCallback
+					handleConfirm: deleteCallback,
 				})
 			}
-			label="delete"
-			classes={{ danger: true }}
+			label="x"
+			classes={{ danger: true, small: true }}
 		/>
 	);
 };

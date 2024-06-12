@@ -44,7 +44,10 @@ class ExchangeAttemptFactory extends Factory
         return $this->afterCreating(function (ExchangeAttempt $attempt) {
             $this->createRandomDataSet();
             $specs = [];
-            foreach (config('validation.exchange_attempt_fields') as $fieldId => $validation) {
+            $fields = collect(config('validation.exchange_attempt_fields'))->filter(function ($value, $key) {
+                return $key !== 'image';
+            });
+            foreach ($fields as $fieldId => $validation) {
                 $specs[] = new Specification([
                     'key' => $fieldId,
                     'value' => $this->randomDataSet[$fieldId]
