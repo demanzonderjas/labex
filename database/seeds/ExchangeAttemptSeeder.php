@@ -13,6 +13,6 @@ class ExchangeAttemptSeeder extends Seeder
      */
     public function run()
     {
-        \App\ExchangeAttempt::factory()->count(50)->create();
+        \App\ExchangeAttempt::factory()->count(150)->create();
     }
 }
