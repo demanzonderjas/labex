@@ -14,7 +14,13 @@ export const AddNewAlertPage: React.FC = () => {
 				<div dangerouslySetInnerHTML={{ __html: t("add_new_alert_description") }} />
 			</PageIntro>
 			<div className="layout-wrapper" style={{ margin: "20px auto" }}>
-				<FormWrapper form={AddNewAlertForm} handleSuccess={() => navigate("/app/alerts")} />
+				<FormWrapper
+					form={{
+						...AddNewAlertForm,
+						fields: AddNewAlertForm.fields.filter((f) => !f.hideAsFilter),
+					}}
+					handleSuccess={() => navigate("/app/alerts")}
+				/>
 			</div>
 		</div>
 	);
