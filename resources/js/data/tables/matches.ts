@@ -29,6 +29,16 @@ export const offerMatchCells: TTableCell[] = [
 		Component: PercentageCell,
 	},
 	{
+		id: TSpecificationName.Title,
+		value: "",
+		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Description,
+		value: "",
+		Component: TextCell,
+	},
+	{
 		id: TSpecificationName.ExchangeType,
 		value: "",
 		Component: TextCell,
@@ -55,6 +65,16 @@ export const requestMatchCells: TTableCell[] = [
 		id: TSpecificationName.MatchPercentage,
 		value: "",
 		Component: PercentageCell,
+	},
+	{
+		id: TSpecificationName.Title,
+		value: "",
+		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Description,
+		value: "",
+		Component: TextCell,
 	},
 	{
 		id: TSpecificationName.ExchangeType,

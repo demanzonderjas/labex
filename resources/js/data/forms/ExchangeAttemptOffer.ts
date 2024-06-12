@@ -27,11 +27,16 @@ import { numberField, productProducerField } from "./fields/sampleNumber";
 import { disposablePackagingField, packagingMethodField } from "./fields/packaging";
 import { disposableCategoryField, disposableDetailsField } from "./fields/disposables";
 import { originIdField } from "./fields/origin";
+import { amountField, volumeWeightField } from "./fields/amount";
+import { descriptionField, titleField } from "./fields/info";
+import { locationBuildingField, locationRoomField } from "./fields/location";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
 	intro: "submit_offer_intro",
 	fields: [
+		titleField,
+		descriptionField,
 		withRequired(typeField),
 		// Equipment fields
 		withRequired(deviceTypeField),
@@ -40,6 +45,7 @@ export const SubmitOfferForm: TForm = {
 		// Chemicals fields
 		withRequired(substanceCategoryField),
 		withRequired(substanceDetailsField),
+		withRequired(volumeWeightField),
 		productProducerField,
 		packagingMethodField,
 		storageField,
@@ -51,15 +57,17 @@ export const SubmitOfferForm: TForm = {
 		disposablePackagingField,
 		numberField,
 		// general fields
+		withRequired(amountField),
 		dateAvailableStartField,
 		dateAvailableEndField,
 		partialUseField,
 		contactDetailsField,
 		attemptTypeOfferField,
+		locationBuildingField,
+		locationRoomField,
 	],
 	handler: sendExchangeAttempt,
 	matchable: false,
-	// infoModal: flowchartModal,
 	allowCancel: true,
 	splitByRequired: true,
 };

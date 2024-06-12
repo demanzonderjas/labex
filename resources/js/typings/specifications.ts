@@ -2,6 +2,7 @@ export enum TTypeSpec {
 	Equipment = "equipment",
 	Chemicals = "chemicals",
 	Disposables = "disposables",
+	Furniture = "furniture",
 }
 
 export enum TAgeType {

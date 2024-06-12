@@ -15,12 +15,16 @@ import { substanceCategoryField } from "./fields/substance";
 import { disposablePackagingField, packagingMethodField } from "./fields/packaging";
 import { disposableCategoryField, disposableDetailsField } from "./fields/disposables";
 import { dateRequestedField } from "./fields/dateAvailable";
+import { amountField, volumeWeightField } from "./fields/amount";
+import { descriptionField, titleField } from "./fields/info";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",
 	intro: "offers_intro",
 	submitLabel: "submit_my_request",
 	fields: [
+		titleField,
+		descriptionField,
 		withRequired(typeField),
 		// Equipment fields
 		withRequired(deviceTypeField),
@@ -31,11 +35,13 @@ export const FilterOffersForm: TForm = {
 		storageField,
 		chemicalsAvailabilityField,
 		reasonForAvailabilityField,
+		volumeWeightField,
 		// disposables fields
 		disposableCategoryField,
 		disposableDetailsField,
 		disposablePackagingField,
 		// general fields
+		amountField,
 		partialUseField,
 		dateRequestedField,
 		attemptTypeRequestField,

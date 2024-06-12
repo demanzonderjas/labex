@@ -23,7 +23,13 @@ export const RequestsPage = () => {
 
 	return (
 		<ExchangeAttemptStoreProvider store={sampleStore}>
-			<FormWrapper form={FilterRequestsForm} handleUpdate={sampleStore.setFilters} />
+			<FormWrapper
+				form={{
+					...FilterRequestsForm,
+					fields: FilterRequestsForm.fields.filter((f) => !f.hideAsFilter),
+				}}
+				handleUpdate={sampleStore.setFilters}
+			/>
 			<ExchangeAttemptOverview
 				specsToShow={requestMatchCells}
 				type={TExchangeAttemptType.Request}

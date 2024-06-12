@@ -11,6 +11,10 @@ return [
     ],
     "exchange_attempt_fields" => [
         "type" => "nullable|string",
+        "title" => "nullable|string",
+        "description" => "nullable|string",
+        "location_building" => "nullable|string",
+        "location_room" => "nullable|string",
         "device_type" => "nullable|string",
         'specifications' => 'nullable|string',
         "availability_type" => "nullable|string",
@@ -30,6 +34,8 @@ return [
         'contact_details' => 'nullable|string',
         'extra_info' => 'nullable|string',
         'attempt_type' => 'required',
+        'amount' => 'nullable|string',
+        'volume_weight' => 'nullable|string',
     ],
     "type" => [
         "equipment", "chemicals", "disposables"

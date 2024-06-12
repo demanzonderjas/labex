@@ -24,7 +24,10 @@ export const OffersPage = () => {
 	return (
 		<ExchangeAttemptStoreProvider store={sampleStore}>
 			<FormWrapper
-				form={FilterOffersForm}
+				form={{
+					...FilterOffersForm,
+					fields: FilterOffersForm.fields.filter((f) => !f.hideAsFilter),
+				}}
 				handleSuccess={null}
 				handleUpdate={sampleStore.setFilters}
 			/>

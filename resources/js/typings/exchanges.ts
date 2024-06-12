@@ -43,7 +43,8 @@ export enum TSpecificationName {
 	Storage = "storage",
 	MatchPercentage = "match_percentage",
 	Other = "other",
-	Location = "location",
+	LocationBuilding = "location_building",
+	LocationRoom = "location_room",
 	Status = "status",
 	OriginId = "origin_id",
 	Specifications = "specifications",
@@ -54,6 +55,10 @@ export enum TSpecificationName {
 	SafetyAspects = "safety_aspects",
 	Number = "number",
 	ExtraInfo = "extra_info",
+	VolumeWeight = "volume_weight",
+	Amount = "amount",
+	Title = "title",
+	Description = "description",
 }
 
 export type TMatch = {

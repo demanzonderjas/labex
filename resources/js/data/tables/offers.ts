@@ -56,7 +56,12 @@ export const adminOfferCells: TTableCell[] = [
 		Component: TextCell,
 	},
 	{
-		id: TTableCellName.OriginID,
+		id: TSpecificationName.Title,
+		value: "",
+		Component: TextCell,
+	},
+	{
+		id: TSpecificationName.Description,
 		value: "",
 		Component: TextCell,
 	},

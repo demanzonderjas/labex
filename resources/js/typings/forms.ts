@@ -61,6 +61,7 @@ export interface TFormField extends TFormFieldData {
 	props: any;
 	required?: boolean;
 	dependencies?: TFormFieldDependency[];
+	hideAsFilter?: boolean;
 	isMatch?: (
 		givenValue: any,
 		targetValue: any,

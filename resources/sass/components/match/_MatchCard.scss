@@ -55,7 +55,8 @@
 			&.approved {
 				background-color: $correct-color;
 			}
-			&.declined, &.rejected {
+			&.declined,
+			&.rejected {
 				background-color: $danger-color;
 			}
 			&.mine {
@@ -106,6 +107,9 @@
 				&.neutral {
 					color: $grey-medium !important;
 				}
+
+				display: block;
+				word-break: break-word;
 			}
 		}
 	}

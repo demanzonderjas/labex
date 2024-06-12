@@ -28,7 +28,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
-	const [protocolNumber, setProtocolNumber] = useState("");
 	const matches = createMatchSpecs(fields, filters);
 	const navigate = useNavigate();
 	const { t } = useTranslationStore();
@@ -39,7 +38,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 				base[next.id] = next.value;
 				return base;
 			},
-			{ extra_info: extraInfo, protocol_number: protocolNumber }
+			{ extra_info: extraInfo }
 		);
 		await createMatch(requestData, offerId);
 		confirm();
@@ -62,15 +61,6 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 					))}
 			</div>
 			<div className="extra-info">
-				<div className="InputField" style={{ maxWidth: "200px", marginBottom: "16px" }}>
-					<label style={{ marginBottom: "16px" }}>{t("protocol_number")}</label>
-					<input
-						type="text"
-						value={protocolNumber}
-						onChange={(e) => setProtocolNumber(e.target.value)}
-						placeholder={t("work_protocol_number_placeholder")}
-					/>
-				</div>
 				<label>{t("extra_info")}</label>
 				<div className="BigTextField">
 					<textarea

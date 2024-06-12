@@ -38,7 +38,12 @@ export const typeField: TFormField = {
 	isHardFilter: true,
 	props: {
 		startsEmpty: true,
-		options: [TTypeSpec.Equipment, TTypeSpec.Chemicals, TTypeSpec.Disposables],
+		options: [
+			TTypeSpec.Equipment,
+			TTypeSpec.Chemicals,
+			TTypeSpec.Disposables,
+			TTypeSpec.Furniture,
+		],
 	},
 	default: "",
 	value: "",

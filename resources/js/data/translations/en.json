@@ -249,5 +249,11 @@
 	"reason_for_availability": "Reason for availability",
 	"redundant": "Redundant",
 	"overdate": "Overdate",
-	"device_type": "Device type"
+	"device_type": "Device type",
+	"volume_weight": "Volume/weight",
+	"amount": "Amount",
+	"furniture": "Furniture",
+	"location_building": "Location (building)",
+	"location_room": "Location (room)",
+	"description": "Description"
 }
