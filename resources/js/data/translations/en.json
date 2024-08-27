@@ -256,5 +256,7 @@
 	"location_building": "Location (building)",
 	"location_room": "Location (room)",
 	"description": "Description",
-	"image": "Image"
+	"image": "Image",
+	"operational_age": "Operational age",
+	"expiry_date": "Expiry date"
 }
