@@ -60,6 +60,8 @@ export enum TSpecificationName {
 	Title = "title",
 	Description = "description",
 	Image = "image",
+	OperationalAge = "operational_age",
+	ExpiryDate = "expiry_date",
 }
 
 export type TMatch = {

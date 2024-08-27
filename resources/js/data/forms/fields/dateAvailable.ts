@@ -89,3 +89,18 @@ export const yearSelectField: TFormField = {
 		return targetYear == givenValue ? TSpecStatus.Match : TSpecStatus.NoMatch;
 	},
 };
+
+export const expiryDateField: TFormField = {
+	...dateAvailableStartField,
+	matchVia: undefined,
+	label: "expiry_date",
+	id: TSpecificationName.ExpiryDate,
+	validate: isDateInFuture,
+	dependencies: [
+		{
+			id: TSpecificationName.ExchangeType,
+			validate: (value) => value == TTypeSpec.Disposables,
+		},
+	],
+	synonyms: [],
+};

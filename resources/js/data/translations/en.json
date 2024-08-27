@@ -252,7 +252,7 @@
 	"device_type": "Device type",
 	"volume_weight": "Volume/weight",
 	"amount": "Amount",
-	"furniture": "Furniture",
+	"furniture": "Lab specific furniture",
 	"location_building": "Location (building)",
 	"location_room": "Location (room)",
 	"description": "Description",

@@ -10,6 +10,7 @@ import {
 	dateAvailableEndField,
 	dateAvailableStartAsAdminField,
 	dateAvailableStartField,
+	expiryDateField,
 	yearSelectField,
 } from "./fields/dateAvailable";
 import { FilterOffersForm } from "./ExchangeAttemptRequest";
@@ -31,6 +32,7 @@ import { amountField, volumeWeightField } from "./fields/amount";
 import { descriptionField, titleField } from "./fields/info";
 import { locationBuildingField, locationRoomField } from "./fields/location";
 import { imageField } from "./fields/image";
+import { ageField } from "./fields/age";
 
 export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
@@ -43,6 +45,7 @@ export const SubmitOfferForm: TForm = {
 		// Equipment fields
 		withRequired(deviceTypeField),
 		withRequired(specificationsField),
+		withRequired(ageField),
 		equipmentAvailabilityField,
 		// Chemicals fields
 		withRequired(substanceCategoryField),
@@ -56,6 +59,7 @@ export const SubmitOfferForm: TForm = {
 		// disposables fields
 		withRequired(disposableCategoryField),
 		withRequired(disposableDetailsField),
+		withRequired(expiryDateField),
 		disposablePackagingField,
 		numberField,
 		// general fields
