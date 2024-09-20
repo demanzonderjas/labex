@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $user = new User();
         $user->name =  "Offer Demo";
-        $user->email = "weustenraad@gmail.com";
+        $user->email = "offer@puzzel.org";
         $user->organisation = "uu.nl";
         $user->is_admin = true;
         $user->token = env('TEST_API_TOKEN');
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->name =  "Request Demo";
-        $user->email = "daan@puzzel.org";
+        $user->email = "request@puzzel.org";
         $user->organisation = "uu.nl";
         $user->is_admin = true;
         $user->token = Str::random(40);
