@@ -14,7 +14,12 @@ class SignupController extends Controller
 {
     public function store(Request $request)
     {
-        $signup = new Signup($request->all());
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'organisation' => 'required|max:255',
+        ]);
+        $signup = new Signup($validated);
         $signup->save();
 
         $admins = User::whereIsAdmin()->get();
