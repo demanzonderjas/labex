@@ -25,24 +25,13 @@ export const MyMatchesPage = observer(() => {
 		})();
 	}, []);
 
-	useEffect(() => {
-		if (params.info) {
-			setModal(matchesModal);
-		}
-	}, [params]);
-
 	return (
 		<div className="MyMatchesPage">
 			<TwoColumnPageIntro header="my_matches" subheader="matches_subheader">
 				<p className="layout-wrapper">{t("my_matches_intro")}</p>
-				<Button
-					label={matchesModal.header}
-					handleClick={() => setModal(matchesModal)}
-					classes={{ inline: true }}
-				/>
 			</TwoColumnPageIntro>
 			<div className="matches layout-wrapper">
-				{matches.map(match => (
+				{matches.map((match) => (
 					<Match key={match.id} match={match} />
 				))}
 			</div>

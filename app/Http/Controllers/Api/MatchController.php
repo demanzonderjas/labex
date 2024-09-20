@@ -39,13 +39,13 @@ class MatchController extends Controller
 
     public static function convertRemainsToNewMaterial(MaterialMatch $match)
     {
-        if ((int) $match->offer->amount > (int) $match->request->amount) {
-            return self::createOfferFromRemainingAmount($match);
-        } elseif ((int) $match->request->amount > (int) $match->offer->amount) {
-            return self::createRequestFromRemainingAmount($match);
-        } else {
-            return ["exchange_offer_match_id" => $match->offer_id, "exchange_request_match_id" => $match->request_id];
-        }
+        // if ((int) $match->offer->amount > (int) $match->request->amount) {
+        //     return self::createOfferFromRemainingAmount($match);
+        // } elseif ((int) $match->request->amount > (int) $match->offer->amount) {
+        //     return self::createRequestFromRemainingAmount($match);
+        // } else {
+        // }
+        return ["exchange_offer_match_id" => $match->offer_id, "exchange_request_match_id" => $match->request_id];
     }
 
     public static function calculateCorrectMatchAmount(MaterialMatch $match)

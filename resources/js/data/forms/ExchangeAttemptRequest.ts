@@ -17,6 +17,7 @@ import { disposableCategoryField, disposableDetailsField } from "./fields/dispos
 import { dateRequestedField } from "./fields/dateAvailable";
 import { amountField, volumeWeightField } from "./fields/amount";
 import { descriptionField, titleField } from "./fields/info";
+import { extraInfoField } from "./fields/extraInfo";
 
 export const FilterOffersForm: TForm = {
 	header: "offers",
@@ -69,6 +70,7 @@ export const FilterRequestsForm: TForm = {
 
 export const RequestMatchCardFields: TForm = {
 	...FilterOffersForm,
+	fields: [...FilterOffersForm.fields, extraInfoField],
 };
 
 export const SubmitRequestForm: TForm = {

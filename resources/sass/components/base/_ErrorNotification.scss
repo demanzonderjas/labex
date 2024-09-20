@@ -1,7 +1,6 @@
 .ErrorNotification {
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
+	position: relative;
+	margin: 10px 0;
 	padding: 15px;
 	background-color: $danger-color;
 	color: $highlight-text-color;

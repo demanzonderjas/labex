@@ -77,6 +77,7 @@ export const Form: React.FC<Props> = observer(
 							</span>
 						)}
 						{form.splitByRequired ? <RequiredFormLayout /> : <RegularFormLayout />}
+						<ErrorNotification error={serverError} />
 						{!hideSubmit && (
 							<div
 								className="button-wrapper"
@@ -89,7 +90,6 @@ export const Form: React.FC<Props> = observer(
 							</div>
 						)}
 						<Loader isLoading={isLoading} />
-						<ErrorNotification error={serverError} />
 					</form>
 				</div>
 			</div>

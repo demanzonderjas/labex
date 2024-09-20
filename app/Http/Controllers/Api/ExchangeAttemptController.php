@@ -112,6 +112,7 @@ class ExchangeAttemptController extends Controller
 				]);
 			}
 		}
+
 		$attempt->specifications()->saveMany($specs);
 		return $attempt;
 	}
