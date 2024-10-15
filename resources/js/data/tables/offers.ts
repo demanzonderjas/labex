@@ -1,4 +1,4 @@
-import { TextCell } from "../../components/overviews/table/TextCell";
+import { DescriptionCell, TextCell } from "../../components/overviews/table/TextCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
 import { TSpecificationName } from "../../typings/exchanges";
 import { TTableCell, TTableCellName } from "../../typings/overviews";
@@ -26,7 +26,7 @@ export const offerCells: TTableCell[] = [
 	{
 		id: TSpecificationName.Description,
 		value: "",
-		Component: TextCell,
+		Component: DescriptionCell,
 	},
 	{
 		id: TSpecificationName.Image,
@@ -79,7 +79,7 @@ export const adminOfferCells: TTableCell[] = [
 	{
 		id: TSpecificationName.Description,
 		value: "",
-		Component: TextCell,
+		Component: DescriptionCell,
 	},
 	{
 		id: TSpecificationName.Image,

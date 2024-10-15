@@ -157,7 +157,7 @@ export class ExchangeAttemptStore {
 	@action.bound addAttempt(data) {
 		const { exchange_attempt } = data;
 		this.attempts = [...this.attempts, exchange_attempt];
-		location.href = "/app/dashboard";
+		location.href = `/app/dashboard?show=${exchange_attempt.attempt_type}s`;
 	}
 
 	@action.bound deleteAttempt(id: number) {

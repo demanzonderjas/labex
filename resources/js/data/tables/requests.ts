@@ -1,4 +1,4 @@
-import { TextCell } from "../../components/overviews/table/TextCell";
+import { DescriptionCell, TextCell } from "../../components/overviews/table/TextCell";
 import { BooleanCell } from "../../components/overviews/table/BooleanCell";
 import { DateCell } from "../../components/overviews/table/DateCell";
 import { TSpecificationName } from "../../typings/exchanges";
@@ -16,7 +16,7 @@ export const requestCells: TTableCell[] = [
 	{
 		id: TSpecificationName.Description,
 		value: "",
-		Component: TextCell,
+		Component: DescriptionCell,
 	},
 	{
 		id: TSpecificationName.ExchangeType,

@@ -25,7 +25,7 @@ export const DashboardPage = observer(() => {
 	const [match, setMatch] = useState(null);
 	const { user } = useUserStore();
 	const [activeOverview, setActiveOverview] = useState<TDashboardOverview>(
-		TDashboardOverview.Requests
+		TDashboardOverview.Offers
 	);
 	const navigate = useNavigate();
 
@@ -36,6 +36,10 @@ export const DashboardPage = observer(() => {
 	}, [user]);
 
 	useEffect(() => {
+		const params = new URLSearchParams(location.search);
+		if (params.has("show")) {
+			setActiveOverview(params.get("show") as TDashboardOverview);
+		}
 		(async () => {
 			const [attempts, match] = await Promise.all([
 				getMyLatestExchangeAttempts(),

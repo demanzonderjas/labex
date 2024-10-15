@@ -1,5 +1,5 @@
 import { PercentageCell } from "../../components/overviews/table/PercentageCell";
-import { TextCell } from "../../components/overviews/table/TextCell";
+import { DescriptionCell, TextCell } from "../../components/overviews/table/TextCell";
 import { DateCell } from "../../components/overviews/table/DateCell";
 import { MatchButtonCell } from "../../components/overviews/table/custom/MatchButtonCell";
 import { DateAvailableCell } from "../../components/overviews/table/DateAvailableCell";
@@ -37,7 +37,7 @@ export const offerMatchCells: TTableCell[] = [
 	{
 		id: TSpecificationName.Description,
 		value: "",
-		Component: TextCell,
+		Component: DescriptionCell,
 	},
 	{
 		id: TSpecificationName.Image,
@@ -80,7 +80,7 @@ export const requestMatchCells: TTableCell[] = [
 	{
 		id: TSpecificationName.Description,
 		value: "",
-		Component: TextCell,
+		Component: DescriptionCell,
 	},
 	{
 		id: TSpecificationName.ExchangeType,

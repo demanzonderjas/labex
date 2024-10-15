@@ -3,6 +3,8 @@ header {
 	position: relative;
 
 	.LogoWrapper {
+		display: inline-block;
+		cursor: pointer;
 		img {
 			display: inline-block;
 			margin: 0 20px 0 0;

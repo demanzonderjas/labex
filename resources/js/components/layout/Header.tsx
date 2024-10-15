@@ -12,7 +12,7 @@ export const Header = () => {
 	return (
 		<header>
 			<div className="layout-wrapper">
-				<LogoWrapper />
+				<LogoWrapper goTo="app/dashboard" />
 				<div className="buttons">
 					<SubmitRequestButton />
 					<SubmitOfferButton />
