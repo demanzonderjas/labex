@@ -1,7 +1,7 @@
 import { TForm } from "../../typings/forms";
 import { storageField } from "./fields/storage";
 import { deviceTypeField, typeField } from "./fields/type";
-import { contactDetailsField, specificationsField } from "./fields/extraInfo";
+import { contactDetailsField } from "./fields/extraInfo";
 import { withRequired } from "../../utils/formatting/fields";
 import { sendExchangeAttempt } from "../../queries/sendExchangeAttempt";
 import { attemptTypeOfferField } from "./fields/attemptType";
@@ -20,13 +20,12 @@ import { userFilterField } from "./fields/user/userFilter";
 import {
 	chemicalsAvailabilityField,
 	equipmentAvailabilityField,
-	partialUseField,
 	reasonForAvailabilityField,
 } from "./fields/availability";
-import { substanceCategoryField, substanceDetailsField } from "./fields/substance";
+import { substanceCategoryField } from "./fields/substance";
 import { numberField, productProducerField } from "./fields/sampleNumber";
 import { disposablePackagingField, packagingMethodField } from "./fields/packaging";
-import { disposableCategoryField, disposableDetailsField } from "./fields/disposables";
+import { disposableCategoryField } from "./fields/disposables";
 import { originIdField } from "./fields/origin";
 import { amountField, volumeWeightField } from "./fields/amount";
 import { descriptionField, titleField } from "./fields/info";
@@ -38,18 +37,16 @@ export const SubmitOfferForm: TForm = {
 	header: "submit_offer",
 	intro: "submit_offer_intro",
 	fields: [
+		withRequired(typeField),
 		titleField,
 		descriptionField,
 		imageField,
-		withRequired(typeField),
 		// Equipment fields
 		withRequired(deviceTypeField),
-		withRequired(specificationsField),
 		withRequired(ageField),
 		equipmentAvailabilityField,
 		// Chemicals fields
 		withRequired(substanceCategoryField),
-		withRequired(substanceDetailsField),
 		withRequired(volumeWeightField),
 		productProducerField,
 		packagingMethodField,
@@ -58,7 +55,6 @@ export const SubmitOfferForm: TForm = {
 		reasonForAvailabilityField,
 		// disposables fields
 		withRequired(disposableCategoryField),
-		withRequired(disposableDetailsField),
 		withRequired(expiryDateField),
 		disposablePackagingField,
 		numberField,
@@ -66,7 +62,6 @@ export const SubmitOfferForm: TForm = {
 		withRequired(amountField),
 		dateAvailableStartField,
 		dateAvailableEndField,
-		partialUseField,
 		contactDetailsField,
 		attemptTypeOfferField,
 		locationBuildingField,

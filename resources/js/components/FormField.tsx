@@ -5,6 +5,8 @@ import cx from "classnames";
 import { useState } from "react";
 import { InfoIcon } from "./icons/InfoIcon";
 import { useFormStore } from "../hooks/useFormStore";
+import { useModalStore } from "../hooks/useModalStore";
+import { infoModal } from "../data/modals/info";
 
 type Props = {
 	field: TFormField;
@@ -17,7 +19,7 @@ export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 	const isCorrect = field.validate
 		? field.validate(field.value, fields) && field.value
 		: !!field.value;
-	const [showDescription, setShowDescription] = useState(false);
+	const { setModal, setModalData } = useModalStore();
 
 	return (
 		<div className={cx("TFormFieldWithLabel", { correct: isCorrect })}>
@@ -26,18 +28,15 @@ export const FormFieldWithLabel: React.FC<Props> = ({ field, error }) => {
 					{t(field.label)}
 					{field.required && <span className="required">*</span>}
 					{field.description && (
-						<InfoIcon toggleShow={() => setShowDescription(!showDescription)} />
-					)}
-					{showDescription && (
-						<div className="tooltip">
-							<span className="close" onClick={() => setShowDescription(false)}>
-								x
-							</span>
-							<div
-								className="description"
-								dangerouslySetInnerHTML={{ __html: t(field.description) }}
-							/>
-						</div>
+						<InfoIcon
+							toggleShow={() => {
+								setModalData({
+									header: field.label,
+									description: field.description,
+								});
+								setModal(infoModal);
+							}}
+						/>
 					)}
 				</label>
 			</div>

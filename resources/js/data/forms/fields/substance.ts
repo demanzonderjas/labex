@@ -11,23 +11,10 @@ export const substanceCategoryField: TFormField = {
 	isHardFilter: true,
 	props: {
 		startsEmpty: true,
-		options: ["A", "B", "C", "D"],
+		options: ["laboratory_use", "medicines", "immunological_reagents"],
 	},
 	default: "",
 	value: "",
-	dependencies: [
-		{
-			id: TSpecificationName.ExchangeType,
-			validate: (value) => value === TTypeSpec.Chemicals,
-		},
-	],
-};
-
-export const substanceDetailsField: TFormField = {
-	...extraInfoField,
-	label: "substance_details",
-	description: "substance_details_description",
-	id: TSpecificationName.SubstanceDetails,
 	dependencies: [
 		{
 			id: TSpecificationName.ExchangeType,

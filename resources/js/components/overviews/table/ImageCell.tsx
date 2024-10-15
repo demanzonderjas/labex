@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const ImageCell: React.FC<Props> = ({ value }) => {
-	return <td>{!!value && <UploadedImage path={value} />}</td>;
+	return <td>{!!value && <UploadedImage path={value} maxHeight="150px" />}</td>;
 };

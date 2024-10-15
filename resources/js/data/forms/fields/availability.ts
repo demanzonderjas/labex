@@ -1,4 +1,3 @@
-import { BooleanField } from "../../../components/form/BooleanField";
 import { SelectField } from "../../../components/form/SelectField";
 import { TSpecificationName } from "../../../typings/exchanges";
 import { TFormField } from "../../../typings/forms";
@@ -11,7 +10,7 @@ export const equipmentAvailabilityField: TFormField = {
 	isHardFilter: true,
 	props: {
 		startsEmpty: true,
-		options: ["on_loan", "for_rent", "for_sale", "available_free_of_charge"],
+		options: ["on_loan", "for_rent", "for_sale", "shared_use", "available_free_of_charge"],
 	},
 	default: "",
 	value: "",
@@ -30,7 +29,7 @@ export const chemicalsAvailabilityField: TFormField = {
 	isHardFilter: true,
 	props: {
 		startsEmpty: true,
-		options: ["for_sale", "available_free_of_charge"],
+		options: ["for_sale", "shared_use", "available_free_of_charge"],
 	},
 	default: "",
 	value: "",
@@ -57,22 +56,6 @@ export const reasonForAvailabilityField: TFormField = {
 		{
 			id: TSpecificationName.ExchangeType,
 			validate: (value) => value === TTypeSpec.Chemicals,
-		},
-	],
-};
-
-export const partialUseField: TFormField = {
-	label: "partial_use",
-	id: TSpecificationName.PartialUse,
-	Component: BooleanField,
-	required: true,
-	props: {},
-	default: "",
-	value: "",
-	dependencies: [
-		{
-			id: TSpecificationName.ExchangeType,
-			validate: (value) => value == TTypeSpec.Equipment || value == TTypeSpec.Chemicals,
 		},
 	],
 };

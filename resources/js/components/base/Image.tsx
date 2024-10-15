@@ -3,22 +3,23 @@ import { env } from "../../env";
 
 type Props = {
 	path: string;
+	maxHeight?: string;
 };
 
-export const LocalImage: React.FC<Props> = ({ path }) => {
+export const LocalImage: React.FC<Props> = ({ path, maxHeight = "100%" }) => {
 	return (
 		<img
-			style={{ maxHeight: "100%", maxWidth: "100%" }}
+			style={{ maxHeight, maxWidth: "100%" }}
 			className="LocalImage"
 			src={`${env.baseUrl}/images/${path}`}
 		/>
 	);
 };
 
-export const UploadedImage: React.FC<Props> = ({ path }) => {
+export const UploadedImage: React.FC<Props> = ({ path, maxHeight = "100%" }) => {
 	return (
 		<img
-			style={{ maxHeight: "100%", maxWidth: "100%" }}
+			style={{ maxHeight, maxWidth: "100%" }}
 			className="UploadedImage"
 			src={`${env.baseUrl}/storage/${path}`}
 		/>

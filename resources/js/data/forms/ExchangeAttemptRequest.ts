@@ -8,12 +8,11 @@ import { withRequired } from "../../utils/formatting/fields";
 import {
 	chemicalsAvailabilityField,
 	equipmentAvailabilityField,
-	partialUseField,
 	reasonForAvailabilityField,
 } from "./fields/availability";
 import { substanceCategoryField } from "./fields/substance";
 import { disposablePackagingField, packagingMethodField } from "./fields/packaging";
-import { disposableCategoryField, disposableDetailsField } from "./fields/disposables";
+import { disposableCategoryField } from "./fields/disposables";
 import { dateRequestedField } from "./fields/dateAvailable";
 import { amountField, volumeWeightField } from "./fields/amount";
 import { descriptionField, titleField } from "./fields/info";
@@ -24,9 +23,9 @@ export const FilterOffersForm: TForm = {
 	intro: "offers_intro",
 	submitLabel: "submit_my_request",
 	fields: [
+		withRequired(typeField),
 		titleField,
 		descriptionField,
-		withRequired(typeField),
 		// Equipment fields
 		withRequired(deviceTypeField),
 		equipmentAvailabilityField,
@@ -39,11 +38,9 @@ export const FilterOffersForm: TForm = {
 		volumeWeightField,
 		// disposables fields
 		disposableCategoryField,
-		disposableDetailsField,
 		disposablePackagingField,
 		// general fields
 		amountField,
-		partialUseField,
 		dateRequestedField,
 		attemptTypeRequestField,
 	],

@@ -14,22 +14,10 @@ export const extraInfoField: TFormField = {
 	synonyms: ["info", "extra", "information", "extra_information"],
 };
 
-export const specificationsField: TFormField = {
-	...extraInfoField,
-	label: "specifications",
-	description: "specifications_description",
-	id: TSpecificationName.Specifications,
-	dependencies: [
-		{
-			id: TSpecificationName.ExchangeType,
-			validate: (value) => value === TTypeSpec.Equipment,
-		},
-	],
-};
-
 export const contactDetailsField: TFormField = {
 	...extraInfoField,
 	label: "contact_details",
+	description: "contact_details_info",
 	id: TSpecificationName.ContactDetails,
 	dependencies: [
 		{

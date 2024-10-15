@@ -36,12 +36,6 @@ export const dateAvailableStartField: TFormField = {
 			? TSpecStatus.Match
 			: TSpecStatus.NoMatch;
 	},
-	dependencies: [
-		{
-			id: TSpecificationName.ExchangeType,
-			validate: (value) => value == TTypeSpec.Equipment || value == TTypeSpec.Chemicals,
-		},
-	],
 	synonyms: ["available", "availability", "date"],
 };
 
@@ -57,7 +51,7 @@ export const dateAvailableEndAsAdminField = { ...dateAvailableEndField, validate
 
 export const dateRequestedField: TFormField = {
 	...dateAvailableStartField,
-	required: false,
+	required: true,
 	label: "date_requested",
 	hideAsFilter: true,
 	id: TSpecificationName.DateRequested,
@@ -99,7 +93,7 @@ export const expiryDateField: TFormField = {
 	dependencies: [
 		{
 			id: TSpecificationName.ExchangeType,
-			validate: (value) => value == TTypeSpec.Disposables,
+			validate: (value) => value == TTypeSpec.Disposables || value == TTypeSpec.Chemicals,
 		},
 	],
 	synonyms: [],

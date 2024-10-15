@@ -11,23 +11,18 @@ export const disposableCategoryField: TFormField = {
 	isHardFilter: true,
 	props: {
 		startsEmpty: true,
-		options: ["A", "B", "C", "D"],
+		options: [
+			"containers",
+			"pipettes",
+			"pipette_tips",
+			"petri_dishes",
+			"tubes",
+			"gloves",
+			"syringes",
+		],
 	},
 	default: "",
 	value: "",
-	dependencies: [
-		{
-			id: TSpecificationName.ExchangeType,
-			validate: (value) => value === TTypeSpec.Disposables,
-		},
-	],
-};
-
-export const disposableDetailsField: TFormField = {
-	...extraInfoField,
-	label: "disposable_details",
-	description: "disposable_details_description",
-	id: TSpecificationName.DisposableDetails,
 	dependencies: [
 		{
 			id: TSpecificationName.ExchangeType,

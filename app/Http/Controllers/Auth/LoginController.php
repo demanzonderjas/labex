@@ -18,7 +18,7 @@ class LoginController extends Controller
     {
         $request->session()->put('target_url', urldecode($request->query('target_url')));
         if (env('APP_ENV') !== "production") {
-            $user = User::where('email', 'request@puzzel.org')->first();
+            $user = User::where('email', 'demo@labexplatform.nl')->first();
             Auth::login($user);
             return $this->redirectToCorrectUrl($request);
         }
