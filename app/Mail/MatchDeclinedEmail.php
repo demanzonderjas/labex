@@ -36,6 +36,6 @@ class MatchDeclinedEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.match-declined')->subject("ATEX - Your match has been declined");
+        return $this->view('mail.match-declined')->subject("LABEXUS - Your match has been declined");
     }
 }

@@ -30,6 +30,6 @@ class AdminOfferAddedEmail extends Mailable
 	 */
 	public function build()
 	{
-		return $this->view('mail.admin.new-offer')->subject("ATEX - A new offer was added");
+		return $this->view('mail.admin.new-offer')->subject("LABEXUS - A new offer was added");
 	}
 }

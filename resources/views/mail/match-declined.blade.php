@@ -1,6 +1,6 @@
 @extends('mail.layout')
 
-@section('title', 'ATEX - Your match has been declined')
+@section('title', 'LABEXUS - Your match has been declined')
 @section('preheader', 'Your match has been declined.')
 
 @section('name', $user->name)
@@ -22,6 +22,6 @@
 @section('closing')
     <p>
         Friendly regards,<br />
-        ATEX
+        LABEXUS
     </p>
 @stop

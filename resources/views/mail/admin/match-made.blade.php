@@ -1,13 +1,14 @@
 @extends('mail.layout')
 
-@section('title', 'ATEX [' . $match->type . '] - A new match has been made!')
+@section('title', 'LABEXUS [' . $match->type . '] - A new match has been made!')
 @section('preheader', 'A new match has been made. Check the details here.')
 
 @section('name', $user->name)
 
 @section('content')
     <p>
-        A new match has just been registered within the ATEX platform of the type: <strong>'{{ $match->type }}'</strong>.
+        A new match has just been registered within the LABEXUS platform of the type:
+        <strong>'{{ $match->type }}'</strong>.
         View the details of the match within the platform and decide if it is valid.
     </p>
 @stop
@@ -18,6 +19,6 @@
 @section('closing')
     <p>
         Friendly regards,<br />
-        ATEX
+        LABEXUS
     </p>
 @stop

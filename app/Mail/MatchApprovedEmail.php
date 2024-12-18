@@ -42,6 +42,6 @@ class MatchApprovedEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.match-approved')->subject("ATEX - Your match has been approved!");
+        return $this->view('mail.match-approved')->subject("LABEXUS - Your match has been approved!");
     }
 }

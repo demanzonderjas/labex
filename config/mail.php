@@ -85,7 +85,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'info@atex.uu.nl'),
-        'name' => env('MAIL_FROM_NAME', 'ATEX'),
+        'name' => env('MAIL_FROM_NAME', 'LABEXUS'),
     ],
 
     /*

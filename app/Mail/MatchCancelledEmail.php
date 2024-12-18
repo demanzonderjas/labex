@@ -31,6 +31,6 @@ class MatchCancelledEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.match-cancelled')->subject("ATEX - Your match was cancelled");
+        return $this->view('mail.match-cancelled')->subject("LABEXUS - Your match was cancelled");
     }
 }

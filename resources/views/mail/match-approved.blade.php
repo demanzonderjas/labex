@@ -1,6 +1,6 @@
 @extends('mail.layout')
 
-@section('title', 'ATEX - Your match has been approved!')
+@section('title', 'LABEXUS - Your match has been approved!')
 @section('preheader', 'Your match has been approved. Find the contact info here.')
 
 @section('name', $user->name)
@@ -27,6 +27,6 @@
 @section('closing')
     <p>
         Friendly regards,<br />
-        ATEX
+        LABEXUS
     </p>
 @stop

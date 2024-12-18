@@ -33,6 +33,6 @@ class MatchMadeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.match-made')->subject("ATEX - A new match has been made!");
+        return $this->view('mail.match-made')->subject("LABEXUS - A new match has been made!");
     }
 }

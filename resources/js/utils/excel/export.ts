@@ -6,8 +6,8 @@ export async function exportToExcel(rows: any, name: string) {
 
 	const worksheet = XLSX.utils.json_to_sheet(rows);
 	const workbook = XLSX.utils.book_new();
-	XLSX.utils.book_append_sheet(workbook, worksheet, "ATEXExport");
-	XLSX.writeFile(workbook, "ATEX-Export.xlsx", { compression: true });
+	XLSX.utils.book_append_sheet(workbook, worksheet, "LABEXUSExport");
+	XLSX.writeFile(workbook, "LABEXUS-Export.xlsx", { compression: true });
 }
 
 export function convertValidOffersToOrigin(

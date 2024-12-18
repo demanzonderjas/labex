@@ -30,6 +30,6 @@ class AlertMatchEmail extends Mailable
 	 */
 	public function build()
 	{
-		return $this->view('mail.alert-match')->subject("ATEX - A new possible match for your alert was found");
+		return $this->view('mail.alert-match')->subject("LABEXUS - A new possible match for your alert was found");
 	}
 }

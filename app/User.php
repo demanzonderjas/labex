@@ -64,8 +64,9 @@ class User extends Authenticatable  implements MustVerifyEmail
 
     public function canAddContent()
     {
-        return $this->roles->contains(function (Role $role) {
-            return $role->name === 'content' || $role->name === 'moderator';
-        });
+        return true;
+        // return $this->roles->contains(function (Role $role) {
+        //     return $role->name === 'content' || $role->name === 'moderator';
+        // });
     }
 }
