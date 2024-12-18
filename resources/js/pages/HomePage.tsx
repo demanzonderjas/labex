@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/base/Button";
 import { LoginForm } from "../components/home/LoginForm";
 import { HomePageHeader } from "../components/layout/Header";
 import { useTranslationStore } from "../hooks/useTranslationStore";
+import { useUserStore } from "../hooks/useUserStore";
+import { observer } from "mobx-react-lite";
 
-export const HomePage: React.FC = () => {
+export const HomePage: React.FC = observer(() => {
 	const { t } = useTranslationStore();
 	const navigate = useNavigate();
+	const { user } = useUserStore();
+
+	useEffect(() => {
+		if (user) {
+			location.href = "/app/dashboard";
+		}
+	}, [user]);
 
 	return (
 		<div className="HomePage">
@@ -51,4 +60,4 @@ export const HomePage: React.FC = () => {
 			</div>
 		</div>
 	);
-};
+});
