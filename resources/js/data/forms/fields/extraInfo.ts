@@ -19,10 +19,4 @@ export const contactDetailsField: TFormField = {
 	label: "contact_details",
 	description: "contact_details_info",
 	id: TSpecificationName.ContactDetails,
-	dependencies: [
-		{
-			id: TSpecificationName.ExchangeType,
-			validate: (value) => value === TTypeSpec.Equipment || value === TTypeSpec.Chemicals,
-		},
-	],
 };
