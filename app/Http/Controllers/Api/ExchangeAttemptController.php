@@ -9,6 +9,7 @@ use App\Http\Requests\ExchangeAttemptStoreRequest;
 use App\Http\Resources\ExchangeAttemptResource;
 use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Mail\AlertMatchEmail;
+use App\Role;
 use App\Specification;
 use App\User;
 use Carbon\Carbon;
@@ -21,10 +22,16 @@ class ExchangeAttemptController extends Controller
 	public function store(ExchangeAttemptStoreRequest $request)
 	{
 		try {
+			$isOffer = $request->attempt_type == config('atex.constants.offer');
+
+			if ($isOffer && !$request->user()->canAddContent()) {
+				return response()->json(["success" => false, "message" => "you_are_not_allowed_to_add_content"]);
+			}
+
 			$validated = $request->validated();
 			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);
 
-			if ($request->attempt_type == config('atex.constants.offer')) {
+			if ($isOffer) {
 				$admin = User::where('email', env('ADMIN_MAIL'))->first();
 				Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
 			}
@@ -32,7 +39,7 @@ class ExchangeAttemptController extends Controller
 
 			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
-			return response()->json(["success" => false, "error" => $validated]);
+			return response()->json(["success" => false, "error" => $request->validated()]);
 		}
 	}
 

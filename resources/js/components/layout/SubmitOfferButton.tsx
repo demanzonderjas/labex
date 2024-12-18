@@ -2,8 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../base/Button";
 import { useUserStore } from "../../hooks/useUserStore";
+import { observer } from "mobx-react-lite";
 
-export function SubmitOfferButton() {
+export const SubmitOfferButton = observer(() => {
 	const navigate = useNavigate();
 	const { userCanAddContent } = useUserStore();
 
@@ -18,4 +19,4 @@ export function SubmitOfferButton() {
 			/>
 		</div>
 	);
-}
+});
