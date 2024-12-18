@@ -5,7 +5,6 @@ mix.sass("resources/sass/app.scss", "public/css");
 mix.ts("resources/js/index.tsx", "public/js");
 mix.ts("resources/js/app.tsx", "public/js");
 mix.ts("resources/js/verify-email.tsx", "public/js");
-mix.ts("resources/js/external-login.tsx", "public/js");
 mix.ts("resources/js/admin.tsx", "public/js");
 mix.webpackConfig({
 	module: {

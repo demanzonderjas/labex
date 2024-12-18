@@ -72,7 +72,7 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "General",
                 "title" => "Who can I contact for feedback/questions about LABEXUS?",
-                "content" => "<p>For general questions/feedback on the information provided here, please contact <a href='mailto:info@labex.uu.nl'>info@labex.uu.nl</a></p><p>For technical issues/feedback, please contact <a href='mailto:tech@labex.uu.nl'>labex@atex.uu.nl</a></p>"
+                "content" => "<p>For general questions/feedback on the information provided here, please contact <a href='mailto:info@labex.uu.nl'>info@labex.uu.nl</a></p><p>For technical issues/feedback, please contact <a href='mailto:tech@labex.uu.nl'>info@labexus.nl</a></p>"
             ],
             [
                 "category" => "General",
