@@ -8,10 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { ExchangeAttemptOverview } from "../components/overviews/ExchangeAttemptOverview";
 import { requestMatchCells } from "../data/tables/matches";
 import { TExchangeAttemptType } from "../typings/exchanges";
+import { observer } from "mobx-react-lite";
+import { useUserStore } from "../hooks/useUserStore";
 
-export const RequestsPage = () => {
+export const RequestsPage = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const navigate = useNavigate();
+	const { userCanAddContent } = useUserStore();
 
 	const submitOffer = () => {
 		const { filters } = sampleStore;
@@ -27,6 +30,7 @@ export const RequestsPage = () => {
 				form={{
 					...FilterRequestsForm,
 					fields: FilterRequestsForm.fields.filter((f) => !f.hideAsFilter),
+					hideSubmit: !userCanAddContent,
 				}}
 				handleUpdate={sampleStore.setFilters}
 			/>
@@ -37,4 +41,4 @@ export const RequestsPage = () => {
 			/>
 		</ExchangeAttemptStoreProvider>
 	);
-};
+});

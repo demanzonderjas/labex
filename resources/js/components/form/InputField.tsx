@@ -10,19 +10,21 @@ interface Props extends TFormFieldData {
 	allowEnter?: boolean;
 }
 
-export const InputField: React.FC<Props> = observer(({ id, value, validate, type, ...props }) => {
-	const { setFieldValue } = useFormStore();
-	const isCorrect = validate ? validate(value) && value : !!value;
-	return (
-		<div className="InputField">
-			<input
-				className={cx({ correct: isCorrect })}
-				type={type}
-				value={value}
-				onKeyPress={props.allowEnter ? undefined : blockEnter}
-				onChange={(e) => setFieldValue(id, e.target.value)}
-				{...props}
-			/>
-		</div>
-	);
-});
+export const InputField: React.FC<Props> = observer(
+	({ id, value, validate, type, allowEnter, ...props }) => {
+		const { setFieldValue } = useFormStore();
+		const isCorrect = validate ? validate(value) && value : !!value;
+		return (
+			<div className="InputField">
+				<input
+					className={cx({ correct: isCorrect })}
+					type={type}
+					value={value}
+					onKeyPress={allowEnter ? undefined : blockEnter}
+					onChange={(e) => setFieldValue(id, e.target.value)}
+					{...props}
+				/>
+			</div>
+		);
+	}
+);

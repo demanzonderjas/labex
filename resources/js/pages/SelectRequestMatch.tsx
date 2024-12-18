@@ -21,6 +21,7 @@ import { createMatch } from "../queries/createMatch";
 import { TUserProfile } from "../typings/user";
 import { UserProfile } from "../components/match/UserProfile";
 import { TExchangeAttempt } from "../typings/exchanges";
+import { useUserStore } from "../hooks/useUserStore";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
@@ -29,6 +30,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [isMatch, setIsMatch] = useState(null);
 	const { setModal, confirm } = useModalStore();
+	const { userCanAddContent } = useUserStore();
 
 	const { loadFiltersFromKeyValuePairs, setFilters, filters } = sampleStore;
 	const filterParams = useQuery();
@@ -106,10 +108,12 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				{!isMatch && (
 					<div className="button-wrapper">
 						<BlankButton label="return_to_overview" handleClick={goBack} />
-						<SecondaryButton
-							label="select_match"
-							handleClick={() => setModal(modalData)}
-						/>
+						{!!userCanAddContent && (
+							<SecondaryButton
+								label="select_match"
+								handleClick={() => setModal(modalData)}
+							/>
+						)}
 					</div>
 				)}
 			</div>

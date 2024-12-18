@@ -5,6 +5,10 @@ return [
         "uu.nl",
         "puzzel.org"
     ],
+    "roles" => [
+        "content",
+        "moderator",
+    ],
     "attempt_types" => [
         "offer",
         "request"

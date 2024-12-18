@@ -29,7 +29,7 @@ class UserController
         if (array_search($domain, $allowedDomains) === false) {
             return response()->json(["success" => false, "message" => "your_organisation_does_not_have_access"]);
         }
-        if (User::where('email', $request->email)) {
+        if (User::where('email', $request->email)->first()) {
             return response()->json(["success" => false, "message" => "email_already_exists"]);
         }
 

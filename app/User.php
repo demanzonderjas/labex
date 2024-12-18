@@ -41,6 +41,8 @@ class User extends Authenticatable  implements MustVerifyEmail
         'remember_token',
     ];
 
+    protected $with = ['roles'];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -53,5 +55,10 @@ class User extends Authenticatable  implements MustVerifyEmail
     public function scopeWhereIsAdmin(Builder $query)
     {
         return $query->where("email", env('ADMIN_MAIL', 'info@atex.uu.nl'));
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
