@@ -17,14 +17,14 @@ class StatsController extends Controller
         $users = User::all()->count();
         $matches = MaterialMatch::where('status', config('atex.constants.match_status.approved'))->count();
         $totalSaved = MaterialMatch::where('status', config('atex.constants.match_status.approved'))->get()->reduce(function ($base, $match) {
-            return $base + $match->request->amount;
+            return $base + (int)$match->request->amount;
         }, 0);
         $totalOffered = ExchangeAttempt::offers()->get()->reduce(function ($base, $attempt) {
-            return $base + $attempt->amount;
+            return $base + (int)$attempt->amount;
         }, 0);
 
         $totalRequested = ExchangeAttempt::requests()->get()->reduce(function ($base, $attempt) {
-            return $base + $attempt->amount;
+            return $base + (int)$attempt->amount;
         }, 0);
 
         return response()->json([
