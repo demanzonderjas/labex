@@ -1,36 +1,55 @@
 import React, { useState } from "react";
-import { LoginState } from "./LoginState";
-import { SignUpState } from "./SignupState";
 import { FormWrapper } from "../FormWrapper";
 import { LoginUserForm } from "../../data/forms/User";
 import { LocalImage } from "../base/Image";
+import { SignUpForm } from "../../data/forms/SignUp";
+import { useTranslationStore } from "../../hooks/useTranslationStore";
 enum HomePageState {
 	LOGIN,
 	SIGN_UP,
 }
 
 export const LoginForm: React.FC = () => {
-	const [page, setPage] = useState<HomePageState>(HomePageState.LOGIN);
+	const [page, setPage] = useState<HomePageState>(HomePageState.SIGN_UP);
+	const { t } = useTranslationStore();
+	const [showEmailVerification, setShowEmailVerification] = useState<boolean>(false);
 
 	return (
 		<div className="LoginForm">
 			<div className="image" style={{ margin: "10px 0" }}>
-				<LocalImage path="logo/labex.png" />
+				<LocalImage path="logo/labex.webp" />
 			</div>
-			<FormWrapper
-				form={LoginUserForm}
-				handleSuccess={() => (location.href = "/app/dashboard")}
-			/>
-		</div>
-	);
 
-	return (
-		<div className="LoginForm">
 			{page == HomePageState.LOGIN && (
-				<LoginState switchPage={() => setPage(HomePageState.SIGN_UP)} />
+				<>
+					<p>
+						{t("dont_have_account")}
+						<span className="link" onClick={() => setPage(HomePageState.SIGN_UP)}>
+							&nbsp;{t("sign_up_here")}
+						</span>
+					</p>
+					<FormWrapper
+						form={LoginUserForm}
+						handleSuccess={() => (location.href = "/app/dashboard")}
+					/>
+				</>
 			)}
 			{page == HomePageState.SIGN_UP && (
-				<SignUpState switchPage={() => setPage(HomePageState.LOGIN)} />
+				<>
+					<p>
+						{t("already_have_account")}
+						<span className="link" onClick={() => setPage(HomePageState.LOGIN)}>
+							&nbsp;{t("log_in_here")}
+						</span>
+					</p>
+					<FormWrapper
+						form={SignUpForm}
+						handleSuccess={() => setShowEmailVerification(true)}
+					/>
+					{!!showEmailVerification && (
+						<p className="success-message">{t("check_email_verification_inbox")}</p>
+					)}
+				</>
 			)}
 		</div>
 	);

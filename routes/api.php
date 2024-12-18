@@ -23,9 +23,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'Api'], function () {
 
-    Route::post('signups/store', 'SignupController@store')->withoutMiddleware(VerifyApiUserToken::class);
+    Route::post('users/store', 'UserController@store')->withoutMiddleware(VerifyApiUserToken::class);
     Route::post('external-login', '\App\Http\Controllers\Auth\LoginController@handleExternalLogin')->withoutMiddleware(VerifyApiUserToken::class);
-    Route::post('demo-login', '\App\Http\Controllers\Auth\LoginController@handleDemoLogin')->withoutMiddleware(VerifyApiUserToken::class);
+    // Route::post('demo-login', '\App\Http\Controllers\Auth\LoginController@handleDemoLogin')->withoutMiddleware(VerifyApiUserToken::class);
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('message', 'Verification link sent!');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
     Route::group(['middleware' => VerifyAuthorized::class], function () {
         Route::post('exchange-attempt/store', 'ExchangeAttemptController@store');
@@ -64,11 +70,6 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('matches/approve/{matchId}', 'MatchController@approveWithMessage');
         Route::post('matches/amount/{match}', 'MatchController@updateAmount');
         Route::post('matches/reject/{match}', 'MatchController@reject');
-
-        Route::get('signups', 'SignupController@getAll');
-        Route::post('signups/approve/{signupId}', 'SignupController@approve');
-        Route::post('signups/decline/{signupId}', 'SignupController@decline');
-        Route::post('signups/delete/{signupId}', 'SignupController@delete');
 
         Route::get('users', 'UserController@getAll');
         Route::post('user', 'UserController@store');

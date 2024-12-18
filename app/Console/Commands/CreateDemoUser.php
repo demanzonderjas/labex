@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Signup;
 use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -33,15 +32,9 @@ class CreateDemoUser extends Command
 
         $user = User::firstOrNew(['email' => $EMAIL]);
         $user->name = "Demo";
-        $user->organisation = "uu.nl";
         $user->is_admin = true;
         $user->token = Str::random(30);
         $user->password = Hash::make('demolab');
         $user->save();
-
-        $signup = Signup::firstOrNew(['email' => $EMAIL]);
-        $signup->name = "Demo";
-        $signup->approved = true;
-        $signup->save();
     }
 }

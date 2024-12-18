@@ -11,7 +11,6 @@ import { Sidebar } from "./components/admin/Sidebar";
 import { AdminFAQPage } from "./pages/admin/FAQ";
 import { FAQEditPage } from "./pages/admin/FAQEdit";
 import { FAQCreatePage } from "./pages/admin/FAQCreate";
-import { SignupsPage } from "./pages/admin/Signups";
 import { ModalStore } from "./stores/ModalStore";
 import ModalStoreProvider from "./contexts/ModalContext";
 import { UsersPage } from "./pages/admin/Users";
@@ -43,7 +42,6 @@ const App: React.FC = () => {
 									path="/admin/offers/edit/:offer_id"
 									element={<AdminEditOfferPage />}
 								></Route>
-								<Route path="/admin/signups" element={<SignupsPage />}></Route>
 								<Route path="/admin/faq" element={<AdminFAQPage />}></Route>
 								<Route path="/admin/faq/create" element={<FAQCreatePage />}></Route>
 								<Route path="/admin/faq/edit/:id" element={<FAQEditPage />}></Route>

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    "allowed_domains" => [
+        "uu.nl",
+        "puzzel.org"
+    ],
     "attempt_types" => [
         "offer",
         "request"

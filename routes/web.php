@@ -3,6 +3,9 @@
 use App\Http\Middleware\VerifyAdmin;
 use App\Http\Middleware\VerifyAuthorized;
 use App\User;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 Route::get('/about-us', function () {
     return view('index');
 });
@@ -36,13 +39,19 @@ Route::get('/app', function () {
     return view('index');
 });
 
-Route::get('/signup-first', function () {
-    return view('signup-first');
-});
-
 Route::get('external-login', function () {
     return view('external-login');
 });
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/app/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
 function fakeAdminLogin()
 {
@@ -63,4 +72,4 @@ Route::group(['middleware' => VerifyAdmin::class], function () {
 
 Route::fallback(function () {
     return view('dashboard');
-})->middleware(VerifyAuthorized::class);
+})->middleware('verified');

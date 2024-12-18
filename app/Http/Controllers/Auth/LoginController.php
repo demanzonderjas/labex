@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Signup;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;

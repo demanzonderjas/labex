@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="api-user-token" content={{ Auth::user()->token }}>
     <link rel="stylesheet" href="/css/app.css?t={{ time() }}">
-    <title>Laboratory Exchange Platform (LABEX)</title>
+    <title>Laboratory Exchange Platform (LABEXUS)</title>
 </head>
 
 <body>

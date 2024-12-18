@@ -1,6 +1,5 @@
 <?php
 
-use App\Signup;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -18,44 +17,23 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name =  "Offer Demo";
         $user->email = "offer@labexplatform.nl";
-        $user->organisation = "uu.nl";
         $user->is_admin = true;
         $user->token = env('TEST_API_TOKEN');
         $user->save();
 
-        $signup = new Signup();
-        $signup->email = $user->email;
-        $signup->name = $user->name;
-        $signup->approved = true;
-        $signup->save();
-
         $user = new User();
         $user->name =  "Request Demo";
         $user->email = "request@labexplatform.nl";
-        $user->organisation = "uu.nl";
         $user->is_admin = true;
         $user->token = Str::random(40);
         $user->save();
-
-        $signup = new Signup();
-        $signup->email = $user->email;
-        $signup->name = $user->name;
-        $signup->approved = true;
-        $signup->save();
 
         $user = new User();
         $user->name =  "Demo";
         $user->email = "demo@labexplatform.nl";
         $user->password = Hash::make('demolab');
-        $user->organisation = "uu.nl";
         $user->is_admin = true;
         $user->token = Str::random(40);
         $user->save();
-
-        $signup = new Signup();
-        $signup->email = $user->email;
-        $signup->name = $user->name;
-        $signup->approved = true;
-        $signup->save();
     }
 }

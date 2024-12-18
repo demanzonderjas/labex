@@ -20,14 +20,6 @@ class VerifyAuthorized
             return redirect("/?target_url=" .  urlencode($request->fullUrl()), 302);
         }
 
-        $matchingUser = DB::table('signups')
-            ->whereRaw('LOWER(`email`) LIKE ? ', [trim(strtolower($request->user()->email)) . '%'])
-            ->first();
-
-        if (empty($matchingUser) || !$matchingUser->approved) {
-            return redirect("/signup-first", 302);
-        }
-
         return $next($request);
     }
 }

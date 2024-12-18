@@ -36,8 +36,8 @@ export async function demoLogin(password: string, user_id: number) {
 	}
 }
 
-export async function deleteUser(signup) {
-	const { id } = signup;
+export async function deleteUser(user) {
+	const { id } = user;
 	try {
 		const response = await API.delete(`user/${id}`);
 		return response.data;

@@ -17,7 +17,7 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Security",
                 "title" => "Is the information being exchanged sufficiently secure?",
-                "content" => "<p>The material and contact information shown within the LABEX platform is all secured behind the 2-factor authentication of the university.</p><p>All of the sensitive data, like contact information and the information in your offers and requests will be encrypted when saved in the database as well, so even if the data were compromised, it would be useless.</p>"
+                "content" => "<p>The material and contact information shown within the LABEXUS platform is all secured behind the 2-factor authentication of the university.</p><p>All of the sensitive data, like contact information and the information in your offers and requests will be encrypted when saved in the database as well, so even if the data were compromised, it would be useless.</p>"
             ],
             [
                 "category" => "Security",
@@ -27,7 +27,7 @@ class FaqItemSeeder extends Seeder
             [
                 "category" => "Matches",
                 "title" => "Do I have to delete my offer myself if it is no longer available?",
-                "content" => "<p>Whenever your offer/request finds a match within the LABEX platform, it will automatically be hidden from further matching. If you find a match outside of LABEX, then you can delete your offer/request from your dashboard manually.</p>"
+                "content" => "<p>Whenever your offer/request finds a match within the LABEXUS platform, it will automatically be hidden from further matching. If you find a match outside of LABEXUS, then you can delete your offer/request from your dashboard manually.</p>"
             ],
             [
                 "category" => "Matches",
@@ -71,13 +71,13 @@ class FaqItemSeeder extends Seeder
             ],
             [
                 "category" => "General",
-                "title" => "Who can I contact for feedback/questions about LABEX?",
+                "title" => "Who can I contact for feedback/questions about LABEXUS?",
                 "content" => "<p>For general questions/feedback on the information provided here, please contact <a href='mailto:info@labex.uu.nl'>info@labex.uu.nl</a></p><p>For technical issues/feedback, please contact <a href='mailto:tech@labex.uu.nl'>labex@atex.uu.nl</a></p>"
             ],
             [
                 "category" => "General",
-                "title" => "What does LABEX do?",
-                "content" => "<p>This platform is provided and maintained by ........ Utrecht</p> <p> Some of the equipment is not used optimally in both laboratories and clinics. For example, because the devices are used infrequently, or because equipment remains present after completion of a project or after departure of researchers but is no longer used. This often concerns equipment that is still in good working order. This can be very useful for fellow researchers, but they are usually unaware of its presence. A digital marketplace can make supply and demand visible and thus enable transfer or joint use. This enables more sustainable use of equipment. Moreover, this reduces the costs for the researchers. </p> <p> In many laboratories and clinics also contain chemical preparations, medicines, or disposables are available that are either no longer used or are present in quantities that far exceed requirements. If these surpluses are made available to fellow researchers/clinicians, the material will be used more optimally and less of it will have to be purchased and disposed of unused. </p> <p> As a result, fewer equipment, chemical substances and disposables are needed overall. </p> <p> The Laboratory Exchange platform (LABEX) makes offers and requests visible and thus contributes to better use of these materials. </p> <p>LABEX is intended for the exchange of:</p> <ul> <li>Laboratory or Clinical Equipment</li> <li>Chemical substances</li> <li>Disposables</li> </ul> <p> To use this application you must first create an account. You can then enter specifications for your offer or request within the secure environment of the application, such as kind of device or substance, type of availability, the moment it becomes available or is needed, etc.. Finally, you can check whether there are matches for your offer or request. If you would like more information about the match (the described equipment or material) you can contact the owner of the offer or request. </p>"
+                "title" => "What does LABEXUS do?",
+                "content" => "<p>This platform is provided and maintained by ........ Utrecht</p> <p> Some of the equipment is not used optimally in both laboratories and clinics. For example, because the devices are used infrequently, or because equipment remains present after completion of a project or after departure of researchers but is no longer used. This often concerns equipment that is still in good working order. This can be very useful for fellow researchers, but they are usually unaware of its presence. A digital marketplace can make supply and demand visible and thus enable transfer or joint use. This enables more sustainable use of equipment. Moreover, this reduces the costs for the researchers. </p> <p> In many laboratories and clinics also contain chemical preparations, medicines, or disposables are available that are either no longer used or are present in quantities that far exceed requirements. If these surpluses are made available to fellow researchers/clinicians, the material will be used more optimally and less of it will have to be purchased and disposed of unused. </p> <p> As a result, fewer equipment, chemical substances and disposables are needed overall. </p> <p> The Laboratory Exchange platform (LABEXUS) makes offers and requests visible and thus contributes to better use of these materials. </p> <p>LABEXUS is intended for the exchange of:</p> <ul> <li>Laboratory or Clinical Equipment</li> <li>Chemical substances</li> <li>Disposables</li> </ul> <p> To use this application you must first create an account. You can then enter specifications for your offer or request within the secure environment of the application, such as kind of device or substance, type of availability, the moment it becomes available or is needed, etc.. Finally, you can check whether there are matches for your offer or request. If you would like more information about the match (the described equipment or material) you can contact the owner of the offer or request. </p>"
             ],
             [
                 "category" => "Other",

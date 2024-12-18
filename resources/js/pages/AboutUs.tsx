@@ -18,7 +18,7 @@ export const AboutUsPage: React.FC = () => {
 			<div className="layout-wrapper content">
 				<Button label="back" handleClick={() => navigate("/")} />
 				<div style={{ height: "150px", margin: "40px 0" }}>
-					<LocalImage path="logo/labex.jpg" />
+					<LocalImage path="logo/labex.webp" />
 				</div>
 				<p>This platform is provided and maintained by ........ Utrecht</p>
 				<p>
@@ -44,10 +44,10 @@ export const AboutUsPage: React.FC = () => {
 					overall.
 				</p>
 				<p>
-					The Laboratory Exchange platform (LABEX) makes offers and requests visible and
+					The Laboratory Exchange platform (LABEXUS) makes offers and requests visible and
 					thus contributes to better use of these materials.
 				</p>
-				<p>LABEX is intended for the exchange of:</p>
+				<p>LABEXUS is intended for the exchange of:</p>
 				<ul>
 					<li>Laboratory or Clinical Equipment</li>
 					<li>Chemical substances</li>

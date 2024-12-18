@@ -154,3 +154,15 @@ body {
 	padding: $default-half-margin;
 	margin: $default-half-margin 0;
 }
+
+.link {
+	color: $correct-color;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.success-message {
+	background-color: $correct-color;
+	color: white;
+	padding: 0.5em;
+}
