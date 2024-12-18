@@ -9,8 +9,9 @@ export const emailField: TFormField = {
 	validate: validateEmail,
 	Component: InputField,
 	props: {
-		type: InputType.Email
+		type: InputType.Email,
+		allowEnter: true,
 	},
 	default: "",
-	value: ""
+	value: "",
 };

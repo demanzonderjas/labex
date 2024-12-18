@@ -7,6 +7,7 @@ import { blockEnter } from "../../utils/dom/keyboard";
 
 interface Props extends TFormFieldData {
 	type: InputType;
+	allowEnter?: boolean;
 }
 
 export const InputField: React.FC<Props> = observer(({ id, value, validate, type, ...props }) => {
@@ -18,8 +19,8 @@ export const InputField: React.FC<Props> = observer(({ id, value, validate, type
 				className={cx({ correct: isCorrect })}
 				type={type}
 				value={value}
-				onKeyPress={blockEnter}
-				onChange={e => setFieldValue(id, e.target.value)}
+				onKeyPress={props.allowEnter ? undefined : blockEnter}
+				onChange={(e) => setFieldValue(id, e.target.value)}
 				{...props}
 			/>
 		</div>

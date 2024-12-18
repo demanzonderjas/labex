@@ -10,7 +10,7 @@ export const passwordGeneratorField: TFormField = {
 	Component: PasswordGeneratorField,
 	props: {},
 	default: "",
-	value: ""
+	value: "",
 };
 
 export const passwordField: TFormField = {
@@ -19,8 +19,9 @@ export const passwordField: TFormField = {
 	required: true,
 	Component: InputField,
 	props: {
-		type: InputType.Password
+		type: InputType.Password,
+		allowEnter: true,
 	},
 	default: "",
-	value: ""
+	value: "",
 };
