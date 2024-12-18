@@ -10,7 +10,7 @@ enum HomePageState {
 }
 
 export const LoginForm: React.FC = () => {
-	const [page, setPage] = useState<HomePageState>(HomePageState.SIGN_UP);
+	const [page, setPage] = useState<HomePageState>(HomePageState.LOGIN);
 	const { t } = useTranslationStore();
 	const [showEmailVerification, setShowEmailVerification] = useState<boolean>(false);
 
