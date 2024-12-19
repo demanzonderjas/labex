@@ -3,7 +3,11 @@
 return [
     "allowed_domains" => [
         "uu.nl",
-        "puzzel.org"
+        "puzzel.org",
+        "umcutrecht.nl",
+        "genmab.com",
+        "hu.nl",
+        "prinsesmaximacentrum.nl"
     ],
     "roles" => [
         "content",
