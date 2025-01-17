@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\ExchangeAttempt;
+use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Mail\MatchMadeEmail;
 use App\MaterialMatch;
 use App\User;
@@ -41,14 +43,9 @@ class SendTestMail extends Command
      */
     public function handle()
     {
-        $match = MaterialMatch::first();
-        $targetUser = new User();
-        $targetUser->email = $this->argument('email');
-        $targetUser->name = "Test";
-        $targetUser->token = "asdkasodjasjdaijdasjdjd";
-        $targetUser->save();
+        $attempt = ExchangeAttempt::first();
 
-        Mail::to($targetUser)->queue(new MatchMadeEmail($match, $targetUser));
+        Mail::to($this->argument('email'))->queue(new AdminOfferAddedEmail($attempt));
 
         return 0;
     }
