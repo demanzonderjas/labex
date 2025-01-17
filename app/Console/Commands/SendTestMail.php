@@ -2,11 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\ExchangeAttempt;
-use App\Mail\Admin\AdminOfferAddedEmail;
-use App\Mail\MatchMadeEmail;
-use App\MaterialMatch;
-use App\User;
+use App\Mail\Admin\TestEmail;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -43,9 +39,7 @@ class SendTestMail extends Command
      */
     public function handle()
     {
-        $attempt = ExchangeAttempt::first();
-
-        Mail::to($this->argument('email'))->queue(new AdminOfferAddedEmail($attempt));
+        Mail::to($this->argument('email'))->queue(new TestEmail());
 
         return 0;
     }
