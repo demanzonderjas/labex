@@ -39,11 +39,11 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
 
     return redirect('/app/dashboard');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+})->middleware(['signed'])->name('verification.verify');
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
-})->name('verification.notice');
+})->middleware('auth')->name('verification.notice');
 
 Route::group(['middleware' => VerifyAdmin::class], function () {
     Route::get('/admin/{page?}', function () {
