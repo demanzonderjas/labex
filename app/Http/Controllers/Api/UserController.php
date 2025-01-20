@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Auth\LoginController;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class UserController
         $user->save();
 
         event(new Registered($user));
+        LoginController::logUserIn($user, $request->password);
 
         return response()->json(["success" => true, "user" => $request->user()]);
     }
