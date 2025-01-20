@@ -43,7 +43,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+})->name('verification.notice');
 
 Route::group(['middleware' => VerifyAdmin::class], function () {
     Route::get('/admin/{page?}', function () {
