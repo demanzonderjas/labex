@@ -6,7 +6,8 @@ return [
         "umcutrecht.nl",
         "genmab.com",
         "hu.nl",
-        "prinsesmaximacentrum.nl"
+        "prinsesmaximacentrum.nl",
+        "puzzel.org"
     ],
     "roles" => [
         "content",
