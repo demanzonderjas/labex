@@ -32,8 +32,10 @@ class ExchangeAttemptController extends Controller
 			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);
 
 			if ($isOffer) {
-				$admin = User::where('email', env('ADMIN_MAIL'))->first();
-				Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
+				$admins = User::where('is_admin', true)->get();
+				foreach ($admins as $admin) {
+					Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
+				}
 			}
 			self::activateAlerts($attempt);
 
