@@ -115,7 +115,7 @@ class ExchangeAttemptController extends Controller
 	{
 		$attempt = new ExchangeAttempt;
 		$attempt->attempt_type = $attempt_type;
-		$attempt->status = config('atex.constants.exchange_attempt_status.active');
+		$attempt->status = config('atex.constants.exchange_attempt_status.on-hold');
 		$attempt->user_id = $request->user()->id;
 		$attempt->save();
 
