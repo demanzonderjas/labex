@@ -5,6 +5,7 @@ export async function sendExchangeAttempt(data: any) {
 		const response = await API.post("exchange-attempt/store", data);
 		return response.data;
 	} catch (e) {
+		console.log("error", e);
 		return { success: false, message: "invalid_request" };
 	}
 }
