@@ -1,11 +1,12 @@
 <?php
 
 return [
-	"admin_mail" => "info@labex.uu.nl",
+	"admin_mail" => "info.labexus@uu.nl",
 	"constants" => [
 		"exchange_attempt_status" => [
 			"active" => "active",
 			"inactive" => "inactive",
+			"on-hold" => "on-hold"
 		],
 		"offer" => "offer",
 		"request" => "request",

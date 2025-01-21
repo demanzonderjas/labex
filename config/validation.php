@@ -20,6 +20,7 @@ return [
     "exchange_status" => [
         "active",
         "inactive",
+        "on-hold"
     ],
     "exchange_attempt_fields" => [
         "type" => "nullable|string",

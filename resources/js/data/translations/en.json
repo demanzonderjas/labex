@@ -198,6 +198,7 @@
 	"status": "Status",
 	"active": "Active",
 	"inactive": "Inactive",
+	"on-hold": "On hold",
 	"clear": "Clear",
 	"match_amount": "Match amount",
 	"change_amount": "Change amount",

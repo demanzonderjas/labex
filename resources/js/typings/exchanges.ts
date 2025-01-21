@@ -25,6 +25,7 @@ export type TExportableOffer = TExchangeAttempt;
 export enum TExchangeAttemptStatus {
 	Active = "active",
 	Inactive = "inactive",
+	OnHold = "on-hold",
 }
 
 export enum TSpecificationName {

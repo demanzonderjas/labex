@@ -25,6 +25,7 @@ export enum TTableCellName {
 	CopyButton = "copy_button",
 	DeleteButton = "delete_button",
 	EditButton = "edit_button",
+	Activate = "activate",
 }
 
 export type TTableCellProps = {

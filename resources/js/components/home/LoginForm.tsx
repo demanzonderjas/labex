@@ -31,7 +31,6 @@ export const LoginForm: React.FC = () => {
 					<FormWrapper
 						form={LoginUserForm}
 						handleSuccess={() => {
-							console.log("success!");
 							location.href = "/app/dashboard";
 						}}
 					/>

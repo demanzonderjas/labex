@@ -71,6 +71,8 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('matches/amount/{match}', 'MatchController@updateAmount');
         Route::post('matches/reject/{match}', 'MatchController@reject');
 
+        Route::post('exchange-attempts/approve/{attempt}', 'ExchangeAttemptController@approve');
+
         Route::get('users', 'UserController@getAll');
         Route::post('user', 'UserController@store');
         Route::delete('user/{user_id}', 'UserController@delete');

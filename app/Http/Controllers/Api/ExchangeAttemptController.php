@@ -43,6 +43,13 @@ class ExchangeAttemptController extends Controller
 		}
 	}
 
+	public function approve(ExchangeAttempt $attempt)
+	{
+		$attempt->status = 'active';
+		$attempt->save();
+		return response()->json(["success" => true]);
+	}
+
 	public function update(ExchangeAttemptStoreRequest $request, $attempt_id)
 	{
 		try {
@@ -81,7 +88,9 @@ class ExchangeAttemptController extends Controller
 		$matchType = $request->attempt_type === config('atex.constants.offer') ? "matchViaOffer" : "matchViaRequest";
 		$exchange_attempts = $request->admin_view
 			? ExchangeAttempt::where(['attempt_type' => $request->attempt_type])->with('user')->get()
-			: ExchangeAttempt::doesntHave($matchType)->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])->get();
+			: ExchangeAttempt::doesntHave($matchType)
+			->where(['status' => config('atex.constants.exchange_attempt_status.active'), 'attempt_type' => $request->attempt_type])
+			->get();
 		return response()->json(["success" => true, "exchange_attempts" => ExchangeAttemptResource::collection($exchange_attempts)]);
 	}
 

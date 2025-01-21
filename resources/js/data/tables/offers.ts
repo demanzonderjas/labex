@@ -9,6 +9,7 @@ import { EditButtonCell } from "../../components/overviews/table/custom/EditButt
 import { TFormFieldName } from "../../typings/forms";
 import { UserCell } from "../../components/overviews/table/custom/UserCell";
 import { ImageCell } from "../../components/overviews/table/ImageCell";
+import { ActivateCell } from "../../components/overviews/table/custom/ActivateCell";
 
 export const offerColumns: string[] = [
 	TSpecificationName.ExchangeType,
@@ -107,16 +108,17 @@ export const adminOfferCells: TTableCell[] = [
 		Component: TextCell,
 	},
 	{
-		id: TSpecificationName.Status,
+		id: TTableCellName.Activate,
 		label: "is_active",
 		value: "",
-		Component: BooleanCell,
+		Component: ActivateCell,
 	},
 	{
 		id: TTableCellName.IsMatch,
 		value: "",
 		Component: BooleanCell,
 	},
+
 	{
 		id: TTableCellName.EditButton,
 		label: "edit",
