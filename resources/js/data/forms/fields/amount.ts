@@ -29,6 +29,7 @@ export const amountField: TFormField = {
 	},
 	default: "",
 	value: "",
+	ignoreInMatch: true,
 	dependencies: [
 		{
 			id: TSpecificationName.ExchangeType,

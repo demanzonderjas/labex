@@ -34,6 +34,19 @@ export const MyMatchesPage = observer(() => {
 				{matches.map((match) => (
 					<Match key={match.id} match={match} />
 				))}
+				{!matches.length && (
+					<p style={{ margin: "2em 0", fontSize: 18 }}>
+						{t("you_dont_have_any")}{" "}
+						<span
+							style={{
+								textTransform: "lowercase",
+								fontSize: "inherit",
+							}}
+						>
+							{t("matches")}
+						</span>
+					</p>
+				)}
 			</div>
 		</div>
 	);

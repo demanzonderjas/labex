@@ -32,7 +32,6 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const { setModal, confirm } = useModalStore();
 	const status = getStatusFromMatch(match);
 	const dateString = convertDateToReadableString(match.updated_at);
-	const navigate = useNavigate();
 
 	const offerFields = fillFieldsWithSpecifications(
 		SubmitOfferForm.fields,
@@ -47,7 +46,6 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 	const requestSpecs = createMatchSpecs(requestFields, offerFields);
 
 	const percentage = getMatchingPercentage(match.offer, requestFields, offerFields);
-	const linkFilters = createQueryStringFromFilters(requestFields);
 
 	const confirmCancel = () => {
 		cancelMatch(match.id);
@@ -81,14 +79,7 @@ export const Match: React.FC<Props> = ({ match, matchType }) => {
 						/>
 					</div>
 				)}
-				<div
-					className={cx("cards", { admin: matchType == MatchType.Admin })}
-					onClick={
-						matchType != MatchType.Admin
-							? () => navigate(`/app/offers/select/${match.offer.id}${linkFilters}`)
-							: undefined
-					}
-				>
+				<div className={cx("cards", { admin: matchType == MatchType.Admin })}>
 					<MatchCard
 						matchType={requestIsMine ? MatchType.Requests : MatchType.Offers}
 						mine={true}

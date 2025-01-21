@@ -60,6 +60,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				exchange_attempt: TExchangeAttempt;
 				success: boolean;
 			} = await getExchangeAttempt(id);
+			console.log(response);
 			const filledFields = fillFieldsWithSpecifications(
 				RequestSpecificationsForm.fields,
 				response.exchange_attempt.specifications
@@ -78,10 +79,6 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 			});
 		})();
 	}, []);
-
-	if (isMatch === null || !userProfile) {
-		return null;
-	}
 
 	return (
 		<ExchangeAttemptStoreProvider store={sampleStore}>

@@ -11,6 +11,8 @@ import { ExchangeAttemptCardOverview } from "./ExchangeAttemptCardOverview";
 import { ExchangeAttemptTable } from "./ExchangeAttemptTable";
 import { OverviewSwitch } from "./OverviewSwitch";
 import cx from "classnames";
+import { SubmitRequestButton } from "../layout/SubmitRequestButton";
+import { SubmitOfferButton } from "../layout/SubmitOfferButton";
 
 export const ExchangeAttemptOverview: React.FC<{
 	type: TExchangeAttemptType;
@@ -35,9 +37,22 @@ export const ExchangeAttemptOverview: React.FC<{
 	const attemptsAsCells = convertMatchesToCells(sortedAttempts, specsToShow, magicField);
 	const attemptsToShow = shouldViewAll ? attemptsAsCells : attemptsAsCells.slice(0, SHOW_LIMIT);
 
+	console.log(type, mineOnly, attemptsToShow);
+
 	useEffect(() => {
 		getExchangeAttempts(type, mineOnly, adminView);
 	}, []);
+
+	if (mineOnly && !attemptsToShow.length) {
+		return (
+			<div>
+				<p style={{ fontSize: 16, margin: "0 0 1em" }}>
+					{t("you_dont_have_any")} {t(`${type}s_label`)}
+				</p>
+				{type === "request" ? <SubmitRequestButton /> : <SubmitOfferButton />}
+			</div>
+		);
+	}
 
 	return (
 		<div className={cx("overview", { dashboard: mineOnly })}>
@@ -70,6 +85,13 @@ export const ExchangeAttemptOverview: React.FC<{
 			{sortedAttempts.length > SHOW_LIMIT && !shouldViewAll && (
 				<div className="layout-wrapper">
 					<SecondaryButton label="load_more" handleClick={() => setShouldViewAll(true)} />
+				</div>
+			)}
+			{!mineOnly && !attemptsToShow.length && (
+				<div className="layout-wrapper">
+					<p style={{ fontSize: 16, margin: "0 0 1em" }}>
+						{t("you_dont_have_any")} {t("matching")} {t(`${type}s_label`)}
+					</p>
 				</div>
 			)}
 		</div>

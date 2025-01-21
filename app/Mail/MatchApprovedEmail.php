@@ -14,7 +14,6 @@ class MatchApprovedEmail extends Mailable
 
     public $match;
     public $user;
-    public $note;
     public $contact;
 
     /**
@@ -22,11 +21,10 @@ class MatchApprovedEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(MaterialMatch $match, User $user, string $message)
+    public function __construct(MaterialMatch $match, User $user)
     {
         $this->match = $match;
         $this->user = $user;
-        $this->note = $message;
         $this->contact = $this->getContactFromMatch();
     }
 
@@ -42,6 +40,6 @@ class MatchApprovedEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.match-approved')->subject("LABEXUS - Your match has been approved!");
+        return $this->view('mail.match-approved')->subject("LABEXUS - You have a new match!");
     }
 }

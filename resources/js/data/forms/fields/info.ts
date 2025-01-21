@@ -14,6 +14,7 @@ export const titleField: TFormField = {
 	},
 	default: "",
 	value: "",
+	ignoreInMatch: true,
 };
 
 export const descriptionField: TFormField = {
@@ -27,4 +28,5 @@ export const descriptionField: TFormField = {
 	},
 	default: "",
 	value: "",
+	ignoreInMatch: true,
 };

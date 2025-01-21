@@ -121,7 +121,7 @@ export function fillFieldsWithSpecifications(
 export function createMatchSpecs(fields, filters) {
 	return fields.map((field) => {
 		const filter = filters.find((f) => f.id == field.id);
-		if (!filter || !filter.value) {
+		if (!filter || !filter.value || filter.ignoreInMatch) {
 			return { ...field, match: { status: TSpecStatus.NotSubmitted } };
 		}
 		const matchStatus = checkIfFieldMatches(field, filter, filters, fields);

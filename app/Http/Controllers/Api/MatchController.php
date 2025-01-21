@@ -100,7 +100,7 @@ class MatchController extends Controller
         $match = new MaterialMatch();
         $match->offer_id = $offerId;
         $match->request_id = $requestId;
-        $match->status = config('atex.constants.match_status.awaiting_approval');
+        $match->status = config('atex.constants.match_status.approved');
         $match->save();
 
         $matchingIds = self::convertRemainsToNewMaterial($match);
@@ -108,11 +108,6 @@ class MatchController extends Controller
         $match->offer_id = $matchingIds["exchange_offer_match_id"];
         $match->request_id = $matchingIds["exchange_request_match_id"];
         $match->save();
-
-        $offer = ExchangeAttempt::find($matchingIds["exchange_offer_match_id"]);
-        $request = ExchangeAttempt::find($matchingIds["exchange_request_match_id"]);
-        Mail::to($offer->user)->queue(new MatchMadeEmail($match, $offer->user));
-        Mail::to($request->user)->queue(new MatchMadeEmail($match, $request->user));
 
         self::handleMadeMatchValidation($match);
         self::deactivateActiveMatch($match);

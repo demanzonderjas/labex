@@ -4,12 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ExchangeAttempt extends Model
 {
 	use HasFactory;
 
 	public $with = ["specifications"];
+
+	public $appends = ["is_mine", "is_match"];
 
 	public $hidden = [];
 
@@ -112,15 +116,24 @@ class ExchangeAttempt extends Model
 
 	public function getIsMatchAttribute()
 	{
-		if ($this->attempt_type === config('atex.constants.offer')) {
-			return $this->matchViaOffer->contains(function (MaterialMatch $m) {
-				return $m->isActive();
-			});
-		} else if ($this->attempt_type === config('atex.constants.request')) {
-			return $this->matchViaRequest->contains(function (MaterialMatch $m) {
-				return $m->isActive();
-			});
-		}
-		return false;
+		$matches = DB::table('matches')->where('offer_id', $this->id)->orWhere('request_id', $this->id)->count();
+		return $matches > 0;
+	}
+
+	public function getTitleAttribute()
+	{
+		$spec = $this->specifications->firstWhere('key', 'title');
+		return $spec ? $spec->value : "";
+	}
+
+	public function getDescriptionAttribute()
+	{
+		$spec = $this->specifications->firstWhere('key', 'description');
+		return $spec ? $spec->value : "";
+	}
+
+	public function getIsMineAttribute()
+	{
+		return $this->user->id === Auth::user()->id;
 	}
 }

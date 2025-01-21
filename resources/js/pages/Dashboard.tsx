@@ -68,18 +68,8 @@ export const DashboardPage = observer(() => {
 					<p>
 						{t("welcome")}, {user?.name}
 					</p>
-					{/* <ExcelImport /> */}
 					<div className="submenu-with-overviews">
 						<div className="submenu">
-							<h3
-								className={cx({
-									active: activeOverview === TDashboardOverview.Requests,
-									[activeOverview]: true,
-								})}
-								onClick={() => setActiveOverview(TDashboardOverview.Requests)}
-							>
-								{t("my_requests")}
-							</h3>
 							<h3
 								className={cx({
 									active: activeOverview === TDashboardOverview.Offers,
@@ -88,6 +78,15 @@ export const DashboardPage = observer(() => {
 								onClick={() => setActiveOverview(TDashboardOverview.Offers)}
 							>
 								{t("my_offers")}
+							</h3>
+							<h3
+								className={cx({
+									active: activeOverview === TDashboardOverview.Requests,
+									[activeOverview]: true,
+								})}
+								onClick={() => setActiveOverview(TDashboardOverview.Requests)}
+							>
+								{t("my_requests")}
 							</h3>
 							<h3
 								className={cx({
@@ -100,14 +99,6 @@ export const DashboardPage = observer(() => {
 							</h3>
 						</div>
 						<div className="overviews">
-							<SubmenuView isActive={activeOverview === TDashboardOverview.Requests}>
-								<ExchangeAttemptOverview
-									specsToShow={requestCells}
-									mineOnly={true}
-									type={TExchangeAttemptType.Request}
-									SHOW_LIMIT={4}
-								/>
-							</SubmenuView>
 							<SubmenuView isActive={activeOverview === TDashboardOverview.Offers}>
 								<ExchangeAttemptOverview
 									specsToShow={offerCells}
@@ -116,8 +107,16 @@ export const DashboardPage = observer(() => {
 									SHOW_LIMIT={4}
 								/>
 							</SubmenuView>
+							<SubmenuView isActive={activeOverview === TDashboardOverview.Requests}>
+								<ExchangeAttemptOverview
+									specsToShow={requestCells}
+									mineOnly={true}
+									type={TExchangeAttemptType.Request}
+									SHOW_LIMIT={4}
+								/>
+							</SubmenuView>
 							<SubmenuView isActive={activeOverview === TDashboardOverview.Matches}>
-								{match && (
+								{match ? (
 									<div className="latest-match layout-wrapper">
 										<Match
 											key={match.id}
@@ -130,9 +129,20 @@ export const DashboardPage = observer(() => {
 											classes={{ inline: true, primary: true }}
 										/>
 									</div>
+								) : (
+									<p style={{ fontSize: 16 }}>
+										{t("you_dont_have_any")}{" "}
+										<span
+											style={{
+												textTransform: "lowercase",
+												fontSize: "inherit",
+											}}
+										>
+											{t("matches")}
+										</span>
+									</p>
 								)}
 							</SubmenuView>
-							{/* <DashboardStats /> */}
 						</div>
 					</div>
 				</div>

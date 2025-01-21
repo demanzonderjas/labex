@@ -44,7 +44,7 @@ export const SubmitOfferForm: TForm = {
 		// Equipment fields
 		withRequired(deviceTypeField),
 		withRequired(ageField),
-		equipmentAvailabilityField,
+		withRequired(equipmentAvailabilityField),
 		// Chemicals fields
 		withRequired(substanceCategoryField),
 		withRequired(volumeWeightField),

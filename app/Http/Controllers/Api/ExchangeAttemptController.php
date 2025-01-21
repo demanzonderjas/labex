@@ -24,9 +24,9 @@ class ExchangeAttemptController extends Controller
 		try {
 			$isOffer = $request->attempt_type == config('atex.constants.offer');
 
-			if ($isOffer && !$request->user()->canAddContent()) {
-				return response()->json(["success" => false, "message" => "you_are_not_allowed_to_add_content"]);
-			}
+			// if ($isOffer && !$request->user()->canAddContent()) {
+			// 	return response()->json(["success" => false, "message" => "you_are_not_allowed_to_add_content"]);
+			// }
 
 			$validated = $request->validated();
 			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);

@@ -14,8 +14,8 @@ export const Header = () => {
 			<div className="layout-wrapper">
 				<LogoWrapper goTo="app/dashboard" />
 				<div className="buttons">
-					<SubmitRequestButton />
 					<SubmitOfferButton />
+					<SubmitRequestButton />
 					<Button
 						label="alert_me"
 						handleClick={() => navigate("/app/alerts")}

@@ -18,17 +18,17 @@ export const UserProfile: React.FC<TUserProfile & { hideContact?: boolean }> = (
 
 	return (
 		<div className="UserProfile user" style={{ display: "flex", alignItems: "center" }}>
-			<div className="image-wrapper" style={{ maxWidth: "40px" }}>
+			{/* <div className="image-wrapper" style={{ maxWidth: "40px" }}>
 				{organisations.some((o) => o == user.organisation) && (
 					<LocalImage path={`logo/${user.organisation}_logo.png`} />
 				)}
-			</div>
+			</div> */}
 			<div className="details inline">
 				<span className="name">
 					{user.name} {mine ? <>({t("you")})</> : ""}
 				</span>
 				<br />
-				{t(user.organisation)}
+				{user.email}
 				{!hideContact && (
 					<div className="margin-10">
 						<a href={`mailto:${user.email}`}>
