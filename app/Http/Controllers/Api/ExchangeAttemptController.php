@@ -31,12 +31,12 @@ class ExchangeAttemptController extends Controller
 			$validated = $request->validated();
 			$attempt = $this->saveInDb($request, $validated, $request->attempt_type);
 
-			if ($isOffer) {
-				$admins = User::where('is_admin', true)->get();
-				foreach ($admins as $admin) {
-					Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
-				}
-			}
+			// if ($isOffer) {
+			// 	$admins = User::where('is_admin', true)->get();
+			// 	foreach ($admins as $admin) {
+			// 		Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
+			// 	}
+			// }
 			self::activateAlerts($attempt);
 
 			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
