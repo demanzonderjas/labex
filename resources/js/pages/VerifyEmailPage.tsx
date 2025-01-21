@@ -17,7 +17,7 @@ export const VerifyEmailPage: React.FC = observer(() => {
 
 	useEffect(() => {
 		if (user && user.email_verified_at) {
-			location.href = "/app/dashboard";
+			location.href = "/app/offers";
 		}
 	}, [user]);
 
@@ -49,7 +49,7 @@ export const VerifyEmailPage: React.FC = observer(() => {
 					{!!user && user.email_verified_at && (
 						<Button
 							label="go_to_dashboard"
-							handleClick={() => (location.href = "/app/dashboard")}
+							handleClick={() => (location.href = "/app/offers")}
 						/>
 					)}
 					<Button

@@ -52,13 +52,6 @@ export const Form: React.FC<Props> = observer(
 				{header && (
 					<TwoColumnPageIntro header={header} subheader="" matchable={matchable}>
 						<p className="layout-wrapper">{t(intro)}</p>
-						{infoModal && (
-							<Button
-								label={infoModal.header}
-								handleClick={() => setModal(infoModal)}
-								classes={{ inline: true }}
-							/>
-						)}
 					</TwoColumnPageIntro>
 				)}
 				<div className="layout-wrapper">

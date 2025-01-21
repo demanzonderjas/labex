@@ -14,7 +14,7 @@ export const HomePage: React.FC = observer(() => {
 
 	useEffect(() => {
 		if (user) {
-			location.href = "/app/dashboard";
+			location.href = "/app/offers";
 		}
 	}, [user]);
 

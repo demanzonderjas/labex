@@ -31,7 +31,7 @@ export const LoginForm: React.FC = () => {
 					<FormWrapper
 						form={LoginUserForm}
 						handleSuccess={() => {
-							location.href = "/app/dashboard";
+							location.href = "/app/offers";
 						}}
 					/>
 				</>

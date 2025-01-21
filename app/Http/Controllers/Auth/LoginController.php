@@ -27,7 +27,7 @@ class LoginController extends Controller
     public function redirectToCorrectUrl(Request $request)
     {
         $redirectUrl = $request->session()->get('target_url');
-        $targetUrl = !empty($redirectUrl) ? $redirectUrl : "/app/dashboard";
+        $targetUrl = !empty($redirectUrl) ? $redirectUrl : "/app/offers";
         return redirect()->to($targetUrl);
     }
 
