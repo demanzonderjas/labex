@@ -14,7 +14,7 @@ export const PageIntro: React.FC<Props> = ({
 	header,
 	children,
 	paddingLeft = 0,
-	boldHeader = false
+	boldHeader = false,
 }) => {
 	const { t } = useTranslationStore();
 	return (
@@ -47,7 +47,7 @@ export const TwoColumnPageIntro: React.FC<{
 							<h1>{t(header)}</h1>
 							<div>
 								<p>{t(subheader)}</p>
-								{!!matchable && <TotalMatchesFound />}
+								{/* {!!matchable && <TotalMatchesFound />} */}
 							</div>
 						</div>
 					</div>
