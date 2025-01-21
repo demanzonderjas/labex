@@ -42,6 +42,8 @@ export const Form: React.FC<Props> = observer(
 		const { setModal } = useModalStore();
 		const navigate = useNavigate();
 
+		console.log(isLoading);
+
 		return (
 			<div
 				className={cx("Form", {
@@ -76,7 +78,7 @@ export const Form: React.FC<Props> = observer(
 								className="button-wrapper"
 								style={{ display: "flex", justifyContent: "space-between" }}
 							>
-								<SubmitButton label={submitLabel} />
+								<SubmitButton disabled={isLoading} label={submitLabel} />
 								{allowCancel && (
 									<DangerButton label="cancel" handleClick={() => navigate(-1)} />
 								)}

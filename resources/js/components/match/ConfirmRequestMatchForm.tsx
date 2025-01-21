@@ -28,11 +28,14 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const { cancel, confirm } = useModalStore();
 	const [extraInfo, setExtraInfo] = useState("");
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const matches = createMatchSpecs(fields, filters);
 	const navigate = useNavigate();
 	const { t } = useTranslationStore();
 
 	const confirmMatch = async () => {
+		if (isSubmitting) return;
+		setIsSubmitting(true);
 		const requestData: any = filters.reduce(
 			(base, next) => {
 				base[next.id] = next.value;
@@ -72,6 +75,7 @@ export const ConfirmRequestMatchForm: React.FC<Props> = ({ fields, filters, offe
 				<div className="buttons layout-wrapper">
 					<BlankButton label="cancel" handleClick={cancel} classes={{ inline: true }} />
 					<Button
+						disabled={isSubmitting}
 						label="confirm"
 						handleClick={confirmMatch}
 						classes={{ inline: true, secondary: true }}

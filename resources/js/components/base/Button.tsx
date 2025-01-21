@@ -9,14 +9,23 @@ type Props = {
 	isSubmit?: boolean;
 	label: string;
 	handleClick?: ClickHandler;
+	disabled?: boolean;
 	classes?: object;
 };
 
-export const Button: React.FC<Props> = ({ isSubmit, label, handleClick, classes = {} }) => {
+export const Button: React.FC<Props> = ({
+	isSubmit,
+	label,
+	handleClick,
+	classes = {},
+	disabled = false,
+}) => {
 	const { t } = useTranslationStore();
 	return (
 		<span className={cx("Button", { ...classes, primary: true })} onClick={handleClick}>
-			<button type={isSubmit ? "submit" : "button"}>{t(label)}</button>
+			<button disabled={disabled} type={isSubmit ? "submit" : "button"}>
+				{t(label)}
+			</button>
 		</span>
 	);
 };
