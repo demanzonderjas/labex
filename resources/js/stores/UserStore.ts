@@ -18,6 +18,5 @@ export class UserStore {
 	@action.bound async fetchUser() {
 		const response = await API.get("active-user");
 		this.user = response.data.user;
-		console.log(this.user);
 	}
 }

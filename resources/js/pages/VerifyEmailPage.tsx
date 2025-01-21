@@ -25,7 +25,9 @@ export const VerifyEmailPage: React.FC = observer(() => {
 		<div>
 			<HomePageHeader />
 			<div className="page-wrapper">
-				<PageIntro header="verify_email" />
+				<PageIntro header="verify_email">
+					<p>{t("email_verification_sent")}</p>
+				</PageIntro>
 				<div className="layout-wrapper content ">
 					<div style={{ margin: "40px 0", maxWidth: "200px" }}>
 						<LocalImage path="logo/labex.webp" />
@@ -44,9 +46,16 @@ export const VerifyEmailPage: React.FC = observer(() => {
 							{t("check_email_verification_inbox")}
 						</p>
 					)}
+					{!!user && user.email_verified_at && (
+						<Button
+							label="go_to_dashboard"
+							handleClick={() => (location.href = "/app/dashboard")}
+						/>
+					)}
 					<Button
-						label="go_to_dashboard"
-						handleClick={() => (location.href = "/app/dashboard")}
+						classes={{ danger: true }}
+						label="log_out"
+						handleClick={() => (location.href = "/logout")}
 					/>
 				</div>
 			</div>

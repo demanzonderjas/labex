@@ -55,7 +55,7 @@ class LoginController extends Controller
         } catch (Exception $e) {
             return response()->json(["success" => false, "message" => "Credentials given are not correct"]);
         }
-        self::logUserIn($user, $request->password);
+        return self::logUserIn($user, $request->password);
     }
 
     public static function logUserIn(User $user, string $password)

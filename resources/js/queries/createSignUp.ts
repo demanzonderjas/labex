@@ -5,7 +5,6 @@ export async function createSignUp(data) {
 		const response = await ExternalAPI.post("users/store", data);
 		return response.data;
 	} catch (e) {
-		console.log(e);
 		return { success: false, message: e.message || "invalid_request" };
 	}
 }

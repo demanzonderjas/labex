@@ -21,8 +21,10 @@ export async function createUser(user) {
 export async function loginUser(loginAttempt) {
 	try {
 		const response = await API.post("external-login", loginAttempt);
+		console.log("response?", response.data);
 		return response.data;
 	} catch (e) {
+		console.log(e);
 		return { success: false, message: "invalid_request" };
 	}
 }

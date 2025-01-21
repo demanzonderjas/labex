@@ -271,5 +271,6 @@
 	"verify_email": "Verify e-mail address first.",
 	"resend_email_verification_email": "Resend email verification email",
 	"go_to_dashboard": "Go to dashboard",
-	"you_are_not_allowed_to_add_content": "You are not allowed to add content."
+	"you_are_not_allowed_to_add_content": "You are not allowed to add content.",
+	"email_verification_sent": "A verification email has been sent to your inbox. Please check it (and your junk/spam folder) and otherwise resend the email via button below."
 }
