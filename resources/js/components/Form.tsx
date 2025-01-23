@@ -35,14 +35,10 @@ export const Form: React.FC<Props> = observer(
 		hideSubmit,
 		allowCancel,
 		fullWidthFields,
-		infoModal,
 	}) => {
 		const { submit, isLoading, serverError, isCollapsed, resetForm, form } = useFormStore();
 		const { t } = useTranslationStore();
-		const { setModal } = useModalStore();
 		const navigate = useNavigate();
-
-		console.log(isLoading);
 
 		return (
 			<div

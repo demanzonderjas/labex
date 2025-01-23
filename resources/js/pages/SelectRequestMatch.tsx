@@ -60,7 +60,6 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				exchange_attempt: TExchangeAttempt;
 				success: boolean;
 			} = await getExchangeAttempt(id);
-			console.log(response);
 			const filledFields = fillFieldsWithSpecifications(
 				RequestSpecificationsForm.fields,
 				response.exchange_attempt.specifications

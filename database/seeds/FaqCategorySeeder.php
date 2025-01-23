@@ -12,7 +12,7 @@ class FaqCategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ["General", "Matches", "Privacy", "Security", "Other"];
+        $categories = ["General", "Matches", "Privacy", "Security", "Transport and Storage", "Other"];
 
         foreach ($categories as $category) {
             $c = new FaqCategory();
