@@ -49,7 +49,12 @@ export const LoginForm: React.FC = () => {
 						handleSuccess={() => setShowEmailVerification(true)}
 					/>
 					{!!showEmailVerification && (
-						<p className="success-message">{t("check_email_verification_inbox")}</p>
+						<>
+							<p className="margin-10 success-message">
+								{t("check_email_verification_inbox")}
+							</p>
+							<p>{t("verification_delay_description")}</p>
+						</>
 					)}
 				</>
 			)}
