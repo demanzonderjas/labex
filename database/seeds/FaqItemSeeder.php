@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\FaqCategory;
 use App\FaqItem;
 use Illuminate\Database\Seeder;
@@ -88,8 +90,37 @@ class FaqItemSeeder extends Seeder
                 "category" => "Transport and Storage",
                 "title" => "Transport options",
                 "content" => "<p>If you, as a provider or recipient, cannot transport and/or store the material yourself and you are looking for support for this, there are two options:</p><p><strong>1. Provider and/or recipient are part of the UU</strong></p><p>If you work within a UU unit, you can submit a request for transport and/or storage via Topdesk (solis-id required), or via the enclosed QR code</p><p><img src='/images/faq/qr-transport.png' width='198' height='190'></p><p>Staff members of the UU Campus &amp; Facilities Department (C&amp;F) can support you in this. C&amp;F Logistics has its own trucks with a tailgate and pump trucks and works together with the C&amp;F colleagues in the buildings.</p><p>The tailgate of these cars can carry 500 kg and several euro pallets or mesh containers can be carried per trip.</p><p><strong>2. Neither provider nor recipient are part of the UU</strong></p><p>If none of the parties works within the UU, you can request a service from Hub Utrecht Oost as a provider or recipient for transport and/or storage.</p><p>Hub Utrecht Oost (HUO) carries out bundled zero emission transport for entrepreneurs and organisations at the Utrecht Science Park, Rijnsweerd and surrounding areas. As a result, HUO achieves a reduction in the number of (freight) transport movements in the area and a reduction in CO2.</p><p>The rates for the HUO services are:</p><p><strong>Storage:</strong></p><ul><li>The rate for Euro pallet per month: €14.10 including inbound.</li><li>Storage boxes/crates: per shelf of 100x40x30 cm, € 2.05 per month incl. inbound.</li><li>Pick outbound/orders: € 0.75 per unit</li></ul><p><strong>Distribution</strong></p><p>HUO charges a rate of € 18.35 per stop/delivery. In case the volume of the delivery is greater than a load carrier (roll container or pallet), a surcharge of € 7.85 per load carrier will be charged. For transport of goods of larger size or different rate on request.</p><p><strong>Contact Hub Utrecht Oost:</strong></p><ul><li>Birgit Hendriks</li><li>birgit.hendriks@hubutrechtoost.nl</li><li>06 53158501</li><li><a href='http://hubutrechtoost.nl/'>http://hubutrechtoost.nl/</a></li></ul>"
-
-            ]
+            ],
+            [
+                "category" => "Video Tutorials",
+                "title" => "Logging in",
+                "content" => '<div class="video-wrapper"><video id="myVideo" controls=""><source src="https://surfdrive.surf.nl/files/index.php/s/JS0ignZLoySlQrw/download?path=%2F&amp;files=1%20-%20login%20(LABEXUS).mp4" type="video/mp4">Your browser does not support the video tag.</video></div>'
+            ],
+            [
+                "category" => "Video Tutorials",
+                "title" => "Submit an offer (disposables)",
+                "content" => '<div class="video-wrapper"><video id="myVideo" controls=""><source src="https://surfdrive.surf.nl/files/index.php/s/JS0ignZLoySlQrw/download?path=%2F&files=2%20-%20Submit%20an%20Offer%20-%20disposables%20(LABEXUS).mp4" type="video/mp4">Your browser does not support the video tag.</video></div>'
+            ],
+            [
+                "category" => "Video Tutorials",
+                "title" => "Submit an offer (equipment)",
+                "content" => '<div class="video-wrapper"><video id="myVideo" controls=""><source src="https://surfdrive.surf.nl/files/index.php/s/JS0ignZLoySlQrw/download?path=%2F&files=3%20-%20Submit%20an%20Offer%20-%20equipment%20(LABEXUS).mp4" type="video/mp4">Your browser does not support the video tag.</video></div>'
+            ],
+            [
+                "category" => "Video Tutorials",
+                "title" => "Look at offers (filtering)",
+                "content" => '<div class="video-wrapper"><video id="myVideo" controls=""><source src="https://surfdrive.surf.nl/files/index.php/s/JS0ignZLoySlQrw/download?path=%2F&files=4%20-%20Look%20at%20Offers%20%E2%80%93%20filtering(LABEXUS).mp4" type="video/mp4">Your browser does not support the video tag.</video></div>'
+            ],
+            [
+                "category" => "Video Tutorials",
+                "title" => "Adding a new alert",
+                "content" => '<div class="video-wrapper"><video id="myVideo" controls=""><source src="https://surfdrive.surf.nl/files/index.php/s/JS0ignZLoySlQrw/download?path=%2F&files=6%20-%20Add%20a%20new%20alert%20(LABEXUS).mp4" type="video/mp4">Your browser does not support the video tag.</video></div>'
+            ],
+            [
+                "category" => "Video Tutorials",
+                "title" => "LABEXUS (promo)",
+                "content" => '<div class="video-wrapper"><video id="myVideo" controls=""><source src="https://surfdrive.surf.nl/files/index.php/s/JS0ignZLoySlQrw/download?path=%2F&files=6%20-%20Add%20a%20new%20alert%20(LABEXUS).mp4" type="video/mp4">Your browser does not support the video tag.</video></div>'
+            ],
         ];
 
         foreach ($faqItems as $item) {

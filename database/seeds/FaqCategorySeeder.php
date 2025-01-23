@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\FaqCategory;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +14,7 @@ class FaqCategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ["General", "Matches", "Privacy", "Security", "Transport and Storage", "Other"];
+        $categories = ["General", "Video Tutorials", "Matches", "Privacy", "Security", "Transport and Storage", "Other"];
 
         foreach ($categories as $category) {
             $c = new FaqCategory();
