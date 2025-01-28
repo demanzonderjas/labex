@@ -9,10 +9,8 @@ use App\Http\Requests\ExchangeAttemptStoreRequest;
 use App\Http\Resources\ExchangeAttemptResource;
 use App\Mail\Admin\AdminOfferAddedEmail;
 use App\Mail\AlertMatchEmail;
-use App\Role;
 use App\Specification;
 use App\User;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -37,7 +35,7 @@ class ExchangeAttemptController extends Controller
 					Mail::to($admin)->queue(new AdminOfferAddedEmail($attempt));
 				}
 			}
-			self::activateAlerts($attempt);
+			// self::activateAlerts($attempt);
 
 			return response()->json(["success" => true, "exchange_attempt" => new ExchangeAttemptResource($attempt)]);
 		} catch (Exception $e) {
