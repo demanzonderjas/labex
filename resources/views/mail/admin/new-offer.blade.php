@@ -5,12 +5,12 @@
 
 @section('content')
     <p>
-        A new offer has just been added to the LABEXUS platform. It is currently on hold waiting to be activated.
+        A new offer has just been added to the LABEXUS platform.
     </p>
 @stop
 
-@section('cta-link', env('APP_URL') . '/admin/offers?status=on-hold')
-@section('cta-text', 'View the offers that are on hold')
+@section('cta-link', env('APP_URL') . '/app/offers/select/' . $attempt->id)
+@section('cta-text', 'View the offer')
 
 @section('closing')
     <p>
