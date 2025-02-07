@@ -285,5 +285,6 @@
 	"back_to_log_in": "Back to log in",
 	"reset_password": "Reset your password",
 	"choose_new_password": "You can choose a new password here.",
-	"password_confirmation": "Password (confirm)"
+	"password_confirmation": "Password (confirm)",
+	"password_changed_successfully": "Your password has been changed successfully."
 }
