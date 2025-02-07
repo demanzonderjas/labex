@@ -277,6 +277,13 @@
 	"go_to_dashboard": "Go to dashboard",
 	"you_are_not_allowed_to_add_content": "You are not allowed to add content.",
 	"email_verification_sent": "A verification email has been sent to your inbox. Please check it (and your junk/spam folder) and otherwise resend the email via button below.",
+	"check_reset_password_mail": "An email has been sent to your inbox to reset your password. Please check it (and your junk/spam folder).",
 	"matching": "matching",
-	"verification_delay_description": "It may take a few minutes for you to receive the verification email. If it takes a very long time, also check your spam box."
+	"verification_delay_description": "It may take a few minutes for you to receive the verification email. If it takes a very long time, also check your spam box.",
+	"forgot_password": "Forgot password?",
+	"reset_password_here": "Reset your password here",
+	"back_to_log_in": "Back to log in",
+	"reset_password": "Reset your password",
+	"choose_new_password": "You can choose a new password here.",
+	"password_confirmation": "Password (confirm)"
 }

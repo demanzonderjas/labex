@@ -18,6 +18,7 @@ export type TForm = {
 	allowCancel?: boolean;
 	data?: any;
 	splitByRequired?: boolean;
+	hasManualSubmitHandler?: boolean;
 };
 
 export enum InputType {
@@ -46,6 +47,7 @@ export enum TFormFieldName {
 	Title = "title",
 	Organisation = "organisation",
 	Password = "password",
+	PasswordConfirm = "password_confirmation",
 	User = "user",
 }
 

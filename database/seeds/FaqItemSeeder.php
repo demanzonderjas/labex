@@ -1,7 +1,5 @@
 <?php
 
-namespace Database\Seeders;
-
 use App\FaqCategory;
 use App\FaqItem;
 use Illuminate\Database\Seeder;

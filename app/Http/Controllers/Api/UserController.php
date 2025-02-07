@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
 class UserController
@@ -45,6 +47,46 @@ class UserController
         LoginController::logUserIn($user, $request->password);
 
         return response()->json(["success" => true, "user" => $request->user()]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!empty($user)) {
+            Password::sendResetLink(
+                $request->only('email')
+            );
+        }
+
+        return response()->json(["success" => true]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+            ? response()->json(["success" => true])
+            : response()->json(["success" => false]);
     }
 
     public function delete($user_id)

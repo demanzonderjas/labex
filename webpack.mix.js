@@ -6,6 +6,7 @@ mix.ts("resources/js/index.tsx", "public/js");
 mix.ts("resources/js/app.tsx", "public/js");
 mix.ts("resources/js/verify-email.tsx", "public/js");
 mix.ts("resources/js/admin.tsx", "public/js");
+mix.ts("resources/js/reset-password.tsx", "public/js");
 mix.webpackConfig({
 	module: {
 		rules: [

@@ -41,6 +41,10 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/app/offers');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.password-reset', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');

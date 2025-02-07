@@ -24,6 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
 
     Route::post('users/store', 'UserController@store')->withoutMiddleware(VerifyApiUserToken::class);
+    Route::post('users/reset-password', 'UserController@resetPassword')->withoutMiddleware(VerifyApiUserToken::class);
+    Route::post('users/change-password', 'UserController@changePassword')->withoutMiddleware(VerifyApiUserToken::class);
     Route::post('external-login', '\App\Http\Controllers\Auth\LoginController@handleExternalLogin')->withoutMiddleware(VerifyApiUserToken::class);
     // Route::post('demo-login', '\App\Http\Controllers\Auth\LoginController@handleDemoLogin')->withoutMiddleware(VerifyApiUserToken::class);
 

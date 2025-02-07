@@ -40,6 +40,10 @@ export class FormStore {
 		return this.fields.filter((field) => field.id == this.activeFilter);
 	}
 
+	@computed get hasManualSubmitHandler() {
+		return this.form.hasManualSubmitHandler;
+	}
+
 	@computed get filters() {
 		return this.fields.filter(fieldMeetsDependencies).filter((field) => field.value != "");
 	}
@@ -102,6 +106,10 @@ export class FormStore {
 			this.setIsLoading(true);
 			const data = this.generateKeyValuePairs();
 			const response = await this.handler(data);
+			if (this.hasManualSubmitHandler) {
+				this.setIsLoading(false);
+				return;
+			}
 			if (!response.success) {
 				this.serverError = response.message;
 				this.setIsLoading(false);

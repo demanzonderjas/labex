@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use HiHaHo\EncryptableTrait\Encryptable;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable  implements MustVerifyEmail
+class User extends Authenticatable  implements MustVerifyEmail, CanResetPassword
 {
     use Notifiable;
     use Encryptable;
