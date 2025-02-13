@@ -20,6 +20,7 @@ export const disposableCategoryField: TFormField = {
 			"gloves",
 			"syringes",
 		],
+		allowOther: true,
 	},
 	default: "",
 	value: "",
