@@ -15,17 +15,19 @@ import {
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
-import { SecondaryButton, BlankButton } from "../components/base/Button";
+import { SecondaryButton, BlankButton, Button } from "../components/base/Button";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmRequestMatchModal } from "../data/modals/confirm";
 import { UserProfile } from "../components/match/UserProfile";
 import { TUserProfile } from "../typings/user";
 import { TExchangeAttempt } from "../typings/exchanges";
 import { useUserStore } from "../hooks/useUserStore";
+import { goToEditLink } from "../utils/routing/url";
 
 export const SelectOfferMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const [offer, setOffer] = useState([]);
+	const [attempt, setActiveAttempt] = useState(null);
 	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [matchPercentage, setMatchPercentage] = useState(0);
 	const [isMatch, setIsMatch] = useState(null);
@@ -53,6 +55,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 				SubmitOfferForm.fields,
 				response.exchange_attempt.specifications
 			);
+			setActiveAttempt(response.exchange_attempt);
 			setOffer(filledFields);
 			setIsMatch(response.exchange_attempt.is_match);
 			const _matchPercentage = getMatchingPercentage(
@@ -94,6 +97,7 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 					isMatch={isMatch}
 					fields={offer}
 					filters={filters}
+					attempt={attempt}
 					matchPercentage={matchPercentage}
 					handleBack={goBack}
 					handleSelect={() => setModal(modalData)}
@@ -102,6 +106,14 @@ export const SelectOfferMatchPage: React.FC = observer(() => {
 				{!isMatch && (
 					<div className="button-wrapper">
 						<BlankButton label="return_to_overview" handleClick={goBack} />
+						{!!attempt && !!attempt.is_mine && (
+							<Button
+								handleClick={() => goToEditLink(navigate, attempt)}
+								label="edit"
+								classes={{ primary: true }}
+							/>
+						)}
+
 						{!!userCanAddContent && (
 							<SecondaryButton
 								label="select_match"

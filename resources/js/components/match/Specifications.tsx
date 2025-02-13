@@ -8,24 +8,37 @@ import { useTranslationStore } from "../../hooks/useTranslationStore";
 import { Percentage } from "../base/Percentage";
 import { fieldIsNotHidden, fieldMeetsDependencies } from "../../utils/filters/fields";
 import { Icon } from "../base/Image";
-import { SecondaryButton } from "../base/Button";
+import { Button, SecondaryButton } from "../base/Button";
 import { MATCH_CHART_COLORS } from "../../data/configs/colors";
 import { observer } from "mobx-react-lite";
 import { useUserStore } from "../../hooks/useUserStore";
+import { goToEditLink } from "../../utils/routing/url";
+import { TExchangeAttempt } from "../../typings/exchanges";
+import { useNavigate } from "react-router";
 
 type Props = {
 	fields: TFormField[];
 	filters: TFormField[];
 	matchPercentage: number;
+	attempt: TExchangeAttempt;
 	handleBack: Function;
 	handleSelect: Function;
 	isMatch?: boolean;
 };
 
 export const Specifications: React.FC<Props> = observer(
-	({ fields, filters, matchPercentage, handleBack, handleSelect, isMatch: isAlreadyMatched }) => {
+	({
+		fields,
+		filters,
+		attempt,
+		matchPercentage,
+		handleBack,
+		handleSelect,
+		isMatch: isAlreadyMatched,
+	}) => {
 		const { t } = useTranslationStore();
 		const { userCanAddContent } = useUserStore();
+		const navigate = useNavigate();
 
 		const matches = fields.map((field) => {
 			const filter = filters.find((f) => f.id == field.id || f.id == field.matchVia);
@@ -61,6 +74,13 @@ export const Specifications: React.FC<Props> = observer(
 									label="select_match"
 									handleClick={() => handleSelect()}
 								/>
+								{!!attempt && !!attempt.is_mine && (
+									<Button
+										handleClick={() => goToEditLink(navigate, attempt)}
+										label="edit"
+										classes={{ primary: true }}
+									/>
+								)}
 							</div>
 						)}
 						{matches

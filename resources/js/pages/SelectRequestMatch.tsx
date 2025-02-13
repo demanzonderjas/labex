@@ -13,7 +13,7 @@ import { fillFieldsWithSpecifications } from "../utils/formatting/matches";
 import { PageIntro } from "../components/layout/PageIntro";
 import { useTranslationStore } from "../hooks/useTranslationStore";
 import { getMatchingPercentage } from "../utils/matches/utils";
-import { SecondaryButton, BlankButton } from "../components/base/Button";
+import { SecondaryButton, BlankButton, Button } from "../components/base/Button";
 import { getExchangeAttempt } from "../queries/getExchangeAttempts";
 import { useModalStore } from "../hooks/useModalStore";
 import { confirmOfferMatchModal } from "../data/modals/confirm";
@@ -22,11 +22,13 @@ import { TUserProfile } from "../typings/user";
 import { UserProfile } from "../components/match/UserProfile";
 import { TExchangeAttempt } from "../typings/exchanges";
 import { useUserStore } from "../hooks/useUserStore";
+import { goToEditLink } from "../utils/routing/url";
 
 export const SelectRequestMatchPage: React.FC = observer(() => {
 	const [sampleStore] = useState(new ExchangeAttemptStore());
 	const [request, setRequest] = useState([]);
 	const [matchPercentage, setMatchPercentage] = useState(0);
+	const [attempt, setActiveAttempt] = useState(null);
 	const [userProfile, setUserProfile] = useState<TUserProfile>(null);
 	const [isMatch, setIsMatch] = useState(null);
 	const { setModal, confirm } = useModalStore();
@@ -60,6 +62,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				exchange_attempt: TExchangeAttempt;
 				success: boolean;
 			} = await getExchangeAttempt(id);
+			setActiveAttempt(response.exchange_attempt);
 			const filledFields = fillFieldsWithSpecifications(
 				RequestSpecificationsForm.fields,
 				response.exchange_attempt.specifications
@@ -96,6 +99,7 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 					isMatch={isMatch}
 					fields={request}
 					filters={filters}
+					attempt={attempt}
 					matchPercentage={matchPercentage}
 					handleBack={goBack}
 					handleSelect={() => setModal(modalData)}
@@ -104,6 +108,13 @@ export const SelectRequestMatchPage: React.FC = observer(() => {
 				{!isMatch && (
 					<div className="button-wrapper">
 						<BlankButton label="return_to_overview" handleClick={goBack} />
+						{!!attempt && !!attempt.is_mine && (
+							<Button
+								handleClick={() => goToEditLink(navigate, attempt)}
+								label="edit"
+								classes={{ primary: true }}
+							/>
+						)}
 						{!!userCanAddContent && (
 							<SecondaryButton
 								label="select_match"
