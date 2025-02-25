@@ -286,5 +286,9 @@
 	"reset_password": "Reset your password",
 	"choose_new_password": "You can choose a new password here.",
 	"password_confirmation": "Password (confirm)",
-	"password_changed_successfully": "Your password has been changed successfully."
+	"password_changed_successfully": "Your password has been changed successfully.",
+	"oven": "Oven",
+	"mixer_shaker": "Mixer/shaker",
+	"fluids_medium": "Fluids/medium",
+	"freezer_refrigerator": "Freezer/Refrigerator"
 }

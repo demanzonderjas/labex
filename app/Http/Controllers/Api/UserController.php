@@ -91,7 +91,8 @@ class UserController
 
     public function delete($user_id)
     {
-        User::destroy($user_id);
+        $user = User::find($user_id);
+        $user->delete();
 
         return response()->json(["success" => true]);
     }

@@ -22,7 +22,9 @@ export const UsersPage = observer(() => {
 	}, []);
 
 	const usersWithCells = mapUsersToOverviewData(
-		users.filter((s) => s.name.match(filter) || s.email.match(filter))
+		users.filter(
+			(s) => !filter || (s.name && s.name.match(filter)) || (s.email && s.email.match(filter))
+		)
 	);
 
 	return (
@@ -49,7 +51,7 @@ export const UsersPage = observer(() => {
 									key={cellIdx}
 									value={cell.value}
 									rowIndex={idx}
-									user={users[idx]}
+									userId={cells.find((c) => c.id === "id")?.value}
 								/>
 							))}
 						</tr>

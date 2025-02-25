@@ -3,11 +3,11 @@ import { useTranslationStore } from "../../../../hooks/useTranslationStore";
 import { deleteUser } from "../../../../queries/admin/users";
 import { ButtonCell } from "../ButtonCell";
 
-export const DeleteUserButtonCell = ({ value, rowIndex, user, ...props }) => {
+export const DeleteUserButtonCell = ({ value, rowIndex, userId, ...props }) => {
 	const { t } = useTranslationStore();
 
 	const deleteMe = async () => {
-		await deleteUser(user);
+		await deleteUser(userId);
 		location.reload();
 	};
 

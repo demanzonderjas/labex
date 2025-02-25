@@ -36,10 +36,9 @@ export async function demoLogin(password: string, user_id: number) {
 	}
 }
 
-export async function deleteUser(user) {
-	const { id } = user;
+export async function deleteUser(userId) {
 	try {
-		const response = await API.delete(`user/${id}`);
+		const response = await API.delete(`user/${userId}`);
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };

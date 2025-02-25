@@ -11,7 +11,7 @@ export const substanceCategoryField: TFormField = {
 	isHardFilter: true,
 	props: {
 		startsEmpty: true,
-		options: ["laboratory_use", "medicines", "immunological_reagents"],
+		options: ["laboratory_use", "medicines", "immunological_reagents", "fluids_medium"],
 	},
 	default: "",
 	value: "",
