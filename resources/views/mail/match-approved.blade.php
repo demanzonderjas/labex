@@ -18,15 +18,6 @@
             {{ $match->offer->description }}
         </li>
     </ul>
-    <h3>Request</h3>
-    <ul>
-        <li>
-            {{ $match->request->title }}
-        </li>
-        <li>
-            {{ $match->request->description }}
-        </li>
-    </ul>
     <p>
         You can contact your match via the following information to set up the exchange:
     </p>
