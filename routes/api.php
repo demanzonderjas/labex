@@ -76,7 +76,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('exchange-attempts/approve/{attempt}', 'ExchangeAttemptController@approve');
 
         Route::get('users', 'UserController@getAll');
-        Route::post('user', 'UserController@store');
+        Route::post('admin/add-user', 'UserController@addUserAsAdmin');
         Route::delete('user/{user_id}', 'UserController@delete');
 
         Route::get('alerts', 'AlertController@all');

@@ -11,7 +11,7 @@ export async function getUsers() {
 
 export async function createUser(user) {
 	try {
-		const response = await API.post("user", user);
+		const response = await API.post("admin/add-user", user);
 		return response.data;
 	} catch (e) {
 		return { success: false, message: "invalid_request" };

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -46,6 +47,24 @@ class UserController
         event(new Registered($user));
         LoginController::logUserIn($user, $request->password);
 
+        return response()->json(["success" => true, "user" => $request->user()]);
+    }
+
+    public function addUserAsAdmin(Request $request)
+    {
+        if (User::where('email', $request->email)->first()) {
+            return response()->json(["success" => false, "message" => "email_already_exists"]);
+        }
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->email_verified_at = Carbon::now();
+        $user->token = Str::random(40);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        event(new Registered($user));
         return response()->json(["success" => true, "user" => $request->user()]);
     }
 

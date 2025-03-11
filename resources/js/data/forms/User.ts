@@ -6,15 +6,15 @@ import { organisationField } from "./fields/user/organisation";
 import { passwordField, passwordGeneratorField } from "./fields/user/password";
 
 export const CreateUserForm: TForm = {
-	fields: [nameField, emailField, organisationField, passwordGeneratorField],
+	fields: [nameField, emailField, passwordGeneratorField],
 	handler: createUser,
 	fullWidthFields: true,
-	submitLabel: "save_new_user"
+	submitLabel: "save_new_user",
 };
 
 export const LoginUserForm: TForm = {
 	fields: [emailField, passwordField],
 	handler: loginUser,
 	fullWidthFields: true,
-	submitLabel: "log_in"
+	submitLabel: "log_in",
 };
