@@ -89,7 +89,7 @@ export const expiryDateField: TFormField = {
 	matchVia: undefined,
 	label: "expiry_date",
 	id: TSpecificationName.ExpiryDate,
-	validate: isDateInFuture,
+	validate: undefined,
 	dependencies: [
 		{
 			id: TSpecificationName.ExchangeType,
