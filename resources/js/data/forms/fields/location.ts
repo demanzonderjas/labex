@@ -18,7 +18,7 @@ export const locationRoomField: TFormField = {
 	label: "location_room",
 	id: TSpecificationName.LocationRoom,
 	Component: InputField,
-	required: true,
+	required: false,
 	props: {
 		type: InputType.Text,
 	},
