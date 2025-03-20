@@ -24,7 +24,7 @@ export const dateAvailableStartField: TFormField = {
 	},
 	default: "",
 	matchVia: TSpecificationName.DateRequested,
-	value: "",
+	value: dayjs().format("YYYY-MM-DD"),
 	validate: isDateAvailableStartValid,
 	isMatch: (givenValue, targetValue, filters, fields): TSpecStatus => {
 		const type = getFieldById(TSpecificationName.ExchangeType, fields);
@@ -43,6 +43,7 @@ export const dateAvailableEndField: TFormField = {
 	...dateAvailableStartField,
 	label: "date_available_end",
 	id: TSpecificationName.DateAvailableEnd,
+	value: "",
 	validate: isDateAvailableEndValid,
 };
 
@@ -86,6 +87,7 @@ export const yearSelectField: TFormField = {
 
 export const expiryDateField: TFormField = {
 	...dateAvailableStartField,
+	value: "",
 	matchVia: undefined,
 	label: "expiry_date",
 	id: TSpecificationName.ExpiryDate,
